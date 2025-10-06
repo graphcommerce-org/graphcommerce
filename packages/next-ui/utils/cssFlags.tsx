@@ -35,10 +35,11 @@ export function getCssFlag(flagName: string) {
  * Example:
  *
  * ```tsx
- * <Box sx={{ [cssFlagSelector('dark')]: { color: 'white' } }} />
+ * ;<Box sx={{ [cssFlag('mode', 'dark')]: { color: 'white' } }} />
  * ```
  */
-export const cssFlag = <T extends string>(flagName: T) => `html[data-${flagName}] &` as const
+export const cssFlag = <T extends string>(flagName: T, val?: string) =>
+  `html[data-${flagName}${val ? `=${val}` : ''}] &` as const
 
 /**
  * Easily create a CSS selector that only applies when a flag is not set.
@@ -46,8 +47,8 @@ export const cssFlag = <T extends string>(flagName: T) => `html[data-${flagName}
  * Example:
  *
  * ```tsx
- * <Box sx={{ [cssNotFlagSelector('dark')]: { color: 'black' } }} />
+ * ;<Box sx={{ [cssNotFlag('mode', 'dark')]: { color: 'black' } }} />
  * ```
  */
-export const cssNotFlag = <T extends string>(flagName: T) =>
-  `html:not([data-${flagName}]) &` as const
+export const cssNotFlag = <T extends string>(flagName: T, val?: string) =>
+  `html:not([data-${flagName}${val ? `=${val}` : ''}]) &` as const

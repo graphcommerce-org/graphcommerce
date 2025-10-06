@@ -1,14 +1,19 @@
 import { Image } from '@graphcommerce/image'
-import { StoreSwitcherButton } from '@graphcommerce/magento-store'
-import { Footer as FooterBase } from '@graphcommerce/next-ui'
+import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
+import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
+import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Button, IconButton, Link } from '@mui/material'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
+import { useQuery } from '@graphcommerce/graphql'
 
 export type FooterProps = FooterQueryFragment
 
 export function Footer(props: FooterProps) {
   const { footer } = props
+  const cartEnabled = useCheckoutGuestEnabled()
+  const config = useQuery(StoreConfigDocument).data?.storeConfig
+  const year = <DateFormat dateStyle={undefined} year='numeric' date={new Date()} />
 
   return (
     <FooterBase
@@ -39,14 +44,20 @@ export function Footer(props: FooterProps) {
       }
       copyright={
         <>
-          <span>{footer?.copyright}</span>
+          <span>
+            {config?.copyright ? (
+              <FindAndReplace source={config.copyright} findAndReplace={[['{YYYY}', year]]} />
+            ) : (
+              footer?.copyright
+            )}
+          </span>
 
           {footer?.legalLinks?.map((link) => (
             <Link key={link.title} href={link.url} color='textPrimary' underline='always'>
               {link.title}
             </Link>
           ))}
-          {import.meta.graphCommerce.magentoVersion >= 247 && (
+          {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
               <Trans>Order status</Trans>
             </Link>

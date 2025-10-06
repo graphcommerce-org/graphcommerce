@@ -182,7 +182,7 @@ fragment RowRenderer on Page @inject(into: ["HygraphPage"]) {
 - Add a new file, /components/GraphCMS/Banner/index.tsx:
 
 ```tsx
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { BannerFragment } from './Banner.gql'
 
 export function Banner(props: BannerFragment) {

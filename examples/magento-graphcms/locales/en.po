@@ -18,6 +18,10 @@ msgid "Doing so will remove all your data including order history and saved ship
 msgstr "Doing so will remove all your data including order history and saved shipping / billing addresses."
 
 #. js-lingui-generated-id
+msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+
+#. js-lingui-generated-id
 msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "I understand that my account will be deleted and this can not be undone."
 
@@ -28,6 +32,10 @@ msgstr "Newletter"
 #. js-lingui-generated-id
 msgid "Search all products..."
 msgstr "Search all products..."
+
+#. js-lingui-generated-id
+msgid "Did you mean?"
+msgstr "Did you mean?"
 
 #. js-lingui-generated-id
 msgid "We couldn't find any results"
@@ -62,6 +70,10 @@ msgstr "<0>{name}</0> has been added to your comparison!"
 
 msgid "<0>{name}</0> has been added to your wishlist!"
 msgstr "<0>{name}</0> has been added to your wishlist!"
+
+#. js-lingui-generated-id
+msgid "Search"
+msgstr "Search"
 
 msgid "Above <0/>"
 msgstr "Above <0/>"
@@ -105,17 +117,11 @@ msgstr "Addresses"
 msgid "All filters"
 msgstr "All filters"
 
-msgid "All {name}"
-msgstr "All {name}"
-
 msgid "Apply"
 msgstr "Apply"
 
 msgid "As low as <0/>"
 msgstr "As low as <0/>"
-
-msgid "As soon as the payment is completed, you will automatically return to the webshop."
-msgstr "As soon as the payment is completed, you will automatically return to the webshop."
 
 msgid "Authentication"
 msgstr "Authentication"
@@ -145,6 +151,9 @@ msgstr "Billing address"
 msgid "Blog"
 msgstr "Blog"
 
+msgid "Breadcrumbs"
+msgstr "Breadcrumbs"
+
 msgid "Buy {quantity} for <0/> and save {percent}%"
 msgstr "Buy {quantity} for <0/> and save {percent}%"
 
@@ -161,17 +170,15 @@ msgstr "Categories"
 msgid "Order #{orderNumber}"
 msgstr "Order #{orderNumber}"
 
+#. js-lingui-generated-id
+msgid "You must first login before you can continue"
+msgstr "You must first login before you can continue"
+
 msgid "Change"
 msgstr "Change"
 
 msgid "Checkout summary"
 msgstr "Checkout summary"
-
-msgid "Choose your bank"
-msgstr "Choose your bank"
-
-msgid "Choose your bank, and place your order."
-msgstr "Choose your bank, and place your order."
 
 msgid "City"
 msgstr "City"
@@ -201,9 +208,6 @@ msgstr "Compare ({0})"
 msgid "Compare products"
 msgstr "Compare products"
 
-msgid "Complete the payment on your bank’s website."
-msgstr "Complete the payment on your bank’s website."
-
 msgid "Configure"
 msgstr "Configure"
 
@@ -216,6 +220,9 @@ msgstr "Confirm password"
 msgid "Confirm registration"
 msgstr "Confirm registration"
 
+msgid "Confirmation"
+msgstr "Confirmation"
+
 msgid "Confirmation + Track & trace"
 msgstr "Confirmation + Track & trace"
 
@@ -224,6 +231,9 @@ msgstr "Contact"
 
 msgid "Continue"
 msgstr "Continue"
+
+msgid "Continue searching"
+msgstr "Continue searching"
 
 msgid "Continue shopping"
 msgstr "Continue shopping"
@@ -268,6 +278,9 @@ msgstr "Account deletion successful"
 msgid "Dark Mode"
 msgstr "Dark Mode"
 
+msgid "Date"
+msgstr "Date"
+
 msgid "Decrease"
 msgstr "Decrease"
 
@@ -298,6 +311,15 @@ msgstr "Discover our collection and place your first order!"
 
 msgid "Discover our collection and write your first review!"
 msgstr "Discover our collection and write your first review!"
+
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Discover our collection by searching for products, categories or features."
+
+msgid "Download"
+msgstr "Download"
+
+msgid "Downloads"
+msgstr "Downloads"
 
 #. js-lingui-generated-id
 msgid "Payment method"
@@ -334,10 +356,6 @@ msgstr "Emails don't match"
 msgid "Empty comparelist"
 msgstr "Empty comparelist"
 
-#. js-lingui-generated-id
-msgid "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-msgstr "{0, plural, one {<0>{1}</0> has been added to your shopping cart} two {<1>{2}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
-
 msgid "Fill in your e-mail to login or create an account"
 msgstr "Fill in your e-mail to login or create an account"
 
@@ -365,6 +383,10 @@ msgstr "Forgot password?"
 msgid "Forgot your password?"
 msgstr "Forgot your password?"
 
+#. js-lingui-generated-id
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "We couldn’t find any results for ‘{term}’"
+
 msgid "Free"
 msgstr "Free"
 
@@ -382,10 +404,6 @@ msgstr "Housenumber"
 
 msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
 msgstr "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
-
-#. js-lingui-generated-id
-msgid "We couldn't find any results for {term}"
-msgstr "We couldn't find any results for {term}"
 
 msgid "In comparelist"
 msgstr "In comparelist"
@@ -405,11 +423,12 @@ msgstr "Invalid email address"
 msgid "It appears you are offline, please try again later."
 msgstr "It appears you are offline, please try again later."
 
+#. js-lingui-generated-id
+msgid "You have {count} downloads available."
+msgstr "You have {count} downloads available."
+
 msgid "Last Name"
 msgstr "Last Name"
-
-msgid "Latest orders"
-msgstr "Latest orders"
 
 msgid "Less options"
 msgstr "Less options"
@@ -450,6 +469,14 @@ msgstr "Mrs"
 #. js-lingui-generated-id
 msgid "Order has successfully been canceled"
 msgstr "Order has successfully been canceled"
+
+#. js-lingui-generated-id
+msgid "View all"
+msgstr "View all"
+
+#. js-lingui-generated-id
+msgid "Categories"
+msgstr "Categories"
 
 msgid "Name"
 msgstr "Name"
@@ -497,9 +524,6 @@ msgstr "Postcode"
 msgid "Ok"
 msgstr "Ok"
 
-msgid "Older"
-msgstr "Older"
-
 msgid "Only 1 left in stock."
 msgstr "Only 1 left in stock."
 
@@ -511,6 +535,9 @@ msgstr "Only {amount_left_in_stock} left in stock."
 
 msgid "Or follow these links to get you back on track!"
 msgstr "Or follow these links to get you back on track!"
+
+msgid "Order"
+msgstr "Order"
 
 msgid "Order #{orderNumber}"
 msgstr "Order #{orderNumber}"
@@ -529,6 +556,10 @@ msgstr "Orders"
 
 msgid "Other"
 msgstr "Other"
+
+#. js-lingui-generated-id
+msgid "Please enter a valid email address"
+msgstr "Please enter a valid email address"
 
 msgid "Out of stock"
 msgstr "Out of stock"
@@ -602,6 +633,9 @@ msgstr "Prefix"
 msgid "Processing your payment"
 msgstr "Processing your payment"
 
+msgid "Product"
+msgstr "Product"
+
 msgid "Product could not be found"
 msgstr "Product could not be found"
 
@@ -612,12 +646,20 @@ msgid "Products"
 msgstr "Products"
 
 #. js-lingui-generated-id
+msgid "An error occurred while processing your payment. Please contact the store owner"
+msgstr "An error occurred while processing your payment. Please contact the store owner"
+
+#. js-lingui-generated-id
 msgid "Results for ‘{search}’"
 msgstr "Results for ‘{search}’"
 
 #. js-lingui-generated-id
 msgid "Telephone"
 msgstr "Telephone"
+
+#. js-lingui-generated-id
+msgid "Please login to add products to your cart"
+msgstr "Please login to add products to your cart"
 
 msgid "Recently viewed products"
 msgstr "Recently viewed products"
@@ -630,6 +672,9 @@ msgstr "Registration successful. Please check your inbox to confirm your email a
 
 msgid "Relevance"
 msgstr "Relevance"
+
+msgid "Remaining"
+msgstr "Remaining"
 
 msgid "Remove"
 msgstr "Remove"
@@ -676,9 +721,6 @@ msgstr "Search..."
 msgid "Select"
 msgstr "Select"
 
-msgid "Select your bank"
-msgstr "Select your bank"
-
 msgid "Send password reset email"
 msgstr "Send password reset email"
 
@@ -715,11 +757,11 @@ msgstr "Sign out"
 msgid "Sign up for our newsletter and stay updated"
 msgstr "Sign up for our newsletter and stay updated"
 
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Sign up is disabled, please contact us for more information."
+
 msgid "Skip to main content"
 msgstr "Skip to main content"
-
-msgid "Some items in your cart contain errors, please update or remove them, then try again."
-msgstr "Some items in your cart contain errors, please update or remove them, then try again."
 
 msgid "Something went wrong"
 msgstr "Something went wrong"
@@ -733,8 +775,8 @@ msgstr "Sort"
 msgid "Sort By"
 msgstr "Sort By"
 
-msgid "Start Checkout"
-msgstr "Start Checkout"
+msgid "Status"
+msgstr "Status"
 
 msgid "Store home"
 msgstr "Store home"
@@ -769,6 +811,12 @@ msgstr "Successfully updated email"
 msgid "Summary"
 msgstr "Summary"
 
+msgid "Switch"
+msgstr "Switch"
+
+msgid "Switch Stores"
+msgstr "Switch Stores"
+
 msgid "Switch stores"
 msgstr "Switch stores"
 
@@ -798,9 +846,6 @@ msgstr "The payment is refused, please try again or select a different payment m
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "There is a maximum of ‘{maxLength}’ characters"
-
-msgid "This cart is assigned to {email}. Please sign in to continue shopping."
-msgstr "This cart is assigned to {email}. Please sign in to continue shopping."
 
 msgid "This field is invalid"
 msgstr "This field is invalid"
@@ -874,6 +919,9 @@ msgstr "We’re processing your payment, this will take a few seconds."
 msgid "We’ve send a password reset link to your email address!"
 msgstr "We’ve send a password reset link to your email address!"
 
+msgid "What are you looking for?"
+msgstr "What are you looking for?"
+
 msgid "Whoops our bad..."
 msgstr "Whoops our bad..."
 
@@ -888,6 +936,10 @@ msgstr "Written by {nickname}"
 
 msgid "Written {0} reviews"
 msgstr "Written {0} reviews"
+
+#. js-lingui-generated-id
+msgid "Search..."
+msgstr "Search..."
 
 msgid "You are reviewing {0}"
 msgstr "You are reviewing {0}"
@@ -921,6 +973,9 @@ msgstr "You have to agree in order to proceed"
 
 msgid "You haven't placed any reviews yet"
 msgstr "You haven't placed any reviews yet"
+
+msgid "You must be signed in to continue"
+msgstr "You must be signed in to continue"
 
 msgid "You must sign in to continue"
 msgstr "You must sign in to continue"
@@ -968,12 +1023,12 @@ msgid "Shipping address"
 msgstr "Shipping address"
 
 #. js-lingui-generated-id
-msgid "Order status: {status}"
-msgstr "Order status: {status}"
-
-#. js-lingui-generated-id
 msgid "Shipping Note"
 msgstr "Shipping Note"
+
+#. js-lingui-generated-id
+msgid "Downloads"
+msgstr "Downloads"
 
 #. js-lingui-generated-id
 msgid "Your message has been received, we will contact you as soon as we can"
@@ -996,8 +1051,16 @@ msgid "Order date"
 msgstr "Order date"
 
 #. js-lingui-generated-id
+msgid "Order status: {statusWithColor}"
+msgstr "Order status: {statusWithColor}"
+
+#. js-lingui-generated-id
 msgid "Contact"
 msgstr "Contact"
+
+#. js-lingui-generated-id
+msgid "All {name}"
+msgstr "All {name}"
 
 #. js-lingui-generated-id
 msgid "Order number"
@@ -1026,6 +1089,10 @@ msgid "one product"
 msgstr "one product"
 
 #. js-lingui-generated-id
+msgid "Start Checkout"
+msgstr "Start Checkout"
+
+#. js-lingui-generated-id
 msgid "Order not found"
 msgstr "Order not found"
 
@@ -1048,6 +1115,10 @@ msgstr "The given email does not match the account email"
 #. js-lingui-generated-id
 msgid "Message"
 msgstr "Message"
+
+#. js-lingui-generated-id
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Some items in your cart contain errors, please update or remove them, then try again."
 
 #. js-lingui-generated-id
 msgid "Order details"

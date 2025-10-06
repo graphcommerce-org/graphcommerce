@@ -1,5 +1,5 @@
-import { TypeRenderer } from '@graphcommerce/next-ui'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { TypeRenderer } from '@graphcommerce/next-ui'
+import type { ProductListItemFragment } from '../../graphql'
 import { ProductListItem } from '../ProductListItem/ProductListItem'
 
 type SkeletonType = { __typename: 'Skeleton'; uid: string }
@@ -8,6 +8,7 @@ export type ProductListItemRenderer = TypeRenderer<ProductListItemFragment | Ske
 
 /**
  * @deprecated Please use productListRenderer from the example directory instead.
+ * @public
  */
 export const renderer: ProductListItemRenderer = {
   Skeleton: ProductListItem,

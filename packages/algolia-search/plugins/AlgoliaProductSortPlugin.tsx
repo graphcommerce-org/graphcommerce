@@ -1,5 +1,5 @@
-import { ProductFiltersProps } from '@graphcommerce/magento-product'
-import { IfConfig, PluginProps } from '@graphcommerce/next-config'
+import type { ProductFiltersProps } from '@graphcommerce/magento-product'
+import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { useRouter } from 'next/router'

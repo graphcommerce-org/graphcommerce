@@ -1,246 +1,196 @@
 # Change Log
 
-## 9.0.0-canary.80
+## 9.1.0-canary.55
 
-## 9.0.0-canary.79
+## 9.1.0-canary.54
 
-## 9.0.0-canary.78
+## 9.1.0-canary.53
 
-## 9.0.0-canary.77
+## 9.1.0-canary.52
 
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
+## 9.1.0-canary.51
 
 ### Minor Changes
 
-- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implement CancelOrder mutation, add cancel order overlay to account section ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`958dcb6`](https://github.com/graphcommerce-org/graphcommerce/commit/958dcb62d5abb3427a38e2a4583897f3e2043cc4) - Intoduce a new Product-`uid` to solve an issue where cache normalization was not working properly on the frontend when viewing products with a differen curreny, etc.
 
-## 9.0.0-canary.60
+  Products now have a more detailed `uid` which will include the scope the product is retrieved from. For example: `NDg5MDM=?store=nl_NL&currencyCode=EUR`. This results in a better cache normalization in Apollo Client and allows for switching between scopes (store/currency/price views/accounts) without creating a broken cache state.
 
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
-
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
-## 8.1.0-canary.41
-
-## 8.1.0-canary.40
-
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
-
-### Minor Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.34
-
-## 8.1.0-canary.33
-
-## 8.1.0-canary.32
-
-## 8.1.0-canary.31
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
-## 8.1.0-canary.28
-
-## 8.1.0-canary.27
-
-## 8.1.0-canary.26
-
-## 8.1.0-canary.25
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
-
-## 8.0.3
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
+  We have implemented this with a new resolver that rewrites the `uid` passed from Magento to the Mesh Resolver, and additing additonal data to the `uid` based on the headers passed from the client. This also requires each package to implement the `getPrivateQueryContextMesh` method to retrieve the current PrivateQuery context from the GraphQL request headers. ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`61f90af`](https://github.com/graphcommerce-org/graphcommerce/commit/61f90afc8bc229b2cd4793f724509783af138deb) - redirectOrNotFound would log the incorrect request URL ([@paales](https://github.com/paales))
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`31397f9`](https://github.com/graphcommerce-org/graphcommerce/commit/31397f9c5b2d85895d6e00732b2e3d7a99ffee53) - Solve issue where a magento store reference was added to the graphql-mesh package. ([@paales](https://github.com/paales))
 
-## 8.0.1-canary.4
+## 9.1.0-canary.50
 
-## 8.0.1-canary.3
+## 9.1.0-canary.49
 
-## 8.0.1-canary.2
+## 9.1.0-canary.48
 
-## 8.0.1-canary.1
+## 9.1.0-canary.47
 
-## 8.0.1-canary.0
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`2075f33`](https://github.com/graphcommerce-org/graphcommerce/commit/2075f331eec38e894722d8ba4539d865f2db5507) - Support asNumber for Money component to easily render all prices as number ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`4c92400`](https://github.com/graphcommerce-org/graphcommerce/commit/4c92400733bb3764494298122771d5bd9bacd5a2) - Render prices with a narrowSymbol so users just see $ instead of US$ ([@paales](https://github.com/paales))
+
+- [`f0d244e`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d244ef8625e9cd2fc08d8518f8afa1edb3d688) - Solve issue where the currency switcher would result in an additional query ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Use the default display currency instead of the base currency in case they differ from one another. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Store switcher now allows switching between currencies without navigating and just switches the @privateContext. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Added store switcher to the header and mobile navigation ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+### Patch Changes
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`61a2e16`](https://github.com/graphcommerce-org/graphcommerce/commit/61a2e1641c75a0497406e70f2ab96c8e3f5bdd96) - Allow setting alternate store switcher URL ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Minor Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9f040a4`](https://github.com/graphcommerce-org/graphcommerce/commit/9f040a4c0947f05f2f27e4c5078a684b04e711e1) - Implemented the `query { attributesForm }` to be able to dynamically render forms with useAttributesForm/preloadAttributesForm and AttributesFormAutoLayout, and additional utilities to handle form submissions. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`798c122`](https://github.com/graphcommerce-org/graphcommerce/commit/798c12271e90cf0e02f021e7ad4aa088b4c7c2a3) - Use the `storeConfig.head_shortcut_icon` when configured, if not configured it will use the favicon.ico and favicon.svg from the public folder. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+### Minor Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Added support for multiple display currencies in the frontend. Multiple currencies were already supported, but this introduces Display Currencies for viewing the cart in different currencies. ([@paales](https://github.com/paales))
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Refactored the Store Selector to be more of a form and have multiple nested toggles to switch groups, then stores and then currencies. It automatically hides features that aren't used: If only a single group is used with multiple stores only the store selector is shown. If multiple groups are used with each a single store is used, only the group selector is shown. If only a single currency is used, there is no currency selector. If multiple currencies are used, the currency selector is shown. This makes the selector more user-friendly and less cluttered. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.1
+
+### Patch Changes
+
+- [#2458](https://github.com/graphcommerce-org/graphcommerce/pull/2458) [`9b33eac`](https://github.com/graphcommerce-org/graphcommerce/commit/9b33eac3fc8cdd7ac8ba160e598dd878c956e7c3) - Fix Magento store code not getting set in context.headers.store ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 9.0.0
+
+### Major Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Magento 2.4.7: Implemented `cancelOrder` mutation and added a cancel order overlay to the account section. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Magento 2.4.7: implement confirmEmail mutation ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2373](https://github.com/graphcommerce-org/graphcommerce/pull/2373) [`53ffc91`](https://github.com/graphcommerce-org/graphcommerce/commit/53ffc91f9bfbe1183c002c62b1fe0c3f415d7b94) - Handle the case where one switches from using the default `.html` URL suffix, to not using one. ([@hnsr](https://github.com/hnsr))
+
+- [#2374](https://github.com/graphcommerce-org/graphcommerce/pull/2374) [`e61e1f4`](https://github.com/graphcommerce-org/graphcommerce/commit/e61e1f4fb1086f7a6341b42502135abf1839e43d) - Default to permanent redirects unless specified ([@hnsr](https://github.com/hnsr))
+
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2367](https://github.com/graphcommerce-org/graphcommerce/pull/2367) [`71d412d`](https://github.com/graphcommerce-org/graphcommerce/commit/71d412d202bc94a0e676745547de5d809a7a850b) - When a user access a category page which is beyond the available total_pages, the user will be redirected to the last available page. ([@paales](https://github.com/paales))
+
+## 8.0.1
 
 ### Patch Changes
 
@@ -253,228 +203,6 @@
 - [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`3406794`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array. ([@carlocarels90](https://github.com/carlocarels90))
 
 - [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Solve incorrect redirect when locale has own domain ([@hnsr](https://github.com/hnsr))
-
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-### Patch Changes
-
-- [#2140](https://github.com/graphcommerce-org/graphcommerce/pull/2140) [`b34d85c`](https://github.com/graphcommerce-org/graphcommerce/commit/b34d85c8c5403c6f49b506b714ee314b8344fd99) - Fix incorrect redirect when locale has own domain ([@hnsr](https://github.com/hnsr))
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-### Patch Changes
-
-- [#2067](https://github.com/graphcommerce-org/graphcommerce/pull/2067) [`340679434`](https://github.com/graphcommerce-org/graphcommerce/commit/340679434e0ff1033c8158ef03a091e06e20e6a9) - Prevent HandleRedirect errors by filtering out empty URL values from the candidates array. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 7.0.2-canary.5
-
-## 7.0.1
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -494,297 +222,11 @@
 
 - [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`f4a8c3881`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a8c388183e17c52e7f66536c5448749f494d7f) - Moved the injection of the links to plugins ([@paales](https://github.com/paales))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-### Patch Changes
-
-- [#1967](https://github.com/graphcommerce-org/graphcommerce/pull/1967) [`888fe88e6`](https://github.com/graphcommerce-org/graphcommerce/commit/888fe88e644d94621d54a268dbaafc7ff5467c93) - Fix bug where product urls ending with a suffix would not be redirected ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-### Minor Changes
-
-- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-### Minor Changes
-
-- [#1961](https://github.com/graphcommerce-org/graphcommerce/pull/1961) [`4a759c662`](https://github.com/graphcommerce-org/graphcommerce/commit/4a759c66215eaa69edc342b898e05e8f92c3ba9a) - Add Open Graph meta tags to all pages ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-### Patch Changes
-
-- [#1915](https://github.com/graphcommerce-org/graphcommerce/pull/1915) [`f4a8c3881`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a8c388183e17c52e7f66536c5448749f494d7f) - Moved the injection of the links to plugins ([@paales](https://github.com/paales))
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-### Patch Changes
-
-- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`c237f2f2c`](https://github.com/graphcommerce-org/graphcommerce/commit/c237f2f2c87d9e3c8aefc536a13b5b9203556f27) - Category pages now have the ability to select the displayed pageSize of a page and a non-default pageSize and a non-default sort option will now receive noindex meta tags when viewed. ([@paales](https://github.com/paales))
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Patch Changes
 
 - [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-### Patch Changes
-
-- [#1875](https://github.com/graphcommerce-org/graphcommerce/pull/1875) [`4325f6556`](https://github.com/graphcommerce-org/graphcommerce/commit/4325f6556308fe96e262e03935f37dc252f72c2e) - When trying to redirect it would do another call to fetch the config while that was already done previously ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-## 6.0.1
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
 
 ## 6.0.0
 
@@ -810,147 +252,7 @@
 
 - [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`875a595da`](https://github.com/graphcommerce-org/graphcommerce/commit/875a595da5f52b77bc2535cf4a660267b0046a1e) - ApolloClient cache size would balloon with all redirects and make sure redirects work ([@LaurensFranken](https://github.com/LaurensFranken))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-### Patch Changes
-
-- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-### Minor Changes
-
-- [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added basic meta og:tags to the product page. ([@KMalkowski](https://github.com/KMalkowski))
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-### Minor Changes
-
-- [#1828](https://github.com/graphcommerce-org/graphcommerce/pull/1828) [`3df85faf1`](https://github.com/graphcommerce-org/graphcommerce/commit/3df85faf189b95e2c7d9c3fc756474fcafb1c8b4) - Added new `productRoute` configuration to create freedom in the actual product route used (default: /p/). Simplified redirects from legacy product routes to new routes by creating redirects. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-### Patch Changes
-
-- [#1790](https://github.com/graphcommerce-org/graphcommerce/pull/1790) [`875a595da`](https://github.com/graphcommerce-org/graphcommerce/commit/875a595da5f52b77bc2535cf4a660267b0046a1e) - ApolloClient cache would balloon with all redirects and make sure redirects work ([@LaurensFranken](https://github.com/LaurensFranken))
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-### Patch Changes
-
-- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
 ## 5.1.1
-
-### Patch Changes
-
-- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`0dcbc432a`](https://github.com/graphcommerce-org/graphcommerce/commit/0dcbc432a4595d8758b58e9f5871eb0614ec3d7e) - Requested URLs to product pages incorrectly return a notFound error ([@paales](https://github.com/paales))
-
-- [#1762](https://github.com/graphcommerce-org/graphcommerce/pull/1762) [`1d03b8b1e`](https://github.com/graphcommerce-org/graphcommerce/commit/1d03b8b1effbe45215e16add45e82f4632584bc9) - Addtional implementations of the RoutableInterface caused redirects to fail ([@paales](https://github.com/paales))
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
 
 ### Patch Changes
 
@@ -979,53 +281,6 @@
 
 - [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`dbe103963`](https://github.com/graphcommerce-org/graphcommerce/commit/dbe10396363313908858de5d681d4e38db94d132) - Redirect URL suffixes to their non suffix counterpart and vice versa ([@paales](https://github.com/paales))
 
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-### Patch Changes
-
-- [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`430863c4a`](https://github.com/graphcommerce-org/graphcommerce/commit/430863c4addfb7f6417d7c808ccd5f75319aa2ff) - When a product is disabled it got in a redirect loop because of a Magento bug ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-## 5.1.0-canary.4
-
-### Minor Changes
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites support to GraphCommerce compatible URL's. ([@paales](https://github.com/paales))
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`472486194`](https://github.com/graphcommerce-org/graphcommerce/commit/472486194f4a085e8a4dc0251b862024fb62ec86) - Magento URL Rewrites redirect 301 and 302 support ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`dbe103963`](https://github.com/graphcommerce-org/graphcommerce/commit/dbe10396363313908858de5d681d4e38db94d132) - Redirect URL suffixes to their non suffix counterpart and vice versa ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
-
 ## 5.0.0
 
 ### Major Changes
@@ -1044,79 +299,11 @@
 
 - [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-### Patch Changes
-
-- [`e2683dbfc`](https://github.com/graphcommerce-org/graphcommerce/commit/e2683dbfce440b8e1f745228d8ca4747156c87e6) - GraphQL HttpLink wasn't created, not allow to generate new pages on Vercel. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.7
-
-### Patch Changes
-
-- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-### Minor Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
-
-  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
-## 4.13.1
-
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 4.3.6
 
@@ -1441,7 +628,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1456,8 +643,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

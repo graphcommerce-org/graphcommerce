@@ -1,11 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
-import { SignUpDocument, SignUpMutation } from '@graphcommerce/magento-customer/components'
-import {
-  SignUpConfirmDocument,
-  SignUpConfirmMutation,
-} from '@graphcommerce/magento-customer/components/SignUpForm/SignUpConfirm.gql'
+import { waitForGraphQlResponse } from '@graphcommerce/graphql/__playwright__/apolloClient.fixture'
+import type { SignUpMutation } from '@graphcommerce/magento-customer/components'
+import { SignUpDocument } from '@graphcommerce/magento-customer/components'
+import type { SignUpConfirmMutation } from '@graphcommerce/magento-customer/components/SignUpForm/SignUpConfirm.gql'
+import { SignUpConfirmDocument } from '@graphcommerce/magento-customer/components/SignUpForm/SignUpConfirm.gql'
 import { test } from '@playwright/test'
 
 function isSignUp(

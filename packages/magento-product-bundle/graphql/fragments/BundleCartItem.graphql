@@ -1,0 +1,13 @@
+fragment BundleCartItem on BundleCartItem @inject(into: ["CartItem"]) {
+  prices {
+    price {
+      currency
+    }
+  }
+  bundle_options {
+    ...SelectedBundleOption
+  }
+  customizable_options {
+    ...SelectedCustomizableOption
+  }
+}

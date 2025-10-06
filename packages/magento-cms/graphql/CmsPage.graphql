@@ -1,0 +1,11 @@
+query CmsPage($url: String!) {
+  route(url: $url) {
+    __typename
+    relative_url
+    redirect_code
+    type
+    ... on CmsPage {
+      ...CmsPageFragment
+    }
+  }
+}

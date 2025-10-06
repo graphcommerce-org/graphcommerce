@@ -1,7 +1,8 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { FieldValues, FieldPath } from '@graphcommerce/react-hook-form'
+import type { FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressStreet<
   TFieldValues extends FieldValues = FieldValues,
@@ -11,6 +12,7 @@ export function AddressStreet<
   const { control, name, readOnly, required } = form
   return (
     <TextFieldElement
+      {...props}
       variant='outlined'
       control={control}
       required={required[name.street]}

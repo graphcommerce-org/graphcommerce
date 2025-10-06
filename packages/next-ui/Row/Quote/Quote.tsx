@@ -1,9 +1,9 @@
-import { ContainerProps } from '@mui/material'
+import type { ContainerProps } from '@mui/material'
 import React from 'react'
 import { Row } from '../Row'
 
 export type QuoteProps = {
-  children: React.ReactElement
+  children: React.ReactNode
 } & ContainerProps
 
 export function Quote(props: QuoteProps) {

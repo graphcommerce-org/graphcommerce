@@ -1,21 +1,19 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
-import {
-  CategoryTreeItem,
-  UseCategoryTreeProps,
-  useCategoryTree,
-} from '@graphcommerce/magento-category'
+import type { CategoryTreeItem, UseCategoryTreeProps } from '@graphcommerce/magento-category'
+import { useCategoryTree } from '@graphcommerce/magento-category'
+import type { ActionCardAccordionProps } from '@graphcommerce/next-ui'
 import {
   ActionCard,
   ActionCardAccordion,
-  ActionCardAccordionProps,
   ActionCardList,
   Button,
-  IconSvg,
   iconChevronLeft,
+  IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProCategoryAccordionProps = {
@@ -23,13 +21,14 @@ export type ProductFiltersProCategoryAccordionProps = {
   sx?: SxProps<Theme>
   categoryTree: CategoryTreeItem[]
   onChange: (uid: CategoryTreeItem) => void | Promise<void>
+  clearable?: boolean
 } & Pick<ActionCardAccordionProps, 'defaultExpanded'>
 
 export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCategoryAccordionProps) {
-  const { hideTitle, sx, categoryTree, onChange, defaultExpanded } = props
+  const { hideTitle, sx, categoryTree, onChange, defaultExpanded, clearable = false } = props
   const { form } = useProductFiltersPro()
 
-  const name = `filters.category_uid.in` as const
+  const name = 'filters.category_uid.in'
   const currentFilter = useWatch({ control: form.control, name })
 
   return (
@@ -42,7 +41,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
       defaultExpanded={defaultExpanded}
       summary={<Trans id='Categories' />}
       right={
-        currentFilter && currentFilter.length > 0 ? (
+        clearable && currentFilter && currentFilter.length > 0 ? (
           <Button
             color='primary'
             onClick={(e) => {
@@ -66,17 +65,17 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
             await onChange(item)
           }}
         >
-          {categoryTree.map((item) => {
-            const indent = item.isBack ? 0 : item.indent + 1
+          {categoryTree.map(({ isBack, indent, ...item }) => {
+            const indentVal = isBack ? 0 : indent + 1
             return (
               <ActionCard
                 key={item.value}
                 {...item}
-                size='responsive'
+                size='medium'
                 title={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box sx={{ marginRight: 1 }}>
-                      {item.isBack ? (
+                      {isBack ? (
                         <Box sx={{ display: 'flex', alignItems: 'center' }}>
                           <IconSvg src={iconChevronLeft} size='medium' />
                           {item.title}
@@ -93,10 +92,10 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
                   </Box>
                 }
                 sx={{
-                  '&.sizeSmall': { pl: responsiveVal(8 * indent, 12 * indent) },
-                  '&.sizeMedium': { pl: responsiveVal(10 * indent, 14 * indent) },
-                  '&.sizeLarge': { pl: responsiveVal(12 * indent, 16 * indent) },
-                  '&.sizeResponsive': { pl: responsiveVal(8 * indent, 16 * indent) },
+                  '&.sizeSmall': { pl: responsiveVal(8 * indentVal, 12 * indentVal) },
+                  '&.sizeMedium': { pl: responsiveVal(10 * indentVal, 14 * indentVal) },
+                  '&.sizeLarge': { pl: responsiveVal(12 * indentVal, 16 * indentVal) },
+                  '&.sizeResponsive': { pl: responsiveVal(8 * indentVal, 16 * indentVal) },
                   '& .ActionCard-title.selected': { fontWeight: 'bold' },
                 }}
               />

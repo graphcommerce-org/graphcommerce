@@ -1,31 +1,36 @@
+import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { CategoryDescriptionFragment } from './CategoryDescription.gql'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { CategoryDescriptionFragment } from './CategoryDescription.gql'
 
 type StateProps = {
   textAlignSm?: 'start' | 'center'
   textAlignMd?: 'start' | 'center'
 }
-const componentName = 'CategoryDescription' as const
+const componentName = 'CategoryDescription'
 const parts = ['root'] as const
 const { withState } = extendableComponent<StateProps, typeof componentName, typeof parts>(
   componentName,
   parts,
 )
 
-export type CategoryDescriptionProps = Omit<CategoryDescriptionFragment, 'uid'> &
-  StateProps & { sx?: SxProps<Theme> }
+export type CategoryDescriptionProps = StateProps & {
+  sx?: SxProps<Theme>
+  category: Omit<CategoryDescriptionFragment, 'uid'>
+  productListRenderer: ProductListItemRenderer
+}
 
 export function CategoryDescription(props: CategoryDescriptionProps) {
   const {
-    name,
-    description,
-    display_mode,
+    category,
     sx = [],
     textAlignSm = 'center',
     textAlignMd = 'center',
+    productListRenderer,
     ...divProps
   } = props
+  const { description } = category
 
   const classes = withState({ textAlignSm, textAlignMd })
 

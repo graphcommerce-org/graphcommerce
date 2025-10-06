@@ -1,12 +1,12 @@
-import { AttributeFrontendInputEnum } from '@graphcommerce/graphql-mesh'
-import { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import type { AttributeFrontendInputEnum } from '@graphcommerce/graphql-mesh'
+import type { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
+import { excludeCategory } from './activeAggregations'
+import { applyAggregationCount } from './applyAggregationCount'
 import { ProductFilterEqualChip } from './ProductFilterEqualChip'
 import { ProductFilterEqualSection } from './ProductFilterEqualSection'
 import { ProductFilterRangeChip } from './ProductFilterRangeChip'
 import { ProductFilterRangeSection } from './ProductFilterRangeSection'
 import { useProductFiltersPro } from './ProductFiltersPro'
-import { excludeCategory } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
 
 export type FilterProps = {
   aggregation: NonNullable<NonNullable<ProductListFiltersFragment['aggregations']>[number]>

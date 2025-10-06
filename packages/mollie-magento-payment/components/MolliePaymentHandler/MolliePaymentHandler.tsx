@@ -4,10 +4,8 @@ import {
   useAssignCurrentCartId,
   useClearCurrentCartId,
 } from '@graphcommerce/magento-cart'
-import {
-  PaymentHandlerProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, Dialog } from '@mui/material'
@@ -34,7 +32,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const { called, error, data } = handleResult
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/no-extra-semi
     ;(async () => {
       if (!isActive) return
       if (lockState.locked && lockState.justLocked) return
@@ -65,7 +63,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
         router.replace('/checkout/payment')
       }
     })()
-  }, [called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
+  }, [assignCartId, called, error, handle, isActive, lockState, onSuccess, recoverCart, router])
 
   const paymentStatus = data?.mollieProcessTransaction?.paymentStatus
   if (paymentStatus && !successStatusses.includes(paymentStatus)) {

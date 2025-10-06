@@ -1,9 +1,7 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { GetStaticPathsResult } from 'next'
-import {
-  GetCategoryStaticPathsDocument,
-  GetCategoryStaticPathsQuery,
-} from './GetCategoryStaticPaths.gql'
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { GetStaticPathsResult } from 'next'
+import type { GetCategoryStaticPathsQuery } from './GetCategoryStaticPaths.gql'
+import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
 
 type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 

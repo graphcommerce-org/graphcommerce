@@ -1,5 +1,8 @@
-import { ApolloCache, NormalizedCacheObject } from '@graphcommerce/graphql'
-import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
+import type {
+  ApolloCache,
+  NormalizedCacheObject,
+  StrictTypedTypePolicies,
+} from '@graphcommerce/graphql'
 import type { CartPrices, QuerycartArgs, ShippingCartAddress } from '@graphcommerce/graphql-mesh'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'
 import { readCartId, writeCartId } from './hooks'
@@ -14,6 +17,7 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
   },
   Cart: {
     fields: {
+      available_payment_methods: { merge: (_, incoming) => incoming },
       shipping_addresses: {
         merge: (
           existing: ShippingCartAddress[] | undefined,
@@ -64,11 +68,13 @@ export const migrateCart = (
 
     // We have special handling for the CartFab because it tries to load data only from the cache.
     const cartFab = oldCache.readQuery({ query: CartFabDocument })
-    newCache.writeQuery({
-      query: CartFabDocument,
-      data: cartFab,
-      variables: { cartId },
-      broadcast: true,
-    })
+    if (cartFab) {
+      newCache.writeQuery({
+        query: CartFabDocument,
+        data: cartFab,
+        variables: { cartId },
+        broadcast: true,
+      })
+    }
   }
 }

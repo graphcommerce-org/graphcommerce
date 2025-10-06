@@ -1,4 +1,4 @@
-import { getHygraphStaticPaths } from '@graphcommerce/graphcms-ui'
+import { getHygraphStaticPaths } from '@graphcommerce/hygraph-ui'
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category/queries/getCategoryStaticPaths'
 import {
   excludeSitemap,
@@ -11,7 +11,6 @@ import { graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 const excludes = [
   '*page/home',
-  '*/p/*',
   '*/product/global',
   '*/product*',
   '*/account*',
@@ -31,7 +30,7 @@ const excludes = [
   '*/cart',
   '*/checkout',
 ]
-const additionalPaths = ['']
+const additionalPaths: string[] = []
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { locale } = context

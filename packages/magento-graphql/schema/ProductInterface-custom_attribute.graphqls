@@ -1,0 +1,49 @@
+extend interface ProductInterface {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type SimpleProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type ConfigurableProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type BundleProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type DownloadableProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type VirtualProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}
+extend type GroupedProduct {
+  """
+  This is the singular version of the custom_attributesV2 and allows selecting a single attribute option value.
+  Available only after Magento 2.4.7 as it relies on the customAttributesV2 query.
+  """
+  custom_attributeV2(attribute_code: String!): AttributeValueInterface
+}

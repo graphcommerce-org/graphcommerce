@@ -1,0 +1,224 @@
+import type {
+  Algoliahit,
+  AlgoliaPrice,
+  AlgoliaProductHitAdditionalProperties,
+  CurrencyEnum,
+  MeshContext,
+  PriceRange,
+  QueryproductsArgs,
+  RequireFields,
+  ResolverFn,
+  ResolversParentTypes,
+  ResolversTypes,
+} from '@graphcommerce/graphql-mesh'
+import type { GetStoreConfigReturn } from './getStoreConfig'
+
+function assertAdditional(
+  additional: unknown,
+): additional is AlgoliaProductHitAdditionalProperties {
+  return true
+}
+
+const algoliaTypeToTypename = {
+  bundle: 'BundleProduct',
+  simple: 'SimpleProduct',
+  configurable: 'ConfigurableProduct',
+  downloadable: 'DownloadableProduct',
+  virtual: 'VirtualProduct',
+  grouped: 'GroupedProduct',
+  giftcard: 'GiftCardProduct',
+} as const
+
+function mapPriceRange(
+  price: AlgoliaProductHitAdditionalProperties['price'],
+  storeConfig: GetStoreConfigReturn,
+  customerGroup = 0,
+  currencyHeader?: string,
+): PriceRange {
+  if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
+
+  const curr = currencyHeader ?? storeConfig.default_display_currency_code
+
+  const key = curr as keyof AlgoliaPrice
+  const itemPrice = price?.[key] ?? price?.[storeConfig.default_display_currency_code]
+  const currency = (price?.[key] ? key : storeConfig.default_display_currency_code) as CurrencyEnum
+
+  const maxRegular = itemPrice?.default_max ?? 0
+  const maxFinal = itemPrice?.[`group_${customerGroup}_max`] ?? itemPrice?.default_max ?? 0
+
+  const minRegular = itemPrice?.default_max ?? 0
+  const minFinal = itemPrice?.[`group_${customerGroup}`] ?? itemPrice?.default
+
+  return {
+    maximum_price: {
+      regular_price: {
+        currency,
+        value: maxRegular,
+      },
+      final_price: {
+        currency,
+        value: maxFinal,
+      },
+      discount: {
+        percent_off:
+          maxRegular !== maxFinal && maxRegular > 0 ? 1 - (maxFinal / maxRegular) * 100 : 0,
+        amount_off: maxRegular - maxFinal,
+      },
+      // fixed_product_taxes
+    },
+    minimum_price: {
+      regular_price: {
+        currency,
+        value: minRegular,
+      },
+      final_price: {
+        currency,
+        value: minFinal,
+      },
+      discount: {
+        percent_off:
+          minRegular !== minFinal && minRegular > 0 ? 1 - (minFinal / minRegular) * 100 : 0,
+        amount_off: minRegular - minFinal,
+      },
+      // fixed_product_taxes
+    },
+  }
+}
+
+export function algoliaUrlToUrlKey(url?: string | null, urlSuffix?: string | null): string | null {
+  if (!url) return null
+  const path = new URL(url).pathname.split('/')
+  // The URL key is the last part of the URL.
+  const urlKey = path[path.length - 1]
+
+  // The last part of the URL might end with the urlSuffix (something like `.html`), remove from the end of the URL.
+  return urlSuffix ? urlKey.replace(new RegExp(`${urlSuffix}$`), '') : urlKey
+}
+
+/**
+ * For the URL
+ * https://configurator.reachdigital.dev/media/catalog/product/cache/d911de87cf9e562637815cc5a14b1b05/1/0/1087_1_3.jpg
+ * Remove /cache/HASH from the URL but only if the url contains media/catalog/product
+ *
+ * @param url
+ */
+function getOriginalImage(url?: string | undefined | null) {
+  if (!url || !url.includes('media/catalog/product')) return url
+  return url.replace(/\/cache\/[a-z0-9]+/, '')
+}
+
+export type ProductsItemsItem = NonNullable<
+  Awaited<
+    ReturnType<
+      ResolverFn<
+        ResolversTypes['Products'],
+        ResolversParentTypes['Query'],
+        MeshContext,
+        RequireFields<QueryproductsArgs, 'pageSize' | 'currentPage'>
+      >
+    >
+  >['items']
+>[number] & {
+  __typename: (typeof algoliaTypeToTypename)[keyof typeof algoliaTypeToTypename]
+}
+
+/**
+ * Ensures a GraphQL-safe string from various input types. If the value is:
+ *
+ * - An array: returns the first non-empty item as a string
+ * - A string: returns it as-is
+ * - Anything else: returns an empty string
+ */
+export function normalizeValue(value: unknown): string | null {
+  if (!value) return null
+  if (typeof value === 'string') return value
+  if (Array.isArray(value)) {
+    const firstNonEmpty = value.find((v) => typeof v === 'string' && v.trim() !== '')
+    return typeof firstNonEmpty === 'string' ? firstNonEmpty : ''
+  }
+  return null
+}
+
+/**
+ * Mapping function to map Algolia hit to Magento product.
+ *
+ * You can create a FunctionPlugin to modify the behavior of this function or implement brand
+ * specific code.
+ */
+export function algoliaHitToMagentoProduct(
+  hit: Algoliahit,
+  storeConfig: GetStoreConfigReturn,
+  customerGroup: number,
+  currency: string | undefined,
+): (ProductsItemsItem & { staged: boolean }) | null {
+  const { objectID, additionalProperties } = hit
+  if (!assertAdditional(additionalProperties)) return null
+
+  const {
+    sku,
+    created_at,
+    image_url,
+    is_stock,
+    price,
+    thumbnail_url,
+    type_id,
+    url,
+
+    // not used
+    ordered_qty,
+    visibility_catalog,
+    visibility_search,
+    rating_summary,
+
+    // The rest will be spread into the product
+    ...rest
+  } = additionalProperties
+
+  // We flatten any custom attribute array values to a string as 95% of the time they are an array
+  // because the product is a configurable (which creates an array of values).
+  for (const [key, value] of Object.entries(rest)) rest[key] = normalizeValue(value)
+
+  return {
+    staged: false,
+    redirect_code: 0,
+    __typename: algoliaTypeToTypename[type_id as keyof typeof algoliaTypeToTypename],
+    uid: btoa(objectID),
+    id: Number(objectID),
+    sku: Array.isArray(sku) ? sku[0] : `${sku}`,
+    price_range: mapPriceRange(price, storeConfig, customerGroup, currency),
+    created_at: created_at ? new Date(created_at).toISOString() : null,
+    stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
+    review_count: 0,
+    rating_summary: Number(rating_summary),
+    reviews: { items: [], page_info: {} },
+    // canonical_url: null,
+    // categories: [],
+    // country_of_manufacture: null,
+    // crosssell_products: [],
+    // custom_attributesV2: null,
+    // description: null,
+    // gift_message_available: null,
+    image: { url: getOriginalImage(image_url) },
+    // media_gallery: [],
+    // meta_keyword: null,
+    // meta_title: null,
+    // new_from_date: null,
+    // new_to_date: null,
+    // only_x_left_in_stock: null,
+    // options_container: null,
+    // price_tiers: [],
+    // product_links: [],
+    // special_price: null,
+    // special_to_date: null,
+    small_image: { url: getOriginalImage(thumbnail_url) },
+    swatch_image: getOriginalImage(image_url),
+    thumbnail: { url: getOriginalImage(thumbnail_url) },
+    // upsell_products: [],
+    url_key: algoliaUrlToUrlKey(url, storeConfig?.product_url_suffix),
+    url_suffix: storeConfig?.product_url_suffix,
+
+    ...rest,
+    description: rest.description ? { html: rest.description } : null,
+    short_description: rest.short_description ? { html: rest.short_description } : null,
+  }
+}

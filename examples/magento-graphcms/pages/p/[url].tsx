@@ -1,11 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import {
   cacheFirst,
-  InContextMaskProvider,
+  PrivateQueryMaskProvider,
   mergeDeep,
-  useInContextQuery,
+  usePrivateQuery,
+  flushMeasurePerf,
 } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   AddProductsToCartForm,
   AddProductsToCartFormProps,
@@ -22,6 +24,7 @@ import {
   ProductPageMeta,
   ProductShortDescription,
   AddProductsToCartButton,
+  ProductPagePriceLowest,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
@@ -46,6 +49,7 @@ import { AddProductsToCartView } from '../../components/ProductView/AddProductsT
 import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { Container } from '@graphcommerce/next-ui'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -59,7 +63,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { usps, sidebarUsps, pages, defaultValues, urlKey } = props
 
-  const scopedQuery = useInContextQuery(
+  const scopedQuery = usePrivateQuery(
     ProductPage2Document,
     { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
     props,
@@ -68,15 +72,15 @@ function ProductPage(props: Props) {
 
   const product = mergeDeep(
     products?.items?.[0],
-    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid),
+    relatedUpsells?.items?.find((item) => item?.uid === products?.items?.[0]?.uid) ?? {},
   )
 
   if (!product?.sku || !product.url_key) return null
 
   return (
-    <InContextMaskProvider mask={scopedQuery.mask}>
+    <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd>
+        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -95,17 +99,20 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {import.meta.graphCommerce.breadcrumbs && (
-          <ProductPageBreadcrumbs
-            product={product}
-            sx={(theme) => ({
-              py: `calc(${theme.spacings.xxs} / 2)`,
-              pl: theme.page.horizontal,
-              background: theme.palette.background.paper,
-              [theme.breakpoints.down('md')]: {
-                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-              },
-            })}
-          />
+          <Container
+            maxWidth={false}
+            sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
+            breakoutRight
+          >
+            <ProductPageBreadcrumbs
+              product={product}
+              sx={(theme) => ({
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          </Container>
         )}
 
         <ProductPageGallery
@@ -117,12 +124,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body1' color='text.disabled'>
-                <Trans
-                  id='As low as <0/>'
-                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-                />
-              </Typography>
+              <ProductPagePriceLowest product={product} sx={{ color: 'text.disabled' }} />
             )}
             <Typography variant='h3' component='div' gutterBottom>
               <ProductPageName product={product} />
@@ -148,6 +150,7 @@ function ProductPage(props: Props) {
           product={product}
           right={<Usps usps={usps} />}
           fontSize='responsive'
+          productListRenderer={productListRenderer}
         />
       </AddProductsToCartForm>
 
@@ -174,7 +177,7 @@ function ProductPage(props: Props) {
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
       />
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 
@@ -201,18 +204,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
-  })
+  const productPage = staticClient
+    .query({
+      query: ProductPage2Document,
+      variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
+    })
+    .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
+
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+  const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
 
   const pages = hygraphPageContent(staticClient, 'product/global', product, true)
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
@@ -221,19 +225,21 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
-  return {
+  const result = {
     props: {
       urlKey,
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...(await productPage),
       ...(await layout).data,
       ...(await pages).data,
       ...(await usps).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
+  flushMeasurePerf()
+  return result
 }

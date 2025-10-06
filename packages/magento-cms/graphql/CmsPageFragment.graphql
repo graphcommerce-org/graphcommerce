@@ -1,0 +1,5 @@
+fragment CmsPageFragment on CmsPage {
+  identifier
+  ...CmsPageMeta
+  ...CmsPageContent
+}

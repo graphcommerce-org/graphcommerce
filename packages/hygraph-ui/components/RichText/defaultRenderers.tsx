@@ -1,6 +1,6 @@
-import { Box, Typography, Link } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import { Asset } from '../Asset/Asset'
-import { Renderers } from './types'
+import type { Renderers } from './types'
 
 export const defaultRenderers: Renderers = {
   'heading-one': (props) => <Typography variant='h1' {...props} />,
@@ -55,4 +55,14 @@ export const defaultRenderers: Renderers = {
   italic: (props) => <Box component='em' fontStyle='italic' {...props} />,
   underlined: (props) => <Box component='span' {...props} />,
   class: (props) => <Box component='div' {...props} />,
+  'code-block': (props) => (
+    <Box component='pre'>
+      <Box component='code' {...props} />
+    </Box>
+  ),
+  embed: ({ id, nodeId, nodeType, children, isInline, ...props }) => (
+    <Box component={isInline ? 'span' : 'div'} {...props}>
+      {id} {nodeId} {nodeType} {children}
+    </Box>
+  ),
 }

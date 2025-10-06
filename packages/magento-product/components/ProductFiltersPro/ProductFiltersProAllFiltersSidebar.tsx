@@ -1,20 +1,15 @@
-import { Box, SxProps, Theme } from '@mui/material'
-import { ProductFilterEqualSection } from './ProductFilterEqualSection'
-import { ProductFilterRangeSection } from './ProductFilterRangeSection'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import {
   ProductFiltersProAggregations,
-  ProductFiltersProAggregationsProps,
   productFiltersProSectionRenderer,
 } from './ProductFiltersProAggregations'
-import {
-  ProductFiltersCategorySectionProps,
-  ProductFiltersProCategorySection,
-} from './ProductFiltersProCategorySection'
+import type { ProductFiltersCategorySectionProps } from './ProductFiltersProCategorySection'
+import { ProductFiltersProCategorySection } from './ProductFiltersProCategorySection'
 import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
-import {
-  ProductFiltersProSortSection,
-  ProductFiltersProSortSectionProps,
-} from './ProductFiltersProSortSection'
+import type { ProductFiltersProSortSectionProps } from './ProductFiltersProSortSection'
+import { ProductFiltersProSortSection } from './ProductFiltersProSortSection'
 
 export type ProductFiltersProAllFiltersSidebarProps = ProductFiltersProAggregationsProps &
   ProductFiltersProSortSectionProps &
@@ -22,9 +17,7 @@ export type ProductFiltersProAllFiltersSidebarProps = ProductFiltersProAggregati
 
 /**
  * @deprecated Not used anymore
- *
- * @param props
- * @returns
+ * @public
  */
 export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFiltersSidebarProps) {
   const { sort_fields, total_count, renderer, sx = [], category, params } = props

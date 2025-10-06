@@ -1,12 +1,13 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 import { useProductFilterProHasFiltersApplied } from './useProductFiltersProHasFiltersApplied'
 
 export type ProductFitlersProNoResultProps = { search?: string | null; sx?: SxProps<Theme> }
 
-const name = 'ProductFiltersProNoResults' as const
+const name = 'ProductFiltersProNoResults'
 const parts = ['root'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -32,8 +33,8 @@ export function ProductFiltersProNoResults(props: ProductFitlersProNoResultProps
     >
       {term ? (
         <>
-          <Typography variant='h5' align='center'>
-            <Trans>We couldn&apos;t find any results for {term}</Trans>
+          <Typography variant='h5'>
+            <Trans>We couldn’t find any results for ‘{term}’</Trans>
           </Typography>
           <p>
             {hasFilters ? (

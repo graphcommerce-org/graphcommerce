@@ -1,6 +1,7 @@
 import { PercentFormat } from '@graphcommerce/next-ui'
-import { Box, BoxProps } from '@mui/material'
-import { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { BoxProps } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductListItemFragment } from '../../graphql'
 
 export type ProductDiscountLabelProps = Pick<ProductListItemFragment, 'price_range'> &
   Omit<BoxProps, 'children'>
@@ -25,7 +26,7 @@ export function ProductDiscountLabel(props: ProductDiscountLabelProps) {
           }}
           {...boxProps}
         >
-          <PercentFormat>{discount / 100}</PercentFormat>
+          <PercentFormat maximumFractionDigits={0} value={discount / 100} />
         </Box>
       )}
     </>

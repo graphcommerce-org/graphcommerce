@@ -1,35 +1,34 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { FlagAvatar, extendableComponent } from '@graphcommerce/next-ui'
-import { Button, SxProps, Theme } from '@mui/material'
-import { useRouter } from 'next/router'
-import { StoreConfigDocument } from '../../StoreConfig.gql'
+import { extendableComponent, iconLanguage, IconSvg, sxx } from '@graphcommerce/next-ui'
+import type { ButtonProps } from '@mui/material'
+import { Button } from '@mui/material'
+import { StoreSwitcherText, type StoreSwitcherTextProps } from './StoreSwitcherText'
+import { useShowStoreSwitcherButton } from './useStoreSwitcherButton'
 
-export type StoreSwitcherButtonProps = { sx?: SxProps<Theme> }
+export type StoreSwitcherButtonProps = ButtonProps & {
+  textProps?: StoreSwitcherTextProps
+}
 
-const name = 'StoreSwitcherButton' as const
+const name = 'StoreSwitcherButton'
 const parts = ['root', 'avatar'] as const
 const { classes } = extendableComponent(name, parts)
 
 export function StoreSwitcherButton(props: StoreSwitcherButtonProps) {
-  const { sx } = props
-  const config = useQuery(StoreConfigDocument)
-  const country = config.data?.storeConfig?.locale?.split('_')?.[1]?.toLowerCase() ?? ''
-  const router = useRouter()
+  const { sx, textProps, ...rest } = props
+
+  const { show, onClick } = useShowStoreSwitcherButton()
+  if (!show) return null
 
   return (
     <Button
       variant='text'
       size='medium'
       className={classes.root}
-      onClick={() => router.push('/switch-stores')}
-      sx={sx}
+      onClick={onClick}
+      startIcon={<IconSvg src={iconLanguage} />}
+      sx={sxx({ width: 'max-content' }, sx)}
+      {...rest}
     >
-      <FlagAvatar
-        country={country}
-        className={classes.avatar}
-        sx={{ height: 20, width: 20, marginRight: '10px' }}
-      />
-      {config.data?.storeConfig?.store_name} - {config.data?.storeConfig?.base_currency_code}
+      <StoreSwitcherText {...textProps} />
     </Button>
   )
 }

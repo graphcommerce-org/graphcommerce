@@ -1,6 +1,6 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { Image } from '@graphcommerce/image'
-import { ImageText } from '@graphcommerce/next-ui'
+import { ImageText, useContainerSpacing } from '@graphcommerce/next-ui'
 import { Typography, useTheme } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 import { ProductFeatureMediaFragment } from './ProductFeatureMedia.gql'
@@ -11,6 +11,7 @@ export function Feature(props: FeatureProps) {
   const { productCopy, title, media_gallery } = props
   const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
+  const { size, breakpoint } = useContainerSpacing({ sizing: 'content' })
 
   if (!item) return null
 
@@ -24,10 +25,12 @@ export function Feature(props: FeatureProps) {
             width={1532}
             height={1678}
             src={item.url}
-            layout='fill'
             sizes={{
               0: '100vw',
               [theme.breakpoints.values.md]: '50vw',
+              ...(breakpoint && {
+                [theme.breakpoints.values[breakpoint]]: `calc(${size} / 2)` as const,
+              }),
             }}
           />
         )

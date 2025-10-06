@@ -1,19 +1,17 @@
 import { Trans } from '@lingui/react'
+import type { FabProps, ListItemButtonProps, Theme } from '@mui/material'
 import {
-  Theme,
-  ThemeProvider,
-  useMediaQuery,
   Fab,
-  FabProps,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListItemButtonProps,
+  ThemeProvider, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  useMediaQuery,
 } from '@mui/material'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
-import { IconSvg } from '../IconSvg'
 import { iconMoon, iconSun } from '../icons'
+import { IconSvg } from '../IconSvg'
 import { getCssFlag, setCssFlag } from '../utils/cssFlags'
 
 type Mode = 'dark' | 'light'
@@ -27,10 +25,11 @@ type ColorModeContext = {
   toggle: () => void
 }
 
+/** @public */
 export const colorModeContext = createContext(undefined as unknown as ColorModeContext)
 colorModeContext.displayName = 'ColorModeContext'
 
-type ThemeProviderProps = {
+export type ThemeProviderProps = {
   children: React.ReactNode
   ssrMode?: Mode
   listenToBrowser?: boolean
@@ -93,10 +92,12 @@ export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
   )
 }
 
+/** @public */
 export function useColorMode() {
   return useContext(colorModeContext)
 }
 
+/** @public */
 export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
   const { currentMode, isSingleMode, toggle } = useColorMode()
 
@@ -115,6 +116,8 @@ export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
  * A button that switches between light and dark mode
  *
  * To disable this functionality
+ *
+ * @public
  */
 export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
   const { sx = [] } = props

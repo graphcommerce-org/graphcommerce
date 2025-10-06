@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
-import { cacheFirst, flushMeasurePerf, InContextMaskProvider } from '@graphcommerce/graphql'
+import { cacheFirst, flushMeasurePerf, PrivateQueryMaskProvider } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { Asset, hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import {
   appendSiblingsAsChildren,
   CategoryBreadcrumbs,
@@ -23,11 +24,18 @@ import {
   ProductListQuery,
   categoryDefaultsToProductListFilters,
   useProductList,
+  productListLink,
+  hasUserFilterActive,
 } from '@graphcommerce/magento-product'
-import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, LayoutHeader, LayoutTitle, MetaRobots } from '@graphcommerce/next-ui'
+import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  Container,
+  GetStaticProps,
+  LayoutHeader,
+  LayoutTitle,
+  MetaRobots,
+} from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
   ProductListLayoutClassic,
@@ -53,7 +61,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, C
 
 function CategoryPage(props: CategoryProps) {
   const { categories, pages, ...rest } = props
-  const productList = useProductList({
+  const { mask, ...productList } = useProductList({
     ...rest,
     category: categories?.items?.[0],
   })
@@ -64,7 +72,7 @@ function CategoryPage(props: CategoryProps) {
   const isCategory = params && category && products?.items
 
   return (
-    <InContextMaskProvider mask={productList.mask}>
+    <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta
         params={params}
         title={page?.metaTitle}
@@ -73,7 +81,7 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name ?? page.title}
         </LayoutTitle>
@@ -88,20 +96,21 @@ function CategoryPage(props: CategoryProps) {
       {isCategory && isLanding && (
         <>
           {import.meta.graphCommerce.breadcrumbs && (
-            <CategoryBreadcrumbs
-              category={category}
-              sx={(theme) => ({
-                mx: theme.page.horizontal,
-                height: 0,
-                [theme.breakpoints.down('md')]: {
-                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-                },
-              })}
-            />
+            <Container maxWidth={false}>
+              <CategoryBreadcrumbs
+                category={category}
+                sx={(theme) => ({
+                  height: 0,
+                  [theme.breakpoints.down('md')]: {
+                    '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                  },
+                })}
+              />
+            </Container>
           )}
           <CategoryHeroNav
             {...category}
-            asset={pages?.[0]?.asset && <Asset asset={pages[0].asset} loading='eager' />}
+            asset={page?.asset && <Asset asset={page.asset} loading='eager' />}
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>
@@ -153,7 +162,7 @@ function CategoryPage(props: CategoryProps) {
           }}
         />
       )}
-    </InContextMaskProvider>
+    </PrivateQueryMaskProvider>
   )
 }
 
@@ -176,7 +185,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { params, locale } = context
   const [url, query] = extractUrlQuery(params)
-  if (!url || !query) return { notFound: true }
+  if (!url || !query) return { notFound: true, revalidate: revalidate() }
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -207,14 +216,15 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const pages = hygraphPageContent(staticClient, url, category)
   const hasCategory = !!productListParams && categoryUid
 
-  const filters = hasCategory
-    ? staticClient.query({
-        query: ProductFiltersDocument,
-        variables: categoryDefaultsToProductListFilters(
-          await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
-        ),
-      })
-    : undefined
+  const filters =
+    hasCategory && hasUserFilterActive(productListParams)
+      ? staticClient.query({
+          query: ProductFiltersDocument,
+          variables: categoryDefaultsToProductListFilters(
+            await productListApplyCategoryDefaults(productListParams, (await conf).data, category),
+          ),
+        })
+      : undefined
 
   const products = hasCategory
     ? staticClient.query({
@@ -230,14 +240,22 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
   if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
-  if ((await products)?.errors) return { notFound: true }
+  if ((await products)?.errors) {
+    const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
+    if (productListParams?.currentPage && productListParams.currentPage > totalPages) {
+      const to = productListLink({ ...productListParams, currentPage: totalPages })
+      return redirectTo(to, false, locale)
+    }
+
+    return { notFound: true, revalidate: revalidate() }
+  }
 
   const { category_url_path, category_name } = findParentBreadcrumbItem(await category) ?? {}
 
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: `/`, title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: i18n._(/* i18n */ 'Home') }
 
   await waitForSiblings
   const result = {
@@ -252,7 +270,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
   flushMeasurePerf()
   return result

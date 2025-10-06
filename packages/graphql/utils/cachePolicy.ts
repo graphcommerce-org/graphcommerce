@@ -1,4 +1,4 @@
-import { ApolloClient, FetchPolicy } from '@apollo/client'
+import type { ApolloClient, FetchPolicy } from '@apollo/client'
 import { getPreviewData } from './getPreviewData'
 
 export function cachePolicy(

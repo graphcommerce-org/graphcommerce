@@ -1,0 +1,12 @@
+fragment ProductPageItemDownloadable on DownloadableProduct @inject(into: ["ProductPageItem"]) {
+  __typename
+  uid
+  downloadable_product_links {
+    ...DownloadableProductLinks
+  }
+  downloadable_product_samples {
+    ...DownloadableProductSamples
+  }
+  links_purchased_separately
+  links_title
+}

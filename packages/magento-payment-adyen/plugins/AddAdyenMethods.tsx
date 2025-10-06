@@ -1,4 +1,4 @@
-import {
+import type {
   PaymentMethodContextProviderProps,
   PaymentModule,
 } from '@graphcommerce/magento-cart-payment-method'

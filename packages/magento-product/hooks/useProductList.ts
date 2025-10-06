@@ -1,34 +1,31 @@
 import { debounce } from '@graphcommerce/ecommerce-ui'
-import {
-  ApolloClient,
-  useQuery,
-  useInContextQuery,
-  getInContextInput,
-} from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import { getPrivateQueryContext, usePrivateQuery, useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { showPageLoadIndicator } from '@graphcommerce/next-ui'
 import { useEventCallback } from '@mui/material'
-import {
+import type {
   FilterFormProviderProps,
-  ProductFiltersDocument,
   ProductFiltersQuery,
   ProductFiltersQueryVariables,
 } from '../components'
-import {
-  ProductListDocument,
+import { hasUserFilterActive, ProductFiltersDocument } from '../components'
+import type {
   ProductListQuery,
   ProductListQueryVariables,
 } from '../components/ProductList/ProductList.gql'
-import { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
-import { ProductListParams, toProductListParams } from '../components/ProductListItems/filterTypes'
+import { ProductListDocument } from '../components/ProductList/ProductList.gql'
+import type { CategoryDefaultFragment } from '../components/ProductListItems/CategoryDefault.gql'
 import { useRouterFilterParams } from '../components/ProductListItems/filteredProductList'
+import type { ProductListParams } from '../components/ProductListItems/filterTypes'
+import { toProductListParams } from '../components/ProductListItems/filterTypes'
 import {
-  productListApplyCategoryDefaults,
   categoryDefaultsToProductListFilters,
+  productListApplyCategoryDefaults,
   useProductListApplyCategoryDefaults,
 } from '../components/ProductListItems/productListApplyCategoryDefaults'
 
-const productListQueries: Array<Promise<any>> = []
+const productListQueries: Array<Promise<unknown>> = []
 
 type Next = Parameters<NonNullable<FilterFormProviderProps['handleSubmit']>>[1]
 
@@ -37,14 +34,14 @@ export const prefetchProductList = debounce(
     variables: ProductListQueryVariables,
     filtersVariables: ProductFiltersQueryVariables,
     next: Next,
-    client: ApolloClient<any>,
+    client: ApolloClient<unknown>,
     shallow: boolean,
   ) => {
     if (!shallow) return next(shallow)
 
     showPageLoadIndicator.set(true)
 
-    const context = getInContextInput(client)
+    const context = getPrivateQueryContext(client)
     const productList = client.query({
       query: ProductListDocument,
       variables: { ...variables, context },
@@ -106,10 +103,13 @@ export function useProductList<
   const { params, shallow } = useRouterFilterParams(props)
   const variables = useProductListApplyCategoryDefaults(params, category)
 
-  const result = useInContextQuery(ProductListDocument, { variables, skip: !shallow }, props)
-  const filters = useInContextQuery(
+  const result = usePrivateQuery(ProductListDocument, { variables, skip: !shallow }, props)
+  const filters = usePrivateQuery(
     ProductFiltersDocument,
-    { variables: categoryDefaultsToProductListFilters(variables), skip: !shallow },
+    {
+      variables: categoryDefaultsToProductListFilters(variables),
+      skip: !shallow || !hasUserFilterActive(params),
+    },
     props,
   )
 
@@ -125,8 +125,8 @@ export function useProductList<
         category,
       )
 
-      const shallowNow =
-        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid)
+      const shallowNow = hasUserFilterActive(params) === hasUserFilterActive(vars)
+
       await prefetchProductList(
         vars,
         categoryDefaultsToProductListFilters(vars),

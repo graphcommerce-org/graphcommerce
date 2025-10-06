@@ -1,4 +1,5 @@
 fragment JsonLdProduct on ProductInterface @inject(into: ["ProductPageItem"]) {
+  __typename
   uid
   name
   sku

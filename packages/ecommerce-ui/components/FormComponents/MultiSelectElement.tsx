@@ -1,21 +1,22 @@
 /* eslint-disable no-nested-ternary */
-import { IconSvg, iconClose } from '@graphcommerce/next-ui'
-import { FieldValues, ControllerProps, useController } from '@graphcommerce/react-hook-form'
+import { iconClose, IconSvg } from '@graphcommerce/next-ui'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { FormControlProps, SelectProps } from '@mui/material'
 import {
   Checkbox,
   Chip,
   FormControl,
-  FormControlProps,
   FormHelperText,
   InputLabel,
   ListItemText,
   MenuItem,
   Select,
-  SelectProps,
 } from '@mui/material'
 
 export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, 'value'> & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: { id: string | number; label: string }[] | any[]
   label?: string
   itemKey?: string
@@ -34,6 +35,7 @@ export type MultiSelectElementProps<T extends FieldValues> = Omit<SelectProps, '
 const ITEM_HEIGHT = 48
 const ITEM_PADDING_TOP = 8
 
+/** @public */
 export function MultiSelectElement<TFieldValues extends FieldValues>(
   props: MultiSelectElementProps<TFieldValues>,
 ): JSX.Element {
@@ -56,7 +58,6 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     formControlProps,
     shouldUnregister,
     defaultValue,
-    disabled,
     ...rest
   } = props
   if (required && !rules.required) {
@@ -71,7 +72,6 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     rules,
     control,
     defaultValue,
-    disabled,
     shouldUnregister,
   })
 
@@ -127,12 +127,14 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
             : showChips
               ? (selected) => (
                   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {((selected as any[]) || []).map((selectedValue) => (
                       <Chip
                         key={selectedValue}
                         label={selectedValue}
                         style={{ display: 'flex', flexWrap: 'wrap' }}
                         onDelete={() => {
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           onChange(value.filter((i: any) => i !== selectedValue))
                           // setValue(name, formValue.filter((i: any) => i !== value), { shouldValidate: true })
                         }}

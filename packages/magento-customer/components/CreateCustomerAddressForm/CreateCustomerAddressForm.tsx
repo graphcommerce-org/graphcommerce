@@ -1,14 +1,15 @@
 import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
+import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Form, FormActions, FormRow, Button, MessageSnackbar } from '@graphcommerce/next-ui'
+import { Button, Form, FormActions, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
 import { NameFields } from '../NameFields/NameFields'
+import type { CreateCustomerAddressMutationVariables } from './CreateCustomerAddress.gql'
 import { CreateCustomerAddressDocument } from './CreateCustomerAddress.gql'
 
 export function CreateCustomerAddressForm() {
@@ -28,7 +29,7 @@ export function CreateCustomerAddressForm() {
       onBeforeSubmit: (formData) => {
         const region = countries
           ?.find((country) => country?.two_letter_abbreviation === formData.countryCode)
-          ?.available_regions?.find((r) => r?.id === formData.region.region_id)
+          ?.available_regions?.find((r) => r?.id === formData.region?.region_id)
 
         if (!formData.isCompany) {
           formData.company = ''
@@ -61,9 +62,12 @@ export function CreateCustomerAddressForm() {
   return (
     <>
       <Form onSubmit={submitHandler} noValidate>
-        <CompanyFields form={form} />
+        <CompanyFields<CreateCustomerAddressMutationVariables> form={form} />
         <NameFields form={form} prefix />
-        <AddressFields form={form} name={{ regionId: 'region.region_id' }} />
+        <AddressFields<CreateCustomerAddressMutationVariables>
+          form={form}
+          name={{ regionId: 'region.region_id' }}
+        />
 
         <FormRow>
           <TelephoneElement

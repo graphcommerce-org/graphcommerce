@@ -1,17 +1,18 @@
-import {
+import type {
   NavigationNode,
   NavigationNodeButton,
   NavigationNodeHref,
-  NavigationNodeType,
-  nonNullable,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
-import { NavigationItemFragment } from '../queries/NavigationItem.gql'
+import { NavigationNodeType, nonNullable } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import type { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
+import type { NavigationItemFragment } from '../queries/NavigationItem.gql'
 
 type Item = NonNullable<NonNullable<NonNullable<MenuQueryFragment['menu']>['items']>[0]>
 
-export type MagentoNavigationItemProps = NavigationItemFragment
+export type MagentoNavigationItemProps = Omit<NavigationItemFragment, 'name'> & {
+  name?: React.ReactNode
+}
 
 function categoryToNav(
   props: Item | null | undefined,
@@ -22,7 +23,7 @@ function categoryToNav(
 
   if (!uid || include_in_menu !== 1 || !name) return undefined
 
-  const allName = i18n._(/* i18n */ 'All {name}', { name })
+  const allName = <Trans>All {name}</Trans>
   // If we've got children we make a button that navigates to childitems.
   if (children && children.length > 0) {
     const button: NavigationNodeButton = {

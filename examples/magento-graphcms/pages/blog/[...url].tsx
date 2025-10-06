@@ -1,5 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   PageMeta,
@@ -27,7 +29,6 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string[] }
@@ -42,26 +43,28 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>
       </LayoutHeader>
-      <Container maxWidth={false}>
-        <Breadcrumbs
-          sx={(theme) => ({
-            mx: theme.page.horizontal,
-            mb: theme.spacings.sm,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-          breadcrumbs={[
-            { href: '/blog', name: i18n._(/* i18n*/ `Blog`) },
-            { href: `/${page.url}`, name: title },
-          ]}
-        />
-      </Container>
+      {import.meta.graphCommerce.breadcrumbs && (
+        <Container maxWidth={false}>
+          <Breadcrumbs
+            sx={(theme) => ({
+              mx: theme.page.horizontal,
+              mb: theme.spacings.sm,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+            breadcrumbs={[
+              { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
+              { href: `/${page.url}`, name: title },
+            ]}
+          />
+        </Container>
+      )}
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
@@ -127,6 +130,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

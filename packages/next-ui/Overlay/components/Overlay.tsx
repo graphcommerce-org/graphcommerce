@@ -3,12 +3,13 @@ import { Portal } from '@mui/material'
 import { AnimatePresence, usePresence } from 'framer-motion'
 import type { SetOptional } from 'type-fest'
 import { variantsToScrollSnapType } from '../utils/variantsToScrollSnapType'
-import { OverlayBase, LayoutOverlayBaseProps } from './OverlayBase'
+import type { LayoutOverlayBaseProps } from './OverlayBase'
+import { OverlayBase } from './OverlayBase'
 import { OverlayContainer } from './OverlayContainer'
 
 export type OverlayTmpProps = Omit<
   SetOptional<LayoutOverlayBaseProps, 'variantSm' | 'variantMd'>,
-  'direction' | 'offsetPageY' | 'isPresent' | 'safeToRemove'
+  'offsetPageY' | 'isPresent' | 'safeToRemove'
 >
 
 function OverlayUsePresence(props: OverlayTmpProps) {

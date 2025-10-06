@@ -1,4 +1,4 @@
-import { ProductPaginationProps } from '@graphcommerce/magento-product'
+import type { ProductPaginationProps } from '@graphcommerce/magento-product'
 import { Pagination } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { usePagination } from 'react-instantsearch-hooks-web'

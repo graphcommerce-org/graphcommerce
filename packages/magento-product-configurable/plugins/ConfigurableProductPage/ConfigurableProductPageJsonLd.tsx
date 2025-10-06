@@ -5,6 +5,7 @@ import type {
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useConfigurableSelectedVariant } from '../../hooks'
+import { isTypename } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -16,6 +17,9 @@ export function ProductPageJsonLd<T extends { '@type': string }, P extends JsonL
   props: PluginProps<ProductPageJsonLdProps<T, P>> & AddToCartItemSelector,
 ) {
   const { Prev, product, index, ...rest } = props
-  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
+
+  if (product.__typename !== 'ConfigurableProduct') return <Prev product={product} {...rest} />
+
   return <Prev product={(variant ?? product) as P} {...rest} />
 }

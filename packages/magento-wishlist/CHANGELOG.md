@@ -1,208 +1,146 @@
 # @graphcommerce/magento-wishlist
 
-## 9.0.0-canary.80
+## 9.1.0-canary.55
 
-## 9.0.0-canary.79
+## 9.1.0-canary.54
 
-## 9.0.0-canary.78
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
 
 ### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`c38c27f`](https://github.com/graphcommerce-org/graphcommerce/commit/c38c27fee77f5ba10db435b2e1532a7527e8155c) - Solve compat issue with adobe commerce ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.40
+
+### Patch Changes
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`6847259`](https://github.com/graphcommerce-org/graphcommerce/commit/6847259715b0cebcc3f7415ed06cc38814663811) - Solve typescript issue were product types were added incorrectly. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+### Patch Changes
+
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed `useMediaQuery` from the `<WishlistItemActionCard />` and `<CartItemActionCard />` and replaced it with a new responsive `size` prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`811d5e6`](https://github.com/graphcommerce-org/graphcommerce/commit/811d5e60ebafea6c4a0a968fdc366e5e316bc64e) - Contain ripple to wishlist button instead of propagating to product list item ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
-
-### Patch Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`02c98e2`](https://github.com/graphcommerce-org/graphcommerce/commit/02c98e217a42fe2258acfad40be577e4a9109345) - Add to wishlist message missed the product name ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.44
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
-## 8.1.0-canary.41
-
-## 8.1.0-canary.40
-
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
-
-## 8.1.0-canary.34
-
-## 8.1.0-canary.33
-
-## 8.1.0-canary.32
-
-## 8.1.0-canary.31
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
-## 8.1.0-canary.28
-
-## 8.1.0-canary.27
-
-## 8.1.0-canary.26
-
-## 8.1.0-canary.25
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-### Minor Changes
-
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.3
 
@@ -210,269 +148,11 @@
 
 - [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-### Patch Changes
-
-- [#2208](https://github.com/graphcommerce-org/graphcommerce/pull/2208) [`3228ba8`](https://github.com/graphcommerce-org/graphcommerce/commit/3228ba893a8f1b70b99f05492c53d6a0feda80c3) - Images are not spread anymore but instead are contained within the borders of the image container. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
-
 ## 8.0.0
 
 ### Minor Changes
 
 - [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e4`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the `<ActionCardLayout/>` ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-### Minor Changes
-
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e426`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
-## 7.0.1
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -486,218 +166,6 @@
 
 - [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`ff138050f`](https://github.com/graphcommerce-org/graphcommerce/commit/ff138050f92aad28f0f27a9f2ecd478dc6acfec1) - Wishlist would be limited to 24 products, but doesn't have pagination ([@paales](https://github.com/paales))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-### Patch Changes
-
-- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`3bfa3b9dd`](https://github.com/graphcommerce-org/graphcommerce/commit/3bfa3b9ddf8724b31b8f6dfc2281c58dc3f44cad) - Fixed wishlist not being shown in menu when hideForGuest is enabled (eventhough the user is logged in) ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1945](https://github.com/graphcommerce-org/graphcommerce/pull/1945) [`0a5f12aeb`](https://github.com/graphcommerce-org/graphcommerce/commit/0a5f12aebc8ea960980cb423445d14d253a0da5a) - Prevent horizontal overflow in wishlist on (small) mobile devices ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.2.0-canary.25
-
-### Patch Changes
-
-- [#1944](https://github.com/graphcommerce-org/graphcommerce/pull/1944) [`ff138050f`](https://github.com/graphcommerce-org/graphcommerce/commit/ff138050f92aad28f0f27a9f2ecd478dc6acfec1) - Wishlist would be limited to 24 products, but doesn't have pagination ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-### Patch Changes
-
-- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the close menu on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Patch Changes
@@ -706,78 +174,6 @@
 
 - [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`28e058995`](https://github.com/graphcommerce-org/graphcommerce/commit/28e058995638227c22dd0008895acd1cc46b28b4) - mergeGuestWishlist would be called if there weren't any products in the guest wishlist ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-### Patch Changes
-
-- [#1876](https://github.com/graphcommerce-org/graphcommerce/pull/1876) [`8dffc59c0`](https://github.com/graphcommerce-org/graphcommerce/commit/8dffc59c04bf6f2a6000b73db13592e10afd936c) - Added an configuration to the wishlist: `wishlistShowFeedbackMessage` to show a feedback message when a product is added to the wishlist. ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-### Patch Changes
-
-- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`28e058995`](https://github.com/graphcommerce-org/graphcommerce/commit/28e058995638227c22dd0008895acd1cc46b28b4) - skip mergeGuestWishlist if there is no guest wishlist ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 6.0.1
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
-
 ## 6.0.0
 
 ### Patch Changes
@@ -785,130 +181,6 @@
 - [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Wishlist message snackbar now automatically closes after a few seconds ([@StefanAngenent](https://github.com/StefanAngenent))
 
 - [#1800](https://github.com/graphcommerce-org/graphcommerce/pull/1800) [`2d90523e8`](https://github.com/graphcommerce-org/graphcommerce/commit/2d90523e8f52919215587f3a989faa31122c1e7a) - If the user is not logged in + the "Hide for Guests” variable is enabled, the WishlistFabContent should would be displayed. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-### Patch Changes
-
-- [#1800](https://github.com/graphcommerce-org/graphcommerce/pull/1800) [`2d90523e8`](https://github.com/graphcommerce-org/graphcommerce/commit/2d90523e8f52919215587f3a989faa31122c1e7a) - If the user is not logged in + the "Hide for Guests” variable is enabled, the WishlistFabContent should not be displayed. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-### Patch Changes
-
-- [#1783](https://github.com/graphcommerce-org/graphcommerce/pull/1783) [`d6e7dc3e6`](https://github.com/graphcommerce-org/graphcommerce/commit/d6e7dc3e612029bf02cdc5ac48544a52c43869db) - Closing wishlist snackbar ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
 
 ## 5.1.0
 
@@ -922,43 +194,6 @@
   - Solved peer dependency issues ([@paales](https://github.com/paales))
 
 - [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`b34c7b43a`](https://github.com/graphcommerce-org/graphcommerce/commit/b34c7b43a6e1338152e77f6f8427c3fe559021c5) - Disabled @typescript-eslint/no-unbound-method and fixed various eslint errors ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-## 5.1.0-canary.4
-
-### Patch Changes
-
-- [#1755](https://github.com/graphcommerce-org/graphcommerce/pull/1755) [`b34c7b43a`](https://github.com/graphcommerce-org/graphcommerce/commit/b34c7b43a6e1338152e77f6f8427c3fe559021c5) - Disabled @typescript-eslint/no-unbound-method and fixed various eslint errors ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -978,79 +213,11 @@
 
 - [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-## 4.14.0-canary.7
-
-### Patch Changes
-
-- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-### Minor Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
-
-  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-### Patch Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
-## 4.13.1
-
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 1.7.10
 
@@ -1312,7 +479,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1743,7 +909,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1758,8 +924,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

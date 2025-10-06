@@ -1,32 +1,28 @@
 import { Scroller, ScrollerButton, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import {
+  extendableComponent,
   Form,
   FormRow,
   iconChevronLeft,
   iconChevronRight,
-  responsiveVal,
   IconSvg,
+  responsiveVal,
   ToggleButton,
-  extendableComponent,
 } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  FormPersist,
-  useForm,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { Controller, FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, FormControl, FormHelperText, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, FormControl, FormHelperText } from '@mui/material'
 import { useEffect } from 'react'
-import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 import { useCartLock } from '../hooks/useCartLock'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 export type PaymentMethodTogglesProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
-const cmpName = 'PaymentMethodToggles' as const
+const cmpName = 'PaymentMethodToggles'
 const parts = [
   'formRoot',
   'root',
@@ -41,6 +37,10 @@ const parts = [
 ] as const
 const { classes } = extendableComponent(cmpName, parts)
 
+/**
+ * @deprecated
+ * @public
+ */
 export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
   const { step, sx = [] } = props
   const { methods, selectedMethod, setSelectedMethod, setSelectedModule, modules } =
@@ -130,8 +130,8 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                   hideScrollbar
                   tabIndex={0}
                   sx={{
-                    gridAutoColumns: `max-content`,
-                    gridTemplateRows: `100%`,
+                    gridAutoColumns: 'max-content',
+                    gridTemplateRows: '100%',
                     gap: responsiveVal(4, 8),
                     height: responsiveVal(60, 85),
                     borderRadius: '5px',

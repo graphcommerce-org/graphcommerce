@@ -1,5 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
-import { Types } from '@graphql-codegen/plugin-helpers'
+import type { Types } from '@graphql-codegen/plugin-helpers'
 import { Kind, visit } from 'graphql'
 
 /**

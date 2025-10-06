@@ -1,8 +1,8 @@
-import { ProductListParams } from '@graphcommerce/magento-product'
+import { hasUserFilterActive, type ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
-import { PageMetaProps } from '@graphcommerce/next-ui'
+import type { PageMetaProps } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { CategoryMetaFragment } from './CategoryMeta.gql'
+import type { CategoryMetaFragment } from './CategoryMeta.gql'
 
 export type CategoryMetaProps = CategoryMetaFragment &
   Omit<PageMetaProps, 'title' | 'metaDescription' | 'children'> & {
@@ -12,7 +12,8 @@ export type CategoryMetaProps = CategoryMetaFragment &
   }
 
 export function CategoryMeta(props: CategoryMetaProps) {
-  const { meta_title, meta_description, name, params, image, ogImageUseFallback } = props
+  const { meta_title, meta_description, meta_keywords, name, params, image, ogImageUseFallback } =
+    props
   let { title, metaDescription, metaRobots, canonical, ogImage } = props
   if (!title) title = ''
   if (!metaDescription) metaDescription = ''
@@ -24,8 +25,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
 
   if (params?.url && !canonical) canonical = `/${params.url}`
 
-  const anyFilterActive =
-    Object.keys(params?.filters ?? {}).filter((k) => k !== 'category_uid').length > 0
+  const anyFilterActive = hasUserFilterActive(params)
 
   const sortActive = params?.sort && Object.keys(params?.sort).length !== 0
   const limitAcitve = !!params?.pageSize
@@ -52,6 +52,7 @@ export function CategoryMeta(props: CategoryMetaProps) {
       title={titleTrans}
       metaDescription={metaDescriptionTrans}
       metaRobots={noIndex ? ['noindex'] : metaRobots}
+      metaKeywords={meta_keywords}
       canonical={isPaginated ? `${canonical}/page/${currentPage}` : canonical}
       ogImage={ogImage}
       ogImageUseFallback={ogImageUseFallback}

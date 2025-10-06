@@ -1,5 +1,6 @@
 import { useUrlQuery } from '../../hooks/useUrlQuery'
-import { LayoutOverlay, LayoutOverlayProps } from '../components/LayoutOverlay'
+import type { LayoutOverlayProps } from '../components/LayoutOverlay'
+import { LayoutOverlay } from '../components/LayoutOverlay'
 
 export type LayoutOverlayState = Omit<
   LayoutOverlayProps,
@@ -12,6 +13,8 @@ export type LayoutOverlayState = Omit<
   | 'disableInert'
   | 'widthMd'
   | 'widthSm'
+  | 'disableAnimation'
+  | 'disableDrag'
 >
 
 export function useLayoutState() {

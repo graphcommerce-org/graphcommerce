@@ -1,10 +1,14 @@
 query ProductFilters(
   $filters: ProductAttributeFilterInput = {}
   $search: String
-  $context: InContextInput
+  $context: PrivateContext
+  $pageSize: Int = 1
 ) {
-  filters: products(filter: $filters, currentPage: 1, pageSize: 1, search: $search)
-    @inContext(context: $context) {
+  filters: products(filter: $filters, currentPage: 1, pageSize: $pageSize, search: $search)
+    @privateContext(context: $context) {
+    page_info {
+      total_pages
+    }
     ...ProductListFilters
   }
 }

@@ -10,5 +10,7 @@ export const createEmotionCache = () => {
     insertionPoint = emotionInsertionPoint ?? undefined
   }
 
-  return createCache({ key: 'mui-style', insertionPoint, stylisPlugins: [] })
+  const cache = createCache({ key: 'mui-style', insertionPoint, stylisPlugins: [] })
+  cache.compat = true
+  return cache
 }

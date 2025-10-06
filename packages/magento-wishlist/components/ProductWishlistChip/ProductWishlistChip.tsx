@@ -1,6 +1,4 @@
 import { ProductWishlistIconButton } from './ProductWishlistIconButton'
 
-/**
- * @deprecated use ProductWishlistIconButton instead
- */
+/** @deprecated Use ProductWishlistIconButton instead */
 export const ProductWishlistChip = ProductWishlistIconButton

@@ -1,4 +1,5 @@
-import { ComponentsVariants, FabProps, Theme, useTheme } from '@mui/material'
+import type { ComponentsVariants, FabProps, Theme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import { responsiveVal } from '../Styles'
 
 type FabSize = NonNullable<FabProps['size']>

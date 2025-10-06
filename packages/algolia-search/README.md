@@ -2,7 +2,7 @@
 
 ❗️❗️ NOT SUPPORTED: Does not work with productFiltersPro and does not work with
 ProductListLayout/\* components. No further development will be done. Please use
-[@graphcommerce/algolia-mesh](../algolia-mesh/README.md) ❗️❗️
+[@graphcommerce/algolia-products](../algolia-products/README.md) ❗️❗️
 
 Implementation of Algolia Instant Search inside Graphcommerce. Add client or
 server side product, category and pages search to your project!
@@ -142,7 +142,7 @@ return {
     props: {
       ...(await page).data,
       ...(await products).data,
-      ...(await filters).data,
+      ...(await filters)?.data,
       ...(await categories)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,
@@ -153,7 +153,7 @@ return {
 +      renderToString,
 +     }),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 ```
 

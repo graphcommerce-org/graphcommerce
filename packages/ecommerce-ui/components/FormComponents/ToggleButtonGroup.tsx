@@ -1,21 +1,15 @@
-import {
-  ControllerProps,
-  FieldError,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
+import type { FormLabelProps, ToggleButtonGroupProps, ToggleButtonProps } from '@mui/material'
 import {
   FormControl,
   FormHelperText,
   FormLabel,
-  FormLabelProps,
   ToggleButton,
   ToggleButtonGroup,
-  ToggleButtonGroupProps,
-  ToggleButtonProps,
 } from '@mui/material'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 type SingleToggleButtonProps = Omit<ToggleButtonProps, 'value' | 'children'> & {
   id: number | string
@@ -30,6 +24,7 @@ export type ToggleButtonGroupElementProps<T extends FieldValues> = ToggleButtonG
   helperText?: string
 } & Omit<ControllerProps<T>, 'render'>
 
+/** @public */
 export function ToggleButtonGroupElement<TFieldValues extends FieldValues = FieldValues>({
   name,
   control,
@@ -40,7 +35,6 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
   helperText,
   formLabelProps,
   defaultValue,
-  disabled,
   shouldUnregister,
   ...toggleButtonGroupProps
 }: ToggleButtonGroupElementProps<TFieldValues>) {
@@ -58,7 +52,6 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
     control,
     rules,
     defaultValue,
-    disabled,
     shouldUnregister,
   })
 
@@ -87,9 +80,9 @@ export function ToggleButtonGroupElement<TFieldValues extends FieldValues = Fiel
           }
         }}
       >
-        {options.map(({ label, id, ...toggleProps }) => (
+        {options.map(({ label: labelVal, id, ...toggleProps }) => (
           <ToggleButton value={id} {...toggleProps} key={id}>
-            {label}
+            {labelVal}
           </ToggleButton>
         ))}
       </ToggleButtonGroup>

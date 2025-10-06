@@ -3,13 +3,11 @@ import { useQuery } from '@graphcommerce/graphql'
 import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
-import { CustomerDocument } from './Customer.gql'
-import {
-  IsEmailAvailableDocument,
-  IsEmailAvailableQuery,
-  IsEmailAvailableQueryVariables,
-} from './IsEmailAvailable.gql'
+import type { IsEmailAvailableQuery, IsEmailAvailableQueryVariables } from './IsEmailAvailable.gql'
+import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
+import { useCustomerAccountCanSignUp } from './useCustomerPermissions'
 import { useCustomerSession } from './useCustomerSession'
+import { UseCustomerValidateTokenDocument } from './UseCustomerValidateToken.gql'
 
 export type UseFormIsEmailAvailableProps = {
   onSubmitted?: (data: { email: string }) => void
@@ -17,14 +15,16 @@ export type UseFormIsEmailAvailableProps = {
 
 export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 'session-expired'
 
-export const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin
-
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
   const { token, valid } = useCustomerSession()
+
+  const canSignUp = useCustomerAccountCanSignUp()
+  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
-  const customerQuery = useQuery(CustomerDocument, { fetchPolicy: 'cache-only' })
+  const customerQuery = useQuery(UseCustomerValidateTokenDocument, { fetchPolicy: 'cache-only' })
   const cachedEmail = customerQuery?.data?.customer?.email
 
   const form = useFormGqlQuery<

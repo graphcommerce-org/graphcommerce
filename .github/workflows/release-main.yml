@@ -1,4 +1,4 @@
-name: release
+name: release-main
 on:
   push:
     branches:
@@ -15,10 +15,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           cache: yarn
           node-version: 20
+          cache-dependency-path: package.json
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
       - name: yarn install && yarn postinstall

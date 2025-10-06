@@ -1,8 +1,7 @@
-import { NumberFormatPropsType, NumberFormat } from './NumberFormat'
+import type { NumberFormatProps } from './NumberFormat'
+import { NumberFormat } from './NumberFormat'
 
-/**
- * https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers
- */
+/** https://tc39.es/ecma402/#table-sanctioned-single-unit-identifiers */
 type Unit =
   | 'acre'
   | 'bit'
@@ -50,10 +49,11 @@ type Unit =
   | 'yard'
   | 'year'
 
-export type UnitFormatProps = Omit<NumberFormatPropsType, 'numberStyle'> & {
+export type UnitFormatProps = Omit<NumberFormatProps, 'numberStyle'> & {
   unit: Unit | (string & Record<never, never>)
 }
 
+/** @public */
 export function UnitFormat(props: UnitFormatProps) {
   return <NumberFormat {...props} numberStyle='unit' />
 }

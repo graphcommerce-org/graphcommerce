@@ -1,11 +1,8 @@
-import {
-  AddProductsToCartFormProps,
-  findAddedItems,
-  toUserErrors,
-} from '@graphcommerce/magento-product'
+import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import { findAddedItems, toUserErrors } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
 import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 

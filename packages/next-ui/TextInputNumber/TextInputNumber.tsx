@@ -1,20 +1,17 @@
 import { i18n } from '@lingui/core'
+import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import {
-  IconButtonProps,
-  SxProps,
   Box,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  Fab, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   TextField,
-  TextFieldProps,
   useForkRef,
-  Theme,
-  Fab,
 } from '@mui/material'
-import { ChangeEvent, Ref, useCallback, useEffect, useRef, useState } from 'react'
+import type { ChangeEvent, Ref } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { iconMin, iconPlus } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconMin, iconPlus } from '../icons'
 
 export type IconButtonPropsOmit = Omit<
   IconButtonProps,
@@ -28,13 +25,11 @@ export type TextInputNumberProps = Omit<TextFieldProps, 'type'> & {
 }
 
 type OwnerState = { size?: 'small' | 'medium' }
-const name = 'TextInputNumber' as const
+const name = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
-/**
- * @deprecated Please us NumberFieldElement
- */
+/** @deprecated Please us NumberFieldElement */
 export function TextInputNumber(props: TextInputNumberProps) {
   const {
     DownProps = {},

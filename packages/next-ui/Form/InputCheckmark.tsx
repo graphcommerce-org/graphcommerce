@@ -1,5 +1,6 @@
-import { IconSvg, IconSvgProps } from '../IconSvg'
 import { iconCheckmark } from '../icons'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
 
 export type InputCheckmarkProps = {
   show?: boolean

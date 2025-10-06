@@ -1,20 +1,20 @@
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, Button, Fab, Typography } from '@mui/material'
+import { iconClose } from '../icons'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
 import { LayoutOverlayHeader } from '../LayoutOverlay'
 import { OverlayStickyBottom } from '../Overlay/components/OverlayStickyBottom'
 import { extendableComponent } from '../Styles'
 import { useFabSize } from '../Theme'
-import { iconClose } from '../icons'
-import { PanelActionsProps } from './types'
+import type { PanelActionsProps } from './types'
 
 const { classes } = extendableComponent(
   'OverlayPanelActions' as const,
   ['root', 'header', 'content', 'footer'] as const,
 )
 
-export const OverlayPanelActions = (props: PanelActionsProps) => {
+export function OverlayPanelActions(props: PanelActionsProps) {
   const { title, children, onReset, onApply, onClose, sx = [] } = props
 
   const fabSize = useFabSize('small')
@@ -54,7 +54,7 @@ export const OverlayPanelActions = (props: PanelActionsProps) => {
         </Typography>
       </LayoutOverlayHeader>
 
-      <Box sx={{ flex: 1, px: 2 }} className={classes.content}>
+      <Box sx={{ flex: 1, px: 2, pt: 2 }} className={classes.content}>
         {children}
       </Box>
 

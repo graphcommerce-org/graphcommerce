@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
@@ -36,13 +37,13 @@ function NewsletterSubscribe({ pages }: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
       <RowRenderer {...pages[0]} />
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         {page?.title && (
           <Typography variant='h3'>
             <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>
@@ -64,7 +65,7 @@ NewsletterSubscribe.pageOptions = pageOptions
 export default NewsletterSubscribe
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  const url = `service/newsletter`
+  const url = 'service/newsletter'
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -83,6 +84,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

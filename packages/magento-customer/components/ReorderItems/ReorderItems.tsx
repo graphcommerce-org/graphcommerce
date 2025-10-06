@@ -1,10 +1,11 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartSnackbarMessage'
 import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcommerce/next-ui'
-import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
 import { Box } from '@mui/material'
-import { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
+import type { OrderItemsFragment } from '../Order'
+import type { ReorderItemsMutation, ReorderItemsMutationVariables } from './ReorderItems.gql'
 import { ReorderItemsDocument } from './ReorderItems.gql'
 
 export type ReorderItemsProps = { order: OrderItemsFragment }
@@ -12,7 +13,10 @@ export type ReorderItemsProps = { order: OrderItemsFragment }
 export function ReorderItems(props: ReorderItemsProps) {
   const { order } = props
 
-  const form = useFormGqlMutation(ReorderItemsDocument, {
+  const form = useFormGqlMutationCart<
+    ReorderItemsMutation,
+    ReorderItemsMutationVariables & { cartId: string }
+  >(ReorderItemsDocument, {
     defaultValues: { orderNumber: order.number },
   })
   const { formState, handleSubmit, error, data: cartData } = form
@@ -41,6 +45,7 @@ export function ReorderItems(props: ReorderItemsProps) {
         error={error}
         userErrors={errors?.filter(nonNullable)}
         showSuccess={!!cart}
+        cart={cart}
       />
     </Box>
   )

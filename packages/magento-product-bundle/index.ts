@@ -1,5 +1,3 @@
-export * from './ProductListItemBundle'
-export * from './BundleItemsForm/BundleItemsForm'
-export * from './components/BundleCartItem/BundleCartItem'
-export * from './BundleProductPage.gql'
+export * from './components/ProductListItemBundle/ProductListItemBundle'
 export * from './components/BundleProductOptions'
+export * from './graphql'

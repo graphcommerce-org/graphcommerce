@@ -1,258 +1,146 @@
 # Change Log
 
-## 9.0.0-canary.80
-
-## 9.0.0-canary.79
-
-## 9.0.0-canary.78
-
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
-
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
-## 8.1.0-canary.41
-
-## 8.1.0-canary.40
-
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
+## 9.1.0-canary.55
 
 ### Patch Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`59d91cc`](https://github.com/graphcommerce-org/graphcommerce/commit/59d91cc4b04b6d37e5fb6b09401c079de488bc29) - Solve issue where the Place order button would remain in a loading state because the back/forward cache of chrome started working for the checkout and thus React's state would not be reset, thinking we were still exiting the page. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.37
+## 9.1.0-canary.54
 
-## 8.1.0-canary.36
+## 9.1.0-canary.53
 
-## 8.1.0-canary.35
+## 9.1.0-canary.52
 
-## 8.1.0-canary.34
+## 9.1.0-canary.51
 
-## 8.1.0-canary.33
+## 9.1.0-canary.50
 
-## 8.1.0-canary.32
+## 9.1.0-canary.49
 
-## 8.1.0-canary.31
+## 9.1.0-canary.48
 
-## 8.1.0-canary.30
+## 9.1.0-canary.47
 
-## 8.1.0-canary.29
+## 9.1.0-canary.46
 
-## 8.1.0-canary.28
+## 9.1.0-canary.45
 
-## 8.1.0-canary.27
+## 9.1.0-canary.44
 
-## 8.1.0-canary.26
+## 9.1.0-canary.43
 
-## 8.1.0-canary.25
+## 9.1.0-canary.42
 
-## 8.1.0-canary.24
+## 9.1.0-canary.41
 
-## 8.1.0-canary.23
+## 9.1.0-canary.40
 
-## 8.1.0-canary.22
+## 9.1.0-canary.39
 
-## 8.1.0-canary.21
+## 9.1.0-canary.38
 
-## 8.1.0-canary.20
+## 9.1.0-canary.37
 
-## 8.1.0-canary.19
+## 9.1.0-canary.36
 
-## 8.1.0-canary.18
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.2
 
 ### Patch Changes
 
-- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
+- [`7d5e75e`](https://github.com/graphcommerce-org/graphcommerce/commit/7d5e75ebfe93194237b8f6b6511d2bd1549d121e) - Solve issue where the Component prop would we forwarded tot the DOM element of the PaymentMethodActionCard ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.17
+- [`058b7bf`](https://github.com/graphcommerce-org/graphcommerce/commit/058b7bf64be29e1bc3d16551abcc1cd55b5413bd) - Support Magento 2.4.7 placeOrder.errors field to handle possible errors while placing the order. An `assertOrderPlaced` method was created to assert a valid placed order. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.16
+## 9.0.0
 
-## 8.1.0-canary.15
+### Major Changes
 
-## 8.1.0-canary.14
-
-### Patch Changes
-
-- [`831d7cd`](https://github.com/graphcommerce-org/graphcommerce/commit/831d7cd64a40b7b58748fd9637199b88938e75b7) - Compatibility with Magento 2.4.7 ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual PaymentMethodPlaceOrder button would sometimes be undefined. ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ### Patch Changes
 
 - [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Use the non resolved payment methods as a placeholder for the actual payment methods ([@FrankHarland](https://github.com/FrankHarland))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+- [#2277](https://github.com/graphcommerce-org/graphcommerce/pull/2277) [`f9199f7`](https://github.com/graphcommerce-org/graphcommerce/commit/f9199f798583138a68dd641ea6637375c487f29b) - Solve issue where Braintree wouldn't place the order after successfully validating a Credit Card. ([@paales](https://github.com/paales))
 
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent BillingPage query from rerunning on each mutation ([@FrankHarland](https://github.com/FrankHarland))
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`d345474`](https://github.com/graphcommerce-org/graphcommerce/commit/d345474fb190d158629cd5fd5e68a78724fa2fb6) - Due to a cyclic dependency the actual `<PaymentMethodPlaceOrder />` button would sometimes be undefined. ([@paales](https://github.com/paales))
 
-## 8.0.6-canary.1
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
-
-## 8.0.3
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Prevent the `<BillingPage />` query from rerunning on each mutation. ([@FrankHarland](https://github.com/FrankHarland))
 
 ## 8.0.0
 
@@ -260,231 +148,11 @@
 
 - [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled ripple animations on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-### Patch Changes
-
-- [#2115](https://github.com/graphcommerce-org/graphcommerce/pull/2115) [`105a1af8b`](https://github.com/graphcommerce-org/graphcommerce/commit/105a1af8b820de8873e430ae398f1922d39a9110) - Disabled Ripple on all ActionCard ‘Select’ and ‘Change’ so the rendering is more subtle during checkout. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
 ## 7.0.1
 
 ### Patch Changes
 
 - [#2046](https://github.com/graphcommerce-org/graphcommerce/pull/2046) [`6c7197755`](https://github.com/graphcommerce-org/graphcommerce/commit/6c7197755ba54d35109fea0c44965a3aae3fd895) - Remove the selected payment method title from the Place order button so that the text always fits ([@carlocarels90](https://github.com/carlocarels90))
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-### Patch Changes
-
-- [#2046](https://github.com/graphcommerce-org/graphcommerce/pull/2046) [`6c7197755`](https://github.com/graphcommerce-org/graphcommerce/commit/6c7197755ba54d35109fea0c44965a3aae3fd895) - Remove the selected payment method title from the Place order button so that the text always fits ([@carlocarels90](https://github.com/carlocarels90))
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -496,282 +164,6 @@
 
 - [#2027](https://github.com/graphcommerce-org/graphcommerce/pull/2027) [`e384fe2e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e384fe2e47d849fe6f7bfa7c6dd48b9b6b5b1bd1) - Solved an issue where the empty cart would be shown between the payment and success page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-### Patch Changes
-
-- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-### Patch Changes
-
-- [#2027](https://github.com/graphcommerce-org/graphcommerce/pull/2027) [`e384fe2e4`](https://github.com/graphcommerce-org/graphcommerce/commit/e384fe2e47d849fe6f7bfa7c6dd48b9b6b5b1bd1) - Solved an issue where the empty cart would be shown between the payment and success page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-### Patch Changes
-
-- [#1943](https://github.com/graphcommerce-org/graphcommerce/pull/1943) [`138215b45`](https://github.com/graphcommerce-org/graphcommerce/commit/138215b453703f44243c85b3bfab58814d86131c) - When a PayPal buyer would return to the website it would sometimes clear the buyers token ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
-## 6.1.0
-
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-## 6.0.1
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
-
 ## 6.0.0
 
 ### Minor Changes
@@ -782,173 +174,15 @@
 
 - [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-### Patch Changes
-
-- [#1851](https://github.com/graphcommerce-org/graphcommerce/pull/1851) [`5adadf4ba`](https://github.com/graphcommerce-org/graphcommerce/commit/5adadf4ba023e861409a3925b5cda1e20dbb256c) - Make sure the PayerID isn’t required for non-paypal method ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-## 6.0.0-canary.43
-
-### Minor Changes
-
-- [#1841](https://github.com/graphcommerce-org/graphcommerce/pull/1841) [`45befd304`](https://github.com/graphcommerce-org/graphcommerce/commit/45befd3040eb45f7f7204312cd532432ae84dc4d) - Always fetch the CartTotals when changing the payment method and automatically submit the currently selected payment method. ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
 ## 5.1.0
 
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
   - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-## 5.1.0-canary.4
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -970,81 +204,11 @@
 
 - [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`be10e8cd1`](https://github.com/graphcommerce-org/graphcommerce/commit/be10e8cd1dce172a914ee9e5f65fdca4d0929fc8) - Migrated payment methods to use the new `onSuccess` method from `PaymentMethodContextProvider` instead of redirecting manually, makes sure the onSuccess method can be used by plugins. ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-## 4.14.0-canary.7
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-### Minor Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`0173d9307`](https://github.com/graphcommerce-org/graphcommerce/commit/0173d93075e1e3bdfb4667cf1ef3e53113b38994) - Add props to <PaymentMethodContextProvider/>: onSuccess and successUrl. ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`a0eefa762`](https://github.com/graphcommerce-org/graphcommerce/commit/a0eefa762f93f817f506b87753dfe0b92e3318f8) - Added better disabled state for an ActionCard ([@paales](https://github.com/paales))
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`be10e8cd1`](https://github.com/graphcommerce-org/graphcommerce/commit/be10e8cd1dce172a914ee9e5f65fdca4d0929fc8) - Migrated payment methods to use the new `onSuccess` method from `PaymentMethodContextProvider` instead of redirecting manually, makes sure the onSuccess method can be used by plugins. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-### Patch Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`acef2a3ae`](https://github.com/graphcommerce-org/graphcommerce/commit/acef2a3aedd60e1882330cde56877bf26857d238) - Make the modules prop optional for the `<PaymentMethodContextProvider />` component ([@paales](https://github.com/paales))
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
-## 4.13.1
-
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 3.6.9
 
@@ -1244,7 +408,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1591,7 +754,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1606,8 +769,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1990,8 +1153,6 @@ All notable changes to this project will be documented in this file. See [Conven
 ### Features
 
 - **payment-agreements-form:** checkout agreements checkboxes ([13c8164](https://github.com/ho-nl/m2-pwa/commit/13c816499d220a2ce940672a95beca508b78ddc9))
-
-## [2.103.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.103.14...@graphcommerce/magento-cart-payment-method@2.103.15) (2021-09-23)
 
 ## [2.103.15](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-cart-payment-method@2.103.14...@graphcommerce/magento-cart-payment-method@2.103.15) (2021-09-23)
 

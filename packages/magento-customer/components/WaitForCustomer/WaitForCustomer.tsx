@@ -1,21 +1,19 @@
-import { mergeErrors, WaitForQueries, WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
-import { FullPageMessage, FullPageMessageProps, IconSvg, iconPerson } from '@graphcommerce/next-ui'
+import type { WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
+import { mergeErrors, WaitForQueries } from '@graphcommerce/ecommerce-ui'
+import type { FullPageMessageProps } from '@graphcommerce/next-ui'
+import { FullPageMessage, iconPerson, IconSvg, nonNullable } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
+import type { SetOptional } from 'type-fest'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { ApolloCustomerErrorFullPage } from '../ApolloCustomerError/ApolloCustomerErrorFullPage'
 
-type WaitForCustomerProps = Omit<WaitForQueriesProps, 'fallback' | 'waitFor'> &
-  Pick<FullPageMessageProps, 'disableMargin'> & {
-    waitFor?: WaitForQueriesProps['waitFor']
-    fallback?: React.ReactNode
+export type WaitForCustomerProps = SetOptional<WaitForQueriesProps, 'waitFor'> &
+  SetOptional<FullPageMessageProps, 'title' | 'icon'> & {
     unauthenticated?: React.ReactNode
+    allowError?: boolean
   }
-
-export function nonNullable<T>(value: T): value is NonNullable<T> {
-  return value !== null && value !== undefined
-}
 
 /**
  * A full page wrapper to render customer specific information.
@@ -40,7 +38,14 @@ export function nonNullable<T>(value: T): value is NonNullable<T> {
  * ```
  */
 export function WaitForCustomer(props: WaitForCustomerProps) {
-  const { waitFor = [], children, fallback, unauthenticated, disableMargin } = props
+  const {
+    waitFor = [],
+    children,
+    fallback,
+    unauthenticated,
+    allowError: ignoreError,
+    ...rest
+  } = props
 
   const session = useCustomerSession()
   const queries = Array.isArray(waitFor) ? waitFor : [waitFor]
@@ -48,6 +53,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
     queries.map((query) => (typeof query === 'boolean' ? null : query.error)).filter(nonNullable),
   )
 
+  const hasError = error && !ignoreError
   return (
     <WaitForQueries
       waitFor={!session.loggedIn ? session.query : queries}
@@ -56,7 +62,7 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
           <FullPageMessage
             icon={<CircularProgress />}
             title={<Trans id='Loading your data' />}
-            disableMargin={disableMargin}
+            {...rest}
           >
             <Trans id='This may take a second' />
           </FullPageMessage>
@@ -77,11 +83,11 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
                 )}
               </Button>
             }
-            disableMargin={disableMargin}
+            {...rest}
           />
         ))}
-      {session.loggedIn && error && <ApolloCustomerErrorFullPage error={error} />}
-      {session.loggedIn && !error && children}
+      {session.loggedIn && hasError && <ApolloCustomerErrorFullPage error={error} />}
+      {session.loggedIn && !hasError && children}
     </WaitForQueries>
   )
 }

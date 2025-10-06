@@ -1,27 +1,41 @@
-import { FieldValues, ControllerProps, useController } from '@graphcommerce/react-hook-form'
-import { FormControlLabel, FormControlLabelProps, Switch } from '@mui/material'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
+import type { FormControlLabelProps, SwitchProps } from '@mui/material'
+import { FormControlLabel, Switch } from '@mui/material'
+import React from 'react'
+import type { FieldElementProps } from './types'
 
-type IProps = Omit<FormControlLabelProps, 'control'>
+type AdditionalProps = Omit<FormControlLabelProps, 'control'>
 
-export type SwitchElementProps<T extends FieldValues> = IProps & Omit<ControllerProps<T>, 'render'>
+export type SwitchElementProps<TFieldValues extends FieldValues = FieldValues> = FieldElementProps<
+  TFieldValues,
+  SwitchProps
+> &
+  AdditionalProps
 
-export function SwitchElement<TFieldValues extends FieldValues>({
-  name,
-  control,
-  defaultValue,
-  disabled,
-  shouldUnregister,
-  rules,
-  ...other
-}: SwitchElementProps<TFieldValues>) {
+type SwitchElementComponent = <TFieldValues extends FieldValues>(
+  props: SwitchElementProps<TFieldValues>,
+) => React.ReactNode
+
+function SwitchElementBase(props: SwitchElementProps): JSX.Element {
+  const { name, control, defaultValue, shouldUnregister, rules, disabled, ...other } = props
+
   const { field } = useController({
     name,
     control,
     defaultValue,
-    disabled,
     shouldUnregister,
     rules,
   })
 
-  return <FormControlLabel control={<Switch {...field} checked={!!field.value} />} {...other} />
+  return (
+    <FormControlLabel
+      control={<Switch {...field} checked={!!field.value} />}
+      {...other}
+      disabled={disabled}
+    />
+  )
 }
+
+/** @public */
+export const SwitchElement = SwitchElementBase as SwitchElementComponent

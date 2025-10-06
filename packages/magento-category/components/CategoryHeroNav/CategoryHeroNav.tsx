@@ -1,8 +1,9 @@
 import { productListLink } from '@graphcommerce/magento-product'
-import { breakpointVal, Row, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import { breakpointVal, extendableComponent, Row } from '@graphcommerce/next-ui'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
-import { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
+import type { CategoryHeroNavFragment } from './CategoryHeroNav.gql'
 
 export type CategoryHeroNavProps = {
   title: React.ReactNode
@@ -10,7 +11,7 @@ export type CategoryHeroNavProps = {
   sx?: SxProps<Theme>
 } & CategoryHeroNavFragment
 
-const cmpName = 'CategoryHeroNav' as const
+const cmpName = 'CategoryHeroNav'
 const parts = ['wrapper', 'categories', 'title', 'placeholder'] as const
 const { classes } = extendableComponent(cmpName, parts)
 
@@ -34,7 +35,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
             width: '100%',
-            paddingRight: theme.page.horizontal,
+            // paddingRight: theme.page.horizontal,
             paddingTop: 0,
             gridColumnGap: 0,
             display: 'grid',
@@ -93,7 +94,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
               color='textPrimary'
               href={productListLink({
                 url: category.url_path,
-                filters: { category_uid: { eq: category.uid } },
+                filters: { category_uid: { in: [category.uid] } },
                 sort: {},
               })}
               key={category.uid}

@@ -1,222 +1,192 @@
 # @graphcommerce/ecommerce-ui
 
-## 9.0.0-canary.80
+## 9.1.0-canary.55
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
 
 ### Patch Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7085b4a`](https://github.com/graphcommerce-org/graphcommerce/commit/7085b4a86088328fe54dc4e82ccd296d6459cae7) - Updated all form FieldElements to also accept defaultValue, shouldUnregister and disabled. Moved AutoCompleteElement, CheckboxElement, MultiSelectElement, SliderElement, SwitchElement, ToggleButtonGroup to useController. Removed all parseError props ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2541](https://github.com/graphcommerce-org/graphcommerce/pull/2541) [`09e67d6`](https://github.com/graphcommerce-org/graphcommerce/commit/09e67d6cb266ed4714a209ef90e49c3963962604) - Fix issue where setting required on the controller caused the form to submit without variables ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`022cbd6`](https://github.com/graphcommerce-org/graphcommerce/commit/022cbd664ea4e8a82997c5edf4451b9182558429) - Moved ActionCardListForm to @graphcommerce/ecommerce-ui to resolve issue with circular dependencies. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.79
-
-## 9.0.0-canary.78
-
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
+## 9.1.0-canary.52
 
 ### Patch Changes
 
-- [#2349](https://github.com/graphcommerce-org/graphcommerce/pull/2349) [`7c8529e`](https://github.com/graphcommerce-org/graphcommerce/commit/7c8529ea54c0e91f6b0e72129611cd6bf4f85d87) - Fix NumberFieldElement when min = 0 ([@JoshuaS98](https://github.com/JoshuaS98))
+- [`ea7af54`](https://github.com/graphcommerce-org/graphcommerce/commit/ea7af54048506228b6fde04d3bba764358b7f7e0) - Round step increment also max to two decimals as we might else get very long numbers ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.73
+## 9.1.0-canary.51
 
-## 9.0.0-canary.72
+## 9.1.0-canary.50
 
-## 9.0.0-canary.71
+## 9.1.0-canary.49
 
-## 9.0.0-canary.70
+## 9.1.0-canary.48
 
-## 9.0.0-canary.69
+## 9.1.0-canary.47
 
-## 9.0.0-canary.68
+## 9.1.0-canary.46
 
-## 9.0.0-canary.67
+## 9.1.0-canary.45
 
-## 9.0.0-canary.66
+## 9.1.0-canary.44
 
-## 9.0.0-canary.65
+## 9.1.0-canary.43
 
-## 9.0.0-canary.64
+## 9.1.0-canary.42
 
-## 9.0.0-canary.63
+## 9.1.0-canary.41
 
-## 9.0.0-canary.62
+### Patch Changes
 
-## 9.0.0-canary.61
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`fe48501`](https://github.com/graphcommerce-org/graphcommerce/commit/fe4850106abebe1fe113e08e38623ebfd5481c1d) - Make sure the increment step of the NumberInputField rounds to the nearest step. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.60
+## 9.1.0-canary.40
 
-## 9.0.0-canary.59
+## 9.1.0-canary.39
 
-## 9.0.0-canary.58
+## 9.1.0-canary.38
 
-## 9.0.0-canary.57
+## 9.1.0-canary.37
 
-## 9.0.0-canary.56
+## 9.1.0-canary.36
 
-## 9.0.0-canary.55
+## 9.1.0-canary.35
 
-## 9.0.0-canary.54
+## 9.1.0-canary.34
 
-## 8.1.0-canary.53
+## 9.1.0-canary.33
 
-## 8.1.0-canary.52
+## 9.1.0-canary.32
 
-## 8.1.0-canary.51
+## 9.1.0-canary.31
 
-## 8.1.0-canary.50
+## 9.1.0-canary.30
 
-## 8.1.0-canary.49
+## 9.1.0-canary.29
 
-## 8.1.0-canary.48
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`7c7d6e4`](https://github.com/graphcommerce-org/graphcommerce/commit/7c7d6e4976d263f4139ce1de2caf47e7f49a2bf8) - Solve issue where an individual item in the ActionCardListForm couldn't be disabed. Resulting in configurable options on the product page to be selectable while they shouldn't be. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2d22429`](https://github.com/graphcommerce-org/graphcommerce/commit/2d2242932b7e07fa970c1dae1685487832f864d7) - Always log the networkError during development to the console. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+### Patch Changes
+
+- [`5a9adde`](https://github.com/graphcommerce-org/graphcommerce/commit/5a9addee16aa9dc8f4ce6f8fa4b3fe6c11b90d8f) - FormElements now are now disabled when the whole form is disabled. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+### Patch Changes
+
+- [`026114e`](https://github.com/graphcommerce-org/graphcommerce/commit/026114ece325d8f675ba8820c6b63345e48532fa) - Sovle issue where showValid would be forwarded to the textField element ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+### Patch Changes
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`910e6aa`](https://github.com/graphcommerce-org/graphcommerce/commit/910e6aab024a925bb042cf17968b2ab826f97d88) - Refactor the FormComponents for better TypeScript checking performance. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Minor Changes
 
-- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new `<TelephoneElement />` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
-
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
-## 8.1.0-canary.41
-
-## 8.1.0-canary.40
-
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
 
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2436](https://github.com/graphcommerce-org/graphcommerce/pull/2436) [`55f94c5`](https://github.com/graphcommerce-org/graphcommerce/commit/55f94c5dd70e88b8fbfb46e75b500db296937c33) - Added ref forwarding for the inputRef ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.34
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`7085b4a`](https://github.com/graphcommerce-org/graphcommerce/commit/7085b4a86088328fe54dc4e82ccd296d6459cae7) - Updated all form `<FieldElement />` components to also accept `defaultValue`, `shouldUnregister` and `disabled`. Moved `<AutoCompleteElement />`, `<CheckboxElement />`, `<MultiSelectElement />`, `<SliderElement />`, `<SwitchElement />`, `<ToggleButtonGroup />` to `useController`. Removed all `parseError` props. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.33
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.1.0-canary.32
+- [#2397](https://github.com/graphcommerce-org/graphcommerce/pull/2397) [`d4d5a98`](https://github.com/graphcommerce-org/graphcommerce/commit/d4d5a983dea6d034dcbdeed9cf30fb33133dde39) - Add requireOptionSelection boolean to prevent users from deselecting configurable options ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.1.0-canary.31
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Make sure the `<TextFieldElement/>` doesn’t give a uncontrolled to controlled warning. Convert `<SelectElement/>` to `useController` instead of a separate Controller component. Make sure the original `endAdornment` is always shown only until the value is valid. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.1.0-canary.30
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`d4e693d`](https://github.com/graphcommerce-org/graphcommerce/commit/d4e693d553198c9a1ef398d000ca23d209e6c2ba) - The `<WaitForQueries/>` component now uses the `useIsSSR` hook which prevents loading spinners when navigating on the client, which make all account/cart/checkout pages faster. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.1.0-canary.29
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`c17e5f1`](https://github.com/graphcommerce-org/graphcommerce/commit/c17e5f1cf9fb291b9bbf1fca0620c2721dceb331) - Solve issue: Warning: Cannot update a component (`FormAutoSubmitBase`) while rendering a different component (`ActionCardListForm`). ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.28
+- [#2424](https://github.com/graphcommerce-org/graphcommerce/pull/2424) [`66b4188`](https://github.com/graphcommerce-org/graphcommerce/commit/66b418809ad4db2a465c4112ff9850ce0cfe611c) - Omit disableUnderline prop for ‘outlined’ variant, because its not supported. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.1.0-canary.27
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`022cbd6`](https://github.com/graphcommerce-org/graphcommerce/commit/022cbd664ea4e8a82997c5edf4451b9182558429) - Moved `<ActionCardListForm />` to `@graphcommerce/ecommerce-ui` to resolve issue with circular dependencies. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.26
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 8.1.0-canary.25
+- [#2419](https://github.com/graphcommerce-org/graphcommerce/pull/2419) [`ccd952e`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd952e60904e91d62819d5abaea1798e4d4d95d) - Destructure InputProps to ensure they are passed only to relevant components. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 8.1.0-canary.24
+- [#2349](https://github.com/graphcommerce-org/graphcommerce/pull/2349) [`7c8529e`](https://github.com/graphcommerce-org/graphcommerce/commit/7c8529ea54c0e91f6b0e72129611cd6bf4f85d87) - Solve issue where `<NumberFieldElement />` would allow numbers below zero when `min = 0`. ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`43bd04a`](https://github.com/graphcommerce-org/graphcommerce/commit/43bd04a777c5800cc7e01bee1e123a5aad82f194) - Make sure the TextFieldElement doesn’t give a uncontrolled to controlled warning. Convert SelectElement to useController instead of a separate Controller component. Make sure the original endAdornment is always shown only until the value is valid ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`d4e693d`](https://github.com/graphcommerce-org/graphcommerce/commit/d4e693d553198c9a1ef398d000ca23d209e6c2ba) - The `<WaitForQueries/>` component now uses the useIsSSR hook which prevents loading spinners when navigating on the client, which make all account/cart/checkout pages faster. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
 ## 8.0.3
 
@@ -227,54 +197,6 @@
 - [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 - [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-### Patch Changes
-
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`e12d1dc`](https://github.com/graphcommerce-org/graphcommerce/commit/e12d1dc201bf7b23a996bd58a256a117b91a9334) - Rename validation to rules for all Form field components and deprecate validation ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.4
-
-### Patch Changes
-
-- [#2203](https://github.com/graphcommerce-org/graphcommerce/pull/2203) [`7ef7dc7`](https://github.com/graphcommerce-org/graphcommerce/commit/7ef7dc7631f61a2feba67a531a210df9c22fed4b) - CheckboxElement, MultiSelectElement, NumberFieldElement, SelectElement, SliderElement and TextFieldElement have their inputRef passed, allowing focus to be set by the form. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-### Patch Changes
-
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`eb14696`](https://github.com/graphcommerce-org/graphcommerce/commit/eb14696fc65e084a06790c88a8218fb3003f7c2c) - `<WaitForQueries/>` will default to loading, restoring the previous behavior. This might introduce , this might introduce an additional spinner but prevents a flash where it is shown that there is no cart ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
 
 ## 8.0.0
 
@@ -289,236 +211,6 @@
 ### Patch Changes
 
 - [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - Accessibility improvements for the frontend: Added skip content link. Removed empty buttons from tab flow. Gave focus to elements (such as the menu) that appear when after clicking a button. Improved aria labels where needed ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-### Patch Changes
-
-- [`e33660f`](https://github.com/graphcommerce-org/graphcommerce/commit/e33660f172466dcfa0ab7262cee612d9a3e47776) - a11y improvements (see https://github.com/graphcommerce-org/graphcommerce/issues/1995 for more info) ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-### Minor Changes
-
-- [#2111](https://github.com/graphcommerce-org/graphcommerce/pull/2111) [`35f3d3eaf`](https://github.com/graphcommerce-org/graphcommerce/commit/35f3d3eaf46f4b782bb1149e0efb0ec3819442d6) - Only show network errors in development mode. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-### Minor Changes
-
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`13e23e426`](https://github.com/graphcommerce-org/graphcommerce/commit/13e23e4265bac70fb4d0830e4661019e71ce299f) - Wishlist will now support configurable products and uses the ActionCardLayout ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-### Minor Changes
-
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
-## 7.0.1
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -536,220 +228,6 @@
 
 - [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-### Patch Changes
-
-- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-### Minor Changes
-
-- [`e55d8c390`](https://github.com/graphcommerce-org/graphcommerce/commit/e55d8c390d90b4bb7bab11c6a99027ac72bd7e3e) - Created a new sidebar layout system, can be configured with productFiltersLayout in the graphcommerce.config.js ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-### Minor Changes
-
-- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-### Patch Changes
-
-- [#1905](https://github.com/graphcommerce-org/graphcommerce/pull/1905) [`b6adbe1c3`](https://github.com/graphcommerce-org/graphcommerce/commit/b6adbe1c304c83c67c9e63f9a95d55ff64718725) - make the FormComponent elements validation message translatable. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Patch Changes
@@ -758,203 +236,11 @@
 
 - [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`1e2d2e5c6`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2d2e5c615f072a2d0b60074d9aa5a467876f2f) - Allow styling FormControl in CheckboxElement ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 6.0.2-canary.22
-
-### Patch Changes
-
-- [#1900](https://github.com/graphcommerce-org/graphcommerce/pull/1900) [`92e1f1742`](https://github.com/graphcommerce-org/graphcommerce/commit/92e1f1742b03cfc0aed7e1d103b8295509a2ca45) - make the SelectElement validation message translatable ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-### Patch Changes
-
-- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`1e2d2e5c6`](https://github.com/graphcommerce-org/graphcommerce/commit/1e2d2e5c615f072a2d0b60074d9aa5a467876f2f) - Allow styling FormControl in CheckboxElement ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-## 6.0.1
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
-
 ## 6.0.0
 
 ### Patch Changes
 
 - [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Upgrade packages to latest version ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-### Patch Changes
-
-- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Fix regression bugs and upgrade packages to latest versions ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
 
 ## 5.1.0
 
@@ -971,94 +257,17 @@
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`56d950ba3`](https://github.com/graphcommerce-org/graphcommerce/commit/56d950ba3d31828467b34f7e163586b628567a43) - Removed dependency on react-hook-form-mui ([@paales](https://github.com/paales))
 
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-### Patch Changes
-
-- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.4
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`56d950ba3`](https://github.com/graphcommerce-org/graphcommerce/commit/56d950ba3d31828467b34f7e163586b628567a43) - Removed dependency on react-hook-form-mui ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
-
 ## 5.0.0
 
 ### Major Changes
 
 - [#1734](https://github.com/graphcommerce-org/graphcommerce/pull/1734) [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@github-actions](https://github.com/apps/github-actions))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.9
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.31.0-canary.8
-
-## 4.31.0-canary.7
-
-## 4.31.0-canary.6
-
-## 4.31.0-canary.5
-
-## 4.31.0-canary.4
-
-## 4.31.0-canary.3
-
-## 4.31.0-canary.2
-
-## 4.31.0-canary.1
-
-## 4.31.0-canary.0
-
-## 4.30.2
-
-## 4.30.1
-
 ## 4.30.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.30.0-canary.0
 
 ## 1.5.8
 
@@ -1204,11 +413,9 @@
 ### Minor Changes
 
 - [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
-
   - Fixes bugs where loaders where shown on all pages that require user to log in
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1432,7 +639,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1447,8 +654,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

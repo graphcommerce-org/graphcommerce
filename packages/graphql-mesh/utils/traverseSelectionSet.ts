@@ -1,4 +1,5 @@
-import { Kind, SelectionNode, SelectionSetNode } from 'graphql'
+import type { GraphQLResolveInfo, SelectionNode, SelectionSetNode } from 'graphql'
+import { Kind, print } from 'graphql'
 import type { Path } from 'react-hook-form'
 
 function isNumeric(n: string) {
@@ -43,4 +44,15 @@ export function traverseSelectionSet<Q>(incomingSelectionSet: SelectionSetNode, 
 
 export function hasSelectionSetPath<Q>(selectionSet: SelectionSetNode, path: Path<Q>): boolean {
   return traverseSelectionSet<Q>(selectionSet, path).selections.length > 0
+}
+
+/** SelectionSet template literal that accepts SelectionSetNode and returns SelectionSetNode */
+export function selectionSetTemplate(
+  strings: TemplateStringsArray,
+  ...values: SelectionSetNode[]
+): string {
+  return strings.reduce((acc, str, i) => {
+    const value = values[i] ? values[i].selections.map((s) => print(s)).join(' ') : ''
+    return acc + str + value
+  }, '')
 }

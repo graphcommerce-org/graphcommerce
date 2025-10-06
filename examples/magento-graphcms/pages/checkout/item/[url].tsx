@@ -1,7 +1,12 @@
 import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { ApolloCartErrorAlert, EmptyCart, useCartQuery } from '@graphcommerce/magento-cart'
+import {
+  ApolloCartErrorAlert,
+  EmptyCart,
+  getCartDisabled,
+  useCartQuery,
+} from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
 import {
   EditCartItemButton,
@@ -10,6 +15,7 @@ import {
 } from '@graphcommerce/magento-cart-items'
 import { ProductPageGallery, ProductPageName } from '@graphcommerce/magento-product'
 import {
+  Container,
   FullPageMessage,
   GetServerSideProps,
   LayoutOverlay,
@@ -22,7 +28,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { CircularProgress, Container, Typography } from '@mui/material'
+import { CircularProgress, Typography } from '@mui/material'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
 
@@ -67,7 +73,7 @@ function CartItemEdit(props: Props) {
           </EmptyCart>
         )}
         {cartItem && (
-          <Container>
+          <Container maxWidth='500px'>
             <EditCartItemForm
               key={cartItem.uid}
               href='/cart'
@@ -75,7 +81,7 @@ function CartItemEdit(props: Props) {
               cartItem={cartItem}
               defaultValues={defaultValues}
               redirect={false}
-              disableSuccessSnackbar
+              snackbarProps={{ disableSuccessSnackbar: true }}
             >
               <ProductPageGallery
                 product={product}
@@ -83,7 +89,6 @@ function CartItemEdit(props: Props) {
                 disableSticky
                 variantMd='oneColumn'
                 sx={(theme) => ({
-                  maxWidth: '500px',
                   mb: 0,
                   '& .SidebarGallery-sidebar': { display: 'grid', rowGap: theme.spacings.sm },
                 })}
@@ -121,6 +126,7 @@ CartItemEdit.pageOptions = {
 export default CartItemEdit
 
 export const getServerSideProps: GetSSP = async (context) => {
+  if (getCartDisabled(context.locale)) return { notFound: true }
   const result = await getStaticProps(context)
   delete result.revalidate
 

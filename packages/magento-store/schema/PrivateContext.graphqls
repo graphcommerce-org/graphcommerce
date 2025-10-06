@@ -1,0 +1,4 @@
+input PrivateContext {
+  storeCode: String
+  currencyCode: String
+}

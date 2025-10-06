@@ -1,4 +1,5 @@
 import React from 'react'
+
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
 
@@ -26,6 +27,8 @@ export type TypeRenderer<
 /**
  * A simple array with renderers but with strict typing that validates of the provided Renderer is
  * actually able to render the Type
+ *
+ * @public
  */
 export function RenderType<
   T extends TypeObject,
@@ -39,6 +42,7 @@ export function RenderType<
   return <TypeItem {...typeItemProps} __typename={__typename} />
 }
 
+/** @public */
 export function findByTypename<T extends TypeObject, Typename extends T['__typename']>(
   type: (T | undefined | null)[] | undefined | null,
   typename: Typename,
@@ -46,6 +50,7 @@ export function findByTypename<T extends TypeObject, Typename extends T['__typen
   return type?.find((item) => item?.__typename === typename) as FilterTypeByTypename<T, Typename>
 }
 
+/** @public */
 export function isTypename<T extends TypeObject, Typenames extends T['__typename'][]>(
   type: FilterTypeByTypename<T, T['__typename']>,
   typename: Typenames,
@@ -53,6 +58,7 @@ export function isTypename<T extends TypeObject, Typenames extends T['__typename
   return typename.includes(type.__typename)
 }
 
+/** @public */
 export function filterByTypename<T extends TypeObject, Typename extends T['__typename']>(
   type: (T | undefined | null)[] | undefined | null,
   typename: Typename,

@@ -1,27 +1,28 @@
-import { useQuery } from '@graphcommerce/graphql'
-import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
+import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
+import { useCustomerQuery } from '@graphcommerce/magento-customer'
+import { sxx } from '@graphcommerce/next-ui'
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { SwitchProps, SxProps, Theme } from '@mui/material'
 import {
   Box,
   FormControl,
   FormControlLabel,
-  FormHelperText,
-  // eslint-disable-next-line @typescript-eslint/no-restricted-imports
+  FormHelperText, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Switch,
-  SwitchProps,
-  SxProps,
-  Theme,
 } from '@mui/material'
 import React from 'react'
 import { GetCustomerNewsletterToggleDocument } from './GetCustomerNewsLetterToggle.gql'
 import { UpdateNewsletterSubscriptionDocument } from './UpdateNewsletterSubscription.gql'
 
-export type CustomerNewsletterToggleProps = SwitchProps & { sx?: SxProps<Theme> }
+export type CustomerNewsletterToggleProps = Omit<SwitchProps, ''> & {
+  sx?: SxProps<Theme>
+  children?: React.ReactNode
+}
 
 export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
-  const { disabled, sx = [], ...switchProps } = props
+  const { disabled, sx = [], children, ...switchProps } = props
 
-  const { loading, data } = useQuery(GetCustomerNewsletterToggleDocument, { ssr: false })
+  const { loading, data } = useCustomerQuery(GetCustomerNewsletterToggleDocument)
   const form = useFormGqlMutation(UpdateNewsletterSubscriptionDocument, {
     mode: 'onChange',
     defaultValues: {
@@ -35,7 +36,12 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
   if (disabled || loading) return <Switch disabled color='primary' {...switchProps} />
 
   return (
-    <Box component='form' onSubmit={submit} noValidate sx={sx}>
+    <Box
+      component='form'
+      onSubmit={submit}
+      noValidate
+      sx={sxx({ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 2 }, sx)}
+    >
       <FormAutoSubmit control={control} submit={submit} />
       <Controller
         name='isSubscribed'
@@ -58,8 +64,8 @@ export function CustomerNewsletterToggle(props: CustomerNewsletterToggleProps) {
           </FormControl>
         )}
       />
-
-      <ApolloCustomerErrorAlert error={error} />
+      <ApolloErrorSnackbar error={error} />
+      {children}
     </Box>
   )
 }

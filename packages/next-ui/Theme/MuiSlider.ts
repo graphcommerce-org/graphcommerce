@@ -1,4 +1,4 @@
-import { ComponentsVariants, Theme } from '@mui/material'
+import type { ComponentsVariants, Theme } from '@mui/material'
 
 declare module '@mui/material/Slider/Slider' {
   interface SliderPropsSizeOverrides {
@@ -36,8 +36,8 @@ export const MuiSlider: SliderVariants = [
   {
     props: { size: 'large' },
     style: {
-      maxWidth: `calc(100% - 28px)`,
-      margin: `0 auto`,
+      maxWidth: 'calc(100% - 28px)',
+      margin: '0 auto',
       display: 'block',
       '& .MuiSlider-rail': {
         height: 4,

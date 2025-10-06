@@ -1,26 +1,25 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { useAssignCurrentCartId } from '@graphcommerce/magento-cart'
-import {
-  PaymentHandlerProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useEffect } from 'react'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from './MSPPaymentHandler.gql'
 
-export const MSPPaymentHandler = (props: PaymentHandlerProps) => {
+export function MSPPaymentHandler(props: PaymentHandlerProps) {
   const { code } = props
   const [lockStatus, , unlock] = useMSPCartLock()
   const assignCurrentCartId = useAssignCurrentCartId()
   const { onSuccess } = usePaymentMethodContext()
 
-  const [restore, { error }] = useMutation(MSPPaymentHandlerDocument)
+  const [restore, { error, called }] = useMutation(MSPPaymentHandlerDocument)
 
   const { justLocked, success, cart_id: cartId, locked, method, order_number } = lockStatus
 
-  const canProceed = !(justLocked || !locked || !cartId || method !== code)
+  const canProceed =
+    !justLocked && locked && cartId && method === code && !called && success !== '1'
 
   // When the payment has failed we restore the current cart
   const shouldRestore = canProceed && success !== '1'

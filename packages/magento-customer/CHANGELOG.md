@@ -1,290 +1,257 @@
 # Change Log
 
-## 9.0.0-canary.80
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`427833d`](https://github.com/graphcommerce-org/graphcommerce/commit/427833d3fa46ec6096853bdc3dfd81321df6e63b) - Forward address field props ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`183d8dd`](https://github.com/graphcommerce-org/graphcommerce/commit/183d8ddef6059f07ffe585b0f05a51731b12b371) - Remove odd nonNullable that is also available in @graphcommmerce/next-ui ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+### Patch Changes
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+### Patch Changes
+
+- [#2524](https://github.com/graphcommerce-org/graphcommerce/pull/2524) [`dcc46aa`](https://github.com/graphcommerce-org/graphcommerce/commit/dcc46aae34f5eda6a633f472289ac4488ac96492) - Solve issue where the user is getting a 400 error when logging in because the password is not being sent. The password field was disabled before the form was submitted, causing the password not to be sent. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
 
 ### Minor Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`20703bc`](https://github.com/graphcommerce-org/graphcommerce/commit/20703bc5c453fb7ee61eb4350e207e84a749bf5e) - Magento 2.4.7: Implemented the `customer_account_create` and `customer_account_edit` forms using the `attributeForm` query for the registration page and customer information form. The forms respect the settings configured in the 'Customer Configuration section'. It allows configuration for `prefix`, `middlename`, `suffix`,`dob`, `gender` and other fields. This also makes the frontend compatible with Adobe Commerce's Customer Attributes module. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`30f9371`](https://github.com/graphcommerce-org/graphcommerce/commit/30f9371503959b990c65058a88be6f61b4859140) - Added support for viewing Invoices/Shipments and Credit Memo's ([@paales](https://github.com/paales))
 
 ### Patch Changes
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`cc1c6e8`](https://github.com/graphcommerce-org/graphcommerce/commit/cc1c6e8c857c12f2d38d7283a250e3b77bd885f4) - The AddressCountryRegion select would show a warning if the countries weren't loaded yet. It will now show a readonly field with the country code. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6cb4815`](https://github.com/graphcommerce-org/graphcommerce/commit/6cb4815a0faf4cc2f60c13d9384e3a96b6bdb2bb) - Deleting an account will now require reauthentication and moved the menu item to the Authentication section ([@paales](https://github.com/paales))
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`b8b621a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8b621a4a7549cae4ac56fee76773443a0d55504) - The CompanyFields toggle wouldn't be valid when Private was selected and would only validate if Business was selected. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.79
+## 9.1.0-canary.18
 
-## 9.0.0-canary.78
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
 
 ### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`0cb3ace`](https://github.com/graphcommerce-org/graphcommerce/commit/0cb3aceb09967493ecdd5040446447ff32cc3f43) - Created a AccountDashboardQueryFragment instead of only a query to allow for adding customerDownloadableProducts to the dashboard query ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Migrate to default OrderItem resolver and remove useOrderCardItemImages as OrderItem now returns a product. Add a custom resolver for 2.4.5 and 2.4.6 that implements the functionality for older versions. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Created a refactored the AccountOrders page and refactored the OrderCard. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Use OrderStateLabel in my account instead of OrderStateLabelInline and deprecate that one. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`dc387da`](https://github.com/graphcommerce-org/graphcommerce/commit/dc387da4c32585c251fe9dec90aa010e2a435df5) - OrderTotals/OrderDetails now only renders addres information if available ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`623e993`](https://github.com/graphcommerce-org/graphcommerce/commit/623e993579b05e053d2d2f29684649cd4f4586de) - `<WaitForCustomer />` now accepts all props of the FullPageMessage ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+### Patch Changes
+
+- [`5ca6fb9`](https://github.com/graphcommerce-org/graphcommerce/commit/5ca6fb94f6f275210c77493d05bad7c1620ff5a3) - When a user reorders their cart without interacting with their cart previously a new cart wouldn't be created. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Magento 2.4.7: Implemented `cancelOrder` mutation and added a cancel order overlay to the account section. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Magento 2.4.7: Imlemented `deleteCustomer` mutation to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`af83d81`](https://github.com/graphcommerce-org/graphcommerce/commit/af83d81656a4c1a014802fb052a94a079e9f60c1) - Add `reorderItems` mutation, add `reorder` button to order detail page. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Magento 2.4.7: Implement the `contactUs` mutation, add contact us overlay. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`8de9c13`](https://github.com/graphcommerce-org/graphcommerce/commit/8de9c13b977633104ab81ce04def1dd6d1d4411b) - Added support `X-Magento-Cache-Id` to allow Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users. Functionality can be disabled by setting `customerXMagentoCacheIdDisable: true` in your configuration. ([@paales](https://github.com/paales))
+
+- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Magento 2.4.7: Add `guestOrder` functionality. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Magento 2.4.7: implement confirmEmail mutation ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
+
+### Minor Changes
+
+- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new `<TelephoneElement />` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace deprecated `updateCustomer` mutations with `updateCustomerV2`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [#2392](https://github.com/graphcommerce-org/graphcommerce/pull/2392) [`1c0bde3`](https://github.com/graphcommerce-org/graphcommerce/commit/1c0bde328035de75b165c40e4a0fe80c7de2267b) - Redirect users to homepage after password reset as `router.back()` often returns an empty or invalid history state. ([@carlocarels90](https://github.com/carlocarels90))
+
+- [#2379](https://github.com/graphcommerce-org/graphcommerce/pull/2379) [`6202fc7`](https://github.com/graphcommerce-org/graphcommerce/commit/6202fc7d2f36d5d1f2fedb74b2f2d93b308d5885) - In some cases the `xMagentoCacheId` wasn't defined in the returned query, making sure the application doesn't crash. ([@paales](https://github.com/paales))
+
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2339](https://github.com/graphcommerce-org/graphcommerce/pull/2339) [`df942e5`](https://github.com/graphcommerce-org/graphcommerce/commit/df942e5726ddb4d7c7d4b583aa474c7c0f0dea7d) - Show actual order status from the backend, improve order state logic. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`7cd5c1c`](https://github.com/graphcommerce-org/graphcommerce/commit/7cd5c1cadf8dac43de9e5bb19038383be64aa08f) - Fix issues when using non-hex colors in theme ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.77
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`cc1c6e8`](https://github.com/graphcommerce-org/graphcommerce/commit/cc1c6e8c857c12f2d38d7283a250e3b77bd885f4) - The `<AddressCountryRegion/>` component would show a warning if the countries weren't loaded yet. It will now show a readonly field with the country code. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.76
+- [#2448](https://github.com/graphcommerce-org/graphcommerce/pull/2448) [`cca7a52`](https://github.com/graphcommerce-org/graphcommerce/commit/cca7a5209d5aa6b914ac738f71e6d90cc72f71a6) - Replace useWatch with watch in order to prevent email from being undefinded when already being prefilled for expired sessions ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.75
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`d601222`](https://github.com/graphcommerce-org/graphcommerce/commit/d601222c2ca538969023e9d42fdfee2a91cfa0d4) - Solve issue where persisted Form-data would remain in the sessionStorage after logging out. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`ff95ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/ff95ab31ee6e00c86cd9e96031f7babbd20e4280) - The `useSignInForm` hook now optionally accepts an email prop. ([@paales](https://github.com/paales))
 
-- [#2352](https://github.com/graphcommerce-org/graphcommerce/pull/2352) [`8ace660`](https://github.com/graphcommerce-org/graphcommerce/commit/8ace660addf25eacb49376eceb5e3bfc351a2c57) - Add disableMargin prop to WaitForCustomer component ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 9.0.0-canary.74
+- [#2445](https://github.com/graphcommerce-org/graphcommerce/pull/2445) [`e09905a`](https://github.com/graphcommerce-org/graphcommerce/commit/e09905a1d821b4ac36bb22f31a3e90c2d83e3049) - fix session expired email not always available in cache ([@StefanAngenent](https://github.com/StefanAngenent))
 
-## 9.0.0-canary.73
+- [#2411](https://github.com/graphcommerce-org/graphcommerce/pull/2411) [`7831a40`](https://github.com/graphcommerce-org/graphcommerce/commit/7831a404e27cf743dc25989e6155233ad1368aef) - Prevent overlap between autofilled data and input label for all TextFieldElements and its derivatives. ([@carlocarels90](https://github.com/carlocarels90))
 
-## 9.0.0-canary.72
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`b8b621a`](https://github.com/graphcommerce-org/graphcommerce/commit/b8b621a4a7549cae4ac56fee76773443a0d55504) - The `<CompanyFields />` toggle wouldn't be valid when Private was selected and would only validate if Business was selected. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.71
+- [#2441](https://github.com/graphcommerce-org/graphcommerce/pull/2441) [`0d0aca2`](https://github.com/graphcommerce-org/graphcommerce/commit/0d0aca2ebd93fa04769ff85016a3be96685986ce) - Check validation of email field in SignInForm and SignUpForm ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.70
+- [#2404](https://github.com/graphcommerce-org/graphcommerce/pull/2404) [`a5c52ac`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c52ac6e56ca34819f86708c00b0e8dec39d95c) - The `formData.region` value could be `undefined` when creating new address ([@FrankHarland](https://github.com/FrankHarland))
 
-## 9.0.0-canary.69
+- [#2352](https://github.com/graphcommerce-org/graphcommerce/pull/2352) [`8ace660`](https://github.com/graphcommerce-org/graphcommerce/commit/8ace660addf25eacb49376eceb5e3bfc351a2c57) - Add `disableMargin` prop to `<WaitForCustomer/>` component. ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 9.0.0-canary.68
+- [#2283](https://github.com/graphcommerce-org/graphcommerce/pull/2283) [`170aebd`](https://github.com/graphcommerce-org/graphcommerce/commit/170aebde3fb0705504e6d0919e7fbad0b89c1197) - Prevent success message from showing up when updating the users email while the form is still submitting a new request to update the users email. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 9.0.0-canary.67
+- [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`355a9ac`](https://github.com/graphcommerce-org/graphcommerce/commit/355a9ac21e4a6741320d7dcb42327392be83786e) - Remove the privateContext directive from the query before sending to the server ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.66
+- [#2440](https://github.com/graphcommerce-org/graphcommerce/pull/2440) [`7fe3bc5`](https://github.com/graphcommerce-org/graphcommerce/commit/7fe3bc5109a15a4cb4ab46a987b40f304c5add48) - fix session expired email not always available in cache ([@StefanAngenent](https://github.com/StefanAngenent))
 
-### Minor Changes
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-- [#2339](https://github.com/graphcommerce-org/graphcommerce/pull/2339) [`df942e5`](https://github.com/graphcommerce-org/graphcommerce/commit/df942e5726ddb4d7c7d4b583aa474c7c0f0dea7d) - Show actual order status from the backend, improve order state logic ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2452](https://github.com/graphcommerce-org/graphcommerce/pull/2452) [`5dfd3b2`](https://github.com/graphcommerce-org/graphcommerce/commit/5dfd3b201255ef35263485d04153d37bb7e4fe67) - Renamed useInContextQuery to usePrivateQuery ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.65
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-### Patch Changes
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
 
-- [#2333](https://github.com/graphcommerce-org/graphcommerce/pull/2333) [`03c28ab`](https://github.com/graphcommerce-org/graphcommerce/commit/03c28ab342bca3179b7ce1650fa7c16df1119a86) - Avoid displaying 'undefined' for countryName or regionName ([@carlocarels90](https://github.com/carlocarels90))
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`49937fd`](https://github.com/graphcommerce-org/graphcommerce/commit/49937fd765338e25899d427ee4d799fa7978faeb) - Allow changing various props for internal components ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-### Minor Changes
-
-- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`be719fc`](https://github.com/graphcommerce-org/graphcommerce/commit/be719fc465c8804ddcb720a93813262e3a292b69) - Implement CancelOrder mutation, add cancel order overlay to account section ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-- [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`af83d81`](https://github.com/graphcommerce-org/graphcommerce/commit/af83d81656a4c1a014802fb052a94a079e9f60c1) - Add reorderItems mutation, add reorder button to order detail page ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-### Minor Changes
-
-- [#2330](https://github.com/graphcommerce-org/graphcommerce/pull/2330) [`8de9c13`](https://github.com/graphcommerce-org/graphcommerce/commit/8de9c13b977633104ab81ce04def1dd6d1d4411b) - Added support X-Magento-Cache-Id to allow Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users. Functionality can be disabled by setting `customerXMagentoCacheIdDisable: true` in your configuration. ([@paales](https://github.com/paales))
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-### Minor Changes
-
-- [#2324](https://github.com/graphcommerce-org/graphcommerce/pull/2324) [`1c8b1e4`](https://github.com/graphcommerce-org/graphcommerce/commit/1c8b1e441ac44935bfd2215d62a71c02b3ba7e6f) - Implement the contactUs mutation, add contact us overlay ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-### Minor Changes
-
-- [#2320](https://github.com/graphcommerce-org/graphcommerce/pull/2320) [`dc5e85c`](https://github.com/graphcommerce-org/graphcommerce/commit/dc5e85c95dad6145fde02a6e54f0fbd1cdfe9e3d) - Replace depricated updateCustomer mutations with updateCustomerV2 ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-### Patch Changes
-
-- [#2317](https://github.com/graphcommerce-org/graphcommerce/pull/2317) [`ff95ab3`](https://github.com/graphcommerce-org/graphcommerce/commit/ff95ab31ee6e00c86cd9e96031f7babbd20e4280) - useSignInForm now optionally expects an email ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.48
-
-### Minor Changes
-
-- [#2319](https://github.com/graphcommerce-org/graphcommerce/pull/2319) [`a3409e8`](https://github.com/graphcommerce-org/graphcommerce/commit/a3409e8a629ee95413da6547cbdcf48aa2502c23) - Created a new TelephoneElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.47
-
-### Minor Changes
-
-- [#2315](https://github.com/graphcommerce-org/graphcommerce/pull/2315) [`fb9118e`](https://github.com/graphcommerce-org/graphcommerce/commit/fb9118ec819d1b507d4fbde04f2ca34ec01ecf49) - Add guestOrder functionality, remove `size: 'max'` from getStaticProps ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
-
-## 8.1.0-canary.44
-
-## 8.1.0-canary.43
-
-## 8.1.0-canary.42
-
-## 8.1.0-canary.41
-
-## 8.1.0-canary.40
-
-### Minor Changes
-
-- [#2306](https://github.com/graphcommerce-org/graphcommerce/pull/2306) [`5e188e8`](https://github.com/graphcommerce-org/graphcommerce/commit/5e188e830dca4730c73830858f59a94e9d41ed12) - Add delete account functionality to the account section. Disabled by default and can be enabled through the config. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.39
-
-## 8.1.0-canary.38
-
-### Minor Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
-
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.37
-
-## 8.1.0-canary.36
-
-## 8.1.0-canary.35
-
-### Minor Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`47bb47b`](https://github.com/graphcommerce-org/graphcommerce/commit/47bb47bac4b3689a6859afbc587274d813e0b072) - Implement confirm email functionality ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-### Patch Changes
-
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.34
-
-## 8.1.0-canary.33
-
-## 8.1.0-canary.32
-
-## 8.1.0-canary.31
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
-## 8.1.0-canary.28
-
-## 8.1.0-canary.27
-
-## 8.1.0-canary.26
-
-## 8.1.0-canary.25
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-### Patch Changes
-
-- [#2283](https://github.com/graphcommerce-org/graphcommerce/pull/2283) [`170aebd`](https://github.com/graphcommerce-org/graphcommerce/commit/170aebde3fb0705504e6d0919e7fbad0b89c1197) - Prevent success message from showing up when form is still submitting a new request to update the users email ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
+- [#2333](https://github.com/graphcommerce-org/graphcommerce/pull/2333) [`03c28ab`](https://github.com/graphcommerce-org/graphcommerce/commit/03c28ab342bca3179b7ce1650fa7c16df1119a86) - Avoid displaying `undefined` for `countryName` or `regionName`. ([@carlocarels90](https://github.com/carlocarels90))
 
 ## 8.0.5
 
 ### Patch Changes
 
 - [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account. ([@paales](https://github.com/paales))
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-### Patch Changes
-
-- [#2243](https://github.com/graphcommerce-org/graphcommerce/pull/2243) [`c2ddb9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c2ddb9e1e9d08b4363cc1ffa31e23d715ab1bdb6) - Solve an issue where the cart wouldn't be merged after the customer created a new account. ([@paales](https://github.com/paales))
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
 
 ## 8.0.3
 
@@ -298,51 +265,11 @@
 
 - [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields. ([@paales](https://github.com/paales))
 
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-### Patch Changes
-
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`6b61a93`](https://github.com/graphcommerce-org/graphcommerce/commit/6b61a93476505e66a3135844b9bce62ccdd1bdcf) - Solve an issue where the customer could not save their region in the customer account section. ([@paales](https://github.com/paales))
-
-- [#2212](https://github.com/graphcommerce-org/graphcommerce/pull/2212) [`dbd943d`](https://github.com/graphcommerce-org/graphcommerce/commit/dbd943d9f588f24d5c73bdf35f2d3bbc5e0e3406) - Split out AddressFields into separate components and allow renaming fields. ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-### Patch Changes
-
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.1
-
-### Patch Changes
-
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`4d7594c`](https://github.com/graphcommerce-org/graphcommerce/commit/4d7594ca2174f74bfa9f66a464b77b3fd04f3560) - After changing the default shipping or billing address in the account section other address would not properly update ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.0
-
 ## 8.0.2
 
 ### Patch Changes
 
 - [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order ([@paales](https://github.com/paales))
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-### Patch Changes
-
-- [#2197](https://github.com/graphcommerce-org/graphcommerce/pull/2197) [`044331c`](https://github.com/graphcommerce-org/graphcommerce/commit/044331cf1ea3a6040cfe8e0f79fb62025d5a9d90) - Revert: Change sorting for customer orders in Descending Created at order ([@paales](https://github.com/paales))
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
 
 ## 8.0.1
 
@@ -351,30 +278,6 @@
 - [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order ([@LaurensFranken](https://github.com/LaurensFranken))
 
 - [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
-
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog ([@paales](https://github.com/paales))
-
-- [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`ee969bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ee969bfc5415392747b04e0484685f5c611a2559) - After signing out the currentCartId was still returning a value causing the cart to be shown after signing out ([@paales](https://github.com/paales))
-
-## 8.0.1-canary.4
-
-### Patch Changes
-
-- [#2191](https://github.com/graphcommerce-org/graphcommerce/pull/2191) [`13ffa6b`](https://github.com/graphcommerce-org/graphcommerce/commit/13ffa6b945f1c72bf1fdc9298e4ce5dd76b48d73) - When a user was logging in from the checkout react would be caught in an infinite loop and thus the page would hang ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-### Patch Changes
-
-- [#2177](https://github.com/graphcommerce-org/graphcommerce/pull/2177) [`816d789`](https://github.com/graphcommerce-org/graphcommerce/commit/816d7893159528bbe4ffc51c3958c806b81b58b0) - Change sorting for customer orders in Descending Created at order ([@LaurensFranken](https://github.com/LaurensFranken))
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
-
-### Patch Changes
 
 - [#2187](https://github.com/graphcommerce-org/graphcommerce/pull/2187) [`09a2cc3`](https://github.com/graphcommerce-org/graphcommerce/commit/09a2cc35ceb5e714ffd02e573eebe7de842ae327) - Do not try to automatically invalidate the current token and fully rely on the Session Expired dialog ([@paales](https://github.com/paales))
 
@@ -420,285 +323,11 @@
 
 - [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca45472`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix `<EditAddressForm />` when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-### Minor Changes
-
-- [#2175](https://github.com/graphcommerce-org/graphcommerce/pull/2175) [`a6bcb87`](https://github.com/graphcommerce-org/graphcommerce/commit/a6bcb8785d54ef735d82154a775822d84f2b2b80) - Autofill country dropdown in CreateCustomerAddressForm so AddPostcodeNLAddressFields plugin works by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-### Patch Changes
-
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-### Patch Changes
-
-- [#2166](https://github.com/graphcommerce-org/graphcommerce/pull/2166) [`304b816`](https://github.com/graphcommerce-org/graphcommerce/commit/304b81659caf82d9f500401d21da4110dd40db61) - Dismiss login page and go back to previous page asap when logging in ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-### Patch Changes
-
-- [#2128](https://github.com/graphcommerce-org/graphcommerce/pull/2128) [`2320f8f`](https://github.com/graphcommerce-org/graphcommerce/commit/2320f8fa28713f45f0a9ecfc7d8623120add2a9a) - Fixed bug which caused region to not be set properly if user swapped countries in the checkout process. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-### Patch Changes
-
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again ([@paales](https://github.com/paales))
-
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`c11f3b8`](https://github.com/graphcommerce-org/graphcommerce/commit/c11f3b88f187bb8e0059a6940b9835a076e5faf8) - Created a debug.sessions config that allows debugging sessions. Enable with GC_DEBUG_SESSIONS=1 in your env or modify your graphcommerce.config.js ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-### Minor Changes
-
-- [#2110](https://github.com/graphcommerce-org/graphcommerce/pull/2110) [`d2e716d43`](https://github.com/graphcommerce-org/graphcommerce/commit/d2e716d437fcfed13388ef536a8e73513744027b) - ---
-
-  '@graphcommerce/magento-cart-email': minor '@graphcommerce/magento-customer': minor
-
-  ***
-
-  Added a new enableGuestCheckoutLogin configuration: During customer login, GraphCommerce queries Magento to determine whether the customer account already exists or not. If not, the sign-up form is shown instead.
-
-  To restore previous behavior, set enableGuestCheckoutLogin to true. For Magento versions, 2.4.7, 2.4.6-p1 and up, 2.4.5-p3 and up, 2.4.4-p4 and up, the following setting must be set to Yes: `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login` ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-### Patch Changes
-
-- [#2048](https://github.com/graphcommerce-org/graphcommerce/pull/2048) [`a5c65506a`](https://github.com/graphcommerce-org/graphcommerce/commit/a5c65506a7e72bd9ea101f665ce201e82396c63c) - Allow passing skip to useCustomerQuery and useGuestQuery ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-### Patch Changes
-
-- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f5150456`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - feat(GCOM-1237): remember email adress when going from checkout to si… ([@FrankHarland](https://github.com/FrankHarland))
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-### Patch Changes
-
-- [#2091](https://github.com/graphcommerce-org/graphcommerce/pull/2091) [`5b865d376`](https://github.com/graphcommerce-org/graphcommerce/commit/5b865d376fe3b830a03af15b56986a0448af4987) - Update OrderDetails and styling ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-### Patch Changes
-
-- [#2098](https://github.com/graphcommerce-org/graphcommerce/pull/2098) [`ca4547224`](https://github.com/graphcommerce-org/graphcommerce/commit/ca45472246e084f4b88f91bc700351e29c63e0e2) - Fix EditAddressForm when addition field is null or undefined ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-### Patch Changes
-
-- [#2087](https://github.com/graphcommerce-org/graphcommerce/pull/2087) [`42c33c6e3`](https://github.com/graphcommerce-org/graphcommerce/commit/42c33c6e3adceee400bc9f10ec416731db9279c0) - fix email update snackbar styling ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.1.0-canary.15
-
-### Patch Changes
-
-- [#2082](https://github.com/graphcommerce-org/graphcommerce/pull/2082) [`2e8d19ccc`](https://github.com/graphcommerce-org/graphcommerce/commit/2e8d19cccd305f0e8eb4c29d05161af6cfdb9d84) - Add current email translation ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
 ## 7.0.1
 
 ### Patch Changes
 
 - [#2032](https://github.com/graphcommerce-org/graphcommerce/pull/2032) [`7e44afc94`](https://github.com/graphcommerce-org/graphcommerce/commit/7e44afc94629a938da1b819d99fe3d19857de497) - Add shipping adresses translation ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-### Patch Changes
-
-- [#2032](https://github.com/graphcommerce-org/graphcommerce/pull/2032) [`7e44afc94`](https://github.com/graphcommerce-org/graphcommerce/commit/7e44afc94629a938da1b819d99fe3d19857de497) - Add shipping adresses translation ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -728,248 +357,6 @@
 
 - [#1969](https://github.com/graphcommerce-org/graphcommerce/pull/1969) [`838322a97`](https://github.com/graphcommerce-org/graphcommerce/commit/838322a97c7ef1b8aa919196e756da381904bf04) - Fixing the Internal Server Error if the third address line is empty. ([@action-simon](https://github.com/action-simon))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-### Patch Changes
-
-- [#2016](https://github.com/graphcommerce-org/graphcommerce/pull/2016) [`227ddcee8`](https://github.com/graphcommerce-org/graphcommerce/commit/227ddcee8808715928371c1f3a4c7925032df0ef) - Made cardProps on CustomerAddressActionCards overridable. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.74
-
-### Patch Changes
-
-- [#2006](https://github.com/graphcommerce-org/graphcommerce/pull/2006) [`80b60cb40`](https://github.com/graphcommerce-org/graphcommerce/commit/80b60cb404882260bd0e8184f3e54f4720925c96) - Bugfix for unintentionally overriding the billing address even if a default address was set. Also made prefix optional when creating an address ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-### Patch Changes
-
-- [#1972](https://github.com/graphcommerce-org/graphcommerce/pull/1972) [`cda89820d`](https://github.com/graphcommerce-org/graphcommerce/commit/cda89820dc50e2019a26239b7450863d8c862bfb) - Ensure correct width for CircularProgress and fix misalignment in rotate animation ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-### Patch Changes
-
-- [#1969](https://github.com/graphcommerce-org/graphcommerce/pull/1969) [`838322a97`](https://github.com/graphcommerce-org/graphcommerce/commit/838322a97c7ef1b8aa919196e756da381904bf04) - Fixing the Internal Server Error if the third address line is empty. ([@action-simon](https://github.com/action-simon))
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-### Minor Changes
-
-- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-### Patch Changes
-
-- [#1952](https://github.com/graphcommerce-org/graphcommerce/pull/1952) [`f1fe4f598`](https://github.com/graphcommerce-org/graphcommerce/commit/f1fe4f5986cee1f7c8313152e43691ed939c8f21) - enable password fields when there is an error and user input correction is required. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-### Patch Changes
-
-- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`21b0d0c48`](https://github.com/graphcommerce-org/graphcommerce/commit/21b0d0c48603343c09f287978bf051140e9be912) - Customer's session is now revalidated when a previous session is detected on pageload, making sure the customer is still logged in. ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-### Patch Changes
-
-- [#1930](https://github.com/graphcommerce-org/graphcommerce/pull/1930) [`c8d023e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/c8d023e9e874131cd9f8fe192b1fca5fe1a26ee3) - Fix the close menu on search and add the option to secondary menu items ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 6.2.0-canary.15
-
-### Minor Changes
-
-- [#1926](https://github.com/graphcommerce-org/graphcommerce/pull/1926) [`ab8877fdb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab8877fdb6147960ce656d28306d719e92f6de68) - Made the follow order link in the order card & order details a working <Link /> if provided from magento backend. ([@JoshuaS98](https://github.com/JoshuaS98))
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-### Patch Changes
-
-- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`97ebc19af`](https://github.com/graphcommerce-org/graphcommerce/commit/97ebc19aff093bf57d24d009e96661ad43926fd6) - The customer's token would be invalidated if any authorization error occured. Now only scoped to customer queries and mutations, potentially reducing the amount of random logouts. ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-### Patch Changes
-
-- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Minor Changes
@@ -988,97 +375,11 @@
 
 - [#1896](https://github.com/graphcommerce-org/graphcommerce/pull/1896) [`4f846293f`](https://github.com/graphcommerce-org/graphcommerce/commit/4f846293f3b020dc7bae885fe4ccd1cbd0cb10d7) - When a customer would log in the current guest information would be lost ([@paales](https://github.com/paales))
 
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-### Patch Changes
-
-- [#1899](https://github.com/graphcommerce-org/graphcommerce/pull/1899) [`3de184ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/3de184ee28d48d8f1c1c092f264ac6b86fdf3ec6) - Make order states translatable ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-### Patch Changes
-
-- [#1889](https://github.com/graphcommerce-org/graphcommerce/pull/1889) [`38bf4b6bc`](https://github.com/graphcommerce-org/graphcommerce/commit/38bf4b6bc6e705d9d124d50b775ba3f440599482) - put the country field first, so the address fields will not be changed afterwards when postcode service is active. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-### Patch Changes
-
-- [#1896](https://github.com/graphcommerce-org/graphcommerce/pull/1896) [`4f846293f`](https://github.com/graphcommerce-org/graphcommerce/commit/4f846293f3b020dc7bae885fe4ccd1cbd0cb10d7) - When a customer would log in the current guest information would be lost ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-### Patch Changes
-
-- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart. ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-### Patch Changes
-
-- [#1866](https://github.com/graphcommerce-org/graphcommerce/pull/1866) [`eafe3a17d`](https://github.com/graphcommerce-org/graphcommerce/commit/eafe3a17d6c6b4a9ca524361498ffa382d44c63f) - don't execute useOrderCardItemImages if urlKeys is empty ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
 ## 6.0.1
 
 ### Patch Changes
 
 - [#1855](https://github.com/graphcommerce-org/graphcommerce/pull/1855) [`0f789d3be`](https://github.com/graphcommerce-org/graphcommerce/commit/0f789d3be1aa6d724bd98bceee092e1da6701915) - Added registration email validation to inline registration form. ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-### Patch Changes
-
-- [#1855](https://github.com/graphcommerce-org/graphcommerce/pull/1855) [`0f789d3be`](https://github.com/graphcommerce-org/graphcommerce/commit/0f789d3be1aa6d724bd98bceee092e1da6701915) - Added registration email validation to inline registration form. ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
 
 ## 6.0.0
 
@@ -1100,146 +401,6 @@
 
 - [#1769](https://github.com/graphcommerce-org/graphcommerce/pull/1769) [`2693a616a`](https://github.com/graphcommerce-org/graphcommerce/commit/2693a616af2f9793012a5fb2eeacc084e695b83e) - WaitForCustomer now accepts overridable components for the fallback and unauthenticated state. ([@mikekeehnen](https://github.com/mikekeehnen))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-### Patch Changes
-
-- [#1816](https://github.com/graphcommerce-org/graphcommerce/pull/1816) [`f61e2e572`](https://github.com/graphcommerce-org/graphcommerce/commit/f61e2e5721806c258b771a7ed5165da8dc7b815b) - feat(GCOM-1015): add feedback on add address form, update addresslist… ([@FrankHarland](https://github.com/FrankHarland))
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-### Patch Changes
-
-- [#1801](https://github.com/graphcommerce-org/graphcommerce/pull/1801) [`12263d608`](https://github.com/graphcommerce-org/graphcommerce/commit/12263d6080c1e550985a42f140ffa9d95d0b0335) - Add sign up form translations ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-### Minor Changes
-
-- [#1779](https://github.com/graphcommerce-org/graphcommerce/pull/1779) [`6c6d7e4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6d7e4d7cf5d68a39acc82b91e1f3acce366517) - Implementation of the Dutch address fields, add an autocomplete field for the street name and city based of the customers postcode + street number + addition. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-### Patch Changes
-
-- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`23e9a4728`](https://github.com/graphcommerce-org/graphcommerce/commit/23e9a472899dfc0b56b989f5d0e8ffb802c8cc5f) - Move magento-customer-account & magento-customer-order into magento-customer package (magento-customer-account & magento-customer-order are now deprecated) ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`7e8dcf447`](https://github.com/graphcommerce-org/graphcommerce/commit/7e8dcf44777aca527c07aaee397d272dd2f6ae44) - Update account address list after deleting an address ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1768](https://github.com/graphcommerce-org/graphcommerce/pull/1768) [`9f0e9ab2d`](https://github.com/graphcommerce-org/graphcommerce/commit/9f0e9ab2dec3f9261ae00e9fd44d06a65ddb1d0d) - Redirect to address overview page after creating an address instead of redirecting to the edit page for the address that was just created ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 5.2.0-canary.0
-
-### Minor Changes
-
-- [#1769](https://github.com/graphcommerce-org/graphcommerce/pull/1769) [`2693a616a`](https://github.com/graphcommerce-org/graphcommerce/commit/2693a616af2f9793012a5fb2eeacc084e695b83e) - WaitForCustomer now accepts overridable components for the fallback and unauthenticated state. ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
 ## 5.1.0
 
 ### Patch Changes
@@ -1247,48 +408,10 @@
 - [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
   - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-### Patch Changes
-
-- [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.4
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -1308,79 +431,11 @@
 
 - [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-## 4.14.0-canary.7
-
-### Patch Changes
-
-- [#1738](https://github.com/graphcommerce-org/graphcommerce/pull/1738) [`52882a63e`](https://github.com/graphcommerce-org/graphcommerce/commit/52882a63e96c0d3ba9641c3714d288fa4f420c82) - Do not forward the Prev prop in plugins ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-### Minor Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
-
-  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-### Patch Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
-## 4.13.1
-
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 4.12.4
 
@@ -1563,11 +618,9 @@
 ### Minor Changes
 
 - [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
-
   - Fixes bugs where loaders where shown on all pages that require user to log in
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1941,7 +994,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1956,8 +1009,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'
@@ -2532,8 +1585,6 @@ All notable changes to this project will be documented in this file. See [Conven
 
 - edit billing address on checkout payment step ([96a5719](https://github.com/ho-nl/m2-pwa/commit/96a5719437616006efb2588c3516d3f2608c1fb8))
 - **inline-account:** re-added the component ([c508d34](https://github.com/ho-nl/m2-pwa/commit/c508d341ca34daa26a6db13ead72f7f4bdc72160))
-
-## [2.104.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@2.104.6...@graphcommerce/magento-customer@2.104.7) (2021-08-18)
 
 ## [2.104.7](https://github.com/ho-nl/m2-pwa/compare/@graphcommerce/magento-customer@2.104.6...@graphcommerce/magento-customer@2.104.7) (2021-08-18)
 

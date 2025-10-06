@@ -1,14 +1,7 @@
-import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
+/* eslint-disable react/no-unused-prop-types */
 import { useEffect } from 'react'
-import {
-  FieldValues,
-  UseFormReturn,
-  Path,
-  FieldPath,
-  PathValue,
-  useWatch,
-  useFormState,
-} from 'react-hook-form'
+import type { Control, FieldPath, FieldValues, PathValue, UseFormSetValue } from 'react-hook-form'
+import { useFormState, useWatch } from 'react-hook-form'
 
 export type UseFormPersistOptions<
   TFieldValues extends FieldValues = FieldValues,
@@ -16,7 +9,10 @@ export type UseFormPersistOptions<
   TContext = any,
 > = {
   /** Instance of current form, used to watch value */
-  form: UseFormReturn<TFieldValues, TContext>
+  form: {
+    control: Control<TFieldValues, TContext>
+    setValue: UseFormSetValue<TFieldValues>
+  }
 
   /** Name of the key how it will be stored in the storage. */
   name: string
@@ -40,6 +36,7 @@ export type UseFormPersistOptions<
  * Todo: Use wath callback so it won't trigger a rerender
  *
  * @deprecated Please use the FormPersist component instead. This method causes INP problems.
+ * @public
  */
 export function useFormPersist<V extends FieldValues>(options: UseFormPersistOptions<V>) {
   const { form, name, storage = 'sessionStorage', exclude = [], persist = [] } = options
@@ -48,7 +45,7 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
   const formState = useFormState({ control })
   const allFields = useWatch({ control })
 
-  const dirtyFieldKeys = Object.keys(formState.dirtyFields) as Path<V>[]
+  const dirtyFieldKeys = Object.keys(formState.dirtyFields) as FieldPath<V>[]
 
   // // Get all dirty field values and exclude sensitive data
   const newValues = Object.fromEntries(
@@ -73,12 +70,9 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
 
       const storedValues = JSON.parse(storedFormStr) as FieldValues
       if (storedValues) {
-        const entries = Object.entries(storedValues) as [Path<V>, PathValue<V, Path<V>>][]
+        const entries = Object.entries(storedValues) as [FieldPath<V>, PathValue<V, FieldPath<V>>][]
         entries.forEach(([entryName, value]) =>
-          setValue(entryName, value, {
-            shouldDirty: true,
-            shouldValidate: true,
-          }),
+          setValue(entryName, value, { shouldDirty: true, shouldValidate: true }),
         )
       }
     } catch {
@@ -99,7 +93,8 @@ export function useFormPersist<V extends FieldValues>(options: UseFormPersistOpt
 }
 
 /**
- * Please make sure to always include this component at the end of your form because of useWatch rules: https://react-hook-form.com/docs/usewatch
+ * Please make sure to always include this component at the end of your form because of useWatch
+ * rules: https://react-hook-form.com/docs/usewatch
  */
 export function FormPersist<V extends FieldValues>(props: UseFormPersistOptions<V>) {
   useFormPersist(props)

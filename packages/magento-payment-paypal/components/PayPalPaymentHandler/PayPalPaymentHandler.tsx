@@ -1,8 +1,9 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useMutation } from '@graphcommerce/graphql'
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
+import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
 import {
-  PaymentHandlerProps,
+  assertOrderPlaced,
   usePaymentMethodContext,
 } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
@@ -10,7 +11,7 @@ import { useEffect } from 'react'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentHandlerDocument } from './PayPalPaymentHandler.gql'
 
-export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
+export function PayPalPaymentHandler(props: PaymentHandlerProps) {
   const { code } = props
   const { push } = useRouter()
   const [lockStatus, , unlock] = usePayPalCartLock()
@@ -43,15 +44,15 @@ export const PayPalPaymentHandler = (props: PaymentHandlerProps) => {
     if (!cartId) return
 
     const fetchData = async () => {
-      const res = await placeOrder()
+      const result = await placeOrder()
 
-      if (res.errors || !res.data?.placeOrder?.order) {
+      try {
+        assertOrderPlaced(result)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        onSuccess(result.data.placeOrder.order.order_number)
+      } catch (e) {
         await unlock({ token: null, PayerID: null })
-        return
       }
-
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      onSuccess(res.data?.placeOrder?.order.order_number)
     }
 
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

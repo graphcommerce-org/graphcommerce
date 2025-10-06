@@ -1,4 +1,5 @@
 fragment ProductPageName on ProductInterface {
   name
+  __typename
   url_key
 }

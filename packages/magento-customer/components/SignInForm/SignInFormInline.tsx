@@ -1,17 +1,19 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Link, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
-import { SignInMutationVariables } from './SignIn.gql'
+import type { SignInMutationVariables } from './SignIn.gql'
 
-type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
+export type InlineSignInFormProps = Omit<SignInMutationVariables, 'password'> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
 }
 
 const { classes } = extendableComponent('SignInFormInline', ['form', 'button'] as const)
 
+/** @public */
 export function SignInFormInline(props: InlineSignInFormProps) {
   const { email, children, sx = [] } = props
   const form = useSignInForm({ email })

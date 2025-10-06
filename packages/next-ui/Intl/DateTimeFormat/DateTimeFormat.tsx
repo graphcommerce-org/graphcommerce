@@ -1,25 +1,30 @@
+import { Box, type SxProps, type Theme } from '@mui/material'
 import { useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
+import type { DateValue } from './toDate'
+import { toDate } from './toDate'
+import type { UseIntlDateTimeFormatOptions } from './useIntlDateTimeFormat'
+import { useIntlDateTimeFormat } from './useIntlDateTimeFormat'
 
-export function useDateTimeFormatter(props: Intl.DateTimeFormatOptions) {
-  const locale = useLocale()
-  const memoOptions = useMemoObject(props)
-  return useMemo(() => new Intl.DateTimeFormat(locale, memoOptions), [locale, memoOptions])
+export type DateTimeFormatProps = UseIntlDateTimeFormatOptions & {
+  date: DateValue
+  sx?: SxProps<Theme>
 }
 
-type DateValue = Date | string | number | null | undefined
-export type DateTimeFormatPropsType = { children: DateValue } & Intl.DateTimeFormatOptions
+/** @public */
+export function DateTimeFormat(props: DateTimeFormatProps) {
+  const { date, sx, ...options } = props
+  const formatter = useIntlDateTimeFormat({ dateStyle: 'medium', timeStyle: 'short', ...options })
 
-export function DateTimeFormat(props: DateTimeFormatPropsType) {
-  const { children } = props
-  const formatter = useDateTimeFormatter({ dateStyle: 'medium', timeStyle: 'short', ...props })
-
+  const dateValue = useMemo(() => toDate(date), [date])
   return (
-    <span suppressHydrationWarning>
-      {children
-        ? formatter.format(typeof children === 'string' ? new Date(children) : children)
-        : null}
-    </span>
+    <Box component='span' className='DateTimeFormat' suppressHydrationWarning sx={sx}>
+      {dateValue &&
+        formatter.formatToParts(dateValue).map((part, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <span className={part.type} key={`${part.type}-${index}`} suppressHydrationWarning>
+            {part.value}
+          </span>
+        ))}
+    </Box>
   )
 }

@@ -1,7 +1,10 @@
-import { Accordion, AccordionSummary, AccordionDetails, SxProps, Theme } from '@mui/material'
-import { useState, ReactNode } from 'react'
-import { IconSvg } from '../IconSvg'
+import type { SxProps, Theme } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import type { ReactNode } from 'react'
+import { useState } from 'react'
 import { iconChevronDown } from '../icons'
+import { IconSvg } from '../IconSvg'
+import { sxx } from '../utils/sxx'
 
 export type ActionCardAccordionProps = {
   summary: ReactNode
@@ -23,7 +26,7 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
       expanded={expanded}
       variant='outlined'
       disableGutters
-      sx={[
+      sx={sxx(
         (theme) => ({
           backgroundColor: 'transparent ',
           '&.Mui-expanded': { my: 0 },
@@ -32,8 +35,8 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
           borderBottom: `1px solid ${theme.palette.divider}`,
           '&:not(.Mui-expanded)': { borderBottom: `1px solid ${theme.palette.divider}` },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}

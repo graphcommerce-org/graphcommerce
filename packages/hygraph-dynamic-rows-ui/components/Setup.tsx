@@ -1,4 +1,5 @@
 import { useApp, Wrapper } from '@hygraph/app-sdk-react'
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import Image from 'next/image'
 import { useState } from 'react'
 import styles from './setup.module.css'

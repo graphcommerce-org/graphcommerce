@@ -1,8 +1,5 @@
-import {
-  AddProductsToCartForm,
-  ProductItemsGridProps,
-  ProductListItemsBase,
-} from '@graphcommerce/magento-product'
+import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
+import { AddProductsToCartForm, ProductListItemsBase } from '@graphcommerce/magento-product'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
 import { useCompareVisibleItems } from './CompareListForm'
 

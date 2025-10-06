@@ -1,14 +1,15 @@
-import { RatingProps, Rating } from '@mui/material'
+import type { RatingProps } from '@mui/material'
+import { Rating } from '@mui/material'
+import { iconStar } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
-import { iconStar } from '../icons'
 
 export type StarRatingFieldProps = {
   id?: string
   onChange?: (id: string, value: number) => void
 } & Omit<RatingProps, 'id' | 'onChange'>
 
-const name = 'StarRatingField' as const
+const name = 'StarRatingField'
 const parts = ['root', 'startEmpty', 'starFull'] as const
 const { classes } = extendableComponent(name, parts)
 

@@ -1,22 +1,21 @@
 import { useQuery } from '@graphcommerce/graphql'
-import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { GetConfigurableOptionsSelectionDocument } from '../graphql/GetConfigurableOptionsSelection.gql'
-
-export type UseConfigurableOptionsSelection = { url_key?: string | null } & AddToCartItemSelector
+import type { UseConfigurableOptionsFragment } from '../graphql'
+import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 
 type UseConfigurableOptionsForSelection = {
-  url_key?: string | null
   selectedOptions: string[]
-}
+} & UseConfigurableOptionsFragment
 
 export function useConfigurableOptionsForSelection(variables: UseConfigurableOptionsForSelection) {
-  const { url_key, selectedOptions } = variables
+  const { __typename, url_key, selectedOptions } = variables
 
   const selection = useQuery(GetConfigurableOptionsSelectionDocument, {
     variables: { urlKey: url_key ?? '', selectedOptions },
-    skip: !url_key,
+    skip: __typename !== 'ConfigurableProduct' || !url_key,
   })
 
   const configured = selection.error
@@ -28,15 +27,17 @@ export function useConfigurableOptionsForSelection(variables: UseConfigurableOpt
   return { ...selection, configured }
 }
 
+export type UseConfigurableOptionsSelection = UseConfigurableOptionsFragment & AddToCartItemSelector
+
 export function useConfigurableOptionsSelection(props: UseConfigurableOptionsSelection) {
-  const { url_key, index = 0 } = props
+  const { __typename, url_key, index = 0 } = props
 
   const { control } = useFormAddProductsToCart()
   const selectedOptions = (useWatch({ control, name: `cartItems.${index}.selected_options` }) ?? [])
     .filter(nonNullable)
     .filter(Boolean)
 
-  return useConfigurableOptionsForSelection({ url_key, selectedOptions })
+  return useConfigurableOptionsForSelection({ __typename, url_key, selectedOptions })
 }
 
 export function useConfigurableSelectedVariant(props: UseConfigurableOptionsSelection) {

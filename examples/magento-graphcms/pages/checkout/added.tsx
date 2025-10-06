@@ -1,12 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { Image } from '@graphcommerce/image'
-import { useCrosssellItems } from '@graphcommerce/magento-cart'
+import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Button,
   GetStaticProps,
   iconChevronRight,
+  iconShoppingBag,
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
@@ -29,7 +30,7 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? ''
+  const name = addedItem?.product.name ?? <Trans id='Product'>Product</Trans>
 
   return (
     <>
@@ -74,7 +75,9 @@ function CheckoutAdded() {
             sizes='100px'
           />
         ) : (
-          <Box
+          <IconSvg
+            src={iconShoppingBag}
+            size='xxl'
             sx={{
               gridArea: 'icon',
               alignSelf: 'stretch',
@@ -129,7 +132,7 @@ function CheckoutAdded() {
             </Typography>
           </Container>
           <AddProductsToCartForm
-            disableSuccessSnackbar
+            snackbarProps={{ disableSuccessSnackbar: true }}
             redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
           >
             <ProductScroller
@@ -162,6 +165,8 @@ CheckoutAdded.pageOptions = pageOptions
 export default CheckoutAdded
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

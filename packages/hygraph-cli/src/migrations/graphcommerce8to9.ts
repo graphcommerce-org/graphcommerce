@@ -1,13 +1,12 @@
-import {
+import type {
   BatchMigrationCreateEnumerableFieldInput,
   BatchMigrationCreateEnumerationInput,
   BatchMigrationCreateModelInput,
   BatchMigrationCreateSimpleFieldInput,
-  SimpleFieldType,
-  VisibilityTypes,
 } from '@hygraph/management-sdk'
+import { SimpleFieldType, VisibilityTypes } from '@hygraph/management-sdk'
 import { migrationActionFactory } from '../migrationActionFactory'
-import { MigrationFunction } from '../types'
+import type { MigrationFunction } from '../types'
 
 export const graphcommerce8to9: MigrationFunction = async (schema, client) => {
   const { migrationAction } = migrationActionFactory(schema, client)

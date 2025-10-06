@@ -1,25 +1,23 @@
-import { ActionCardItemRenderProps, ActionCardListForm } from '@graphcommerce/ecommerce-ui'
-import { ActionCard, ActionCardProps, Button, FormDiv } from '@graphcommerce/next-ui'
-import {
-  FormPersist,
-  useForm,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
+import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, Button, FormDiv } from '@graphcommerce/next-ui'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
-import { PaymentOptionsProps } from '../Api/PaymentMethod'
-import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
+import type { PaymentOptionsProps } from '../Api/PaymentMethod'
 import { useCartLock } from '../hooks'
+import { usePaymentMethodContext } from '../PaymentMethodContext/paymentMethodContextType'
 
 function PaymentMethodActionCard(
   props: ActionCardItemRenderProps<PaymentOptionsProps> & {
     sx?: SxProps<Theme>
   },
 ) {
-  const { onReset, code, step, child, Container, sx = [] } = props
+  const { onReset, code, step, child, Container, sx = [], ...rest } = props
   const { selectedMethod, selectedModule, modules } = usePaymentMethodContext()
 
   const selectedAndOptions =
@@ -31,6 +29,8 @@ function PaymentMethodActionCard(
 
   return (
     <Card
+      code={code}
+      child={child}
       sx={[
         {
           '& .ActionCard-title': { typography: 'h6' },
@@ -54,7 +54,7 @@ function PaymentMethodActionCard(
           <selectedModule.PaymentOptions {...selectedMethod} step={step} Container={Container} />
         )
       }
-      {...props}
+      {...rest}
     />
   )
 }

@@ -1,5 +1,5 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { ConfirmCustomerForm } from '@graphcommerce/magento-customer'
+import { ConfirmCustomerForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -7,6 +7,7 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { revalidate } from '@graphcommerce/next-ui'
 
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
@@ -40,16 +41,19 @@ AccountConfirmPage.pageOptions = pageOptions
 export default AccountConfirmPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
   if (!(await conf).data.storeConfig?.create_account_confirmation)
-    return { notFound: true, revalidate: 60 * 20 }
+    return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
     },
+    revalidate: revalidate(),
   }
 }

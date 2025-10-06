@@ -1,30 +1,33 @@
 import {
   CategoryBreadcrumbs,
-  CategoryDescription,
   CategoryChildren,
+  CategoryDescription,
 } from '@graphcommerce/magento-category'
 import {
   ProductFiltersPro,
-  ProductListFiltersContainer,
   ProductFiltersProAggregations,
-  productFiltersProChipRenderer,
-  ProductFiltersProSortChip,
-  ProductFiltersProLimitChip,
   ProductFiltersProAllFiltersChip,
-  ProductListCount,
+  productFiltersProChipRenderer,
+  ProductFiltersProLimitChip,
   ProductFiltersProNoResults,
+  ProductFiltersProSortChip,
+  ProductListCount,
+  ProductListFiltersContainer,
   ProductListPagination,
   ProductListSuggestions,
 } from '@graphcommerce/magento-product'
 import { ProductFiltersProSearchTerm } from '@graphcommerce/magento-search'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
-import { Container, Typography } from '@mui/material'
-import { ProductListItems } from '../ProductListItems'
-import { ProductListLayoutProps } from './types'
+import { Typography } from '@mui/material'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
+import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
-export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps) => {
+export const ProductListLayoutDefault = memoDeep(function ProductListLayoutDefault(
+  props: ProductListLayoutProps,
+) {
   const { id, filters, filterTypes, params, products, title, category, handleSubmit } = props
+  const configuration = useLayoutConfiguration(false)
 
   if (!(params && products?.items && filterTypes)) return null
   const { total_count, sort_fields, page_info } = products
@@ -38,18 +41,6 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
       filterTypes={filterTypes}
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({
-            height: 0,
-            mx: theme.page.horizontal,
-            [theme.breakpoints.down('md')]: {
-              '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-            },
-          })}
-        />
-      )}
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -60,21 +51,29 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
           justifyItems: { xs: 'left', md: 'center' },
         })}
       >
+        {import.meta.graphCommerce.breadcrumbs && category && (
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({
+              height: 0,
+              [theme.breakpoints.down('md')]: {
+                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+              },
+            })}
+          />
+        )}
+
         {category ? (
           <>
-            <LayoutTitle
-              gutterTop
-              variant='h1'
-              sx={{ alignItems: { xs: 'left', md: 'center' } }}
-              gutterBottom={false}
-            >
+            <LayoutTitle gutterTop variant='h1' gutterBottom={false}>
               {title}
             </LayoutTitle>
             <CategoryDescription
               textAlignMd='center'
               textAlignSm='center'
               sx={(theme) => ({ px: theme.page.horizontal })}
-              description={category?.description}
+              category={category}
+              productListRenderer={productListRenderer}
             />
             <CategoryChildren
               sx={(theme) => ({
@@ -130,7 +129,7 @@ export const ProductListLayoutDefault = memoDeep((props: ProductListLayoutProps)
             {...products}
             loadingEager={6}
             title={(params.search ? `Search ${params.search}` : title) ?? ''}
-            columns={{ xs: { count: 2 }, md: { count: 3 }, lg: { count: 4 }, xl: { count: 5 } }}
+            columns={configuration.columns}
           />
         )}
         <ProductListPagination page_info={page_info} params={params} />

@@ -1,9 +1,7 @@
-import { ProductFilterParams, ProductListItemFragment } from '@graphcommerce/magento-product'
+import type { ProductFilterParams, ProductListItemFragment } from '@graphcommerce/magento-product'
 import { nonNullable } from '@graphcommerce/next-ui'
-import {
-  GoogleDatalayerItem,
-  productToDatalayerItem,
-} from '../productToDatalayerItem/productToDatalayerItem'
+import type { GoogleDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
+import { productToDatalayerItem } from '../productToDatalayerItem/productToDatalayerItem'
 
 export type ViewItemList = {
   item_list_id: string

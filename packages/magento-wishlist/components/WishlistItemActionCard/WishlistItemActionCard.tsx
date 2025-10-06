@@ -1,18 +1,15 @@
+import type { InputMaybe } from '@graphcommerce/graphql-mesh'
 import { Image } from '@graphcommerce/image'
 import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import { InputMaybe } from '@graphcommerce/next-config'
-import {
-  extendableComponent,
-  ActionCard,
-  ActionCardProps,
-  actionCardImageSizes,
-} from '@graphcommerce/next-ui'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Button, Link, SxProps, Theme } from '@mui/material'
-import { ReactNode } from 'react'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
+import { Button, Link } from '@mui/material'
+import type { ReactNode } from 'react'
 import { useRemoveProductsFromWishlist } from '../../hooks'
-import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
+import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { AddWishlistItemToCart } from '../WishlistItem/AddWishlistItemToCart'
 
 export type WishlistItemActionCardProps = {
@@ -21,10 +18,11 @@ export type WishlistItemActionCardProps = {
   selectedOptions?: InputMaybe<string[]> | undefined
   isConfigurableUncompleted?: boolean
   secondaryAction?: ReactNode
+  actionButtonProps?: ButtonProps
 } & OwnerState &
   Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 type OwnerState = { withOptions?: boolean }
-const compName = 'WishlistItemActionCard' as const
+const compName = 'WishlistItemActionCard'
 const parts = [
   'item',
   'picture',
@@ -52,6 +50,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
     selectedOptions,
     secondaryAction,
     variant = 'default',
+    actionButtonProps,
     ...rest
   } = props
   const { id, product } = item
@@ -172,6 +171,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             size='medium'
             type='button'
             onClick={() => remove([id])}
+            {...actionButtonProps}
           >
             <Trans id='Remove' />
           </Button>

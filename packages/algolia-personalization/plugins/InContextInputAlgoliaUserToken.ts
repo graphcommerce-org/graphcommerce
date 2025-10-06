@@ -1,19 +1,18 @@
+import { ALGOLIA_USER_TOKEN_COOKIE_NAME } from '@graphcommerce/algolia-insights'
 import {
-  type getInContextInput as getInContextInputType,
-  type useInContextInput as useInContextInputType,
+  type getPrivateQueryContext as getPrivateQueryContextType,
+  type usePrivateQueryContext as usePrivateQueryContextType,
 } from '@graphcommerce/graphql'
-import type { InContextInput } from '@graphcommerce/graphql-mesh'
+import type { PrivateContext } from '@graphcommerce/graphql-mesh'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { cookie } from '@graphcommerce/next-ui'
-import { ALGOLIA_USER_TOKEN_COOKIE_NAME } from '../hooks/useSendAlgoliaEvent'
 
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/graphql',
-  ifConfig: 'algolia.personalizationEnabled',
 }
 
-export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (
+export const getPrivateQueryContext: FunctionPlugin<typeof getPrivateQueryContextType> = (
   prev,
   client,
   ...args
@@ -21,10 +20,13 @@ export const getInContextInput: FunctionPlugin<typeof getInContextInputType> = (
   const algoliaUserToken = cookie(ALGOLIA_USER_TOKEN_COOKIE_NAME)
   const res = prev(client, ...args)
   if (!algoliaUserToken) return res
-  return { ...res, algoliaUserToken } satisfies InContextInput
+  return { ...res, algoliaUserToken } satisfies PrivateContext
 }
 
-export const useInContextInput: FunctionPlugin<typeof useInContextInputType> = (prev, ...args) => {
+export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContextType> = (
+  prev,
+  ...args
+) => {
   const algoliaUserToken = cookie(ALGOLIA_USER_TOKEN_COOKIE_NAME)
   const res = prev(...args)
   if (!algoliaUserToken) return res

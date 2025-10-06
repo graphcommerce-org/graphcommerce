@@ -1,9 +1,9 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { type PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
 import { useRouter } from 'next/router'
 import { useCartLockWithToken } from '../../hooks/useCartLockWithToken'
+import { assertMollieOrderPlaced } from './assertMollieOrderPlaced'
 import { MolliePlaceOrderDocument } from './MolliePlaceOrder.gql'
 
 export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
@@ -27,21 +27,15 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
 
       return { ...variables, returnUrl }
     },
-    onComplete: async ({ data, errors }) => {
-      if (!data?.placeOrder?.order || errors) return
+    onComplete: async (result) => {
+      assertMollieOrderPlaced(result)
 
-      const { mollie_redirect_url, mollie_payment_token, order_number } = data.placeOrder.order
+      const { mollie_payment_token, order_number, mollie_redirect_url } =
+        result.data.placeOrder.order
 
-      // When redirecting to the payment gateway
-      if (mollie_redirect_url && mollie_payment_token) {
-        await lock({ mollie_payment_token, method: code, order_number })
-
-        await push(mollie_redirect_url)
-      } else {
-        throw Error(
-          t`An error occurred while processing your payment. Please contact the store owner`,
-        )
-      }
+      // Redirect to the payment gateway
+      await lock({ mollie_payment_token, method: code, order_number })
+      await push(mollie_redirect_url)
     },
   })
 

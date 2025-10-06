@@ -1,32 +1,31 @@
-import { loadConfig } from '@graphcommerce/next-config'
-import {
-  BatchMigrationCreateModelInput,
-  BatchMigrationCreateComponentInput,
-  BatchMigrationCreateEnumerationInput,
-  BatchMigrationCreateSimpleFieldInput,
-  BatchMigrationCreateEnumerableFieldInput,
-  BatchMigrationCreateRelationalFieldInput,
-  BatchMigrationCreateUnionFieldInput,
+import type {
   BatchMigrationCreateComponentFieldInput,
+  BatchMigrationCreateComponentInput,
+  BatchMigrationCreateComponentUnionFieldInput,
+  BatchMigrationCreateEnumerableFieldInput,
+  BatchMigrationCreateEnumerationInput,
+  BatchMigrationCreateModelInput,
+  BatchMigrationCreateRelationalFieldInput,
+  BatchMigrationCreateSimpleFieldInput,
+  BatchMigrationCreateUnionFieldInput,
   BatchMigrationDeleteComponentInput,
   BatchMigrationDeleteEnumerationInput,
+  BatchMigrationDeleteFieldInput,
   BatchMigrationDeleteModelInput,
   BatchMigrationUpdateComponentFieldInput,
   BatchMigrationUpdateComponentInput,
+  BatchMigrationUpdateComponentUnionFieldInput,
   BatchMigrationUpdateEnumerableFieldInput,
   BatchMigrationUpdateEnumerationInput,
   BatchMigrationUpdateModelInput,
   BatchMigrationUpdateRelationalFieldInput,
   BatchMigrationUpdateSimpleFieldInput,
   BatchMigrationUpdateUnionFieldInput,
-  BatchMigrationDeleteFieldInput,
-  BatchMigrationCreateComponentUnionFieldInput,
-  BatchMigrationUpdateComponentUnionFieldInput,
   Client,
 } from '@hygraph/management-sdk'
 import dotenv from 'dotenv'
-import { Schema } from './types'
-import { graphcommerceLog, capitalize } from './utils/graphCommerceLog'
+import type { Schema } from './types'
+import { capitalize, graphcommerceLog } from './utils/graphCommerceLog'
 
 dotenv.config()
 
@@ -137,20 +136,20 @@ export function migrationActionFactory(schema: Schema, client: Client) {
    * management sdk.
    *
    * MigrationAction() is better suited because it is a single function for all actions. More
-   * importantly, if the action fails, because a field with the apiID already exists for instance. it
-   * will skip this action but still continue the whole migration, while the management sdk function
-   * will bail.
+   * importantly, if the action fails, because a field with the apiID already exists for instance.
+   * it will skip this action but still continue the whole migration, while the management sdk
+   * function will bail.
    *
    * It takes the schema as argument, which is always the same.
    *
-   * Then it takes the type of schema entity you want to do an action upon, and the action you want to
-   * do.
+   * Then it takes the type of schema entity you want to do an action upon, and the action you want
+   * to do.
    *
-   * The fourth arguments are the props that belong to the action you want to do. For instance, if you
-   * want to create a model, you need to pass the props that belong to a model.
+   * The fourth arguments are the props that belong to the action you want to do. For instance, if
+   * you want to create a model, you need to pass the props that belong to a model.
    *
-   * The last two arguments are optional. If you want to create a field, you need to pass the apiId of
-   * the model or component you want to create the field on. If you want to create a field on a
+   * The last two arguments are optional. If you want to create a field, you need to pass the apiId
+   * of the model or component you want to create the field on. If you want to create a field on a
    * component, you also need to pass the parentType, which is either 'model' or 'component'.
    */
   const migrationAction = (
@@ -162,8 +161,8 @@ export function migrationActionFactory(schema: Schema, client: Client) {
     parentType?: 'model' | 'component' | 'enumeration',
   ) => {
     /**
-     * Check if the entity already exists.
-     * If an update or deletion is made, it does not matter if the entity already exists
+     * Check if the entity already exists. If an update or deletion is made, it does not matter if
+     * the entity already exists
      */
     const alreadyExists = () => {
       if (action !== 'create') {

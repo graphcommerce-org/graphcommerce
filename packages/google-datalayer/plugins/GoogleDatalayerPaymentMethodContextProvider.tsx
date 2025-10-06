@@ -1,6 +1,6 @@
 import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartToPurchase } from '../mapping/cartToPurchase/cartToPurchase'
 
 export const config: PluginConfig = {

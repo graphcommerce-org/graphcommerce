@@ -1,13 +1,12 @@
+import type { ActionCardItemBase, UseFormComposeOptions } from '@graphcommerce/ecommerce-ui'
 import {
-  ActionCardItemBase,
   ActionCardListForm,
   ApolloErrorAlert,
   TextFieldElement,
   useFormCompose,
-  UseFormComposeOptions,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { ProductInfoInput } from '@graphcommerce/graphql-mesh'
+import type { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
 import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
@@ -15,12 +14,13 @@ import { FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
 import { useDeferredValue, useMemo } from 'react'
 import { GetPickupLocationsForProductsDocument } from '../graphql/GetPickupLocationsForProducts.gql'
-import {
-  SetPickupLocationOnCartDocument,
+import type {
   SetPickupLocationOnCartMutation,
   SetPickupLocationOnCartMutationVariables,
 } from '../graphql/SetPickupLocationOnCart.gql'
-import { Location, PickupLocationActionCard } from './PickupLocationActionCard'
+import { SetPickupLocationOnCartDocument } from '../graphql/SetPickupLocationOnCart.gql'
+import type { Location } from './PickupLocationActionCard'
+import { PickupLocationActionCard } from './PickupLocationActionCard'
 
 export type PickupLocationFormProps = Pick<UseFormComposeOptions, 'step'>
 

@@ -1,6 +1,6 @@
-import {
-  FieldValues,
+import type {
   FieldPath,
+  FieldValues,
   RegisterOptions,
   UseFormRegisterReturn,
   UseFormReturn,
@@ -13,9 +13,7 @@ export type UseMuiFormRegister<TFieldValues extends FieldValues> = <
   options?: RegisterOptions<TFieldValues, TFieldName>,
 ) => Omit<UseFormRegisterReturn, 'ref'> & { inputRef: UseFormRegisterReturn['ref'] }
 
-/**
- * @deprecated Please use use TextFieldElement, etc.
- */
+/** @deprecated Please use use TextFieldElement, etc. */
 export function useFormMuiRegister<V extends FieldValues>({
   register,
 }: Pick<UseFormReturn<V>, 'register'>) {

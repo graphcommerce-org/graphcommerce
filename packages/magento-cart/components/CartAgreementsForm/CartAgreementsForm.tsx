@@ -1,25 +1,23 @@
 import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
-import {
-  FormPersist,
-  useForm,
-  useFormCompose,
-  UseFormComposeOptions,
-} from '@graphcommerce/react-hook-form'
+import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
+import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { Box, Link, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
 import { CartAgreementsDocument } from './CartAgreements.gql'
 
 export type CartAgreementsFormProps = Pick<UseFormComposeOptions, 'step'> & { sx?: SxProps<Theme> }
 
-const componentName = 'CartAgreementsForm' as const
+const componentName = 'CartAgreementsForm'
 const parts = ['form', 'formInner', 'formControlRoot', 'manualCheck'] as const
 const { classes } = extendableComponent(componentName, parts)
 
 /**
  * Checks if a string contains an anchor tag (<a> ... </a>).
+ *
  * @param {string} str - The string to check.
  * @returns {boolean} - True if the string contains an anchor tag, otherwise false.
  */
@@ -117,7 +115,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       label={labelContent}
                     />
                   ) : (
-                    <Box className={classes.manualCheck} sx={{ padding: `9px 0` }}>
+                    <Box className={classes.manualCheck} sx={{ padding: '9px 0' }}>
                       {labelContent}
                     </Box>
                   )}

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { ProductListParams } from '../components/ProductListItems/filterTypes'
+import type { ProductListParams } from '../components/ProductListItems/filterTypes'
 import { productListLink } from './useProductListLink'
 import { useProductListParamsContext } from './useProductListParamsContext'
 
@@ -9,9 +9,7 @@ type UseProductLinkPushProps = {
   scroll?: boolean
 }
 
-/**
- * @deprecated replaced by custom function inside ProductFiltersPro
- */
+/** @deprecated Replaced by custom function inside ProductFiltersPro */
 export function useProductListLinkReplace(props?: UseProductLinkPushProps) {
   const { setParams } = useProductListParamsContext()
   const router = useRouter()

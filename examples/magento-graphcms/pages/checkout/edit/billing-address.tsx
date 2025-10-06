@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { EditBillingAddressForm } from '@graphcommerce/magento-cart-billing-address'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { getCheckoutIsDisabled, EditBillingAddressForm } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
@@ -7,7 +8,6 @@ import { Trans } from '@lingui/react'
 import { Container } from '@mui/material'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -47,6 +47,8 @@ EditBillingAddress.pageOptions = pageOptions
 export default EditBillingAddress
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)

@@ -1,7 +1,8 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, breakpointVal } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Box, Divider, lighten, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Divider, lighten } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -9,10 +10,11 @@ export type CartTotalsProps = OwnerProps & {
   sx?: SxProps<Theme>
   additionalSubtotals?: React.ReactNode
   additionalTotals?: React.ReactNode
+  readOnly?: boolean
 }
 
 type OwnerProps = { containerMargin?: boolean }
-const name = 'CartTotals' as const
+const name = 'CartTotals'
 const parts = [
   'root',
   'costsDivider',
@@ -22,7 +24,12 @@ const parts = [
   'costsTax',
   'money',
 ] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
+
+export const extendableCartTotals = extendableComponent<OwnerProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+const { withState } = extendableCartTotals
 
 /**
  * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for
@@ -55,7 +62,7 @@ export function CartTotals(props: CartTotalsProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -74,8 +81,8 @@ export function CartTotals(props: CartTotalsProps) {
             px: theme.spacings.xs,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       key='total-costs'
     >
       {prices?.subtotal_including_tax && (
@@ -156,7 +163,7 @@ export function CartTotals(props: CartTotalsProps) {
       {additionalSubtotals}
 
       <Box key='divider'>
-        <Divider className={classes.costsDivider} sx={{ margin: `1em 0` }} />
+        <Divider className={classes.costsDivider} sx={{ margin: '1em 0' }} />
       </Box>
 
       {prices?.grand_total && (

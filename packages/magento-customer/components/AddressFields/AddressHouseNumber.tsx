@@ -1,12 +1,9 @@
-import {
-  TextFieldElement,
-  FieldValues,
-  FieldPath,
-  houseNumberPattern,
-} from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { houseNumberPattern, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressHousenumber<
   TFieldValues extends FieldValues = FieldValues,
@@ -16,6 +13,7 @@ export function AddressHousenumber<
   const { control, name, readOnly, required } = form
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.houseNumber}
       required={required[name.houseNumber]}

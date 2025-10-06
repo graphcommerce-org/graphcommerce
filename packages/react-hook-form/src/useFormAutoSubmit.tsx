@@ -1,20 +1,22 @@
 /* eslint-disable react/no-unused-prop-types */
-import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
+import { cloneDeep } from '@apollo/client/utilities'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import {
-  DeepPartialSkipArrayKey,
+import type {
   FieldPath,
   FieldValues,
+  Path,
+  PathValue,
+  UseFormHandleSubmit,
   UseFormReturn,
   UseWatchProps,
-  useFormState,
-  useWatch,
 } from 'react-hook-form'
-import { DebounceSettings, useDebounce } from './utils/useDebounce'
+import { useFormState, useWatch } from 'react-hook-form'
+import type { DebounceSettings } from './utils/useDebounce'
+import { useDebounce } from './utils/useDebounce'
 
 export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends FieldValues> = {
   /** Instance of current form */
@@ -48,14 +50,13 @@ export type UseFormAutoSubmitOptions<TForm extends UseFormReturn<V>, V extends F
  * Q: The form keeps submitting in loops: A: formState.isDirty should be false after submission Make
  * sure that you call `reset(getValues())` after submission.
  *
+ * @deprecated Please use the <FormAutoSubmit /> component instead. This method causes excessive
+ *   rerenders.
  * @see useFormGqlMutation.tsx for an example implementation
  *
  * Q: How to I resubmit if the form is modified during the request?
  *    formState.isDirty should be true after the submission
  * @see useFormGqlMutation.tsx for an example implementation
- *
- *
- * @deprecated Please use the <FormAutoSubmit /> component instead. This method causes excessive rerenders.
  */
 export function useFormAutoSubmit<
   Form extends UseFormReturn<V>,
@@ -106,7 +107,7 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
 
   /** SubmitHandler */
   // eslint-disable-next-line react/no-unused-prop-types
-  submit: ReturnType<UseFormReturn<TFieldValues>['handleSubmit']>
+  submit: ReturnType<UseFormHandleSubmit<TFieldValues>>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before
@@ -125,10 +126,11 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
    * @deprecated Please use leading instead
    */
   initialWait?: number
-} & Omit<UseWatchProps<TFieldValues>, 'defaultValue'> &
+  name?: readonly [...FieldPath<TFieldValues>[]]
+} & Omit<UseWatchProps<TFieldValues>, 'defaultValue' | 'compute'> &
   DebounceSettings
 
-export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
+function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
   props: FormAutoSubmitProps<TFieldValues>,
 ) {
   const {
@@ -141,19 +143,22 @@ export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues
     submit,
     parallel,
     noValidate,
+    name = [],
     ...watchOptions
   } = props
 
   // We create a stable object from the values, so that we can compare them later
-  const values = useMemoObject(cloneDeep(useWatch(watchOptions)))
-  const oldValues = useRef<DeepPartialSkipArrayKey<TFieldValues>>(values)
+  const values = useMemoObject(cloneDeep(useWatch({ ...watchOptions, name })))
+  const oldValues = useRef<PathValue<TFieldValues, Path<TFieldValues>>[]>(values)
   const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
   const submitDebounced = useDebounce(
     async () => {
       try {
-        oldValues.current = values
-        await submit()
+        await new Promise((resolve) => {
+          oldValues.current = values
+          resolve(null)
+        }).then(() => submit())
       } catch (e) {
         // We're not interested if the submission actually succeeds, that should be handled by the form itself.
       }
@@ -173,7 +178,8 @@ export function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues
 }
 
 /**
- * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the parent component.
+ * This is made a components so the useWatch that is used here doesn't retrigger the rerender of the
+ * parent component.
  */
 function FormAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
   props: FormAutoSubmitProps<TFieldValues>,

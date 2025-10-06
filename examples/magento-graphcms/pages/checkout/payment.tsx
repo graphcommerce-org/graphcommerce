@@ -7,6 +7,7 @@ import {
   CartSummary,
   CartTotals,
   EmptyCart,
+  getCheckoutIsDisabled,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -155,6 +156,8 @@ PaymentPage.pageOptions = pageOptions
 export default PaymentPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
 

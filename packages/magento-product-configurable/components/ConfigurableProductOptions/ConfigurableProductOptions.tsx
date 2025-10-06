@@ -1,22 +1,29 @@
-import { AddToCartItemSelector, useFormAddProductsToCart } from '@graphcommerce/magento-product'
-import { filterNonNullableKeys, ActionCardListProps, useLocale } from '@graphcommerce/next-ui'
+import type { ActionCardRequireOptionSelection } from '@graphcommerce/ecommerce-ui'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
+import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
+import type { ActionCardListProps } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, useLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
-import { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../../graphql'
 import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableProductOption } from './ConfigurableProductOption'
 
 export type ConfigurableProductOptionsProps = AddToCartItemSelector & {
+  optionStartLabels?: Record<string, React.ReactNode>
   optionEndLabels?: Record<string, React.ReactNode>
   sx?: SxProps<Theme>
   render?: typeof ConfigurableOptionValue
   product: ConfigurableOptionsFragment
-} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'>
+} & Pick<ActionCardListProps, 'color' | 'variant' | 'size' | 'layout' | 'collapse'> &
+  ActionCardRequireOptionSelection
 
 export function ConfigurableProductOptions(props: ConfigurableProductOptionsProps) {
   const {
+    optionStartLabels,
     optionEndLabels,
     sx,
     render = ConfigurableOptionValue,
@@ -32,7 +39,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
     'values',
   ])
 
-  const { configured } = useConfigurableOptionsSelection({ url_key: product.url_key, index })
+  const { configured } = useConfigurableOptionsSelection({ ...product, index })
   const unavailable =
     configured &&
     (configured?.configurable_product_options_selection?.options_available_for_selection ?? [])
@@ -58,19 +65,23 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-      {options.map((option, optionIndex) => (
-        <ConfigurableProductOption
-          {...option}
-          key={option.uid}
-          render={render}
-          optionEndLabels={optionEndLabels}
-          index={index}
-          optionIndex={optionIndex}
-          sx={sx}
-          url_key={product.url_key}
-          {...other}
-        />
-      ))}
+      {options
+        .sort((a, b) => (a?.position ?? 0) - (b?.position ?? 0))
+        .map((option, optionIndex) => (
+          <ConfigurableProductOption
+            {...option}
+            key={option.uid}
+            render={render}
+            optionStartLabels={optionStartLabels}
+            optionEndLabels={optionEndLabels}
+            index={index}
+            optionIndex={optionIndex}
+            sx={sx}
+            __typename={product.__typename}
+            url_key={product.url_key}
+            {...other}
+          />
+        ))}
     </Box>
   )
 }

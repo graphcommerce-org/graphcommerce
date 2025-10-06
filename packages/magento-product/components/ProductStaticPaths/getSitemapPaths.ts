@@ -1,10 +1,11 @@
-import { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { canonicalize, nonNullable } from '@graphcommerce/next-ui'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 /**
  * @deprecated Not used anymore, use `getProductStaticPaths` instead.
+ * @public
  */
 export async function getSitemapPaths(
   client: ApolloClient<NormalizedCacheObject>,
@@ -24,7 +25,7 @@ export async function getSitemapPaths(
 
   const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }
   const lastmod = new Date().toISOString()
-  const changefreq = 'daily' as const
+  const changefreq = 'daily'
   const priority = 0.7
 
   const paths = (await Promise.all(result))

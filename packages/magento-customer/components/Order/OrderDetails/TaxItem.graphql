@@ -1,0 +1,7 @@
+fragment TaxItem on TaxItem {
+  title
+  rate
+  amount {
+    ...Money
+  }
+}

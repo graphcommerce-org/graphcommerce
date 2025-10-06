@@ -1,7 +1,8 @@
-import { ApolloLink, TypePolicies } from '@apollo/client'
 import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+import type { ApolloLink, TypePolicies } from '@apollo/client'
 import type { SetRequired } from 'type-fest'
-import { MigrateCache } from './components/GraphQLProvider/migrateCache'
+import type { MigrateCache } from './components/GraphQLProvider/migrateCache'
+import { RemovePrivateContextDirectivesLink } from './link/RemovePrivateContextDirectivesLink'
 
 export interface PreviewData {}
 
@@ -34,5 +35,11 @@ export type ApolloClientConfig = SetRequired<
 
 export function graphqlConfig(config: ApolloClientConfigInput): ApolloClientConfig {
   const { storefront, links = [], policies = [], migrations = [], ...rest } = config
-  return { storefront, links, policies, migrations, ...rest }
+  return {
+    storefront,
+    links: [...links, new RemovePrivateContextDirectivesLink()],
+    policies,
+    migrations,
+    ...rest,
+  }
 }

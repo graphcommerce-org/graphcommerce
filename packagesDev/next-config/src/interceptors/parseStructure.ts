@@ -1,9 +1,9 @@
-import { Module } from '@swc/core'
-import get from 'lodash/get'
+import type { Module } from '@swc/core'
+import lodash from 'lodash'
 import { z } from 'zod'
-import { GraphCommerceConfig } from '../generated/config'
+import type { GraphCommerceConfig } from '../generated/config'
 import { extractExports } from './extractExports'
-import { PluginConfig } from './generateInterceptor'
+import type { PluginConfig } from './generateInterceptor'
 
 const pluginConfigParsed = z.object({
   type: z.enum(['component', 'function', 'replace']),
@@ -20,7 +20,7 @@ const isObject = (input: unknown): input is Record<string, unknown> =>
 
 export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourceModule: string) {
   const [exports, errors] = extractExports(ast)
-  if (errors.length) console.error(`Plugin error for`, errors.join('\n'))
+  if (errors.length) console.error('Plugin error for', errors.join('\n'))
 
   const {
     config: moduleConfig,
@@ -66,12 +66,12 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
       if (parsed.data.ifConfig) {
         if (Array.isArray(parsed.data.ifConfig)) {
           const isBoolean = typeof parsed.data.ifConfig[1] === 'boolean'
-          let confValue = get(gcConfig, parsed.data.ifConfig[0])
+          let confValue = lodash.get(gcConfig, parsed.data.ifConfig[0])
           confValue = isBoolean ? Boolean(confValue) : confValue
 
           enabled = confValue === parsed.data.ifConfig[1]
         } else {
-          enabled = Boolean(get(gcConfig, parsed.data.ifConfig))
+          enabled = Boolean(lodash.get(gcConfig, parsed.data.ifConfig))
         }
       }
 

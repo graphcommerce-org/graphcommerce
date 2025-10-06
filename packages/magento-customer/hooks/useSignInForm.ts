@@ -1,11 +1,9 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { setCssFlag } from '@graphcommerce/next-ui'
-import { UseFormGraphQlOptions, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import {
-  SignInDocument,
-  SignInMutation,
-  SignInMutationVariables,
-} from '../components/SignInForm/SignIn.gql'
+import type { UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
+import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import type { SignInMutation, SignInMutationVariables } from '../components/SignInForm/SignIn.gql'
+import { SignInDocument } from '../components/SignInForm/SignIn.gql'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerDocument } from './Customer.gql'
 
@@ -14,9 +12,10 @@ type UseSignInFormProps = {
 } & UseFormGraphQlOptions<SignInMutation, SignInMutationVariables>
 
 /**
- * To extend the actions that happen after a successful sign in, you can use the `onComplete` option.
+ * To extend the actions that happen after a successful sign in, you can use the `onComplete`
+ * option.
  *
- * @example @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
+ * @graphcommerce/magento-cart/plugins/useSignInFormMergeCart
  */
 export function useSignInForm({ email, ...options }: UseSignInFormProps) {
   const client = useApolloClient()
@@ -39,7 +38,7 @@ export function useSignInForm({ email, ...options }: UseSignInFormProps) {
         return options?.onBeforeSubmit ? options.onBeforeSubmit(newValues) : newValues
       },
       onComplete: (...args) => {
-        setCssFlag('in-context', true)
+        setCssFlag('private-query', true)
         return options.onComplete?.(...args)
       },
     },

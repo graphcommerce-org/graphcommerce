@@ -1,21 +1,12 @@
 import { i18n } from '@lingui/core'
-import {
-  Fab,
-  Snackbar,
-  SnackbarContent,
-  SnackbarProps,
-  lighten,
-  Box,
-  SxProps,
-  Theme,
-  Portal,
-  SvgIconProps,
-} from '@mui/material'
+import type { SnackbarProps, SxProps, Theme } from '@mui/material'
+import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { IconSvg, IconSvgProps } from '../IconSvg'
-import { extendableComponent, breakpointVal } from '../Styles'
-import { iconClose, iconCheckmark, iconSadFace } from '../icons'
+import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
+import type { IconSvgProps } from '../IconSvg'
+import { IconSvg } from '../IconSvg'
+import { breakpointVal, extendableComponent } from '../Styles'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -38,15 +29,13 @@ type OwnerState = {
   size?: Size
   severity?: 'success' | 'info' | 'warning' | 'error'
   variant?: Variant
-  /**
-   * Setting this to true allows interaction with the rest of the page without closing the Snackbar
-   */
+  /** Setting this to true allows interaction with the rest of the page without closing the Snackbar */
   disableBackdropClick?: boolean
   disableClose?: boolean
   disableIcon?: boolean
 }
 
-const name = 'MessageSnackbarImpl' as const
+const name = 'MessageSnackbarImpl'
 const parts = ['root', 'content', 'children', 'actionButton', 'close'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 

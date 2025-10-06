@@ -1,23 +1,19 @@
-import { QueryResult, useApolloClient, useQuery } from '@graphcommerce/graphql'
+import type { QueryResult } from '@graphcommerce/graphql'
 import {
   useCustomerQuery,
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import type { Get } from 'type-fest'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useWishlistEnabled } from '../useWishlistEnabled/useWishlistEnabled'
-import {
-  UseWishlistCustomerDocument,
+import type {
   UseWishlistCustomerQuery,
   UseWishlistCustomerQueryVariables,
 } from './UseWishlistCustomer.gql'
-import {
-  UseWishlistGuestDocument,
-  UseWishlistGuestQuery,
-  UseWishlistGuestQueryVariables,
-} from './UseWishlistGuest.gql'
-import { WishlistItemFragment } from '../../queries/WishlistItem.gql'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { UseWishlistCustomerDocument } from './UseWishlistCustomer.gql'
+import type { UseWishlistGuestQuery, UseWishlistGuestQueryVariables } from './UseWishlistGuest.gql'
+import { UseWishlistGuestDocument } from './UseWishlistGuest.gql'
 
 export type UseWishlistItemsGuestReturn = {
   enabled: boolean
@@ -43,19 +39,18 @@ export function useWishlistItems(): UseWishlistItemsReturn {
   const wishlistGuest = useGuestQuery(UseWishlistGuestDocument, { skip: !enabled })
 
   if (loggedIn) {
-    const items = filterNonNullableKeys(
+    const items = (
       (wishlistCustomer.data ?? wishlistCustomer.previousData)?.customer?.wishlists?.[0]?.items_v2
-        ?.items,
-      ['product'],
-    )
+        ?.items ?? []
+    ).filter(nonNullable)
 
     return { ...wishlistCustomer, enabled, loggedIn: true, items }
   }
 
-  const items = filterNonNullableKeys(
-    (wishlistGuest.data ?? wishlistGuest.previousData)?.customer?.wishlists?.[0]?.items_v2?.items,
-    ['product'],
-  )
+  const items = (
+    (wishlistGuest.data ?? wishlistGuest.previousData)?.customer?.wishlists?.[0]?.items_v2?.items ??
+    []
+  ).filter(nonNullable)
 
   return { ...wishlistGuest, enabled, loggedIn: false, items }
 }

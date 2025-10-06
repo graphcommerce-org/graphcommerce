@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { styled, SxProps, Theme, useTheme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { styled, useTheme } from '@mui/material'
 import { m, transform, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -10,7 +11,7 @@ type OwnerProps = {
   direction: 'x' | 'y'
 }
 
-type ScrollerBarProps = OwnerProps & {
+export type ScrollerBarProps = OwnerProps & {
   sx?: SxProps<Theme>
 }
 
@@ -36,6 +37,7 @@ const Scroll = styled(m.button)({
   height: 7,
 })
 
+/** @public */
 export function ScrollerBar(props: ScrollerBarProps) {
   const { direction, sx } = props
   const control = useScrollerControl()
@@ -52,7 +54,7 @@ export function ScrollerBar(props: ScrollerBarProps) {
 
   const scrollProgress = scroll[`${direction}Progress`]
 
-  const thumbSize = useTransform(scrollProgress, (directionProgress) => {
+  const thumbSize = useTransform(scrollProgress, () => {
     if (!scrollerRef.current) return 0
     const trackWidth = scrollerRef.current[offsetSize]
     return trackWidth * (trackWidth / scrollerRef.current[scrollSize])

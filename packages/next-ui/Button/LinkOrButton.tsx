@@ -1,7 +1,9 @@
-import { Breakpoint, Link, LinkProps, useForkRef } from '@mui/material'
+import type { Breakpoint, LinkProps } from '@mui/material'
+import { Link, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
 import type { ConditionalExcept } from 'type-fest'
-import { Button, ButtonProps } from './Button'
+import type { ButtonProps } from './Button'
+import { Button } from './Button'
 
 type OmitNever<T extends Record<string, unknown>> = {
   [K in keyof T as T[K] extends never ? never : K]: T[K]

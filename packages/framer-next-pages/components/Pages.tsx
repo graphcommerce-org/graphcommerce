@@ -1,11 +1,12 @@
 import { dvh, useMeasureDynamicViewportSize } from '@graphcommerce/framer-utils'
 import { AnimatePresence, m } from 'framer-motion'
-import { requestIdleCallback, cancelIdleCallback } from 'next/dist/client/request-idle-callback'
-import { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
-import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { NextRouter, Router } from 'next/router'
+import { cancelIdleCallback, requestIdleCallback } from 'next/dist/client/request-idle-callback'
+import type { PrivateRouteInfo } from 'next/dist/shared/lib/router/router'
+import type { AppPropsType } from 'next/dist/shared/lib/utils'
+import type { NextRouter, Router } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { Direction, pageContext } from '../context/pageContext'
+import type { Direction } from '../context/pageContext'
+import { pageContext } from '../context/pageContext'
 import type { PageComponent, PageItem, UpPage } from '../types'
 import { Page } from './Page'
 import { PageRenderer } from './PageRenderer'
@@ -103,7 +104,7 @@ export function FramerNextPages(props: PagesProps) {
 
   let renderItems = [...items.current]
 
-  /**  Removes the page if the up path equls the path of a overlay and there is no history present **/
+  /** Removes the page if the up path equls the path of a overlay and there is no history present * */
   const upPath = (renderItems.at(0)?.pageProps?.up as { href: string; title: string })?.href
   const overlayPath = renderItems.at(-1)?.routerContext.pageInfo.asPath
   if (
@@ -172,7 +173,7 @@ export function FramerNextPages(props: PagesProps) {
         if (process.env.NODE_ENV !== 'production') {
           // eslint-disable-next-line no-console
           console.log(
-            `%cTurn on "Preseve log on navigation" to see the error`,
+            '%cTurn on "Preseve log on navigation" to see the error',
             'color: blue; font-family:sans-serif; font-size: 20px',
           )
 

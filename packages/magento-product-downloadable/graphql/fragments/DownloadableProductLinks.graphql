@@ -1,0 +1,7 @@
+fragment DownloadableProductLinks on DownloadableProductLinks {
+  price
+  sample_url
+  sort_order
+  title
+  uid
+}

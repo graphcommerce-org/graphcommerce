@@ -1,13 +1,17 @@
-import { Box, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
+import type { BackProps } from './LayoutHeaderBack'
 import { LayoutHeaderBack, useShowBack } from './LayoutHeaderBack'
 import { LayoutHeaderClose, useShowClose } from './LayoutHeaderClose'
-import { LayoutHeaderContent, LayoutHeaderContentProps } from './LayoutHeaderContent'
-import { FloatingProps } from './LayoutHeadertypes'
+import type { LayoutHeaderContentProps } from './LayoutHeaderContent'
+import { LayoutHeaderContent } from './LayoutHeaderContent'
+import type { FloatingProps } from './LayoutHeadertypes'
 
 export type LayoutHeaderProps = FloatingProps &
-  Omit<LayoutHeaderContentProps, 'left' | 'right'> & {
+  Omit<LayoutHeaderContentProps, 'left' | 'right'> &
+  Pick<BackProps, 'disableBackNavigation'> & {
     /**
      * Button to display on the left side of the title
      *
@@ -29,8 +33,8 @@ export type LayoutHeaderProps = FloatingProps &
 
     hideBackButton?: boolean
 
-    hideSm?: boolean
-    hideMd?: boolean
+    hideSm?: boolean | null
+    hideMd?: boolean | null
   }
 
 type ComponentStyleProps = {
@@ -44,10 +48,9 @@ type ComponentStyleProps = {
   size: 'small' | 'responsive'
 }
 
-const { selectors, withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>(
-  'LayoutHeader',
-  ['root'] as const,
-)
+const { withState } = extendableComponent<ComponentStyleProps, 'LayoutHeader'>('LayoutHeader', [
+  'root',
+] as const)
 
 export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   const {
@@ -63,6 +66,7 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     bgColor,
     hideSm = false,
     hideMd = false,
+    disableBackNavigation,
   } = props
   const showBack = useShowBack() && !hideBackButton
   const showClose = useShowClose()
@@ -76,7 +80,12 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   if (divider || primary || secondary) floatingSm = false
 
   const close = showClose && <LayoutHeaderClose />
-  const back = showBack && <LayoutHeaderBack breakpoint={floatingSm ? 'xs' : undefined} />
+  const back = showBack && (
+    <LayoutHeaderBack
+      breakpoint={floatingSm ? 'xs' : undefined}
+      disableBackNavigation={disableBackNavigation}
+    />
+  )
 
   let left = secondary
   let right = primary
@@ -95,8 +104,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
     children: !!children,
     divider: !!divider,
     size,
-    hideSm,
-    hideMd,
+    hideSm: !!hideSm,
+    hideMd: !!hideMd,
   })
 
   return (

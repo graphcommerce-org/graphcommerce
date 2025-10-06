@@ -1,0 +1,13 @@
+fragment AttributeValueFragment on AttributeValueInterface {
+  __typename
+  code
+  ... on AttributeValue {
+    value
+  }
+  ... on AttributeSelectedOptions {
+    selected_options {
+      label
+      value
+    }
+  }
+}

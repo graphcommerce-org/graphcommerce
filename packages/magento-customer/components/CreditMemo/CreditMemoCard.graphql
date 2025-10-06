@@ -1,0 +1,12 @@
+fragment CreditMemoCard on CreditMemo {
+  id
+  number
+  comments {
+    ...SalesCommentItem
+  }
+  total {
+    grand_total {
+      ...Money
+    }
+  }
+}

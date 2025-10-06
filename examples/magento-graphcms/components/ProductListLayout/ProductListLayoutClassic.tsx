@@ -11,12 +11,14 @@ import {
   ProductListCount,
   ProductListPagination,
 } from '@graphcommerce/magento-product'
-import { LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Container } from '@mui/material'
-import { ProductListItems } from '../ProductListItems'
+import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
+import { Trans } from '@lingui/macro'
 
-export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps) => {
+export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
+  props: ProductListLayoutProps,
+) {
   const { filters, filterTypes, params, products, title, category } = props
 
   if (!(params && products?.items && filterTypes)) return null
@@ -25,10 +27,12 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
   return (
     <>
       {import.meta.graphCommerce.breadcrumbs && category && (
-        <CategoryBreadcrumbs
-          category={category}
-          sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
-        />
+        <Container maxWidth={false}>
+          <CategoryBreadcrumbs
+            category={category}
+            sx={(theme) => ({ mx: theme.page.horizontal, mb: theme.spacings.md })}
+          />
+        </Container>
       )}
 
       {category ? (
@@ -38,7 +42,6 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
             variant='h1'
             sx={(theme) => ({
               mb: (category?.description || category?.children) && theme.spacings.md,
-              alignItems: { xs: 'center', md: 'center' },
             })}
             gutterBottom={!category?.description && category?.children?.length === 0}
           >
@@ -46,7 +49,8 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
           </LayoutTitle>
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
-            description={category?.description}
+            category={category}
+            productListRenderer={productListRenderer}
           />
           <CategoryChildren
             params={params}
@@ -56,8 +60,8 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
           </CategoryChildren>
         </>
       ) : (
-        <LayoutTitle gutterTop variant='h1' sx={{ alignItems: { xs: 'center', md: 'center' } }}>
-          Search {params.search}
+        <LayoutTitle gutterTop variant='h1'>
+          <Trans>Search</Trans> {params.search}
         </LayoutTitle>
       )}
 
@@ -65,7 +69,7 @@ export const ProductListLayoutClassic = memoDeep((props: ProductListLayoutProps)
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>
             <ProductListSort sort_fields={sort_fields} total_count={total_count} />
-            <ProductListFilters {...filters} filterTypes={filterTypes} />
+            <ProductListFilters aggregations={filters?.aggregations} filterTypes={filterTypes} />
           </ProductListFiltersContainer>
         </ProductListParamsProvider>
       </StickyBelowHeader>

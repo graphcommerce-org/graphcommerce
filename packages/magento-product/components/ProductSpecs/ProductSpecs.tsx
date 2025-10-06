@@ -1,6 +1,7 @@
-import { responsiveVal, Row, SectionContainer, extendableComponent } from '@graphcommerce/next-ui'
-import { Box, SxProps, Theme } from '@mui/material'
-import { ProductSpecsFragment } from './ProductSpecs.gql'
+import { extendableComponent, responsiveVal, Row, SectionContainer } from '@graphcommerce/next-ui'
+import type { SxProps, Theme } from '@mui/material'
+import { Box } from '@mui/material'
+import type { ProductSpecsFragment } from './ProductSpecs.gql'
 import { ProductSpecsAggregations } from './ProductSpecsAggregations'
 import { ProductSpecsCustomAttributes } from './ProductSpecsCustomAttributes'
 
@@ -10,7 +11,7 @@ export type ProductSpecsProps = ProductSpecsFragment & {
   children?: React.ReactNode
 }
 
-const name = 'ProductSpecs' as const
+const name = 'ProductSpecs'
 const parts = ['root', 'specs', 'options'] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -18,7 +19,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations, items, title, children, sx = [] } = props
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
-    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
+    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.label !== '0',
   )
 
   if (specs?.length === 0) return null

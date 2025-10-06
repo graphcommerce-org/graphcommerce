@@ -1,6 +1,7 @@
-import { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
-import { GetStaticPathsResult } from 'next'
-import { ProductStaticPathsDocument, ProductStaticPathsQuery } from './ProductStaticPaths.gql'
+import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { GetStaticPathsResult } from 'next'
+import type { ProductStaticPathsQuery } from './ProductStaticPaths.gql'
+import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 type Return = GetStaticPathsResult<{ url: string }>
 
@@ -22,7 +23,7 @@ export async function getProductStaticPaths(
   const { data } = await query
   const totalPages = data.products?.page_info?.total_pages ?? 1
 
-  if (totalPages > 1 && import.meta.graphCommerce.limitSsg !== true) {
+  if (totalPages > 1 && options.limit !== true) {
     for (let i = 2; i <= totalPages; i++) {
       pages.push(
         client.query({

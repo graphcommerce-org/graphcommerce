@@ -1,6 +1,8 @@
-import { Image, ImageProps } from '@graphcommerce/image'
+import type { ImageProps } from '@graphcommerce/image'
+import { Image } from '@graphcommerce/image'
 import { Trans } from '@lingui/react'
-import { Box, BoxProps, Skeleton, styled } from '@mui/material'
+import type { BoxProps } from '@mui/material'
+import { Box, Skeleton, styled } from '@mui/material'
 
 const StyledImage = styled(Image)({})
 
@@ -24,7 +26,7 @@ function PlaceHolderContainer(props: BoxProps) {
 
 export type ProductListItemImageProps = {
   aspectRatio?: [number, number]
-  classes: {
+  classes?: {
     image?: string
     placeholder?: string
   }
@@ -33,7 +35,7 @@ export type ProductListItemImageProps = {
 export function ProductListItemImageSkeleton(props: ProductListItemImageProps) {
   const { aspectRatio = [4, 3], classes } = props
   return (
-    <PlaceHolderContainer className={`${classes.placeholder} ${classes.image}`}>
+    <PlaceHolderContainer className={`${classes?.placeholder} ${classes?.image}`}>
       <Skeleton
         animation='wave'
         sx={{
@@ -46,7 +48,7 @@ export function ProductListItemImageSkeleton(props: ProductListItemImageProps) {
   )
 }
 
-type ImageOrPlaceholderProps = ProductListItemImageProps &
+export type ImageOrPlaceholderProps = ProductListItemImageProps &
   Omit<ImageProps, 'alt' | 'src'> & {
     alt?: ImageProps['alt'] | null
     src?: ImageProps['src'] | null
@@ -64,7 +66,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
         src={src}
         alt={alt ?? ''}
         {...image}
-        className={classes.image}
+        className={classes?.image}
         sx={[
           {
             objectFit: 'contain',
@@ -78,7 +80,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
   }
 
   return (
-    <PlaceHolderContainer className={`${classes.placeholder} ${classes.image}`}>
+    <PlaceHolderContainer className={`${classes?.placeholder} ${classes?.image}`}>
       <Box
         sx={[
           {

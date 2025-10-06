@@ -1,12 +1,17 @@
-import { ApolloError } from '@apollo/client'
-import type { FieldValues, FormState, GlobalError, UseFormReturn } from 'react-hook-form'
+import type { ApolloError } from '@apollo/client'
+import type { FieldValues, FormState, UseFormHandleSubmit, UseFormTrigger } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 
-export type UseFormComposeOptions<V extends FieldValues = FieldValues> = {
+export type MinimalUseFormReturn<TFieldValues extends FieldValues = FieldValues> = {
+  formState: FormState<TFieldValues>
+  trigger: UseFormTrigger<TFieldValues>
+}
+
+export type UseFormComposeOptions<TFieldValues extends FieldValues = FieldValues> = {
   /** The form that is used to submit */
-  form: UseFormReturn<V>
+  form: MinimalUseFormReturn<TFieldValues>
   /** Method to submit the form */
-  submit: ReturnType<UseFormReturn<V>['handleSubmit']>
+  submit: ReturnType<UseFormHandleSubmit<TFieldValues>>
 
   /** Identifier of the specific */
   key: string
@@ -36,7 +41,6 @@ export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
   buttonState: ButtonState
   error?: ApolloError
-  rootThrown?: GlobalError
 }
 
 export type ComposedFormState = {

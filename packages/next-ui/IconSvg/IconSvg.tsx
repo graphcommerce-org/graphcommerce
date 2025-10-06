@@ -1,7 +1,11 @@
-import { ImageProps, srcToString, StaticImport } from '@graphcommerce/image'
-import { styled, SxProps, Theme, useTheme, useThemeProps } from '@mui/material'
-import { ComponentProps, forwardRef } from 'react'
-import { extendableComponent, ExtendableComponent } from '../Styles/extendableComponent'
+import type { ImageProps, StaticImport } from '@graphcommerce/image'
+import { srcToString } from '@graphcommerce/image'
+import type { SxProps, Theme } from '@mui/material'
+import { styled, useTheme, useThemeProps } from '@mui/material'
+import type { ComponentProps } from 'react'
+import { forwardRef } from 'react'
+import type { ExtendableComponent } from '../Styles/extendableComponent'
+import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal as rv } from '../Styles/responsiveVal'
 import { svgIconStrokeWidth } from './svgIconStrokeWidth'
 
@@ -110,6 +114,3 @@ export const IconSvg = forwardRef<SVGSVGElement, IconSvgProps>((props, ref) => {
   )
 })
 IconSvg.displayName = 'IconSvg'
-
-/** @deprecated SvgIcon is renamed to IconSvg, no API changes */
-export const SvgIcon = IconSvg

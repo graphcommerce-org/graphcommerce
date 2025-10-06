@@ -1,6 +1,7 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { ContactForm } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
@@ -60,7 +61,7 @@ ContactUs.pageOptions = pageOptions
 export default ContactUs
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  const url = `service/contact-us`
+  const url = 'service/contact-us'
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -70,7 +71,11 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  if (import.meta.graphCommerce.magentoVersion < 247) return { notFound: true }
+  if (
+    import.meta.graphCommerce.magentoVersion < 247 ||
+    !(await conf).data.storeConfig?.contact_enabled
+  )
+    return { notFound: true }
 
   return {
     props: {
@@ -79,6 +84,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

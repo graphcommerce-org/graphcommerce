@@ -1,13 +1,14 @@
 import {
   extendableComponent,
+  iconCompare,
   IconSvg,
   useFabSize,
-  iconCompare,
   useScrollY,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { styled, Box, SxProps, Theme, NoSsr, Badge, Button, ButtonProps } from '@mui/material'
+import { Badge, Box, Button, styled } from '@mui/material'
+import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareSummary } from '../hooks'
@@ -17,11 +18,11 @@ export type CompareFabProps = {
   sx?: SxProps<Theme>
 } & Pick<ButtonProps, 'color' | 'size' | 'variant'>
 
-type CompareFabContentProps = CompareFabProps & { total_quantity: number }
+export type CompareFabContentProps = CompareFabProps & { total_quantity: number }
 
 const MotionDiv = styled(m.div)({})
 
-const MotionFab = m(
+const MotionFab = m.create(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   React.forwardRef<any, Omit<ButtonProps, 'style' | 'onDrag'>>((props, ref) => (
     <Button variant='pill' {...props} ref={ref} />
@@ -92,9 +93,5 @@ export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareSummary()
   const totalQuantity = compareList.data?.compareList?.item_count ?? 0
 
-  return (
-    <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
-      {totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />}
-    </NoSsr>
-  )
+  return totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />
 }

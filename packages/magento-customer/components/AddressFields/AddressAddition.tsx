@@ -1,6 +1,8 @@
-import { TextFieldElement, FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressAddition<
   TFieldValues extends FieldValues = FieldValues,
@@ -11,6 +13,7 @@ export function AddressAddition<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.addition}
       variant='outlined'

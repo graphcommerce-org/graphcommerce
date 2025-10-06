@@ -1,0 +1,4 @@
+fragment UseConfigurableOptions on ProductInterface {
+  __typename
+  url_key
+}

@@ -1,7 +1,7 @@
-import { ProductListParams } from '@graphcommerce/magento-product'
+import type { ProductListParams } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
-import { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
+import type { CategoryBreadcrumbFragment } from '../components/CategoryBreadcrumb'
+import type { CategoryChildrenFragment } from '../components/CategoryChildren/CategoryChildren.gql'
 
 export type UseCategoryTreeProps = {
   category?: CategoryChildrenFragment & CategoryBreadcrumbFragment

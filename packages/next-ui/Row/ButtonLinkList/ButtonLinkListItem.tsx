@@ -1,8 +1,9 @@
-import { ListItemButtonProps, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import type { ListItemButtonProps } from '@mui/material'
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React from 'react'
+import { iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { NextLink } from '../../Theme'
-import { iconChevronRight } from '../../icons'
 
 export type ButtonLinkListItemProps = {
   endIcon?: React.ReactNode

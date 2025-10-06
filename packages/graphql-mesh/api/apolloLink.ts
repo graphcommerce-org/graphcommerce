@@ -1,6 +1,10 @@
-import { ApolloLink, FetchResult, Observable, Operation, RequestHandler } from '@apollo/client/core'
-import { ExecuteMeshFn, MeshInstance, SubscribeMeshFn } from '@graphql-mesh/runtime'
-import { isAsyncIterable } from '@graphql-tools/utils'
+import type { FetchResult, Operation, RequestHandler } from '@apollo/client/core'
+import { ApolloLink, Observable } from '@apollo/client/core'
+import type { ExecuteMeshFn, MeshInstance, SubscribeMeshFn } from '@graphql-mesh/runtime'
+
+function isAsyncIterable<T>(value: any): value is AsyncIterable<T> {
+  return value?.[Symbol.asyncIterator] != null
+}
 
 const ROOT_VALUE = {}
 

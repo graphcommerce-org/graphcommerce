@@ -1,11 +1,13 @@
-import { SortEnum } from '@graphcommerce/graphql-mesh'
-import { IconSvg, iconArrowDown, iconArrowUp } from '@graphcommerce/next-ui'
+import type { SortEnum } from '@graphcommerce/graphql-mesh'
+import { iconArrowDown, iconArrowUp, IconSvg } from '@graphcommerce/next-ui'
 
-type Props = {
+export type ProductFiltersProSortDirectionArrowProps = {
   sortDirection: SortEnum | null
 }
 
-export function ProductFiltersProSortDirectionArrow({ sortDirection }: Props) {
+export function ProductFiltersProSortDirectionArrow({
+  sortDirection,
+}: ProductFiltersProSortDirectionArrowProps) {
   return (
     <IconSvg
       src={sortDirection === 'ASC' || sortDirection === null ? iconArrowUp : iconArrowDown}

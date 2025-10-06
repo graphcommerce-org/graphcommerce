@@ -7,10 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
+          cache: yarn
+          cache-dependency-path: package.json
       - run: yarn install
       - run: cd examples/magento-graphcms && yarn codegen && cd ../..
       - run: yarn test
@@ -29,13 +30,13 @@ jobs:
         with:
           path: old
           ref: ${{ github.base_ref }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          cache: yarn
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
-          cache-dependency-path: ./old/yarn.lock
+          cache: yarn
+          cache-dependency-path: new/package.json
       - run: cd new && yarn install && cd ..
       - run: cd new/examples/magento-graphcms && yarn build > ../../../new.txt && cd ../../..
       - run: cat new.txt

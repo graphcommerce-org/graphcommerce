@@ -1,0 +1,26 @@
+fragment AccountDashboardQueryFragment on Query {
+  customer {
+    ...AccountDashboardCustomer
+    firstname
+    lastname
+    orders(
+      pageSize: 1
+      currentPage: 1
+      sort: { sort_direction: DESC, sort_field: CREATED_AT }
+      scope: GLOBAL
+    ) {
+      total_count
+      page_info {
+        current_page
+        page_size
+        total_pages
+      }
+      items {
+        number
+        order_date
+        ...OrderStateLabel
+      }
+    }
+    ...AccountAddresses
+  }
+}

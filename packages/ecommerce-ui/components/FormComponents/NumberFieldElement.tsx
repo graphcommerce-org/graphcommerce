@@ -5,37 +5,49 @@ import {
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import {
-  Controller,
-  ControllerProps,
-  FieldValues,
-  useController,
-} from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import { IconButtonProps, SxProps, Theme, TextField, TextFieldProps, Fab } from '@mui/material'
+import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
+import { Fab, TextField, useForkRef } from '@mui/material'
+import React from 'react'
+import type { FieldElementProps } from './types'
 
-export type NumberFieldElementProps<T extends FieldValues = FieldValues> = Omit<
-  TextFieldProps,
-  'type' | 'defaultValue'
-> & {
+type AdditionalProps = {
   DownProps?: IconButtonProps
   UpProps?: IconButtonProps
   sx?: SxProps<Theme>
-} & Omit<ControllerProps<T>, 'render'>
+}
+
+export type NumberFieldElementProps<TFieldValues extends FieldValues = FieldValues> =
+  FieldElementProps<TFieldValues, Omit<TextFieldProps, 'type'>> & AdditionalProps
+
+type NumberFieldElementComponent = <TFieldValues extends FieldValues>(
+  props: NumberFieldElementProps<TFieldValues>,
+) => React.ReactNode
 
 type OwnerState = { size?: 'small' | 'medium' }
-const componentName = 'TextInputNumber' as const
+const componentName = 'TextInputNumber'
 const parts = ['quantity', 'quantityInput', 'button'] as const
 const { withState } = extendableComponent<OwnerState, typeof componentName, typeof parts>(
   componentName,
   parts,
 )
 
-export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElementProps<T>) {
+const roundStep = (value: number, step: number) => {
+  // Round to nearest step
+  const newStepValue = Math.round(value / step) * step
+  // Round to max 2 decimals
+  return Math.round(newStepValue * 100) / 100
+}
+
+/** @public */
+function NumberFieldElementBase(props: NumberFieldElementProps) {
   const {
     DownProps = {},
     UpProps = {},
     inputProps = {},
+    InputProps = {},
     sx = [],
     size = 'medium',
     control,
@@ -44,49 +56,55 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     required,
     defaultValue,
     variant = 'outlined',
-    disabled,
     shouldUnregister,
-    ...textFieldProps
+    ...rest
   } = props
 
   const classes = withState({ size })
+
+  let InputPropsFiltered = InputProps
+
+  if (variant === 'outlined' && 'disableUnderline' in InputPropsFiltered) {
+    const { disableUnderline, ...filteredInputProps } = InputPropsFiltered
+    InputPropsFiltered = filteredInputProps
+  }
 
   if (required && !rules.required) {
     rules.required = i18n._(/* i18n */ 'This field is required')
   }
 
   const {
-    field: { value, onChange, ref, ...field },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     control,
     rules,
     defaultValue,
-    disabled,
     shouldUnregister,
   })
 
   const valueAsNumber = value ? parseFloat(value) : 0
+  const step: number = inputProps.step ?? 1
 
   return (
     <TextField
-      {...textFieldProps}
-      {...field}
-      inputRef={ref}
+      {...rest}
+      onBlur={onBlur}
+      inputRef={useForkRef(ref, rest.inputRef)}
       value={value ?? ''}
       onChange={(ev) => {
         const newValue = (ev.target as HTMLInputElement).valueAsNumber
         onChange(Number.isNaN(newValue) ? '' : newValue)
-        textFieldProps.onChange?.(ev)
+        rest.onChange?.(ev)
       }}
       variant={variant}
       required={required}
       error={invalid}
-      helperText={error ? error.message : textFieldProps.helperText}
+      helperText={error ? error.message : rest.helperText}
       size={size}
       type='number'
-      className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
+      className={`${rest.className ?? ''} ${classes.quantity}`}
       sx={[
         {
           width: responsiveVal(90, 120),
@@ -113,7 +131,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
       ]}
       autoComplete='off'
       InputProps={{
-        ...textFieldProps.InputProps,
+        ...InputPropsFiltered,
         startAdornment: (
           <Fab
             aria-label={i18n._(/* i18n */ 'Decrease')}
@@ -124,7 +142,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
                 (inputProps.min === 0 && valueAsNumber <= inputProps.min)
               )
                 return
-              onChange(value - 1)
+              // Round to nearest step
+              onChange(roundStep(valueAsNumber - step, step))
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -145,7 +164,8 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
             size='smaller'
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              onChange(valueAsNumber + 1)
+              // Round to nearest step
+              onChange(roundStep(valueAsNumber + step, step))
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -176,3 +196,7 @@ export function NumberFieldElement<T extends FieldValues>(props: NumberFieldElem
     />
   )
 }
+
+export const NumberFieldElement = React.forwardRef<HTMLInputElement, NumberFieldElementProps>(
+  (props, ref) => NumberFieldElementBase({ ...props, ref }),
+) as NumberFieldElementComponent

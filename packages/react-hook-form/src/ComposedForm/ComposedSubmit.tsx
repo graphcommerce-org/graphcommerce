@@ -1,9 +1,8 @@
 import { ApolloError } from '@apollo/client'
 import React, { useContext, useEffect, useRef } from 'react'
-import { GlobalError } from 'react-hook-form'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
-import { ComposedSubmitRenderComponentProps } from './types'
+import type { ComposedSubmitRenderComponentProps } from './types'
 
 export type ComposedSubmitProps = {
   onSubmitSuccessful?: () => void
@@ -120,19 +119,10 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
   }
 
   const errors: ApolloError[] = []
-  let rootThrown: GlobalError | undefined
 
   formEntries.forEach(([, { form }]) => {
     if (form && isFormGqlOperation(form) && form.error) errors.push(form.error)
-    if (form && form.formState.errors.root?.thrown) rootThrown = form.formState.errors.root.thrown
   })
 
-  return (
-    <Render
-      buttonState={buttonState}
-      submit={submitAll}
-      error={mergeErrors(errors)}
-      rootThrown={rootThrown}
-    />
-  )
+  return <Render buttonState={buttonState} submit={submitAll} error={mergeErrors(errors)} />
 }

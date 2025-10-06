@@ -1,27 +1,25 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps, useCartLock } from '@graphcommerce/magento-cart-payment-method'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar, FormRow, FullPageMessage } from '@graphcommerce/next-ui'
-import {
-  FieldValues,
-  FormProvider,
-  Path,
-  UseControllerProps,
-  useController,
-  useFormCompose,
-} from '@graphcommerce/react-hook-form'
+import type { FieldValues, Path, UseControllerProps } from '@graphcommerce/react-hook-form'
+import { FormProvider, useController, useFormCompose } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
 import { Box, CircularProgress, TextField } from '@mui/material'
-import { HostedFields } from 'braintree-web'
-import { HostedFieldsEvent, HostedFieldsHostedFieldsFieldName } from 'braintree-web/hosted-fields'
+import type { HostedFields } from 'braintree-web'
+import type {
+  HostedFieldsEvent,
+  HostedFieldsHostedFieldsFieldName,
+} from 'braintree-web/hosted-fields'
 import React, { useEffect, useState } from 'react'
-import {
-  BraintreePaymentMethodOptionsDocument,
+import type {
   BraintreePaymentMethodOptionsMutation,
   BraintreePaymentMethodOptionsMutationVariables,
 } from '../../BraintreePaymentMethodOptions.gql'
+import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
 import { useBraintreeHostedFields } from '../../hooks/useBraintreeHostedFields'
 import { isBraintreeError } from '../../utils/isBraintreeError'
 
@@ -30,6 +28,7 @@ const Field = React.forwardRef<any, { ownerState: unknown; as: string }>((props,
   return <Box {...rest} ref={ref} sx={{ height: 54, width: '100%' }} />
 })
 
+/** @public */
 export function BraintreeField<T extends FieldValues>(
   props: {
     hostedFields: HostedFields | undefined
@@ -261,7 +260,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   const loading = !hostedFields
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <FormProvider {...form}>
       <form onSubmit={submit}>

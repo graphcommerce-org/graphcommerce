@@ -1,270 +1,172 @@
 # Change Log
 
-## 9.0.0-canary.80
+## 9.1.0-canary.55
 
-### Minor Changes
+## 9.1.0-canary.54
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename experimental_useV2 prop to deprecated_useV1 in useFromGql and enable it by default ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+## 9.1.0-canary.53
 
-### Patch Changes
+## 9.1.0-canary.52
 
-- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`97522bd`](https://github.com/graphcommerce-org/graphcommerce/commit/97522bdb2505e6b57de98ea02ca252341ac69443) - Solve issue where the CartEditForm would temporarily show an empty cart after saving. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 9.0.0-canary.79
-
-## 9.0.0-canary.78
-
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
-
-## 9.0.0-canary.68
-
-## 9.0.0-canary.67
-
-## 9.0.0-canary.66
-
-## 9.0.0-canary.65
-
-## 9.0.0-canary.64
-
-## 9.0.0-canary.63
-
-## 9.0.0-canary.62
-
-## 9.0.0-canary.61
-
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-### Minor Changes
-
-- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename configurable_customizable back to customizable_options ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
+## 9.1.0-canary.51
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order ([@paales](https://github.com/paales))
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`47daa19`](https://github.com/graphcommerce-org/graphcommerce/commit/47daa19a848acc85b0a9b84e6fda89da92128565) - Solve issue where if a product wasn't available in the cart anymore from the server the user wouldn't be able to remove the item from the cart. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.44
+## 9.1.0-canary.50
 
-## 8.1.0-canary.43
+## 9.1.0-canary.49
 
-## 8.1.0-canary.42
+## 9.1.0-canary.48
 
-## 8.1.0-canary.41
+## 9.1.0-canary.47
 
-## 8.1.0-canary.40
+## 9.1.0-canary.46
 
-## 8.1.0-canary.39
+## 9.1.0-canary.45
 
-## 8.1.0-canary.38
+## 9.1.0-canary.44
 
-## 8.1.0-canary.37
+## 9.1.0-canary.43
 
-## 8.1.0-canary.36
+## 9.1.0-canary.42
 
-## 8.1.0-canary.35
+## 9.1.0-canary.41
 
-## 8.1.0-canary.34
+## 9.1.0-canary.40
 
-## 8.1.0-canary.33
+## 9.1.0-canary.39
 
-## 8.1.0-canary.32
+## 9.1.0-canary.38
 
-## 8.1.0-canary.31
+## 9.1.0-canary.37
 
-## 8.1.0-canary.30
+## 9.1.0-canary.36
 
-## 8.1.0-canary.29
+## 9.1.0-canary.35
 
-## 8.1.0-canary.28
+## 9.1.0-canary.34
 
-## 8.1.0-canary.27
+## 9.1.0-canary.33
 
-## 8.1.0-canary.26
+## 9.1.0-canary.32
 
-## 8.1.0-canary.25
+## 9.1.0-canary.31
 
-## 8.1.0-canary.24
+## 9.1.0-canary.30
 
-## 8.1.0-canary.23
+## 9.1.0-canary.29
 
-## 8.1.0-canary.22
+## 9.1.0-canary.28
 
-## 8.1.0-canary.21
+## 9.1.0-canary.27
 
-## 8.1.0-canary.20
+## 9.1.0-canary.26
 
-### Minor Changes
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Added support for TIME and DATE for the customizable options. Added required stars. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`09945ab`](https://github.com/graphcommerce-org/graphcommerce/commit/09945abef32640d1000a1da3f376afe4776d697f) - Solve issue where the UpdateItemQuantity would send a wrong query to the backend. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a482084`](https://github.com/graphcommerce-org/graphcommerce/commit/a482084d34e5e38e19cf6afbad87cd6eda67e858) - Currency wasn't set properly while rendering custom options for cart items that had a different currency than the current store. ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`875fbca`](https://github.com/graphcommerce-org/graphcommerce/commit/875fbcab9a26db8a33eca7cc9a41847c24cd8381) - Solve issue where the CartItem href wouldn't be correct ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`dfd6359`](https://github.com/graphcommerce-org/graphcommerce/commit/dfd63593f31bd69d255a69dd7e9cb5471428c685) - Exported cartItemToCartItemInput so it can be extended with plugins ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.1
+
+### Patch Changes
+
+- [#2461](https://github.com/graphcommerce-org/graphcommerce/pull/2461) [`fbe78be`](https://github.com/graphcommerce-org/graphcommerce/commit/fbe78be4e6b46745384354b6da26151c9d269b18) - Solve issue where the cart item edit form wasn't aligned in the middle ([@paales](https://github.com/paales))
+
+## 9.0.0
+
+### Major Changes
 
 - [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`13524f9`](https://github.com/graphcommerce-org/graphcommerce/commit/13524f991a810c1679db49b3b8b4f04f90d0d6c1) - Added the ability to edit cart items with full support for all product types and custom options ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ### Patch Changes
 
-- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create useRemoveItemFromCart hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2322](https://github.com/graphcommerce-org/graphcommerce/pull/2322) [`4d08a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/4d08a2bd8c1919bd85b18e8e856775d18fb67e00) - Rename `configurable_customizable` back to `customizable_options`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.19
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`1d6512d`](https://github.com/graphcommerce-org/graphcommerce/commit/1d6512d4118cfb46602aa1f2432c3566fdb3261d) - Rename `experimental_useV2` prop to `deprecated_useV1` in `useFromGql` and enable it by default. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.18
+- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed `useMediaQuery` from the `<WishlistItemActionCard />` and `<CartItemActionCard />` and replaced it with a new responsive `size` prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 8.1.0-canary.17
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`c30ac07`](https://github.com/graphcommerce-org/graphcommerce/commit/c30ac07d1e9aee5fb3df483404d8a8ca853c93ce) - Make sure the edit cart item isn't shown for an order ([@paales](https://github.com/paales))
 
-### Minor Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2209](https://github.com/graphcommerce-org/graphcommerce/pull/2209) [`2872cab`](https://github.com/graphcommerce-org/graphcommerce/commit/2872cabdca9ee4f0378fd411c6a633f71bb92f1f) - Removed useMediaQuery from the wishlist and cart ItemActionCard and replaced it with a new responsive size prop. ([@Jessevdpoel](https://github.com/Jessevdpoel))
+- [#2341](https://github.com/graphcommerce-org/graphcommerce/pull/2341) [`97522bd`](https://github.com/graphcommerce-org/graphcommerce/commit/97522bdb2505e6b57de98ea02ca252341ac69443) - Solve issue where the `<CartEditForm />` would temporarily show an empty cart after saving. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
-
-## 8.0.4
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
-
-## 8.0.3
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-## 8.0.3-canary.1
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
+- [#2246](https://github.com/graphcommerce-org/graphcommerce/pull/2246) [`fc5c04d`](https://github.com/graphcommerce-org/graphcommerce/commit/fc5c04d4a2c0301be7d3cc983d9b31f6fcaf6fe6) - Create `useRemoveItemFromCart` hook to allow for reuse while keeping compatibility with plugins. ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
 ## 8.0.1
 
 ### Patch Changes
 
 - [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-### Patch Changes
-
-- [#2190](https://github.com/graphcommerce-org/graphcommerce/pull/2190) [`770a309`](https://github.com/graphcommerce-org/graphcommerce/commit/770a309cdf0586aaaed5defd345e451dee8d89c8) - Fixed a bug concerning customizable options. Customizable options of configurable products are shown again in the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
 
 ## 8.0.0
 
@@ -284,244 +186,6 @@
 
 - [#2079](https://github.com/graphcommerce-org/graphcommerce/pull/2079) [`98799e0`](https://github.com/graphcommerce-org/graphcommerce/commit/98799e0892d430f32b7599a351cf49a37cfc072c) - Updated styling `<SelectedCustomizableOptions />`, so items get more spacing and elements accessable via sx prop ([@mikekeehnen](https://github.com/mikekeehnen))
 
-## 8.0.0-canary.100
-
-## 8.0.0-canary.99
-
-### Patch Changes
-
-- [#2183](https://github.com/graphcommerce-org/graphcommerce/pull/2183) [`afc8810`](https://github.com/graphcommerce-org/graphcommerce/commit/afc8810d89f409f1ea2f6e82a01b3120ded208f9) - When updating the quantity of the product in the cart it could happen that the form would become out of sync with the actual data. ([@paales](https://github.com/paales))
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-### Patch Changes
-
-- [#2179](https://github.com/graphcommerce-org/graphcommerce/pull/2179) [`2e6afd9`](https://github.com/graphcommerce-org/graphcommerce/commit/2e6afd945a41f94facfc0379ca6416de8552341f) - The `<UpdateItemQuantity />` component now accepts `textInputProps` to be passed to the `<TextInputNumber/>`. ([@paales](https://github.com/paales))
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-### Minor Changes
-
-- [#2099](https://github.com/graphcommerce-org/graphcommerce/pull/2099) [`ff796b8`](https://github.com/graphcommerce-org/graphcommerce/commit/ff796b838fae6cb5e35b101500133b0235a8677d) - Created UI for all customizable options except for the file upload customizable option ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-## 7.1.0-canary.67
-
-### Minor Changes
-
-- [#2108](https://github.com/graphcommerce-org/graphcommerce/pull/2108) [`b9ab035`](https://github.com/graphcommerce-org/graphcommerce/commit/b9ab035893fd0fbbe747333973d0bb1948e5d846) - Add crosssells to cart ([@StefanAngenent](https://github.com/StefanAngenent))
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-### Minor Changes
-
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-### Patch Changes
-
-- [#2079](https://github.com/graphcommerce-org/graphcommerce/pull/2079) [`98799e089`](https://github.com/graphcommerce-org/graphcommerce/commit/98799e0892d430f32b7599a351cf49a37cfc072c) - Updated styling SelectedCustomizableOptions, so items get more spacing and elements accessable via sx prop ([@mikekeehnen](https://github.com/mikekeehnen))
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
-## 7.0.1
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
-
 ## 7.0.0
 
 ### Minor Changes
@@ -530,410 +194,17 @@
 
 - [#2029](https://github.com/graphcommerce-org/graphcommerce/pull/2029) [`4ac92840a`](https://github.com/graphcommerce-org/graphcommerce/commit/4ac92840a44c8697738f5437fa0b81ef8210e2a7) - Use price_including_tax field when available instead of dividing through the row_total_including_tax ([@Jessevdpoel](https://github.com/Jessevdpoel))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-### Minor Changes
-
-- [#2029](https://github.com/graphcommerce-org/graphcommerce/pull/2029) [`4ac92840a`](https://github.com/graphcommerce-org/graphcommerce/commit/4ac92840a44c8697738f5437fa0b81ef8210e2a7) - Support official price_including_tax instead of dividing through the row_total_including_tax ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-### Minor Changes
-
-- [#2003](https://github.com/graphcommerce-org/graphcommerce/pull/2003) [`609b384de`](https://github.com/graphcommerce-org/graphcommerce/commit/609b384de8cded7a9dd2f29bd516ded810ab970a) - Created a new version of the cart using ActionCards for each CartItem. Different types of CartItems can have different ActionCards. These ActionCards will be overridden with the use of Plugins. An example can be found in the @graphcommerce/magento-product-configurable package. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
-## 6.1.0
-
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-## 6.0.2-canary.12
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
 ## 6.0.1
 
 ### Patch Changes
 
 - [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`679ff5adf`](https://github.com/graphcommerce-org/graphcommerce/commit/679ff5adf5662666efdf3942845bd4c7fde578a2) - Cart item couldn't be deleted as it tried to delete the product instead of the item from the cart ([@paales](https://github.com/paales))
 
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
-
-### Patch Changes
-
-- [#1854](https://github.com/graphcommerce-org/graphcommerce/pull/1854) [`679ff5adf`](https://github.com/graphcommerce-org/graphcommerce/commit/679ff5adf5662666efdf3942845bd4c7fde578a2) - Cart item couldn't be deleted as it tried to delete the product instead of the item from the cart ([@paales](https://github.com/paales))
-
-## 6.0.0
-
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
 ## 5.1.0
 
 ### Minor Changes
 
 - [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
   - Fixes an issue where the cart can get into a broken state, if items contain errors.
   - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
   - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
@@ -941,52 +212,10 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
   - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-### Minor Changes
-
-- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
-  - Fixes an issue where the cart can get into a broken state, if items contain errors.
-  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
-  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-## 5.1.0-canary.4
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -998,69 +227,11 @@
 
 - [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-## 4.14.0-canary.7
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-### Patch Changes
-
-- [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`37e86cdc8`](https://github.com/graphcommerce-org/graphcommerce/commit/37e86cdc86ccca3db77d6c59b1e14c8112bb7893) - Remove usage of PropsWithChildren ([@paales](https://github.com/paales))
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
-## 4.13.1
-
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 3.1.21
 
@@ -1285,7 +456,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1645,7 +815,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1660,8 +830,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

@@ -1,4 +1,5 @@
-import { SxProps, Theme, ThemeProvider } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import React from 'react'
 
 type WithSx = { sx?: SxProps<Theme> }
@@ -34,6 +35,8 @@ type WithSx = { sx?: SxProps<Theme> }
  *   Layout: withTheme(LayoutFull, darkTheme),
  * } as PageOptions
  * ```
+ *
+ * @public
  */
 export function withTheme<T>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

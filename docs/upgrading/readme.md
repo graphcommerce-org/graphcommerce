@@ -65,9 +65,7 @@ Compare your local /package.json with the example's
 `/upgrade/examples/magento-graphcms/package.json` you just downloaded and:
 
 1. Replace your local `dependencies` with the example's `dependencies`. Keep any
-   additional installed local dependencies and
-   [remove PSP's](./getting-started/create.md#remove-unused-psps) your backend
-   doesn't support.
+   additional installed local dependencies and.
 2. Replace your local `devDependencies` with the example's `devDependencies`
 3. Replace your local `resolutions` with the example's `resolutions`
 

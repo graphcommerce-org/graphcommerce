@@ -1,13 +1,14 @@
-import { FieldPath, FieldValues, useWatch } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { useWatch } from '@graphcommerce/ecommerce-ui'
+import type { AddressFieldsProps } from '@graphcommerce/magento-customer'
 import {
-  useAddressFieldsForm,
   AddressAddition,
   AddressCity,
   AddressCountryRegion,
-  AddressFieldsProps,
   AddressHousenumber,
   AddressPostcode,
   AddressStreet,
+  useAddressFieldsForm,
 } from '@graphcommerce/magento-customer'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { FormRow } from '@graphcommerce/next-ui'
@@ -22,7 +23,7 @@ export function AddressFields<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >(props: PluginProps<AddressFieldsProps<TFieldValues, TName>>) {
-  const { Prev } = props
+  const { Prev, ...rest } = props
   const { control, name } = useAddressFieldsForm(props)
   const country = useWatch({ control, name: name.countryCode })
 
@@ -30,20 +31,20 @@ export function AddressFields<
     <>
       {country === 'NL' ? (
         <>
-          <AddressCountryRegion {...props} />
+          <AddressCountryRegion {...rest} />
           <FormRow>
-            <AddressPostcode {...props} />
-            <AddressHousenumber {...props} />
-            <AddressAddition {...props} />
+            <AddressPostcode {...rest} />
+            <AddressHousenumber {...rest} />
+            <AddressAddition {...rest} />
           </FormRow>
           <FormRow>
-            <AddressStreet {...props} />
-            <AddressCity {...props} />
+            <AddressStreet {...rest} />
+            <AddressCity {...rest} />
           </FormRow>
-          <PostcodeNLAutoFill {...props} />
+          <PostcodeNLAutoFill {...rest} />
         </>
       ) : (
-        <Prev countryFirst {...props} />
+        <Prev countryFirst {...rest} />
       )}
     </>
   )

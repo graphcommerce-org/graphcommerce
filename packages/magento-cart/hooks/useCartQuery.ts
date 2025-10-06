@@ -1,5 +1,8 @@
-import { useQuery, TypedDocumentNode, QueryHookOptions } from '@graphcommerce/graphql'
+import type { QueryHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
+import { ApolloError, useQuery } from '@graphcommerce/graphql'
+import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
+import { useCartShouldLoginToContinue } from './useCartPermissions'
 import { useCurrentCartId } from './useCurrentCartId'
 
 /**
@@ -14,20 +17,17 @@ import { useCurrentCartId } from './useCurrentCartId'
  */
 export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
   document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> & {
-    /**
-     * @deprecated Not used anymore, when the cart_id is in the URL, it will always be used.
-     */
-    allowUrl?: boolean
-  } = {},
+  options: QueryHookOptions<Q, Omit<V, 'cartId'>> = {},
 ) {
-  const { allowUrl, ...queryOptions } = options
+  const { ...queryOptions } = options
+
   const router = useRouter()
   const { currentCartId, locked } = useCurrentCartId()
 
   const urlCartId = router.query.cart_id
   const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
+  const shouldLoginToContinue = useCartShouldLoginToContinue()
 
   if (usingUrl || locked) queryOptions.fetchPolicy = 'cache-only'
 
@@ -35,7 +35,24 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
     queryOptions.returnPartialData = true
 
   queryOptions.variables = { cartId, ...options?.variables } as V
-  queryOptions.skip = queryOptions?.skip || !cartId
 
-  return useQuery(document, queryOptions as QueryHookOptions<Q, V>)
+  const query = useQuery(document, {
+    ...(queryOptions as QueryHookOptions<Q, V>),
+    skip: queryOptions.skip || !cartId || shouldLoginToContinue,
+  })
+
+  if (shouldLoginToContinue && !queryOptions?.skip) {
+    return {
+      ...query,
+      error: new ApolloError({
+        graphQLErrors: [
+          new GraphQLError('Action can not be performed by the current user', {
+            extensions: { category: 'graphql-authorization' },
+          }),
+        ],
+      }),
+    }
+  }
+
+  return query
 }

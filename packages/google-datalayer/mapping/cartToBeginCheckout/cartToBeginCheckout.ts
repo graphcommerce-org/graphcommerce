@@ -1,5 +1,6 @@
-import { cartToViewCart, ViewCart } from '../cartToViewCart/cartToViewCart'
-import { Cart_BeginCheckoutFragment } from './Cart_BeginCheckout.gql'
+import type { ViewCart } from '../cartToViewCart/cartToViewCart'
+import { cartToViewCart } from '../cartToViewCart/cartToViewCart'
+import type { Cart_BeginCheckoutFragment } from './Cart_BeginCheckout.gql'
 
 export type BeginCheckout = ViewCart & {
   coupon?: string

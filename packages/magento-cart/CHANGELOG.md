@@ -1,238 +1,207 @@
 # Change Log
 
-## 9.0.0-canary.80
-
-## 9.0.0-canary.79
-
-## 9.0.0-canary.78
-
-## 9.0.0-canary.77
-
-## 9.0.0-canary.76
-
-## 9.0.0-canary.75
-
-## 9.0.0-canary.74
-
-## 9.0.0-canary.73
-
-## 9.0.0-canary.72
-
-## 9.0.0-canary.71
-
-## 9.0.0-canary.70
-
-## 9.0.0-canary.69
+## 9.1.0-canary.55
 
 ### Patch Changes
 
-- [#2338](https://github.com/graphcommerce-org/graphcommerce/pull/2338) [`6984f8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6984f8ce94433963d7bab0e1949c1737767e17ba) - Pass sx props to EmptyCart component ([@JoshuaS98](https://github.com/JoshuaS98))
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`cf44b1f`](https://github.com/graphcommerce-org/graphcommerce/commit/cf44b1f723b7f2073a21abd6821768427cb95315) - Added hideTotals to MultiCartStartCheckout ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.68
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - When running a cart mutation and the cartId is already passed to the form we use that value instead of retrieving the current cart again. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.67
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`415f9fb`](https://github.com/graphcommerce-org/graphcommerce/commit/415f9fb50454fb20cb533235969dd9ab4ffc134b) - Allow setting the cartId in the form for useFormGqlMutationCart by setting the cartId in the form AND allow setting the cartId for a whole context by wrapping with CartIdProvider ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.66
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`4e3f3f2`](https://github.com/graphcommerce-org/graphcommerce/commit/4e3f3f2df58638ba8ffc68ee9f274cdd6c45d6d4) - Allow setting the redirect value in the AddProductsToCartForm as a form value. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.65
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - Solve issue where if the onBeforeSubmit would return false, it would still error if submitted while the cart is locked. ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.64
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`1a06135`](https://github.com/graphcommerce-org/graphcommerce/commit/1a061357f4ccb430dd13194f755815474e140520) - Allow awaitable async requests for onStart on checkout button ([@paales](https://github.com/paales))
 
-## 9.0.0-canary.63
+## 9.1.0-canary.54
 
-## 9.0.0-canary.62
+## 9.1.0-canary.53
 
-## 9.0.0-canary.61
+## 9.1.0-canary.52
 
-## 9.0.0-canary.60
-
-## 9.0.0-canary.59
-
-## 9.0.0-canary.58
-
-## 9.0.0-canary.57
-
-## 9.0.0-canary.56
-
-## 9.0.0-canary.55
-
-## 9.0.0-canary.54
-
-## 8.1.0-canary.53
-
-## 8.1.0-canary.52
-
-## 8.1.0-canary.51
-
-## 8.1.0-canary.50
-
-## 8.1.0-canary.49
-
-## 8.1.0-canary.48
-
-## 8.1.0-canary.47
-
-## 8.1.0-canary.46
-
-## 8.1.0-canary.45
+## 9.1.0-canary.51
 
 ### Patch Changes
 
-- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`2faebf1`](https://github.com/graphcommerce-org/graphcommerce/commit/2faebf16fbda95390872ac0debe979fa570ed904) - When signing in make sure the cart isn't merged if the login is unsuccesful ([@paales](https://github.com/paales))
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`1f37f05`](https://github.com/graphcommerce-org/graphcommerce/commit/1f37f05200e3015bf36d450bffff40c5d551ec54) - Forwarded ref to AddProductsToCartButton ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.44
+## 9.1.0-canary.50
 
-## 8.1.0-canary.43
+## 9.1.0-canary.49
 
-## 8.1.0-canary.42
+## 9.1.0-canary.48
 
-## 8.1.0-canary.41
+## 9.1.0-canary.47
 
-## 8.1.0-canary.40
+## 9.1.0-canary.46
 
-## 8.1.0-canary.39
+## 9.1.0-canary.45
 
-## 8.1.0-canary.38
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+### Patch Changes
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`6847259`](https://github.com/graphcommerce-org/graphcommerce/commit/6847259715b0cebcc3f7415ed06cc38814663811) - Solve typescript issue were product types were added incorrectly. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Removed deprecated fields from AddProductsToCartForm ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b26f573`](https://github.com/graphcommerce-org/graphcommerce/commit/b26f57307ab1d08f628183dd86e487ec9aa1e5cf) - Moved all functionality from the @graphcommerce/magento-cart-billing-address package to the @graphcommerce/magento-cart package. All occurences of @graphcommerce/magento-cart-billing-address should be removed for your codebase. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`4cde990`](https://github.com/graphcommerce-org/graphcommerce/commit/4cde990dbeecdba8a00d0e34a1095fb14d8a0ad6) - When the cart totals are updated via a mutation, make sure to also fetch the id when the query is used so that automatically updates. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`7ae2909`](https://github.com/graphcommerce-org/graphcommerce/commit/7ae2909d57e58f00f18acb198028c601ccd857c5) - CartTotals now accepts a readOnly prop to handle plugins showing information based on that prop ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`b6f76b6`](https://github.com/graphcommerce-org/graphcommerce/commit/b6f76b61f235d3336d8d296f1bed61c9f5daf325) - Solve issue where available_payment_methods would give an apollo client error that it couldn’t be properly merged ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.14
+
+## 9.0.4-canary.13
+
+## 9.0.4-canary.12
+
+## 9.0.4-canary.11
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`6533728`](https://github.com/graphcommerce-org/graphcommerce/commit/65337280c6f4291cf4354e6ed9659f03388ca8d4) - When ordering a virtual product the checkout would still reference a Track & Trace ([@paales](https://github.com/paales))
+
+## 9.0.4-canary.10
+
+## 9.0.4-canary.9
+
+## 9.0.4-canary.8
+
+## 9.0.4-canary.7
+
+### Patch Changes
+
+- [#2479](https://github.com/graphcommerce-org/graphcommerce/pull/2479) [`ae5e72c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae5e72ccf1c8218ace3cca1c4e52ec8d46821a27) - Solve issue where the total of the cart was zero due to discount or store credit the user couldn't proceed to the checkout. We now check for items and errors instead of the total. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.0.4-canary.6
+
+## 9.0.4-canary.5
+
+## 9.0.4-canary.4
+
+## 9.0.4-canary.3
+
+## 9.0.4-canary.2
+
+## 9.0.4-canary.1
+
+## 9.0.4-canary.0
+
+## 9.0.0
+
+### Major Changes
+
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Added `<CompanyFields/>` with `<CompanyName />` and `<CompanyVAT />` to shipping and billing forms. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+
+  - Added new `permissions` configuration for GraphCommerce
+  - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
+  - Added `permissions.customerAccount`: `ENABLED` | `DISABLE_REGISTRATION` | `DISABLE` ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - INP improvements: Moved all usages of `useFormPersist` to the `<FormPersist/>` component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
 
 ### Minor Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Add company and vat fields to shipping and billing forms ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new `<EmailElement/>` component to make re-use easier. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 ### Patch Changes
 
-- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving <FromPersist/> below the form components ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2303](https://github.com/graphcommerce-org/graphcommerce/pull/2303) [`f407e96`](https://github.com/graphcommerce-org/graphcommerce/commit/f407e961868683a257c8f7fe8ceb588fb825db9b) - Get `shippingMethodPrices` from selected shipping method if supported on the magento version ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-## 8.1.0-canary.37
+- [#2216](https://github.com/graphcommerce-org/graphcommerce/pull/2216) [`2faebf1`](https://github.com/graphcommerce-org/graphcommerce/commit/2faebf16fbda95390872ac0debe979fa570ed904) - When signing in make sure the cart isn't merged if the login is unsuccesful. ([@paales](https://github.com/paales))
 
-## 8.1.0-canary.36
+- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use `muiRegister`, which improves INP scores. ([@FrankHarland](https://github.com/FrankHarland))
 
-## 8.1.0-canary.35
+- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but a typescript `Partial` was too general. ([@paales](https://github.com/paales))
 
-### Patch Changes
+- [#2266](https://github.com/graphcommerce-org/graphcommerce/pull/2266) [`0d1fe7a`](https://github.com/graphcommerce-org/graphcommerce/commit/0d1fe7a26ed2d18510c8767795294654c478fb88) - Enable the use of one or more anchor links within the `checkbox_text` field and customize their paths. ([@carlocarels90](https://github.com/carlocarels90))
 
-- [#2301](https://github.com/graphcommerce-org/graphcommerce/pull/2301) [`13d0649`](https://github.com/graphcommerce-org/graphcommerce/commit/13d06498d121f93b52c25930e50aa3b0bd12a818) - Created a new EmailElement component to make re-use easier ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2338](https://github.com/graphcommerce-org/graphcommerce/pull/2338) [`6984f8c`](https://github.com/graphcommerce-org/graphcommerce/commit/6984f8ce94433963d7bab0e1949c1737767e17ba) - Pass `sx` props to `<EmptyCart/>` component. ([@JoshuaS98](https://github.com/JoshuaS98))
 
-## 8.1.0-canary.34
+- [#2305](https://github.com/graphcommerce-org/graphcommerce/pull/2305) [`77e8297`](https://github.com/graphcommerce-org/graphcommerce/commit/77e82976816994336c616208a651cb18ce9ea270) - Fix bug with persist not applying saved changes by moving `<FromPersist/>` below the form components. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
-### Minor Changes
+- [#2438](https://github.com/graphcommerce-org/graphcommerce/pull/2438) [`cb8d2f0`](https://github.com/graphcommerce-org/graphcommerce/commit/cb8d2f0059d64242260e30ce34655868f204ef4c) - Made all component prop types exported ([@bramvanderholst](https://github.com/bramvanderholst))
 
-- [#2303](https://github.com/graphcommerce-org/graphcommerce/pull/2303) [`f407e96`](https://github.com/graphcommerce-org/graphcommerce/commit/f407e961868683a257c8f7fe8ceb588fb825db9b) - Get shippingMethodPrices from selected shipping method if supported on the magento version ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+- [#2354](https://github.com/graphcommerce-org/graphcommerce/pull/2354) [`688b4d7`](https://github.com/graphcommerce-org/graphcommerce/commit/688b4d73cdb4baf38d91f7d98d81964b8fc17e85) - Add missing gutter to /checkout/item page ([@bramvanderholst](https://github.com/bramvanderholst))
 
-## 8.1.0-canary.33
-
-## 8.1.0-canary.32
-
-## 8.1.0-canary.31
-
-## 8.1.0-canary.30
-
-## 8.1.0-canary.29
-
-## 8.1.0-canary.28
-
-## 8.1.0-canary.27
-
-## 8.1.0-canary.26
-
-## 8.1.0-canary.25
-
-### Patch Changes
-
-- [#2266](https://github.com/graphcommerce-org/graphcommerce/pull/2266) [`0d1fe7a`](https://github.com/graphcommerce-org/graphcommerce/commit/0d1fe7a26ed2d18510c8767795294654c478fb88) - Enable the use of one or more anchor links within the 'checkbox_text' field and customize their paths. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 8.1.0-canary.24
-
-## 8.1.0-canary.23
-
-## 8.1.0-canary.22
-
-## 8.1.0-canary.21
-
-## 8.1.0-canary.20
-
-## 8.1.0-canary.19
-
-## 8.1.0-canary.18
-
-## 8.1.0-canary.17
-
-## 8.1.0-canary.16
-
-## 8.1.0-canary.15
-
-## 8.1.0-canary.14
-
-## 8.1.0-canary.13
-
-## 8.1.0-canary.12
-
-## 8.1.0-canary.11
-
-## 8.1.0-canary.10
-
-## 8.1.0-canary.9
-
-## 8.1.0-canary.8
-
-### Patch Changes
-
-- [#2247](https://github.com/graphcommerce-org/graphcommerce/pull/2247) [`a56a7c6`](https://github.com/graphcommerce-org/graphcommerce/commit/a56a7c67cf27dfb91bf763a873beeec562ab3156) - Solve an issue where the cart would be sometimes undefined, but Partial was too eleborate ([@paales](https://github.com/paales))
-
-## 8.1.0-canary.7
-
-## 8.1.0-canary.6
-
-## 8.1.0-canary.5
-
-## 8.0.6-canary.4
-
-## 8.0.6-canary.3
-
-## 8.0.6-canary.2
-
-### Patch Changes
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`0767bc4`](https://github.com/graphcommerce-org/graphcommerce/commit/0767bc40f7b596209f24ca4e745ff0441f3275c9) - Upgrade input components to no longer use muiRegister, which improves INP scores ([@FrankHarland](https://github.com/FrankHarland))
-
-- [#2234](https://github.com/graphcommerce-org/graphcommerce/pull/2234) [`530076e`](https://github.com/graphcommerce-org/graphcommerce/commit/530076e3664703cb8b577b7fcf1998a420819f60) - Moved all usages of useFormPersist to the <FormPersist/> component to prevent rerenders. ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.6-canary.1
-
-## 8.0.6-canary.0
-
-## 8.0.5
-
-## 8.0.5-canary.10
-
-## 8.0.5-canary.9
-
-## 8.0.5-canary.8
-
-## 8.0.5-canary.7
-
-## 8.0.5-canary.6
-
-## 8.0.5-canary.5
-
-## 8.0.5-canary.4
-
-## 8.0.5-canary.3
-
-## 8.0.5-canary.2
-
-## 8.0.5-canary.1
-
-## 8.0.5-canary.0
+- [#2421](https://github.com/graphcommerce-org/graphcommerce/pull/2421) [`8aaca29`](https://github.com/graphcommerce-org/graphcommerce/commit/8aaca29147da4d4a508fb1a00c088d30e2a304cf) - Forward BadgeProps to WishlistFab, CartFab and CustomerFab ([@paales](https://github.com/paales))
 
 ## 8.0.4
-
-### Patch Changes
-
-- [#2221](https://github.com/graphcommerce-org/graphcommerce/pull/2221) [`0ba1fdc`](https://github.com/graphcommerce-org/graphcommerce/commit/0ba1fdc9a2d005f47cd1725fe723e77da4cc5b9d) - After a user just logged in the checkout, the useFormGqlMutationCart would still run even though the cart was locked. ([@paales](https://github.com/paales))
-
-## 8.0.4-canary.1
-
-## 8.0.4-canary.0
 
 ### Patch Changes
 
@@ -247,52 +216,6 @@
 - [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
 
 - [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.6
-
-## 8.0.3-canary.5
-
-## 8.0.3-canary.4
-
-## 8.0.3-canary.3
-
-## 8.0.3-canary.2
-
-### Patch Changes
-
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`d67c89d`](https://github.com/graphcommerce-org/graphcommerce/commit/d67c89d464a60f0e2618dab670b63a39f6291341) - Deprecate the allowUrl option for useCartQuery, it was already enabled by default and should never be set to false. ([@paales](https://github.com/paales))
-
-- [#2205](https://github.com/graphcommerce-org/graphcommerce/pull/2205) [`3fbf3da`](https://github.com/graphcommerce-org/graphcommerce/commit/3fbf3da8a67f2fbaa7fa974a37cbbf34613844e4) - Solve an issue where the user would be presented with the Session expired dialog when the user would be logging in during the checkout process. ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.1
-
-### Patch Changes
-
-- [#2207](https://github.com/graphcommerce-org/graphcommerce/pull/2207) [`9876b13`](https://github.com/graphcommerce-org/graphcommerce/commit/9876b139b2c12c860a16af97eddea761d1059110) - Remove redundant query on the success page for logged in customers ([@paales](https://github.com/paales))
-
-## 8.0.3-canary.0
-
-## 8.0.2
-
-## 8.0.2-canary.3
-
-## 8.0.2-canary.2
-
-## 8.0.2-canary.1
-
-## 8.0.2-canary.0
-
-## 8.0.1
-
-## 8.0.1-canary.4
-
-## 8.0.1-canary.3
-
-## 8.0.1-canary.2
-
-## 8.0.1-canary.1
-
-## 8.0.1-canary.0
 
 ## 8.0.0
 
@@ -316,271 +239,15 @@
 
 - [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added a new 'Session expired' dialog that is shown when a GraphQL query or mutation returns a `graphql-authorization` error. This error is returned when the user's session has expired. The dialog allows the user to sign in again and then the query or mutation is re-executed. ([@paales](https://github.com/paales))
 
-## 8.0.0-canary.100
-
-### Patch Changes
-
-- [#2184](https://github.com/graphcommerce-org/graphcommerce/pull/2184) [`28b7e6e`](https://github.com/graphcommerce-org/graphcommerce/commit/28b7e6ef3e3f698751c6e82431fd14fb35463dd6) - When a customer would return from a payment gateway and it would erroneously query the cart GraphCommerce would immediately create a new empty cart while it shouldn't. ([@paales](https://github.com/paales))
-
-## 8.0.0-canary.99
-
-## 8.0.0-canary.98
-
-## 8.0.0-canary.97
-
-## 8.0.0-canary.96
-
-## 8.0.0-canary.95
-
-## 8.0.0-canary.94
-
-## 8.0.0-canary.93
-
-## 8.0.0-canary.92
-
-## 8.0.0-canary.91
-
-## 8.0.0-canary.90
-
-### Patch Changes
-
-- [#2170](https://github.com/graphcommerce-org/graphcommerce/pull/2170) [`f3e906f`](https://github.com/graphcommerce-org/graphcommerce/commit/f3e906f7e374ce22d36af29c0f3c8153e18300e6) - fix(GCOM-1317): fix bug where inactive cached cart could be set as currentCartId ([@FrankHarland](https://github.com/FrankHarland))
-
-## 8.0.0-canary.89
-
-## 8.0.0-canary.88
-
-## 8.0.0-canary.87
-
-## 8.0.0-canary.86
-
-## 8.0.0-canary.85
-
-## 8.0.0-canary.84
-
-## 8.0.0-canary.83
-
-## 8.0.0-canary.82
-
-## 8.0.0-canary.81
-
-## 8.0.0-canary.80
-
-## 8.0.0-canary.79
-
-## 8.0.0-canary.78
-
-## 8.0.0-canary.77
-
-## 8.0.0-canary.76
-
-## 8.0.0-canary.75
-
-## 8.0.0-canary.74
-
-## 8.0.0-canary.73
-
-## 8.0.0-canary.72
-
-## 8.0.0-canary.71
-
-## 8.0.0-canary.70
-
-## 8.0.0-canary.69
-
-## 7.1.0-canary.68
-
-### Patch Changes
-
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`6d7ed0a`](https://github.com/graphcommerce-org/graphcommerce/commit/6d7ed0a2a3d9b3c6193f86bce6889ff24adf3e83) - When signing in the cartFab would not always properly reflect the current items in the cart ([@paales](https://github.com/paales))
-
-- [#1999](https://github.com/graphcommerce-org/graphcommerce/pull/1999) [`ab834fb`](https://github.com/graphcommerce-org/graphcommerce/commit/ab834fbfe057fb507c371a6d22af282cc1b195d4) - Added user session reevaluation after unathenticated call. Queries will be paused untill user has signed in again ([@paales](https://github.com/paales))
-
-## 7.1.0-canary.67
-
-## 7.1.0-canary.66
-
-## 7.1.0-canary.65
-
-## 7.1.0-canary.64
-
-## 7.1.0-canary.63
-
-## 7.1.0-canary.62
-
-## 7.1.0-canary.61
-
-## 7.1.0-canary.60
-
-## 7.1.0-canary.59
-
-## 7.1.0-canary.58
-
-## 7.1.0-canary.57
-
-## 7.1.0-canary.56
-
-## 7.1.0-canary.55
-
-## 7.1.0-canary.54
-
-## 7.1.0-canary.53
-
-## 7.1.0-canary.52
-
-## 7.1.0-canary.51
-
-## 7.1.0-canary.50
-
-## 7.1.0-canary.49
-
-## 7.1.0-canary.48
-
-## 7.1.0-canary.47
-
-## 7.1.0-canary.46
-
-## 7.1.0-canary.45
-
-## 7.1.0-canary.38
-
-## 7.1.0-canary.37
-
-## 7.1.0-canary.36
-
-### Patch Changes
-
-- [#2107](https://github.com/graphcommerce-org/graphcommerce/pull/2107) [`2f5150456`](https://github.com/graphcommerce-org/graphcommerce/commit/2f5150456eabcce410ad8a0f1cbebeedabb6564c) - feat(GCOM-1237): remember email adress when going from checkout to si… ([@FrankHarland](https://github.com/FrankHarland))
-
-## 7.1.0-canary.35
-
-## 7.1.0-canary.34
-
-## 7.1.0-canary.33
-
-## 7.1.0-canary.32
-
-## 7.1.0-canary.31
-
-## 7.1.0-canary.30
-
-## 7.1.0-canary.29
-
-## 7.1.0-canary.28
-
-### Minor Changes
-
-- [#2018](https://github.com/graphcommerce-org/graphcommerce/pull/2018) [`750aa6a72`](https://github.com/graphcommerce-org/graphcommerce/commit/750aa6a72710869d54244467253212e551d335e0) - Changed the layout of the succes page. We are using ActionCards right now to match the design of the cart. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.27
-
-## 7.1.0-canary.26
-
-### Patch Changes
-
-- [#2089](https://github.com/graphcommerce-org/graphcommerce/pull/2089) [`4b6bbf065`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6bbf06572c71e266cc2407e4533833712898e2) - The CartFab wouldn't reflect that there are items in the cart when a customer refreshes the page after adding a product to the cart, without viewing the cart. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 7.1.0-canary.25
-
-## 7.1.0-canary.24
-
-## 7.1.0-canary.23
-
-## 7.1.0-canary.22
-
-## 7.1.0-canary.21
-
-## 7.1.0-canary.20
-
-## 7.1.0-canary.19
-
-## 7.1.0-canary.18
-
-## 7.1.0-canary.17
-
-### Minor Changes
-
-- [#2075](https://github.com/graphcommerce-org/graphcommerce/pull/2075) [`34dee456e`](https://github.com/graphcommerce-org/graphcommerce/commit/34dee456ef686174b62e604911a0ba84cbd3d002) - Added ordernumber to succes page. ([@Jessevdpoel](https://github.com/Jessevdpoel))
-
-## 7.1.0-canary.16
-
-## 7.1.0-canary.15
-
-## 7.1.0-canary.14
-
-## 7.1.0-canary.13
-
-## 7.1.0-canary.12
-
-## 7.1.0-canary.11
-
-## 7.1.0-canary.10
-
-## 7.1.0-canary.9
-
-## 7.1.0-canary.8
-
-## 7.0.2-canary.7
-
-## 7.0.2-canary.6
-
-## 7.0.2-canary.5
-
 ## 7.0.1
 
 ### Patch Changes
 
 - [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
-
   1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
   2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
   3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
   4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.15
-
-## 7.0.1-canary.14
-
-## 7.0.1-canary.13
-
-## 7.0.1-canary.12
-
-## 7.0.1-canary.11
-
-### Patch Changes
-
-- [#2060](https://github.com/graphcommerce-org/graphcommerce/pull/2060) [`690658230`](https://github.com/graphcommerce-org/graphcommerce/commit/690658230ce4c380ce54074f1611a20986892280) - Call assignCurrentCartId after the merge of the guest cart into the customer cart.
-
-  1. When a shopper is logging in on the checkout page the customers cart_id is assigned before the carts are merged.
-  2. The assignment of the customer’s cart id retriggers the ShippingPage query, running it before the UseMergeCustomerCart mutation.
-  3. The UseMergeCustomerCart doesn’t actually loads any data from the cart it’s self, so the changes to the cart aren’t reflected in the ShippingPage query.
-  4. By first merging the cart and then running assignCurrentCartId the ShippingPage query is run after the UseMergeCustomerCart and therefor having the correct information. ([@paales](https://github.com/paales))
-
-## 7.0.1-canary.10
-
-## 7.0.1-canary.9
-
-## 7.0.1-canary.8
-
-## 7.0.1-canary.7
-
-## 7.0.1-canary.6
-
-### Patch Changes
-
-- [#2055](https://github.com/graphcommerce-org/graphcommerce/pull/2055) [`111ec6b0e`](https://github.com/graphcommerce-org/graphcommerce/commit/111ec6b0edfeb2c7090f6f82fe1a23c196fae316) - Refetch cart data after useMergeCustomerCart to ensure cart data availability. ([@carlocarels90](https://github.com/carlocarels90))
-
-## 7.0.1-canary.5
-
-## 7.0.1-canary.4
-
-## 7.0.1-canary.3
-
-## 7.0.1-canary.2
-
-## 7.0.1-canary.1
-
-## 7.0.1-canary.0
 
 ## 7.0.0
 
@@ -602,232 +269,6 @@
 
 - [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`5d115a11a`](https://github.com/graphcommerce-org/graphcommerce/commit/5d115a11a417f35c3315879c785d24ae32e64663) - When a customer tries to add a product to an invalid customer cart, discard the cart and create a new cart ([@paales](https://github.com/paales))
 
-## 6.2.0-canary.98
-
-## 6.2.0-canary.97
-
-## 6.2.0-canary.96
-
-## 6.2.0-canary.95
-
-## 6.2.0-canary.94
-
-## 6.2.0-canary.93
-
-## 6.2.0-canary.92
-
-## 6.2.0-canary.91
-
-## 6.2.0-canary.90
-
-## 6.2.0-canary.89
-
-### Patch Changes
-
-- [#2031](https://github.com/graphcommerce-org/graphcommerce/pull/2031) [`4d8fc9e99`](https://github.com/graphcommerce-org/graphcommerce/commit/4d8fc9e998fc9361282833316ec9564da0644ed6) - Eslint fixes and suppress accepted warnings ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.88
-
-## 6.2.0-canary.87
-
-## 6.2.0-canary.86
-
-## 6.2.0-canary.85
-
-## 6.2.0-canary.84
-
-## 6.2.0-canary.83
-
-## 6.2.0-canary.82
-
-## 6.2.0-canary.81
-
-## 6.2.0-canary.80
-
-## 6.2.0-canary.79
-
-### Patch Changes
-
-- [#2013](https://github.com/graphcommerce-org/graphcommerce/pull/2013) [`c57bdf8a4`](https://github.com/graphcommerce-org/graphcommerce/commit/c57bdf8a4ce936c3eedc4dfada3a464a113ac68a) - Updated @mui and framer-motion packages to latest versions ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.78
-
-## 6.2.0-canary.77
-
-## 6.2.0-canary.76
-
-## 6.2.0-canary.75
-
-## 6.2.0-canary.74
-
-## 6.2.0-canary.73
-
-## 6.2.0-canary.72
-
-## 6.2.0-canary.71
-
-## 6.2.0-canary.70
-
-## 6.2.0-canary.69
-
-## 6.2.0-canary.68
-
-## 6.2.0-canary.67
-
-## 6.2.0-canary.66
-
-## 6.2.0-canary.65
-
-## 6.2.0-canary.64
-
-## 6.2.0-canary.63
-
-## 6.2.0-canary.62
-
-## 6.2.0-canary.61
-
-## 6.2.0-canary.60
-
-## 6.2.0-canary.59
-
-## 6.2.0-canary.58
-
-## 6.2.0-canary.57
-
-## 6.2.0-canary.56
-
-## 6.2.0-canary.55
-
-## 6.2.0-canary.54
-
-## 6.2.0-canary.53
-
-## 6.2.0-canary.52
-
-## 6.2.0-canary.51
-
-## 6.2.0-canary.50
-
-## 6.2.0-canary.49
-
-## 6.2.0-canary.48
-
-## 6.2.0-canary.47
-
-## 6.2.0-canary.46
-
-## 6.2.0-canary.45
-
-### Minor Changes
-
-- [#1962](https://github.com/graphcommerce-org/graphcommerce/pull/1962) [`518b6ca24`](https://github.com/graphcommerce-org/graphcommerce/commit/518b6ca248fc94624dc06eb02de5b3eac0fc9483) - Created a new `<ValidatedPasswordElement/>` which validates according to Magento's validation groups and implement on all locations. Move remaining password fields to `<PasswordElement />` ([@carlocarels90](https://github.com/carlocarels90))
-
-## 6.2.0-canary.44
-
-## 6.2.0-canary.43
-
-## 6.2.0-canary.42
-
-## 6.2.0-canary.41
-
-## 6.2.0-canary.40
-
-## 6.2.0-canary.39
-
-## 6.2.0-canary.38
-
-## 6.2.0-canary.37
-
-## 6.2.0-canary.36
-
-## 6.2.0-canary.35
-
-## 6.2.0-canary.34
-
-## 6.2.0-canary.33
-
-## 6.2.0-canary.32
-
-## 6.2.0-canary.31
-
-## 6.2.0-canary.30
-
-### Patch Changes
-
-- [#1942](https://github.com/graphcommerce-org/graphcommerce/pull/1942) [`045d0a6cb`](https://github.com/graphcommerce-org/graphcommerce/commit/045d0a6cbbfc6339852c19dd21f349bb51c38fcd) - When the ApolloCartError would throw an authorization error it would link to the wrong page ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.29
-
-## 6.2.0-canary.28
-
-## 6.2.0-canary.27
-
-## 6.2.0-canary.26
-
-## 6.2.0-canary.25
-
-## 6.2.0-canary.24
-
-## 6.2.0-canary.23
-
-## 6.2.0-canary.22
-
-## 6.2.0-canary.21
-
-## 6.2.0-canary.20
-
-## 6.2.0-canary.19
-
-## 6.2.0-canary.18
-
-## 6.2.0-canary.17
-
-## 6.2.0-canary.16
-
-## 6.2.0-canary.15
-
-## 6.2.0-canary.14
-
-## 6.2.0-canary.13
-
-## 6.2.0-canary.12
-
-## 6.2.0-canary.11
-
-## 6.2.0-canary.10
-
-## 6.2.0-canary.9
-
-## 6.2.0-canary.8
-
-## 6.2.0-canary.7
-
-### Patch Changes
-
-- [#1916](https://github.com/graphcommerce-org/graphcommerce/pull/1916) [`ee2f814f4`](https://github.com/graphcommerce-org/graphcommerce/commit/ee2f814f4d91898f106036e92be4e560d638509d) - When the customer is logging in and the merge cart functionality throws an error, it would not set the current customer's cart as active, but keep the faulty cart active. ([@paales](https://github.com/paales))
-
-## 6.2.0-canary.6
-
-## 6.1.1-canary.5
-
-## 6.1.1-canary.4
-
-### Patch Changes
-
-- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`000556331`](https://github.com/graphcommerce-org/graphcommerce/commit/000556331f5379c71d7edca541fd0b145b7dc435) - When there is an error in the cart, disable the checkout buttons ([@paales](https://github.com/paales))
-
-- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`38d6c4888`](https://github.com/graphcommerce-org/graphcommerce/commit/38d6c488850013b36cae9f388996039219c1327e) - Errors in the cart didn't allow for recovery from the faulty state ([@paales](https://github.com/paales))
-
-- [#1914](https://github.com/graphcommerce-org/graphcommerce/pull/1914) [`5d115a11a`](https://github.com/graphcommerce-org/graphcommerce/commit/5d115a11a417f35c3315879c785d24ae32e64663) - When a customer tries to add a product to a customer cart, discard the cart and create a new cart ([@paales](https://github.com/paales))
-
-## 6.1.1-canary.3
-
-## 6.1.1-canary.2
-
-## 6.1.1-canary.1
-
-## 6.1.1-canary.0
-
 ## 6.1.0
 
 ### Minor Changes
@@ -841,80 +282,6 @@
 - [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`bc4181e74`](https://github.com/graphcommerce-org/graphcommerce/commit/bc4181e74392b899f62612de764fdb41f5716dd7) - Make checkout newsletter and agreements checkboxes persistent ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`601a0d3a7`](https://github.com/graphcommerce-org/graphcommerce/commit/601a0d3a7de702d4cee277549595f8d0d7e968f3) - Only use agreement name as link when agreement text contains the name, so the rest of the text can be used as checkbox label ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.2-canary.22
-
-## 6.0.2-canary.21
-
-## 6.0.2-canary.20
-
-## 6.0.2-canary.19
-
-## 6.0.2-canary.18
-
-## 6.0.2-canary.17
-
-## 6.0.2-canary.16
-
-## 6.0.2-canary.15
-
-## 6.0.2-canary.14
-
-## 6.0.2-canary.13
-
-### Patch Changes
-
-- [#1869](https://github.com/graphcommerce-org/graphcommerce/pull/1869) [`82111fa35`](https://github.com/graphcommerce-org/graphcommerce/commit/82111fa351b68a76ff053ebb7e0261ee507a826d) - Revert to classical useEffect strategy for Apollo cache persist restore and remove custom hydration strategies from the cart. ([@paales](https://github.com/paales))
-
-## 6.0.2-canary.12
-
-### Patch Changes
-
-- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`bc4181e74`](https://github.com/graphcommerce-org/graphcommerce/commit/bc4181e74392b899f62612de764fdb41f5716dd7) - Make checkout newsletter and agreements checkboxes persistent ([@bramvanderholst](https://github.com/bramvanderholst))
-
-- [#1871](https://github.com/graphcommerce-org/graphcommerce/pull/1871) [`601a0d3a7`](https://github.com/graphcommerce-org/graphcommerce/commit/601a0d3a7de702d4cee277549595f8d0d7e968f3) - Checkout: Only use agreement name as link when agreement text contains the name, so the rest of the text can be used as checkbox label ([@bramvanderholst](https://github.com/bramvanderholst))
-
-## 6.0.2-canary.11
-
-## 6.0.2-canary.10
-
-## 6.0.2-canary.9
-
-## 6.0.2-canary.8
-
-## 6.0.2-canary.7
-
-## 6.0.2-canary.6
-
-## 6.0.2-canary.5
-
-## 6.0.2-canary.4
-
-## 6.0.2-canary.3
-
-## 6.0.2-canary.2
-
-## 6.0.2-canary.1
-
-## 6.0.2-canary.0
-
-## 6.0.1
-
-## 6.0.1-canary.7
-
-## 6.0.1-canary.6
-
-## 6.0.1-canary.5
-
-## 6.0.1-canary.4
-
-## 6.0.1-canary.3
-
-## 6.0.1-canary.2
-
-## 6.0.1-canary.1
-
-## 6.0.1-canary.0
 
 ## 6.0.0
 
@@ -930,150 +297,11 @@
 
 - [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Corrected spelling mistake: incomming to incoming ([@paales](https://github.com/paales))
 
-## 6.0.0-canary.54
-
-## 6.0.0-canary.53
-
-## 6.0.0-canary.52
-
-## 6.0.0-canary.51
-
-## 6.0.0-canary.50
-
-## 6.0.0-canary.49
-
-## 6.0.0-canary.48
-
-### Patch Changes
-
-- [#1845](https://github.com/graphcommerce-org/graphcommerce/pull/1845) [`4690eecb4`](https://github.com/graphcommerce-org/graphcommerce/commit/4690eecb461369d84dd5b5128617a9d9e5337f8f) - make a separate fragment for CartTotalsPrices and make it injectable ([@FrankHarland](https://github.com/FrankHarland))
-
-## 6.0.0-canary.47
-
-## 6.0.0-canary.46
-
-## 6.0.0-canary.45
-
-## 6.0.0-canary.44
-
-### Patch Changes
-
-- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`8e4cb5b92`](https://github.com/graphcommerce-org/graphcommerce/commit/8e4cb5b927d1e370f2eba18ad81550f8c1330f2d) - Add extensibility fields for CartTotals ([@paales](https://github.com/paales))
-
-- [#1842](https://github.com/graphcommerce-org/graphcommerce/pull/1842) [`7b67d84bd`](https://github.com/graphcommerce-org/graphcommerce/commit/7b67d84bd269c3fc91afbd69f6683c5d12808d36) - Renamed i18n to storefront in configuration ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.43
-
-## 6.0.0-canary.42
-
-## 6.0.0-canary.41
-
-## 6.0.0-canary.40
-
-## 6.0.0-canary.39
-
-## 6.0.0-canary.38
-
-## 6.0.0-canary.37
-
-## 6.0.0-canary.36
-
-## 6.0.0-canary.35
-
-## 6.0.0-canary.34
-
-## 6.0.0-canary.33
-
-## 6.0.0-canary.32
-
-## 6.0.0-canary.31
-
-## 6.0.0-canary.30
-
-## 6.0.0-canary.29
-
-## 6.0.0-canary.28
-
-## 6.0.0-canary.27
-
-### Patch Changes
-
-- [#1821](https://github.com/graphcommerce-org/graphcommerce/pull/1821) [`1abc50a21`](https://github.com/graphcommerce-org/graphcommerce/commit/1abc50a21103270fad04e4a9ea892ee1e75233e9) - Fix regression bugs and upgrade packages to latest versions ([@paales](https://github.com/paales))
-
-## 6.0.0-canary.26
-
-## 6.0.0-canary.25
-
-## 6.0.0-canary.24
-
-## 6.0.0-canary.23
-
-## 6.0.0-canary.22
-
-## 6.0.0-canary.21
-
-## 6.0.0-canary.20
-
-## 5.2.0-canary.19
-
-## 5.2.0-canary.18
-
-## 5.2.0-canary.17
-
-## 5.2.0-canary.16
-
-## 5.2.0-canary.15
-
-## 5.2.0-canary.14
-
-## 5.2.0-canary.13
-
-## 5.2.0-canary.12
-
-## 5.2.0-canary.11
-
-## 5.2.0-canary.10
-
-## 5.2.0-canary.9
-
-## 5.2.0-canary.8
-
-## 5.2.0-canary.7
-
-### Minor Changes
-
-- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Added new filter UI and behaviour. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
-
-### Patch Changes
-
-- [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`16e91da42`](https://github.com/graphcommerce-org/graphcommerce/commit/16e91da42dcb454ea4761d1780b9338c88ef1463) - Fix spelling error incomming to incoming ([@paales](https://github.com/paales))
-
-## 5.2.0-canary.6
-
-## 5.2.0-canary.5
-
-## 5.2.0-canary.4
-
-## 5.2.0-canary.3
-
-## 5.2.0-canary.2
-
-## 5.2.0-canary.1
-
-## 5.2.0-canary.0
-
-## 5.1.1
-
-## 5.1.1-canary.1
-
-## 5.1.1-canary.0
-
 ## 5.1.0
 
 ### Minor Changes
 
 - [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
   - Fixes an issue where the cart can get into a broken state, if items contain errors.
   - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
   - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
@@ -1081,52 +309,10 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
   - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.11
-
-## 5.1.0-canary.10
-
-## 5.1.0-canary.9
-
-## 5.1.0-canary.8
-
-## 5.1.0-canary.7
-
-### Minor Changes
-
-- [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
-  - Fixes an issue where the cart can get into a broken state, if items contain errors.
-  - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
-  - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.6
-
-## 5.1.0-canary.5
-
-## 5.1.0-canary.4
-
-## 5.1.0-canary.3
-
-### Patch Changes
-
-- [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
-  - Updated the @mui/material package
-  - Removed dependencies on react-hook-form-mui and @playwright/test
-  - Upgraded dependencies including type-fest and graphql-mesh
-  - Solved peer dependency issues ([@paales](https://github.com/paales))
-
-## 5.1.0-canary.2
-
-## 5.1.0-canary.1
-
-## 5.1.0-canary.0
 
 ## 5.0.0
 
@@ -1140,79 +326,17 @@
 
   If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
 
-## 5.0.0-canary.14
-
-## 5.0.0-canary.13
-
-### Major Changes
-
-- [`e4c7fe17e`](https://github.com/graphcommerce-org/graphcommerce/commit/e4c7fe17e413e37362ceae92e67f1b3a5f62d398) - Bump major version of all packages ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.12
-
-## 4.14.0-canary.11
-
-## 4.14.0-canary.10
-
-## 4.14.0-canary.9
-
-## 4.14.0-canary.8
-
-## 4.14.0-canary.7
-
-## 4.14.0-canary.6
-
-## 4.14.0-canary.5
-
-## 4.14.0-canary.4
-
-### Minor Changes
-
-- [#1733](https://github.com/graphcommerce-org/graphcommerce/pull/1733) [`761bd2832`](https://github.com/graphcommerce-org/graphcommerce/commit/761bd2832f115afc8b95bedbf479266309dd5acc) - ApolloLinks, typePolicies and migration scripts are now handled with plugins on the new library component `<GraphQLProvider/>`. Hygraph's, Magento Cart, Customer, Store, Wishlist and Magento GraphQL are all migrated to be using plugins.
-
-  If you are using custom `links` / `policies` / `migrations` you can pass them as props to the `<GraphQLProvider/>` or create your own local plugin. ([@paales](https://github.com/paales))
-
-## 4.14.0-canary.3
-
-## 4.14.0-canary.2
-
-## 4.13.2-canary.1
-
-## 4.13.2-canary.0
-
-## 4.13.3
-
-## 4.13.2
-
 ## 4.13.1
 
 ### Patch Changes
 
 - [#1716](https://github.com/graphcommerce-org/graphcommerce/pull/1716) [`3cc6a4014`](https://github.com/graphcommerce-org/graphcommerce/commit/3cc6a401405bebeb30ff45c8509b189407bb7f77) Thanks [@github-actions](https://github.com/apps/github-actions)! - Remove spacing from InlineAccount on the checkout
 
-## 4.13.1-canary.2
-
-## 4.13.1-canary.1
-
-## 4.13.1-canary.0
-
-### Patch Changes
-
-- [`c6f6cb102`](https://github.com/graphcommerce-org/graphcommerce/commit/c6f6cb102d71b7b4b478cc2eeb8a9f2a784b5bbf) Thanks [@paales](https://github.com/paales)! - Remove spacing from InlineAccount on the checkout
-
 ## 4.13.0
 
 ### Patch Changes
 
 - [#1702](https://github.com/graphcommerce-org/graphcommerce/pull/1702) [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.1
-
-### Patch Changes
-
-- [`abb15ef4a`](https://github.com/graphcommerce-org/graphcommerce/commit/abb15ef4a79b12eddb32cc006e5d1d31dd06ac2d) Thanks [@paales](https://github.com/paales)! - Added canary releases to GraphCommerce
-
-## 4.13.0-canary.0
 
 ## 4.9.5
 
@@ -1431,7 +555,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1838,7 +961,7 @@
   All occurences of `<Trans>` and `t` need to be replaced:
 
   ```tsx
-  import { Trans, t } from '@lingui/macro'
+  import { t, Trans } from '@lingui/macro'
 
   function MyComponent() {
     const foo = 'bar'
@@ -1853,8 +976,8 @@
   Needs to be replaced with:
 
   ```tsx
-  import { Trans } from '@lingui/react'
   import { i18n } from '@lingui/core'
+  import { Trans } from '@lingui/react'
 
   function MyComponent() {
     const foo = 'bar'

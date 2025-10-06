@@ -1,0 +1,3 @@
+fragment AppliedCoupon on AppliedCoupon {
+  code
+}

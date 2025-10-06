@@ -1,41 +1,36 @@
-import {
-  ActionCardItemBase,
-  ActionCardItemRenderProps,
-  ActionCardListForm,
-} from '@graphcommerce/ecommerce-ui'
+import type { ActionCardItemBase, ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
+import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import {
   ApolloCartErrorAlert,
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
 import { Form, FormHeader } from '@graphcommerce/next-ui'
+import type { UseFormComposeOptions, UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
 import {
   FormAutoSubmit,
   FormProvider,
   useFormCompose,
-  UseFormComposeOptions,
-  UseFormGraphQlOptions,
   useWatch,
 } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
 import { ShippingMethodActionCard } from './ShippingMethodActionCard'
-import {
-  ShippingMethodFormDocument,
+import type {
   ShippingMethodFormMutation,
   ShippingMethodFormMutationVariables,
 } from './ShippingMethodForm.gql'
+import { ShippingMethodFormDocument } from './ShippingMethodForm.gql'
+
+type ShippingMethodFormValues = ShippingMethodFormMutationVariables & { carrierMethod?: string }
 
 export type ShippingMethodFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
   children?: React.ReactNode
-} & UseFormGraphQlOptions<
-    ShippingMethodFormMutation,
-    ShippingMethodFormMutationVariables & { carrierMethod?: string }
-  >
+} & UseFormGraphQlOptions<ShippingMethodFormMutation, ShippingMethodFormValues>
 
 function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
   return value !== null && value !== undefined
@@ -61,6 +56,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
           ...method,
           disabled: !method?.available,
           value: `${method?.carrier_code}-${method?.method_code ?? ''}`,
+          method_title: method?.method_title || '',
         })),
     [availableMethods],
   )
@@ -71,18 +67,17 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     ? `${selectedMethod.carrier_code}-${selectedMethod.method_code}`
     : undefined
 
-  const form = useFormGqlMutationCart<
-    ShippingMethodFormMutation,
-    ShippingMethodFormMutationVariables & { carrierMethod?: string }
-  >(ShippingMethodFormDocument, {
-    skipUnchanged: true,
-    defaultValues: { carrierMethod },
-    onBeforeSubmit: (variables) => {
-      const [carrier, method] = (variables.carrierMethod ?? '').split('-')
-      return onBeforeSubmit({ ...variables, carrier, method })
+  const form = useFormGqlMutationCart<ShippingMethodFormMutation, ShippingMethodFormValues>(
+    ShippingMethodFormDocument,
+    {
+      defaultValues: { carrierMethod },
+      onBeforeSubmit: (variables) => {
+        const [carrier, method] = (variables.carrierMethod ?? '').split('-')
+        return onBeforeSubmit({ ...variables, carrier, method })
+      },
+      ...options,
     },
-    ...options,
-  })
+  )
 
   const { handleSubmit, control, error, setValue } = form
   const submit = handleSubmit(() => {})
@@ -118,7 +113,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   }, [shippingAddress, firstCarrierMethod, carrierMethod, setValue])
 
   return (
-    <FormProvider {...form}>
+    <FormProvider<ShippingMethodFormValues> {...form}>
       <FormAutoSubmit
         control={control}
         submit={submit}
@@ -149,6 +144,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
   )
 }
 
+/** @public */
 export function useShippingMethod() {
   return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })
 }

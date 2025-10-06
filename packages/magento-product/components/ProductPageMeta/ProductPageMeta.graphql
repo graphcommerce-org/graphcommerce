@@ -8,6 +8,7 @@ fragment ProductPageMeta on ProductInterface {
   }
   meta_title
   meta_description
+  meta_keyword
   price_range {
     minimum_price {
       final_price {

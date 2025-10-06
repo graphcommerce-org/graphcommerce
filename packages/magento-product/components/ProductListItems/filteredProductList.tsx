@@ -6,8 +6,8 @@ import type {
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import { useRouter } from 'next/router'
-import { ProductListParams } from './filterTypes'
-import { FilterTypes } from './getFilterTypes'
+import type { ProductListParams } from './filterTypes'
+import type { FilterTypes } from './getFilterTypes'
 
 export function parseParams(
   url: string,
@@ -15,7 +15,12 @@ export function parseParams(
   filterTypes: FilterTypes,
   search: string | null = null,
 ): ProductListParams | undefined {
-  const productListParams: ProductListParams = { url, filters: {}, sort: {}, search }
+  const productListParams: ProductListParams = {
+    url,
+    filters: {},
+    sort: {},
+    search: search ? decodeURIComponent(search) : null,
+  }
 
   const typeMap = filterTypes
 
@@ -42,7 +47,7 @@ export function parseParams(
       return undefined
     }
     if (param === 'category_uid') {
-      productListParams.filters.category_uid = { eq: value }
+      productListParams.filters.category_uid = { in: [value] }
       return undefined
     }
 

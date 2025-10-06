@@ -1,16 +1,9 @@
-import {
-  PaginationProps,
-  Box,
-  SxProps,
-  Theme,
-  Pagination,
-  PaginationItem,
-  PaginationRenderItemParams,
-} from '@mui/material'
+import type { PaginationProps, PaginationRenderItemParams, SxProps, Theme } from '@mui/material'
+import { Box, Pagination, PaginationItem } from '@mui/material'
+import { iconChevronLeft, iconChevronRight } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
 import { NextLink } from '../Theme'
-import { iconChevronLeft, iconChevronRight } from '../icons'
 
 export type PaginationExtendedProps = {
   count: number

@@ -1,22 +1,20 @@
-import { useMemo } from 'react'
-import { useLocale } from '../../hooks/useLocale'
-import { useMemoObject } from '../../hooks/useMemoObject'
+import { Box, type SxProps, type Theme } from '@mui/material'
+import type { UseIntlDisplayNamesOptions } from './useIntlDisplayNames'
+import { useIntlDisplayNames } from './useIntlDisplayNames'
 
-export type UseDisplayNamesProps = Intl.DisplayNamesOptions
-
-export function useDisplayNames(props: UseDisplayNamesProps) {
-  const locale = useLocale()
-  const memoOptions = useMemoObject(props)
-  return useMemo(() => new Intl.DisplayNames(locale, memoOptions), [locale, memoOptions])
-}
-
-type DisplayNamesProps = UseDisplayNamesProps & {
+export type DisplayNamesProps = UseIntlDisplayNamesOptions & {
   code: string
+  sx?: SxProps<Theme>
 }
 
+/** @public */
 export function DisplayNames(props: DisplayNamesProps) {
-  const { code, ...options } = props
-  const formatter = useDisplayNames(options)
+  const { code, sx, ...options } = props
+  const formatter = useIntlDisplayNames(options)
 
-  return <span suppressHydrationWarning>{formatter.of(code)}</span>
+  return (
+    <Box component='span' suppressHydrationWarning sx={sx}>
+      {formatter.of(code)}
+    </Box>
+  )
 }

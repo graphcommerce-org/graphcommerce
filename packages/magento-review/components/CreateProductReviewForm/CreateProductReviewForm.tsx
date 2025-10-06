@@ -1,31 +1,32 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
+import type { ProductReviewRatingInput } from '@graphcommerce/graphql-mesh'
 import { ApolloCustomerErrorAlert } from '@graphcommerce/magento-customer'
 import {
+  extendableComponent,
   Form,
-  responsiveVal,
   FormActions,
   FormRow,
+  OverlayCloseButton,
+  responsiveVal,
   StarRatingField,
-  extendableComponent,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-import { Box, Typography, Alert, Button, SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Alert, Box, Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { CreateProductReviewDocument } from './CreateProductReview.gql'
 import { ProductReviewRatingsMetadataDocument } from './ProductReviewRatingsMetadata.gql'
 
-type CreateProductReviewFormProps = {
+export type CreateProductReviewFormProps = {
   sku: string
   nickname?: string
   sx?: SxProps<Theme>
 }
 
-const name = 'CreateProductReviewForm' as const
+const name = 'CreateProductReviewForm'
 const parts = [
   'root',
   'ratingContainer',
@@ -81,9 +82,9 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           <Trans id='Thank you! Your review was successfully submitted for approval' />
         </Alert>
         <Box mt={6}>
-          <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
-            <Trans id='Continue shopping' />
-          </Button>
+          <OverlayCloseButton variant='pill' color='secondary' size='large'>
+            <Trans id='Continue shopping'>Continue shopping</Trans>
+          </OverlayCloseButton>
         </Box>
       </>
     )

@@ -1,11 +1,11 @@
-import { ListFormat, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, ListFormat } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/macro'
 import { Box, Link } from '@mui/material'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import { useProductFiltersPro } from '../ProductFiltersPro'
-import { ProductListSuggestionsFragment } from './ProductListSuggestions.gql'
+import type { ProductListSuggestionsFragment } from './ProductListSuggestions.gql'
 
-type ProductListSuggestionsProps = {
+export type ProductListSuggestionsProps = {
   products: ProductListSuggestionsFragment
 }
 

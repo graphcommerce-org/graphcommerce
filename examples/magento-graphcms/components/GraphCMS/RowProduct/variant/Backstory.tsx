@@ -1,4 +1,4 @@
-import { Asset, RichText } from '@graphcommerce/graphcms-ui'
+import { Asset, RichText } from '@graphcommerce/hygraph-ui'
 import { AddProductsToCartForm, ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'

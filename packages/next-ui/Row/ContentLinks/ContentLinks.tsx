@@ -1,5 +1,6 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
-import { Container, SxProps, Theme, Typography } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import React from 'react'
 import { extendableComponent } from '../../Styles'
 
@@ -9,7 +10,7 @@ export type ContentLinksProps = {
   sx?: SxProps<Theme>
 }
 
-const compName = 'ContentLinks' as const
+const compName = 'ContentLinks'
 const parts = ['root', 'scroller', 'title'] as const
 const { classes } = extendableComponent(compName, parts)
 
@@ -34,7 +35,7 @@ export function ContentLinks(props: ContentLinksProps) {
           sx={(theme) => ({
             justifyContent: 'start',
             gap: `${theme.spacings.md}`,
-            gridAutoColumns: `max-content`,
+            gridAutoColumns: 'max-content',
           })}
         >
           <Typography variant='subtitle1' component='h2' className={classes.title}>

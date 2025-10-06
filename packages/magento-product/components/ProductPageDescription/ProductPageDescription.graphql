@@ -4,5 +4,6 @@ fragment ProductPageDescription on ProductInterface {
   description {
     ...ComplexTextValue
   }
+  __typename
   url_key
 }

@@ -1,8 +1,9 @@
-import { LocalStorageWrapper, CachePersistor } from 'apollo3-cache-persist'
-import { mergeDeep, ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apollo'
-import { ApolloClientConfig } from '../../config'
+import { CachePersistor, LocalStorageWrapper } from 'apollo3-cache-persist'
+import type { ApolloCache, ApolloClient, NormalizedCacheObject } from '../../apollo'
+import { mergeDeep } from '../../apollo'
+import type { ApolloClientConfig } from '../../config'
 import { migrateCacheHandler } from './migrateCache'
-import { persistenceMapper } from './persistenceMapper'
+import { createPersistenceMapper } from './persistenceMapper'
 import { getTypePoliciesVersion } from './typePolicies'
 
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
@@ -35,7 +36,7 @@ export async function createCacheReviver(
         maxSize: false,
         key: APOLLO_CACHE_PERSIST,
         debounce: 10,
-        persistenceMapper,
+        persistenceMapper: createPersistenceMapper(createCache),
       })
 
       const reset = async () => {

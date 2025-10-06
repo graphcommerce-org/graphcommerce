@@ -1,28 +1,33 @@
 import { Money } from '@graphcommerce/magento-store'
-import { iconChevronRight, IconSvg, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Box, Button, ButtonProps, SxProps, Theme } from '@mui/material'
+import type { ButtonProps } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/macro'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import React from 'react'
-import { CartStartCheckoutFragment } from './CartStartCheckout.gql'
+import { useCheckoutShouldLoginToContinue } from '../../hooks'
+import type { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutProps = {
   children?: React.ReactNode
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
+  hideTotal?: boolean
   cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
-    e: React.MouseEvent<HTMLButtonElement>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     cart: CartStartCheckoutFragment | null | undefined,
-  ) => void
+  ) => Promise<void>
 }
 
-const name = 'CartStartCheckout' as const
+const name = 'CartStartCheckout'
 const parts = [
   'checkoutButtonContainer',
   'checkoutButton',
   'checkoutButtonTotal',
   'checkoutMoney',
+  'loginContainer',
 ] as const
 const { classes } = extendableComponent(name, parts)
 
@@ -32,21 +37,34 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     onStart,
     buttonProps: { onClick, ...buttonProps } = {},
     disabled,
+    hideTotal = false,
     sx = [],
     cart,
   } = props
 
-  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0
+  const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
+  const hasTotals = (cart?.prices?.grand_total?.value ?? 0) > 0 || !!cart?.items?.length
   const hasErrors = cart?.items?.some((item) => (item?.errors?.length ?? 0) > 0)
 
   return (
     <Box
       className={classes.checkoutButtonContainer}
       sx={[
-        (theme) => ({ textAlign: 'center', my: theme.spacings.md }),
+        (theme) => ({
+          textAlign: 'center',
+          my: theme.spacings.md,
+        }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
+      {shouldLoginToContinue && (
+        <Box sx={{ mb: 1 }} className={classes.loginContainer}>
+          <Link href='/account/signin'>
+            <Trans>You must first login before you can continue</Trans>
+          </Link>
+        </Box>
+      )}
+
       <Button
         href='/checkout'
         id='cart-start-checkout'
@@ -55,12 +73,11 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         size='large'
         className={classes.checkoutButton}
         endIcon={<IconSvg src={iconChevronRight} />}
-        onClick={(e) => {
+        onClick={async (e) => {
           onClick?.(e)
-          onStart?.(e, cart)
-          return onClick?.(e)
+          await onStart?.(e, cart)
         }}
-        disabled={disabled || !hasTotals || hasErrors}
+        disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
         {...buttonProps}
       >
         <Box
@@ -71,9 +88,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
             '& ~ span.MuiButton-endIcon': { marginLeft: '6px' },
           })}
         >
-          <Trans id='Start Checkout' />
+          <Trans>Start Checkout</Trans>
         </Box>{' '}
-        {hasTotals && (
+        {hasTotals && !hideTotal && (
           <span className={classes.checkoutMoney}>
             <Money {...cart?.prices?.grand_total} />
           </span>
@@ -84,7 +101,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
 
       {hasErrors && (
         <Box sx={(theme) => ({ color: 'error.main', mt: theme.spacings.xs })}>
-          <Trans id='Some items in your cart contain errors, please update or remove them, then try again.' />
+          <Trans>
+            Some items in your cart contain errors, please update or remove them, then try again.
+          </Trans>
         </Box>
       )}
     </Box>

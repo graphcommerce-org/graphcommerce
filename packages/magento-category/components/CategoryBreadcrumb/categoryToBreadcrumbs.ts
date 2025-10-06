@@ -1,6 +1,7 @@
 import { productListLink } from '@graphcommerce/magento-product'
-import { BreadcrumbsType, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
+import type { BreadcrumbsType } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import type { CategoryBreadcrumbFragment } from './CategoryBreadcrumb.gql'
 
 export function categoryToBreadcrumbs(
   category: CategoryBreadcrumbFragment,

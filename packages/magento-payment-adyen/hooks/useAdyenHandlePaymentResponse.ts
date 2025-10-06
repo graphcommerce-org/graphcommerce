@@ -1,8 +1,8 @@
-import type { Types } from '@adyen/api-library'
 import { makeVar, useReactiveVar } from '@graphcommerce/graphql'
 import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import type { Types } from '@adyen/api-library'
 import { useEventCallback } from '@mui/material'
-import { AdyenPaymentResponseFragment } from './AdyenPaymentResponse.gql'
+import type { AdyenPaymentResponseFragment } from './AdyenPaymentResponse.gql'
 import { useAdyenCartLock } from './useAdyenCartLock'
 
 export enum ResultCodeEnum {
@@ -31,6 +31,7 @@ export type AdyenPaymentResponse = {
   additionalData?: Types.checkout.PaymentResponse['additionalData']
 }
 
+/** @public */
 export function parsePaymentResponse(
   status?: AdyenPaymentResponseFragment | null,
 ): AdyenPaymentResponse {

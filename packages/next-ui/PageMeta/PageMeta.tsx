@@ -1,7 +1,8 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
-import Head from 'next/head'
 import type {} from '@graphcommerce/next-config'
-import { Canonical, useCanonical } from './canonicalize'
+import Head from 'next/head'
+import type { Canonical } from './canonicalize'
+import { useCanonical } from './canonicalize'
 
 // https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives
 export type MetaRobots =
@@ -20,8 +21,9 @@ type MetaRobotsAll = ['all' | 'none']
 export type PageMetaProps = {
   title: string
   canonical?: Canonical
-  metaDescription?: string
+  metaDescription?: string | null
   metaRobots?: MetaRobotsAll | MetaRobots[]
+  metaKeywords?: string | null
   children?: React.ReactNode
   ogImage?: string | null
   ogImageUseFallback?: boolean
@@ -35,6 +37,7 @@ export function PageMeta(props: PageMetaProps) {
     title,
     canonical: canonicalBare,
     metaDescription,
+    metaKeywords,
     ogImage,
     ogType,
     ogImageUseFallback = false,
@@ -55,6 +58,7 @@ export function PageMeta(props: PageMetaProps) {
       )}
       <meta name='robots' content={metaRobots.join(',')} key='meta-robots' />
       {canonical && <link rel='canonical' href={canonical} key='canonical' />}
+      {metaKeywords && <meta name='keywords' content={metaKeywords.trim()} key='meta-keywords' />}
       <meta property='og:title' content={title.trim()} key='og-title' />
       <meta property='og:type' content={ogType ?? 'website'} key='og-type' />
       <meta property='og:url' content={canonical} key='og-url' />

@@ -1,9 +1,6 @@
 import { mergeDeep } from '@graphcommerce/graphql'
-import {
-  productLink,
-  type AddToCartItemSelector,
-  ProductPageMetaProps,
-} from '@graphcommerce/magento-product'
+import type { ProductPageMetaProps } from '@graphcommerce/magento-product'
+import { productLink, type AddToCartItemSelector } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -19,12 +16,14 @@ export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddTo
   const { Prev, product, index, ...rest } = props
   const { replace, asPath } = useRouter()
 
-  const variant = useConfigurableSelectedVariant({ url_key: product?.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
 
   const isValidVariant = (variant?.url_rewrites ?? []).length > 0 && variant?.url_key
   const targetUrl = isValidVariant ? productLink(variant) : productLink(product)
 
+
   useEffect(() => {
+    if (product.__typename !== 'ConfigurableProduct') return
     // Filter asPath with #, for zoomed gallery
     // Note for future use: This might be a dangerous way to
     // navigate to simple products, since it will trigger on every
@@ -34,6 +33,10 @@ export function ProductPageMeta(props: PluginProps<ProductPageMetaProps> & AddTo
       replace(targetUrl, undefined, { scroll: false, shallow: true })
     }
   }, [asPath, replace, targetUrl])
+
+  if (product.__typename !== 'ConfigurableProduct') {
+    return <Prev product={product} {...rest} />
+  }
 
   return <Prev product={variant ? mergeDeep(product, variant) : product} {...rest} />
 }

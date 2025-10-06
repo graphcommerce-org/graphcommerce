@@ -1,11 +1,16 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartAgreementsDocument, CartAgreementsQuery } from '@graphcommerce/magento-cart'
+import {
+  CartAgreementsDocument,
+  CartAgreementsQuery,
+  getCheckoutIsDisabled,
+} from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, PageMeta, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { revalidate } from '@graphcommerce/next-ui'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
@@ -68,6 +73,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 }
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const { params } = context
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
@@ -87,6 +94,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

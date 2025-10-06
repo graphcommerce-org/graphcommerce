@@ -1,4 +1,4 @@
-import { RichText } from '@graphcommerce/graphcms-ui'
+import { RichText } from '@graphcommerce/hygraph-ui'
 import { Quote } from '@graphcommerce/next-ui'
 import React from 'react'
 import { RowQuoteFragment } from './RowQuote.gql'

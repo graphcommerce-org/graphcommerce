@@ -1,18 +1,11 @@
-import { PaymentMethodOptionsNoop, PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method'
 import { MollieActionCard } from './components/MollieActionCard/MollieActionCard'
-import { MollieIdealOptions } from './components/MollieOptionsIssuer/MollieIdealOptions'
 import { MolliePaymentHandler } from './components/MolliePaymentHandler/MolliePaymentHandler'
 import { MolliePlaceOrder } from './components/MolliePlaceOrder/MolliePlaceOrder'
 
 const mollieModule: PaymentModule = {
   PaymentOptions: PaymentMethodOptionsNoop,
-  PaymentActionCard: MollieActionCard,
-  PaymentHandler: MolliePaymentHandler,
-  PaymentPlaceOrder: MolliePlaceOrder,
-}
-
-export const idealModule: PaymentModule = {
-  PaymentOptions: MollieIdealOptions,
   PaymentActionCard: MollieActionCard,
   PaymentHandler: MolliePaymentHandler,
   PaymentPlaceOrder: MolliePlaceOrder,
@@ -31,7 +24,7 @@ export const molliepayments: Record<string, PaymentModule> = {
   mollie_methods_eps: mollieModule,
   mollie_methods_giftcard: mollieModule,
   mollie_methods_giropay: mollieModule,
-  mollie_methods_ideal: idealModule,
+  mollie_methods_ideal: mollieModule,
   mollie_methods_in3: mollieModule,
   mollie_methods_kbc: mollieModule,
   mollie_methods_klarnapaylater: mollieModule,

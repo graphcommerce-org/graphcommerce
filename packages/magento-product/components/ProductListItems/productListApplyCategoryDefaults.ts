@@ -1,8 +1,9 @@
 import { cloneDeep, useQuery } from '@graphcommerce/graphql'
-import { StoreConfigDocument, StoreConfigQuery } from '@graphcommerce/magento-store'
-import { ProductListQueryVariables } from '../ProductList/ProductList.gql'
-import { CategoryDefaultFragment } from './CategoryDefault.gql'
-import { ProductListParams } from './filterTypes'
+import type { StoreConfigQuery } from '@graphcommerce/magento-store'
+import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import type { ProductListQueryVariables } from '../ProductList/ProductList.gql'
+import type { CategoryDefaultFragment } from './CategoryDefault.gql'
+import type { ProductListParams } from './filterTypes'
 
 export function useProductListApplyCategoryDefaults(
   params: ProductListParams | undefined,
@@ -23,8 +24,8 @@ export function useProductListApplyCategoryDefaults(
     else if (defaultSort) variables.sort = { [defaultSort]: 'ASC' }
   }
 
-  if (!variables.filters.category_uid?.in?.[0]) {
-    variables.filters.category_uid = { eq: category?.uid }
+  if (!variables.filters.category_uid?.in?.[0] && category?.uid) {
+    variables.filters.category_uid = { in: [category.uid] }
   }
 
   return variables
@@ -61,7 +62,8 @@ export async function productListApplyCategoryDefaults(
   }
 
   if (!newParams.filters.category_uid?.in?.[0]) {
-    newParams.filters.category_uid = { eq: (await category)?.uid }
+    const uid = (await category)?.uid
+    if (uid) newParams.filters.category_uid = { in: [uid] }
   }
 
   return newParams

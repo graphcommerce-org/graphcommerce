@@ -1,4 +1,4 @@
-import { Asset, RichText } from '@graphcommerce/graphcms-ui'
+import { Asset, RichText } from '@graphcommerce/hygraph-ui'
 import { responsiveVal, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
 import { Box, ButtonBase, Typography } from '@mui/material'
 import { RowLinksFragment } from '../RowLinks.gql'
@@ -28,13 +28,14 @@ export function ImageLabelSwiper(props: RowLinksFragment) {
             <Asset
               asset={pageLink.asset}
               sx={{
-                width: responsiveVal(120, 200),
-                maxWidth: responsiveVal(120, 200),
+                width: responsiveVal(260, 400),
+                maxWidth: responsiveVal(260, 400),
+                borderRadius: 3,
               }}
               sizes={responsiveVal(260, 400)}
             />
           )}
-          <Box sx={{ maxWidth: responsiveVal(120, 200) }}>
+          <Box sx={{ maxWidth: responsiveVal(260, 400) }}>
             <Typography variant='h6' component='h3'>
               {pageLink.title}
             </Typography>

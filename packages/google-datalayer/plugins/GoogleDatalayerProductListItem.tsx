@@ -1,4 +1,4 @@
-import { ProductListItemProps } from '@graphcommerce/magento-product'
+import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useViewItemList } from '../components/DatalayerViewItemList'

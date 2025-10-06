@@ -1,7 +1,5 @@
-import {
-  DismissibleSnackbar,
-  DismissibleSnackbarProps,
-} from '../../../Snackbar/DismissibleSnackbar'
+import type { DismissibleSnackbarProps } from '../../../Snackbar/DismissibleSnackbar'
+import { DismissibleSnackbar } from '../../../Snackbar/DismissibleSnackbar'
 
 export type VariantMessageProps = DismissibleSnackbarProps
 

@@ -1,8 +1,6 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentOptionsProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 // import { PayPalCheckoutCreatePaymentOptions } from 'braintree-web/paypal-checkout'
 import type { FlowType, Intent } from 'paypal-checkout-components'
@@ -16,9 +14,7 @@ import { BraintreeLocalPaymentsCartDocument } from '../braintree_local_payments/
 export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const paypal = useBraintreePaypal()
 
-  useEffect(() => {})
-
-  const { code, step, child } = props
+  const { code, step } = props
   const { data: cartData } = useCartQuery(BraintreeLocalPaymentsCartDocument)
   const [lockState, lock, unlock] = useBraintreeCartLock()
   const { selectedMethod } = usePaymentMethodContext()
@@ -78,7 +74,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <form onSubmit={submit}>
       <input type='hidden' {...register('code')} />

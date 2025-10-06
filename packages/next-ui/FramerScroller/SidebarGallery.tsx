@@ -1,33 +1,25 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
+import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import {
   MotionImageAspect,
-  MotionImageAspectProps,
   Scroller,
-  ScrollerDots,
   ScrollerButton,
+  ScrollerDots,
   ScrollerProvider,
-  unstable_usePreventScroll as usePreventScroll,
-  ScrollerButtonProps,
   ScrollerThumbnails,
+  unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
-import {
-  Fab,
-  useTheme,
-  Box,
-  styled,
-  SxProps,
-  Theme,
-  Unstable_TrapFocus as TrapFocus,
-} from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
+import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
 import { extendableComponent } from '../Styles'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 
 const MotionBox = styled(m.div)({})
 
@@ -39,7 +31,7 @@ type OwnerState = {
   sticky: boolean
   variantMd: SidebarGalleryVariant
 }
-const name = 'SidebarGallery' as const
+const name = 'SidebarGallery'
 const parts = [
   'row',
   'root',
@@ -146,9 +138,20 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const hasImages = images.length > 0
 
+  const sidebarSize = `calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${theme.page.horizontal} * 2)`
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
-      <Row maxWidth={false} disableGutters className={classes.row} sx={sx}>
+      <Row
+        maxWidth={zoomed ? 'full' : 'lg'}
+        disableGutters
+        className={classes.row}
+        breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
+        sx={[
+          { bgcolor: theme.palette.mode === 'light' ? 'background.image' : 'background.paper' },
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
+      >
         <MotionBox
           layout
           layoutDependency={zoomed}
@@ -160,18 +163,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               gridTemplate: '"left" "right"',
               [theme.breakpoints.up('md')]: {
                 '&:not(.variantMdOneColumn)': {
-                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
+                  gridTemplate: `"left right" / 1fr ${sidebarSize}`,
                 },
-              },
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.background.image
-                  : theme.palette.background.paper,
-
-              '&:not(.variantMdOneColumn)': {
-                paddingRight: `calc((100% - ${theme.breakpoints.values.lg}px) / 2)`,
               },
 
               '&.zoomed': {
@@ -182,7 +175,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
                   gridTemplateColumns: '1fr auto',
                 },
-                paddingRight: 0,
+                px: 0,
               },
             },
           ]}
@@ -237,19 +230,20 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     top: 0,
                     width: '100%',
                     height: '100%',
-                    gridAutoColumns: `100%`,
-                    gridTemplateRows: `100%`,
+                    gridAutoColumns: '100%',
+                    gridTemplateRows: '100%',
                     cursor: disableZoom ? 'auto' : 'zoom-in',
                   },
                   zoomed && {
-                    height: `var(--client-size-y)`,
+                    height: 'var(--client-size-y)',
                     cursor: 'inherit',
                   },
                 ]}
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
-                    key={typeof image.src === 'string' ? image.src : idx}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={idx}
                     layout
                     layoutDependency={zoomed}
                     src={image.src}
@@ -305,7 +299,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   left: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
+                  top: 'calc(50% - 28px)',
                 }}
               >
                 <ScrollerButton
@@ -326,7 +320,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gap: theme.spacings.xxs,
                   position: 'absolute',
                   right: theme.spacings.sm,
-                  top: `calc(50% - 28px)`,
+                  top: 'calc(50% - 28px)',
                 }}
               >
                 <ScrollerButton
@@ -369,6 +363,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             className={classes.sidebarWrapper}
             sx={[
               {
+                width: { xs: '100%', md: sidebarSize },
                 gridArea: 'right',
                 boxSizing: 'content-box',
                 display: 'grid',

@@ -1,6 +1,8 @@
-import { TextFieldElement, FieldValues, FieldPath } from '@graphcommerce/ecommerce-ui'
+import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
+import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Trans } from '@lingui/react'
-import { AddressFieldsOptions, useAddressFieldsForm } from './useAddressFieldsForm'
+import type { AddressFieldsOptions } from './useAddressFieldsForm'
+import { useAddressFieldsForm } from './useAddressFieldsForm'
 
 export function AddressCity<
   TFieldValues extends FieldValues = FieldValues,
@@ -11,6 +13,7 @@ export function AddressCity<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.city}
       variant='outlined'

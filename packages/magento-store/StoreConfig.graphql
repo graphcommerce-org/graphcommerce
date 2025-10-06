@@ -1,5 +1,0 @@
-query StoreConfig {
-  storeConfig {
-    ...StoreConfigFragment
-  }
-}

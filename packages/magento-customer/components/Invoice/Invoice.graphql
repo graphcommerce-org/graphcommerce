@@ -1,0 +1,13 @@
+fragment Invoice on Invoice {
+  id
+  number
+  items {
+    ...InvoiceItem
+  }
+  total {
+    ...InvoiceTotal
+  }
+  comments {
+    ...SalesCommentItem
+  }
+}

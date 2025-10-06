@@ -1,0 +1,7 @@
+query CustomerPaymentTokens {
+  customerPaymentTokens {
+    items {
+      ...PaymentToken
+    }
+  }
+}

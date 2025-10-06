@@ -1,7 +1,10 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/graphcms-ui'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
+import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
+  Container,
   PageMeta,
   GetStaticProps,
   Pagination,
@@ -9,8 +12,7 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Container, Link } from '@mui/material'
+import { Link } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -26,7 +28,6 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -45,14 +46,16 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
-      <LayoutHeader floatingMd>
+      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>
       </LayoutHeader>
 
       <Container maxWidth={false}>
-        <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
+        {import.meta.graphCommerce.breadcrumbs && (
+          <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
+        )}
         <LayoutTitle variant='h1'>{title}</LayoutTitle>
       </Container>
 
@@ -115,9 +118,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   })
   const blogPaths = staticClient.query({ query: BlogPathsDocument })
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true }
-  if (!(await blogPosts).data.blogPosts.length) return { notFound: true }
-  if (Number(params?.page) <= 0) return { notFound: true }
+  if (!(await defaultPage).data.pages?.[0]) return { notFound: true, revalidate: revalidate() }
+  if (!(await blogPosts).data.blogPosts.length) return { notFound: true, revalidate: revalidate() }
+  if (Number(params?.page) <= 0) return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
@@ -125,10 +128,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await blogPosts).data,
       ...(await blogPaths).data,
       ...(await layout).data,
-      urlEntity: { relative_url: `blog` },
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      urlEntity: { relative_url: 'blog' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

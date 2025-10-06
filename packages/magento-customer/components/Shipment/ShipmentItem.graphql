@@ -1,0 +1,19 @@
+fragment ShipmentItem on ShipmentItemInterface {
+  __typename
+  id
+  product_name
+  product_sku
+  quantity_shipped
+  product_sale_price {
+    ...Money
+  }
+  order_item {
+    id
+    product {
+      uid
+      thumbnail {
+        ...ProductImage
+      }
+    }
+  }
+}

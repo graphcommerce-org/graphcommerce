@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-document-import-in-page */
+
 /* eslint-disable @next/next/next-script-for-ga */
+
 /* eslint-disable react/no-danger */
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'
@@ -19,7 +21,7 @@ export function DocumentHeadEnd(props: PluginProps<DocumentProps>) {
 
   return (
     <>
-      <script async src='https://www.googletagmanager.com/gtag/js?id=G-E0275MGY12' />
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} />
       <script
         dangerouslySetInnerHTML={{
           __html: `

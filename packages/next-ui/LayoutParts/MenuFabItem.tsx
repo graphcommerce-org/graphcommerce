@@ -1,4 +1,5 @@
-import { ListItemButton, ListItemButtonProps, ListItemText } from '@mui/material'
+import type { ListItemButtonProps } from '@mui/material'
+import { ListItemButton, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
 import { NextLink } from '../Theme'
 
@@ -6,6 +7,10 @@ export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'>
   href: NonNullable<ListItemButtonProps<'a'>['href']>
 }
 
+/**
+ * @deprecated Will be removed
+ * @public
+ */
 export function MenuFabItem(props: MenuFabItemProps) {
   const { href, children, sx = [], ...listItemProps } = props
   const hrefString = href.toString()

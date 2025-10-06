@@ -7,7 +7,9 @@ import {
 import { Button, Form, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/macro'
-import { CustomerDocument, CustomerQuery, useCustomerQuery } from '../../hooks'
+import type { CustomerQuery } from '../../hooks'
+import { CustomerDocument, useCustomerQuery } from '../../hooks'
+import type { ContactUsMutationVariables } from './ContactUsMutation.gql'
 import { ContactUsDocument } from './ContactUsMutation.gql'
 
 function findTelephone(data: CustomerQuery): string | undefined {
@@ -128,7 +130,7 @@ export function ContactForm() {
         <Trans>Submit</Trans>
       </Button>
 
-      <FormPersist form={form} name='ContactUs' />
+      <FormPersist<ContactUsMutationVariables> form={form} name='ContactUs' />
       <MessageSnackbar
         open={submittedWithoutErrors}
         variant='pill'

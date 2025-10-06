@@ -15,10 +15,15 @@ module.exports = {
       },
     },
     {
-      files: ['**/.changeset/*.md', '**/CHANGELOG.md'],
+      files: ['**/.changeset/*.md', '**/CHANGELOG.md', '**/llm/*.md'],
       options: {
         proseWrap: 'never',
       },
     },
+  ],
+  importOrder: ['^@graphcommerce/(.*)$', '<THIRD_PARTY_MODULES>', '^[./]'],
+  plugins: [
+    require.resolve('@ianvs/prettier-plugin-sort-imports'),
+    require.resolve('prettier-plugin-jsdoc'),
   ],
 }

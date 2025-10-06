@@ -11,12 +11,16 @@ export const config: PluginConfig = {
   ifConfig: 'configurableVariantValues.content',
 }
 
-export const ProductPageDescription = (
+export function ProductPageDescription(
   props: PluginProps<ProductPageDescriptionProps & AddToCartItemSelector>,
-) => {
+) {
   const { Prev, product, index, ...rest } = props
-  const variant = useConfigurableSelectedVariant({ url_key: product.url_key, index })
+  const variant = useConfigurableSelectedVariant({ ...product, index })
 
+  if (product.__typename !== 'ConfigurableProduct') {
+    return <Prev product={product} index={index} {...rest} />
+  }
+  
   return (
     <Prev
       product={{

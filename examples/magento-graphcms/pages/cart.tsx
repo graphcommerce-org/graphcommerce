@@ -6,6 +6,7 @@ import {
   CartStartCheckoutLinkOrButton,
   CartTotals,
   EmptyCart,
+  getCartDisabled,
   useCartQuery,
 } from '@graphcommerce/magento-cart'
 import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
@@ -78,8 +79,11 @@ function CartPage() {
         {hasItems ? (
           <>
             <Container maxWidth='md'>
-              <CartItemsActionCards cart={data.cart} sx={{ position: 'relative', zIndex: 1 }} />
-              <CouponAccordion key='couponform' sx={(theme) => ({ mt: theme.spacings.md })} />
+              <CartItemsActionCards
+                cart={data.cart}
+                sx={(theme) => ({ position: 'relative', zIndex: 1, mb: theme.spacings.md })}
+              />
+              <CouponAccordion key='couponform' />
               <CartTotals containerMargin sx={{ typography: 'body1' }} />
               <ApolloCartErrorAlert error={error} />
             </Container>
@@ -88,7 +92,7 @@ function CartPage() {
               sx={(theme) => ({ mt: theme.spacings.md })}
             />
             <OverlayStickyBottom sx={{ py: 0.1 }}>
-              <CartStartCheckout cart={data?.cart} disabled={hasError} />
+              <CartStartCheckout cart={data.cart} disabled={hasError} />
             </OverlayStickyBottom>
           </>
         ) : (
@@ -116,6 +120,8 @@ CartPage.pageOptions = pageOptions
 export default CartPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCartDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 

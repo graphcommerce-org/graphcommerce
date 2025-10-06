@@ -1,19 +1,15 @@
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentOptionsProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
-import { StartPaymentOptions } from '../../hooks/useBraintree'
+import type { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeCartLock } from '../../hooks/useBraintreeCartLock'
 import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'
 import { isBraintreeError } from '../../utils/isBraintreeError'
-import {
-  BraintreeLocalPaymentsCartDocument,
-  BraintreeLocalPaymentsCartQuery,
-} from './BraintreeLocalPaymentsCart.gql'
+import type { BraintreeLocalPaymentsCartQuery } from './BraintreeLocalPaymentsCart.gql'
+import { BraintreeLocalPaymentsCartDocument } from './BraintreeLocalPaymentsCart.gql'
 
 function validateAndBuildStartPaymentParams(cartData: BraintreeLocalPaymentsCartQuery): Partial {
   const cart = cartData?.cart
@@ -124,6 +120,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           code,
         }
       } catch (e) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         if (isBraintreeError(e)) unlock({ payment_id: null })
         throw e
       }
@@ -136,7 +133,10 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   /** To use an external Pay button we register the current form to be handled there as well. */
   useFormCompose({ form, step, submit, key: `PaymentMethodOptions_${code}` })
 
-  /** This is the form that the user can fill in. In this case we don't wat the user to fill in anything. */
+  /**
+   * This is the form that the user can fill in. In this case we don't wat the user to fill in
+   * anything.
+   */
   return (
     <form onSubmit={submit}>
       <input type='hidden' {...register('code')} />

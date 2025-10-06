@@ -1,22 +1,19 @@
-import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Image } from '@graphcommerce/image'
-import { ProductPageItemFragment } from '@graphcommerce/magento-product/Api/ProductPageItem.gql'
+import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import {
-  AddToCartItemSelector,
+  AddProductsToCartQuantity,
+  ProductPagePrice,
   useFormAddProductsToCart,
-} from '@graphcommerce/magento-product/components'
-import { Money } from '@graphcommerce/magento-store'
-import {
-  ActionCard,
-  ActionCardProps,
-  actionCardImageSizes,
-  responsiveVal,
-} from '@graphcommerce/next-ui'
-import { Box, Link } from '@mui/material'
+} from '@graphcommerce/magento-product'
+import type { ActionCardProps } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes } from '@graphcommerce/next-ui'
+import { Link } from '@mui/material'
+import type { GroupedProductItemFragment } from '../graphql/fragments/GroupedProductItem.gql'
 
-export type GroupedProductActionCardProps = ProductPageItemFragment &
-  Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'> &
-  AddToCartItemSelector
+export type GroupedProductActionCardProps = {
+  item: GroupedProductItemFragment
+} & AddToCartItemSelector &
+  Omit<ActionCardProps, 'value' | 'image' | 'price' | 'title' | 'action'>
 
 const typographySizes = {
   small: 'body2',
@@ -25,26 +22,20 @@ const typographySizes = {
 }
 
 export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
-  const {
-    uid,
-    name,
-    small_image,
-    price_range,
-    url_key,
-    sx = [],
-    size = 'large',
-    index = 0,
-    sku,
-    url_rewrites,
-    ...rest
-  } = props
-
+  const { item, sx = [], size = 'large', index = 0, ...rest } = props
+  const { product } = item
   const { control, register } = useFormAddProductsToCart()
-  if (!sku) return null
+
+  if (!product?.sku) return null
+
+  const { uid, name, small_image, url_key, sku, url_rewrites } = product
   const hasUrl = (url_rewrites ?? []).length > 0
+  const qty = item.qty ?? 0
+
   return (
     <>
       <input type='hidden' {...register(`cartItems.${index}.sku`)} value={sku} />
+      <input type='hidden' {...register(`cartItems.${index}.keep_sku`, { value: true })} />
       <ActionCard
         variant='default'
         value={uid}
@@ -123,41 +114,21 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
           )
         }
         secondaryAction={
-          <NumberFieldElement
+          <AddProductsToCartQuantity
             size='small'
-            inputProps={{ min: 0 }}
-            defaultValue={1}
-            control={control}
-            sx={{
-              width: responsiveVal(80, 120),
-              mt: 2,
-              '& .MuiFormHelperText-root': {
-                margin: 1,
-                width: '100%',
-              },
-            }}
-            name={`cartItems.${index}.quantity`}
+            index={index}
+            defaultValue={qty}
             onMouseDown={(e) => e.stopPropagation()}
+            inputProps={{ min: 0 }}
           />
         }
         price={
-          <Box>
-            <Box>
-              <Money {...price_range.minimum_price.final_price} />
-            </Box>
-            {price_range.minimum_price.final_price.value !==
-              price_range.minimum_price.regular_price.value && (
-              <Box
-                component='span'
-                sx={{
-                  textDecoration: 'line-through',
-                  color: 'text.disabled',
-                }}
-              >
-                <Money {...price_range.minimum_price.regular_price} />
-              </Box>
-            )}
-          </Box>
+          <ProductPagePrice
+            index={index}
+            product={product}
+            defaultValue={qty ?? 0}
+            variant='total'
+          />
         }
         {...rest}
       />

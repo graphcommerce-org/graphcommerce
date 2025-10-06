@@ -1,25 +1,28 @@
-import { SelectElement, useController } from '@graphcommerce/ecommerce-ui'
-import { SectionHeader, filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Box, ListItemText, MenuItem, TextField, Typography } from '@mui/material'
-import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
+import { useController } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
+import { filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { i18n } from '@lingui/core'
+import { Box, MenuItem, TextField } from '@mui/material'
+import { useFormAddProductsToCart } from '../AddProductsToCart'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
 
-type CustomizableDropDownOptionProps = React.ComponentProps<
+export type CustomizableDropDownOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDropDownOption']
 >
 
 export function CustomizableDropDownOption(props: CustomizableDropDownOptionProps) {
   const { uid, required, index, title, dropdownValue, productPrice, currency } = props
-  const { control, getValues } = useFormAddProductsToCart()
+  const { control } = useFormAddProductsToCart()
 
   const {
     field: { onChange, value, ref, ...field },
     fieldState: { invalid, error },
   } = useController({
-    name: `cartItems.${index}.customizable_options.${uid}`,
+    name: `cartItems.${index}.selected_options_record.${uid}`,
     rules: {
-      required: Boolean(required),
+      required: required
+        ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
+        : false,
     },
     control,
     defaultValue: '',
@@ -27,8 +30,14 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
 
   return (
     <Box>
-      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
-
+      <SectionHeader
+        labelLeft={
+          <>
+            {title} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <TextField
         sx={{
           width: '100%',
@@ -44,7 +53,6 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
         inputRef={ref}
         onChange={(event) => onChange(event.target.value)}
         select
-        required={Boolean(required)}
         error={invalid}
         helperText={error?.message}
       >

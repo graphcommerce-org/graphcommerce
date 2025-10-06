@@ -1,18 +1,17 @@
-import { ChipOverlayOrPopper, ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
+import { ChipOverlayOrPopper } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
+import { activeAggregations } from './activeAggregations'
+import { applyAggregationCount } from './applyAggregationCount'
 import { useProductFiltersPro } from './ProductFiltersPro'
+import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import {
   ProductFiltersProAggregations,
-  ProductFiltersProAggregationsProps,
   productFiltersProSectionRenderer,
 } from './ProductFiltersProAggregations'
 import { ProductFiltersProLimitSection } from './ProductFiltersProLimitSection'
-import {
-  ProductFiltersProSortSection,
-  ProductFiltersProSortSectionProps,
-} from './ProductFiltersProSortSection'
-import { activeAggregations } from './activeAggregations'
-import { applyAggregationCount } from './applyAggregationCount'
+import type { ProductFiltersProSortSectionProps } from './ProductFiltersProSortSection'
+import { ProductFiltersProSortSection } from './ProductFiltersProSortSection'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
 
 export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregationsProps &
@@ -20,7 +19,8 @@ export type ProductFiltersProAllFiltersChipProps = ProductFiltersProAggregations
   Omit<
     ChipOverlayOrPopperProps,
     'label' | 'selected' | 'selectedLabel' | 'onApply' | 'onReset' | 'onClose' | 'children'
-  >
+  > &
+  Partial<Pick<ChipOverlayOrPopperProps, 'label' | 'selectedLabel' | 'children'>>
 
 export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFiltersChipProps) {
   const { sort_fields, total_count, renderer, category, ...rest } = props

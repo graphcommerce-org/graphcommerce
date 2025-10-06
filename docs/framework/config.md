@@ -157,6 +157,14 @@ When a user selects a variant, it will switch the values on the configurable pag
 
 Enabling options here will allow switching of those variants.
 
+#### containerSizingContent: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the content (main content area)
+
+#### containerSizingShell: BREAKPOINT | FULL_WIDTH = `FULL_WIDTH`
+
+Configures the max width of the shell (header, footer, overlays, etc.)
+
 #### crossSellsHideCartItems: boolean = `false`
 
 Determines if cross sell items should be shown when the user already has the product in their cart. This will result in a product will popping off the screen when you add it to the cart.
@@ -223,6 +231,10 @@ Provide a value to enable Google Analytics for your store.
 
 To override the value for a specific locale, configure in i18n config.
 
+#### googlePlaystore: [GraphCommerceGooglePlaystoreConfig](#GraphCommerceGooglePlaystoreConfig)
+
+To create an assetlinks.json file for the Android app.
+
 #### googleRecaptchaKey: string
 
 Google reCAPTCHA site key.
@@ -238,6 +250,11 @@ ReCAPTCHA can then be enabled/disabled for the different forms, separately (Stor
 The Google Tagmanager ID to be used on the site.
 
 This value is required even if you are configuring different values for each locale.
+
+#### graphqlMeshEditMode: boolean = `false`
+
+The GraphQL Mesh will be loaded once and any modifications to resolvers will be ignored. When developing
+new resolvers this should be set to true.
 
 #### hygraphManagementApi: string
 
@@ -289,6 +306,10 @@ yarn graphcommerce hygraph-migrate
 Limit the static generation of SSG when building.
 
 By default GraphCommerce will statically generate all product and category pages during build. This can take quite a long time, to skip this step set this value to true.
+
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
+Allows the option to require login or completely disable certain sections of the site, can be overriden per storeview with the storefrontConfig
 
 #### previewSecret: string
 
@@ -343,6 +364,10 @@ Show a message when the product is added to the wishlist.
 
 Debug configuration for GraphCommerce
 
+#### cart: boolean
+
+Enable debugging interface to debug sessions
+
 #### pluginStatus: boolean
 
 Reports which plugins are enabled or disabled.
@@ -365,6 +390,38 @@ When updating packages it can happen that the same package is included with diff
 Issues that this can cause are:
 - The same package is included multiple times in the bundle, increasing the bundle size.
 - The Typescript types of the package are not compatible with each other, causing Typescript errors.
+
+### GraphCommerceGooglePlaystoreConfig
+
+See https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
+
+#### packageName: string (required)
+
+The package name of the Android app.
+
+#### sha256CertificateFingerprint: string (required)
+
+The sha256 certificate fingerprint of the Android app.
+
+### GraphCommercePermissions
+
+Permissions input
+
+#### cart: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
+
+#### checkout: CUSTOMER_ONLY | DISABLED | ENABLED
+
+Changes the availability of the checkout to either customer only or completely disables it.
+
+#### customerAccount: DISABLED | DISABLE_REGISTRATION | ENABLED
+
+Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+
+#### website: ENABLED
+
+Allows the option to require login or completely disable the site.
 
 ### GraphCommerceStorefrontConfig
 
@@ -437,6 +494,10 @@ Add a gcms-locales header to make sure queries return in a certain language, can
 #### linguiLocale: string
 
 Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
+
+#### permissions: [GraphCommercePermissions](#GraphCommercePermissions)
+
+Allows the option to require login or completely disable certain sections of the site on a per store basis
 
 #### robotsAllow: boolean
 

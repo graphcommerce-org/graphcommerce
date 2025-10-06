@@ -1,5 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { CartItemSummary, CartSummary, InlineAccount } from '@graphcommerce/magento-cart'
+import { cacheFirst } from '@graphcommerce/graphql'
+import {
+  CartItemSummary,
+  CartSummary,
+  InlineAccount,
+  getCheckoutIsDisabled,
+} from '@graphcommerce/magento-cart'
 import { SignupNewsletter } from '@graphcommerce/magento-newsletter'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -13,7 +19,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-import { Button, Box, Container, Typography } from '@mui/material'
+import { Button, Box, Container, Typography, CircularProgress } from '@mui/material'
 import { useRouter } from 'next/router'
 import {
   LayoutDocument,
@@ -22,27 +28,24 @@ import {
   LayoutMinimalProps,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
-import { cacheFirst } from '@graphcommerce/graphql'
+import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
 
 function OrderSuccessPage() {
-  const hasCartId = !!useRouter().query.cart_id
-
-  const orderNumber = useRouter().query.order_number
+  const router = useRouter()
+  const { cart_id, order_number } = router.query ?? {}
+  const hasCartId = !!cart_id
 
   return (
     <>
       <PageMeta title={i18n._(/* i18n */ 'Checkout summary')} metaRobots={['noindex']} />
-      <LayoutHeader floatingMd>
-        {hasCartId && (
-          <LayoutTitle size='small' icon={iconParty}>
-            <Trans id='Thank you for your order!' />
-          </LayoutTitle>
-        )}
-      </LayoutHeader>
-      <Container maxWidth='md'>
+
+      <WaitForQueries
+        waitFor={router.isReady}
+        fallback={<FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />} />}
+      >
         {!hasCartId && (
           <FullPageMessage
             title={<Trans id='You have not placed an order' />}
@@ -56,29 +59,36 @@ function OrderSuccessPage() {
             <Trans id='Discover our collection and add items to your cart!' />
           </FullPageMessage>
         )}
+
         {hasCartId && (
-          <>
-            <LayoutTitle icon={iconParty}>
+          <LayoutHeader floatingMd disableBackNavigation>
+            <LayoutTitle size='small' icon={iconParty}>
+              <Trans id='Thank you for your order!' />
+            </LayoutTitle>
+          </LayoutHeader>
+        )}
+
+        {hasCartId && (
+          <Container maxWidth='md'>
+            <LayoutTitle icon={iconParty} sx={{ flexDirection: { md: 'column' } }}>
               <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
                 <Trans id='Thank you for your order!' />
-                {orderNumber && <Typography variant='subtitle1'>#{orderNumber}</Typography>}
+                {order_number && <Typography variant='subtitle1'>#{order_number}</Typography>}
               </Box>
             </LayoutTitle>
             <CartSummary />
             <CartItemSummary />
-
             <SignupNewsletter />
-
-            <InlineAccount accountHref='/account' />
+            <InlineAccount />
 
             <Box textAlign='center' m={8}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
                 <Trans id='Back to home' />
               </Button>
             </Box>
-          </>
+          </Container>
         )}
-      </Container>
+      </WaitForQueries>
     </>
   )
 }
@@ -91,6 +101,8 @@ OrderSuccessPage.pageOptions = pageOptions
 export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })

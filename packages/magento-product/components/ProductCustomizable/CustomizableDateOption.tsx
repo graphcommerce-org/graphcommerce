@@ -1,123 +1,78 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
+import type { CustomizableDateTypeEnum } from '@graphcommerce/graphql-mesh'
 import { SectionHeader } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
-import { OptionTypeRenderer } from './CustomizableAreaOption'
-import { Money } from '@graphcommerce/magento-store'
+import type { OptionTypeRenderer } from './CustomizableAreaOption'
+import { CustomizablePrice } from './CustomizablePrice'
 
-type CustomizableDateOptionProps = React.ComponentProps<
+export type CustomizableDateOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableDateOption']
 > & {
   minDate?: Date
   maxDate?: Date
 }
 
+function getInputType(
+  type: CustomizableDateTypeEnum | null | undefined,
+): React.HTMLInputTypeAttribute {
+  if (type === 'DATE') return 'date'
+  if (type === 'TIME') return 'time'
+  return 'datetime-local'
+}
+
 export function CustomizableDateOption(props: CustomizableDateOptionProps) {
-  const {
-    uid,
-    required,
-    optionIndex,
-    index,
-    title,
-    minDate = new Date('1950-11-12T00:00'),
-    maxDate = new Date('9999-11-12T00:00'),
-    dateValue,
-    currency,
-    productPrice,
-  } = props
-  const {
-    register,
-    setValue,
-    setError,
-    getFieldState,
-    clearErrors,
-    control,
-    resetField,
-    getValues,
-  } = useFormAddProductsToCart()
+  const { uid, required, index, title, minDate, maxDate, dateValue, currency, productPrice } = props
+  const { control } = useFormAddProductsToCart()
 
-  const { invalid } = getFieldState(`cartItems.${index}.entered_options.${optionIndex}.value`)
-
-  minDate.setSeconds(0, 0)
-  maxDate.setSeconds(0, 0)
+  const name = `cartItems.${index}.entered_options_record.${uid}` as const
   if (!dateValue) return null
 
-  const price =
-    dateValue.price === 0
-      ? null
-      : dateValue.price && (
-          <Box
-            sx={{
-              display: 'flex',
-              typography: 'body1',
-              '&.sizeMedium': { typographty: 'subtitle1' },
-              '&.sizeLarge': { typography: 'h6' },
-              color:
-                dateValue.uid ===
-                getValues(`cartItems.${index}.entered_options.${optionIndex}.value`)
-                  ? 'text.primary'
-                  : 'text.secondary',
-            }}
-          >
-            {/* Change fontFamily so the + is properly outlined */}
-            <span style={{ fontFamily: 'arial' }}>+{'\u00A0'}</span>
-            <Money
-              value={
-                dateValue.price_type === 'PERCENT'
-                  ? productPrice * (dateValue.price / 100)
-                  : dateValue.price
-              }
-              currency={currency}
-            />
-          </Box>
-        )
+  minDate?.setSeconds(0, 0)
+  maxDate?.setSeconds(0, 0)
+
   return (
     <Box>
-      <input
-        type='hidden'
-        {...register(`cartItems.${index}.entered_options.${optionIndex}.uid`)}
-        value={uid}
-      />
-
       <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
       <TextFieldElement
         control={control}
-        name={`cartItems.${index}.entered_options.${optionIndex}.value`}
+        name={name}
         sx={{
           width: '100%',
-          '& input[type="datetime-local"]::-webkit-calendar-picker-indicator': {
+          '& ::-webkit-calendar-picker-indicator': {
             filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
             mr: '10px',
           },
         }}
-        defaultValue=''
         required={!!required}
-        error={invalid}
-        helperText={invalid ? <Trans id='Invalid date' /> : ''}
-        type='datetime-local'
+        type={getInputType(dateValue.type)}
         InputProps={{
-          endAdornment: price,
+          endAdornment: (
+            <CustomizablePrice
+              name={name}
+              price_type={dateValue.price_type}
+              currency={currency}
+              value={dateValue.price}
+              productPrice={productPrice}
+            />
+          ),
           inputProps: {
-            min: minDate.toISOString().replace(/:00.000Z/, ''),
-            max: maxDate.toISOString().replace(/:00.000Z/, ''),
+            min: minDate?.toISOString().replace(/.000Z/, ''),
+            max: maxDate?.toISOString().replace(/.000Z/, ''),
           },
         }}
-        onChange={(data) => {
-          const selectedDate = new Date(data.currentTarget.value)
-          if (selectedDate < minDate || selectedDate > maxDate) {
-            setError(`cartItems.${index}.entered_options.${optionIndex}.value`, {
-              message: 'Invalid date',
-            })
-          } else {
-            clearErrors(`cartItems.${index}.entered_options.${optionIndex}.value`)
-          }
-          if (data.currentTarget.value)
-            setValue(
-              `cartItems.${index}.entered_options.${optionIndex}.value`,
-              `${data.currentTarget.value.replace('T', ' ')}:00`,
-            )
-          else resetField(`cartItems.${index}.entered_options.${optionIndex}.value`)
+        rules={{
+          validate: (value) => {
+            if (!(value instanceof Date)) return true
+
+            if (minDate && value < minDate)
+              return t`Date must be after ${minDate.toLocaleDateString()}`
+            if (maxDate && value > maxDate)
+              return t`Date must be before ${maxDate.toLocaleDateString()}`
+
+            return true
+          },
         }}
       />
     </Box>

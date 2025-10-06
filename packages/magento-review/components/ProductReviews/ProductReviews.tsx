@@ -1,22 +1,23 @@
 import { useQuery } from '@graphcommerce/graphql'
 import {
+  DateTimeFormat,
+  extendableComponent,
   Pagination,
   responsiveVal,
   StarRatingField,
-  extendableComponent,
-  DateTimeFormat,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react'
-import { Typography, Button, Box, SxProps, Theme, Link } from '@mui/material'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Button, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { ProductReviewChip } from '../ProductReviewChip/ProductReviewChip'
-import { ProductReviewsFragment } from './ProductReviews.gql'
+import type { ProductReviewsFragment } from './ProductReviews.gql'
 import { ProductReviewsPageDocument } from './ProductReviewsPage.gql'
 
 export type ProductReviewsProps = ProductReviewsFragment & { sx?: SxProps<Theme> }
 
-const name = 'ProductReviews' as const
+const name = 'ProductReviews'
 const parts = [
   'review',
   'title',
@@ -87,7 +88,7 @@ export function ProductReviews(props: ProductReviewsProps) {
           page={current_page ?? 1}
           classes={{ root: classes.paginationRoot }}
           sx={{
-            margin: `0 -16px 0`,
+            margin: '0 -16px 0',
           }}
           renderLink={(p: number, icon: React.ReactNode) => (
             <Link color='inherit' underline='hover' onClick={() => setPage(p)}>
@@ -231,9 +232,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                 dateTime={review?.created_at}
                 sx={{ typography: 'body2' }}
               >
-                <DateTimeFormat dateStyle='long' timeStyle='short'>
-                  {review?.created_at.replace(/-/g, '/')}
-                </DateTimeFormat>
+                <DateTimeFormat dateStyle='long' timeStyle='short' date={review?.created_at} />
               </Box>
             </Box>
           </Box>

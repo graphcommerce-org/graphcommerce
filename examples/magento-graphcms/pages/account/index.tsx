@@ -1,11 +1,13 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
-import { cacheFirst, useQuery } from '@graphcommerce/graphql'
+import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import {
   AccountDashboardDocument,
   AccountMenu,
   AccountMenuItem,
   AddressSingleLine,
-  OrderStateLabelInline,
+  getCustomerAccountIsDisabled,
+  OrderStateLabel,
   SignOutForm,
   useCustomerQuery,
   WaitForCustomer,
@@ -23,10 +25,10 @@ import {
   iconPerson,
   iconShutdown,
   iconStar,
-  TimeAgo,
   LayoutTitle,
   LayoutHeader,
   iconBin,
+  RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -41,16 +43,10 @@ function AccountIndexPage() {
     fetchPolicy: 'cache-and-network',
   })
 
-  const { data: config } = useQuery(StoreConfigDocument)
-  const locale = config?.storeConfig?.locale?.replace('_', '-')
-
   const customer = dashboard.data?.customer
   const address =
     customer?.addresses?.filter((a) => a?.default_shipping)?.[0] || customer?.addresses?.[0]
-  const orders = customer?.orders
-  const latestOrder = orders?.items?.[(orders?.items?.length ?? 1) - 1]
-
-  const latestOrderDate = new Date(latestOrder?.order_date ?? new Date())
+  const latestOrder = customer?.orders?.items?.[0]
 
   return (
     <>
@@ -72,7 +68,7 @@ function AccountIndexPage() {
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={<Trans id='Name' />}
+              title={<Trans id='Personal details' />}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
@@ -88,26 +84,24 @@ function AccountIndexPage() {
               subtitle={<Trans id='Password' />}
             />
             <AccountMenuItem
+              href='/account/addresses'
+              iconSrc={iconHome}
+              title={<Trans id='Addresses' />}
+              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
+            />
+            <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
               title={<Trans id='Orders' />}
               subtitle={
                 latestOrder ? (
                   <>
-                    <time dateTime={latestOrderDate.toDateString()}>
-                      <TimeAgo date={latestOrderDate} locale={locale} />
-                    </time>
+                    <RelativeToTimeFormat styleFormat='short' date={latestOrder?.order_date} />
                     {', '}
-                    {latestOrder?.items && <OrderStateLabelInline {...latestOrder} />}
+                    <OrderStateLabel {...latestOrder} short />
                   </>
                 ) : undefined
               }
-            />
-            <AccountMenuItem
-              href='/account/addresses'
-              iconSrc={iconHome}
-              title={<Trans id='Addresses' />}
-              subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             {customer?.reviews.items.length !== 0 && (
               <AccountMenuItem
@@ -130,15 +124,6 @@ function AccountIndexPage() {
                 '&:hover': { background: theme.palette.background.paper },
               })}
             />
-            {import.meta.graphCommerce.magentoVersion >= 246 &&
-              import.meta.graphCommerce.customerDeleteEnabled && (
-                <AccountMenuItem
-                  href='/account/delete'
-                  disableRipple
-                  iconSrc={iconBin}
-                  title={<Trans id='Delete account' />}
-                />
-              )}
 
             <SignOutForm
               // eslint-disable-next-line react/no-unstable-nested-components
@@ -168,6 +153,8 @@ AccountIndexPage.pageOptions = pageOptions
 export default AccountIndexPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const staticClient = graphqlSsrClient(context)
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -182,6 +169,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/', title: i18n._(/* i18n */ 'Home') },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

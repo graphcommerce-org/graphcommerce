@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { PasswordElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {
@@ -11,15 +12,14 @@ import {
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
-import {
-  UpdateCustomerEmailDocument,
+import type {
   UpdateCustomerEmailMutation,
   UpdateCustomerEmailMutationVariables,
 } from './UpdateCustomerEmail.gql'
+import { UpdateCustomerEmailDocument } from './UpdateCustomerEmail.gql'
 
-type UpdateCustomerEmailFormProps = {
+export type UpdateCustomerEmailFormProps = {
   email: string
 }
 

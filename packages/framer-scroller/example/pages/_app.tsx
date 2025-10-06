@@ -1,10 +1,9 @@
 /// <reference types="@graphcommerce/next-ui/types" />
-
 import { responsiveVal } from '@graphcommerce/next-ui'
-import { createTheme, CssBaseline, ThemeProvider, StyledEngineProvider } from '@mui/material'
-import { LazyMotion, domMax } from 'framer-motion'
-import { AppPropsType } from 'next/dist/shared/lib/utils'
-import { Router } from 'next/router'
+import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
+import { domMax, LazyMotion } from 'framer-motion'
+import type { AppPropsType } from 'next/dist/shared/lib/utils'
+import type { Router } from 'next/router'
 import React from 'react'
 
 const theme = createTheme({
@@ -29,6 +28,8 @@ const theme = createTheme({
     headerHeightMd: '110px',
     appBarHeightMd: '80px',
     appBarInnerHeightMd: '46px',
+    maxWidth: 'lg',
+    maxWidthContent: 'lg',
   },
 })
 

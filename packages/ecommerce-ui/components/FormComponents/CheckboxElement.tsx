@@ -1,28 +1,38 @@
-import { ControllerProps, FieldValues, useController } from '@graphcommerce/react-hook-form'
+import type { FieldValues } from '@graphcommerce/react-hook-form'
+import { useController } from '@graphcommerce/react-hook-form'
 import { i18n } from '@lingui/core'
-import {
-  Checkbox,
+import type {
   CheckboxProps,
-  FormControl,
-  FormControlLabel,
   FormControlLabelProps,
   FormControlProps,
-  FormGroup,
-  FormHelperText,
   SxProps,
   Theme,
 } from '@mui/material'
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
+  useForkRef,
+} from '@mui/material'
+import type { FieldElementProps } from './types'
 
-export type CheckboxElementProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
+type AdditionalProps = {
   label?: FormControlLabelProps['label']
   helperText?: string
   sx?: SxProps<Theme>
   formControl?: Omit<FormControlProps<'div'>, 'required' | 'error'>
-} & Omit<ControllerProps<T>, 'render'>
+}
 
-export function CheckboxElement<TFieldValues extends FieldValues>(
+export type CheckboxElementProps<TFieldValues extends FieldValues = FieldValues> =
+  FieldElementProps<TFieldValues, CheckboxProps> & AdditionalProps
+
+type CheckboxElementComponent = <TFieldValues extends FieldValues>(
   props: CheckboxElementProps<TFieldValues>,
-): JSX.Element {
+) => React.ReactNode
+
+function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
   const {
     name,
     rules = {},
@@ -33,7 +43,6 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
     sx,
     formControl,
     defaultValue,
-    disabled,
     shouldUnregister,
     ...rest
   } = props
@@ -43,14 +52,13 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
   }
 
   const {
-    field: { value, onChange, ref, ...field },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules,
     control,
     defaultValue,
-    disabled,
     shouldUnregister,
   })
 
@@ -64,8 +72,9 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
           control={
             <Checkbox
               {...rest}
-              {...field}
-              inputRef={ref}
+              onBlur={onBlur}
+              name={name}
+              inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
               sx={{
                 ...(Array.isArray(sx) ? sx : [sx]),
@@ -82,3 +91,6 @@ export function CheckboxElement<TFieldValues extends FieldValues>(
     </FormControl>
   )
 }
+
+/** @public */
+export const CheckboxElement = CheckboxElementBase as CheckboxElementComponent
