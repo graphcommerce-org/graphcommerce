@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`8b8807b`](https://github.com/graphcommerce-org/graphcommerce/commit/8b8807b8e24f1dba78dd988dfdc21316c616274f) - Solve issue where the GetConfigurableOptionsSelection query would be executed even if the product wasn't a ConfigurableProduct. ([@paales](https://github.com/paales))
+
+- [`f7d2bf1`](https://github.com/graphcommerce-org/graphcommerce/commit/f7d2bf13f7e82d5c8e918a51c1375c276ad3d80f) - Fix build issue ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`d859dd8`](https://github.com/graphcommerce-org/graphcommerce/commit/d859dd8e5e89e4f22cd6e89e3ae8d03067de6c51) - Do not directly update the cache of the defaultConfigurableOptionsSelection, but query the backend. ([@paales](https://github.com/paales))
+
+- [#2544](https://github.com/graphcommerce-org/graphcommerce/pull/2544) [`09a79c0`](https://github.com/graphcommerce-org/graphcommerce/commit/09a79c061c874dd9b5896d37edb2fc1031c7678c) - Solve issue whre Configurable Options would not respect the option position. ([@ThisIsRuddy](https://github.com/ThisIsRuddy))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Move the cartItemEdit functionality to a plugin for configurable products ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Implement the Cart options as priceModifiers so the logic can be somewhat re-used for multiple locations ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

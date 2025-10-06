@@ -1,5 +1,15 @@
 # @graphcommerce/cli
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2511](https://github.com/graphcommerce-org/graphcommerce/pull/2511) [`74d87cc`](https://github.com/graphcommerce-org/graphcommerce/commit/74d87cc5ea870f7ac99d375496c9704ea73c2090) - Make hygraph-cli dependency for the cli package optional, so that resolveDependenciesSync accepts it not being installed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+### Patch Changes
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

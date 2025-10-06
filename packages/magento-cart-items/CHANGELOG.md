@@ -1,5 +1,23 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Added support for TIME and DATE for the customizable options. Added required stars. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a482084`](https://github.com/graphcommerce-org/graphcommerce/commit/a482084d34e5e38e19cf6afbad87cd6eda67e858) - Currency wasn't set properly while rendering custom options for cart items that had a different currency than the current store. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`09945ab`](https://github.com/graphcommerce-org/graphcommerce/commit/09945abef32640d1000a1da3f376afe4776d697f) - Solve issue where the UpdateItemQuantity would send a wrong query to the backend. ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`875fbca`](https://github.com/graphcommerce-org/graphcommerce/commit/875fbcab9a26db8a33eca7cc9a41847c24cd8381) - Solve issue where the CartItem href wouldn't be correct ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`47daa19`](https://github.com/graphcommerce-org/graphcommerce/commit/47daa19a848acc85b0a9b84e6fda89da92128565) - Solve issue where if a product wasn't available in the cart anymore from the server the user wouldn't be able to remove the item from the cart. ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`dfd6359`](https://github.com/graphcommerce-org/graphcommerce/commit/dfd63593f31bd69d255a69dd7e9cb5471428c685) - Exported cartItemToCartItemInput so it can be extended with plugins ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

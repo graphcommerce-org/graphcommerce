@@ -1,5 +1,13 @@
 # @graphcommerce/google-datalayer
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2514](https://github.com/graphcommerce-org/graphcommerce/pull/2514) [`57ece20`](https://github.com/graphcommerce-org/graphcommerce/commit/57ece2097b9a3799e1d0a459c006dab656d20b9d) - Solve an issue where Analytics and Tagmanager events wouldn't be sent. Split useSendEvent and sendEvent methods into two files so plugins can be correctly applied to each. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`1a06135`](https://github.com/graphcommerce-org/graphcommerce/commit/1a061357f4ccb430dd13194f755815474e140520) - Allow awaitable async requests for onStart on checkout button ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

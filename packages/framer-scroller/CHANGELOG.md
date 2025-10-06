@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`e9da6a9`](https://github.com/graphcommerce-org/graphcommerce/commit/e9da6a9e55a9344a1f8ef8f1f20060af2bb38ee9) - Added support for video's on the product page. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

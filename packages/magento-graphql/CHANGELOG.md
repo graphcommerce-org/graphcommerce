@@ -1,5 +1,25 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`958dcb6`](https://github.com/graphcommerce-org/graphcommerce/commit/958dcb62d5abb3427a38e2a4583897f3e2043cc4) - Introduce a new Product-`uid` to solve an issue where cache normalization was not working properly on the frontend when viewing products with a differen curreny, etc.
+
+  Products now have a more detailed `uid` which will include the scope the product is retrieved from. For example: `NDg5MDM=?store=nl_NL&currencyCode=EUR`. This results in a better cache normalization in Apollo Client and allows for switching between scopes (store/currency/price views/accounts) without creating a broken cache state.
+
+  We have implemented this with a new resolver that rewrites the `uid` passed from Magento to the Mesh Resolver, and additing additonal data to the `uid` based on the headers passed from the client. This also requires each package to implement the `getPrivateQueryContextMesh` method to retrieve the current PrivateQuery context from the GraphQL request headers. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`3ebd5bb`](https://github.com/graphcommerce-org/graphcommerce/commit/3ebd5bbb9a63a9ee07c748173ed9f4a06ad9b04f) - Add flushMeasurePerf for product page ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`529d7a8`](https://github.com/graphcommerce-org/graphcommerce/commit/529d7a88a4e010cb3e50c1358e2ac43e80e0bf38) - Solve issue where the ApolloClient cache wasn't scoped properly causing the wrong currency to be shown when switching currency. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2794efe`](https://github.com/graphcommerce-org/graphcommerce/commit/2794efe3251934b9621371b94481eee11b4fb40c) - Magento <= 2.4.6: Solve issue where GraphCommerce's schema compatibility layer would define fields to be always return a value while they would never causing runtime errors which are hard to catch. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

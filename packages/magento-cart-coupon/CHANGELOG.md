@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [`3b45e14`](https://github.com/graphcommerce-org/graphcommerce/commit/3b45e1426da4dd4caf1cc76f0707af07474ffd2e) - Forward props to CouponAccordion ([@paales](https://github.com/paales))
+
+- [#2532](https://github.com/graphcommerce-org/graphcommerce/pull/2532) [`4913aee`](https://github.com/graphcommerce-org/graphcommerce/commit/4913aeeae7c9237edc13361b72619e1d1f429198) - Resolve issue where a 400 error occurred due to missing coupon code data in the request. The coupon input field was being disabled before form submission, preventing the code from being included in the request payload ([@joshdavenport](https://github.com/joshdavenport))
+
+- [#2486](https://github.com/graphcommerce-org/graphcommerce/pull/2486) [`e09873e`](https://github.com/graphcommerce-org/graphcommerce/commit/e09873ebccfca167e9ffe9873d9a26d104cb6623) - Align coupon accordion with other accordion types that can still expand with chips rendered ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`3613b74`](https://github.com/graphcommerce-org/graphcommerce/commit/3613b7412e736c2770654a076ee8fa5f1e77735c) - Split out various Cart related fragments to allow for easier extensibility: AppliedCoupon, CartPrices, CartTaxItem, Discount ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

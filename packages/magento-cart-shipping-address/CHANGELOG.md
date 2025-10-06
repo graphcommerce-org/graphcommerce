@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`415f9fb`](https://github.com/graphcommerce-org/graphcommerce/commit/415f9fb50454fb20cb533235969dd9ab4ffc134b) - Allow setting the cartId in the form for useFormGqlMutationCart by setting the cartId in the form AND allow setting the cartId for a whole context by wrapping with CartIdProvider ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

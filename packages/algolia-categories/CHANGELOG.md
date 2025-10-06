@@ -1,5 +1,17 @@
 # @graphcommerce/algolia-categories
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`f9176ad`](https://github.com/graphcommerce-org/graphcommerce/commit/f9176adf3bf643ac00c865fc173a80056d8b8170) - Search Categories through algolia ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`dc53b61`](https://github.com/graphcommerce-org/graphcommerce/commit/dc53b614ef0ee1249882b2fcd5590ddca12f1636) - Added meta_keywords to CmsPageMeta and CategoryMeta ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`c9ac114`](https://github.com/graphcommerce-org/graphcommerce/commit/c9ac1142cb92394eb32dc4a6d3944a1707b1b4e2) - Allow returning the algolia index name that is being searched ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

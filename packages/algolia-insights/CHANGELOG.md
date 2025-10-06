@@ -1,5 +1,13 @@
 # @graphcommerce/algolia-personalization
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2505](https://github.com/graphcommerce-org/graphcommerce/pull/2505) [`59c8877`](https://github.com/graphcommerce-org/graphcommerce/commit/59c8877db343450547da3e200d904c15f5b8e94f) - Update useSendAlgoliaEvent.ts ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`d90f7f5`](https://github.com/graphcommerce-org/graphcommerce/commit/d90f7f5889c58fbd982581a13b398a0978f901a8) - Solve issue where the useSendEventAlgolia hook would sometimes throw an error during purchase ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

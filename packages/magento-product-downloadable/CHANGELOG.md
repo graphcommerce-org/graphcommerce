@@ -1,5 +1,24 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`01ba1a7`](https://github.com/graphcommerce-org/graphcommerce/commit/01ba1a73c86778ea9b34059ec092723b4a56b92b) - Improved Downloadable products functionality:
+
+  - Account Dashboard Link and Download Page
+  - Download samples / linkSamples and links from the backend.
+  - CartItem edit functionality for the DownloadableCartItem
+  - Dynamic ProductPagePrice for downloadable options ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Implement the Cart options as priceModifiers so the logic can be somewhat re-used for multiple locations ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`ef441bf`](https://github.com/graphcommerce-org/graphcommerce/commit/ef441bf44a23519e395f4b2143465a5e46bf2e7e) - Support for links_purchased_separately and links_title ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54
