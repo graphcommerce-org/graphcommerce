@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`1d87dc1`](https://github.com/graphcommerce-org/graphcommerce/commit/1d87dc1ac00010df721547d6e62cb49f5bd450eb) - Use narrower types for grouped products ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`7f10a7e`](https://github.com/graphcommerce-org/graphcommerce/commit/7f10a7e1f862588c7d866e1c845f164f8f6a86ad) - Use ProductListPrice and AddProductsToCartQuantity for grouped product lines ([@paales](https://github.com/paales))
+
+- [`f915f65`](https://github.com/graphcommerce-org/graphcommerce/commit/f915f655f5965bab1d50eca9b275199c02e7b7d1) - Make sure the default quantity is selected on the product page for grouped products. Products are sorted correctly and create a separate GroupedProductItem fragment for easier etensibility. ([@paales](https://github.com/paales))
+
+- [#2522](https://github.com/graphcommerce-org/graphcommerce/pull/2522) [`43641a4`](https://github.com/graphcommerce-org/graphcommerce/commit/43641a48e0f3828d99b686b2f7cbca915f426d64) - Solve issue where grouped products could only be added to the cart correctly once. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

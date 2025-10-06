@@ -1,5 +1,15 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2514](https://github.com/graphcommerce-org/graphcommerce/pull/2514) [`7831df6`](https://github.com/graphcommerce-org/graphcommerce/commit/7831df6c391923da994a9c8e7e379b557b9c1d99) - Solve issue where the loaded GA4 script would not include the correct GA ID ([@paales](https://github.com/paales))
+
+- [#2514](https://github.com/graphcommerce-org/graphcommerce/pull/2514) [`57ece20`](https://github.com/graphcommerce-org/graphcommerce/commit/57ece2097b9a3799e1d0a459c006dab656d20b9d) - Solve an issue where Analytics and Tagmanager events wouldn't be sent. Split useSendEvent and sendEvent methods into two files so plugins can be correctly applied to each. ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`cbf92b8`](https://github.com/graphcommerce-org/graphcommerce/commit/cbf92b83a677c51c62dc723dcc7bf456a79125e4) - Remove dependencies from `@graphcommerce/googletagmanager` and `@graphcommerce/googleanalytics` on Magento packages and make the datalayer optional ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

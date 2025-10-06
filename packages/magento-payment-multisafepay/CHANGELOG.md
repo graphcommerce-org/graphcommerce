@@ -1,5 +1,17 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`cd386e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cd386e3bce61256bab46cca88aacc7c4aa4ac415) - Remove issuers field from MultiSafePay in preparation for iDeal 2. Please not that this change requires an upgrade to the Magento module as well. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2495](https://github.com/graphcommerce-org/graphcommerce/pull/2495) [`0fc9805`](https://github.com/graphcommerce-org/graphcommerce/commit/0fc98051b87cd7fc0363609b50211d2d7382a84d) - Remove issuer list from ideal payment method ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`21dc35d`](https://github.com/graphcommerce-org/graphcommerce/commit/21dc35d09521f47b7f91dc868ca776603e2da4a2) - Solve issue where the cart would remain locked if a user would return to the website without going through the checkout/payment step. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`6a55be4`](https://github.com/graphcommerce-org/graphcommerce/commit/6a55be43ab1f53eb689abf8ad742383daf65822e) - Solve issue where the MSPPaymentHandler query would be executed multiple times. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

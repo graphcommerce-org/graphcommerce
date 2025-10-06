@@ -1,5 +1,19 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`224945f`](https://github.com/graphcommerce-org/graphcommerce/commit/224945faf04dff48692b7fcd99e1835d8a683143) - Add the ability to edit bundle products from the cart page ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`224945f`](https://github.com/graphcommerce-org/graphcommerce/commit/224945faf04dff48692b7fcd99e1835d8a683143) - Magento 2.4.7: Render discounts for bundle products ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`224945f`](https://github.com/graphcommerce-org/graphcommerce/commit/224945faf04dff48692b7fcd99e1835d8a683143) - Calculate the product page price dynamically based on the options and quantities selected. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Implement the Cart options as priceModifiers so the logic can be somewhat re-used for multiple locations ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

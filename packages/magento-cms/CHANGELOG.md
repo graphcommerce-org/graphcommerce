@@ -1,5 +1,17 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`a317221`](https://github.com/graphcommerce-org/graphcommerce/commit/a317221a6ef88dc037985398bf87926a73f7fa48) - Convert home to render the home CmsPage and add page/[…url] route for additional pages. ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`d09c98b`](https://github.com/graphcommerce-org/graphcommerce/commit/d09c98bba2ee83fb51b17494354a42b6c38446ab) - Added support for loading CMS Pages from Magento ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`2e52ea3`](https://github.com/graphcommerce-org/graphcommerce/commit/2e52ea39823a15fc4ffe3ca47780f7e64ace3110) - Added cmsBlocks query and `<CmsBlock />` component. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`eb973e7`](https://github.com/graphcommerce-org/graphcommerce/commit/eb973e7dec375178e4348e74069fc0d132a091c7) - Render the no-route page (or whatever is configured) on the 404 page when running with only Magento. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

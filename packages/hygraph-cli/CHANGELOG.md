@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-cli
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`c25bb10`](https://github.com/graphcommerce-org/graphcommerce/commit/c25bb105c6bf0a043dde734be41f350cfbe3ebdb) - Migrated `@graphcommerce/hygraph-cli` package to `"type": "module"` ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

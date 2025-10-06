@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2523](https://github.com/graphcommerce-org/graphcommerce/pull/2523) [`cc5b602`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5b602694e433ec13688dd3fda60e300461a7d3) - Add correct link to demo project ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

@@ -1,5 +1,45 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Added support for multiple display currencies in the frontend. Multiple currencies were already supported, but this introduces Display Currencies for viewing the cart in different currencies. ([@paales](https://github.com/paales))
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`4b6a65d`](https://github.com/graphcommerce-org/graphcommerce/commit/4b6a65db089d92492e7fde28a8e32bc41f5b9103) - Refactored the Store Selector to be more of a form and have multiple nested toggles to switch groups, then stores and then currencies. It automatically hides features that aren't used: If only a single group is used with multiple stores only the store selector is shown. If multiple groups are used with each a single store is used, only the group selector is shown. If only a single currency is used, there is no currency selector. If multiple currencies are used, the currency selector is shown. This makes the selector more user-friendly and less cluttered. ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`958dcb6`](https://github.com/graphcommerce-org/graphcommerce/commit/958dcb62d5abb3427a38e2a4583897f3e2043cc4) - Introduce a new Product-`uid` to solve an issue where cache normalization was not working properly on the frontend when viewing products with a differen curreny, etc.
+
+  Products now have a more detailed `uid` which will include the scope the product is retrieved from. For example: `NDg5MDM=?store=nl_NL&currencyCode=EUR`. This results in a better cache normalization in Apollo Client and allows for switching between scopes (store/currency/price views/accounts) without creating a broken cache state.
+
+  We have implemented this with a new resolver that rewrites the `uid` passed from Magento to the Mesh Resolver, and additing additonal data to the `uid` based on the headers passed from the client. This also requires each package to implement the `getPrivateQueryContextMesh` method to retrieve the current PrivateQuery context from the GraphQL request headers. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9f040a4`](https://github.com/graphcommerce-org/graphcommerce/commit/9f040a4c0947f05f2f27e4c5078a684b04e711e1) - Implemented the `query { attributesForm }` to be able to dynamically render forms with useAttributesForm/preloadAttributesForm and AttributesFormAutoLayout, and additional utilities to handle form submissions. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`31397f9`](https://github.com/graphcommerce-org/graphcommerce/commit/31397f9c5b2d85895d6e00732b2e3d7a99ffee53) - Solve issue where a magento store reference was added to the graphql-mesh package. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Use the default display currency instead of the base currency in case they differ from one another. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`798c122`](https://github.com/graphcommerce-org/graphcommerce/commit/798c12271e90cf0e02f021e7ad4aa088b4c7c2a3) - Use the `storeConfig.head_shortcut_icon` when configured, if not configured it will use the favicon.ico and favicon.svg from the public folder. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`2075f33`](https://github.com/graphcommerce-org/graphcommerce/commit/2075f331eec38e894722d8ba4539d865f2db5507) - Support asNumber for Money component to easily render all prices as number ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6b2b44c`](https://github.com/graphcommerce-org/graphcommerce/commit/6b2b44ca853279144d7768067f3462d4d4bf0af1) - Created a new PriceModifiers component that is implemented on CartItems, allowing different product types to render their options in a consistent manner and allow rendering a base price so that the sum in the cart is correct. ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`61a2e16`](https://github.com/graphcommerce-org/graphcommerce/commit/61a2e1641c75a0497406e70f2ab96c8e3f5bdd96) - Allow setting alternate store switcher URL ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Store switcher now allows switching between currencies without navigating and just switches the @privateContext. ([@paales](https://github.com/paales))
+
+- [`4c92400`](https://github.com/graphcommerce-org/graphcommerce/commit/4c92400733bb3764494298122771d5bd9bacd5a2) - Render prices with a narrowSymbol so users just see $ instead of US$ ([@paales](https://github.com/paales))
+
+- [`f0d244e`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d244ef8625e9cd2fc08d8518f8afa1edb3d688) - Solve issue where the currency switcher would result in an additional query ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`5a41fff`](https://github.com/graphcommerce-org/graphcommerce/commit/5a41fff74c38ed1f9793e48ec42cba71d1d539d1) - Added store switcher to the header and mobile navigation ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

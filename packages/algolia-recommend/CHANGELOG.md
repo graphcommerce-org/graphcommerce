@@ -1,5 +1,17 @@
 # @graphcommerce/algolia-recommend
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Updated Algolia to the latest version of the spec. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`32b65d6`](https://github.com/graphcommerce-org/graphcommerce/commit/32b65d6a805b84423f77bfbfe80ee3331da70718) - Make facetName and facetValue optional when retrieving trending products ([@paales](https://github.com/paales))
+
+- [`a4de6ba`](https://github.com/graphcommerce-org/graphcommerce/commit/a4de6ba35d639fd6a7653463c2e26089d47842d0) - Solve issue where recommendations couldn't be retrieved ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`48d8922`](https://github.com/graphcommerce-org/graphcommerce/commit/48d892236c8fc41e058013b6d4ab98b76fb47fca) - Solve issue where trendingProducts or trendingFacetValues couldn’t be resolved becasue root would be null ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

@@ -1,5 +1,41 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`cf44b1f`](https://github.com/graphcommerce-org/graphcommerce/commit/cf44b1f723b7f2073a21abd6821768427cb95315) - Added hideTotals to MultiCartStartCheckout ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - When running a cart mutation and the cartId is already passed to the form we use that value instead of retrieving the current cart again. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`415f9fb`](https://github.com/graphcommerce-org/graphcommerce/commit/415f9fb50454fb20cb533235969dd9ab4ffc134b) - Allow setting the cartId in the form for useFormGqlMutationCart by setting the cartId in the form AND allow setting the cartId for a whole context by wrapping with CartIdProvider ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`4e3f3f2`](https://github.com/graphcommerce-org/graphcommerce/commit/4e3f3f2df58638ba8ffc68ee9f274cdd6c45d6d4) - Allow setting the redirect value in the AddProductsToCartForm as a form value. ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`1f37f05`](https://github.com/graphcommerce-org/graphcommerce/commit/1f37f05200e3015bf36d450bffff40c5d551ec54) - Forwarded ref to AddProductsToCartButton ([@paales](https://github.com/paales))
+
+- [#2479](https://github.com/graphcommerce-org/graphcommerce/pull/2479) [`ae5e72c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae5e72ccf1c8218ace3cca1c4e52ec8d46821a27) - Solve issue where the total of the cart was zero due to discount or store credit the user couldn't proceed to the checkout. We now check for items and errors instead of the total. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`6847259`](https://github.com/graphcommerce-org/graphcommerce/commit/6847259715b0cebcc3f7415ed06cc38814663811) - Solve typescript issue were product types were added incorrectly. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Removed deprecated fields from AddProductsToCartForm ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`6533728`](https://github.com/graphcommerce-org/graphcommerce/commit/65337280c6f4291cf4354e6ed9659f03388ca8d4) - When ordering a virtual product the checkout would still reference a Track & Trace ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - Solve issue where if the onBeforeSubmit would return false, it would still error if submitted while the cart is locked. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b26f573`](https://github.com/graphcommerce-org/graphcommerce/commit/b26f57307ab1d08f628183dd86e487ec9aa1e5cf) - Moved all functionality from the @graphcommerce/magento-cart-billing-address package to the @graphcommerce/magento-cart package. All occurences of @graphcommerce/magento-cart-billing-address should be removed for your codebase. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`1a06135`](https://github.com/graphcommerce-org/graphcommerce/commit/1a061357f4ccb430dd13194f755815474e140520) - Allow awaitable async requests for onStart on checkout button ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`4cde990`](https://github.com/graphcommerce-org/graphcommerce/commit/4cde990dbeecdba8a00d0e34a1095fb14d8a0ad6) - When the cart totals are updated via a mutation, make sure to also fetch the id when the query is used so that automatically updates. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`7ae2909`](https://github.com/graphcommerce-org/graphcommerce/commit/7ae2909d57e58f00f18acb198028c601ccd857c5) - CartTotals now accepts a readOnly prop to handle plugins showing information based on that prop ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`b6f76b6`](https://github.com/graphcommerce-org/graphcommerce/commit/b6f76b61f235d3336d8d296f1bed61c9f5daf325) - Solve issue where available_payment_methods would give an apollo client error that it couldn’t be properly merged ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

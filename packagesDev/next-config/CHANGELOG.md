@@ -1,5 +1,31 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`8b25322`](https://github.com/graphcommerce-org/graphcommerce/commit/8b253224997b59ac74d72813214dfc224f526c0a) - When a dependency is optional or has peerDependenciesMeta set to optional, make sure it doesn't crash when it is not found when calling resolveDependenciesSync ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`2c79a4c`](https://github.com/graphcommerce-org/graphcommerce/commit/2c79a4cba2779bc367104ebb13e6c0d6feb6574f) - Remove redirects for `/product/$type/[url]` routes, those haven't been used for years anymore. ([@paales](https://github.com/paales))
+
+- [#2472](https://github.com/graphcommerce-org/graphcommerce/pull/2472) [`905157b`](https://github.com/graphcommerce-org/graphcommerce/commit/905157bec2c9e1dcf51b6e6f7b6913aa9be7b609) - Solve issue with chalk compilation because we’re not migrated to esm modules. ([@paales](https://github.com/paales))
+
+- [`f6b9c0d`](https://github.com/graphcommerce-org/graphcommerce/commit/f6b9c0d2bc5f678fc6cde279f1590b30ef631f8a) - Temporarily pin prettier to 3.5.3 to fix the GraphCommerce build: https://github.com/hosseinmd/prettier-plugin-jsdoc/pull/246/files ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`30b7356`](https://github.com/graphcommerce-org/graphcommerce/commit/30b7356790efbac0f0017ef61cb1619b920100ab) - Solve issue where withGraphCommerce had a hard dependency on Magento specific configurations ([@paales](https://github.com/paales))
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`6492d81`](https://github.com/graphcommerce-org/graphcommerce/commit/6492d819a858ffdc01a97e6914053e9cc14c8fc5) - Reduce exported scope of config so we dont introduce a hidden dependency on Magento ([@paales](https://github.com/paales))
+
+- [`f508396`](https://github.com/graphcommerce-org/graphcommerce/commit/f50839619c75c8f7b1782c079f1c25998cb9217b) - Solve issue where optional chaining for import.meta.graphCommmerce configuration paths didn't work. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9cf0450`](https://github.com/graphcommerce-org/graphcommerce/commit/9cf0450a41c4c74292b96f5795c7428f9d6a930c) - Remove the 'ignored' string when loading the graphcommerce config env variable loading, as that isn't always correct ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`9825f59`](https://github.com/graphcommerce-org/graphcommerce/commit/9825f59b8626c315e6092950faceeab4311a5424) - Remove rewriteLegacyEnv as that hasn't been used for years ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`5ffa0ee`](https://github.com/graphcommerce-org/graphcommerce/commit/5ffa0ee1d620f4f1c38bc5df36cbd527bcc43cf9) - Migrated `@graphcommerce/next-config` package to `"type": "module"` ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

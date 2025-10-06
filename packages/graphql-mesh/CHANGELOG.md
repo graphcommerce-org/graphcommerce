@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`31397f9`](https://github.com/graphcommerce-org/graphcommerce/commit/31397f9c5b2d85895d6e00732b2e3d7a99ffee53) - Solve issue where a magento store reference was added to the graphql-mesh package. ([@paales](https://github.com/paales))
+
+- [#2480](https://github.com/graphcommerce-org/graphcommerce/pull/2480) [`4075474`](https://github.com/graphcommerce-org/graphcommerce/commit/40754746e3d3a05193525ebf94247ed85b6f111d) - GraphQL Mesh will now be in read-only mode by default, so only a single instance is created globally. This means it doesn't get recreated on each page compilation and fast refresh. Creating the instance is an expensive operation and can take multiple seconds and during development (and this can happen multiple times during a single change). Now only a single instance is created during development. To make sure changes are picked up during development set the config value `graphqlMeshEditMode: true` in your graphcommerce.config.js or set the env variable `GC_GRAPHQL_MESH_EDIT_MODE=1`. This is the same as the old behavior and this _will_ make the frontend considerably slower. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

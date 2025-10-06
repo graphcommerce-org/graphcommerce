@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`935f8f9`](https://github.com/graphcommerce-org/graphcommerce/commit/935f8f9ebe5e79b336e56d40cb1ec96ce17b84d7) - Remove dependency on Magento for @graphcommerec/react-hook-form ([@paales](https://github.com/paales))
+
+- [`9aa9a3c`](https://github.com/graphcommerce-org/graphcommerce/commit/9aa9a3cc25c121e217f64efc0cfd19e3b90d15aa) - useFormGql and all derivivatives now get the form as an argument in onComplete for easier form resets. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`5036171`](https://github.com/graphcommerce-org/graphcommerce/commit/5036171618492d7587cc02c557a4e9343e8240cd) - Fix typescript infer ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`31ef9c5`](https://github.com/graphcommerce-org/graphcommerce/commit/31ef9c59b18dd58fbb3625abf586f0a53f3d63cb) - Solve an issue where the false value of the useFormGql was incorrectly interpreted as an error while it was a SKIP. Fixes an issue where the CustomerAddressForm is not submitting properly when the user is adding a new address. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`9bf02b6`](https://github.com/graphcommerce-org/graphcommerce/commit/9bf02b6dd20c086db0c93fe9efea140b673bc4a2) - Solve issue with react-hook-form causing ts errors, now version is fixed and the ts error is solved ([@paales](https://github.com/paales))
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

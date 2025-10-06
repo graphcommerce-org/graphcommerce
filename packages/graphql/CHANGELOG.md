@@ -1,5 +1,29 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`958dcb6`](https://github.com/graphcommerce-org/graphcommerce/commit/958dcb62d5abb3427a38e2a4583897f3e2043cc4) - Introduce a new Product-`uid` to solve an issue where cache normalization was not working properly on the frontend when viewing products with a differen curreny, etc.
+
+  Products now have a more detailed `uid` which will include the scope the product is retrieved from. For example: `NDg5MDM=?store=nl_NL&currencyCode=EUR`. This results in a better cache normalization in Apollo Client and allows for switching between scopes (store/currency/price views/accounts) without creating a broken cache state.
+
+  We have implemented this with a new resolver that rewrites the `uid` passed from Magento to the Mesh Resolver, and additing additonal data to the `uid` based on the headers passed from the client. This also requires each package to implement the `getPrivateQueryContextMesh` method to retrieve the current PrivateQuery context from the GraphQL request headers. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`c52604f`](https://github.com/graphcommerce-org/graphcommerce/commit/c52604f89e1776fc1f0913f016b8b24fa194c6b7) - Solve issue where the persistenceMapper didn't use the same typePolicies and other configuration from the cache, causing potential issues. ([@paales](https://github.com/paales))
+
+- [#2496](https://github.com/graphcommerce-org/graphcommerce/pull/2496) [`a261149`](https://github.com/graphcommerce-org/graphcommerce/commit/a261149b6b32ad6a35606da2d530b8e41bfa10a0) - ReCaptcha now using the `recaptchaV3Config` query and add a fallback for Magento 2.4.6 and earlier to still use the configuration. Magento 2.4.7 doesn't need that configuration anymore. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`e1e132d`](https://github.com/graphcommerce-org/graphcommerce/commit/e1e132d076fbc6b3a081a245e51cb2bc91b0c707) - usePrivateQuery now disables masking when an error occurs. ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`529d7a8`](https://github.com/graphcommerce-org/graphcommerce/commit/529d7a88a4e010cb3e50c1358e2ac43e80e0bf38) - Solve issue where the ApolloClient cache wasn't scoped properly causing the wrong currency to be shown when switching currency. ([@paales](https://github.com/paales))
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
+- [#2477](https://github.com/graphcommerce-org/graphcommerce/pull/2477) [`8015eab`](https://github.com/graphcommerce-org/graphcommerce/commit/8015eabc130dacf1f2703980cd5f0ad2c550aa4d) - Upgraded to @apollo/client 3.12.3 without impacting typescript compilation performance. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

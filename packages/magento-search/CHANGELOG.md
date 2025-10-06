@@ -1,5 +1,27 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`f9176ad`](https://github.com/graphcommerce-org/graphcommerce/commit/f9176adf3bf643ac00c865fc173a80056d8b8170) - Search Categories through algolia ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`78b8640`](https://github.com/graphcommerce-org/graphcommerce/commit/78b86401fc5410ffb3b001bc7c79049496a54ae7) - Solve issue where the category sidebar navigation would show a Clear button while it wasn't clearable. ([@paales](https://github.com/paales))
+
+- [`4b02607`](https://github.com/graphcommerce-org/graphcommerce/commit/4b02607b26dd45e33bba3fb73d36052757dc2dec) - Solve issue where seaches containing a `/` would not consider everything after the `/` as part of the search. ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`1471d62`](https://github.com/graphcommerce-org/graphcommerce/commit/1471d62c59147da87e954694144fe694db3ee4b7) - Allow setting alternate search input placeholder ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [`ec5b915`](https://github.com/graphcommerce-org/graphcommerce/commit/ec5b91559fb8e702ae3043c38a73c62c7724aefa) - Solve issue where the cursor would jump after the first result of the search page came in. ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`88abcbf`](https://github.com/graphcommerce-org/graphcommerce/commit/88abcbf011b65b0cd1235e984f5d8306256bd518) - When loading the category/search page in the case that there are no filters applied, the amount or product related queries is reduced from 2 to 1 (ProductFilters is skipped). Pagination, sorting and search terms also do not affect this. When a filter is applied we fall back to the previous functionality and do a second query to retrieve the filters.
+
+  This did not matter when the categories/search pages were served by Magento as Magento would cache the result of the ProductFilters query. When the the catalog is served by an external service like Algolia this might be a problem.
+
+  Implementation details: When filters are applied (e.g., filtering by color:blue), the ProductList query only returns products matching that filter, which means other filter options (like other colors) are excluded from the filter options. This behavior is expected since those other options wouldn't return any products. However, when no filters are applied, the ProductList query returns all products along with all available filter options, eliminating the need for a separate ProductFilters query. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

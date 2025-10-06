@@ -1,5 +1,21 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`37c00d8`](https://github.com/graphcommerce-org/graphcommerce/commit/37c00d80419b209850457559d7b7eca4101f5705) - Forward productListRenderer for all locations that can be rendered by pagebuilder ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`8b7cf3c`](https://github.com/graphcommerce-org/graphcommerce/commit/8b7cf3c58dfafd65497469023607c16c3260cfe7) - Solve issue where productListRenderer was passed as a DOM element, causing react warnings. ([@paales](https://github.com/paales))
+
+- [#2535](https://github.com/graphcommerce-org/graphcommerce/pull/2535) [`bb728e9`](https://github.com/graphcommerce-org/graphcommerce/commit/bb728e960d8beedc35aad0ab7f1f8ce214467bc1) - Fix bug where allName would not be translated when switching stores ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`590f064`](https://github.com/graphcommerce-org/graphcommerce/commit/590f06460955aa6435a3a16569805f38d4b7d6d6) - Move the category fragment to the category prop ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`45c2fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/45c2fbbed55e3ba42f1ecc45e80039977b6ffe7c) - Solve issue where in some cases a second ProductList query was made because the category used an `eq` filter instead of an `in` filter. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54

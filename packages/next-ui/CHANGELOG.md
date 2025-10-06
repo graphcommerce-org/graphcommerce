@@ -1,5 +1,65 @@
 # Change Log
 
+## 9.1.0
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`87fc3c2`](https://github.com/graphcommerce-org/graphcommerce/commit/87fc3c28165c7c66b48882b0f044bbc9b63b9846) - Created new Tabs and TabItem component to be used for MultiCart setup ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`6a3e7f9`](https://github.com/graphcommerce-org/graphcommerce/commit/6a3e7f9bec6d03c146718ad594b064a75b536e99) - cssFlag and cssNotFlag css selector can now select values ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`40ccfed`](https://github.com/graphcommerce-org/graphcommerce/commit/40ccfed07592c67ccf80311c821a01526e87dbcc) - Added missing href to secondary menu items ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`a34c276`](https://github.com/graphcommerce-org/graphcommerce/commit/a34c276b69f9ff1a727023eef64f2db8b196864c) - Added lots of missing icon exports ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`8df172e`](https://github.com/graphcommerce-org/graphcommerce/commit/8df172e4fa1364892d53bc96a437d037d245de35) - Do not warn about `:first-child` since all css is hoisted out of the components. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`2a09ca9`](https://github.com/graphcommerce-org/graphcommerce/commit/2a09ca933e0de88dc32dac5ae62f41b0e5953359) - Intl components now accept the sx prop. `<RelativeToTimeFormat />` now expects a date prop instead of children. ([@paales](https://github.com/paales))
+
+- [#2470](https://github.com/graphcommerce-org/graphcommerce/pull/2470) [`8f047a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8f047a0860f9b915717f6db52be64805094d0b09) - Modify the type that is exposed for createTheme, should be faster for TypeScript to check. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2473](https://github.com/graphcommerce-org/graphcommerce/pull/2473) [`b076b2a`](https://github.com/graphcommerce-org/graphcommerce/commit/b076b2ae4881bebf1d2debd5333a83f220c26ca7) - Also accept false as value for sxx ([@paales](https://github.com/paales))
+
+- [#2478](https://github.com/graphcommerce-org/graphcommerce/pull/2478) [`32bccbb`](https://github.com/graphcommerce-org/graphcommerce/commit/32bccbba4b000247d7e01e487f6d48b6dec07fb5) - Nesting multiple Containers will not increase the padding, will only be applied once. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`286a20e`](https://github.com/graphcommerce-org/graphcommerce/commit/286a20e01f2a565f058415fa1c8dfbb2eeb3163b) - Added an OverlayCloseButton and implemented it for various locations. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`65dcefb`](https://github.com/graphcommerce-org/graphcommerce/commit/65dcefb8740166fd5df662e0e895c65d70273393) - Solve hydration error because multiple literals could be in a DateTimeFormat ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`88fd114`](https://github.com/graphcommerce-org/graphcommerce/commit/88fd11485f9368e79d277fa45942e58214f794a6) - Created a LayoutOverlayHeader2 that does not support any floating modes or something and thus is simpler to customize. ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`a79d7c2`](https://github.com/graphcommerce-org/graphcommerce/commit/a79d7c28da5ba227c3c3ff957149a732f3d71a39) - Added ripple to BlogTags ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`a4344ed`](https://github.com/graphcommerce-org/graphcommerce/commit/a4344ed7ff7b3b5f88185c1f6a5fc4b6306fc472) - Created a useCookie hook that is synced between usages ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`23793aa`](https://github.com/graphcommerce-org/graphcommerce/commit/23793aab26455b1bea0d1b3b37c96a228b656bc4) - Prevent excessive rerender when multiple images with the same url are in a product ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`a419257`](https://github.com/graphcommerce-org/graphcommerce/commit/a4192571eb2332630ba3d103f61ff69dac8b2e5c) - Solve issue where the sidebar wasn't 100% width on the PDP on mobile ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`ef83f7d`](https://github.com/graphcommerce-org/graphcommerce/commit/ef83f7d04fe0cf70da19f795e837ee3bda9884d4) - Use a more sensible theme var for LayoutHeaderContent gap ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2517](https://github.com/graphcommerce-org/graphcommerce/pull/2517) [`547be7d`](https://github.com/graphcommerce-org/graphcommerce/commit/547be7d5ee39aca64ab4a9a80de66a01961990e4) - Fixed gallery zoom breaking on long sidebar content ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`05a1744`](https://github.com/graphcommerce-org/graphcommerce/commit/05a1744ddeca31c4d24128fd5cd2513a7c491d5b) - Added search params to NextLink whenever present ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`f89210b`](https://github.com/graphcommerce-org/graphcommerce/commit/f89210b09e64f520d308cb1bac693c027be1ac46) - Solve issue where the MenuFabSecondaryItem coudn't handle text overflow. ([@paales](https://github.com/paales))
+
+- [`4564271`](https://github.com/graphcommerce-org/graphcommerce/commit/4564271e702aab11c28e425029f4a7c09a4d5d61) - Created a revalidate method that returns a single value so that it can be overwritten centrally ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`b0ec078`](https://github.com/graphcommerce-org/graphcommerce/commit/b0ec0784a0b3ca977598ded3777d23bc929072b0) - Added a CurrencySymbol component that renders the current currency symbol ([@paales](https://github.com/paales))
+
+- [`b423879`](https://github.com/graphcommerce-org/graphcommerce/commit/b4238796f1f8cce62325e57d90cc7a84a921a0fa) - DateTimeFormat, NumberFormat and RelativeTimeFormat (and all derivatives) will now wrap all number parts in a span, so that individual parts can be styled properly. ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`7665579`](https://github.com/graphcommerce-org/graphcommerce/commit/76655792129dfa4fec3395a94b73e6761d323335) - Fixed back button width in overlays with long titles ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [`90f8dd8`](https://github.com/graphcommerce-org/graphcommerce/commit/90f8dd89efd62e2b5a13e9c2bf265840d99e2473) - Create useCookies hook and simplify the useCookie query ([@paales](https://github.com/paales))
+
+- [#2510](https://github.com/graphcommerce-org/graphcommerce/pull/2510) [`b536019`](https://github.com/graphcommerce-org/graphcommerce/commit/b53601965924ece86ee991bdb2b5897b3e7c642a) - Update various props from ReactElement to ReactNode to allow string values ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`340c8ef`](https://github.com/graphcommerce-org/graphcommerce/commit/340c8ef93248a120cc4b92a6cd91f775ae662a1f) - Solve issue where ActionCard would crash the whole app because it forwarded components to string attributes ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ### Patch Changes

@@ -1,5 +1,49 @@
 # @graphcommerce/algolia-products
 
+## 9.1.0
+
+### Minor Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4981ada`](https://github.com/graphcommerce-org/graphcommerce/commit/4981ada47eae866a003d511f80296f79c9c8b343) - Added support for Algolia's facetOrdering which allows you to change the presented filters based on rules. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Updated Algolia to the latest version of the spec. ([@paales](https://github.com/paales))
+
+- [#2494](https://github.com/graphcommerce-org/graphcommerce/pull/2494) [`fd824d4`](https://github.com/graphcommerce-org/graphcommerce/commit/fd824d41674d92a42bb7f354214d2b367a7beac2) - Solve issue when creating an account the group_id would be requested but there wansn't a token available to retrieve the group_id. ([@Renzovh](https://github.com/Renzovh))
+
+- [#2516](https://github.com/graphcommerce-org/graphcommerce/pull/2516) [`edd9be6`](https://github.com/graphcommerce-org/graphcommerce/commit/edd9be6cbb37e7da99cc2e74ac269f0b7ddfaaaa) - feat(GCOM-1585): normalize input values from Algolia to schema compliant values ([@FrankHarland](https://github.com/FrankHarland))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`75431c2`](https://github.com/graphcommerce-org/graphcommerce/commit/75431c22792bf7e4c95cd4c7c80aae5d0e77ee10) - Updated Algolia docs for search suggestions and used a different naming scheme where baseIndex+suggestionsSuffix is used (default that algolia suggests). ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Fixed issue where if a value contains a `/` or a `,` the URL parsing would break. Those values are now replaced with `_AND_` and `_OR_` in the URL. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Moved Customer group_id resolver to magento-graphql-rest package where it should belong. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`0df56d8`](https://github.com/graphcommerce-org/graphcommerce/commit/0df56d8cbfdd2e6588946e5bd58b9a1c49a000aa) - Solve issue where the customer group specific price index wasn't used and added warnings to be able to debug the issue. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`c9ac114`](https://github.com/graphcommerce-org/graphcommerce/commit/c9ac1142cb92394eb32dc4a6d3944a1707b1b4e2) - Allow returning the algolia index name that is being searched ([@paales](https://github.com/paales))
+
+- [`90e8850`](https://github.com/graphcommerce-org/graphcommerce/commit/90e885059b0203a8802e5ab753ac061b079ebcd6) - Support multiple currency displays from algolia ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`a026714`](https://github.com/graphcommerce-org/graphcommerce/commit/a026714ac0373b666de2cee43c3c5dba58cd81e4) - Solve issue where used configurations might not be scoped to the correct store. Move caching to the mesh cache and scope per store. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`2933775`](https://github.com/graphcommerce-org/graphcommerce/commit/29337755dd75321e69fe96822b51da12d06fda3a) - Solve issue where algolia would return a full product URL instead of only the pathname of the given URL from Magento ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Solve issue where the generated bucket for price aggregations didn’t contain the correct values. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4f9ddb8`](https://github.com/graphcommerce-org/graphcommerce/commit/4f9ddb820494a89a6ae37df6e2befa59910330b4) - Solve issue where some values wouldn’t be correctly flattened. ([@paales](https://github.com/paales))
+
+- [`a4de6ba`](https://github.com/graphcommerce-org/graphcommerce/commit/a4de6ba35d639fd6a7653463c2e26089d47842d0) - Solve issue where recommendations couldn't be retrieved ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`4981ada`](https://github.com/graphcommerce-org/graphcommerce/commit/4981ada47eae866a003d511f80296f79c9c8b343) - Solve issue where Algolia didn't properly handle visibility as the attribute wasn't filterable, it automatically detects when there is a visibility attribute and uses that for filtering. ([@paales](https://github.com/paales))
+
+- [`499b30c`](https://github.com/graphcommerce-org/graphcommerce/commit/499b30c275571a675b176e0c0397104b608ad0a0) - Updated used spec for API and expose the multi search endpoint. ([@paales](https://github.com/paales))
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`b266ec9`](https://github.com/graphcommerce-org/graphcommerce/commit/b266ec99e09a669a8e39478f8e4412cf1275e196) - Make sure the short_description and description can be properly returned when retrieved via an Algolia query ([@paales](https://github.com/paales))
+
+- [`08f9883`](https://github.com/graphcommerce-org/graphcommerce/commit/08f98833019e726759194a3c1492052f2df052fa) - Correctly detect numeric values from the backend. ([@paales](https://github.com/paales))
+
 ## 9.1.0-canary.55
 
 ## 9.1.0-canary.54
