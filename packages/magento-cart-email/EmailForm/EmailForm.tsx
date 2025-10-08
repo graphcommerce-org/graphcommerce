@@ -56,7 +56,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const showLogin =
     import.meta.graphCommerce.enableGuestCheckoutLogin &&
     canLogin &&
-    isEmailAvailable.data?.isEmailAvailable
+    !isEmailAvailable.data?.isEmailAvailable?.is_email_available
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
@@ -72,7 +72,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
             autoComplete: 'email',
             endAdornment: showLogin && (
               <Button
-                href={`/account/signin?email=${email}`}
+                href={`/account/signin?email=${encodeURIComponent(email)}`}
                 color='secondary'
                 style={{ whiteSpace: 'nowrap' }}
               >
