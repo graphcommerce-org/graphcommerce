@@ -3,6 +3,7 @@ import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import type { ResetPasswordMutation, ResetPasswordMutationVariables } from './ResetPassword.gql'
@@ -15,6 +16,8 @@ export type ResetPasswordFormProps = {
 
 export function ResetPasswordForm(props: ResetPasswordFormProps) {
   const { token, buttonProps } = props
+  const router = useRouter()
+  const emailFromUrl = router.query.email as string | undefined
 
   const form = useFormGqlMutation<
     ResetPasswordMutation,
@@ -26,13 +29,21 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
         ...formData,
         resetPasswordToken: token,
       }),
+      defaultValues: {
+        email: '',
+      },
     },
     { errorPolicy: 'all' },
   )
 
-  const router = useRouter()
-  const { handleSubmit, data, formState, error, control } = form
+  const { handleSubmit, data, formState, error, control, reset } = form
   const submitHandler = handleSubmit(() => {})
+
+  useEffect(() => {
+    if (emailFromUrl) {
+      reset({ email: emailFromUrl })
+    }
+  }, [emailFromUrl, reset])
 
   if (formState.isSubmitSuccessful && data && !error) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -48,6 +59,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           variant='outlined'
           required
           disabled={formState.isSubmitting}
+          InputProps={{ readOnly: true }}
         />
       </FormRow>
       <FormRow>
