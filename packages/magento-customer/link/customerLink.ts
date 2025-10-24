@@ -45,8 +45,13 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
-function isErrorCategory(err: GraphQLFormattedError, category: ErrorCategory) {
-  return err.extensions?.category === category
+function isErrorCategory(err: GraphQLFormattedError) {
+  const categories: ErrorCategory[] = ['graphql-authorization']
+
+  if (import.meta.graphCommerce.magentoVersion >= 248) {
+    categories.push('graphql-authentication')
+  }
+  return categories.includes(err.extensions?.category as ErrorCategory)
 }
 
 const addTokenHeader = setContext((_, context) => {
@@ -72,7 +77,7 @@ const customerErrorLink = (router: PushRouter) =>
     if (!client) return undefined
 
     const oldHeaders = operation.getContext().headers
-    const authError = graphQLErrors?.find((err) => isErrorCategory(err, 'graphql-authorization'))
+    const authError = graphQLErrors?.find((err) => isErrorCategory(err))
 
     /** If the error we're dealing with is not an authorization error, we're done. */
     if (!authError) return undefined
@@ -87,10 +92,17 @@ const customerErrorLink = (router: PushRouter) =>
 
     const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
     if (!currentToken) throw Error('We currenly do not have a customer token in the cache.')
-    client.writeQuery({
-      query: CustomerTokenDocument,
-      data: { customerToken: { ...currentToken, valid: false } },
-    })
+    if (import.meta.graphCommerce.magentoVersion < 248) {
+      client.writeQuery({
+        query: CustomerTokenDocument,
+        data: { customerToken: { ...currentToken, valid: false } },
+      })
+    } else {
+      client.writeQuery({
+        query: CustomerTokenDocument,
+        data: { customerToken: { __typename: 'CustomerToken', valid: false, token: null } },
+      })
+    }
 
     // After submission of the signIn form, navigate back to the current route.
     // Resolve the promomise.
