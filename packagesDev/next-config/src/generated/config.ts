@@ -263,7 +263,7 @@ export type GraphCommerceConfig = {
    */
   graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
   /**
-   * The HyGraph endpoint.
+   * The Hygraph endpoint.
    *
    * > Read-only endpoint that allows low latency and high read-throughput content delivery.
    *
