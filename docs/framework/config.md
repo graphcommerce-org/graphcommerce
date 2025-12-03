@@ -403,6 +403,10 @@ Permissions to show the catalog pricing on the frontend.
 
 Changes the availability of the checkout to either customer only or completely disables it.
 
+#### customerAccount: DISABLED | DISABLE_REGISTRATION | ENABLED
+
+Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
+
 #### website: ENABLED
 
 Allows the option to require login or completely disable the site.

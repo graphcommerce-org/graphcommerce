@@ -13,6 +13,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./types": "./types.ts",
     "./server": "./server.ts",
     "./Layout/components/LayoutHeaderClose": "./Layout/components/LayoutHeaderClose.tsx",
     "./LayoutOverlay/test/LayoutOverlayDemo": "./LayoutOverlay/test/LayoutOverlayDemo.tsx",

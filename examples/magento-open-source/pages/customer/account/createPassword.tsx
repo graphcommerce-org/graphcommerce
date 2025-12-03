@@ -55,7 +55,7 @@ function CustomerAccountCreatePasswordPage() {
 
           <Box textAlign='center'>
             <p>
-              <Trans></Trans>
+              <Trans>
                 You can now{' '}
                 <Link color='primary' href='/account/signin' underline='hover'>
                   sign in again

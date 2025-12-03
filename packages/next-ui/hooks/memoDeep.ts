@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import diff from '@graphcommerce/react-hook-form/src/diff'
+import { diff } from '@graphcommerce/react-hook-form'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import type { FunctionComponent, NamedExoticComponent } from 'react'

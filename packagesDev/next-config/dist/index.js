@@ -1317,7 +1317,7 @@ async function generateConfig() {
   const targetJs = `${resolved.root}/dist/generated/config.js`;
   const schemaLocations = [
     "graphql/Config.graphqls",
-    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/Config.graphqls`])
+    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`])
   ];
   await generate({
     silent: true,
@@ -1588,7 +1588,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     turbopack: {
       ...nextConfig.turbopack ?? {},
       rules: {
-        ...nextConfig.experimental?.turbo?.rules ?? {},
+        ...nextConfig.turbopack?.rules ?? {},
         "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
         "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
         "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }

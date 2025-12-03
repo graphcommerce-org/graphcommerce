@@ -54,7 +54,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
     turbopack: {
       ...(nextConfig.turbopack ?? {}),
       rules: {
-        ...(nextConfig.experimental?.turbo?.rules ?? {}),
+        ...(nextConfig.turbopack?.rules ?? {}),
         '*.yaml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
         '*.yml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
         '*.po': { loaders: [{ loader: '@lingui/loader', options: {} }], as: '*.js' },

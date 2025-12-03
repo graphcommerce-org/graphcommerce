@@ -13,6 +13,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./.mesh": "./.mesh.ts",
     "./meshConfig": "./meshConfig.ts",
     "./customFetch": "./customFetch.ts",
     "./plugin/forward-headers": "./plugin/forward-headers.ts"

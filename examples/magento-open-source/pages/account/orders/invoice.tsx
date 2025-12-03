@@ -67,7 +67,7 @@ function InvoiceDetailPage() {
                 <Trans>Invoice #{invoiceNumber}</Trans>
               </LayoutTitle>
 
-              <PageMeta title={t`Invoice #${invoiceNumber}`} metaRobots={['noindex']} />
+              <PageMeta title={t`Invoice #${String(invoiceNumber)}`} metaRobots={['noindex']} />
 
               <OrderDetails order={order} />
               <InvoiceItems invoice={invoice} />

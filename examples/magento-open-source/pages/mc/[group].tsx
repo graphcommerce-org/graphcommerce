@@ -19,9 +19,9 @@ import {
   MultiCartPageDocument,
   MultiCartStartCheckout,
   MultiCartTabs,
+  useMultiCartIcon,
   type MultiCartGroupConfigFragment,
 } from '@graphcommerce/magento-multi-cart'
-import { useMultiCartIcon } from '@graphcommerce/magento-multi-cart/hooks/useMultiCartIcon'
 import { Money, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
   Button,

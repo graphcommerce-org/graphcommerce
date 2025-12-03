@@ -66,7 +66,10 @@ function CreditMemoDetailPage() {
                 <Trans>Credit Memo #{creditMemoNumber}</Trans>
               </LayoutTitle>
 
-              <PageMeta title={t`Credit Memo #${creditMemoNumber}`} metaRobots={['noindex']} />
+              <PageMeta
+                title={t`Credit Memo #${String(creditMemoNumber)}`}
+                metaRobots={['noindex']}
+              />
 
               <OrderDetails order={order} />
               {/* <CreditMemoDetails creditMemo={creditMemo} /> */}

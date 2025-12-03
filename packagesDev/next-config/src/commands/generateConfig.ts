@@ -23,7 +23,7 @@ export async function generateConfig() {
   // Use specific patterns instead of ** to avoid expensive directory traversal
   const schemaLocations = [
     'graphql/Config.graphqls',
-    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/Config.graphqls`]),
+    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`]),
   ]
 
   await generate({

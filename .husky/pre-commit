@@ -1,1 +1,2 @@
 corepack yarn graphcommerce cleanup-interceptors
+git update-index --again

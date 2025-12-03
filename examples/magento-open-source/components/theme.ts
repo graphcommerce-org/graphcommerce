@@ -1,4 +1,4 @@
-/// <reference types="@graphcommerce/next-ui/types" />
+import '@graphcommerce/next-ui/types'
 import { containerSizingContent, containerSizingShell } from '@graphcommerce/next-config/config'
 import {
   breakpointVal,

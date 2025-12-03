@@ -13,7 +13,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 import {
   AddressFields,
   CompanyFields,

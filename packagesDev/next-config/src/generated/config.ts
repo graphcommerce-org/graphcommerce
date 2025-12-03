@@ -31,6 +31,8 @@ export type CompareVariant = 'CHECKBOX' | 'ICON'
  */
 export type ContainerSizing = 'BREAKPOINT' | 'FULL_WIDTH'
 
+export type CustomerAccountPermissions = 'DISABLED' | 'DISABLE_REGISTRATION' | 'ENABLED'
+
 /** GoogleDatalayerConfig to allow enabling certain aspects of the datalayer */
 export type DatalayerConfig = {
   /** Enable core web vitals tracking for GraphCommerce */
@@ -410,6 +412,11 @@ export type GraphCommercePermissions = {
   catalogPricing?: InputMaybe<CatalogPricingPermissions>
   /** Changes the availability of the checkout to either customer only or completely disables it. */
   checkout?: InputMaybe<CartPermissions>
+  /**
+   * Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable
+   * the registration page.
+   */
+  customerAccount?: InputMaybe<CustomerAccountPermissions>
   /** Allows the option to require login or completely disable the site. */
   website?: InputMaybe<WebsitePermissions>
 }
@@ -553,6 +560,12 @@ export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
 
 export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
 
+export const CustomerAccountPermissionsSchema = z.enum([
+  'DISABLED',
+  'DISABLE_REGISTRATION',
+  'ENABLED',
+])
+
 export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED'])
 
 export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR'])
@@ -641,6 +654,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
     cart: CartPermissionsSchema.nullish(),
     catalogPricing: CatalogPricingPermissionsSchema.nullish(),
     checkout: CartPermissionsSchema.nullish(),
+    customerAccount: CustomerAccountPermissionsSchema.nullish(),
     website: WebsitePermissionsSchema.nullish(),
   })
 }

@@ -1,4 +1,4 @@
-import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 
 type PartialNullable<T> = {
   [P in keyof T]?: T[P] | null
