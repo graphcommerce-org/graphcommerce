@@ -1,10 +1,10 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, SxProps, Theme } from '@mui/material'
-import { Badge, Chip, lighten, Typography, useEventCallback } from '@mui/material'
+import { Badge, Chip, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { IconSvg } from '../IconSvg'
-import { responsiveVal } from '../Styles'
+import { lightenColor, responsiveVal } from '../Styles'
 import type { OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
 import { OverlayOrPopperPanel } from './OverlayOrPopperPanel'
 
@@ -84,25 +84,25 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
           },
           selected
             ? (theme) => ({
-                background: lighten(
+                background: lightenColor(
                   theme.vars.palette.primary.main,
                   1 - theme.vars.palette.action.hoverOpacity,
                 ),
                 border: '1px solid transparent',
                 ...theme.applyStyles('dark', {
-                  background: lighten(
+                  background: lightenColor(
                     theme.vars.palette.background.default,
                     theme.vars.palette.action.hoverOpacity,
                   ),
                 }),
                 '&.MuiChip-clickable:hover': {
-                  background: lighten(
+                  background: lightenColor(
                     theme.vars.palette.primary.main,
                     1 - theme.vars.palette.action.hoverOpacity * 2,
                   ),
                   border: '1px solid transparent',
                   ...theme.applyStyles('dark', {
-                    background: lighten(
+                    background: lightenColor(
                       theme.vars.palette.background.default,
                       theme.vars.palette.action.hoverOpacity * 2,
                     ),

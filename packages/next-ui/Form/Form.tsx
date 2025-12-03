@@ -1,6 +1,7 @@
 import type { Theme } from '@mui/material'
-import { darken, lighten, styled } from '@mui/material'
+import { styled } from '@mui/material'
 import { breakpointVal } from '../Styles/breakpointVal'
+import { darkenColor, lightenColor } from '../Styles/colorManipulator'
 
 type FormStyleProps = {
   contained?: boolean
@@ -15,9 +16,9 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
       padding: `${theme.spacings.xxs} 0`,
     },
     background === 'default' && {
-      background: darken(theme.vars.palette.background.default, 0.03),
+      background: darkenColor(theme.vars.palette.background.default, 0.03),
       ...theme.applyStyles('dark', {
-        background: lighten(theme.vars.palette.background.default, 0.1),
+        background: lightenColor(theme.vars.palette.background.default, 0.1),
       }),
     },
     background === 'secondary' && {

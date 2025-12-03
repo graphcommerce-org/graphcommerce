@@ -1,6 +1,5 @@
 import type { ComponentsVariants, Theme } from '@mui/material'
-import { darken } from '@mui/material'
-import { responsiveVal } from '../Styles'
+import { darkenColor, responsiveVal } from '../Styles'
 
 declare module '@mui/material/Chip' {
   interface ChipPropsSizeOverrides {
@@ -63,7 +62,7 @@ export const MuiChip: ChipVariants = [
         color: theme.vars.palette.text.primary,
       },
       '&.MuiChip-clickable:hover': {
-        backgroundColor: darken(theme.vars.palette.background.default, 0.05),
+        backgroundColor: darkenColor(theme.vars.palette.background.default, 0.05),
       },
       '& .MuiChip-deleteIcon:hover': {
         color: theme.vars.palette.text.primary,

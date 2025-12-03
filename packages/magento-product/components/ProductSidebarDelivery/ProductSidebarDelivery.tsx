@@ -1,6 +1,12 @@
-import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
+import {
+  breakpointVal,
+  darkenColor,
+  iconOrderBefore,
+  IconSvg,
+  lightenColor,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-import { Box, darken, lighten } from '@mui/material'
+import { Box } from '@mui/material'
 import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
 export type ProductSidebarDeliveryProps = {
@@ -36,7 +42,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
         `,
         gridTemplateColumns: 'min-content auto',
         columnGap: theme.spacings.xxs,
-        background: lighten(theme.vars.palette.background.default, 0.2),
+        background: lightenColor(theme.vars.palette.background.default, 0.2),
         padding: theme.spacings.xxs,
         ...breakpointVal(
           'borderRadius',
@@ -45,7 +51,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
           theme.breakpoints.values,
         ),
         ...theme.applyStyles('light', {
-          background: darken(theme.vars.palette.background.default, 0.01),
+          background: darkenColor(theme.vars.palette.background.default, 0.01),
         }),
       })}
     >

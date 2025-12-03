@@ -1,13 +1,13 @@
 import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
-import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
+import { Box, Fab, Portal, Snackbar, SnackbarContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'
-import { breakpointVal, extendableComponent } from '../Styles'
+import { breakpointVal, extendableComponent, lightenColor } from '../Styles'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -208,7 +208,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                   onMouseDown={preventAnimationBubble}
                   onTouchStart={preventAnimationBubble}
                   sx={(theme) => ({
-                    backgroundColor: lighten(theme.vars.palette.background.paper, 0.1),
+                    backgroundColor: lightenColor(theme.vars.palette.background.paper, 0.1),
                   })}
                 >
                   <IconSvg src={iconClose} />

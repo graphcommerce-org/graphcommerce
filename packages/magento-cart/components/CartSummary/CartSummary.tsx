@@ -1,8 +1,14 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { breakpointVal, extendableComponent, SectionContainer, sxx } from '@graphcommerce/next-ui'
+import {
+  breakpointVal,
+  extendableComponent,
+  lightenColor,
+  SectionContainer,
+  sxx,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten, Link, Typography } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartAddressMultiLine } from '../CartAddressMultiLine/CartAddressMultiLine'
@@ -71,7 +77,7 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background: lighten(theme.vars.palette.background.default, 0.15),
+          background: lightenColor(theme.vars.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,

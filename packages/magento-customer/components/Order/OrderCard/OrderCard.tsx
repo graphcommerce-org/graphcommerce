@@ -7,12 +7,13 @@ import {
   filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
+  lightenColor,
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Avatar, Box, lighten, Paper, Skeleton } from '@mui/material'
+import { Avatar, Box, Paper, Skeleton } from '@mui/material'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
 import type { OrderCardFragment } from './OrderCard.gql'
 
@@ -70,7 +71,7 @@ export function OrderCard(props: OrderCardProps) {
           alignItems: 'flex-start',
           background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.vars.palette.background.default, 0.15),
+            background: lightenColor(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',

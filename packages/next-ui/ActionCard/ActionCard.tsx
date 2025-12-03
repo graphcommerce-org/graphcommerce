@@ -1,7 +1,7 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
-import { Box, ButtonBase, lighten } from '@mui/material'
+import { Box, ButtonBase } from '@mui/material'
 import React from 'react'
-import { extendableComponent, responsiveVal, varAlpha } from '../Styles'
+import { extendableComponent, lightenColor, responsiveVal, varAlpha } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 import { sxx } from '../utils/sxx'
 
@@ -174,7 +174,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
                 theme.vars.palette.action.hoverOpacity,
               ),
               ...theme.applyStyles('dark', {
-                backgroundColor: lighten(
+                backgroundColor: lightenColor(
                   theme.vars.palette.background.default,
                   theme.vars.palette.action.hoverOpacity,
                 ),

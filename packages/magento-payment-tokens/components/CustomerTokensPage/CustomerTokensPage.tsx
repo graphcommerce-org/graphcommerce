@@ -11,12 +11,13 @@ import {
   iconCreditCard,
   LayoutOverlayHeader,
   LayoutTitle,
+  lightenColor,
   sxx,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-import { Alert, Box, Container, lighten, Typography } from '@mui/material'
+import { Alert, Box, Container, Typography } from '@mui/material'
 import type { PaymentTokenFragment } from '../../graphql/fragments/PaymentToken.gql'
 import { CustomerPaymentTokensDocument } from '../../graphql/queries/PaymentTokens.gql'
 import { DeletePaymentTokenButton } from '../DeletePaymentTokenButton'
@@ -62,7 +63,7 @@ export function CustomerTokensPage() {
                 sx={(theme) => ({
                   px: theme.spacings.xxs,
                   py: theme.spacings.xxs,
-                  background: lighten(theme.vars.palette.background.default, 0.15),
+                  background: lightenColor(theme.vars.palette.background.default, 0.15),
                   ...breakpointVal(
                     'borderRadius',
                     theme.shape.borderRadius * 2,

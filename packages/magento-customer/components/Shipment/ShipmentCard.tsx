@@ -4,12 +4,13 @@ import {
   filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
+  lightenColor,
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten } from '@mui/material'
+import { Box } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { ShipmentCardFragment } from './ShipmentCard.gql'
 
@@ -36,7 +37,7 @@ export function ShipmentCard(props: ShipmentCardProps) {
           gap: theme.spacings.sm,
           background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.vars.palette.background.default, 0.15),
+            background: lightenColor(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',
