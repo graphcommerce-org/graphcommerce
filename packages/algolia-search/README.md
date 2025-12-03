@@ -167,15 +167,7 @@ return {
 
   return (
     <>
-      <PageMeta
-        title={
-          search
-            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
-            : i18n._(/* i18n */ 'Search')
-        }
-        metaRobots={['noindex']}
-        canonical='/search'
-      />
+      <PageMeta title={search ? t`Results for ‘${search}’` : t`Search`} metaRobots={['noindex']} />
 
 +     <SearchContext serverProps={serverState}>
 ```

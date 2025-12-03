@@ -18,13 +18,18 @@
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/react-hook-form": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./route/preview": "./route/preview.ts",
+    "./plugins/PreviewModeFramerNextPages": "./plugins/PreviewModeFramerNextPages.tsx"
   }
 }

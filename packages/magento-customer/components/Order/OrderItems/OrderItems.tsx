@@ -5,7 +5,7 @@ import {
   nonNullable,
   SectionContainer,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { OrderItemProps } from '../OrderItem/OrderItem'
@@ -50,7 +50,7 @@ export function OrderItems(props: OrderItemsProps) {
     >
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}
-        labelLeft={<Trans id='Ordered items' />}
+        labelLeft={<Trans>Ordered items</Trans>}
         variantLeft='h6'
         className={classes.items}
       >

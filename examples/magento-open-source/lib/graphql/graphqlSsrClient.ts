@@ -37,7 +37,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
       typePolicies: mergeTypePolicies(config.policies),
     }),
     ssrMode: true,
-    name: 'ssr',
+    clientAwareness: { name: 'ssr' },
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },

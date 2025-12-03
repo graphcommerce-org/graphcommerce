@@ -2,7 +2,7 @@ import { productListLink } from '@graphcommerce/magento-product'
 import { useCategorySearch, type CategorySearchResultFragment } from '@graphcommerce/magento-search'
 import type { SectionContainerProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, NextLink, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type {
   BreadcrumbsProps,
   LinkProps,

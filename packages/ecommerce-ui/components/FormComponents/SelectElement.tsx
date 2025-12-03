@@ -17,7 +17,7 @@ type SelectElementComponent = <TFieldValues extends FieldValues>(
 ) => React.ReactNode
 
 /** @public */
-function SelectElementBase(props: SelectElementProps): JSX.Element {
+function SelectElementBase(props: SelectElementProps): React.ReactNode {
   const { options } = props as AdditionalProps
   const { SelectProps } = props as TextFieldProps
 

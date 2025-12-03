@@ -7,6 +7,9 @@
   "scripts": {
     "dev": "tsc -W"
   },
+  "exports": {
+    ".": "./index.ts"
+  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
@@ -21,7 +24,7 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

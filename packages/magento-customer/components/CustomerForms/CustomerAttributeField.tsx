@@ -3,7 +3,7 @@ import type { CustomAttributeMetadata } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, filterNonNullableKeys, sxx } from '@graphcommerce/next-ui'
 import type { Control, FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { MenuItem, type SxProps, type Theme } from '@mui/material'
 import {
   customerAttributeInputType,
@@ -54,7 +54,7 @@ export function CustomerAttributeField<TFieldValues extends FieldValues = FieldV
             shrink: frontendInput === 'DATE' || frontendInput === 'DATETIME',
           }}
           disabled={disabled}
-          helperText={is_unique ? t`${label} must be unique` : helperText}
+          helperText={is_unique && label ? t`${label} must be unique` : helperText}
           sx={sxx(sx, { gridArea })}
           data-field={gridArea}
         >

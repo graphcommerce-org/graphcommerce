@@ -4,7 +4,7 @@ import { useAssignCurrentCartId, useCartQuery } from '@graphcommerce/magento-car
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import { CurrentCartIdDocument } from '@graphcommerce/magento-cart/hooks/CurrentCartId.gql'
 import { Button, FullPageMessage, iconShoppingBag, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
@@ -36,7 +36,7 @@ export function MSPRestoreLocked() {
           <FullPageMessage
             disableMargin
             icon={<IconSvg src={iconShoppingBag} />}
-            title={<Trans id='Your cart is locked.' />}
+            title={<Trans>Your cart is locked.</Trans>}
             button={
               <Button
                 variant='pill'
@@ -49,13 +49,15 @@ export function MSPRestoreLocked() {
                 }}
                 loading={loading}
               >
-                <Trans id='Cancel payment and unlock cart' />
+                <Trans>Cancel payment and unlock cart</Trans>
               </Button>
             }
           >
-            <Trans id='1. You are still paying in another window: Close this window and continue there.' />
+            <Trans>
+              1. You are still paying in another window: Close this window and continue there.
+            </Trans>
             <br />
-            <Trans id="2. You don't have an open payment window: Press the button below." />
+            <Trans>2. You don't have an open payment window: Press the button below.</Trans>
           </FullPageMessage>
         </DialogDynamic>
       )}

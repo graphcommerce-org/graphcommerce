@@ -25,10 +25,18 @@
     "@graphcommerce/next-ui": "^9.1.0-canary.55",
     "@graphcommerce/react-hook-form": "^9.1.0-canary.55",
     "@mui/material": "*",
-    "react": "^18.2.0"
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "graphql": "^16.10.0",
-    "tsx": "^4.19.2"
+    "graphql": "^16.12.0",
+    "tsx": "^4.21.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/getSearchResultsInputInsights": "./plugins/getSearchResultsInputInsights.ts",
+    "./plugins/getSearchSuggestionsInputInsights": "./plugins/getSearchSuggestionsInputInsights.ts",
+    "./plugins/meshConfigAlgoliaInsights": "./plugins/meshConfigAlgoliaInsights.ts",
+    "./plugins/useSendEventAlgolia": "./plugins/useSendEventAlgolia.ts",
+    "./algolia-insights-spec.yaml": "./algolia-insights-spec.yaml"
   }
 }

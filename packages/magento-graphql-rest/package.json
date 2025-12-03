@@ -12,6 +12,11 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/meshConfigM2Rest": "./plugins/meshConfigM2Rest.ts",
+    "./m2-filtered-spec.json": "./m2-filtered-spec.json"
+  },
   "scripts": {
     "generate": "tsx ./scripts/generate-spec.mts"
   },
@@ -24,7 +29,7 @@
     "graphql": "^16.0.0"
   },
   "devDependencies": {
-    "graphql": "^16.10.0",
-    "tsx": "^4.19.2"
+    "graphql": "^16.12.0",
+    "tsx": "^4.21.0"
   }
 }

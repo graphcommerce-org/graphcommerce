@@ -18,12 +18,15 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "@mui/utils": "^5",
     "graphql": "^16.6.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-hook-form": "^7"
   },
   "dependencies": {
-    "@types/lodash": "^4.17.13",
+    "@types/lodash": "^4.17.21",
     "lodash": "^4.17.21"
+  },
+  "exports": {
+    ".": "./index.ts"
   }
 }

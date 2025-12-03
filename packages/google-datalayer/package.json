@@ -23,8 +23,8 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "@mui/material": "^5.14.20",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "peerDependenciesMeta": {
     "@graphcommerce/magento-cart": {
@@ -44,6 +44,22 @@
     }
   },
   "dependencies": {
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^5.1.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/GoogleDatalayerAddProductsToCartForm": "./plugins/GoogleDatalayerAddProductsToCartForm.tsx",
+    "./plugins/GoogleDatalayerCartStartCheckout": "./plugins/GoogleDatalayerCartStartCheckout.tsx",
+    "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton": "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton.tsx",
+    "./plugins/GoogleDatalayerPaymentMethodButton": "./plugins/GoogleDatalayerPaymentMethodButton.tsx",
+    "./plugins/GoogleDatalayerPaymentMethodContextProvider": "./plugins/GoogleDatalayerPaymentMethodContextProvider.tsx",
+    "./plugins/GoogleDatalayerProductListItem": "./plugins/GoogleDatalayerProductListItem.tsx",
+    "./plugins/GoogleDatalayerProductListItemsBase": "./plugins/GoogleDatalayerProductListItemsBase.tsx",
+    "./plugins/GoogleDatalayerRemoveItemFromCart": "./plugins/GoogleDatalayerRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerShippingMethodForm": "./plugins/GoogleDatalayerShippingMethodForm.tsx",
+    "./plugins/GoogleDatalayerUseRemoveItemFromCart": "./plugins/GoogleDatalayerUseRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerUseSignInForm": "./plugins/GoogleDatalayerUseSignInForm.tsx",
+    "./plugins/GoogleDatalayerViewItem": "./plugins/GoogleDatalayerViewItem.tsx",
+    "./plugins/GoogleDatalayerWebVitals": "./plugins/GoogleDatalayerWebVitals.tsx"
   }
 }

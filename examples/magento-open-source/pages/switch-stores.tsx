@@ -21,8 +21,8 @@ import {
   LayoutTitle,
   SectionHeader,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../components'
@@ -49,21 +49,21 @@ function StoresIndexPage({ availableStores }: Props) {
             })
       }
     >
-      <PageMeta title={i18n._(/* i18n */ 'Switch stores')} metaRobots={['noindex']} />
+      <PageMeta title={t`Switch stores`} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         primary={
           <StoreSwitcherLinkOrButton color='secondary' button={{ variant: 'pill' }}>
-            <Trans id='Save' />
+            <Trans>Save</Trans>
           </StoreSwitcherLinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span' icon={iconLanguage}>
-          <Trans id='Store Settings' />
+          <Trans>Store Settings</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm' sx={(theme) => ({ mb: theme.spacings.lg })}>
         <LayoutTitle icon={iconLanguage}>
-          <Trans id='Store Settings' />
+          <Trans>Store Settings</Trans>
         </LayoutTitle>
         <StoreSwitcherGroupSelector
           // header={<SectionHeader labelLeft='Country' />}
@@ -78,7 +78,7 @@ function StoresIndexPage({ availableStores }: Props) {
 
         <FormActions>
           <StoreSwitcherApplyButton color='secondary' variant='pill' size='large'>
-            <Trans id='Save' />
+            <Trans>Save</Trans>
           </StoreSwitcherApplyButton>
         </FormActions>
       </Container>

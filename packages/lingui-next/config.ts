@@ -1,5 +1,6 @@
-const { findParentPath } = require('@graphcommerce/next-config')
-const { formatter } = require('@lingui/format-po')
+import { findParentPath } from '@graphcommerce/next-config/findParentPath'
+import type { LinguiConfig } from '@lingui/conf'
+import { formatter } from '@lingui/format-po'
 
 /**
  * Augmenting the locale config to be compatible with GraphCommerce.
@@ -7,17 +8,13 @@ const { formatter } = require('@lingui/format-po')
  * Note: We're converting the locale-country strings to locale only. This means we're losing
  * functionality to define country specific locale options. If this a feature you require, please
  * create an issue.
- *
- * @param {Partial<import('@lingui/conf').LinguiConfig>} config
- * @returns {Partial<import('@lingui/conf').LinguiConfig>}
  */
-function linguiNextConfig(config) {
+export default function linguiNextConfig(config: LinguiConfig): LinguiConfig {
   const { locales, ...otherConfig } = config
   return {
     orderBy: 'messageId',
-    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
-    // formatOptions: { lineNumbers: false, origins: false, explicitIdAsDefault: true },
-    format: formatter({ explicitIdAsDefault: true, lineNumbers: false, origins: false }),
+    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : locales,
+    format: formatter({ lineNumbers: false, origins: false }),
     catalogs: [
       {
         path: 'locales/{locale}',
@@ -34,5 +31,3 @@ function linguiNextConfig(config) {
     ...otherConfig,
   }
 }
-
-module.exports = linguiNextConfig

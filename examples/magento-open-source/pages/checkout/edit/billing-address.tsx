@@ -4,8 +4,8 @@ import { EditBillingAddressForm, getCheckoutIsDisabled } from '@graphcommerce/ma
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutDocument, LayoutOverlay } from '../../../components'
@@ -17,19 +17,16 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
 function EditBillingAddress() {
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ 'Edit billing address')}
-        metaRobots={['noindex', 'nofollow']}
-      />
+      <PageMeta title={t`Edit billing address`} metaRobots={['noindex', 'nofollow']} />
 
       <LayoutOverlayHeader>
         <LayoutTitle component='span' size='small'>
-          <Trans id='Billing address' />
+          <Trans>Billing address</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <LayoutTitle variant='h1'>
-        <Trans id='Billing address' />
+        <Trans>Billing address</Trans>
       </LayoutTitle>
 
       <Container maxWidth='md'>

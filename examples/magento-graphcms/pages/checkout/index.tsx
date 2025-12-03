@@ -33,8 +33,8 @@ import {
   FullPageMessage,
   iconAddresses,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
@@ -54,12 +54,12 @@ function ShippingPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Shipping')} metaRobots={['noindex']} />
+      <PageMeta title={t`Shipping`} metaRobots={['noindex']} />
       <WaitForQueries
         waitFor={[shippingPage, customerAddresses]}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >
@@ -74,7 +74,7 @@ function ShippingPage() {
                   onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (
                     <ComposedSubmitLinkOrButton {...renderProps}>
-                      <Trans id='Next' />
+                      <Trans>Next</Trans>
                     </ComposedSubmitLinkOrButton>
                   )}
                 />
@@ -87,11 +87,11 @@ function ShippingPage() {
             >
               {shippingPage.data?.cart?.is_virtual ? (
                 <LayoutTitle size='small' icon={iconAddresses}>
-                  <Trans id='Billing address' />
+                  <Trans>Billing address</Trans>
                 </LayoutTitle>
               ) : (
                 <LayoutTitle size='small' icon={iconBox}>
-                  <Trans id='Shipping' />
+                  <Trans>Shipping</Trans>
                 </LayoutTitle>
               )}
             </LayoutHeader>
@@ -108,7 +108,7 @@ function ShippingPage() {
                       gutterBottom
                       sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
                     >
-                      <Trans id='Personal details' />
+                      <Trans>Personal details</Trans>
                     </Typography>
                     <EmailForm step={1} />
                     <ShippingAddressForm step={3} />
@@ -125,7 +125,7 @@ function ShippingPage() {
                     <>
                       <FormActions>
                         <ComposedSubmitButton {...renderProps} size='large' id='next'>
-                          <Trans id='Next' />
+                          <Trans>Next</Trans>
                         </ComposedSubmitButton>
                       </FormActions>
                       <ApolloCartErrorSnackbar
@@ -165,7 +165,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/cart', title: i18n._(/* i18n */ 'Cart') },
+      up: { href: '/cart', title: t`Cart` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

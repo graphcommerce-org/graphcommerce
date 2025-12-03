@@ -2,7 +2,7 @@ import type { ProductListSearchSuggestionFragment } from '@graphcommerce/magento
 import { useProductFiltersPro } from '@graphcommerce/magento-product'
 import type { SectionContainerProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { forwardRef } from 'react'
 import { useRecentSearches } from '../hooks/useRecentSearches'
 import { SearchOverlayItem } from './SearchOverlayItem'

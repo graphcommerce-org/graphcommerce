@@ -7,8 +7,8 @@ import type {
   UseFormReturn,
 } from '@graphcommerce/react-hook-form'
 import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 
@@ -27,9 +27,9 @@ export type NameFieldProps<TFieldValues extends FieldValues = FieldValues> = {
 export function NameFields<TFieldValues extends FieldValues = FieldValues>(
   props: NameFieldProps<TFieldValues>,
 ) {
-  const mr = i18n._(/* i18n */ 'Mr')
-  const mrs = i18n._(/* i18n */ 'Mrs')
-  const other = i18n._(/* i18n */ 'Other')
+  const mr = t`Mr`
+  const mrs = t`Mrs`
+  const other = t`Other`
 
   const {
     form,
@@ -56,7 +56,7 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
             control={control}
             required={required.prefix}
             name={names.prefix}
-            label={<Trans id='Prefix' />}
+            label={<Trans>Prefix</Trans>}
             showValid
             InputProps={{ readOnly }}
             options={prefixes.map((option) => ({ id: option, label: option }))}
@@ -70,7 +70,7 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
           required={required.firstname}
           variant='outlined'
           type='text'
-          label={<Trans id='First Name' />}
+          label={<Trans>First Name</Trans>}
           InputProps={{ readOnly }}
           showValid
         />
@@ -80,7 +80,7 @@ export function NameFields<TFieldValues extends FieldValues = FieldValues>(
           required={required.lastname}
           variant='outlined'
           type='text'
-          label={<Trans id='Last Name' />}
+          label={<Trans>Last Name</Trans>}
           InputProps={{ readOnly }}
           showValid
         />

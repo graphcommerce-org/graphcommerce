@@ -14,11 +14,14 @@ Example of /locales/es.po
 
 ...
 
+
 msgid "Your cart is empty"
 msgstr "Su carrito está vacío"
 
+
 msgid "Your session is expired"
 msgstr "Su sesión ha caducado"
+
 
 msgid "canceled"
 msgstr "cancelado"
@@ -31,7 +34,7 @@ component:
 
 ```tsx
 <FullPageMessage
-  title={<Trans id="Your cart is empty" />}
+  title={<Trans>Your cart is empty</Trans>}
   ...
 >
 ```
@@ -61,23 +64,21 @@ in the `<Trans>` component:
 
 ```tsx
 <Typography variant='h3'>
-  <Trans id='Call us now' />
+  <Trans>Call us now</Trans>
 </Typography>
 ```
 
 To translate a string:
 
 ```tsx
-<PageMeta title={i18n._(/* i18n */ `Blog`)} />
+<PageMeta title={t`Blog`} />
 ```
-
-_The `/* i18n */` comment is required for `lingui extract` to work properly_
 
 Add Linqui to the component's imports:
 
 ```tsx
-import { Trans } from '@lingui/react'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 ```
 
 ## Generating translation files with all translations
@@ -104,6 +105,7 @@ Edit the translations files to add your translation:
 
 ...
 
+
 msgid "Call us now"
 msgstr ""
 ```
@@ -126,8 +128,10 @@ The syntax in the translation files:
 
 ...
 
+
 msgid "Cart"
 msgstr "Cart"
+
 
 msgid "Cart ({0})"
 msgstr "Cart ({0})"
@@ -187,6 +191,7 @@ const config = {
 ```tsx
 //Example from /locales/sv.po
 
+
 msgid ""
 msgstr ""
 "POT-Creation-Date: 2022-03-30 14:45+0200\n"
@@ -196,11 +201,14 @@ msgstr ""
 "X-Generator: @lingui/cli\n"
 "Language: sv\n"
 
+
 msgid "<0>{name}</0> has been added to your shopping cart!"
 msgstr ""
 
+
 msgid "Above <0/>"
 msgstr ""
+
 
 msgid "Account"
 msgstr ""

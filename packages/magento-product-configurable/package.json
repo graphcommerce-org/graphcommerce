@@ -29,13 +29,28 @@
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/react-hook-form": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./hooks": "./hooks/index.ts",
+    "./plugins/ConfigurableCartItemActionCard": "./plugins/ConfigurableCartItemActionCard.tsx",
+    "./plugins/Configurable_cartItemToCartItemInput": "./plugins/Configurable_cartItemToCartItemInput.ts",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPageJsonLd": "./plugins/ConfigurableProductPage/ConfigurableProductPageJsonLd.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPageDescription": "./plugins/ConfigurableProductPage/ConfigurableProductPageDescription.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPageGallery": "./plugins/ConfigurableProductPage/ConfigurableProductPageGallery.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPageMeta": "./plugins/ConfigurableProductPage/ConfigurableProductPageMeta.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPageName": "./plugins/ConfigurableProductPage/ConfigurableProductPageName.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPagePrice": "./plugins/ConfigurableProductPage/ConfigurableProductPagePrice.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPagePriceLowest": "./plugins/ConfigurableProductPage/ConfigurableProductPagePriceLowest.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductPagePriceTiers": "./plugins/ConfigurableProductPage/ConfigurableProductPagePriceTiers.tsx",
+    "./plugins/ConfigurableProductPage/ConfigurableProductShortDescription": "./plugins/ConfigurableProductPage/ConfigurableProductShortDescription.tsx"
   }
 }

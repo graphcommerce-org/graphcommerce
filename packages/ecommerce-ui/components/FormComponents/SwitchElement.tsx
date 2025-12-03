@@ -17,7 +17,7 @@ type SwitchElementComponent = <TFieldValues extends FieldValues>(
   props: SwitchElementProps<TFieldValues>,
 ) => React.ReactNode
 
-function SwitchElementBase(props: SwitchElementProps): JSX.Element {
+function SwitchElementBase(props: SwitchElementProps): React.ReactNode {
   const { name, control, defaultValue, shouldUnregister, rules, disabled, ...other } = props
 
   const { field } = useController({

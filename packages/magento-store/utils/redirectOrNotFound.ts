@@ -1,6 +1,9 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
+import type { ProductInterfaceResolvers } from '@graphcommerce/graphql-mesh'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
+import { productRoute } from '@graphcommerce/next-config/config'
 import { isTypename, nonNullable, revalidate, storefrontConfig } from '@graphcommerce/next-ui'
 import type { Redirect } from 'next'
 import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
@@ -11,6 +14,9 @@ export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
   | { notFound: true; revalidate?: number | boolean }
 >
+
+type ProductTypes = NonNullable<Awaited<ReturnType<ProductInterfaceResolvers['__resolveType']>>>
+const productInterfaceTypes = fragments.possibleTypes.ProductInterface as ProductTypes[]
 
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
@@ -103,7 +109,6 @@ export async function redirectOrNotFound(
       {},
       ...routeDataArray.map((result) => {
         if (!result.route) delete result.route
-        if (!result.products) delete result.products
         return result
       }),
     )
@@ -121,28 +126,12 @@ export async function redirectOrNotFound(
     // For implicit redirects, always use permanent, otherwise use the given redirect type
     const permanent = !routeData.route?.redirect_code || routeData.route?.redirect_code === 301
 
-    if (
-      isTypename(routeData.route, [
-        'ConfigurableProduct',
-        'BundleProduct',
-        'SimpleProduct',
-        'VirtualProduct',
-        'DownloadableProduct',
-        'GroupedProduct',
-      ])
-    ) {
-      const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
-
-      if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)
-
-      const url_key = routeData.route?.url_key
-      if (!routeData.products?.items?.find((i) => i?.url_key === url_key))
-        return notFound(from, "Route found, but product isn't returned from products query")
-
-      return redirect(from, `${productRoute}${url_key}`, true, locale)
+    if (redirectUrl) {
+      const productPath = `${productRoute ?? '/p/'}${redirectUrl}`
+      return isTypename(routeData.route, productInterfaceTypes)
+        ? redirect(from, productPath, permanent, locale)
+        : redirect(from, `/${redirectUrl}`, permanent, locale)
     }
-
-    if (redirectUrl) return redirect(from, `/${redirectUrl}`, permanent, locale)
 
     return notFound(from, 'Route found, but no redirect URL')
   } catch (e) {

@@ -12,7 +12,7 @@
     }
   },
   "dependencies": {
-    "algoliasearch": "^4.24.0"
+    "algoliasearch": "^4.25.2"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",
@@ -26,12 +26,24 @@
     "@graphcommerce/next-ui": "^9.1.0-canary.55",
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.3.1",
+    "react": "^19.2.0",
     "react-instantsearch-hooks-web": "^6.47.3"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/AlgoliaCategorySearchResults": "./plugins/AlgoliaCategorySearchResults.tsx",
+    "./plugins/AlgoliaFiltersPlugin": "./plugins/AlgoliaFiltersPlugin.tsx",
+    "./plugins/AlgoliaPageSearchResults": "./plugins/AlgoliaPageSearchResults.tsx",
+    "./plugins/AlgoliaPaginationPlugin": "./plugins/AlgoliaPaginationPlugin.tsx",
+    "./plugins/AlgoliaProductListCountPlugin": "./plugins/AlgoliaProductListCountPlugin.tsx",
+    "./plugins/AlgoliaProductSearchResultsPlugin": "./plugins/AlgoliaProductSearchResultsPlugin.tsx",
+    "./plugins/AlgoliaProductSortPlugin": "./plugins/AlgoliaProductSortPlugin.tsx",
+    "./plugins/AlgoliaSearchContextPlugin": "./plugins/AlgoliaSearchContextPlugin.tsx",
+    "./plugins/AlgoliaSearchFieldPlugin": "./plugins/AlgoliaSearchFieldPlugin.tsx"
   }
 }

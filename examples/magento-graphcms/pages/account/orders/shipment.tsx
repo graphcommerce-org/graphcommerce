@@ -18,8 +18,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
@@ -30,7 +30,8 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function ShipmentDetailPage() {
   const router = useRouter()
-  const { orderNumber, shipmentNumber } = router.query
+  const { orderNumber } = router.query
+  const shipmentNumber = String(router.query.shipmentNumber)
 
   const shipments = useCustomerQuery(ShipmentDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
@@ -66,10 +67,7 @@ function ShipmentDetailPage() {
                 <Trans>Shipment #{shipmentNumber}</Trans>
               </LayoutTitle>
 
-              <PageMeta
-                title={i18n._(/* i18n */ 'Shipment #{shipmentNumber}', { shipmentNumber })}
-                metaRobots={['noindex']}
-              />
+              <PageMeta title={t`Shipment #${shipmentNumber}`} metaRobots={['noindex']} />
 
               {/* <OrderDetails order={order} /> */}
               <ShipmentDetails shipment={shipment} />
@@ -110,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
+      up: { href: '/account/orders', title: t`Orders` },
     },
   }
 }

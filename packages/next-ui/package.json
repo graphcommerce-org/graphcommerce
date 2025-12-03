@@ -11,13 +11,31 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./types": "./types.ts",
+    "./server": "./server.ts",
+    "./Layout/components/LayoutHeaderClose": "./Layout/components/LayoutHeaderClose.tsx",
+    "./LayoutOverlay/test/LayoutOverlayDemo": "./LayoutOverlay/test/LayoutOverlayDemo.tsx",
+    "./Styles/extendableComponent": "./Styles/extendableComponent.ts",
+    "./Styles": "./Styles/index.ts",
+    "./hooks/useMatchMedia": "./hooks/useMatchMedia.ts",
+    "./hooks/useStorefrontConfig": "./hooks/useStorefrontConfig.ts",
+    "./hooks/useIsSsr": "./hooks/useIsSsr.ts",
+    "./hooks/useMemoObject": "./hooks/useMemoObject.ts",
+    "./utils/cssFlags": "./utils/cssFlags.tsx",
+    "./Intl/DateTimeFormat/toDate": "./Intl/DateTimeFormat/toDate.ts",
+    "./Breadcrumbs/BreadcrumbsJsonLd": "./Breadcrumbs/BreadcrumbsJsonLd.tsx",
+    "./Breadcrumbs/jsonLdBreadcrumb": "./Breadcrumbs/jsonLdBreadcrumb.tsx",
+    "./RenderType/filterNonNullableKeys": "./RenderType/filterNonNullableKeys.ts"
+  },
   "dependencies": {
     "cookie": "^1.0.2",
-    "react-is": "^18.3.1"
+    "react-is": "^19.2.0"
   },
   "devDependencies": {
-    "@types/react-is": "^18.3.1",
-    "typescript": "5.7.2"
+    "@types/react-is": "^19.2.0",
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "@emotion/cache": "^11",
@@ -31,15 +49,15 @@
     "@graphcommerce/image": "^9.1.0-canary.55",
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/lab": "^5.0.0-alpha.68",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
     "next-sitemap": "4.2.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

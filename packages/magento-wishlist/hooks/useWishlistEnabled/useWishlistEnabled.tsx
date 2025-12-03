@@ -1,8 +1,9 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { wishlistHideForGuests } from '@graphcommerce/next-config/config'
 
-const showForGuest = !import.meta.graphCommerce.wishlistHideForGuests
+const showForGuest = !wishlistHideForGuests
 
 /**
  * Checks whether the wishlist is enabled.

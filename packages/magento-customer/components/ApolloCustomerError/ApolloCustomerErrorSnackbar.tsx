@@ -1,6 +1,6 @@
 import type { ApolloErrorSnackbarProps } from '@graphcommerce/ecommerce-ui'
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
@@ -19,7 +19,7 @@ export function ApolloCustomerErrorSnackbar(props: ApolloCustomerErrorSnackbarPr
       action={
         unauthorized ? (
           <Button href='/account/signin' variant='pill' color='secondary'>
-            {token ? <Trans id='Sign in' /> : <Trans id='Create Account' />}
+            {token ? <Trans>Sign in</Trans> : <Trans>Create Account</Trans>}
           </Button>
         ) : (
           action

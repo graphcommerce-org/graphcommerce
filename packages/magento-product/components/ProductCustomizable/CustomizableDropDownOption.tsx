@@ -1,7 +1,7 @@
 import { useController } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Box, MenuItem, TextField } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -14,15 +14,14 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
   const { uid, required, index, title, dropdownValue, productPrice, currency } = props
   const { control } = useFormAddProductsToCart()
 
+  const label = title ?? ''
   const {
     field: { onChange, value, ref, ...field },
     fieldState: { invalid, error },
   } = useController({
     name: `cartItems.${index}.selected_options_record.${uid}`,
     rules: {
-      required: required
-        ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label: title })
-        : false,
+      required: required ? t`Please select a value for ‘${label}’` : false,
     },
     control,
     defaultValue: '',

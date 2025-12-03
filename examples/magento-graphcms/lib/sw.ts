@@ -1,4 +1,5 @@
-import { PrecacheEntry, Serwist, productionCaching } from '@graphcommerce/service-worker'
+import type { PrecacheEntry } from '@graphcommerce/service-worker'
+import { Serwist, productionCaching } from '@graphcommerce/service-worker'
 
 // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 declare const self: ServiceWorkerGlobalScope & {

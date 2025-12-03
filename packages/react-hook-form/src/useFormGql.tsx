@@ -88,8 +88,8 @@ export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
 > &
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
     data?: MaybeMasked<Q> | null
-    error?: ApolloError
-    submittedVariables?: V
+    error?: ApolloError | null
+    submittedVariables?: V | null
   }
 
 /**
@@ -126,12 +126,12 @@ export function useFormGql<Q, V extends FieldValues>(
   const { encode, type, ...gqlDocumentHandler } = useGqlDocumentHandler<Q, V>(document)
   const [execute, { data, error, loading }] = tuple
 
-  const submittedVariables = useRef<V>()
-  const returnedError = useRef<ApolloError>()
+  const submittedVariables = useRef<V | null>(null)
+  const returnedError = useRef<ApolloError | null>(null)
 
   // automatically updates the default values
   const initital = useRef(true)
-  const controllerRef = useRef<AbortController | undefined>()
+  const controllerRef = useRef<AbortController | null>(null)
   const valuesString = JSON.stringify(defaultValues)
   useEffect(() => {
     if (!deprecated_useV1) return
@@ -166,8 +166,8 @@ export function useFormGql<Q, V extends FieldValues>(
         return
       }
 
-      returnedError.current = undefined
-      submittedVariables.current = undefined
+      returnedError.current = null
+      submittedVariables.current = null
 
       // Combine defaults with the formValues and encode
       let variables = !deprecated_useV1 ? formValues : encode({ ...defaultValues, ...formValues })

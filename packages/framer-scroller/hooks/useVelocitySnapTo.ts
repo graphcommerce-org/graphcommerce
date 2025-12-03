@@ -21,7 +21,7 @@ const closest = (counts: number[], target: number) =>
     : undefined
 
 export const useVelocitySnapTo = (
-  ref: React.RefObject<HTMLElement> | React.MutableRefObject<HTMLElement | undefined>,
+  ref: React.RefObject<HTMLElement | null> | React.MutableRefObject<HTMLElement | null | undefined>,
 ) => {
   const { disableSnap, enableSnap, register, getScrollSnapPositions, scrollSnap, scroll } =
     useScrollerContext()

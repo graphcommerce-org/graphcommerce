@@ -11,11 +11,15 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/AddBraintreeMethods": "./plugins/AddBraintreeMethods.tsx"
+  },
   "devDependencies": {
-    "@types/braintree-web": "^3.96.16"
+    "@types/braintree-web": "^3.96.17"
   },
   "dependencies": {
-    "braintree-web": "^3.112.1"
+    "braintree-web": "^3.127.0"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",
@@ -31,13 +35,13 @@
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/react-hook-form": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

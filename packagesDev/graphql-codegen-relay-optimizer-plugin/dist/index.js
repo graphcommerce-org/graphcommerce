@@ -41,6 +41,7 @@ _config) => {
     `,
     ]);
     const documentAsts = documents.reduce((prev, v) => [...prev, ...(v.document?.definitions ?? [])], []);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const relayDocuments = (0, RelayParser_1.transform)(adjustedSchema, documentAsts);
     const fragmentCompilerContext = new CompilerContext_1.default(adjustedSchema).addAll(relayDocuments);
     const fragmentDocuments = fragmentCompilerContext

@@ -1,5 +1,5 @@
 import type { MeshContext, ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
-import { nonNullable } from '@graphcommerce/magento-customer'
+import { algolia } from '@graphcommerce/next-config/config'
 import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import { getGroupId } from './getGroupId'
 import { getIndexName } from './getIndexName'
@@ -15,13 +15,13 @@ export async function getSortedIndex(
 ): Promise<string> {
   const baseIndex = getIndexName(context)
   // const availableSorting = Object.values(sortOptions)
-  const [attr, dirEnum] = Object.entries(sortInput ?? {}).filter(nonNullable)?.[0] ?? []
+  const [attr, dirEnum] = Object.entries(sortInput ?? {}).filter((v) => !!v)?.[0] ?? []
   if (!attr || !dirEnum) return baseIndex
 
   const dir = dirEnum.toLowerCase()
   const candidates = ((await settings).replicas ?? [])
-    .filter(nonNullable)
-    .filter((r) => r.startsWith(`virtual(${baseIndex}_${attr}`) && r.endsWith(`_${dir})`))
+    .filter((v) => !!v)
+    .filter((r) => r?.startsWith(`virtual(${baseIndex}_${attr}`) && r.endsWith(`_${dir})`))
 
   if (candidates.length === 0) {
     console.warn(
@@ -31,10 +31,10 @@ export async function getSortedIndex(
   }
 
   if (attr === 'price') {
-    const enabled = import.meta.graphCommerce.algolia.customerGroupPricingEnabled
+    const enabled = algolia.customerGroupPricingEnabled
 
     const groupId = enabled ? getGroupId(context) : 'default'
-    const found = candidates.find((r) => r.endsWith(`${groupId}_${dir})`))
+    const found = candidates.find((r) => r?.endsWith(`${groupId}_${dir})`))
 
     if (!found) {
       console.warn(
@@ -44,11 +44,11 @@ export async function getSortedIndex(
         'Available indexes (using the first one):',
         candidates,
       )
-      return stripVirtual(candidates[0])
+      return stripVirtual(candidates[0] ?? '')
     }
 
     return stripVirtual(found)
   }
 
-  return stripVirtual(candidates[0])
+  return stripVirtual(candidates[0] ?? '')
 }

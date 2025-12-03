@@ -6,7 +6,7 @@ import {
   filterNonNullableKeys,
   type ActionCardProps,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import type { OrderItemFragment } from './OrderItem.gql'
 
@@ -130,7 +130,7 @@ export function OrderItem(props: OrderItemProps) {
         <>
           {priceModifiers && priceModifiers.length > 0 && (
             <PriceModifiersList
-              label={<Trans id='Base Price'>Base price</Trans>}
+              label={<Trans>Base price</Trans>}
               modifiers={priceModifiers}
               total={product_sale_price.value ?? 0}
               currency={product_sale_price.currency}

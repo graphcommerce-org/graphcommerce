@@ -11,6 +11,13 @@
       "project": "./tsconfig.json"
     }
   },
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./algolia-recommend-spec.yaml": "./algolia-recommend-spec.yaml",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
+    "./plugins/meshConfigAlgoliaRecommend": "./plugins/meshConfigAlgoliaRecommend.ts"
+  },
   "scripts": {
     "generate": "tsx scripts/generate-recommend-spec.mts"
   },
@@ -20,10 +27,10 @@
     "@graphcommerce/graphql-mesh": "^9.1.0-canary.55",
     "@graphcommerce/next-config": "^9.1.0-canary.55",
     "@graphcommerce/next-ui": "^9.1.0-canary.55",
-    "react": "^18.2.0"
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "graphql": "^16.10.0",
-    "tsx": "^4.19.2"
+    "graphql": "^16.12.0",
+    "tsx": "^4.21.0"
   }
 }

@@ -27,7 +27,7 @@ import dotenv from 'dotenv'
 import type { Schema } from './types'
 import { capitalize, graphcommerceLog } from './utils/graphCommerceLog'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 type AllHygraphTypes =
   | 'model'

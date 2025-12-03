@@ -7,6 +7,12 @@
   "scripts": {
     "dev": "tsc -W"
   },
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./config": "./config.ts",
+    "./server": "./server.ts"
+  },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
     "extends": "@graphcommerce/eslint-config-pwa",
@@ -20,12 +26,13 @@
     "@graphcommerce/next-ui": "^9.1.0-canary.55",
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/conf": "^4.7.0",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@lingui/conf": "^5",
+    "@lingui/core": "^5",
+    "@lingui/format-po": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
