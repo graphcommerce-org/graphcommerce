@@ -37,46 +37,6 @@ export type DatalayerConfig = {
   coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>
 }
 
-/** Algolia configuration for GraphCommerce. */
-export type GraphCommerceAlgoliaConfig = {
-  /**
-   * Configure your Algolia application ID. [Algolia API Keys
-   * Dashboard](https://www.algolia.com/account/api-keys)
-   */
-  applicationId: Scalars['String']['input']
-  /**
-   * By default the catalog will not use algolia. Set this to true to enable Algolia for the
-   * catalog.
-   */
-  catalogEnabled?: InputMaybe<Scalars['Boolean']['input']>
-  /**
-   * Enable Algolia customer group pricing.
-   *
-   * Please be aware that personalization needs to be enabled to make this work.
-   */
-  customerGroupPricingEnabled?: InputMaybe<Scalars['Boolean']['input']>
-  /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
-  indexNamePrefix: Scalars['String']['input']
-  /**
-   * Configure your Search API Key. [Algolia API Keys
-   * Dashboard](https://www.algolia.com/account/api-keys)
-   *
-   * Make sure the API key has the following ACL: search, listIndexes and settings [Lookup
-   * here](https://dashboard.algolia.com/account/api-keys/restricted)
-   */
-  searchOnlyApiKey: Scalars['String']['input']
-  /**
-   * To enable Algolia suggestions, please provide the Suffix that is used for your suggestions
-   * index.
-   *
-   * The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`. Something like
-   * `_suggestions` or `_query_suggestions`
-   *
-   * For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
-   */
-  suggestionsSuffix?: InputMaybe<Scalars['String']['input']>
-}
-
 /**
  * # GraphCommerce configuration system
  *
@@ -162,12 +122,6 @@ export type GraphCommerceAlgoliaConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
-  /**
-   * Configure your Algolia application ID.
-   *
-   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-   */
-  algolia: GraphCommerceAlgoliaConfig
   /** Configuration for the SidebarGallery component */
   breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>
   /**
@@ -256,6 +210,14 @@ export type GraphCommerceConfig = {
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>
   /**
+   * Enables some demo specific code that is probably not useful for a project:
+   *
+   * - Adds the "BY GC" to the product list items.
+   * - Adds "dominant_color" attribute swatches to the product list items.
+   * - Creates a big list items in the product list.
+   */
+  demoMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
    * Enable Guest Checkout Login: During customer login, GraphCommerce queries Magento to determine
    * whether the customer account already exists or not. If not, the sign-up form is shown instead.
    *
@@ -299,6 +261,14 @@ export type GraphCommerceConfig = {
    * developing new resolvers this should be set to true.
    */
   graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
+   * The Hygraph endpoint.
+   *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
+   *
+   * Project settings -> API Access -> High Performance Read-only Content API
+   */
+  hygraphEndpoint: Scalars['String']['input']
   /**
    * Hygraph Management API. **Only used for migrations.**
    *
@@ -506,6 +476,11 @@ export type GraphCommerceStorefrontConfig = {
   googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>
   /** The Google Tagmanager ID to be used per locale. */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
+  /**
+   * Add a gcms-locales header to make sure queries return in a certain language, can be an array to
+   * define fallbacks.
+   */
+  hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>
   /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>
   /**
@@ -620,22 +595,8 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
   })
 }
 
-export function GraphCommerceAlgoliaConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceAlgoliaConfig>
-> {
-  return z.object({
-    applicationId: z.string().min(1),
-    catalogEnabled: z.boolean().nullish(),
-    customerGroupPricingEnabled: z.boolean().nullish(),
-    indexNamePrefix: z.string().min(1),
-    searchOnlyApiKey: z.string().min(1),
-    suggestionsSuffix: z.string().nullish(),
-  })
-}
-
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    algolia: z.lazy(() => GraphCommerceAlgoliaConfigSchema()),
     breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -653,12 +614,14 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerXMagentoCacheIdDisable: z.boolean().nullish(),
     dataLayer: z.lazy(() => DatalayerConfigSchema().nullish()),
     debug: z.lazy(() => GraphCommerceDebugConfigSchema().nullish()),
+    demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
@@ -724,6 +687,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
+    hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),

@@ -7,43 +7,6 @@ GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 
 Enable core web vitals tracking for GraphCommerce
 
-### GraphCommerceAlgoliaConfig
-
-Algolia configuration for GraphCommerce.
-
-#### applicationId: string (required)
-
-Configure your Algolia application ID. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
-
-#### indexNamePrefix: string (required)
-
-Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
-
-#### searchOnlyApiKey: string (required)
-
-Configure your Search API Key. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
-
-Make sure the API key has the following ACL: search, listIndexes and settings [Lookup here](https://dashboard.algolia.com/account/api-keys/restricted)
-
-#### catalogEnabled: boolean
-
-By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
-
-#### customerGroupPricingEnabled: boolean
-
-Enable Algolia customer group pricing.
-
-Please be aware that personalization needs to be enabled to make this work.
-
-#### suggestionsSuffix: string
-
-To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
-
-The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`.
-Something like `_suggestions` or `_query_suggestions`
-
-For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
-
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -122,12 +85,6 @@ Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
 
-#### algolia: [GraphCommerceAlgoliaConfig](#GraphCommerceAlgoliaConfig) (required)
-
-Configure your Algolia application ID.
-
-Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
-
 #### canonicalBaseUrl: string (required)
 
 The canonical base URL is used for SEO purposes.
@@ -136,6 +93,14 @@ Examples:
 - https://example.com
 - https://example.com/en
 - https://example.com/en-US
+
+#### hygraphEndpoint: string (required)
+
+The Hygraph endpoint.
+
+> Read-only endpoint that allows low latency and high read-throughput content delivery.
+
+Project settings -> API Access -> High Performance Read-only Content API
 
 #### magentoEndpoint: string (required)
 
@@ -239,6 +204,14 @@ Datalayer config
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
+
+#### demoMode: boolean = `true`
+
+Enables some demo specific code that is probably not useful for a project:
+
+- Adds the "BY GC" to the product list items.
+- Adds "dominant_color" attribute swatches to the product list items.
+- Creates a big list items in the product list.
 
 #### enableGuestCheckoutLogin: boolean
 
@@ -513,6 +486,10 @@ Locale specific google reCAPTCHA key.
 #### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used per locale.
+
+#### hygraphLocales: string[]
+
+Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
 
 #### linguiLocale: string
 
