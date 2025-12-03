@@ -1,7 +1,7 @@
 import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import { SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -50,16 +50,11 @@ export function CustomizableFieldOption(props: CustomizableFieldOptionProps) {
         rules={{
           maxLength: {
             value: maxLength,
-            message: i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
-              maxLength,
-            }),
+            message: t`There is a maximum of ‘${maxLength}’ characters`,
           },
         }}
         helperText={
-          (maxLength ?? 0) > 0 &&
-          i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
-            maxLength,
-          })
+          maxLength && maxLength > 0 && t`There is a maximum of ‘${maxLength}’ characters`
         }
       />
     </Box>

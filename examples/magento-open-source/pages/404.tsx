@@ -5,8 +5,8 @@ import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { icon404, IconSvg, isTypename, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
@@ -26,19 +26,19 @@ function RouteNotFoundPage(props: Props) {
           <IconSvg src={icon404} size='xxl' />
 
           <Typography variant='h3' component='h1' gutterBottom>
-            {cmsPage?.content_heading ?? <Trans id='Whoops our bad...' />}
+            {cmsPage?.content_heading ?? <Trans>Whoops our bad...</Trans>}
           </Typography>
 
           {cmsPage ? (
             <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
           ) : (
             <Typography variant='body1'>
-              <Trans id="We couldn't find the page you were looking for" />
+              <Trans>We couldn't find the page you were looking for</Trans>
             </Typography>
           )}
           <Box mt={4} mb={2}>
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
-              <Trans id='Search...' />
+              <Trans>Search...</Trans>
             </SearchLink>
           </Box>
         </Box>
@@ -69,7 +69,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await layout).data,
       cmsPage: cmsPage && isTypename(cmsPage, ['CmsPage']) ? cmsPage : null,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

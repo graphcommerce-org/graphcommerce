@@ -1,7 +1,7 @@
 import { hasUserFilterActive, type ProductListParams } from '@graphcommerce/magento-product'
 import { PageMeta } from '@graphcommerce/magento-store'
 import type { PageMetaProps } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { CategoryMetaFragment } from './CategoryMeta.gql'
 
 export type CategoryMetaProps = CategoryMetaFragment &
@@ -34,18 +34,10 @@ export function CategoryMeta(props: CategoryMetaProps) {
   const currentPage = params?.currentPage ?? 1
   const isPaginated = currentPage > 1 && !anyFilterActive
 
-  const titleTrans =
-    title && isPaginated
-      ? i18n._(/* i18n */ '{title} - Page {currentPage}', { title, currentPage })
-      : title
+  const titleTrans = title && isPaginated ? t`${title} - Page ${currentPage}` : title
 
   const metaDescriptionTrans =
-    metaDescription && isPaginated
-      ? i18n._(/* i18n */ '{metaDescription} - Page {currentPage}', {
-          metaDescription,
-          currentPage,
-        })
-      : metaDescription
+    metaDescription && isPaginated ? t`${metaDescription} - Page ${currentPage}` : metaDescription
 
   return (
     <PageMeta

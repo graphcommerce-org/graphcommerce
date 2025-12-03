@@ -13,7 +13,7 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 import type { ChangePasswordMutation, ChangePasswordMutationVariables } from './ChangePassword.gql'
 import { ChangePasswordDocument } from './ChangePassword.gql'
@@ -45,7 +45,7 @@ export function ChangePasswordForm() {
           name='currentPassword'
           variant='outlined'
           autoComplete='current-password'
-          label={<Trans id='Current Password' />}
+          label={<Trans>Current Password</Trans>}
           required={required.currentPassword}
           disabled={formState.isSubmitting}
           error={Boolean(authenticationError)}
@@ -59,7 +59,7 @@ export function ChangePasswordForm() {
           name='newPassword'
           variant='outlined'
           autoComplete='new-password'
-          label={<Trans id='New password' />}
+          label={<Trans>New password</Trans>}
           required={required.newPassword}
           disabled={formState.isSubmitting}
           error={Boolean(inputError)}
@@ -71,7 +71,7 @@ export function ChangePasswordForm() {
           passwordFieldName='newPassword'
           autoComplete='new-password'
           variant='outlined'
-          label={<Trans id='Confirm password' />}
+          label={<Trans>Confirm password</Trans>}
           required
           disabled={formState.isSubmitting}
         />
@@ -87,7 +87,7 @@ export function ChangePasswordForm() {
           variant='pill'
           size='large'
         >
-          <Trans id='Save new password' />
+          <Trans>Save new password</Trans>
         </Button>
       </FormActions>
 
@@ -95,7 +95,7 @@ export function ChangePasswordForm() {
 
       {showSuccess && (
         <MessageSnackbar open={showSuccess} sticky variant='pill' severity='success'>
-          <Trans id='Successfully changed password' />
+          <Trans>Successfully changed password</Trans>
         </MessageSnackbar>
       )}
     </Form>

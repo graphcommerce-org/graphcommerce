@@ -79,13 +79,13 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
     return (
       <>
         <Alert severity='success' variant='standard'>
-          <Trans id='Thank you! Your review was successfully submitted for approval'>
+          <Trans>
             Thank you! Your review was successfully submitted for approval
           </Trans>
         </Alert>
         <Box mt={6}>
           <OverlayCloseButton variant='pill' color='secondary' size='large'>
-            <Trans id='Continue shopping'>Continue shopping</Trans>
+            <Trans>Continue shopping</Trans>
           </OverlayCloseButton>
         </Box>
       </>
@@ -99,7 +99,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
-          label={<Trans id='Name'>Name</Trans>}
+          label={<Trans>Name</Trans>}
           required={required.nickname}
           name='nickname'
           rules={{ required: required.nickname }}
@@ -180,7 +180,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.summary || !!error}
-          label={<Trans id='Summary'>Summary</Trans>}
+          label={<Trans>Summary</Trans>}
           required={required.summary}
           name='summary'
           rules={{ required: required.summary }}
@@ -196,7 +196,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.text || !!error}
-          label={<Trans id='Review'>Review</Trans>}
+          label={<Trans>Review</Trans>}
           required={required.text}
           name='text'
           rules={{ required: required.text }}
@@ -217,7 +217,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           size='medium'
           className={classes.submitButton}
         >
-          <Trans id='Submit review'>Submit review</Trans>
+          <Trans>Submit review</Trans>
         </Button>
       </FormActions>
 

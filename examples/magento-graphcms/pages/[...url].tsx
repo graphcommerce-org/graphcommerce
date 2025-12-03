@@ -35,7 +35,7 @@ import {
   LayoutTitle,
   MetaRobots,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { GetStaticPaths } from 'next'
 import {
   ProductListLayoutClassic,
@@ -259,7 +259,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
 
   await waitForSiblings
   const result = {

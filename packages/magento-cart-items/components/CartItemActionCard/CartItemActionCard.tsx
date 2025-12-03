@@ -152,7 +152,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
               color='secondary'
               href={`/checkout/item/${product.url_key}?cartItemId=${uid}`}
             >
-              <Trans id='Edit options'>Edit options</Trans>
+              <Trans>Edit options</Trans>
             </Button>
           )}
 
@@ -169,7 +169,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
         <>
           {priceModifiers && priceModifiers.length > 0 && (
             <PriceModifiersList
-              label={<Trans id='Base Price'>Base price</Trans>}
+              label={<Trans>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={prices?.price_including_tax?.value ?? 0}
               currency={prices?.price.currency}

@@ -14,8 +14,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -32,15 +32,15 @@ function AccountContactPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconEmailOutline}>
-          <Trans id='Contact' />
+          <Trans>Contact</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <WaitForCustomer waitFor={dashboard}>
         <Container maxWidth='md'>
-          <PageMeta title={i18n._(/* i18n */ 'Contact')} metaRobots={['noindex']} />
+          <PageMeta title={t`Contact`} metaRobots={['noindex']} />
 
           <LayoutTitle icon={iconEmailOutline}>
-            <Trans id='Contact' />
+            <Trans>Contact</Trans>
           </LayoutTitle>
 
           <SectionContainer labelLeft='Email'>
@@ -70,7 +70,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
+      up: { href: '/account', title: t`Account` },
     },
   }
 }

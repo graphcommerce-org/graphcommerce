@@ -1,6 +1,6 @@
 import { PrivateQueryMask } from '@graphcommerce/graphql'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { ProductListPrice } from '../ProductListPrice/ProductListPrice'
 import type { ProductPagePriceFragment } from './ProductPagePrice.gql'
@@ -25,13 +25,11 @@ export function ProductPagePriceTiers(props: ProductPagePriceTiersProps) {
     <PrivateQueryMask sx={sx} variant='rectangular'>
       {priceTiers.map(({ quantity, final_price, discount }) => (
         <div key={quantity}>
-          <Trans
-            id='Buy {quantity} for <0/> and save {percent}%'
-            components={{
-              0: <ProductListPrice final_price={final_price} regular_price={final_price} />,
-            }}
-            values={{ quantity, percent: discount.percent_off }}
-          />
+          <Trans>
+            Buy {quantity} for{' '}
+            <ProductListPrice final_price={final_price} regular_price={final_price} /> and save{' '}
+            {discount.percent_off}%
+          </Trans>
         </div>
       ))}
     </PrivateQueryMask>

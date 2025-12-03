@@ -47,7 +47,7 @@ function NewsletterSubscribe({ pages }: Props) {
       <Container maxWidth='sm'>
         {page?.title && (
           <Typography variant='h3'>
-            <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>
+            <Trans>Subscribe to newsletter</Trans>
           </Typography>
         )}
         <GuestNewsletter />

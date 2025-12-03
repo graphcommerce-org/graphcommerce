@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { FabProps, ListItemButtonProps, Theme } from '@mui/material'
 import {
   Fab,
@@ -133,7 +133,7 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
         <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='medium' />
       </ListItemIcon>
       <ListItemText>
-        {currentMode === 'light' ? <Trans id='Dark Mode' /> : <Trans id='Light Mode' />}
+        {currentMode === 'light' ? <Trans>Dark Mode</Trans> : <Trans>Light Mode</Trans>}
       </ListItemText>
     </ListItemButton>
   )

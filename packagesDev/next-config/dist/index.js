@@ -1,12 +1,13 @@
 import dotenv from 'dotenv';
-import fs$1 from 'node:fs/promises';
-import path$1 from 'path';
+import fs from 'node:fs/promises';
+import path from 'path';
 import { glob, sync } from 'glob';
-import fs from 'node:fs';
-import path from 'node:path';
+import { findParentPath } from './utils/findParentPath.js';
 import { l as loadConfig, t as toEnvStr } from './loadConfig-CM84Noid.js';
 export { r as replaceConfigInString } from './loadConfig-CM84Noid.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
+import fs$1 from 'node:fs';
+import path$1 from 'node:path';
 import assert from 'assert';
 import crypto from 'crypto';
 import lodash from 'lodash';
@@ -22,56 +23,24 @@ export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } f
 import 'cosmiconfig';
 import 'chalk';
 
-const debug$1 = process.env.DEBUG === "1";
-const log = (message) => debug$1 && console.log(`isMonorepo: ${message}`);
-function findPackageJson$1(directory) {
-  try {
-    const packageJsonPath = path.join(directory, "package.json");
-    const content = fs.readFileSync(packageJsonPath, "utf8");
-    return JSON.parse(content);
-  } catch {
-    return null;
-  }
-}
-function findParentPath(directory) {
-  let currentDir = directory;
-  log(`Starting directory: ${currentDir}`);
-  currentDir = path.dirname(currentDir);
-  log(`Looking for parent packages starting from: ${currentDir}`);
-  while (currentDir !== path.parse(currentDir).root) {
-    const packageJson = findPackageJson$1(currentDir);
-    if (packageJson) {
-      log(`Found package.json in: ${currentDir}`);
-      log(`Package name: ${packageJson.name}`);
-      if (packageJson.name.startsWith("@graphcommerce/")) {
-        log(`Found parent @graphcommerce package at: ${currentDir}`);
-        return currentDir;
-      }
-    }
-    currentDir = path.dirname(currentDir);
-  }
-  log("No parent @graphcommerce package found");
-  return null;
-}
-
 async function fsExists(file) {
   try {
-    await fs$1.access(file, fs$1.constants.F_OK);
+    await fs.access(file, fs.constants.F_OK);
     return true;
   } catch {
     return false;
   }
 }
 async function fsRealpath(file) {
-  return await fsExists(file) ? fs$1.realpath(file) : file;
+  return await fsExists(file) ? fs.realpath(file) : file;
 }
 async function restoreOriginalFile(fileWithOriginalInTheName) {
   const restoredPath = fileWithOriginalInTheName.replace(/\.original\.(tsx?)$/, ".$1");
   if (await fsExists(fileWithOriginalInTheName)) {
     if (await fsExists(restoredPath)) {
-      await fs$1.unlink(restoredPath);
+      await fs.unlink(restoredPath);
     }
-    await fs$1.rename(fileWithOriginalInTheName, restoredPath);
+    await fs.rename(fileWithOriginalInTheName, restoredPath);
     return true;
   }
   return false;
@@ -84,7 +53,7 @@ async function findDotOriginalFiles(cwd) {
     else break;
   }
   return Promise.all(
-    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs$1.realpath(file))
+    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs.realpath(file))
   );
 }
 async function writeInterceptors(interceptors, cwd = process.cwd()) {
@@ -94,11 +63,11 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
     const extension = plugin.sourcePath.endsWith(".tsx") ? ".tsx" : ".ts";
     const targetFileName = `${plugin.fromRoot}${extension}`;
     const fileNameDotOriginal = `${plugin.fromRoot}.original${extension}`;
-    const targetFilePath = await fsRealpath(path$1.resolve(cwd, targetFileName));
-    const dotOriginalPath = await fsRealpath(path$1.resolve(cwd, fileNameDotOriginal));
+    const targetFilePath = await fsRealpath(path.resolve(cwd, targetFileName));
+    const dotOriginalPath = await fsRealpath(path.resolve(cwd, fileNameDotOriginal));
     processedFiles.push(dotOriginalPath);
-    const targetSource = await fsExists(targetFilePath) ? await fs$1.readFile(targetFilePath, "utf8") : null;
-    const dotOriginalSource = await fsExists(dotOriginalPath) ? await fs$1.readFile(dotOriginalPath, "utf8") : null;
+    const targetSource = await fsExists(targetFilePath) ? await fs.readFile(targetFilePath, "utf8") : null;
+    const dotOriginalSource = await fsExists(dotOriginalPath) ? await fs.readFile(dotOriginalPath, "utf8") : null;
     const isPreviouslyApplied = dotOriginalSource !== null && targetSource?.includes("/* hash:");
     let status = "";
     if (isPreviouslyApplied) {
@@ -106,12 +75,12 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
         status = "\u2705 Unchanged interceptor";
       } else {
         status = "\u{1F504} Updating interceptor";
-        await fs$1.writeFile(targetFilePath, plugin.template);
+        await fs.writeFile(targetFilePath, plugin.template);
       }
     } else {
       status = "\u{1F195} Creating interceptor";
-      await fs$1.rename(targetFilePath, dotOriginalPath);
-      await fs$1.writeFile(targetFilePath, plugin.template);
+      await fs.rename(targetFilePath, dotOriginalPath);
+      await fs.writeFile(targetFilePath, plugin.template);
     }
     console.log(`${status} ${plugin.dependency}`);
     Object.entries(plugin.targetExports).forEach(([target, plugins]) => {
@@ -269,11 +238,11 @@ const resolveCache = /* @__PURE__ */ new Map();
 function findPackageJson(id, root) {
   let dir = id.startsWith("/") ? id : import.meta.resolve(id);
   if (dir.startsWith("file://")) dir = new URL(dir).pathname;
-  let packageJsonLocation = path.join(dir, "package.json");
-  while (!fs.existsSync(packageJsonLocation)) {
-    dir = path.dirname(dir);
+  let packageJsonLocation = path$1.join(dir, "package.json");
+  while (!fs$1.existsSync(packageJsonLocation)) {
+    dir = path$1.dirname(dir);
     if (dir === root) throw Error(`Can't find package.json for ${id}`);
-    packageJsonLocation = path.join(dir, "package.json");
+    packageJsonLocation = path$1.join(dir, "package.json");
   }
   return packageJsonLocation;
 }
@@ -281,7 +250,7 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
   const isRoot = dependencyPath === root;
   const fileName = findPackageJson(dependencyPath, root);
   if (!fileName) throw Error(`Can't find package.json for ${dependencyPath}`);
-  const packageJsonFile = fs.readFileSync(fileName, "utf-8").toString();
+  const packageJsonFile = fs$1.readFileSync(fileName, "utf-8").toString();
   const packageJson = JSON.parse(packageJsonFile);
   const e = [atob("QGdyYXBoY29tbWVyY2UvYWRvYmUtY29tbWVyY2U=")].filter(
     (n) => !globalThis.gcl ? true : !globalThis.gcl.includes(n)
@@ -321,7 +290,7 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
   });
   const name = isRoot ? "." : packageJson.name;
   dependencyStructure[name] = {
-    dirName: path.dirname(path.relative(process.cwd(), fileName)),
+    dirName: path$1.dirname(path$1.relative(process.cwd(), fileName)),
     dependencies: availableDependencies
   };
   return dependencyStructure;
@@ -650,7 +619,7 @@ function parseAndFindExport(resolved, findExport, resolve) {
     const isRelative = node.source.value.startsWith(".");
     if (isRelative) {
       const d = resolved.dependency === resolved.denormalized ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf("/")) : resolved.dependency;
-      const newPath = path$1.join(d, node.source.value);
+      const newPath = path.join(d, node.source.value);
       const resolveResult = resolve(newPath, { includeSources: true });
       if (!resolveResult) continue;
       const newResolved = parseAndFindExport(resolveResult, findExport, resolve);
@@ -860,7 +829,7 @@ async function generateInterceptors(plugins, resolve, config, force) {
       if (pluginPath.startsWith(".")) {
         const resolvedPlugin = resolve(pluginPath);
         if (resolvedPlugin) {
-          pluginPath = path.relative(
+          pluginPath = path$1.relative(
             resolved.fromRoot.split("/").slice(0, -1).join("/"),
             resolvedPlugin.fromRoot
           );
@@ -947,9 +916,9 @@ const resolveDependency = (cwd = process.cwd()) => {
         ].find(
           (location) => ["ts", "tsx"].find((extension) => {
             const candidatePath = `${location}.${extension}`;
-            const exists = fs.existsSync(candidatePath);
+            const exists = fs$1.existsSync(candidatePath);
             if (includeSources && exists) {
-              source = fs.readFileSync(candidatePath, "utf-8");
+              source = fs$1.readFileSync(candidatePath, "utf-8");
               sourcePath = candidatePath;
             }
             return exists;
@@ -986,22 +955,22 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
   console.log(`\u{1F50D} Scanning ${roots.length} package roots for plugins...`);
   const pluginsByPackage = /* @__PURE__ */ new Map();
   for (const root of roots) {
-    const packageDirs = sync(`${root}/*/package.json`).map((pkgPath) => path.dirname(pkgPath));
+    const packageDirs = sync(`${root}/*/package.json`).map((pkgPath) => path$1.dirname(pkgPath));
     for (const packagePath of packageDirs) {
       const pluginFiles = sync(`${packagePath}/plugins/**/*.{ts,tsx}`);
       if (pluginFiles.length > 0) {
         const exportPaths = /* @__PURE__ */ new Set();
         pluginFiles.forEach((file) => {
-          const relativePath = path.relative(packagePath, file);
+          const relativePath = path$1.relative(packagePath, file);
           const exportPath = `./${relativePath.replace(/\.(ts|tsx)$/, "")}`;
           exportPaths.add(exportPath);
         });
         if (exportPaths.size > 0) {
-          const packageJsonPath = path.join(packagePath, "package.json");
+          const packageJsonPath = path$1.join(packagePath, "package.json");
           try {
-            const packageJsonContent = await fs$1.readFile(packageJsonPath, "utf8");
+            const packageJsonContent = await fs.readFile(packageJsonPath, "utf8");
             const packageJson = JSON.parse(packageJsonContent);
-            const packageName = packageJson.name || path.basename(packagePath);
+            const packageName = packageJson.name || path$1.basename(packagePath);
             pluginsByPackage.set(packagePath, exportPaths);
           } catch (error) {
             console.warn(`\u26A0\uFE0F  Could not read package.json for ${packagePath}:`, error);
@@ -1013,9 +982,9 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
   console.log(`\u{1F4E6} Total packages with plugins: ${pluginsByPackage.size}`);
   const updatePromises = Array.from(pluginsByPackage.entries()).map(
     async ([packagePath, exportPaths]) => {
-      const packageJsonPath = path.join(packagePath, "package.json");
+      const packageJsonPath = path$1.join(packagePath, "package.json");
       try {
-        const packageJsonContent = await fs$1.readFile(packageJsonPath, "utf8");
+        const packageJsonContent = await fs.readFile(packageJsonPath, "utf8");
         const packageJson = JSON.parse(packageJsonContent);
         if (!packageJson.exports) {
           packageJson.exports = { ".": "./index.ts" };
@@ -1028,7 +997,7 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
           const exportKey = exportPath.startsWith("./") ? exportPath : `./${exportPath}`;
           const filePath = `${exportPath}.tsx`;
           const tsFilePath = `${exportPath}.ts`;
-          const targetFile = sync(path.join(packagePath, `${exportPath.slice(2)}.{ts,tsx}`))[0];
+          const targetFile = sync(path$1.join(packagePath, `${exportPath.slice(2)}.{ts,tsx}`))[0];
           if (targetFile) {
             const extension = targetFile.endsWith(".tsx") ? ".tsx" : ".ts";
             const targetPath = `${exportPath}${extension}`;
@@ -1048,7 +1017,7 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
           });
           packageJson.exports = sortedExports;
           const updatedContent = JSON.stringify(packageJson, null, 2) + "\n";
-          await fs$1.writeFile(packageJsonPath, updatedContent);
+          await fs.writeFile(packageJsonPath, updatedContent);
           console.log(`\u2705 Updated exports in ${packageJson.name}`);
           const newExports = Object.keys(packageJson.exports).filter((key) => key !== ".");
           if (newExports.length > 0) {
@@ -1092,7 +1061,7 @@ async function updateGitignore(managedFiles) {
       file.replace(/[*+?^${}()|[\]\\]/g, "\\$&")
     )
   ).sort();
-  const gitignorePath = path$1.join(process.cwd(), ".gitignore");
+  const gitignorePath = path.join(process.cwd(), ".gitignore");
   let content;
   try {
     content = await fs$2.readFile(gitignorePath, "utf-8");
@@ -1162,7 +1131,7 @@ async function copyFiles() {
     const readStart = performance.now();
     await Promise.all(
       allFiles.map(async (file) => {
-        const filePath = path$1.join(cwd, file);
+        const filePath = path.join(cwd, file);
         try {
           const content = await fs$2.readFile(filePath);
           if (getFileManagement(content) === "graphcommerce") {
@@ -1183,13 +1152,13 @@ async function copyFiles() {
   const collectStart = performance.now();
   await Promise.all(
     packages.map(async (pkg) => {
-      const copyDir = path$1.join(pkg, "copy");
+      const copyDir = path.join(pkg, "copy");
       try {
         const files = await fg("**/*", { cwd: copyDir, dot: true, suppressErrors: true });
         if (files.length > 0) {
           debug(`Found files in ${pkg}:`, files);
           for (const file of files) {
-            const sourcePath = path$1.join(copyDir, file);
+            const sourcePath = path.join(copyDir, file);
             const existing = fileMap.get(file);
             if (existing) {
               console.error(`Error: File conflict detected for '${file}'
@@ -1215,10 +1184,10 @@ Path: ${copyDir}`
   const copyStart = performance.now();
   await Promise.all(
     Array.from(fileMap.entries()).map(async ([file, { sourcePath }]) => {
-      const targetPath = path$1.join(cwd, file);
+      const targetPath = path.join(cwd, file);
       debug(`Processing file: ${file}`);
       try {
-        await fs$2.mkdir(path$1.dirname(targetPath), { recursive: true });
+        await fs$2.mkdir(path.dirname(targetPath), { recursive: true });
         const sourceContent = await fs$2.readFile(sourcePath);
         const contentWithComment = Buffer.concat([
           Buffer.from(
@@ -1288,7 +1257,7 @@ Source: ${sourcePath}`);
         if (dirContents.length === 0) {
           await fs$2.rmdir(currentDir);
           debug(`Removed empty directory: ${currentDir}`);
-          currentDir = path$1.dirname(currentDir);
+          currentDir = path.dirname(currentDir);
         } else {
           break;
         }
@@ -1303,8 +1272,8 @@ Source: ${sourcePath}`);
   }
   await Promise.all(
     filesToRemove.map(async (file) => {
-      const filePath = path$1.join(cwd, file);
-      const dirPath = path$1.dirname(filePath);
+      const filePath = path.join(cwd, file);
+      const dirPath = path.dirname(filePath);
       try {
         await fs$2.readdir(dirPath);
         try {
@@ -1438,9 +1407,9 @@ function getSectionSchemaKeys(configKey) {
 }
 async function createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey) {
   const fileName = `${toFileName(sectionName)}.ts`;
-  const filePath = path$1.join(targetDir, fileName);
+  const filePath = path.join(targetDir, fileName);
   const distFileName = `${toFileName(sectionName)}.js`;
-  const distFilePath = path$1.join(targetDistDir, distFileName);
+  const distFilePath = path.join(targetDistDir, distFileName);
   const schemaKeys = getSectionSchemaKeys(configKey);
   const completeSectionValue = {};
   for (const key of schemaKeys) {
@@ -1525,8 +1494,8 @@ ${rootExports.join("\n")}
       (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
     )
   });
-  const indexPath = path$1.join(targetDir, "index.ts");
-  const distIndexPath = path$1.join(targetDistDir, "index.js");
+  const indexPath = path.join(targetDir, "index.ts");
+  const distIndexPath = path.join(targetDistDir, "index.js");
   writeFileSync(indexPath, formattedIndexContent);
   const indexResult = transformFileSync(indexPath, {
     module: { type: "nodenext" },

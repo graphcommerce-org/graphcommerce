@@ -19,19 +19,19 @@ export function EmptyCart(props: EmptyCartProps) {
 
   return (
     <FullPageMessage
-      title={<Trans id='Your cart is empty'>Your cart is empty</Trans>}
+      title={<Trans>Your cart is empty</Trans>}
       icon={<IconSvg src={iconShoppingBag} size='xxl' />}
       button={
         button || (
           <OverlayCloseButton variant='pill' color='secondary' size='large'>
-            <Trans id='Continue shopping'>Continue shopping</Trans>
+            <Trans>Continue shopping</Trans>
           </OverlayCloseButton>
         )
       }
       {...rest}
     >
       {children ?? (
-        <Trans id='Discover our collection and add items to your cart!'>
+        <Trans>
           Discover our collection and add items to your cart!
         </Trans>
       )}

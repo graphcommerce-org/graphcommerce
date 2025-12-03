@@ -41,8 +41,8 @@ import {
   revalidate,
 } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
@@ -184,7 +184,7 @@ function ProductPage(props: Props) {
       )}
 
       <RecentlyViewedProducts
-        title={<Trans id='Recently viewed products' />}
+        title={<Trans>Recently viewed products</Trans>}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
         sizes={responsiveVal(200, 400)}
@@ -243,7 +243,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
 
   const result = {
     props: {

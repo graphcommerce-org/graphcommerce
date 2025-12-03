@@ -20,7 +20,7 @@ export function InvoiceItem(props: PluginProps<InvoiceItemProps>) {
         ...(rest.priceModifiers ?? []),
         {
           key: 'downloadable-links',
-          label: <Trans id='Downloads'>Downloads</Trans>,
+          label: <Trans>Downloads</Trans>,
           items: filterNonNullableKeys(rest.item.downloadable_links)
             .sort((a, b) => a.sort_order - b.sort_order)
             .map((link) => ({

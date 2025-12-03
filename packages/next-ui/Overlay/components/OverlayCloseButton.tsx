@@ -1,5 +1,5 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { useState } from 'react'
 import { Button, type ButtonProps } from '../../Button'
 
@@ -18,7 +18,7 @@ export function OverlayCloseButton(props: ButtonProps) {
     <Button
       onClick={onClick}
       disabled={isDisabled}
-      aria-label={i18n._(/* i18n */ 'Close overlay')}
+      aria-label={t`Close overlay`}
       {...buttonProps}
     />
   )

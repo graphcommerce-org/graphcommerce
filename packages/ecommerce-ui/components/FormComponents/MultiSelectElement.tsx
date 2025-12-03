@@ -2,7 +2,7 @@
 import { iconClose, IconSvg } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { FormControlProps, SelectProps } from '@mui/material'
 import {
   Checkbox,
@@ -61,7 +61,7 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     ...rest
   } = props
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {

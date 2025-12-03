@@ -111,7 +111,7 @@ export function CreditMemoItem(props: CreditMemoItemProps) {
         <>
           {priceModifiers && priceModifiers.length > 0 && (
             <PriceModifiersList
-              label={<Trans id='Base Price'>Base price</Trans>}
+              label={<Trans>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={product_sale_price.value ?? 0}
               currency={product_sale_price.currency}

@@ -11,6 +11,13 @@
       "project": "./tsconfig.json"
     }
   },
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
+    "./plugins/categoriesApplySearchDefaultAlgolia": "./plugins/categoriesApplySearchDefaultAlgolia.ts",
+    "./plugins/meshConfigAlgoliaCategories": "./plugins/meshConfigAlgoliaCategories.ts"
+  },
   "scripts": {
     "generate": "tsx scripts/generate-spec.mts"
   },
@@ -29,10 +36,5 @@
   "devDependencies": {
     "graphql": "^16.11.0",
     "tsx": "^4.20.5"
-  },
-  "exports": {
-    ".": "./index.ts",
-    "./plugins/categoriesApplySearchDefaultAlgolia": "./plugins/categoriesApplySearchDefaultAlgolia.ts",
-    "./plugins/meshConfigAlgoliaCategories": "./plugins/meshConfigAlgoliaCategories.ts"
   }
 }

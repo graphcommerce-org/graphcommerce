@@ -12,7 +12,7 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -60,7 +60,7 @@ function BlogPage(props: Props) {
               },
             })}
             breadcrumbs={[
-              { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
+              { href: '/blog', name: t`Blog` },
               { href: `/${page.url}`, name: title },
             ]}
           />
@@ -128,7 +128,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

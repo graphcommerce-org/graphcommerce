@@ -31,6 +31,8 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
+    "./algolia-spec.yaml": "./algolia-spec.yaml",
     "./plugins/GraphQLProviderAlgoliaCustomerGroupId": "./plugins/GraphQLProviderAlgoliaCustomerGroupId.tsx",
     "./plugins/ProductListItemsBaseAlgolia": "./plugins/ProductListItemsBaseAlgolia.tsx",
     "./plugins/magentoProductApplyAlgoliaEngine": "./plugins/magentoProductApplyAlgoliaEngine.ts",

@@ -25,7 +25,8 @@
     "./utils/cssFlags": "./utils/cssFlags.tsx",
     "./Intl/DateTimeFormat/toDate": "./Intl/DateTimeFormat/toDate.ts",
     "./Breadcrumbs/BreadcrumbsJsonLd": "./Breadcrumbs/BreadcrumbsJsonLd.tsx",
-    "./Breadcrumbs/jsonLdBreadcrumb": "./Breadcrumbs/jsonLdBreadcrumb.tsx"
+    "./Breadcrumbs/jsonLdBreadcrumb": "./Breadcrumbs/jsonLdBreadcrumb.tsx",
+    "./RenderType/filterNonNullableKeys": "./RenderType/filterNonNullableKeys.ts"
   },
   "dependencies": {
     "cookie": "^1.0.2",

@@ -1,7 +1,7 @@
 import { Money } from '@graphcommerce/magento-store'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, lighten } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
@@ -93,7 +93,7 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans id='Products' />
+            <Trans>Products</Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money {...(inclTax ? prices.subtotal_including_tax : prices.subtotal_excluding_tax)} />
@@ -132,10 +132,7 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans
-              id='Shipping ({0} {1})'
-              values={{ 0: shippingMethod.carrier_title, 1: shippingMethod.method_title }}
-            />
+            <Trans>Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})</Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money
@@ -178,7 +175,7 @@ export function CartTotals(props: CartTotalsProps) {
           })}
         >
           <Box>
-            <Trans id='Grand total' />
+            <Trans>Grand total</Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money {...prices.grand_total} />
@@ -199,7 +196,7 @@ export function CartTotals(props: CartTotalsProps) {
             }}
           >
             <Box>
-              <Trans id='Including {0}' values={{ 0: tax?.label }} />
+              <Trans>Including {tax?.label}</Trans>
             </Box>
             <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money {...tax?.amount} />

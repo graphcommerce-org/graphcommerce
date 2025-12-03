@@ -1,6 +1,6 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { InputBaseProps } from '@mui/material'
 import { InputBase, useForkRef } from '@mui/material'
 import React from 'react'
@@ -31,7 +31,7 @@ function InputBaseElementBase(
   } = props
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {

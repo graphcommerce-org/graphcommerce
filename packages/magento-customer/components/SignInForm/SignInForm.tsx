@@ -3,7 +3,7 @@ import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, FormControl, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
@@ -49,7 +49,7 @@ export function SignInForm(props: SignInFormProps) {
           error={!!formState.errors.password || !!authError}
           control={control}
           name='password'
-          label={<Trans id='Password' />}
+          label={<Trans>Password</Trans>}
           autoFocus={!!email}
           autoComplete='current-password'
           id='current-password'
@@ -58,7 +58,7 @@ export function SignInForm(props: SignInFormProps) {
           InputProps={{
             endAdornment: (
               <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-                <Trans id='Forgot password?' />
+                <Trans>Forgot password?</Trans>
               </Link>
             ),
           }}
@@ -76,7 +76,7 @@ export function SignInForm(props: SignInFormProps) {
             variant='pill'
             size='large'
           >
-            <Trans id='Sign in' />
+            <Trans>Sign in</Trans>
           </Button>
         </FormControl>
       </FormActions>

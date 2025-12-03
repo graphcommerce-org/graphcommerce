@@ -1,6 +1,6 @@
 import type { NumberFieldElementProps } from '@graphcommerce/ecommerce-ui'
 import { NumberFieldElement } from '@graphcommerce/ecommerce-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { AddProductsToCartMutationVariables } from './AddProductsToCart.gql'
 import type { AddToCartItemSelector } from './useFormAddProductsToCart'
 import { useFormAddProductsToCart } from './useFormAddProductsToCart'
@@ -23,12 +23,12 @@ export function AddProductsToCartQuantity(props: AddToCartQuantityProps) {
       required
       inputProps={{
         min: 1,
-        'aria-label': i18n._(/* i18n */ 'Add to cart quantity'),
+        'aria-label': t`Add to cart quantity`,
         ...inputProps,
       }}
       defaultValue={1}
       control={control}
-      aria-label={i18n._(/* i18n */ 'Add to cart quantity')}
+      aria-label={t`Add to cart quantity`}
       name={`cartItems.${index}.quantity`}
       {...rest}
     />

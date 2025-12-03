@@ -1,5 +1,5 @@
 import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box, darken, lighten } from '@mui/material'
 import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
@@ -11,23 +11,20 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
   const { product } = props
   const { stock_status, only_x_left_in_stock } = product ?? {}
 
-  let title = <Trans id='Order before 22:00' />
-  let subtitle = <Trans id='Next day delivery - Shipping free' />
+  let title = <Trans>Order before 22:00</Trans>
+  let subtitle = <Trans>Next day delivery - Shipping free</Trans>
 
   if (stock_status === 'OUT_OF_STOCK') {
-    title = <Trans id='Out of stock' />
-    subtitle = <Trans id='We are sorry, this product is currently out of stock.' />
+    title = <Trans>Out of stock</Trans>
+    subtitle = <Trans>We are sorry, this product is currently out of stock.</Trans>
   } else if (stock_status === 'IN_STOCK' && only_x_left_in_stock) {
-    title = <Trans id='Only a few left' />
+    title = <Trans>Only a few left</Trans>
     subtitle = (
-      <Trans
-        id='Only {amount_left_in_stock} left in stock.'
-        values={{ amount_left_in_stock: only_x_left_in_stock }}
-      />
+      <Trans>Only {only_x_left_in_stock} left in stock.</Trans>
     )
   }
   if (only_x_left_in_stock === 1) {
-    subtitle = <Trans id='Only 1 left in stock.' />
+    subtitle = <Trans>Only 1 left in stock.</Trans>
   }
 
   return (

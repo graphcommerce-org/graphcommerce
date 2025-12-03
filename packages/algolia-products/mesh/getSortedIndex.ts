@@ -1,5 +1,4 @@
 import type { MeshContext, ProductAttributeSortInput } from '@graphcommerce/graphql-mesh'
-import { nonNullable } from '@graphcommerce/magento-customer'
 import { algolia } from '@graphcommerce/next-config/config'
 import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import { getGroupId } from './getGroupId'
@@ -16,12 +15,12 @@ export async function getSortedIndex(
 ): Promise<string> {
   const baseIndex = getIndexName(context)
   // const availableSorting = Object.values(sortOptions)
-  const [attr, dirEnum] = Object.entries(sortInput ?? {}).filter(nonNullable)?.[0] ?? []
+  const [attr, dirEnum] = Object.entries(sortInput ?? {}).filter((v) => !!v)?.[0] ?? []
   if (!attr || !dirEnum) return baseIndex
 
   const dir = dirEnum.toLowerCase()
   const candidates = ((await settings).replicas ?? [])
-    .filter(nonNullable)
+    .filter((v) => !!v)
     .filter((r) => r.startsWith(`virtual(${baseIndex}_${attr}`) && r.endsWith(`_${dir})`))
 
   if (candidates.length === 0) {

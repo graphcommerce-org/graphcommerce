@@ -3,8 +3,8 @@ import { AccountSignInUpForm, getCustomerAccountIsDisabled } from '@graphcommerc
 import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -17,10 +17,10 @@ function AccountSignInPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Sign in')} metaRobots={['noindex']} />
+      <PageMeta title={t`Sign in`} metaRobots={['noindex']} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          <Trans id='Sign in' />
+          <Trans>Sign in</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>

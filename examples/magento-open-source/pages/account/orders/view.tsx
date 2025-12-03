@@ -20,7 +20,7 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -32,11 +32,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
   const router = useRouter()
-  const { orderNumber } = router.query
+  const orderNumber = String(router.query.orderNumber)
 
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderNumber as string },
+    variables: { orderNumber },
     skip: !orderNumber,
   })
   const order = orders.data?.customer?.orders?.items?.[0]
@@ -67,10 +67,7 @@ function OrderDetailPage() {
                 <Trans>Order #{orderNumber}</Trans>
               </LayoutTitle>
 
-              <PageMeta
-                title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
-                metaRobots={['noindex']}
-              />
+              <PageMeta title={t`Order #${orderNumber}`} metaRobots={['noindex']} />
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
                 <OrderStateLabel {...order} />
               </Typography>
@@ -111,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
+      up: { href: '/account/orders', title: t`Orders` },
     },
   }
 }

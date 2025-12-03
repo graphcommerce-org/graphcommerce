@@ -14,7 +14,7 @@ import { enableGuestCheckoutLogin } from '@graphcommerce/next-config/config'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Button } from '@mui/material'
@@ -74,7 +74,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
                 color='secondary'
                 style={{ whiteSpace: 'nowrap' }}
               >
-                <Trans id='Sign in' />
+                <Trans>Sign in</Trans>
               </Button>
             ),
           }}

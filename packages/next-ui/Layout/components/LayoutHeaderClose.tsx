@@ -1,5 +1,5 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Fab, type ButtonProps } from '@mui/material'
 import { useState } from 'react'
 import { Button } from '../../Button'
@@ -43,7 +43,7 @@ export function LayoutHeaderClose(props: LayoutHeaderCloseProps) {
       }}
       size={size}
       disabled={disabled}
-      aria-label={i18n._(/* i18n */ 'Close')}
+      aria-label={t`Close`}
     >
       <IconSvg src={iconClose} size='large' />
     </Fab>

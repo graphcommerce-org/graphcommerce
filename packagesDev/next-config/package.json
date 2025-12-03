@@ -21,6 +21,10 @@
     "./loadConfig": {
       "types": "./src/config/loadConfig.ts",
       "default": "./dist/config/loadConfig.js"
+    },
+    "./findParentPath": {
+      "types": "./src/utils/findParentPath.ts",
+      "default": "./dist/utils/findParentPath.js"
     }
   },
   "typesVersions": {
@@ -45,7 +49,6 @@
     "@types/circular-dependency-plugin": "^5.0.8",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash": "^4.17.20",
-    "babel-plugin-macros": "^3.1.0",
     "chalk": "^4.1.2",
     "circular-dependency-plugin": "^5.2.2",
     "cosmiconfig": "^8.3.6",

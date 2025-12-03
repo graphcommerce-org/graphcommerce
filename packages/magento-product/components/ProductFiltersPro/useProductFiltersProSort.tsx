@@ -2,7 +2,7 @@ import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { useMemo } from 'react'
 import type { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
 import type { ProductListSortFragment } from '../ProductListSort'
@@ -26,7 +26,7 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
     () =>
       filterNonNullableKeys(sort_fields?.options).map((o) =>
         (!category?.uid && o.value === 'position') || o.value === 'relevance'
-          ? { value: 'relevance', label: i18n._(/* i18n*/ 'Relevance') }
+          ? { value: 'relevance', label: t`Relevance` }
           : o,
       ),
     [category?.uid, sort_fields?.options],

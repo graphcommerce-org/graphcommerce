@@ -1,5 +1,5 @@
 import { extendableComponent, iconSearch, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TextFieldProps } from '@mui/material'
 import { TextField } from '@mui/material'
@@ -24,7 +24,7 @@ export function SearchButton(props: SearchButtonProps) {
       variant='outlined'
       size='small'
       className={classes.root}
-      label={label ?? <Trans id='Search...' />}
+      label={label ?? <Trans>Search...</Trans>}
       id='search-input'
       InputLabelProps={{ shrink: false }}
       InputProps={{

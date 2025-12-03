@@ -15,7 +15,7 @@ import {
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
@@ -154,7 +154,7 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
         <ActionCardListForm
           control={control}
           name='customer_address_id'
-          errorMessage={i18n._(/* i18n */ 'Please select a shipping address')}
+          errorMessage={t`Please select a shipping address`}
           collapse
           size='large'
           color='secondary'
@@ -165,19 +165,17 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
           ]}
           render={CustomerAddressActionCard}
         />
-        {!isVirtual &&
-          formAddressId !== -1 &&
-          customerAddressNoteEnable && (
-            <FormRow>
-              <TextFieldElement
-                control={form.control}
-                name='shippingAddress.customer_notes'
-                label={<Trans>Shipping Note</Trans>}
-                multiline
-                minRows={3}
-              />
-            </FormRow>
-          )}
+        {!isVirtual && formAddressId !== -1 && customerAddressNoteEnable && (
+          <FormRow>
+            <TextFieldElement
+              control={form.control}
+              name='shippingAddress.customer_notes'
+              label={<Trans>Shipping Note</Trans>}
+              multiline
+              minRows={3}
+            />
+          </FormRow>
+        )}
         <ApolloCartErrorAlert error={error} />
       </Box>
       {formAddressId === -1 && children}

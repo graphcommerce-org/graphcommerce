@@ -2,6 +2,7 @@ import type { LinguiProviderProps, SyncMessageLoader } from '@graphcommerce/ling
 import { LinguiProvider } from '@graphcommerce/lingui-next'
 import { normalizeLocale } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 
 type I18nProviderProps = Pick<LinguiProviderProps, 'locale' | 'children'>
 

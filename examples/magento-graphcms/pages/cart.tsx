@@ -22,8 +22,8 @@ import {
   FullPageMessage,
   OverlayStickyBottom,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -41,13 +41,11 @@ function CartPage() {
   const hasItems =
     (data?.cart?.total_quantity ?? 0) > 0 &&
     typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
+  const quantity = data?.cart?.total_quantity ?? 0
 
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ 'Cart ({0})', { 0: data?.cart?.total_quantity ?? 0 })}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={t`Cart (${quantity})`} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         switchPoint={0}
         primary={<CartStartCheckoutLinkOrButton cart={data?.cart} disabled={hasError} />}
@@ -59,20 +57,19 @@ function CartPage() {
       >
         <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
           {hasItems ? (
-            <Trans
-              id='Total <0/>'
-              components={{ 0: <Money {...data?.cart?.prices?.grand_total} /> }}
-            />
+            <Trans>
+              Total <Money {...data?.cart?.prices?.grand_total} />
+            </Trans>
           ) : (
-            <Trans id='Cart' />
+            <Trans>Cart</Trans>
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
       <WaitForQueries
         waitFor={cart}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >

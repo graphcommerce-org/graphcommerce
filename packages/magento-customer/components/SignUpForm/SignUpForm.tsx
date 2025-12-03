@@ -66,7 +66,7 @@ export function SignUpForm(props: SignUpFormProps) {
   ) {
     return (
       <Alert>
-        <Trans id='Registration successful. Please check your inbox to confirm your email address ({email})'>
+        <Trans>
           Registration successful. Please check your inbox to confirm your email address ({email})
         </Trans>
       </Alert>
@@ -80,7 +80,7 @@ export function SignUpForm(props: SignUpFormProps) {
           control={control}
           name='input.password'
           variant='outlined'
-          label={<Trans id='Password'>Password</Trans>}
+          label={<Trans>Password</Trans>}
           autoFocus={!!email}
           autoComplete='new-password'
           required
@@ -90,7 +90,7 @@ export function SignUpForm(props: SignUpFormProps) {
           name='confirmPassword'
           passwordFieldName='input.password'
           variant='outlined'
-          label={<Trans id='Confirm password'>Confirm password</Trans>}
+          label={<Trans>Confirm password</Trans>}
           autoComplete='new-password'
           required
         />
@@ -118,7 +118,7 @@ export function SignUpForm(props: SignUpFormProps) {
         control={control}
         name='input.is_subscribed'
         disabled={formState.isSubmitting}
-        label={<Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>}
+        label={<Trans>Subscribe to newsletter</Trans>}
       />
 
       <ApolloCustomerErrorSnackbar error={error} />
@@ -132,7 +132,7 @@ export function SignUpForm(props: SignUpFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans id='Create Account'>Create Account</Trans>
+          <Trans>Create Account</Trans>
         </Button>
       </FormActions>
       <FormPersist form={form} name='SignUp' exclude={['input.password', 'confirmPassword']} />

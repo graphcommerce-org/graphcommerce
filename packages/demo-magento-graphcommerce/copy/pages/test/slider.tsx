@@ -4,7 +4,7 @@ import { ProductListDocument } from '@graphcommerce/magento-product'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutHeader, LayoutTitle, SidebarGallery } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutNavigation } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
@@ -101,7 +101,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await productList).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

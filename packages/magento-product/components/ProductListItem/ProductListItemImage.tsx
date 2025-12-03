@@ -1,6 +1,6 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { BoxProps } from '@mui/material'
 import { Box, Skeleton, styled } from '@mui/material'
 
@@ -91,7 +91,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        <Trans id='No Image' />
+        <Trans>No Image</Trans>
       </Box>
     </PlaceHolderContainer>
   )

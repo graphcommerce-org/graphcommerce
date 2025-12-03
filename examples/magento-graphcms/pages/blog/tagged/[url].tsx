@@ -4,8 +4,8 @@ import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -43,7 +43,7 @@ function BlogPage(props: Props) {
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
         <BlogTitle>
-          <Trans id='Tagged in: {title}' values={{ title }} />
+          <Trans>Tagged in: {title}</Trans>
         </BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
@@ -106,7 +106,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

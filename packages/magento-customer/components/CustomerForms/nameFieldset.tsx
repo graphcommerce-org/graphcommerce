@@ -20,7 +20,7 @@ export function nameFieldset(
   const additional = extractAttributes(attributes, ['dob', 'gender'])[0].map((f) => f.code)
 
   return {
-    label: withLabel ? <Trans id='Name'>Name</Trans> : undefined,
+    label: withLabel ? <Trans>Name</Trans> : undefined,
     gridAreas: [...nameFields, ...additional],
     // xs is shown in one column by default
     sx: {

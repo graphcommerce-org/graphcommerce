@@ -1,7 +1,7 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { emailPattern } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type { TextFieldElementProps } from './TextFieldElement'
 import { TextFieldElement } from './TextFieldElement'
 
@@ -15,12 +15,12 @@ export function EmailElement<TFieldValues extends FieldValues>(
   return (
     <TextFieldElement
       type='email'
-      label={<Trans id='Email address' />}
+      label={<Trans>Email address</Trans>}
       autoComplete='email'
       rules={{
         pattern: {
           value: emailPattern,
-          message: i18n._(/* i18n */ 'Please enter a valid email address'),
+          message: t`Please enter a valid email address`,
         },
         ...rules,
       }}

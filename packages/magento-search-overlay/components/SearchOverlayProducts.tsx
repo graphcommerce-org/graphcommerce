@@ -71,14 +71,14 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
     <>
       {!params.search && <SearchPlaceholder />}
       {noResult && (
-        <SectionContainer labelLeft={<Trans id='Products'>Products</Trans>}>
+        <SectionContainer labelLeft={<Trans>Products</Trans>}>
           <Trans>We couldn’t find any results for ‘{term}’</Trans>
         </SectionContainer>
       )}
 
       {params.search && products?.items && products.items.length > 0 && (
         <SectionContainer
-          labelLeft={<Trans id='Products'>Products</Trans>}
+          labelLeft={<Trans>Products</Trans>}
           labelRight={
             <Link
               color='secondary'

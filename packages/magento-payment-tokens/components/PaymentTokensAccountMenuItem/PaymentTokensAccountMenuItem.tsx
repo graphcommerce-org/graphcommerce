@@ -23,8 +23,8 @@ export function PaymentTokensAccountMenuItem(props: PaymentTokensAccountMenuItem
     <AccountMenuItem
       href='/account/payment-tokens'
       iconSrc={iconCreditCard}
-      title={<Trans id='Stored payment methods'>Stored payment methods</Trans>}
-      subtitle={<Trans id='For faster checkout'>For faster checkout</Trans>}
+      title={<Trans>Stored payment methods</Trans>}
+      subtitle={<Trans>For faster checkout</Trans>}
       {...props}
     />
   )

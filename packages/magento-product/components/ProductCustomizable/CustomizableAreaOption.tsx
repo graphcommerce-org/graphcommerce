@@ -3,7 +3,7 @@ import type { CurrencyEnum } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import type { TypeRenderer } from '@graphcommerce/next-ui'
 import { SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import React from 'react'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
@@ -61,10 +61,7 @@ export function CustomizableAreaOption(props: CustomizableAreaOptionProps) {
         required={Boolean(required)}
         rules={{ maxLength }}
         helperText={
-          (maxLength ?? 0) > 0 &&
-          i18n._(/* i18n*/ 'There is a maximum of ‘{maxLength}’ characters', {
-            maxLength,
-          })
+          maxLength && maxLength > 0 && t`There is a maximum of ‘${maxLength}’ characters`
         }
       />
     </Box>

@@ -5,8 +5,8 @@ import { useMergeGuestWishlistWithCustomer } from '@graphcommerce/magento-wishli
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import type { LayoutOverlayProps } from '../../components'
 import { LayoutOverlay } from '../../components'
@@ -19,7 +19,7 @@ function AccountSignInPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Sign in')} metaRobots={['noindex']} />
+      <PageMeta title={t`Sign in`} metaRobots={['noindex']} />
       <LayoutOverlayHeader />
       <Container maxWidth='md'>
         <AccountSignInUpForm />

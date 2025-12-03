@@ -11,4 +11,4 @@ const locales = loadConfig(process.cwd()).storefront.map(({ locale, linguiLocale
   return locale
 })
 
-module.exports = linguiNextConfig({ locales })
+export default linguiNextConfig({ locales })

@@ -13,7 +13,7 @@ import {
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
@@ -31,11 +31,11 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? <Trans id='Product'>Product</Trans>
+  const name = addedItem?.product.name ?? <Trans>Product</Trans>
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
+      <PageMeta title={t`Cart`} metaRobots={['noindex']} />
 
       <Container
         maxWidth={false}

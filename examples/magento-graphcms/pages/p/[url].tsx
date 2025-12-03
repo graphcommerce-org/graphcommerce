@@ -32,8 +32,8 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -173,7 +173,7 @@ function ProductPage(props: Props) {
       )}
 
       <RecentlyViewedProducts
-        title={<Trans id='Recently viewed products' />}
+        title={<Trans>Recently viewed products</Trans>}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
@@ -226,7 +226,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   const result = {

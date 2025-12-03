@@ -39,7 +39,7 @@ import {
   responsiveVal,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, CircularProgress, darken } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutOverlayProps } from '../../components'
@@ -132,8 +132,8 @@ function MultiCartPage(props: Props) {
       <WaitForQueries
         waitFor={query}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading'>Loading</Trans>}>
-            <Trans id='This may take a second'>This may take a second</Trans>
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >
@@ -236,7 +236,7 @@ function MultiCartPage(props: Props) {
             icon={<IconSvg src={icon} size='xxl' />}
             button={
               <OverlayCloseButton variant='pill' color='secondary' size='large'>
-                <Trans id='Continue shopping'>Continue shopping</Trans>
+                <Trans>Continue shopping</Trans>
               </OverlayCloseButton>
             }
           >

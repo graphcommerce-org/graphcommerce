@@ -21,7 +21,7 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import {
   ProductListLayoutClassic,
   ProductListLayoutDefault,
@@ -51,11 +51,7 @@ function SearchResultPage(props: SearchResultProps) {
   return (
     <>
       <PageMeta
-        title={
-          search
-            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
-            : i18n._(/* i18n */ 'Search')
-        }
+        title={search ? t`Results for ‘${search}’` : t`Search`}
         metaRobots={['noindex']}
         canonical='/search'
       />
@@ -129,7 +125,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -26,7 +26,7 @@ export function DownloadableAccountMenuItem(props: StoreCreditAccountMenuItemPro
     <AccountMenuItem
       href='/account/downloads'
       iconSrc={iconDownload}
-      title={<Trans id='Downloads'>Downloads</Trans>}
+      title={<Trans>Downloads</Trans>}
       subtitle={<Trans>You have {count} downloads available.</Trans>}
       {...props}
     />

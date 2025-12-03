@@ -1,5 +1,5 @@
 import { iconStar, IconSvg } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { ChipProps } from '@mui/material'
 import { Chip } from '@mui/material'
 import React from 'react'
@@ -38,7 +38,7 @@ export function ProductReviewChip(props: ProductReviewChipProps) {
       icon={<IconSvg src={iconStar} sx={{ stroke: '#FFDA1C', fill: '#FFDA1C' }} />}
       color='default'
       size='medium'
-      aria-label={i18n._(/* i18n */ 'Review score')}
+      aria-label={t`Review score`}
       label={`${normalizedRating}/5`}
       {...chipProps}
     />

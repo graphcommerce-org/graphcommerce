@@ -10,7 +10,7 @@ import {
   FormRow,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -68,10 +68,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'email' && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Sign in or create an account!' />
+              <Trans>Sign in or create an account!</Trans>
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans id='Fill in your e-mail to login or create an account' />
+              <Trans>Fill in your e-mail to login or create an account</Trans>
             </Typography>
           </>
         )}
@@ -79,10 +79,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {(mode === 'signin' || (mode === 'signup' && !canSignUp)) && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Sign in' />
+              <Trans>Sign in</Trans>
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans id='Fill in your password' />
+              <Trans>Fill in your password</Trans>
             </Typography>
           </>
         )}
@@ -90,10 +90,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'signup' && canSignUp && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Create account!' />
+              <Trans>Create account!</Trans>
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans id='Create a password and tell us your name' />
+              <Trans>Create a password and tell us your name</Trans>
             </Typography>
           </>
         )}
@@ -101,17 +101,17 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'signedin' && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Hi {firstname}! You’re now logged in!' values={{ firstname }} />
+              <Trans>Hi {firstname}! You’re now logged in!</Trans>
             </LayoutTitle>
             <Typography variant='h6' align='center'>
               <Link href='/account' underline='hover' color='secondary'>
-                <Trans id='View your account' />
+                <Trans>View your account</Trans>
               </Link>
             </Typography>
 
             <FormActions>
               <Button onClick={() => router.back()} variant='pill' color='secondary' size='large'>
-                <Trans id='Continue shopping' />
+                <Trans>Continue shopping</Trans>
               </Button>
             </FormActions>
           </>
@@ -120,10 +120,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'session-expired' && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans id='Your session is expired' />
+              <Trans>Your session is expired</Trans>
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans id='Log in to continue shopping' />
+              <Trans>Log in to continue shopping</Trans>
             </Typography>
           </>
         )}
@@ -147,8 +147,8 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
               },
             })}
             items={[
-              { value: 'signin', title: <Trans id='Sign in' /> },
-              { value: 'signup', title: <Trans id='Create Account' /> },
+              { value: 'signin', title: <Trans>Sign in</Trans> },
+              { value: 'signup', title: <Trans>Create Account</Trans> },
             ]}
           />
         </FormRow>
@@ -178,7 +178,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                           form.resetField('email')
                         }}
                       >
-                        <Trans id='Sign out' />
+                        <Trans>Sign out</Trans>
                       </Button>
                     ) : (
                       formState.isSubmitting && <CircularProgress sx={{ display: 'inline-flex' }} />
@@ -201,7 +201,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                   color='primary'
                   size='large'
                 >
-                  <Trans id='Continue' />
+                  <Trans>Continue</Trans>
                 </Button>
               </FormActions>
             </Box>
@@ -224,7 +224,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         <Box>
           {signUpDisabled || (
             <Alert severity='success'>
-              <Trans id='Sign up is disabled, please contact us for more information.' />
+              <Trans>Sign up is disabled, please contact us for more information.</Trans>
             </Alert>
           )}
         </Box>

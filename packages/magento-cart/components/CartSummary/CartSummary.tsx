@@ -1,6 +1,6 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { breakpointVal, extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten, Link, Typography } from '@mui/material'
 import React from 'react'
@@ -89,7 +89,7 @@ export function CartSummary(props: CartSummaryProps) {
           <SectionContainer
             variantLeft='h5'
             labelLeft={
-              is_virtual ? <Trans id='Confirmation' /> : <Trans id='Confirmation + Track & trace' />
+              is_virtual ? <Trans>Confirmation</Trans> : <Trans>Confirmation + Track & trace</Trans>
             }
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
@@ -99,7 +99,7 @@ export function CartSummary(props: CartSummaryProps) {
           <Box>
             <SectionContainer
               variantLeft='h5'
-              labelLeft={<Trans id='Shipping method' />}
+              labelLeft={<Trans>Shipping method</Trans>}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             />
             <Typography variant='body1'>
@@ -112,7 +112,7 @@ export function CartSummary(props: CartSummaryProps) {
           <Box>
             <SectionContainer
               variantLeft='h5'
-              labelLeft={<Trans id='Shipping address' />}
+              labelLeft={<Trans>Shipping address</Trans>}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
               labelRight={
                 editable ? (
@@ -123,7 +123,7 @@ export function CartSummary(props: CartSummaryProps) {
                     onClick={historyOnClick}
                     underline='hover'
                   >
-                    <Trans id='Edit' />
+                    <Trans>Edit</Trans>
                   </Link>
                 ) : undefined
               }
@@ -134,7 +134,7 @@ export function CartSummary(props: CartSummaryProps) {
         <Box>
           <SectionContainer
             variantLeft='h5'
-            labelLeft={<Trans id='Billing address' />}
+            labelLeft={<Trans>Billing address</Trans>}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
               editable ? (
@@ -144,7 +144,7 @@ export function CartSummary(props: CartSummaryProps) {
                   variant='body2'
                   underline='hover'
                 >
-                  <Trans id='Edit' />
+                  <Trans>Edit</Trans>
                 </Link>
               ) : undefined
             }

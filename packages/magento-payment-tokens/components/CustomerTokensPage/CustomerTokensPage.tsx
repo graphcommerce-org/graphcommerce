@@ -14,7 +14,7 @@ import {
   sxx,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Alert, Box, Container, lighten, Typography } from '@mui/material'
 import type { PaymentTokenFragment } from '../../graphql/fragments/PaymentToken.gql'
@@ -40,21 +40,21 @@ export function CustomerTokensPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconCreditCard}>
-          <Trans id='Payment information'>Payment information</Trans>
+          <Trans>Payment information</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <Container maxWidth='md'>
-        <PageMeta title={i18n._('Payment information')} metaRobots={['noindex']} />
+        <PageMeta title={t`Payment information`} metaRobots={['noindex']} />
 
         <LayoutTitle icon={iconCreditCard} sx={(theme) => ({ mb: theme.spacings.xs })}>
-          <Trans id='Stored payment methods'>Stored payment methods</Trans>
+          <Trans>Stored payment methods</Trans>
         </LayoutTitle>
 
         <WaitForCustomer waitFor={!loading}>
           {!paymentTokens?.length && (
             <Alert severity='info'>
-              <Trans id='No stored payment methods found.'>No stored payment methods found.</Trans>
+              <Trans>No stored payment methods found.</Trans>
             </Alert>
           )}
 
@@ -127,7 +127,7 @@ export function createGetStaticProps(
       props: {
         apolloState: await conf.then(() => client.cache.extract()),
         variantMd: 'bottom',
-        up: { href: '/account', title: i18n._('Account') },
+        up: { href: '/account', title: t`Account` },
       },
     }
   }

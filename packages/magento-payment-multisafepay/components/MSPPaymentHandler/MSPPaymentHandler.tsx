@@ -3,7 +3,7 @@ import { useAssignCurrentCartId } from '@graphcommerce/magento-cart'
 import type { PaymentHandlerProps } from '@graphcommerce/magento-cart-payment-method'
 import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useEffect } from 'react'
 import { useMSPCartLock } from '../../hooks/useMSPCartLock'
 import { MSPPaymentHandlerDocument } from './MSPPaymentHandler.gql'
@@ -47,7 +47,7 @@ export function MSPPaymentHandler(props: PaymentHandlerProps) {
   if (error) {
     return (
       <ErrorSnackbar open>
-        <Trans id='Payment has not completed succesfully, please try again.' />
+        <Trans>Payment has not completed succesfully, please try again.</Trans>
       </ErrorSnackbar>
     )
   }
