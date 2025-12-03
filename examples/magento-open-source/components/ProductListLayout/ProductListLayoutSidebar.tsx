@@ -83,9 +83,11 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
             `,
           },
         })}
-        style={{
-          '--configuration-sidebarWidth': configuration.sidebarWidth,
-        }}
+        style={
+          {
+            '--configuration-sidebarWidth': configuration.sidebarWidth,
+          } as React.CSSProperties
+        }
       >
         <Box
           className='title'
@@ -180,16 +182,8 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           query={(theme) => theme.breakpoints.up('md')}
           display='block'
           sx={[
-            (theme) => ({
-              gridArea: 'sidebar',
-            }),
-            breadcrumbs === true
-              ? {
-                  mt: 0,
-                }
-              : {
-                  mt: theme.spacings.lg,
-                },
+            { gridArea: 'sidebar' },
+            breadcrumbs === true ? { mt: 0 } : (theme) => ({ mt: theme.spacings.lg }),
           ]}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />

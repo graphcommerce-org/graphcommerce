@@ -87,22 +87,22 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
                 pr: 0,
               },
             }
-          : {
+          : (theme) => ({
               '& .ActionCard-action': {
                 pr: theme.spacings.xs,
               },
-            },
+            }),
         readOnly
           ? {
               '& .ActionCard-price': {
                 pr: 0,
               },
             }
-          : {
+          : (theme) => ({
               '& .ActionCard-price': {
                 pr: theme.spacings.xs,
               },
-            },
+            }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       image={

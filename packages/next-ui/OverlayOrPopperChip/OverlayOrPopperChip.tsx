@@ -76,13 +76,13 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
           setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null)),
         )}
         sx={[
-          (theme) => ({
+          {
             '& .MuiChip-deleteIcon': {
               ml: '0px',
             },
-          }),
+          },
           selected
-            ? {
+            ? (theme) => ({
                 background:
                   theme.palette.mode === 'light'
                     ? lighten(theme.palette.primary.main, 1 - theme.palette.action.hoverOpacity)
@@ -101,7 +101,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
                         ),
                   border: '1px solid transparent',
                 },
-              }
+              })
             : {},
           ...(Array.isArray(chipSx) ? chipSx : [chipSx]),
           ...(Array.isArray(sx) ? sx : [sx]),

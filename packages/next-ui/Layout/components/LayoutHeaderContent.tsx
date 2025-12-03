@@ -99,16 +99,16 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             },
           }),
           switchPoint <= 0
-            ? {
+            ? (theme) => ({
                 borderTopLeftRadius: theme.shape.borderRadius * 3,
-              }
+              })
             : {
                 borderTopLeftRadius: 0,
               },
           switchPoint <= 0
-            ? {
+            ? (theme) => ({
                 borderTopRightRadius: theme.shape.borderRadius * 3,
-              }
+              })
             : {
                 borderTopRightRadius: 0,
               },

@@ -209,31 +209,31 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               },
             }),
             sizeSm !== 'floating'
-              ? {
+              ? (theme) => ({
                   [theme.breakpoints.down('md')]: {
                     width: itemWidthSm,
                   },
-                }
-              : {
+                })
+              : (theme) => ({
                   [theme.breakpoints.down('md')]: {
                     width: `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                   },
-                },
+                }),
             sizeSm !== 'floating'
-              ? {
+              ? (theme) => ({
                   [theme.breakpoints.down('md')]: {
                     '& .NavigationItem-item': {
                       width: `calc(${itemWidthSm} - (${itemPad} * 2))`,
                     },
                   },
-                }
-              : {
+                })
+              : (theme) => ({
                   [theme.breakpoints.down('md')]: {
                     '& .NavigationItem-item': {
                       width: `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
                     },
                   },
-                },
+                }),
           ]}
         >
           <Box

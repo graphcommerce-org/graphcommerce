@@ -164,12 +164,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
           },
         }),
         children
-          ? {
-              zIndex: theme.zIndex.appBar,
-            }
-          : {
-              zIndex: theme.zIndex.appBar - 2,
-            },
+          ? (theme) => ({ zIndex: theme.zIndex.appBar })
+          : (theme) => ({ zIndex: theme.zIndex.appBar - 2 }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

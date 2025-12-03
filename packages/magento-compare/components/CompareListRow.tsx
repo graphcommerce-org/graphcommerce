@@ -37,7 +37,7 @@ export function CompareListRow(props: CompareRowProps) {
             },
           }),
           columnCount > 1
-            ? {
+            ? (theme) => ({
                 '& .SectionHeader-root': {
                   '& > .MuiTypography-root': {
                     width: {
@@ -45,7 +45,7 @@ export function CompareListRow(props: CompareRowProps) {
                     },
                   },
                 },
-              }
+              })
             : {
                 '& .SectionHeader-root': {
                   '& > .MuiTypography-root': {

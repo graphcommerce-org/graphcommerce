@@ -77,16 +77,12 @@ function CheckboxElementBase(props: CheckboxElementProps): React.ReactNode {
               inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
               sx={[
-                {
-                  ...(Array.isArray(sx) ? sx : [sx]),
-                },
+                ...(Array.isArray(sx) ? sx : [sx]),
                 invalid
                   ? {
                       color: 'error.main',
                     }
-                  : {
-                      color: null,
-                    },
+                  : {},
               ]}
               value={value}
               checked={!!value}

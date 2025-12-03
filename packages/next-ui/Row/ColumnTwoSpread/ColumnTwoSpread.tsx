@@ -27,16 +27,16 @@ export function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
           gridTemplateAreas: '"one" "two"',
         }),
         nodeLength
-          ? {
+          ? (theme) => ({
               [theme.breakpoints.up('md')]: {
                 gridTemplateAreas: '"one one two"',
               },
-            }
-          : {
+            })
+          : (theme) => ({
               [theme.breakpoints.up('md')]: {
                 gridTemplateAreas: '"one two two"',
               },
-            },
+            }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     />
