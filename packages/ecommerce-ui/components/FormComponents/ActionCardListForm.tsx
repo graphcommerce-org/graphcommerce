@@ -79,7 +79,7 @@ export function ActionCardListForm<
       {...other}
       multiple={multiple}
       required={required}
-      value={value}
+      value={value ?? null}
       ref={ref}
       onChange={(_, incoming) => onChange(incoming)}
       error={formState.isSubmitted && !!fieldState.error}
