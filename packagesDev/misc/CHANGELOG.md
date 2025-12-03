@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.0.0-canary.57
+
+### Patch Changes
+
+- [`261a462`](https://github.com/graphcommerce-org/graphcommerce/commit/261a462fca6212bb2a76f62cb38fd09f2d0cc82e) - bump version ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.56
 
 ### Major Changes
