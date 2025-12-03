@@ -177,7 +177,7 @@ return {
 1. Follow the algolia docs to enable the Algolia integration in Magento 2
    [here](https://www.algolia.com/doc/integration/magento-2/getting-started/quick-start/?client=php).
 
-## Add Algolia indexing to HyGraph
+## Add Algolia indexing to Hygraph
 
 1. Add the `algoliasearch` package to your project
 
@@ -229,8 +229,8 @@ export default (req: NextApiRequest, res: NextApiResponse) =>
   await removeHygraphRecord(req, res)
 ```
 
-6. Follow the webhook setup guide to add the webhooks to your HyGraph project.
+6. Follow the webhook setup guide to add the webhooks to your Hygraph project.
 
 You can follow
 [these](https://hygraph.com/docs/guides/webhooks/webhooks-overview#configure-webhooks)
-instructions to configure the webhooks in your HyGraph project.
+instructions to configure the webhooks in your Hygraph project.

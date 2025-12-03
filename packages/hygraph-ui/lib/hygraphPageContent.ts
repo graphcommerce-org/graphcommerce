@@ -6,7 +6,7 @@ import { getAllHygraphPages } from './getAllHygraphPages'
 /**
  * Fetch the page content for the given urls.
  *
- * - Uses an early bailout to check to reduce hygraph calls.
+ * - Uses an early bailout to check to reduce Hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
 async function pageContent(
