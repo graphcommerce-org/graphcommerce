@@ -149,12 +149,15 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         disableGutters
         className={classes.row}
         breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
-        sx={(theme) => ({
-          bgcolor: 'background.paper',
-          ...theme.applyStyles('light', {
-            bgcolor: 'background.image',
+        sx={sxx(
+          (theme) => ({
+            bgcolor: 'background.paper',
+            ...theme.applyStyles('light', {
+              bgcolor: 'background.image',
+            }),
           }),
-        })}
+          sx,
+        )}
       >
         <MotionBox
           layout

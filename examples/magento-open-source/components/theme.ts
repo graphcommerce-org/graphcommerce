@@ -92,9 +92,7 @@ const createThemeWithPalette = ({
   dark?: PaletteOptions
 }) =>
   createTheme({
-    cssVariables: {
-      colorSchemeSelector: 'class',
-    },
+    cssVariables: { colorSchemeSelector: 'class', cssVarPrefix: '' },
     colorSchemes: {
       ...(light ? { light: { palette: light } } : undefined),
       ...(dark ? { dark: { palette: dark } } : undefined),
@@ -405,7 +403,3 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 
 export const theme = createThemeWithPalette({ light: lightPalette, dark: darkPalette })
 theme.components = createOverrides(theme) as never
-
-// Backward compatibility exports
-export const lightTheme = theme
-export const darkTheme = theme
