@@ -8,13 +8,10 @@ import { findParentPath } from '../utils/findParentPath'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
 
-dotenv.config()
-
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
-
 const resolve = resolveDependency()
 
-const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`)
+dotenv.config()
 
 export async function generateConfig() {
   const resolved = resolve('@graphcommerce/next-config')
@@ -23,9 +20,15 @@ export async function generateConfig() {
   const targetTs = `${resolved.root}/src/generated/config.ts`
   const targetJs = `${resolved.root}/dist/generated/config.js`
 
+  // Use specific patterns instead of ** to avoid expensive directory traversal
+  const schemaLocations = [
+    'graphql/Config.graphqls',
+    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/Config.graphqls`]),
+  ]
+
   await generate({
     silent: true,
-    schema: ['graphql/**/Config.graphqls', ...schemaLocations],
+    schema: schemaLocations,
     generates: {
       [targetTs]: {
         plugins: ['typescript', 'typescript-validation-schema'],

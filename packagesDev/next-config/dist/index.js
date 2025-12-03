@@ -3,8 +3,8 @@ import fs from 'node:fs/promises';
 import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-CM84Noid.js';
-export { r as replaceConfigInString } from './loadConfig-CM84Noid.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-C9xRVdWx.js';
+export { r as replaceConfigInString } from './loadConfig-C9xRVdWx.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
 import fs$1 from 'node:fs';
 import path$1 from 'node:path';
@@ -21,6 +21,7 @@ import { generate } from '@graphql-codegen/cli';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
 import 'cosmiconfig';
+import '@apollo/client/utilities/index.js';
 import 'chalk';
 
 async function fsExists(file) {
@@ -415,7 +416,7 @@ function extractValue(node, path, optional = false) {
   }
 }
 function extractExports(module) {
-  const exports = {};
+  const exports$1 = {};
   const errors = [];
   for (const moduleItem of module.body) {
     switch (moduleItem.type) {
@@ -429,19 +430,19 @@ function extractExports(module) {
         switch (moduleItem.declaration.type) {
           case "ClassDeclaration":
           case "FunctionDeclaration":
-            exports[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
+            exports$1[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
             break;
           case "VariableDeclaration":
             moduleItem.declaration.declarations.forEach((decl) => {
               if (isIdentifier(decl.id) && decl.init) {
-                exports[decl.id.value] = extractValue(decl.init, void 0, true);
+                exports$1[decl.id.value] = extractValue(decl.init, void 0, true);
               }
             });
             break;
         }
     }
   }
-  return [exports, errors];
+  return [exports$1, errors];
 }
 
 const pluginConfigParsed = z.object({
@@ -455,7 +456,7 @@ function nonNullable(value) {
 }
 const isObject = (input) => typeof input === "object" && input !== null && !Array.isArray(input);
 function parseStructure(ast, gcConfig, sourceModule) {
-  const [exports, errors] = extractExports(ast);
+  const [exports$1, errors] = extractExports(ast);
   if (errors.length) console.error("Plugin error for", errors.join("\n"));
   const {
     config: moduleConfig,
@@ -466,7 +467,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
     plugin,
     Plugin,
     ...rest
-  } = exports;
+  } = exports$1;
   const exportVals = Object.keys(rest);
   if (component && !moduleConfig) exportVals.push("Plugin");
   if (func && !moduleConfig) exportVals.push("plugin");
@@ -500,7 +501,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
       }
     }
     const val = {
-      targetExport: exports.component || exports.func || parsed.data.export,
+      targetExport: exports$1.component || exports$1.func || parsed.data.export,
       sourceModule,
       sourceExport: parsed.data.export,
       targetModule: parsed.data.module,
@@ -610,12 +611,12 @@ function parseAndFindExport(resolved, findExport, resolve) {
       }
     }
   }
-  const exports = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
+  const exports$1 = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
     const probablyA = a.source.value.includes(findExport);
     const probablyB = b.source.value.includes(findExport);
     return probablyA === probablyB ? 0 : probablyA ? -1 : 1;
   });
-  for (const node of exports) {
+  for (const node of exports$1) {
     const isRelative = node.source.value.startsWith(".");
     if (isRelative) {
       const d = resolved.dependency === resolved.denormalized ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf("/")) : resolved.dependency;
@@ -1306,18 +1307,21 @@ Source: ${sourcePath}`);
   debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`);
 }
 
-dotenv.config();
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
 const resolve$1 = resolveDependency();
-const schemaLocations = packages.map((p) => `${p}/**/Config.graphqls`);
+dotenv.config();
 async function generateConfig() {
   const resolved = resolve$1("@graphcommerce/next-config");
   if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
   const targetTs = `${resolved.root}/src/generated/config.ts`;
   const targetJs = `${resolved.root}/dist/generated/config.js`;
+  const schemaLocations = [
+    "graphql/Config.graphqls",
+    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/Config.graphqls`])
+  ];
   await generate({
     silent: true,
-    schema: ["graphql/**/Config.graphqls", ...schemaLocations],
+    schema: schemaLocations,
     generates: {
       [targetTs]: {
         plugins: ["typescript", "typescript-validation-schema"],
@@ -1415,7 +1419,7 @@ async function createConfigSectionFile(sectionName, sectionValue, targetDir, tar
   for (const key of schemaKeys) {
     completeSectionValue[key] = sectionValue[key];
   }
-  const exports = Object.entries(completeSectionValue).map(([key, value]) => {
+  const exports$1 = Object.entries(completeSectionValue).map(([key, value]) => {
     const valueStr = generateValueLiteral(value);
     const propertyPath = `'${sectionName}.${key}'`;
     const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
@@ -1426,7 +1430,7 @@ import type { Get } from 'type-fest'` ;
   const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
 ${imports}
 
-${exports}
+${exports$1}
 `;
   const formattedContent = await prettier.format(content, {
     ...prettierConf,

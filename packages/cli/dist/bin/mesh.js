@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { promises } from 'node:fs';
-import path$1 from 'node:path';
+import path from 'node:path';
 import { exit } from 'node:process';
 import { loadConfig, resolveDependenciesSync, sig, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
 import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 import 'tsx/cjs';
 import 'tsx/esm';
 import yaml from 'yaml';
-import path from 'path';
+import require$$0 from 'path';
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
@@ -41,7 +41,7 @@ function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u
 }
 async function findConfig(options) {
   const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
-  const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
+  const dir = require$$0.isAbsolute(configDir) ? configDir : require$$0.join(process.cwd(), configDir);
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
       "package.json",
@@ -82,14 +82,14 @@ function handleFatalError(e, logger = new DefaultLogger("\u25C8")) {
   if (process.env.JEST == null) exit(1);
 }
 const root = process.cwd();
-const meshDir = path$1.dirname(resolvePath("@graphcommerce/graphql-mesh"));
-const relativePath = path$1.join(path$1.relative(meshDir, root), "/");
+const meshDir = path.dirname(resolvePath("@graphcommerce/graphql-mesh"));
+const relativePath = path.join(path.relative(meshDir, root), "/");
 const cliParams = {
   ...DEFAULT_CLI_PARAMS,
   playgroundTitle: "GraphCommerce\xAE Mesh"
 };
 const tmpMesh = "_tmp_mesh";
-const tmpMeshLocation = path$1.join(root, `.${tmpMesh}rc.yml`);
+const tmpMeshLocation = path.join(root, `.${tmpMesh}rc.yml`);
 async function cleanup() {
   try {
     await promises.stat(tmpMeshLocation).then((r) => {
@@ -111,7 +111,7 @@ const main = async () => {
   conf.additionalResolvers = conf.additionalResolvers?.map((additionalResolver) => {
     if (typeof additionalResolver !== "string") return additionalResolver;
     if (additionalResolver.startsWith("@"))
-      return path$1.relative(root, resolvePath(additionalResolver));
+      return path.relative(root, resolvePath(additionalResolver));
     return additionalResolver;
   });
   conf.sources = conf.sources.map((source) => {
@@ -123,7 +123,7 @@ const main = async () => {
           if (key === "openapi" && value) {
             const openapi = value;
             if (openapi.source.startsWith("@")) {
-              return [key, { ...openapi, source: path$1.relative(root, resolvePath(openapi.source)) }];
+              return [key, { ...openapi, source: path.relative(root, resolvePath(openapi.source)) }];
             }
           }
           return [key, value];
@@ -134,7 +134,7 @@ const main = async () => {
   if (!conf.additionalTypeDefs) conf.additionalTypeDefs = [];
   conf.additionalTypeDefs = (Array.isArray(conf.additionalTypeDefs) ? conf.additionalTypeDefs : [conf.additionalTypeDefs]).map((additionalTypeDef) => {
     if (typeof additionalTypeDef === "string" && additionalTypeDef.startsWith("@"))
-      return path$1.relative(root, resolvePath(additionalTypeDef));
+      return path.relative(root, resolvePath(additionalTypeDef));
     return additionalTypeDef;
   });
   conf.additionalTypeDefs.push("graphql/**/*.graphqls");
@@ -169,14 +169,14 @@ const main = async () => {
   await promises.writeFile(tmpMeshLocation, yamlString);
   await promises.writeFile(
     `${meshDir}/.mesh.ts`,
-    `export type * from '${relativePath.split(path$1.sep).join("/")}.mesh'
+    `export type * from '${relativePath.split(path.sep).join("/")}.mesh'
 export {
   getBuiltMesh as getBuiltMeshBase,
   execute,
   subscribe,
   createBuiltMeshHTTPHandler as createBuiltMeshHTTPHandlerBase,
   rawServeConfig,
-} from '${relativePath.split(path$1.sep).join("/")}.mesh'`,
+} from '${relativePath.split(path.sep).join("/")}.mesh'`,
     { encoding: "utf8" }
   );
   await graphqlMesh({ ...cliParams, configName: tmpMesh });

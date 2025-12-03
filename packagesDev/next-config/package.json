@@ -66,6 +66,7 @@
     "zod": "^3.25.76"
   },
   "peerDependencies": {
+    "@apollo/client": "*",
     "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
     "@lingui/loader": "*",
     "@lingui/macro": "*",

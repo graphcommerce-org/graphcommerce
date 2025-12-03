@@ -14,7 +14,7 @@ export function withLingui(
   Document: typeof NextDocument,
   load: MessageLoader,
 ): typeof NextDocument {
-  return class DocumentWithEmotionCache extends Document {
+  return class DocumentWithLinguiScript extends Document {
     static async getInitialProps(ctx: DocumentContext) {
       const initial = await Document.getInitialProps(ctx)
 
