@@ -22,6 +22,9 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
+  // React hooks recommended rules
+  reactHooksPlugin.configs.flat.recommended,
+
   // Global ignores
   {
     ignores: [
@@ -50,7 +53,6 @@ export default [
     },
     plugins: {
       react: reactPlugin,
-      'react-hooks': reactHooksPlugin,
       '@next/next': nextPlugin,
       import: importPlugin,
       'jsx-a11y': jsxA11yPlugin,
@@ -144,8 +146,7 @@ export default [
       ],
       'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
 
-      // react-hooks
-      'react-hooks/rules-of-hooks': 'error',
+      // react-hooks (base rules come from flat config below, we just customize exhaustive-deps)
       'react-hooks/exhaustive-deps': [
         'error',
         { additionalHooks: '(useIsomorphicLayoutEffect|useMemoDeep)' },
