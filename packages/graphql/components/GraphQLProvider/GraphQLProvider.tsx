@@ -66,7 +66,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
     return new ApolloClient({
       link,
       cache,
-      name: 'web',
+      clientAwareness: { name: 'web' },
       ssrMode,
       defaultOptions: {
         preview: {
