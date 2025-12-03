@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import {
@@ -95,7 +96,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
       variant={variant}
       inputRef={forkRef}
       className={`${textFieldProps.className ?? ''} ${classes.quantity}`}
-      sx={[
+      sx={sxx(
         {
           width: responsiveVal(90, 120),
         },
@@ -117,8 +118,8 @@ export function TextInputNumber(props: TextInputNumberProps) {
             display: 'none',
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       autoComplete='off'
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (textFieldProps.onChange) textFieldProps.onChange(e)
@@ -132,7 +133,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
               <Fab
                 aria-label={t`Decrease`}
                 size='smaller'
-                sx={[
+                sx={sxx(
                   {
                     minHeight: '30px',
                   },
@@ -143,7 +144,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
                     : {
                         boxShadow: 0,
                       },
-                ]}
+                )}
                 onPointerDown={() => setDirection('down')}
                 onPointerUp={stop}
                 tabIndex={-1}
@@ -159,7 +160,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
               <Fab
                 aria-label={t`Increase`}
                 size='smaller'
-                sx={[
+                sx={sxx(
                   {
                     minHeight: '30px',
                   },
@@ -170,7 +171,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
                     : {
                         boxShadow: 0,
                       },
-                ]}
+                )}
                 onPointerDown={() => setDirection('up')}
                 onPointerUp={() => setDirection(null)}
                 tabIndex={-1}

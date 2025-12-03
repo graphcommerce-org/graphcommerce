@@ -4,6 +4,7 @@ import {
   responsiveVal,
   SidebarSlider,
   SidebarSliderProps,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../ProductListItems/productListRenderer'
@@ -19,14 +20,14 @@ export function Swipeable(props: SwipeableProps) {
   return (
     <AddProductsToCartForm>
       <SidebarSlider
-        sx={[
+        sx={sxx(
           {
             [SidebarSlider.selectors.scroller]: {
               gridAutoColumns: `minmax(${responsiveVal(180, 800)}, 60vh)`,
             },
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         sidebar={
           <Typography variant='h2' sx={{ textTransform: 'uppercase' }}>
             {title}

@@ -1,5 +1,6 @@
 import type { SearchFormProps } from '@graphcommerce/magento-search'
 import { algoliaSearchDebounceTime } from '@graphcommerce/next-config/config'
+import { sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
@@ -54,7 +55,7 @@ export function SearchBox(props: SearchBoxProps) {
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
-      sx={[{ mt: 1, mb: 1 }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx({ mt: 1, mb: 1 }, sx)}
       {...textFieldProps}
       slotProps={{
         input: { endAdornment },

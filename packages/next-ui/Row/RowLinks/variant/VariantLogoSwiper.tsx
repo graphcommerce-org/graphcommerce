@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { RowLinksProps } from '../RowLinks'
 import { RowLinks } from '../RowLinks'
 
@@ -7,7 +8,7 @@ export function VariantLogoSwiper(props: RowLinksProps) {
   return (
     <RowLinks
       {...rowLinksProps}
-      sx={[
+      sx={sxx(
         (theme) => ({
           '& .RowLinks-title': {
             display: 'none',
@@ -19,8 +20,8 @@ export function VariantLogoSwiper(props: RowLinksProps) {
             gap: theme.spacings.xxl,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

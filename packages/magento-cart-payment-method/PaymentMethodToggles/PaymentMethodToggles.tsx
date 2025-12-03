@@ -7,6 +7,7 @@ import {
   iconChevronRight,
   IconSvg,
   responsiveVal,
+  sxx,
   ToggleButton,
 } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
@@ -83,12 +84,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
       onSubmit={submitHandler}
       noValidate
       className={classes.formRoot}
-      sx={[
+      sx={sxx(
         {
           padding: '5px 0',
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <input type='hidden' {...register('code', { required: true })} required />
       <FormRow className={classes.root} sx={{ position: 'relative', padding: 0 }}>

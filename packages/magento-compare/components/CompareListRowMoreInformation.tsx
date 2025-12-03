@@ -1,5 +1,5 @@
 import { productLink } from '@graphcommerce/magento-product'
-import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcommerce/next-ui'
+import { Button, iconChevronRight, IconSvg, SectionContainer, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
@@ -17,7 +17,7 @@ export function CompareListRowMoreInformation(props: CompareListRowMoreInformati
     <Box>
       <SectionContainer
         labelLeft={<Trans>More information</Trans>}
-        sx={[
+        sx={sxx(
           (theme) => ({
             '& .SectionHeader-root': {
               justifyContent: 'center',
@@ -51,7 +51,7 @@ export function CompareListRowMoreInformation(props: CompareListRowMoreInformati
                   },
                 },
               },
-        ]}
+        )}
       >
         <Box sx={compareListStyles}>
           {compareAbleItems?.map((item) => {

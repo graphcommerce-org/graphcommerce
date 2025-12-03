@@ -11,6 +11,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
 import { sidebarGallery } from '@graphcommerce/next-config/config'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
@@ -185,7 +186,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               layout
               layoutDependency={zoomed}
               className={classes.scrollerContainer}
-              sx={[
+              sx={sxx(
                 {
                   gridArea: 'left',
                   willChange: 'transform',
@@ -212,7 +213,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   marginTop: 0,
                   paddingTop: dvh(100),
                 },
-              ]}
+              )}
               onLayoutAnimationComplete={() => {
                 if (!zoomed) document.body.style.overflow = ''
               }}
@@ -223,7 +224,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 hideScrollbar
                 onMouseDown={onMouseDownScroller}
                 onMouseUp={onMouseUpScroller}
-                sx={[
+                sx={sxx(
                   {
                     willChange: 'transform',
                     position: 'absolute',
@@ -244,7 +245,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     height: 'var(--client-size-y)',
                     cursor: 'inherit',
                   },
-                ]}
+                )}
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
@@ -366,7 +367,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           </TrapFocus>
           <Box
             className={classes.sidebarWrapper}
-            sx={[
+            sx={sxx(
               {
                 width: { xs: '100%', md: sidebarSize },
                 gridArea: 'right',
@@ -386,7 +387,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-            ]}
+            )}
           >
             <MotionBox
               layout='position'

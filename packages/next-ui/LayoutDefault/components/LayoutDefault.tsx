@@ -1,5 +1,6 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useScroll, useTransform } from 'framer-motion'
@@ -55,7 +56,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
   return (
     <Box
       className={`${classes.root} ${className ?? ''}`}
-      sx={[
+      sx={sxx(
         (theme) => ({
           minHeight: dvh(100),
           '@supports (-webkit-touch-callout: none)': {
@@ -66,8 +67,8 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           gridTemplateColumns: '100%',
           background: theme.palette.background.default,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>

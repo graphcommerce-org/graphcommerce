@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { extendableComponent } from '../Styles'
@@ -20,7 +21,7 @@ export function UspList(props: UspListProps) {
     <Box
       component='ul'
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           listStyleType: 'none',
           padding: 0,
@@ -32,8 +33,8 @@ export function UspList(props: UspListProps) {
             rowGap: '3px',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </Box>

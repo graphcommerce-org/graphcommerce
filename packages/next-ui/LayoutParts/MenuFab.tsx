@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, MenuProps as MenuPropsType, SxProps, Theme } from '@mui/material'
 import { Box, Divider, Fab, ListItem, Menu, styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -65,12 +66,7 @@ export function MenuFab(props: MenuFabProps) {
   const classes = withState({ scrolled })
 
   return (
-    <Box
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+    <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
         sx={(theme) => ({
@@ -105,7 +101,7 @@ export function MenuFab(props: MenuFabProps) {
             <IconSvg
               src={iconClose}
               size='large'
-              sx={[
+              sx={sxx(
                 openEl
                   ? {
                       display: 'block',
@@ -113,14 +109,14 @@ export function MenuFab(props: MenuFabProps) {
                   : {
                       display: 'none',
                     },
-              ]}
+              )}
             />
           )}
           {menuIcon ?? (
             <IconSvg
               src={iconMenu}
               size='large'
-              sx={[
+              sx={sxx(
                 openEl
                   ? {
                       display: 'none',
@@ -128,7 +124,7 @@ export function MenuFab(props: MenuFabProps) {
                   : {
                       display: 'block',
                     },
-              ]}
+              )}
             />
           )}
         </Fab>

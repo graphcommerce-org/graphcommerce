@@ -10,6 +10,7 @@ import {
   iconChevronLeft,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -33,11 +34,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
 
   return (
     <ActionCardAccordion
-      sx={[
-        hideTitle ? { '& .MuiAccordionSummary-root': { display: 'none' } } : {},
-        sx,
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx(hideTitle ? { '& .MuiAccordionSummary-root': { display: 'none' } } : {}, sx, sx)}
       defaultExpanded={defaultExpanded}
       summary={<Trans>Categories</Trans>}
       right={

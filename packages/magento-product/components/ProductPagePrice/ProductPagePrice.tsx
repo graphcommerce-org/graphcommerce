@@ -68,7 +68,7 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
           component='span'
           className={classes.discountPrice}
           skeleton={{ variant: 'text', sx: { width: '3.5em', transform: 'none' } }}
-          sx={[{ textDecoration: 'line-through', color: 'text.disabled' }]}
+          sx={sxx({ textDecoration: 'line-through', color: 'text.disabled' })}
         >
           <Money {...regularPrice} value={regularPriceValue} asNumber={asNumber} />
         </PrivateQueryMask>

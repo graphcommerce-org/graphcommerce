@@ -4,6 +4,7 @@ import {
   ColumnTwoWithTop,
   extendableComponent,
   LazyHydrate,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
@@ -51,7 +52,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
               className={classes.description}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: product.description.html }}
-              sx={[
+              sx={sxx(
                 {
                   '& p:first-of-type': {
                     marginTop: 0,
@@ -77,7 +78,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
                     fontSize,
                   },
                 },
-              ]}
+              )}
             />
           )
         }

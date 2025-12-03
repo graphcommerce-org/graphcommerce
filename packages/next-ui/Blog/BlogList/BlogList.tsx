@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ContainerProps } from '@mui/material'
 import { Row } from '../../Row/Row'
 
@@ -8,14 +9,14 @@ export function BlogItemGrid(props: BlogItemGridProps) {
 
   return (
     <Row
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gap: theme.spacings.md,
           gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...containerProps}
     />
   )

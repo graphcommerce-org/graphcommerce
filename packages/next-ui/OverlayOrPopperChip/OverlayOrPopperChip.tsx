@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, SxProps, Theme } from '@mui/material'
 import { Badge, Chip, lighten, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
@@ -75,7 +76,7 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
         onClick={useEventCallback((e: React.MouseEvent<HTMLElement>) =>
           setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null)),
         )}
-        sx={[
+        sx={sxx(
           {
             '& .MuiChip-deleteIcon': {
               ml: '0px',
@@ -103,9 +104,9 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
                 },
               })
             : {},
-          ...(Array.isArray(chipSx) ? chipSx : [chipSx]),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          chipSx,
+          sx,
+        )}
       />
       <OverlayOrPopperPanel
         {...panelProps}

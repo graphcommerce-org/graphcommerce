@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 
@@ -11,7 +12,7 @@ export function BlogContent(props: BlogContentProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         {
           maxWidth: 'md',
         },
@@ -19,8 +20,8 @@ export function BlogContent(props: BlogContentProps) {
           margin: '0 auto',
           marginBottom: theme.spacings.sm,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </Box>

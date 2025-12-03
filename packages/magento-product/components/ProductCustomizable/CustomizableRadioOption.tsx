@@ -1,7 +1,7 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { ActionCard, filterNonNullableKeys, SectionHeader, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
@@ -32,7 +32,7 @@ function CustomizableRadioActionCard(props: RadioActionCardProps) {
           ? null
           : price && (
               <Box
-                sx={[
+                sx={sxx(
                   selected
                     ? {
                         color: 'text.primary',
@@ -40,7 +40,7 @@ function CustomizableRadioActionCard(props: RadioActionCardProps) {
                     : {
                         color: 'text.secondary',
                       },
-                ]}
+                )}
               >
                 {/* Change fontFamily so the + is properly outlined */}
                 <span style={{ fontFamily: 'arial' }}>{'+ '}</span>

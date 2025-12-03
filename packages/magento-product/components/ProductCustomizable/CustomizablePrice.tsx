@@ -2,6 +2,7 @@ import type { Control, FieldName, FieldPath } from '@graphcommerce/ecommerce-ui'
 import { useWatch, type FieldValues } from '@graphcommerce/ecommerce-ui'
 import type { PriceTypeEnum } from '@graphcommerce/graphql-mesh'
 import { Money, type MoneyFragment } from '@graphcommerce/magento-store'
+import { sxx } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart, type AddProductsToCartFields } from '../AddProductsToCart'
 
@@ -21,7 +22,7 @@ export function CustomizablePrice(props: CustomizablePriceProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         {
           display: 'flex',
           typography: 'body1',
@@ -35,7 +36,7 @@ export function CustomizablePrice(props: CustomizablePriceProps) {
           : {
               color: 'text.secondary',
             },
-      ]}
+      )}
     >
       {/* Change fontFamily so the + is properly outlined */}
       <span style={{ fontFamily: 'arial' }}>+{'\u00A0'}</span>

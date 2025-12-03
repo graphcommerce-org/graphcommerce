@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
@@ -23,7 +24,7 @@ export function ProductFiltersProAllFiltersSidebar(props: ProductFiltersProAllFi
   const { sort_fields, total_count, renderer, sx = [], category, params } = props
 
   return (
-    <Box sx={[{ display: { xs: 'none', md: 'grid' } }, ...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box sx={sxx({ display: { xs: 'none', md: 'grid' } }, sx)}>
       <ProductFiltersProCategorySection category={category} params={params} />
       <ProductFiltersProSortSection
         sort_fields={sort_fields}

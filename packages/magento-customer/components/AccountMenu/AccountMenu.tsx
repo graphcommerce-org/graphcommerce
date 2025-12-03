@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { List } from '@mui/material'
 import React from 'react'
@@ -14,7 +14,7 @@ export function AccountMenu(props: AccountMenuProps) {
     <List
       classes={classes}
       disablePadding
-      sx={[(theme) => ({ marginBottom: theme.spacings.lg }), ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx((theme) => ({ marginBottom: theme.spacings.lg }), sx)}
     >
       {children}
     </List>

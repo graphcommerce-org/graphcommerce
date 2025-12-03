@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme, TypographyProps } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
@@ -32,7 +33,7 @@ export function SectionHeader(props: SectionHeaderProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           position: 'relative',
           '&:focus': {
@@ -49,8 +50,8 @@ export function SectionHeader(props: SectionHeaderProps) {
             paddingLeft: theme.spacings.xxs,
             paddingRight: theme.spacings.xxs,
           })),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Typography
         className={classes.left}

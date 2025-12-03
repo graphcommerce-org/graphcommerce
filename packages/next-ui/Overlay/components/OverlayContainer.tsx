@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { LayoutOverlayBaseProps } from './OverlayBase'
 
@@ -12,7 +13,7 @@ export function OverlayContainer(props: OverlayContainerProps) {
   return (
     <Box
       className='Overlay'
-      sx={[
+      sx={sxx(
         {
           position: 'fixed',
           top: 0,
@@ -46,7 +47,7 @@ export function OverlayContainer(props: OverlayContainerProps) {
                 boxShadow: 0,
               },
             },
-      ]}
+      )}
     >
       {children}
     </Box>

@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ContainerProps } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -21,7 +22,7 @@ export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
     <Row
       maxWidth='lg'
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gap: `${theme.spacings.lg} 0`,
@@ -32,8 +33,8 @@ export function ColumnTwoWithTop(props: ColumnTwoWithTopProps) {
             gap: `${theme.spacings.sm} ${theme.spacings.xxl}`,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...containerProps}
     >
       <Box

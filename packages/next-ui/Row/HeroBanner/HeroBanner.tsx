@@ -1,4 +1,5 @@
 import { clientSize } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { ContainerProps, SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -28,12 +29,7 @@ export function HeroBanner(props: HeroBannerProps) {
   )
 
   return (
-    <Row
-      maxWidth={false}
-      {...containerProps}
-      className={classes.root}
-      sx={[...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row maxWidth={false} {...containerProps} className={classes.root} sx={sx}>
       <Box
         className={classes.wrapper}
         sx={(theme) => ({

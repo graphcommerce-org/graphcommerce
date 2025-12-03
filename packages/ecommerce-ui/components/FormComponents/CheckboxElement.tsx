@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -76,14 +77,7 @@ function CheckboxElementBase(props: CheckboxElementProps): React.ReactNode {
               name={name}
               inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}
-              sx={[
-                ...(Array.isArray(sx) ? sx : [sx]),
-                invalid
-                  ? {
-                      color: 'error.main',
-                    }
-                  : {},
-              ]}
+              sx={sxx(sx, invalid && { color: 'error.main' })}
               value={value}
               checked={!!value}
               onChange={() => onChange(!value)}

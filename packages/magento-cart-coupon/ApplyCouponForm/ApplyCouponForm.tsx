@@ -1,6 +1,6 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { Button, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
@@ -25,15 +25,15 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
       onSubmit={submitHandler}
       noValidate
       className={classes.couponForm}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           alignItems: 'center',
           gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
           gridColumnGap: theme.spacings.sm,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <TextFieldElement
         variant='outlined'

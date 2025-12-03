@@ -7,6 +7,7 @@ import {
   filterNonNullableKeys,
   NextLink,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, Box, Link } from '@mui/material'
@@ -51,7 +52,7 @@ export function CartItem(props: CartItemProps) {
   return (
     <Box
       className={classes.item}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gridTemplate: `
@@ -86,8 +87,8 @@ export function CartItem(props: CartItemProps) {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Badge
         color='default'

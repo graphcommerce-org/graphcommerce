@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -15,10 +16,6 @@ export function OverlayStickyBottom(props: {
   const bottom = useTransform(scrollY, (offset) => Math.max(-200, offset > 0 ? 0 : offset))
 
   return (
-    <MotionDiv
-      sx={[{ position: 'sticky', zIndex: 1 }, ...(Array.isArray(sx) ? sx : [sx])]}
-      style={{ bottom }}
-      {...divProps}
-    />
+    <MotionDiv sx={sxx({ position: 'sticky', zIndex: 1 }, sx)} style={{ bottom }} {...divProps} />
   )
 }

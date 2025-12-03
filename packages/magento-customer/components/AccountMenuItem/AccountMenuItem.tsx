@@ -6,6 +6,7 @@ import {
   iconChevronRight,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
@@ -44,7 +45,7 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
       href={href}
       disabled={disabled}
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           width: '100%',
           height: responsiveVal(88, 104),
@@ -65,8 +66,8 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...buttonProps}
     >
       <ListItem disableGutters>

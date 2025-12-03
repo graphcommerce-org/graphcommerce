@@ -4,6 +4,7 @@ import {
   iconChevronLeft,
   iconChevronRight,
   IconSvg,
+  sxx,
   useScrollY,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
@@ -89,7 +90,7 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
     <MotionDiv
       className={classes.wrapper}
       ref={wrapperRef}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'flex',
           justifyContent: 'center',
@@ -104,8 +105,8 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
             margin: `0 calc(${theme.page.horizontal} * -1)`,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <ScrollerProvider scrollSnapAlign='none'>
         <ScrollerButton

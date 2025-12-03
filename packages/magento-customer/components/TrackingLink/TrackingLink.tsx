@@ -1,4 +1,4 @@
-import { iconLocation, IconSvg } from '@graphcommerce/next-ui'
+import { iconLocation, IconSvg, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
@@ -14,14 +14,14 @@ export function TrackingLink(props: TrackingLinkProps) {
   return (
     <Box
       className='TrackingLink-root'
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'flex',
           alignItems: 'center',
           color: theme.palette.primary.main,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {number && validUrl && (
         <Link

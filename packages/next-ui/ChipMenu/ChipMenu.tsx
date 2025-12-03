@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, MenuProps, SxProps, Theme } from '@mui/material'
 import { Chip, Menu, menuClasses } from '@mui/material'
 import React, { useState } from 'react'
@@ -66,7 +67,7 @@ export function ChipMenu(props: ChipMenuProps) {
         anchorPosition={{ top: 6, left: 0 }}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         {...menuProps}
-        sx={[
+        sx={sxx(
           (theme) => ({
             marginTop: theme.spacings.xxs,
             [`& .${menuClasses.list}`]: {
@@ -88,7 +89,7 @@ export function ChipMenu(props: ChipMenuProps) {
           }), // eslint-disable-next-line no-nested-ternary
           ...(menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : []),
           menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : [],
-        ]}
+        )}
       >
         <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />
         {children}

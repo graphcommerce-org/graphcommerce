@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { PaginationProps, PaginationRenderItemParams, SxProps, Theme } from '@mui/material'
 import { Box, Pagination, PaginationItem } from '@mui/material'
 import { iconChevronLeft, iconChevronRight } from '../icons'
@@ -45,7 +46,7 @@ export function PaginationExtended(props: PaginationExtendedProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           margin: '0 auto',
           marginTop: theme.spacings.lg,
@@ -69,8 +70,8 @@ export function PaginationExtended(props: PaginationExtendedProps) {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Pagination
         count={count}

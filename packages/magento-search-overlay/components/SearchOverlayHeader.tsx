@@ -1,4 +1,4 @@
-import { breakpointVal } from '@graphcommerce/next-ui'
+import { breakpointVal, sxx } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
 import { Box, styled } from '@mui/material'
 import { useStickyHeaderOnScroll } from '../hooks/useStickyHeaderOnScroll'
@@ -43,7 +43,7 @@ export function SearchOverlayHeader(props: SearchOverlayHeaderProps) {
         params={params}
         size='medium'
         {...slotProps?.input}
-        sx={[
+        sx={sxx(
           (theme) => ({
             width: '100%',
             height: '100%',
@@ -56,8 +56,8 @@ export function SearchOverlayHeader(props: SearchOverlayHeaderProps) {
               theme.breakpoints.values,
             ),
           }),
-          ...(Array.isArray(slotProps?.input?.sx) ? slotProps.input.sx : [slotProps?.input?.sx]),
-        ]}
+          slotProps?.input?.sx,
+        )}
       />
       <LayoutHeaderClose onClose={() => searchOverlayIsOpen.set(false)} {...slotProps?.close} />
     </SearchOverlayHeaderRoot>

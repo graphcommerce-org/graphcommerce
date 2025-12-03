@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Container, Typography } from '@mui/material'
 import React from 'react'
@@ -29,7 +30,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           alignItems: 'center',
           marginTop: theme.spacings.md,
@@ -39,8 +40,8 @@ export function FullPageMessage(props: FullPageMessageProps) {
           marginTop: responsiveVal(50, 250),
           marginBottom: responsiveVal(50, 250),
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Container
         maxWidth='md'

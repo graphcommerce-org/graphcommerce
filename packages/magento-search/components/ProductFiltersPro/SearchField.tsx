@@ -1,4 +1,4 @@
-import { iconSearch, IconSvg, showPageLoadIndicator } from '@graphcommerce/next-ui'
+import { iconSearch, IconSvg, showPageLoadIndicator, sxx } from '@graphcommerce/next-ui'
 import type { FabProps } from '@mui/material'
 import { Fab } from '@mui/material'
 import dynamic from 'next/dynamic'
@@ -53,20 +53,10 @@ export function SearchField(props: SearchFieldProps) {
         color='inherit'
         size='large'
         {...fab}
-        sx={[
-          visible
-            ? {
-                display: {
-                  xs: 'none',
-                },
-              }
-            : {
-                display: {
-                  xs: 'inline-flex',
-                },
-              },
-          ...(Array.isArray(fab?.sx) ? fab.sx : [fab?.sx]),
-        ]}
+        sx={sxx(
+          visible ? { display: { xs: 'none' } } : { display: { xs: 'inline-flex' } },
+          fab?.sx,
+        )}
       >
         <IconSvg src={iconSearch} size='large' />
       </Fab>

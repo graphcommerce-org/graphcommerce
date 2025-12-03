@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
@@ -108,13 +109,13 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
-        sx={[
+        sx={sxx(
           {
             pointerEvents: 'none',
             '& > *': { pointerEvents: 'auto' },
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         onClose={hideSnackbar}
       >
         <SnackbarContent

@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import type { PanHandlers } from 'framer-motion'
@@ -24,7 +25,7 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
       ref={containerRef}
       onPan={onPan}
       layoutDependency={layoutDependency}
-      sx={[
+      sx={sxx(
         {
           padding: '4px',
           userSelect: 'none',
@@ -33,12 +34,10 @@ export function ThumbnailContainer(props: ThumbnailContainerProps) {
           overflowX: 'auto',
           display: 'flex',
           scrollbarWidth: 'none',
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
+          '&::-webkit-scrollbar': { display: 'none' },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </MotionBox>

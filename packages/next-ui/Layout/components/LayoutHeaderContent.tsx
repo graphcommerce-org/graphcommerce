@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
 import type { LayoutProps } from 'framer-motion'
@@ -65,7 +66,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     <>
       <Box
         className={classes.bg}
-        sx={[
+        sx={sxx(
           (theme) => ({
             position: 'absolute',
             left: 0,
@@ -112,15 +113,15 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             : {
                 borderTopRightRadius: 0,
               },
-          ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
-        ]}
+          sxBg,
+        )}
       />
       <Container
         maxWidth={false}
         className={classes.content}
         sizing='shell'
         ref={ref}
-        sx={[
+        sx={sxx(
           (theme) => ({
             position: 'absolute',
             inset: 0,
@@ -154,8 +155,8 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               },
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         {left && (
           <Box

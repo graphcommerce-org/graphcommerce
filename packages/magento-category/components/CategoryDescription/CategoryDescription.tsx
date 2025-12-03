@@ -1,5 +1,5 @@
 import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { CategoryDescriptionFragment } from './CategoryDescription.gql'
@@ -40,7 +40,7 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
       {...divProps}
       className={classes.root}
       dangerouslySetInnerHTML={{ __html: description }}
-      sx={[
+      sx={sxx(
         (theme) => ({
           typography: 'subtitle1',
           [theme.breakpoints.down('sm')]: {
@@ -57,8 +57,8 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   ) : null
 }

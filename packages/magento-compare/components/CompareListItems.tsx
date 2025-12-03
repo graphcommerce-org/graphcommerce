@@ -1,5 +1,6 @@
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import { AddProductsToCartForm, ProductListItemsBase } from '@graphcommerce/magento-product'
+import { sxx } from '@graphcommerce/next-ui'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
 import { useCompareVisibleItems } from './CompareListForm'
 
@@ -18,7 +19,7 @@ export function CompareListItems(props: CompareListItemsProps) {
         title='Compare items'
         items={items}
         renderers={renderers}
-        sx={[compareListStyles, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sxx(compareListStyles, sx)}
       />
     </AddProductsToCartForm>
   )

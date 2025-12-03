@@ -1,7 +1,7 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { ActionCard, filterNonNullableKeys, SectionHeader, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
@@ -31,7 +31,7 @@ function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
           ? null
           : price && (
               <Box
-                sx={[
+                sx={sxx(
                   selected
                     ? {
                         color: 'text.primary',
@@ -39,7 +39,7 @@ function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
                     : {
                         color: 'text.secondary',
                       },
-                ]}
+                )}
               >
                 <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                 <Money

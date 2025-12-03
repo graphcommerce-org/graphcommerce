@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
@@ -22,14 +22,14 @@ export function ProductFiltersProNoResults(props: ProductFitlersProNoResultProps
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           marginTop: theme.spacings.md,
           marginBottom: theme.spacings.sm,
           textAlign: 'center',
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {term ? (
         <>

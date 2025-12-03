@@ -1,7 +1,7 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { Money } from '@graphcommerce/magento-store'
-import { ActionCard } from '@graphcommerce/next-ui'
+import { ActionCard, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Button, Chip } from '@mui/material'
 import type { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
@@ -39,7 +39,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
           disableRipple
           variant='inline'
           color='secondary'
-          sx={[
+          sx={sxx(
             available
               ? {
                   display: null,
@@ -47,7 +47,7 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
               : {
                   display: 'none',
                 },
-          ]}
+          )}
           tabIndex={-1}
         >
           <Trans>Select</Trans>

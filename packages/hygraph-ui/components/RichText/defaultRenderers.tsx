@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { Box, Link, Typography } from '@mui/material'
 import { Asset } from '../Asset/Asset'
 import type { Renderers } from './types'
@@ -24,10 +25,7 @@ export const defaultRenderers: Renderers = {
         component='iframe'
         src={url}
         loading='lazy'
-        sx={[
-          { aspectRatio: `${width} / ${height}`, width: '100%' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx({ aspectRatio: `${width} / ${height}`, width: '100%' }, sx)}
       />
     )
   },
@@ -51,30 +49,8 @@ export const defaultRenderers: Renderers = {
   table_row: (props) => <Box component='tr' {...props} />,
   table_cell: (props) => <Box component='td' {...props} />,
   code: (props) => <Box component='code' {...props} />,
-  bold: (props) => (
-    <Box
-      component='strong'
-      {...props}
-      sx={[
-        {
-          fontWeight: 'bold',
-        },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-      ]}
-    />
-  ),
-  italic: (props) => (
-    <Box
-      component='em'
-      {...props}
-      sx={[
-        {
-          fontStyle: 'italic',
-        },
-        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
-      ]}
-    />
-  ),
+  bold: (props) => <Box component='strong' {...props} sx={sxx({ fontWeight: 'bold' }, props.sx)} />,
+  italic: (props) => <Box component='em' {...props} sx={sxx({ fontStyle: 'italic' }, props.sx)} />,
   underlined: (props) => <Box component='span' {...props} />,
   class: (props) => <Box component='div' {...props} />,
   'code-block': (props) => (

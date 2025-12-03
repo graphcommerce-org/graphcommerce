@@ -1,4 +1,5 @@
 import { dvw, useMotionSelector, useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useEventCallback, useTheme } from '@mui/material'
@@ -127,15 +128,15 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           animating.set(false)
         },
       }}
-      sx={[
+      sx={sxx(
         {
           zIndex: 'drawer',
           '& .LayoutOverlayBase-overlayPane': {
             minWidth: itemWidthMd,
           },
         },
-        ...(Array.isArray(overlaySx) ? overlaySx : [overlaySx]),
-      ]}
+        overlaySx,
+      )}
     >
       <MotionDiv layout layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
@@ -189,7 +190,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       <MotionDiv layout='position' layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
           className={classes.wrapper}
-          sx={[
+          sx={sxx(
             (theme) => ({
               display: 'grid',
               alignItems: !stretchColumns ? 'start' : undefined,
@@ -234,11 +235,11 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                     },
                   },
                 }),
-          ]}
+          )}
         >
           <Box
             className={classes.navigation}
-            sx={[
+            sx={sxx(
               {
                 py: itemPad,
                 display: 'grid',
@@ -262,8 +263,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                   boxShadow: 'none',
                 },
               },
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+              sx,
+            )}
           >
             {selectedLevel >= 0 && (
               <Box

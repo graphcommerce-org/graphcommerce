@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -28,7 +29,7 @@ export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayou
         ref={ref}
         {...boxProps}
         className={`${classes.root} ${className}`}
-        sx={[
+        sx={sxx(
           (theme) => ({
             '&.layoutStack': {
               display: 'grid',
@@ -51,8 +52,8 @@ export const ActionCardLayout = React.forwardRef<HTMLDivElement, ActionCardLayou
               gap: theme.spacings.xxs,
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       />
     )
   },

@@ -5,6 +5,7 @@ import {
   ScrollerDots,
   ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
+import { sxx } from '@graphcommerce/next-ui'
 import { Box, styled, Typography } from '@mui/material'
 import { m } from 'framer-motion'
 import React, { useState } from 'react'
@@ -68,7 +69,7 @@ function Index() {
       <ScrollerProvider>
         <MotionDiv
           layout
-          sx={[
+          sx={sxx(
             {
               position: 'relative',
               background: '#ededed',
@@ -79,7 +80,7 @@ function Index() {
               width: 600,
               height: 800,
             },
-          ]}
+          )}
         >
           <MotionDiv
             layout

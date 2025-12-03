@@ -3,6 +3,7 @@ import {
   DateTimeFormat,
   extendableComponent,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -41,7 +42,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
           margin: `${theme.spacings.sm} 0`,
           '& > div:last-of-type': {
@@ -60,8 +61,8 @@ export function OrderDetails(props: OrderDetailsProps) {
             ),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.orderDetailContainer}

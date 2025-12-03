@@ -1,7 +1,7 @@
 import { useQuery } from '@graphcommerce/graphql'
 import { ProductReviews, ProductReviewsProps } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Row } from '@graphcommerce/next-ui'
+import { Row, sxx } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 import { RowProductFragment } from '../RowProduct.gql'
 
@@ -19,21 +19,19 @@ export function Reviews(props: ReviewsProps) {
   return (
     <Row maxWidth='md' id='reviews'>
       <Box
-        sx={[
-          (theme) => ({
-            position: 'relative',
-            '&:focus': {
-              outline: 'none',
-            },
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: theme.spacings.sm,
-            marginBottom: theme.spacings.xxs,
-            paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          }),
-        ]}
+        sx={sxx((theme) => ({
+          position: 'relative',
+          '&:focus': {
+            outline: 'none',
+          },
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.xxs,
+          paddingBottom: theme.spacings.xxs,
+          borderBottom: `1px solid ${theme.palette.divider}`,
+        }))}
       >
         <Typography variant='overline' color='textSecondary' component='h2'>
           {title} ({review_count})

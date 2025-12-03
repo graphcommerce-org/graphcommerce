@@ -2,6 +2,7 @@ import {
   extendableComponent,
   iconCompare,
   IconSvg,
+  sxx,
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
@@ -42,10 +43,7 @@ function CompareFabContent(props: CompareFabContentProps) {
   if (total_quantity === 0) return null
 
   return (
-    <Box
-      className={classes.root}
-      sx={[{ position: 'relative', height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Box className={classes.root} sx={sxx({ position: 'relative', height: fabIconSize }, sx)}>
       <Badge
         color='primary'
         variant='standard'

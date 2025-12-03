@@ -1,7 +1,7 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { compareVariant } from '@graphcommerce/next-config/config'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -104,7 +104,7 @@ function CompareProductToggleBase(
           onTouchStart={preventAnimationBubble}
           size='responsive'
           color='inherit'
-          sx={[
+          sx={sxx(
             (theme) => ({
               backgroundColor: 'transparent',
               flex: '0 0 auto',
@@ -124,8 +124,8 @@ function CompareProductToggleBase(
                 backgroundColor: theme.palette.background.paper,
               }),
             }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            sx,
+          )}
           title={label}
           aria-label={label}
           icon={iconCompare}

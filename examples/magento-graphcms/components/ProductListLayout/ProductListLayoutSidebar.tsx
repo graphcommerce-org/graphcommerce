@@ -26,7 +26,7 @@ import {
   ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
 import { breadcrumbs } from '@graphcommerce/next-config/config'
-import { MediaQuery, memoDeep, Container, StickyBelowHeader } from '@graphcommerce/next-ui'
+import { MediaQuery, memoDeep, Container, StickyBelowHeader, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
 import { ProductListItems, productListRenderer } from '../ProductListItems'
@@ -180,7 +180,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
         <MediaQuery
           query={(theme) => theme.breakpoints.up('md')}
           display='block'
-          sx={[
+          sx={sxx(
             {
               gridArea: 'sidebar',
             },
@@ -191,7 +191,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
               : (theme) => ({
                   mt: theme.spacings.lg,
                 }),
-          ]}
+          )}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />
           <>

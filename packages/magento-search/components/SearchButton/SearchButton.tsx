@@ -1,4 +1,10 @@
-import { extendableComponent, iconSearch, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  extendableComponent,
+  iconSearch,
+  IconSvg,
+  responsiveVal,
+  sxx,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TextFieldProps } from '@mui/material'
@@ -27,7 +33,7 @@ export function SearchButton(props: SearchButtonProps) {
       label={label ?? <Trans>Search...</Trans>}
       id='search-input'
       {...textFieldProps}
-      sx={[
+      sx={sxx(
         (theme) => ({
           marginRight: theme.spacings.xxs,
           width: responsiveVal(64, 172),
@@ -43,8 +49,8 @@ export function SearchButton(props: SearchButtonProps) {
             marginRight: 0,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       slotProps={{
         input: {
           readOnly: true,

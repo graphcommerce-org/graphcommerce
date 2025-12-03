@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -19,11 +20,7 @@ export function IconBlocks(props: IconBlocksProps) {
   const { title, children, sx = [] } = props
 
   return (
-    <Row
-      maxWidth='md'
-      className={classes.container}
-      sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row maxWidth='md' className={classes.container} sx={sxx({ maxWidth: 820 }, sx)}>
       <Box className={classes.wrapper} sx={(theme) => ({ paddingTop: `${theme.spacings.lg}` })}>
         <Box
           className={classes.title}

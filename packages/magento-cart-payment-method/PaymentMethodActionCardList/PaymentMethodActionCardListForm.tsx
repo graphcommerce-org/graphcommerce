@@ -1,7 +1,7 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, Button, FormDiv } from '@graphcommerce/next-ui'
+import { ActionCard, Button, FormDiv, sxx } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -31,14 +31,14 @@ function PaymentMethodActionCard(
     <Card
       code={code}
       child={child}
-      sx={[
+      sx={sxx(
         {
           '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
           '& .ActionCard-image svg, .ActionCard-image img': { width: '32px', height: '32px' },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       action={
         <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
           <Trans>Select</Trans>

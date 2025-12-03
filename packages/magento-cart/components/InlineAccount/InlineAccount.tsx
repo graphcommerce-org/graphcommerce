@@ -5,7 +5,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
-import { Button, extendableComponent, FormRow } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, FormRow, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, TextField, Typography } from '@mui/material'
@@ -48,15 +48,15 @@ export function InlineAccount(props: InlineAccountProps) {
     <div>
       <Box
         className={classes.root}
-        sx={[
+        sx={sxx(
           (theme) => ({
             borderRadius: '4px',
             border: `1px solid ${theme.palette.divider}`,
             padding: theme.spacings.md,
             marginTop: theme.spacings.sm,
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box
           className={classes.innerContainer}

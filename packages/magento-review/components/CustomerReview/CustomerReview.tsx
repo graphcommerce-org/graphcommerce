@@ -1,5 +1,11 @@
 import { Image } from '@graphcommerce/image'
-import { DateTimeFormat, extendableComponent, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  DateTimeFormat,
+  extendableComponent,
+  IconSvg,
+  responsiveVal,
+  sxx,
+} from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { CustomerReviewFragment } from './CustomerReview.gql'
@@ -28,7 +34,7 @@ export function CustomerReview(props: CustomerReviewProps) {
   return (
     <Box
       className={classes.container}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: `${theme.spacings.md} 0 ${theme.spacings.md} 0`,
           display: 'grid',
@@ -47,8 +53,8 @@ export function CustomerReview(props: CustomerReviewProps) {
             gridRowGap: theme.spacings.xxs,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.image}

@@ -1,4 +1,4 @@
-import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ColorSwatchDataFragment } from './ColorSwatchData.gql'
@@ -23,19 +23,17 @@ export function ColorSwatchData(props: ColorSwatchDataProps) {
       <Box
         className={classes.color}
         style={{ backgroundColor: value ?? undefined }}
-        sx={[
-          {
-            margin: '0 auto',
-            height: responsiveVal(22, 30),
-            width: responsiveVal(22, 30),
-            borderRadius: '50%',
-            '&.sizeSmall': {
-              height: responsiveVal(8, 12),
-              width: responsiveVal(8, 12),
-              marginTop: responsiveVal(2, 4),
-            },
+        sx={sxx({
+          margin: '0 auto',
+          height: responsiveVal(22, 30),
+          width: responsiveVal(22, 30),
+          borderRadius: '50%',
+          '&.sizeSmall': {
+            height: responsiveVal(8, 12),
+            width: responsiveVal(8, 12),
+            marginTop: responsiveVal(2, 4),
           },
-        ]}
+        })}
       />
       {size !== 'small' && (
         <Box component='span' className={classes.label}>

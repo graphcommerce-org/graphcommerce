@@ -5,6 +5,7 @@ import {
   Pagination,
   responsiveVal,
   StarRatingField,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -104,10 +105,7 @@ export function ProductReviews(props: ProductReviewsProps) {
     return (
       <Box
         className={classes.container}
-        sx={[
-          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
       >
         <Box
           className={classes.review}
@@ -142,10 +140,7 @@ export function ProductReviews(props: ProductReviewsProps) {
   return (
     <Box
       className={classes.container}
-      sx={[
-        (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
     >
       {!loading &&
         myReviews.items.map((review) => (

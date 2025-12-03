@@ -1,7 +1,7 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
-import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import {
   Box, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
@@ -172,7 +172,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
                       className={cls.checkbox}
-                      sx={[
+                      sx={sxx(
                         {
                           padding: 0,
                           margin: '-10px 0 0 0',
@@ -190,7 +190,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                             border: `1px solid ${theme.palette.primary.main}`,
                             boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
                           })),
-                      ]}
+                      )}
                       style={
                         isColor
                           ? { background: `${option?.label}`, color: `${option?.label}` }

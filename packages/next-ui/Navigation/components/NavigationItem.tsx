@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { useMatchMedia } from '../../hooks'
@@ -89,7 +90,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           href={href}
           className={classes.item}
           role='button'
-          sx={[
+          sx={sxx(
             (theme) => ({
               gridRowStart: row,
               gridColumnStart: column,
@@ -114,7 +115,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
                   },
                 }
               : {},
-          ]}
+          )}
           disabled={isSelected}
           tabIndex={tabIndex}
           onClick={(e) => {
@@ -163,7 +164,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
     const { name, href } = props
 
     return (
-      <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
+      <NavigationLI sx={sxx(hideItem && { display: 'none' })} className={classes.li}>
         <ListItemButton
           component={NextLink}
           prefetch={false}
@@ -195,7 +196,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   if (isNavigationComponent(props)) {
     const { component } = props
     return (
-      <NavigationLI sx={[hideItem && { display: 'none' }]} className={classes.li}>
+      <NavigationLI sx={sxx(hideItem && { display: 'none' })} className={classes.li}>
         <Box sx={{ gridRowStart: row, gridColumnStart: column }} className={classes.item}>
           {component}
         </Box>

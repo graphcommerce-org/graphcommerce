@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme, TypographyProps } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
@@ -36,7 +37,7 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'flex',
           alignItems: 'center',
@@ -63,8 +64,8 @@ export const LayoutTitle = React.forwardRef<HTMLDivElement, TitleProps>((props, 
             marginBottom: theme.spacings.xl,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {icon && (
         <IconSvg src={icon} size={size === 'small' ? 'large' : 'xl'} className={classes.icon} />

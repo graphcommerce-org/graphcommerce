@@ -1,4 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
+import { sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
@@ -34,7 +35,7 @@ export function CompareProductButton(props: CompareProductButtonProps) {
   }
 
   return (
-    <Box sx={[...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box sx={sx}>
       <Badge badgeContent={compareList.data?.compareList?.item_count} color='primary'>
         <Button
           variant='contained'

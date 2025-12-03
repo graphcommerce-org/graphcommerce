@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { BoxProps, Theme } from '@mui/material'
 import { Box, useTheme } from '@mui/material'
 import type { CSSProperties } from 'react'
@@ -84,10 +85,7 @@ function MediaQueryBase(props: MediaQueryProps) {
     return () => controller.abort()
   }, [matchMedia])
 
-  const sxVal = [
-    { display: 'none', [queryString]: { display } },
-    ...(Array.isArray(sx) ? sx : [sx]),
-  ]
+  const sxVal = sxx({ display: 'none', [queryString]: { display } }, sx)
 
   if (typeof window === 'undefined' || matches) {
     return (

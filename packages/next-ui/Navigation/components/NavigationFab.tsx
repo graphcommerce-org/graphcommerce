@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
@@ -49,12 +50,7 @@ export function NavigationFab(props: NavigationFabProps) {
   const classes = withState({ scrolled })
 
   return (
-    <Box
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+    <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
         sx={{
@@ -86,7 +82,7 @@ export function NavigationFab(props: NavigationFabProps) {
             <IconSvg
               src={iconClose}
               size='large'
-              sx={[
+              sx={sxx(
                 openEl
                   ? {
                       display: 'block',
@@ -94,14 +90,14 @@ export function NavigationFab(props: NavigationFabProps) {
                   : {
                       display: 'none',
                     },
-              ]}
+              )}
             />
           )}
           {menuIcon ?? (
             <IconSvg
               src={iconMenu}
               size='large'
-              sx={[
+              sx={sxx(
                 openEl
                   ? {
                       display: 'none',
@@ -109,7 +105,7 @@ export function NavigationFab(props: NavigationFabProps) {
                   : {
                       display: 'block',
                     },
-              ]}
+              )}
             />
           )}
         </Fab>

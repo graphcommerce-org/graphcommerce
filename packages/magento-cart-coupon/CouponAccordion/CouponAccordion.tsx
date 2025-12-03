@@ -4,6 +4,7 @@ import {
   extendableComponent,
   iconChevronDown,
   IconSvg,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { AccordionProps, SxProps, Theme } from '@mui/material'
@@ -41,7 +42,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
       onChange={handleChange}
       expanded={!coupon && open}
       variant='outlined'
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -51,14 +52,14 @@ export function CouponAccordion(props: CouponAccordionProps) {
           ),
           '::before': { display: 'none' },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...rest}
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}
         expandIcon={<IconSvg src={iconChevronDown} style={{ opacity: coupon ? 0 : 1 }} />}
-        sx={[
+        sx={sxx(
           (theme) => ({
             px: theme.spacings.xs,
             '& .MuiAccordionSummary-content': {
@@ -68,12 +69,8 @@ export function CouponAccordion(props: CouponAccordionProps) {
               justifyContent: 'space-between',
             },
           }),
-          Boolean(coupon) && {
-            '&:hover:not(.Mui-disabled)': {
-              cursor: 'default',
-            },
-          },
-        ]}
+          coupon && { '&:hover:not(.Mui-disabled)': { cursor: 'default' } },
+        )}
       >
         <Box sx={{ flex: 1 }}>
           <Trans>Discount code</Trans>

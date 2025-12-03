@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Avatar, Box, Chip } from '@mui/material'
 import { DateFormat } from '../../Intl/DateTimeFormat'
@@ -14,7 +15,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         {
           maxWidth: 'md',
         },
@@ -24,7 +25,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
           margin: '0 auto',
           marginBottom: theme.spacings.md,
         }),
-      ]}
+      )}
     >
       <Chip
         sx={{

@@ -1,5 +1,6 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
+import { sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { BoxProps } from '@mui/material'
 import { Box, Skeleton, styled } from '@mui/material'
@@ -67,14 +68,14 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
         alt={alt ?? ''}
         {...image}
         className={classes?.image}
-        sx={[
+        sx={sxx(
           {
             objectFit: 'contain',
             aspectRatio: `${aspectRatio[0] / aspectRatio[1]}`,
             display: 'block',
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       />
     )
   }
@@ -82,14 +83,14 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
   return (
     <PlaceHolderContainer className={`${classes?.placeholder} ${classes?.image}`}>
       <Box
-        sx={[
+        sx={sxx(
           {
             width: '100%',
             height: '100%',
             aspectRatio: `${aspectRatio[0] / aspectRatio[1]}`,
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Trans>No Image</Trans>
       </Box>

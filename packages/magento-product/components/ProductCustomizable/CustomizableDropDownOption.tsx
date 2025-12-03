@@ -1,6 +1,6 @@
 import { useController } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
-import { filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, SectionHeader, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Box, MenuItem, TextField } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
@@ -61,7 +61,7 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
 
             {option.price ? (
               <Box
-                sx={[
+                sx={sxx(
                   {
                     // display: 'flex',
                     typography: 'body1',
@@ -75,7 +75,7 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
                     : {
                         color: 'text.secondary',
                       },
-                ]}
+                )}
               >
                 <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+&nbsp;</span>
                 <Money

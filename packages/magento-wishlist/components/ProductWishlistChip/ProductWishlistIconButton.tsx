@@ -7,6 +7,7 @@ import {
   iconHeart,
   IconSvg,
   MessageSnackbar,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
@@ -42,7 +43,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
         size='small'
         className={classes.wishlistButton}
         {...buttonProps}
-        sx={[(theme) => ({ padding: theme.spacings.xxs }), ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sxx((theme) => ({ padding: theme.spacings.xxs }), sx)}
         title={current ? t`Remove from wishlist` : t`Add to wishlist`}
         aria-label={current ? t`Remove from wishlist` : t`Add to wishlist`}
       >

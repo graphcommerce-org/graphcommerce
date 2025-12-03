@@ -4,6 +4,7 @@ import {
   extendableComponent,
   filterNonNullableKeys,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -32,7 +33,7 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
   return (
     <SectionContainer
       labelLeft={<Trans>Shipment details</Trans>}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
@@ -51,12 +52,12 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
             background: theme.palette.background.default,
           }),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.shipmentDetailContainer}
-        sx={[
+        sx={sxx(
           (theme) => ({
             gridColumnGap: theme.spacings.xxl,
             gridRowGap: theme.spacings.md,
@@ -66,8 +67,8 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
               marginTop: theme.spacings.xxs,
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box className={classes.shipmentDetailRow}>
           <SectionContainer

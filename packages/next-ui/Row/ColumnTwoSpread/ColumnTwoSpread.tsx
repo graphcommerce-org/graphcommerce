@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ColumnTwoProps } from '../ColumnTwo/ColumnTwo'
 import { ColumnTwo } from '../ColumnTwo/ColumnTwo'
 
@@ -12,7 +13,7 @@ export function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
     <ColumnTwo
       {...colProps}
       className='ColumnTwoSpread'
-      sx={[
+      sx={sxx(
         (theme) => ({
           [theme.breakpoints.up('md')]: {
             gridTemplateColumns: '1fr 1fr 1fr',
@@ -37,8 +38,8 @@ export function ColumnTwoSpread(props: ColumnTwoSpreadProps) {
                 gridTemplateAreas: '"one two two"',
               },
             }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

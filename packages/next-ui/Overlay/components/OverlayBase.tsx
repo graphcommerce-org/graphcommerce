@@ -7,6 +7,7 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled, useTheme, useThemeProps } from '@mui/material'
 import type { MotionProps } from 'framer-motion'
@@ -421,7 +422,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         inert={active}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
-        sx={[
+        sx={sxx(
           {
             zIndex: -1,
             position: 'fixed',
@@ -436,8 +437,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             WebkitTapHighlightColor: 'transparent',
             willChange: 'opacity',
           },
-          ...(Array.isArray(sxBackdrop) ? sxBackdrop : [sxBackdrop]),
-        ]}
+          sxBackdrop,
+        )}
       />
       <Scroller
         inert={disableInert || active ? false : true}
@@ -446,7 +447,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         onClick={onClickAway}
         disableDrag={disableDrag}
         hideScrollbar
-        sx={[
+        sx={sxx(
           (theme) => ({
             overscrollBehavior: 'contain',
             display: 'grid',
@@ -516,8 +517,8 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   overflow: 'hidden',
                 },
               },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box
           className={classes.beforeOverlay}

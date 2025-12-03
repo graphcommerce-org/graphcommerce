@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { RowLinksProps } from '../RowLinks'
 import { RowLinks } from '../RowLinks'
 
@@ -7,7 +8,7 @@ export function VariantImageLabelSwiper(props: RowLinksProps) {
   return (
     <RowLinks
       {...rowLinksProps}
-      sx={[
+      sx={sxx(
         {
           // '& .Scroller-root': {
           //   alignItems: 'start',
@@ -20,8 +21,8 @@ export function VariantImageLabelSwiper(props: RowLinksProps) {
             textTransform: 'uppercase',
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

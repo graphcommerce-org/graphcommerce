@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert } from '@mui/material'
@@ -169,7 +170,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           >
             {!show ? <Trans>More options</Trans> : <Trans>Less options</Trans>}{' '}
             <IconSvg
-              sx={[
+              sx={sxx(
                 {
                   transition: 'transform 0.3s ease-in-out',
                 },
@@ -180,7 +181,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
                   : {
                       transform: 'rotate(0deg)',
                     },
-              ]}
+              )}
               src={iconChevronDown}
             />
           </Button>

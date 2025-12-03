@@ -1,5 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { breakpointVal, extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, SectionContainer, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, lighten, Link, Typography } from '@mui/material'
@@ -34,7 +34,7 @@ export function CartSummary(props: CartSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           margin: `${theme.spacings.sm} 0`,
           '& > div:last-of-type': {
@@ -53,8 +53,8 @@ export function CartSummary(props: CartSummaryProps) {
             ),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.detailsContainer}

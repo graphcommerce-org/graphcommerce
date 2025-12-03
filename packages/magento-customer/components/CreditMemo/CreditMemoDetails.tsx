@@ -3,6 +3,7 @@ import {
   DateTimeFormat,
   extendableComponent,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -30,7 +31,7 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
   return (
     <SectionContainer
       labelLeft={<Trans>Credit Memo details</Trans>}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
@@ -49,12 +50,12 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
             background: theme.palette.background.default,
           }),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.creditMemoDetailContainer}
-        sx={[
+        sx={sxx(
           (theme) => ({
             gridColumnGap: theme.spacings.xxl,
             gridRowGap: theme.spacings.md,
@@ -64,8 +65,8 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
               marginTop: theme.spacings.xxs,
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box className={classes.creditMemoDetailRow}>
           <SectionContainer

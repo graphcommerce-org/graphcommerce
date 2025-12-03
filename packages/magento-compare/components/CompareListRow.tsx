@@ -1,4 +1,4 @@
-import { SectionContainer } from '@graphcommerce/next-ui'
+import { SectionContainer, sxx } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { ComparableItemFragment } from '../graphql'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
@@ -21,7 +21,7 @@ export function CompareListRow(props: CompareRowProps) {
     <Box>
       <SectionContainer
         labelLeft={attribute?.label}
-        sx={[
+        sx={sxx(
           (theme) => ({
             '& .SectionHeader-root': {
               justifyContent: 'center',
@@ -55,9 +55,9 @@ export function CompareListRow(props: CompareRowProps) {
                   },
                 },
               },
-        ]}
+        )}
       >
-        <Box sx={[compareListStyles, (theme) => ({ mb: theme.spacings.lg })]}>
+        <Box sx={sxx(compareListStyles, (theme) => ({ mb: theme.spacings.lg }))}>
           {compareAbleItems?.map((item, idx) => (
             <Box
               // eslint-disable-next-line react/no-array-index-key

@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ThemeProvider } from '@mui/material'
 import React from 'react'
@@ -49,14 +50,14 @@ export function withTheme<T>(
       <ThemeProvider theme={theme}>
         <Component
           {...data}
-          sx={[
+          sx={sxx(
             {
               typography: 'body1',
               color: theme.palette.text.primary,
               backgroundColor: theme.palette.background.default,
             },
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            sx,
+          )}
         />
       </ThemeProvider>
     )

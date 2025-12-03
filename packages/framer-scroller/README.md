@@ -29,9 +29,9 @@ In short: A React API for
 ```tsx
 import {
   Scroller,
-  ScrollerProvider,
-  ScrollerDots,
   ScrollerButton,
+  ScrollerDots,
+  ScrollerProvider,
 } from '@graphcommerce/framer-scroller'
 
 function MyScroller() {

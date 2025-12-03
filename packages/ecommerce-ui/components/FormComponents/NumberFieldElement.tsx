@@ -4,6 +4,7 @@ import {
   iconPlus,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
@@ -105,14 +106,10 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
       size={size}
       type='number'
       className={`${rest.className ?? ''} ${classes.quantity}`}
-      sx={[
+      sx={sxx(
         {
           width: responsiveVal(90, 120),
-        },
-        {
-          '& input[type=number]': {
-            MozAppearance: 'textfield',
-          },
+          '& input[type=number]': { MozAppearance: 'textfield' },
           '& .MuiOutlinedInput-root': {
             px: '2px',
             display: 'grid',
@@ -120,15 +117,11 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
           },
         },
         variant === 'standard' && {
-          '& .MuiOutlinedInput-input': {
-            padding: 0,
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
-            display: 'none',
-          },
+          '& .MuiOutlinedInput-input': { padding: 0 },
+          '& .MuiOutlinedInput-notchedOutline': { display: 'none' },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       autoComplete='off'
       slotProps={{
         input: {
@@ -146,7 +139,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 // Round to nearest step
                 onChange(roundStep(valueAsNumber - step, step))
               }}
-              sx={[
+              sx={sxx(
                 {
                   minHeight: '30px',
                   minWidth: '30px',
@@ -158,7 +151,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                   : {
                       boxShadow: 0,
                     },
-              ]}
+              )}
               tabIndex={-1}
               color='inherit'
               {...DownProps}
@@ -176,7 +169,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 // Round to nearest step
                 onChange(roundStep(valueAsNumber + step, step))
               }}
-              sx={[
+              sx={sxx(
                 {
                   minHeight: '30px',
                   minWidth: '30px',
@@ -188,7 +181,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                   : {
                       boxShadow: 0,
                     },
-              ]}
+              )}
               tabIndex={-1}
               color='inherit'
               {...UpProps}

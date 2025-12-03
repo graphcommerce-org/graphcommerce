@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Typography } from '@mui/material'
 import type { ProductShortDescriptionFragment } from './ProductShortDescription.gql'
@@ -22,13 +22,13 @@ export function ProductShortDescription(props: ProductShortDescriptionProps) {
       component='div'
       className={classes.description}
       dangerouslySetInnerHTML={{ __html: short_description?.html ?? '' }}
-      sx={[
+      sx={sxx(
         {
           '& > p:first-of-type': { marginTop: 0 },
           '& > p:last-of-type': { marginBottom: 0 },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -95,7 +96,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
             <FormControlLabel
               control={
                 <Checkbox
-                  sx={[
+                  sx={sxx(
                     invalid
                       ? {
                           color: theme.palette.error.main,
@@ -103,7 +104,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
                       : {
                           color: null,
                         },
-                  ]}
+                  )}
                   color={checkboxColor || 'primary'}
                   value={optionKey}
                   checked={isChecked}

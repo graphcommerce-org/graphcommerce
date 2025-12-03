@@ -3,6 +3,7 @@ import {
   extendableComponent,
   iconShoppingBag,
   IconSvg,
+  sxx,
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
@@ -52,10 +53,7 @@ function CartFabContent(props: CartFabContentProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}
     >
       <MotionFab
         href='/cart'

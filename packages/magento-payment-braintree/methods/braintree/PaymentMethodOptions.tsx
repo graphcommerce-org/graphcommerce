@@ -3,7 +3,7 @@ import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-car
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
-import { ErrorSnackbar, FormRow, FullPageMessage } from '@graphcommerce/next-ui'
+import { ErrorSnackbar, FormRow, FullPageMessage, sxx } from '@graphcommerce/next-ui'
 import type { FieldValues, Path, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { FormProvider, useController, useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -284,9 +284,9 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           />
         )}
 
-        <Box sx={[loading && { display: 'none' }]}>
+        <Box sx={sxx(loading && { display: 'none' })}>
           <Container>
-            <FormRow sx={[]}>
+            <FormRow sx={sxx()}>
               <BraintreeField
                 control={form.control}
                 name='number'

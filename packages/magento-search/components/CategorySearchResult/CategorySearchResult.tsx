@@ -1,4 +1,10 @@
-import { extendableComponent, Highlight, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
+import {
+  extendableComponent,
+  Highlight,
+  iconChevronRight,
+  IconSvg,
+  sxx,
+} from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Button } from '@mui/material'
 import React from 'react'
@@ -23,7 +29,7 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
       variant='pill'
       className={classes.root}
       endIcon={<IconSvg src={iconChevronRight} size='small' />}
-      sx={[
+      sx={sxx(
         (theme) => ({
           background: theme.palette.background.default,
           padding: `${theme.spacings.xs} 18px ${theme.spacings.xs} 14px`,
@@ -42,8 +48,8 @@ export function CategorySearchResult(props: CategorySearchResultProps) {
             background: theme.palette.background.paper,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <div>
         {catProps?.breadcrumbs?.map((breadcrumb, index) => (

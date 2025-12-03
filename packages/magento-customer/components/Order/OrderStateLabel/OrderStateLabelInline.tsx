@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { alpha } from '@mui/material'
 import type { OrderStateLabelProps } from './OrderStateLabel'
 import { OrderStateLabel } from './OrderStateLabel'
@@ -12,7 +13,7 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
     <OrderStateLabel
       {...props}
       short
-      sx={[
+      sx={sxx(
         (theme) => ({
           fontStyle: 'normal',
           display: 'inline-block',
@@ -36,8 +37,8 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
             background: alpha(theme.palette.text.disabled, 0.125),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

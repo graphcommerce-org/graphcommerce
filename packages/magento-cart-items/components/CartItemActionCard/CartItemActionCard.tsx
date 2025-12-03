@@ -3,7 +3,12 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { productPath } from '@graphcommerce/magento-product'
 import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  actionCardImageSizes,
+  filterNonNullableKeys,
+  sxx,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, Button, Link } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'
@@ -50,7 +55,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
   return (
     <ActionCard
       value={uid}
-      sx={[
+      sx={sxx(
         (theme) => ({
           '&.ActionCard-root': {
             px: 0,
@@ -103,8 +108,8 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
                 pr: theme.spacings.xs,
               },
             }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       image={
         product.thumbnail?.url ? (
           <Image

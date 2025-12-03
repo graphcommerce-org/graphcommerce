@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, Button, Typography } from '@mui/material'
 import React from 'react'
@@ -27,7 +28,7 @@ export const IconBlock = React.forwardRef<HTMLAnchorElement & HTMLButtonElement,
         color='primary'
         className={classes.block}
         {...buttonProps}
-        sx={[
+        sx={sxx(
           (theme) => ({
             padding: `${theme.spacings.sm}`,
             textAlign: 'center',
@@ -38,8 +39,8 @@ export const IconBlock = React.forwardRef<HTMLAnchorElement & HTMLButtonElement,
               gap: `${theme.spacings.xxs}`,
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box>
           {icon}

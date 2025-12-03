@@ -1,6 +1,6 @@
 import type { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { extendableComponent, filterNonNullableKeys, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Slider, useEventCallback } from '@mui/material'
 import { useCallback } from 'react'
@@ -38,14 +38,14 @@ export function PriceSlider(props: PriceSliderProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
           pt: theme.spacings.md,
           pb: theme.spacings.xs,
           px: theme.spacings.xxs,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       className={classes.container}
     >
       <Slider

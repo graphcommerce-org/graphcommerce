@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { SectionHeaderProps } from '../SectionHeader/SectionHeader'
 import { SectionHeader } from '../SectionHeader/SectionHeader'
@@ -18,14 +19,14 @@ export function SectionContainer(props: SectionContainerProps) {
   return (
     <Box
       className={`${classes.root} ${className ?? ''}`}
-      sx={[
+      sx={sxx(
         (theme) => ({
           '&.borderBottom': {
             borderBottom: `1px solid ${theme.palette.divider}`,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <SectionHeader
         {...sectionHeaderProps}

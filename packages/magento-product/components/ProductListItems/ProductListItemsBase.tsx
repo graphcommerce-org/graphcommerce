@@ -1,4 +1,10 @@
-import { extendableComponent, LazyHydrate, RenderType, responsiveVal } from '@graphcommerce/next-ui'
+import {
+  extendableComponent,
+  LazyHydrate,
+  RenderType,
+  responsiveVal,
+  sxx,
+} from '@graphcommerce/next-ui'
 import type { BoxProps, Breakpoint, Theme } from '@mui/material'
 import { Box, useTheme } from '@mui/material'
 import React from 'react'
@@ -93,7 +99,7 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
       <Box
         ref={containerRef}
         className={classes.root}
-        sx={[
+        sx={sxx(
           ...Object.entries(columnConfig).map(([key, column]) => ({
             [theme.breakpoints.up(key as Breakpoint)]: {
               gap: column.gap ?? gap,
@@ -102,8 +108,8 @@ export function ProductListItemsBase(props: ProductItemsGridProps) {
             },
           })),
           { display: 'grid' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         {items?.map((item, idx) =>
           item ? (

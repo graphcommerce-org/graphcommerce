@@ -7,6 +7,7 @@ import {
   extendableComponent,
   nonNullable,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -38,7 +39,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
           border: `1px ${theme.palette.divider} solid`,
@@ -49,8 +50,8 @@ export function CartItemSummary(props: OrderSummaryProps) {
             theme.breakpoints.values,
           ),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}

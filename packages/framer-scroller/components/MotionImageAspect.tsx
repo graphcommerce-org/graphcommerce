@@ -1,5 +1,6 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
+import { sxx } from '@graphcommerce/next-ui'
 import { Box, type BoxProps } from '@mui/material'
 import { m, type MotionProps } from 'framer-motion'
 import { forwardRef } from 'react'
@@ -31,7 +32,7 @@ export const MotionImageAspect = m.create(
     return (
       <Box
         className='MotionImageAspect'
-        sx={[
+        sx={sxx(
           {
             position: 'relative',
             '& > picture': {
@@ -63,8 +64,8 @@ export const MotionImageAspect = m.create(
               },
             },
           },
-          ...(Array.isArray(slotProps?.box?.sx) ? slotProps.box.sx : [slotProps?.box?.sx]),
-        ]}
+          slotProps?.box?.sx,
+        )}
         {...slotProps?.box}
       >
         <Image

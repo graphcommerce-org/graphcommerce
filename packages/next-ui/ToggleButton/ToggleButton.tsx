@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { sxx } from '@graphcommerce/next-ui'
 import type { ButtonProps } from '@mui/material'
 import { alpha, Button } from '@mui/material'
 import type { FormEvent } from 'react'
@@ -60,7 +61,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
       size={size}
       {...other}
       classes={classes}
-      sx={[
+      sx={sxx(
         (theme) => ({
           border: 1,
           borderColor: 'divider',
@@ -96,8 +97,8 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             padding: '8px 12px',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </Button>

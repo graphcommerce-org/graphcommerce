@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ListItemButtonProps } from '@mui/material'
 import { alpha, ListItemButton } from '@mui/material'
 import type { ElementType } from 'react'
@@ -23,7 +24,7 @@ export const SearchOverlayItem = memo(
         <ListItemButton
           {...getRootProps()}
           component={component}
-          sx={[
+          sx={sxx(
             (theme) => ({
               px: theme.page.horizontal,
               mx: `calc(${theme.page.horizontal} * -1)`,
@@ -35,8 +36,8 @@ export const SearchOverlayItem = memo(
                 ),
               },
             }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            sx,
+          )}
           {...rest}
         />
       )

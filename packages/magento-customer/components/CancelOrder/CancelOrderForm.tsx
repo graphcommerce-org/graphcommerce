@@ -8,6 +8,7 @@ import {
   FormRow,
   iconChevronDown,
   IconSvg,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
@@ -54,7 +55,7 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
     )
   return (
     <Accordion
-      sx={[
+      sx={sxx(
         (theme) => ({
           mb: theme.spacings.xxl,
           ...breakpointVal(
@@ -68,22 +69,20 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
             mb: theme.spacings.xxl,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...rest}
     >
       <AccordionSummary
         expandIcon={<IconSvg src={iconChevronDown} />}
-        sx={[
-          (theme) => ({
-            px: theme.spacings.xs,
-            '& .MuiAccordionSummary-content': {
-              alignItems: 'center',
-              columnGap: 2,
-              justifyContent: 'space-between',
-            },
-          }),
-        ]}
+        sx={sxx((theme) => ({
+          px: theme.spacings.xs,
+          '& .MuiAccordionSummary-content': {
+            alignItems: 'center',
+            columnGap: 2,
+            justifyContent: 'space-between',
+          },
+        }))}
       >
         <Trans>Cancel order</Trans>
       </AccordionSummary>
