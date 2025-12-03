@@ -8,8 +8,10 @@ import {
 import { useQuery } from '@graphcommerce/graphql'
 import type { ProductInfoInput } from '@graphcommerce/graphql-mesh'
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { useShippingMethod } from '@graphcommerce/magento-cart-shipping-method'
-import { GetShippingMethodsDocument } from '@graphcommerce/magento-cart-shipping-method/components/ShippingMethodForm/GetShippingMethods.gql'
+import {
+  GetShippingMethodsDocument,
+  useShippingMethod,
+} from '@graphcommerce/magento-cart-shipping-method'
 import { FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { useDeferredValue, useMemo } from 'react'
