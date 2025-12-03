@@ -52,8 +52,16 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
     ...nextConfig,
     bundlePagesRouterDependencies: true,
     serverExternalPackages: [
-      '@whatwg-node/server',
+      // All @whatwg-node packages to prevent private class field bundling issues
+      // https://github.com/ardatan/whatwg-node/tree/master/packages
+      '@whatwg-node/cookie-store',
+      '@whatwg-node/disposablestack',
+      '@whatwg-node/events',
       '@whatwg-node/fetch',
+      '@whatwg-node/node-fetch',
+      '@whatwg-node/promise-helpers',
+      '@whatwg-node/server',
+      '@whatwg-node/server-plugin-cookies',
       ...(nextConfig.serverExternalPackages ?? []),
     ],
     turbopack: {
