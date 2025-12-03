@@ -39,6 +39,7 @@
   "exports": {
     ".": "./index.ts",
     "./apollo": "./apollo.ts",
+    "./config": "./config.ts",
     "./generated/fragments.json": "./generated/fragments.json"
   }
 }
