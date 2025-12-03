@@ -118,10 +118,10 @@ export function MollieField(props: MollieFieldProps) {
 
           inputLabel: {
             sx: (theme) => ({
-              background:
-                theme.palette.mode === 'light'
-                  ? theme.palette.secondary.light
-                  : theme.palette.background.paper,
+              background: theme.palette.secondary.light,
+              ...theme.applyStyles('dark', {
+                background: theme.palette.background.paper,
+              }),
             }),
             shrink: true,
           },

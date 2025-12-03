@@ -26,10 +26,10 @@ export function CreditMemoCard(props: CreditMemoCardProps) {
           px: theme.spacings.xxs,
           py: theme.spacings.xxs,
           gap: theme.spacings.sm,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: lighten(theme.palette.background.default, 0.15),
+          }),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,

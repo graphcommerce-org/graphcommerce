@@ -169,10 +169,13 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           '&.variantDefault': {
             position: 'relative',
             '&.selected': {
-              backgroundColor:
-                theme.palette.mode === 'light'
-                  ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
-                  : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+              backgroundColor: alpha(theme.palette[color].main, theme.palette.action.hoverOpacity),
+              ...theme.applyStyles('dark', {
+                backgroundColor: lighten(
+                  theme.palette.background.default,
+                  theme.palette.action.hoverOpacity,
+                ),
+              }),
             },
             '&.error': {
               backgroundColor: alpha(theme.palette.error.main, theme.palette.action.hoverOpacity),

@@ -84,23 +84,29 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
           },
           selected
             ? (theme) => ({
-                background:
-                  theme.palette.mode === 'light'
-                    ? lighten(theme.palette.primary.main, 1 - theme.palette.action.hoverOpacity)
-                    : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+                background: lighten(
+                  theme.palette.primary.main,
+                  1 - theme.palette.action.hoverOpacity,
+                ),
                 border: '1px solid transparent',
+                ...theme.applyStyles('dark', {
+                  background: lighten(
+                    theme.palette.background.default,
+                    theme.palette.action.hoverOpacity,
+                  ),
+                }),
                 '&.MuiChip-clickable:hover': {
-                  background:
-                    theme.palette.mode === 'light'
-                      ? lighten(
-                          theme.palette.primary.main,
-                          1 - theme.palette.action.hoverOpacity * 2,
-                        )
-                      : lighten(
-                          theme.palette.background.default,
-                          theme.palette.action.hoverOpacity * 2,
-                        ),
+                  background: lighten(
+                    theme.palette.primary.main,
+                    1 - theme.palette.action.hoverOpacity * 2,
+                  ),
                   border: '1px solid transparent',
+                  ...theme.applyStyles('dark', {
+                    background: lighten(
+                      theme.palette.background.default,
+                      theme.palette.action.hoverOpacity * 2,
+                    ),
+                  }),
                 },
               })
             : {},
