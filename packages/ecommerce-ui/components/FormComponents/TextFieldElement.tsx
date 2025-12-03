@@ -46,7 +46,7 @@ function toValue(incomingValue: unknown, type: React.HTMLInputTypeAttribute) {
 }
 
 /** @public */
-function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
+function TextFieldElementBase(props: TextFieldElementProps): React.ReactNode {
   const {
     name,
     control,

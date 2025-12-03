@@ -22,7 +22,7 @@ type SliderElementComponent = <TFieldValues extends FieldValues>(
   props: SliderElementProps<TFieldValues>,
 ) => React.ReactNode
 
-function SliderElementBase(props: SliderElementProps): JSX.Element {
+function SliderElementBase(props: SliderElementProps): React.ReactNode {
   const {
     name,
     control,

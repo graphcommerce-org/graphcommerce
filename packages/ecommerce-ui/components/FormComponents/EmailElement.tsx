@@ -10,7 +10,7 @@ export type EmailElementProps<T extends FieldValues> = TextFieldElementProps<T>
 /** @public */
 export function EmailElement<TFieldValues extends FieldValues>(
   props: EmailElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const { rules, ...rest } = props
   return (
     <TextFieldElement

@@ -96,11 +96,11 @@ export default [
             '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
         },
         {
-          selector: 'TSTypeReference[typeName.name="SxProps"]:not([typeParameters])',
+          selector: 'TSTypeReference[typeName.name="SxProps"]:not([typeArguments])',
           message: 'SxProps must have Theme parameter to avoid significant compiler slowdown.',
         },
         {
-          selector: 'TSTypeReference[typeName.name="Components"]:not([typeParameters])',
+          selector: 'TSTypeReference[typeName.name="Components"]:not([typeArguments])',
           message: 'Components must have Theme parameter to avoid significant compiler slowdown.',
         },
       ],

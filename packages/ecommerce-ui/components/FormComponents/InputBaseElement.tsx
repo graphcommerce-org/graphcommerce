@@ -15,7 +15,7 @@ type InputBaseElementComponent = <TFieldValues extends FieldValues>(
 
 function InputBaseElementBase(
   props: InputBaseElementProps & { ref?: React.Ref<HTMLInputElement> },
-): JSX.Element {
+): React.ReactElement {
   const {
     type,
     required,

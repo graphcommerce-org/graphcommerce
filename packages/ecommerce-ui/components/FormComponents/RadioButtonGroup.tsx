@@ -37,7 +37,7 @@ type RadioButtonGroupComponent = <TFieldValues extends FieldValues>(
   props: RadioButtonGroupProps<TFieldValues>,
 ) => React.ReactNode
 
-function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
+function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
   const {
     helperText,
     options,

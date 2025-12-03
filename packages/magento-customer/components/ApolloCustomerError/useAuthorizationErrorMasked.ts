@@ -3,7 +3,7 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { t } from '@lingui/core/macro'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 
-export function useAuthorizationErrorMasked(error?: ApolloError) {
+export function useAuthorizationErrorMasked(error?: ApolloError | null) {
   const { token } = useCustomerSession()
 
   return graphqlErrorByCategory({

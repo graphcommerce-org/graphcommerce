@@ -32,7 +32,7 @@ type CheckboxElementComponent = <TFieldValues extends FieldValues>(
   props: CheckboxElementProps<TFieldValues>,
 ) => React.ReactNode
 
-function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
+function CheckboxElementBase(props: CheckboxElementProps): React.ReactNode {
   const {
     name,
     rules = {},

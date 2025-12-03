@@ -7,7 +7,7 @@ import type { DocumentContext } from 'next/document'
 import { createEmotionCache } from './createEmotionCache'
 import type { EmotionProviderProps } from './EmotionProvider'
 
-export type EmotionCacheProps = { emotionStyleTags: React.JSX.Element[] }
+export type EmotionCacheProps = { emotionStyleTags: React.ReactNode[] }
 
 export function withEmotionCache(Document: typeof NextDocument): typeof NextDocument {
   return class DocumentWithEmotionCache extends Document {
@@ -31,7 +31,6 @@ export function withEmotionCache(Document: typeof NextDocument): typeof NextDocu
         <style
           data-emotion={`${style.key} ${style.ids.join(' ')}`}
           key={style.key}
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: style.css }}
         />
       ))

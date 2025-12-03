@@ -160,7 +160,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     () => (match.up('md') ? variantMd : variantSm),
     [match, variantMd, variantSm],
   )
-  const prevVariant = useRef<LayoutOverlayVariant>()
+  const prevVariant = useRef<LayoutOverlayVariant | null>(null)
 
   const openClosePositions = useCallback((): {
     open: [number, number]

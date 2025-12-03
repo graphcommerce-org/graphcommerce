@@ -38,7 +38,7 @@ const ITEM_PADDING_TOP = 8
 /** @public */
 export function MultiSelectElement<TFieldValues extends FieldValues>(
   props: MultiSelectElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const {
     options,
     label = '',

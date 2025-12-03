@@ -9,7 +9,7 @@ export type ValidatedPasswordElementProps<T extends FieldValues> = PasswordEleme
 
 export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
   props: PasswordElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const { ...textFieldProps } = props
 
   const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig

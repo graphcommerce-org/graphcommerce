@@ -79,9 +79,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
     return (
       <>
         <Alert severity='success' variant='standard'>
-          <Trans>
-            Thank you! Your review was successfully submitted for approval
-          </Trans>
+          <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
         <Box mt={6}>
           <OverlayCloseButton variant='pill' color='secondary' size='large'>

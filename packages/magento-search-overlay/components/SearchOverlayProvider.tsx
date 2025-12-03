@@ -18,10 +18,10 @@ type SearchOverlayContextType = {
 
 type SearchOverlaySelectionContextType = {
   selectedIndex: number
-  items: React.RefObject<HTMLElement>[]
-  inputs: React.RefObject<HTMLElement>[]
-  registerItem: <T extends HTMLElement>(ref: React.RefObject<T>) => () => void
-  registerInput: <T extends HTMLElement>(ref: React.RefObject<T>) => () => void
+  items: React.RefObject<HTMLElement | null>[]
+  inputs: React.RefObject<HTMLElement | null>[]
+  registerItem: <T extends HTMLElement>(ref: React.RefObject<T | null>) => () => void
+  registerInput: <T extends HTMLElement>(ref: React.RefObject<T | null>) => () => void
 }
 
 const SearchOverlayContext = createContext<SearchOverlayContextType | undefined>(undefined)
@@ -55,8 +55,8 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
 
   const { handleSubmit, products } = useQuicksearch({ params })
 
-  const items = useRef<React.RefObject<HTMLElement>[]>([])
-  const inputs = useRef<React.RefObject<HTMLElement>[]>([])
+  const items = useRef<React.RefObject<HTMLElement | null>[]>([])
+  const inputs = useRef<React.RefObject<HTMLElement | null>[]>([])
   const [selectedIndex, setSelectedIndex] = useState(-1)
 
   const searchOverlayContext: SearchOverlayContextType = useMemo(
@@ -74,19 +74,19 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
       items: items.current,
       inputs: inputs.current,
       selectedIndex,
-      registerItem: <T extends HTMLElement>(ref: React.RefObject<T>) => {
+      registerItem: <T extends HTMLElement>(ref: React.RefObject<T | null>) => {
         if (ref.current instanceof HTMLElement) {
-          items.current.push(ref as React.RefObject<HTMLElement>)
+          items.current.push(ref as React.RefObject<HTMLElement | null>)
         }
 
         return () => {
           items.current = items.current.filter((i) => i !== ref)
         }
       },
-      registerInput: <T extends HTMLElement>(ref: React.RefObject<T>) => {
+      registerInput: <T extends HTMLElement>(ref: React.RefObject<T | null>) => {
         const controller = new AbortController()
         if (ref.current instanceof HTMLElement) {
-          inputs.current.push(ref as React.RefObject<HTMLElement>)
+          inputs.current.push(ref as React.RefObject<HTMLElement | null>)
 
           ref.current.addEventListener(
             'keydown',
