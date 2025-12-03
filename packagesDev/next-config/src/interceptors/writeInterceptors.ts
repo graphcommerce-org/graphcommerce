@@ -1,5 +1,5 @@
-import { stat } from 'node:fs'
-import fs from 'node:fs/promises'
+import { stat } from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import { glob } from 'glob'
 import { findParentPath } from '../utils/findParentPath'

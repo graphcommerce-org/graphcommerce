@@ -1,5 +1,5 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
+import fs from 'fs/promises'
+import path from 'path'
 import { sync as globSync } from 'glob'
 import { packageRoots } from '../utils'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'

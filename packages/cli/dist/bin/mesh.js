@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { promises } from 'node:fs';
-import path from 'node:path';
-import { exit } from 'node:process';
+import { promises } from 'fs';
+import path from 'path';
+import { exit } from 'process';
 import { loadConfig, resolveDependenciesSync, sig, packageRoots, replaceConfigInString } from '@graphcommerce/next-config';
 import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli';
 import { defaultImportFn, DefaultLogger, loadYaml, fileURLToPath } from '@graphql-mesh/utils';
@@ -9,7 +9,6 @@ import dotenv from 'dotenv';
 import 'tsx/cjs';
 import 'tsx/esm';
 import yaml from 'yaml';
-import require$$0 from 'path';
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u{1F578}\uFE0F  Mesh") {
@@ -41,7 +40,7 @@ function customLoader(ext, importFn = defaultImportFn, initialLoggerPrefix = "\u
 }
 async function findConfig(options) {
   const { configName = "mesh", dir: configDir = "", initialLoggerPrefix } = options || {};
-  const dir = require$$0.isAbsolute(configDir) ? configDir : require$$0.join(process.cwd(), configDir);
+  const dir = path.isAbsolute(configDir) ? configDir : path.join(process.cwd(), configDir);
   const explorer = cosmiconfig(configName, {
     searchPlaces: [
       "package.json",

@@ -935,8 +935,8 @@
 - Solves the issue `TypeError: url?.startsWith is not a function`. The generated
   `.mesh/index.ts` would be generated as a requirejs module while next.js
   expects an esm module. In the end we properly generated the mesh correctly and
-  now there is an `import.meta.url` instead of using `require('node:url')`. To
-  solve this we needed to solve a chain of issues:
+  now there is an `import.meta.url` instead of using `require('url')`. To solve
+  this we needed to solve a chain of issues:
 
   1. The generation of the mesh is based on the version of the mesh that is
      imported (esm or commonjs). See

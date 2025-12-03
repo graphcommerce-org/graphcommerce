@@ -1,8 +1,8 @@
+import { readFile, writeFile } from 'fs/promises'
+import conf from '@graphcommerce/prettier-config-pwa'
 import yaml from 'js-yaml'
-import { writeFile, readFile } from 'node:fs/promises'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
-import conf from '@graphcommerce/prettier-config-pwa'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/insights.yml',

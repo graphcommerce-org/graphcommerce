@@ -1,8 +1,3 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat'
-import { FlatCompat } from '@eslint/eslintrc'
-import eslint from '@eslint/js'
 import nextPlugin from '@next/eslint-plugin-next'
 import typescriptPlugin from '@typescript-eslint/eslint-plugin'
 import typescriptParser from '@typescript-eslint/parser'
@@ -12,18 +7,15 @@ import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import globals from 'globals'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: eslint.configs.recommended,
-})
-
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  // React hooks recommended rules
+  // Flat configs from plugins
   reactHooksPlugin.configs.flat.recommended,
+  importPlugin.flatConfigs.recommended,
+  importPlugin.flatConfigs.typescript,
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat['jsx-runtime'],
+  jsxA11yPlugin.flatConfigs.recommended,
 
   // Global ignores
   {
@@ -52,10 +44,7 @@ export default [
       },
     },
     plugins: {
-      react: reactPlugin,
       '@next/next': nextPlugin,
-      import: importPlugin,
-      'jsx-a11y': jsxA11yPlugin,
     },
     settings: {
       react: {

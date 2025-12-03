@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import fs from 'node:fs/promises';
+import fs from 'fs/promises';
 import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
@@ -7,17 +7,14 @@ import { spawn } from 'child_process';
 import { l as loadConfig, t as toEnvStr } from './loadConfig-nJiCKeL1.js';
 export { r as replaceConfigInString } from './loadConfig-nJiCKeL1.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
-import fs$1 from 'node:fs';
-import path$1 from 'node:path';
+import fs$1, { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
 import assert from 'assert';
 import crypto from 'crypto';
 import lodash from 'lodash';
 import { z } from 'zod';
 import prettierConf from '@graphcommerce/prettier-config-pwa';
 import prettier from 'prettier';
-import fs$2 from 'fs/promises';
 import fg from 'fast-glob';
-import { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
 import { generate } from '@graphql-codegen/cli';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
@@ -253,11 +250,11 @@ const resolveCache = /* @__PURE__ */ new Map();
 function findPackageJson(id, root) {
   let dir = id.startsWith("/") ? id : import.meta.resolve(id);
   if (dir.startsWith("file://")) dir = new URL(dir).pathname;
-  let packageJsonLocation = path$1.join(dir, "package.json");
+  let packageJsonLocation = path.join(dir, "package.json");
   while (!fs$1.existsSync(packageJsonLocation)) {
-    dir = path$1.dirname(dir);
+    dir = path.dirname(dir);
     if (dir === root) throw Error(`Can't find package.json for ${id}`);
-    packageJsonLocation = path$1.join(dir, "package.json");
+    packageJsonLocation = path.join(dir, "package.json");
   }
   return packageJsonLocation;
 }
@@ -305,7 +302,7 @@ function resolveRecursivePackageJson(dependencyPath, dependencyStructure, root, 
   });
   const name = isRoot ? "." : packageJson.name;
   dependencyStructure[name] = {
-    dirName: path$1.dirname(path$1.relative(process.cwd(), fileName)),
+    dirName: path.dirname(path.relative(process.cwd(), fileName)),
     dependencies: availableDependencies
   };
   return dependencyStructure;
@@ -844,7 +841,7 @@ async function generateInterceptors(plugins, resolve, config, force) {
       if (pluginPath.startsWith(".")) {
         const resolvedPlugin = resolve(pluginPath);
         if (resolvedPlugin) {
-          pluginPath = path$1.relative(
+          pluginPath = path.relative(
             resolved.fromRoot.split("/").slice(0, -1).join("/"),
             resolvedPlugin.fromRoot
           );
@@ -970,22 +967,22 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
   console.log(`\u{1F50D} Scanning ${roots.length} package roots for plugins...`);
   const pluginsByPackage = /* @__PURE__ */ new Map();
   for (const root of roots) {
-    const packageDirs = sync(`${root}/*/package.json`).map((pkgPath) => path$1.dirname(pkgPath));
+    const packageDirs = sync(`${root}/*/package.json`).map((pkgPath) => path.dirname(pkgPath));
     for (const packagePath of packageDirs) {
       const pluginFiles = sync(`${packagePath}/plugins/**/*.{ts,tsx}`);
       if (pluginFiles.length > 0) {
         const exportPaths = /* @__PURE__ */ new Set();
         pluginFiles.forEach((file) => {
-          const relativePath = path$1.relative(packagePath, file);
+          const relativePath = path.relative(packagePath, file);
           const exportPath = `./${relativePath.replace(/\.(ts|tsx)$/, "")}`;
           exportPaths.add(exportPath);
         });
         if (exportPaths.size > 0) {
-          const packageJsonPath = path$1.join(packagePath, "package.json");
+          const packageJsonPath = path.join(packagePath, "package.json");
           try {
             const packageJsonContent = await fs.readFile(packageJsonPath, "utf8");
             const packageJson = JSON.parse(packageJsonContent);
-            const packageName = packageJson.name || path$1.basename(packagePath);
+            const packageName = packageJson.name || path.basename(packagePath);
             pluginsByPackage.set(packagePath, exportPaths);
           } catch (error) {
             console.warn(`\u26A0\uFE0F  Could not read package.json for ${packagePath}:`, error);
@@ -997,7 +994,7 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
   console.log(`\u{1F4E6} Total packages with plugins: ${pluginsByPackage.size}`);
   const updatePromises = Array.from(pluginsByPackage.entries()).map(
     async ([packagePath, exportPaths]) => {
-      const packageJsonPath = path$1.join(packagePath, "package.json");
+      const packageJsonPath = path.join(packagePath, "package.json");
       try {
         const packageJsonContent = await fs.readFile(packageJsonPath, "utf8");
         const packageJson = JSON.parse(packageJsonContent);
@@ -1012,7 +1009,7 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
           const exportKey = exportPath.startsWith("./") ? exportPath : `./${exportPath}`;
           const filePath = `${exportPath}.tsx`;
           const tsFilePath = `${exportPath}.ts`;
-          const targetFile = sync(path$1.join(packagePath, `${exportPath.slice(2)}.{ts,tsx}`))[0];
+          const targetFile = sync(path.join(packagePath, `${exportPath.slice(2)}.{ts,tsx}`))[0];
           if (targetFile) {
             const extension = targetFile.endsWith(".tsx") ? ".tsx" : ".ts";
             const targetPath = `${exportPath}${extension}`;
@@ -1079,7 +1076,7 @@ async function updateGitignore(managedFiles) {
   const gitignorePath = path.join(process.cwd(), ".gitignore");
   let content;
   try {
-    content = await fs$2.readFile(gitignorePath, "utf-8");
+    content = await fs.readFile(gitignorePath, "utf-8");
     debug("Reading existing .gitignore");
   } catch (err) {
     debug(".gitignore not found, creating new file");
@@ -1107,7 +1104,7 @@ ${newSection}`;
 `;
     debug("Cleaned up .gitignore managed section");
   }
-  await fs$2.writeFile(gitignorePath, content);
+  await fs.writeFile(gitignorePath, content);
 }
 function getFileManagement(content) {
   if (!content) return "graphcommerce";
@@ -1148,7 +1145,7 @@ async function copyFiles() {
       allFiles.map(async (file) => {
         const filePath = path.join(cwd, file);
         try {
-          const content = await fs$2.readFile(filePath);
+          const content = await fs.readFile(filePath);
           if (getFileManagement(content) === "graphcommerce") {
             existingManagedFiles.add(file);
             debug(`Found existing managed file: ${file}`);
@@ -1202,8 +1199,8 @@ Path: ${copyDir}`
       const targetPath = path.join(cwd, file);
       debug(`Processing file: ${file}`);
       try {
-        await fs$2.mkdir(path.dirname(targetPath), { recursive: true });
-        const sourceContent = await fs$2.readFile(sourcePath);
+        await fs.mkdir(path.dirname(targetPath), { recursive: true });
+        const sourceContent = await fs.readFile(sourcePath);
         const contentWithComment = Buffer.concat([
           Buffer.from(
             `${MANAGED_BY_GC}
@@ -1215,7 +1212,7 @@ Path: ${copyDir}`
         ]);
         let targetContent;
         try {
-          targetContent = await fs$2.readFile(targetPath);
+          targetContent = await fs.readFile(targetPath);
           const management = getFileManagement(targetContent);
           if (management === "local") {
             debug(`File ${file} is managed locally, skipping`);
@@ -1244,7 +1241,7 @@ Source: ${sourcePath}`);
           managedFiles.add(file);
           return;
         }
-        await fs$2.writeFile(targetPath, contentWithComment);
+        await fs.writeFile(targetPath, contentWithComment);
         if (targetContent) {
           console.info(`Updated managed file: ${file}`);
           debug(`Overwrote existing file: ${file}`);
@@ -1268,9 +1265,9 @@ Source: ${sourcePath}`);
     let currentDir = startPath;
     while (currentDir !== cwd) {
       try {
-        const dirContents = await fs$2.readdir(currentDir);
+        const dirContents = await fs.readdir(currentDir);
         if (dirContents.length === 0) {
-          await fs$2.rmdir(currentDir);
+          await fs.rmdir(currentDir);
           debug(`Removed empty directory: ${currentDir}`);
           currentDir = path.dirname(currentDir);
         } else {
@@ -1290,9 +1287,9 @@ Source: ${sourcePath}`);
       const filePath = path.join(cwd, file);
       const dirPath = path.dirname(filePath);
       try {
-        await fs$2.readdir(dirPath);
+        await fs.readdir(dirPath);
         try {
-          await fs$2.unlink(filePath);
+          await fs.unlink(filePath);
           console.info(`Removed managed file: ${file}`);
           debug(`Removed file: ${file}`);
         } catch (err) {
@@ -1593,8 +1590,16 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
     serverExternalPackages: [
-      "@whatwg-node/server",
+      // All @whatwg-node packages to prevent private class field bundling issues
+      // https://github.com/ardatan/whatwg-node/tree/master/packages
+      "@whatwg-node/cookie-store",
+      "@whatwg-node/disposablestack",
+      "@whatwg-node/events",
       "@whatwg-node/fetch",
+      "@whatwg-node/node-fetch",
+      "@whatwg-node/promise-helpers",
+      "@whatwg-node/server",
+      "@whatwg-node/server-plugin-cookies",
       ...nextConfig.serverExternalPackages ?? []
     ],
     turbopack: {
@@ -1623,6 +1628,8 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     },
     images: {
       ...nextConfig.images,
+      // GraphCommerce uses quality 52 by default for optimized image delivery
+      qualities: [52, 75, ...nextConfig.images?.qualities ?? []],
       remotePatterns: [
         "magentoEndpoint" in graphcommerceConfig ? {
           hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname

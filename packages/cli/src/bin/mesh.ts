@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
-import { exit } from 'node:process'
+import { promises as fs } from 'fs'
+import path from 'path'
+import { exit } from 'process'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,

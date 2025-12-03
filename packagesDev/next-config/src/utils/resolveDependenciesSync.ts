@@ -1,5 +1,5 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'fs'
+import path from 'path'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
 import { sig } from './sig'
