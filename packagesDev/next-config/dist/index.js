@@ -1435,20 +1435,24 @@ function getSectionSchemaKeys(configKey) {
     const sectionSchema = mainSchema.shape[configKey];
     if (!sectionSchema) return [];
     let unwrappedSchema = sectionSchema;
-    while (unwrappedSchema && typeof unwrappedSchema === "object") {
-      if ("_def" in unwrappedSchema) {
-        const def = unwrappedSchema._def;
-        if ("innerType" in def && def.innerType) {
-          unwrappedSchema = def.innerType;
-          continue;
-        }
-        if ("typeName" in def && def.typeName === "ZodObject" && "shape" in def && def.shape) {
-          return Object.keys(def.shape());
-        }
-        break;
-      } else {
-        break;
+    while (true) {
+      if (!unwrappedSchema || typeof unwrappedSchema !== "object") break;
+      if (!("_def" in unwrappedSchema)) break;
+      const def = unwrappedSchema._def;
+      const typeName = def?.typeName;
+      if (typeName === "ZodLazy" && def.getter) {
+        unwrappedSchema = def.getter();
+        continue;
       }
+      if (def.innerType) {
+        unwrappedSchema = def.innerType;
+        continue;
+      }
+      if (typeName === "ZodObject" && def.shape) {
+        const shape = typeof def.shape === "function" ? def.shape() : def.shape;
+        return Object.keys(shape || {});
+      }
+      break;
     }
     if (unwrappedSchema && "shape" in unwrappedSchema) {
       const shape = typeof unwrappedSchema.shape === "function" ? unwrappedSchema.shape() : unwrappedSchema.shape;

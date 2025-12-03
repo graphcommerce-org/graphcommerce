@@ -45,32 +45,44 @@ function getSectionSchemaKeys(configKey: keyof GraphCommerceConfig): string[] {
     if (!sectionSchema) return []
 
     // Handle different schema wrapper types
-    let unwrappedSchema = sectionSchema
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let unwrappedSchema: any = sectionSchema
 
-    // Handle .nullish(), .optional(), .default() wrappers
-    while (unwrappedSchema && typeof unwrappedSchema === 'object') {
-      if ('_def' in unwrappedSchema) {
-        // eslint-disable-next-line no-underscore-dangle
-        const def = unwrappedSchema._def
+    // Unwrap wrapper types in a loop to handle chained wrappers (e.g., ZodLazy containing ZodOptional)
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      if (!unwrappedSchema || typeof unwrappedSchema !== 'object') break
+      if (!('_def' in unwrappedSchema)) break
 
-        // Handle ZodOptional, ZodNullable, ZodDefault
-        if ('innerType' in def && def.innerType) {
-          unwrappedSchema = def.innerType
-          // eslint-disable-next-line no-continue
-          continue
-        }
+      // eslint-disable-next-line no-underscore-dangle
+      const def = unwrappedSchema._def
+      const typeName = def?.typeName as string | undefined
 
-        // Handle ZodObject - this is what we want
-        if ('typeName' in def && def.typeName === 'ZodObject' && 'shape' in def && def.shape) {
-          return Object.keys((def.shape as () => Record<string, unknown>)())
-        }
-
-        break
-      } else {
-        break
+      // Handle ZodLazy - need to evaluate the getter
+      if (typeName === 'ZodLazy' && def.getter) {
+        unwrappedSchema = def.getter()
+        continue
       }
+
+      // Handle ZodOptional, ZodNullable, ZodDefault
+      if (def.innerType) {
+        unwrappedSchema = def.innerType
+        continue
+      }
+
+      // Handle ZodObject - this is what we want
+      if (typeName === 'ZodObject' && def.shape) {
+        const shape =
+          typeof def.shape === 'function'
+            ? (def.shape as () => Record<string, unknown>)()
+            : (def.shape as Record<string, unknown>)
+        return Object.keys(shape || {})
+      }
+
+      break
     }
 
+    
     // Direct ZodObject
     if (unwrappedSchema && 'shape' in unwrappedSchema) {
       const shape =

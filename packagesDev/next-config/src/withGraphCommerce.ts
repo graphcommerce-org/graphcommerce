@@ -83,6 +83,8 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
     },
     images: {
       ...nextConfig.images,
+      // GraphCommerce uses quality 52 by default for optimized image delivery
+      qualities: [52, 75, ...(nextConfig.images?.qualities ?? [])],
       remotePatterns: [
         'magentoEndpoint' in graphcommerceConfig
           ? {
