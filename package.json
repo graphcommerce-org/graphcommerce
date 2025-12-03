@@ -85,7 +85,7 @@
     "graphql": "^16.11.0",
     "husky": "^9.1.7",
     "jest": "^30.1.1",
-    "jest-diff": "^30.1.1",
+    "jest-diff": "^29",
     "jest-environment-jsdom": "^30.1.1",
     "knip": "^5.63.0",
     "next": "16.0.1",

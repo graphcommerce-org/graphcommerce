@@ -1,4 +1,5 @@
 import { cosmiconfigSync } from 'cosmiconfig';
+import { createJiti } from 'jiti';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/index.js';
 import chalk from 'chalk';
@@ -257,7 +258,18 @@ function replaceConfigInString(str, config) {
 }
 
 const moduleName = "graphcommerce";
-const loader = cosmiconfigSync(moduleName);
+const jiti = createJiti(import.meta.url);
+const tsLoader = (filepath) => {
+  const result = jiti(filepath);
+  return result.default ?? result;
+};
+const loader = cosmiconfigSync(moduleName, {
+  loaders: {
+    ".ts": tsLoader,
+    ".mts": tsLoader,
+    ".cts": tsLoader
+  }
+});
 function loadConfig(cwd) {
   const isMainProcess = !process.send;
   try {
