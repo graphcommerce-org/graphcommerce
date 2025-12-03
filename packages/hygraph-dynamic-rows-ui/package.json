@@ -15,6 +15,9 @@
   "scripts": {
     "dev": "next dev"
   },
+  "engines": {
+    "node": ">=20 <25.0.0"
+  },
   "dependencies": {
     "@apollo/client": "~3.12.11",
     "@graphcommerce/next-config": "9.1.0-canary.55",

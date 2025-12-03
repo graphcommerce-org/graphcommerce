@@ -14,7 +14,7 @@
     "examples/*"
   ],
   "engines": {
-    "node": ">=20.0.0 <23.0.0"
+    "node": ">=20 <25.0.0"
   },
   "scripts": {
     "prepare": "husky",
