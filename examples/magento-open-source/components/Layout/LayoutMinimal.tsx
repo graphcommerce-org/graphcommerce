@@ -30,7 +30,7 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
         />
       }
       sx={(theme) => ({
-        background: theme.palette.background.paper,
+        background: theme.vars.palette.background.paper,
       })}
     >
       {children}

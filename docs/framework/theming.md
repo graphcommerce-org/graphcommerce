@@ -37,7 +37,7 @@ updated in real-time:
 
 You can search through your codebase to discover which components will be
 affected by your changes. For example, search for occurrences of
-`theme.palette.primary.main`.
+`theme.vars.palette.primary.main`.
 
 ### Best practices
 
@@ -84,7 +84,7 @@ property:
 ```tsx
 sx={{
   borderRadius: 2,
-  backgroundColor: (theme) => theme.palette.primary.main,
+  backgroundColor: (theme) => theme.vars.palette.primary.main,
 }}
 ```
 
@@ -92,8 +92,8 @@ To use the theme object for multiple property's:
 
 ```tsx
 sx={(theme) => ({
-  borderRadius: `1px solid ${theme.palette.divider}`,
-  backgroundColor: theme.palette.primary.main,
+  borderRadius: `1px solid ${theme.vars.palette.divider}`,
+  backgroundColor: theme.vars.palette.primary.main,
 })}
 ```
 
@@ -110,10 +110,10 @@ const AnimatedButton = styled(Button, { name: 'animatedButton' })(
   ({ theme }) => ({
     '@keyframes pulse': {
       '0%': {
-        boxShadow: `0 0 0 0 ${theme.palette.primary.main}`,
+        boxShadow: `0 0 0 0 ${theme.vars.palette.primary.main}`,
       },
       '100%': {
-        boxShadow: `0 0 0 15px ${theme.palette.background.default}`,
+        boxShadow: `0 0 0 15px ${theme.vars.palette.background.default}`,
       },
     },
     animation: 'pulse 1.5s infinite',

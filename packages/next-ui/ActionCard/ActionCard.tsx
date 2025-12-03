@@ -170,7 +170,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             position: 'relative',
             '&.selected': {
               backgroundColor: alpha(
-                theme.palette[color].main,
+                theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               ),
               ...theme.applyStyles('dark', {
@@ -188,7 +188,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             },
             '&:focus': {
               outline: 'none',
-              boxShadow: `0 0 0 4px ${alpha(theme.palette[color].main, theme.vars.palette.action.focusOpacity)}`,
+              boxShadow: `0 0 0 4px ${alpha(theme.vars.palette[color].main, theme.vars.palette.action.focusOpacity)}`,
             },
           },
           '&.variantOutlined': {
@@ -230,18 +230,18 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             },
             '&.selected': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}`,
             },
             '&.selected:focus, &.error:focus': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
-                theme.palette[color].main,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px ${alpha(
+                theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               )}`,
             },
             '&:focus': {
               boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider},0 0 0 4px ${alpha(
-                theme.palette[color].main,
+                theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               )}`,
             },
@@ -362,7 +362,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             <Box
               className={classes.action}
               sx={sxx(
-                (theme) => ({ marginBottom: '5px', color: theme.palette[color].main }),
+                (theme) => ({ marginBottom: '5px', color: theme.vars.palette[color].main }),
                 slotProps.action?.sx,
               )}
               {...slotProps.action}

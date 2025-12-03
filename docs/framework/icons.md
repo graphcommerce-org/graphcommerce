@@ -44,7 +44,7 @@ const createOverrides = (theme: Theme): Components => ({
       {
         props: {},
         style: ({ theme }) => ({
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         }),
       },
     ],

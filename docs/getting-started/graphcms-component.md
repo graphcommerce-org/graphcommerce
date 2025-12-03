@@ -198,7 +198,7 @@ export function Banner(props: BannerFragment) {
             textAlign: 'center' as const,
           },
           'heading-one': (theme) => ({
-            color: theme.palette.primary.main,
+            color: theme.vars.palette.primary.main,
           }),
         }}
       />
