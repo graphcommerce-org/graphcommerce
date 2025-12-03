@@ -50,14 +50,21 @@ const SearchOverlayCategory = forwardRef<HTMLAnchorElement, SearchOverlayCategor
         <Breadcrumbs {...slotProps?.breadcrumbs}>
           {filterNonNullableKeys(category.breadcrumbs, ['category_name']).map((breadcrumb) => (
             <Typography
-              color='text.primary'
               key={breadcrumb.category_name}
               {...slotProps?.typography}
+              sx={{
+                color: 'text.primary',
+              }}
             >
               {breadcrumb.category_name}
             </Typography>
           ))}
-          <Typography color='text.primary' {...slotProps?.typography}>
+          <Typography
+            {...slotProps?.typography}
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             {category.name}
           </Typography>
         </Breadcrumbs>

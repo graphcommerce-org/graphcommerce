@@ -36,7 +36,13 @@ function RouteNotFoundPage() {
     <>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
-        <Box textAlign='center' mt={16} mb={16}>
+        <Box
+          sx={{
+            textAlign: 'center',
+            mt: 16,
+            mb: 16,
+          }}
+        >
           <IconSvg src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
             <Trans>Whoops our bad...</Trans>
@@ -44,13 +50,22 @@ function RouteNotFoundPage() {
           <Typography variant='body1'>
             <Trans>We couldn't find the page you were looking for</Trans>
           </Typography>
-          <Box mt={4} mb={2}>
+          <Box
+            sx={{
+              mt: 4,
+              mb: 2,
+            }}
+          >
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
               <Trans>Search...</Trans>
             </SearchLink>
           </Box>
           <Trans>Or follow these links to get you back on track!</Trans>
-          <Box mb={8}>
+          <Box
+            sx={{
+              mb: 8,
+            }}
+          >
             {links.map((link, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>

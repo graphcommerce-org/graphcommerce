@@ -51,8 +51,30 @@ export const defaultRenderers: Renderers = {
   table_row: (props) => <Box component='tr' {...props} />,
   table_cell: (props) => <Box component='td' {...props} />,
   code: (props) => <Box component='code' {...props} />,
-  bold: (props) => <Box component='strong' fontWeight='bold' {...props} />,
-  italic: (props) => <Box component='em' fontStyle='italic' {...props} />,
+  bold: (props) => (
+    <Box
+      component='strong'
+      {...props}
+      sx={[
+        {
+          fontWeight: 'bold',
+        },
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  ),
+  italic: (props) => (
+    <Box
+      component='em'
+      {...props}
+      sx={[
+        {
+          fontStyle: 'italic',
+        },
+        ...(Array.isArray(props.sx) ? props.sx : [props.sx]),
+      ]}
+    />
+  ),
   underlined: (props) => <Box component='span' {...props} />,
   class: (props) => <Box component='div' {...props} />,
   'code-block': (props) => (

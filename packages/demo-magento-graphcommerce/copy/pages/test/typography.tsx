@@ -37,23 +37,41 @@ function TypographyOverview() {
       </LayoutHeader>
       <LayoutTitle>Typography</LayoutTitle>
       <Container>
-        <Typography variant='h1' display='block' gutterBottom>
+        <Typography
+          variant='h1'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 1 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h2' display='block' gutterBottom>
+        <Typography
+          variant='h2'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 2 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h3' display='block' gutterBottom>
+        <Typography
+          variant='h3'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 3 {useRenderedSize()}
         </Typography>
 
         <Typography
           variant='h4'
-          display='block'
           gutterBottom
           sx={{
+            display: 'block',
             marginBottom: '16px',
           }}
         >
@@ -61,19 +79,31 @@ function TypographyOverview() {
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h5' display='block' gutterBottom>
+        <Typography
+          variant='h5'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 5 — Morbi posuere nunc diam {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h6' display='block' gutterBottom>
+        <Typography
+          variant='h6'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 6 — Ut luctus mi ante {useRenderedSize()}
         </Typography>
 
         <Typography
           variant='subtitle1'
-          display='block'
           gutterBottom
           sx={{
+            display: 'block',
             marginBottom: '16px',
           }}
         >
@@ -82,9 +112,9 @@ function TypographyOverview() {
 
         <Typography
           variant='body1'
-          display='block'
           gutterBottom
           sx={{
+            display: 'block',
             marginBottom: '16px',
           }}
         >
@@ -97,15 +127,21 @@ function TypographyOverview() {
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='subtitle2' display='block' gutterBottom>
+        <Typography
+          variant='subtitle2'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Subtitle 2 — Nunc eu hendrerit leo {useRenderedSize()}
         </Typography>
 
         <Typography
           variant='body2'
-          display='block'
           gutterBottom
           sx={{
+            display: 'block',
             marginBottom: '16px',
           }}
         >
@@ -120,15 +156,33 @@ function TypographyOverview() {
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='button' display='block' gutterBottom>
+        <Typography
+          variant='button'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Button: Sed laoreet {useRenderedSize()}
         </Typography>
 
-        <Typography variant='caption' display='block' gutterBottom>
+        <Typography
+          variant='caption'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Caption: vitae enim quis cursus. {useRenderedSize()}
         </Typography>
 
-        <Typography variant='overline' display='block' gutterBottom>
+        <Typography
+          variant='overline'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Overline: Nunc scelerisque at massa nec imperdiet {useRenderedSize()}
         </Typography>
       </Container>

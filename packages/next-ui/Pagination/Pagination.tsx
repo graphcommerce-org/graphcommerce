@@ -81,13 +81,15 @@ export function Pagination(props: PagePaginationProps) {
       ]}
     >
       {page === 1 ? chevronLeft : renderLink(page - 1, chevronLeft, prevBtnProps)}
-
-      <Box typography='body1'>
+      <Box
+        sx={{
+          typography: 'body1',
+        }}
+      >
         <Trans>
           Page {page} of {max}
         </Trans>
       </Box>
-
       {page === count ? chevronRight : renderLink(page + 1, chevronRight, nextBtnProps)}
     </Box>
   )

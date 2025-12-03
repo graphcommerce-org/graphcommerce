@@ -31,7 +31,13 @@ export function CategoryBreadcrumb(props: CategoryPageBreadcrumbsProps) {
             {breadcrumb.category_name}
           </Link>
         ))}
-      <Typography color='text.primary'>{name}</Typography>
+      <Typography
+        sx={{
+          color: 'text.primary',
+        }}
+      >
+        {name}
+      </Typography>
     </Breadcrumbs>
   )
 }

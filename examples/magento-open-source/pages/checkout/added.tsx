@@ -37,7 +37,6 @@ function CheckoutAdded() {
   return (
     <>
       <PageMeta title={t`Cart`} metaRobots={['noindex']} />
-
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -88,7 +87,11 @@ function CheckoutAdded() {
           />
         )}
 
-        <Box gridArea='children'>
+        <Box
+          sx={{
+            gridArea: 'children',
+          }}
+        >
           <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
             <Trans>
               <strong>{name}</strong> has been added to your shopping cart!
@@ -100,7 +103,11 @@ function CheckoutAdded() {
             </Box>
           )}
         </Box>
-        <Box gridArea='action'>
+        <Box
+          sx={{
+            gridArea: 'action',
+          }}
+        >
           <Button
             href='/cart'
             id='view-shopping-cart-button'
@@ -115,7 +122,6 @@ function CheckoutAdded() {
         </Box>
         <LayoutHeaderClose />
       </Container>
-
       {crossSellItems.length > 0 && (
         <>
           <Container maxWidth={false}>

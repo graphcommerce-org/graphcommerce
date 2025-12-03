@@ -20,7 +20,16 @@ export function AlgoliaPagination({
       count={nbPages ?? 0}
       page={currentRefinement + 1}
       renderLink={(page, icon, btnProps) => (
-        <Box {...btnProps} color='inherit' onClick={() => handlePagination(page)}>
+        <Box
+          {...btnProps}
+          onClick={() => handlePagination(page)}
+          sx={[
+            {
+              color: 'inherit',
+            },
+            ...(Array.isArray(btnProps.sx) ? btnProps.sx : [btnProps.sx]),
+          ]}
+        >
           {icon}
         </Box>
       )}

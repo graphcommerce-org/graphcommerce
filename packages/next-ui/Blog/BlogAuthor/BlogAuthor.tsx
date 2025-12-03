@@ -14,13 +14,17 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
-      maxWidth='md'
-      sx={(theme) => ({
-        display: 'flex',
-        justifyContent: 'left',
-        margin: '0 auto',
-        marginBottom: theme.spacings.md,
-      })}
+      sx={[
+        {
+          maxWidth: 'md',
+        },
+        (theme) => ({
+          display: 'flex',
+          justifyContent: 'left',
+          margin: '0 auto',
+          marginBottom: theme.spacings.md,
+        }),
+      ]}
     >
       <Chip
         sx={{

@@ -59,7 +59,11 @@ function CheckoutCustomerAddressesEdit() {
 
         <SectionContainer labelLeft={<Trans>Edit address</Trans>}>
           {!address && !loading && (
-            <Box marginTop={3}>
+            <Box
+              sx={{
+                marginTop: 3,
+              }}
+            >
               <IconHeader src={iconAddresses} size='small'>
                 <Trans>Address not found</Trans>
               </IconHeader>

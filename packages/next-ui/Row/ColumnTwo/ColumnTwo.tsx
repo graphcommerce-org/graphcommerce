@@ -36,10 +36,20 @@ export function ColumnTwo(props: ColumnTwoProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >
-      <Box className={classes.colOne} gridArea='one'>
+      <Box
+        className={classes.colOne}
+        sx={{
+          gridArea: 'one',
+        }}
+      >
         {colOneContent}
       </Box>
-      <Box className={classes.colTwo} gridArea='two'>
+      <Box
+        className={classes.colTwo}
+        sx={{
+          gridArea: 'two',
+        }}
+      >
         {colTwoContent}
       </Box>
     </Row>

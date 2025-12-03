@@ -60,7 +60,15 @@ export function FullPageMessage(props: FullPageMessageProps) {
           <Typography variant='h3' gutterBottom>
             {title}
           </Typography>
-          {children && <Box typography='body1'>{children}</Box>}
+          {children && (
+            <Box
+              sx={{
+                typography: 'body1',
+              }}
+            >
+              {children}
+            </Box>
+          )}
         </Box>
 
         <Box className={classes.button} sx={(theme) => ({ marginTop: theme.spacings.sm })}>

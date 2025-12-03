@@ -42,7 +42,13 @@ export function ProductPageBreadcrumb(props: ProductPageBreadcrumbProps) {
           {category?.name}
         </Link>
       )}
-      <Typography color='text.primary'>{name}</Typography>
+      <Typography
+        sx={{
+          color: 'text.primary',
+        }}
+      >
+        {name}
+      </Typography>
     </Breadcrumbs>
   )
 }

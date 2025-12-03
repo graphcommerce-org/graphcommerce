@@ -40,13 +40,16 @@ function ModalPage(props: Props) {
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
       />
-      <Box pt={4}>
+      <Box
+        sx={{
+          pt: 4,
+        }}
+      >
         <LayoutTitle>{page.title}</LayoutTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}
         </Typography>
       </Box>
-
       <RowRenderer content={page.content} />
     </>
   )

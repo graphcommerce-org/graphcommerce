@@ -37,7 +37,6 @@ export function ConfirmCustomerForm() {
       <LayoutTitle icon={iconPerson}>
         <Trans>Account confirmation</Trans>
       </LayoutTitle>
-
       {!key && (
         <Alert severity='error' sx={(theme) => ({ my: theme.spacings.xxs })}>
           <Trans>You can only confirm you account by clicking on the link in your email.</Trans>
@@ -45,7 +44,12 @@ export function ConfirmCustomerForm() {
       )}
       {key && (
         <>
-          <Typography variant='h6' textAlign='center'>
+          <Typography
+            variant='h6'
+            sx={{
+              textAlign: 'center',
+            }}
+          >
             <Trans>Fill in your email to confirm registration</Trans>
           </Typography>
           <FormRow>
