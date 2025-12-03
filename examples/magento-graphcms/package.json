@@ -102,6 +102,7 @@
     "@graphql-mesh/utils": "0.104.17",
     "@lingui/conf": "5.6.1",
     "@lingui/core": "5.6.1",
+    "@lingui/format-po": "5.6.1",
     "@lingui/loader": "5.6.1",
     "@lingui/macro": "5.6.1",
     "@lingui/react": "5.6.1",

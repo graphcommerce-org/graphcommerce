@@ -28,6 +28,7 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "@lingui/conf": "^5",
     "@lingui/core": "^5",
+    "@lingui/format-po": "^5",
     "@lingui/macro": "^5",
     "@lingui/react": "^5",
     "next": "*",

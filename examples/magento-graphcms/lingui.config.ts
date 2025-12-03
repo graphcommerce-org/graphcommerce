@@ -1,7 +1,5 @@
-import { formatter } from '@lingui/format-po'
+import linguiNextConfig from '@graphcommerce/lingui-next/config'
 import { loadConfig } from '@graphcommerce/next-config'
-import { findParentPath } from '@graphcommerce/next-config/findParentPath'
-import type { LinguiConfig } from '@lingui/conf'
 import dotenv from 'dotenv'
 
 dotenv.config({ quiet: true })
@@ -13,23 +11,4 @@ const locales = loadConfig(process.cwd()).storefront.map(({ locale, linguiLocale
   return locale
 })
 
-const config: LinguiConfig = {
-  orderBy: 'messageId',
-  locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
-  format: formatter({ lineNumbers: false, origins: false }),
-  catalogs: [
-    {
-      path: 'locales/{locale}',
-      include: [
-        '<rootDir>/**/*.tsx',
-        '<rootDir>/**/!(*.d).ts',
-        '<rootDir>/../../packages/**/*.tsx',
-        '<rootDir>/../../packages/**/!(*.d).ts',
-      ],
-      exclude: ['**/node_modules/!(@graphcommerce)/**'],
-    },
-  ],
-  sourceLocale: 'en',
-}
-
-export default config
+export default linguiNextConfig({ locales })

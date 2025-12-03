@@ -13,7 +13,7 @@ export default function linguiNextConfig(config: LinguiConfig): LinguiConfig {
   const { locales, ...otherConfig } = config
   return {
     orderBy: 'messageId',
-    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : config.locales,
+    locales: findParentPath(process.cwd()) ? ['en', 'nl', 'fr', 'de', 'es', 'it'] : locales,
     format: formatter({ lineNumbers: false, origins: false }),
     catalogs: [
       {
