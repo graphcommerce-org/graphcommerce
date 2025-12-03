@@ -4,7 +4,7 @@ import type { ChipMenuProps } from '@graphcommerce/next-ui'
 import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { ListItem, ListItemText } from '@mui/material'
+import { ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -59,9 +59,8 @@ export function ProductListSort(props: ProductListSortProps) {
         delete linkParams.currentPage
 
         return (
-          <ListItem
+          <ListItemButton
             className={classes.item}
-            button
             key={option?.value ?? ''}
             dense
             selected={option?.value === currentSort}
@@ -81,7 +80,7 @@ export function ProductListSort(props: ProductListSortProps) {
             )}
           >
             <ListItemText>{option?.label}</ListItemText>
-          </ListItem>
+          </ListItemButton>
         )
       })}
     </ChipMenu>
