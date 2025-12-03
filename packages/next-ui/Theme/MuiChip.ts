@@ -2,7 +2,7 @@ import type { ComponentsVariants, Theme } from '@mui/material'
 import { darken } from '@mui/material'
 import { responsiveVal } from '../Styles'
 
-declare module '@mui/material/Chip/Chip' {
+declare module '@mui/material/Chip' {
   interface ChipPropsSizeOverrides {
     responsive: true
   }

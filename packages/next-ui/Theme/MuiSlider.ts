@@ -1,6 +1,6 @@
 import type { ComponentsVariants, Theme } from '@mui/material'
 
-declare module '@mui/material/Slider/Slider' {
+declare module '@mui/material/Slider' {
   interface SliderPropsSizeOverrides {
     large: true
   }

@@ -2,7 +2,7 @@ import type { ComponentsVariants, Theme } from '@mui/material'
 import { alpha, darken, lighten } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
-declare module '@mui/material/Button/Button' {
+declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     pill: true
     inline: true

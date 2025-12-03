@@ -87,7 +87,7 @@ const parts = [
 const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>(name, parts)
 
 /** Expose the component to be exendable in your theme.components */
-declare module '@mui/material/styles/components' {
+declare module '@mui/material/styles' {
   interface Components {
     LayoutOverlayBase?: Pick<ExtendableComponent<OverridableProps & StyleProps>, 'defaultProps'>
   }
