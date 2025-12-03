@@ -4,8 +4,8 @@ import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-9fvcwlsD.js';
-export { r as replaceConfigInString } from './loadConfig-9fvcwlsD.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-nJiCKeL1.js';
+export { r as replaceConfigInString } from './loadConfig-nJiCKeL1.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
 import fs$1 from 'node:fs';
 import path$1 from 'node:path';
@@ -22,7 +22,6 @@ import { generate } from '@graphql-codegen/cli';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
 import 'cosmiconfig';
-import 'jiti';
 import '@apollo/client/utilities/index.js';
 import 'chalk';
 
@@ -1589,6 +1588,11 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
+    serverExternalPackages: [
+      "@whatwg-node/server",
+      "@whatwg-node/fetch",
+      ...nextConfig.serverExternalPackages ?? []
+    ],
     turbopack: {
       ...nextConfig.turbopack ?? {},
       rules: {

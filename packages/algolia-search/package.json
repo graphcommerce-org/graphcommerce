@@ -31,7 +31,7 @@
     "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-instantsearch-hooks-web": "^6.47.3"
   },
   "exports": {

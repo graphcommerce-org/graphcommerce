@@ -41,7 +41,7 @@
     "framer-motion": "^11.0.0",
     "graphql": "^16.0.0",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-dom": "^18.2.0"
   }
 }

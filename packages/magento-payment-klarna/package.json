@@ -30,7 +30,7 @@
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-dom": "^18.2.0"
   }
 }

@@ -1,10 +1,9 @@
 import { cosmiconfigSync } from 'cosmiconfig';
-import { createJiti } from 'jiti';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/index.js';
 import chalk from 'chalk';
 import lodash from 'lodash';
-import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
+import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodLazy, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
 
 const demoConfig = {
   canonicalBaseUrl: "https://graphcommerce.vercel.app",
@@ -104,10 +103,29 @@ function configToEnvSchema(schema) {
   const envToDot = {};
   function walk(incomming, path = []) {
     let node = incomming;
-    if (node instanceof ZodEffects) node = node.innerType();
-    if (node instanceof ZodOptional) node = node.unwrap();
-    if (node instanceof ZodNullable) node = node.unwrap();
-    if (node instanceof ZodDefault) node = node.removeDefault();
+    while (true) {
+      if (node instanceof ZodEffects) {
+        node = node.innerType();
+        continue;
+      }
+      if (node instanceof ZodOptional) {
+        node = node.unwrap();
+        continue;
+      }
+      if (node instanceof ZodNullable) {
+        node = node.unwrap();
+        continue;
+      }
+      if (node instanceof ZodDefault) {
+        node = node.removeDefault();
+        continue;
+      }
+      if (node instanceof ZodLazy) {
+        node = node.schema;
+        continue;
+      }
+      break;
+    }
     if (node instanceof ZodObject) {
       if (path.length > 0) {
         envSchema[toEnvStr(path)] = z.string().optional().refine(isJSON, { message: "Invalid JSON" }).transform((val) => val ? JSON.parse(val) : val);
@@ -258,18 +276,7 @@ function replaceConfigInString(str, config) {
 }
 
 const moduleName = "graphcommerce";
-const jiti = createJiti(import.meta.url);
-const tsLoader = (filepath) => {
-  const result = jiti(filepath);
-  return result.default ?? result;
-};
-const loader = cosmiconfigSync(moduleName, {
-  loaders: {
-    ".ts": tsLoader,
-    ".mts": tsLoader,
-    ".cts": tsLoader
-  }
-});
+const loader = cosmiconfigSync(moduleName);
 function loadConfig(cwd) {
   const isMainProcess = !process.send;
   try {

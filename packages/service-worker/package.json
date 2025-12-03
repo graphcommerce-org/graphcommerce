@@ -17,8 +17,7 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "@serwist/next": "*",
     "next": "*",
-    "serwist": "*",
-    "webpack": "^5.0.0"
+    "serwist": "*"
   },
   "exports": {
     ".": "./index.ts"

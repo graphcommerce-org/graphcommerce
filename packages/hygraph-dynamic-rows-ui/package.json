@@ -19,7 +19,7 @@
     "node": ">=20 <25.0.0"
   },
   "dependencies": {
-    "@apollo/client": "~3.12.11",
+    "@apollo/client": "^3.14.0",
     "@graphcommerce/next-config": "9.1.0-canary.55",
     "@hygraph/app-sdk-react": "^0.0.6",
     "@lingui/conf": "5.6.1",
@@ -31,11 +31,11 @@
     "@mui/material": "5.18.0",
     "cross-env": "^7.0.3",
     "dotenv": "16.6.1",
-    "graphql": "^16.11.0",
+    "graphql": "^16.12.0",
     "next": "16.0.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "webpack": "^5.101.3"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "webpack": "^5.103.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "9.1.0-canary.55",
@@ -45,8 +45,8 @@
     "@types/react-dom": "^18",
     "@types/react-is": "^18",
     "eslint": "^8.57.1",
-    "prettier": "^3.6.2",
-    "typescript": "5.9.2"
+    "prettier": "^3.7.4",
+    "typescript": "5.9.3"
   },
   "exports": {
     ".": "./index.ts"

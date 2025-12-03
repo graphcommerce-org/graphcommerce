@@ -15,7 +15,7 @@
     "schema-dts": "^1.1.5"
   },
   "devDependencies": {
-    "typescript": "5.9.2"
+    "typescript": "5.9.3"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^9.1.0-canary.55",
@@ -35,7 +35,7 @@
     "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-dom": "^18.2.0"
   },
   "exports": {

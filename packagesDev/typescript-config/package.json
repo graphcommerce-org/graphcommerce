@@ -10,9 +10,6 @@
     "./nextjs.json": "./nextjs.json"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4"
-  },
-  "dependencies": {
     "@tsconfig/node20": "^20.1.6"
   }
 }

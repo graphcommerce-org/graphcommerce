@@ -51,6 +51,11 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
+    serverExternalPackages: [
+      '@whatwg-node/server',
+      '@whatwg-node/fetch',
+      ...(nextConfig.serverExternalPackages ?? []),
+    ],
     turbopack: {
       ...(nextConfig.turbopack ?? {}),
       rules: {

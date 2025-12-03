@@ -33,7 +33,7 @@
     "@mui/material": "^5.10.16",
     "graphql": "^16.9.0",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-dom": "^18.2.0"
   },
   "dependencies": {

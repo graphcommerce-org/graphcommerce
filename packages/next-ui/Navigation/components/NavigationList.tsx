@@ -40,7 +40,7 @@ export const NavigationList = React.memo<NavigationItemsProps>((props) => {
         <NavigationItem
           NavigationList={NavigationList}
           {...item}
-          key={item.id}
+          key={item.id ?? idx}
           parentPath={parentPath}
           idx={idx}
           first={idx === 0}

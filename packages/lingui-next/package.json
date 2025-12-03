@@ -31,7 +31,7 @@
     "@lingui/macro": "^5",
     "@lingui/react": "^5",
     "next": "*",
-    "react": "^18.2.0",
+    "react": "^19.2.0",
     "react-dom": "^18.2.0"
   }
 }
