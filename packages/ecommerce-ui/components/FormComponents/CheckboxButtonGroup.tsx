@@ -95,7 +95,15 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
             <FormControlLabel
               control={
                 <Checkbox
-                  sx={{ color: invalid ? theme.palette.error.main : undefined }}
+                  sx={[
+                    invalid
+                      ? {
+                          color: theme.palette.error.main,
+                        }
+                      : {
+                          color: null,
+                        },
+                  ]}
                   color={checkboxColor || 'primary'}
                   value={optionKey}
                   checked={isChecked}

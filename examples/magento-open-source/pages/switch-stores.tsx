@@ -75,7 +75,6 @@ function StoresIndexPage({ availableStores }: Props) {
           showCurrencies={1}
         />
         <StoreSwitcherCurrencySelector header={<SectionHeader labelLeft='Currency' />} />
-
         <FormActions>
           <StoreSwitcherApplyButton color='secondary' variant='pill' size='large'>
             <Trans>Save</Trans>
@@ -85,24 +84,19 @@ function StoresIndexPage({ availableStores }: Props) {
     </StoreSwitcherFormProvider>
   )
 }
-
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'right', sizeMd: 'floating', justifyMd: 'start' },
 }
-
 StoresIndexPage.pageOptions = pageOptions
-
 export default StoresIndexPage
-
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({ query: LayoutDocument })
   const stores = staticClient.query({ query: StoreSwitcherListDocument })
-
   return {
     props: {
       ...(await stores).data,

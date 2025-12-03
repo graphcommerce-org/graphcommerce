@@ -79,7 +79,6 @@ export function OrderTotals(props: OrderTotalsProps) {
       {additionalSubtotals}
 
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
-
       <Box
         className={classes.totalsRow}
         sx={(theme) => ({

@@ -54,7 +54,17 @@ export function SearchField(props: SearchFieldProps) {
         size='large'
         {...fab}
         sx={[
-          { display: { xs: visible ? 'none' : 'inline-flex' } },
+          visible
+            ? {
+                display: {
+                  xs: 'none',
+                },
+              }
+            : {
+                display: {
+                  xs: 'inline-flex',
+                },
+              },
           ...(Array.isArray(fab?.sx) ? fab.sx : [fab?.sx]),
         ]}
       >

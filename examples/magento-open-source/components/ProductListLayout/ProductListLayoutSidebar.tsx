@@ -64,7 +64,6 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           />
         </Container>
       )}
-
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -80,10 +79,13 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
-              /${configuration.sidebarWidth}   auto
+              /${'var(--configuration-sidebarWidth)'}   auto
             `,
           },
         })}
+        style={{
+          '--configuration-sidebarWidth': configuration.sidebarWidth,
+        }}
       >
         <Box
           className='title'
@@ -177,10 +179,18 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
         <MediaQuery
           query={(theme) => theme.breakpoints.up('md')}
           display='block'
-          sx={(theme) => ({
-            gridArea: 'sidebar',
-            mt: breadcrumbs === true ? 0 : theme.spacings.lg,
-          })}
+          sx={[
+            (theme) => ({
+              gridArea: 'sidebar',
+            }),
+            breadcrumbs === true
+              ? {
+                  mt: 0,
+                }
+              : {
+                  mt: theme.spacings.lg,
+                },
+          ]}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />
           <>

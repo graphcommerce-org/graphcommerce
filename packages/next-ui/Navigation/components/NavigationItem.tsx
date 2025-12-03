@@ -94,12 +94,18 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
               gridRowStart: row,
               gridColumnStart: column,
               gap: theme.spacings.xxs,
-              display: hideItem ? 'none' : 'flex',
               '&.Mui-disabled': {
                 opacity: 1,
                 background: alpha(theme.palette.action.hover, 0.025),
               },
             }),
+            hideItem
+              ? {
+                  display: 'none',
+                }
+              : {
+                  display: 'flex',
+                },
             mouseEvent === 'hover'
               ? {
                   '&.Mui-disabled': {
@@ -141,7 +147,6 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
           </Box>
           <IconSvg src={iconChevronRight} sx={{ flexShrink: 0 }} />
         </ListItemButton>
-
         {!skipChildren && (
           <NavigationList
             items={childItems}
@@ -197,10 +202,8 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
       </NavigationLI>
     )
   }
-
   return null
 })
-
 if (process.env.NODE_ENV !== 'production') {
   NavigationItem.displayName = 'NavigationItem'
 }

@@ -155,7 +155,6 @@ export function ProductVideo(props: ProductVideoProps) {
             sx={sxx(baseSx, sx, videoProps?.sx)}
           />
         ))}
-
       {!play && (
         <PlayCircle
           onClick={(e) => {

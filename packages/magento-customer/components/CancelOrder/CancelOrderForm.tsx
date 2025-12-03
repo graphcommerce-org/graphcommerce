@@ -52,7 +52,6 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
         <Trans>Order has successfully been canceled</Trans>
       </Alert>
     )
-
   return (
     <Accordion
       sx={[
@@ -103,7 +102,6 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
               }))}
             />
           </FormRow>
-
           <CheckboxElement
             required
             control={control}
@@ -113,19 +111,15 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
               <Trans>I understand that my order will be canceled and this can not be undone.</Trans>
             }
           />
-
           {submittedWithoutErrors && (
             <Alert>
               <Trans>Order has successfully been canceled</Trans>
             </Alert>
           )}
-
           {cancelOrderData?.cancelOrder?.error && (
             <Alert severity='error'>{cancelOrderData?.cancelOrder?.error}</Alert>
           )}
-
           <ApolloErrorSnackbar error={error} />
-
           <FormRow
             sx={(theme) => ({
               justifyContent: 'center',

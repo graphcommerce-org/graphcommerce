@@ -56,7 +56,6 @@ export function ChipMenu(props: ChipMenuProps) {
         {...chipProps}
         label={selectedLabel ?? label}
       />
-
       <Menu
         anchorEl={openEl}
         open={!!openEl}
@@ -86,9 +85,9 @@ export function ChipMenu(props: ChipMenuProps) {
                 margin: '0 auto',
               },
             },
-          }),
-          // eslint-disable-next-line no-nested-ternary
+          }), // eslint-disable-next-line no-nested-ternary
           ...(menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : []),
+          menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : [],
         ]}
       >
         <SectionHeader labelLeft={label ?? ''} labelRight={labelRight ?? ''} usePadding />

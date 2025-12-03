@@ -90,9 +90,15 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
           <FormControlLabel
             control={
               <Radio
-                sx={{
-                  color: invalid ? theme.palette.error.main : undefined,
-                }}
+                sx={[
+                  invalid
+                    ? {
+                        color: theme.palette.error.main,
+                      }
+                    : {
+                        color: null,
+                      },
+                ]}
                 checked={!value}
               />
             }
@@ -107,9 +113,15 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
               control={
                 <Radio
                   disabled={disabled}
-                  sx={{
-                    color: invalid ? theme.palette.error.main : undefined,
-                  }}
+                  sx={[
+                    invalid
+                      ? {
+                          color: theme.palette.error.main,
+                        }
+                      : {
+                          color: null,
+                        },
+                  ]}
                   checked={value === optionKey}
                 />
               }

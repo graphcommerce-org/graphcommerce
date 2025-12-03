@@ -43,21 +43,18 @@ export function CustomerTokensPage() {
           <Trans>Payment information</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <Container maxWidth='md'>
         <PageMeta title={t`Payment information`} metaRobots={['noindex']} />
 
         <LayoutTitle icon={iconCreditCard} sx={(theme) => ({ mb: theme.spacings.xs })}>
           <Trans>Stored payment methods</Trans>
         </LayoutTitle>
-
         <WaitForCustomer waitFor={!loading}>
           {!paymentTokens?.length && (
             <Alert severity='info'>
               <Trans>No stored payment methods found.</Trans>
             </Alert>
           )}
-
           <Box sx={sxx((theme) => ({ display: 'grid', rowGap: theme.spacings.xs }))}>
             {paymentTokens?.map((token) => (
               <Box
@@ -65,10 +62,7 @@ export function CustomerTokensPage() {
                 sx={(theme) => ({
                   px: theme.spacings.xxs,
                   py: theme.spacings.xxs,
-                  background:
-                    theme.palette.mode === 'light'
-                      ? theme.palette.background.default
-                      : lighten(theme.palette.background.default, 0.15),
+                  background: lighten(theme.palette.background.default, 0.15),
                   ...breakpointVal(
                     'borderRadius',
                     theme.shape.borderRadius * 2,
@@ -82,6 +76,9 @@ export function CustomerTokensPage() {
                 `,
                   rowGap: 0.5,
                   columnGap: 1,
+                  ...theme.applyStyles('light', {
+                    background: theme.palette.background.default,
+                  }),
                 })}
               >
                 <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{token.details}</Box>

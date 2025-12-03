@@ -7,15 +7,20 @@ type StyledDivProps = {
 
 const StyledDiv = styled('div', {
   name: 'SearchOverlayBodyBase',
-})<StyledDivProps>(({ theme, keyboardOpen }) => ({
+})<StyledDivProps>(({ theme }) => ({
   padding: `0 ${theme.page.horizontal} ${theme.page.vertical}`,
   '&:empty': { display: 'none' },
   '.SearchOverlay-root.scrolled &': {
     paddingTop: theme.appShell.headerHeightSm,
   },
-  ...(keyboardOpen && {
-    paddingBottom: '40vh', // It would be preferable to use env(keyboard-inset-height, 0px) here, but it is not fully supported in iOS yet.
-  }),
+  variants: [
+    {
+      props: ({ keyboardOpen }) => keyboardOpen,
+      style: {
+        paddingBottom: '40vh', // It would be preferable to use env(keyboard-inset-height, 0px) here, but it is not fully supported in iOS yet.
+      },
+    },
+  ],
 }))
 
 export function SearchOverlayBodyBase(props) {

@@ -78,10 +78,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: lighten(theme.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
@@ -90,6 +87,9 @@ export function OrderDetails(props: OrderDetailsProps) {
             gridTemplateColumns: '1fr 1fr',
             marginTop: theme.spacings.xxs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.palette.background.default,
+          }),
         })}
       >
         <Box className={classes.orderDetailRow}>
@@ -102,7 +102,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             <Typography>{number}</Typography>
           </SectionContainer>
         </Box>
-
         <Box className={classes.orderDetailRow}>
           <SectionContainer
             variantLeft='h5'
@@ -113,7 +112,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             <DateTimeFormat date={order_date} />
           </SectionContainer>
         </Box>
-
         {shipping_method && (
           <Box className={classes.orderDetailRow}>
             <SectionContainer
@@ -123,7 +121,6 @@ export function OrderDetails(props: OrderDetailsProps) {
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
             >
               <Typography>{shipping_method ?? ''}</Typography>
-
               {shipments && shipments.length > 0 && (
                 <>
                   {shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}
@@ -174,7 +171,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             </SectionContainer>
           </Box>
         )}
-
         <Box className={classes.orderDetailRow}>
           <SectionContainer
             variantLeft='h5'

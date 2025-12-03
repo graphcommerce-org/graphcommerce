@@ -160,7 +160,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             })
           })}
         </ActionCardLayout>
-
         {childActionCards.length > showMoreAfter && (
           <Button
             sx={{ width: 'fit-content' }}
@@ -170,15 +169,22 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
           >
             {!show ? <Trans>More options</Trans> : <Trans>Less options</Trans>}{' '}
             <IconSvg
-              sx={{
-                transform: show ? 'rotate(180deg)' : 'rotate(0deg)',
-                transition: 'transform 0.3s ease-in-out',
-              }}
+              sx={[
+                {
+                  transition: 'transform 0.3s ease-in-out',
+                },
+                show
+                  ? {
+                      transform: 'rotate(180deg)',
+                    }
+                  : {
+                      transform: 'rotate(0deg)',
+                    },
+              ]}
               src={iconChevronDown}
             />
           </Button>
         )}
-
         {error && errorMessage && (
           <Alert
             severity='error'

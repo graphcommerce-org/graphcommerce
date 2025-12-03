@@ -148,38 +148,37 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         disableGutters
         className={classes.row}
         breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
-        sx={[
-          { bgcolor: theme.palette.mode === 'light' ? 'background.image' : 'background.paper' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={(theme) => ({
+          bgcolor: 'background.paper',
+          ...theme.applyStyles('light', {
+            bgcolor: 'background.image',
+          }),
+        })}
       >
         <MotionBox
           layout
           layoutDependency={zoomed}
           className={classes.root}
-          sx={[
-            {
-              willChange: 'transform',
-              display: 'grid',
-              gridTemplate: '"left" "right"',
-              [theme.breakpoints.up('md')]: {
-                '&:not(.variantMdOneColumn)': {
-                  gridTemplate: `"left right" / 1fr ${sidebarSize}`,
-                },
-              },
-
-              '&.zoomed': {
-                position: 'relative',
-                zIndex: theme.zIndex.modal,
-                marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-                [theme.breakpoints.up('md')]: {
-                  marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-                  gridTemplateColumns: '1fr auto',
-                },
-                px: 0,
+          sx={(theme) => ({
+            willChange: 'transform',
+            display: 'grid',
+            gridTemplate: '"left" "right"',
+            [theme.breakpoints.up('md')]: {
+              '&:not(.variantMdOneColumn)': {
+                gridTemplate: `"left right" / 1fr ${sidebarSize}`,
               },
             },
-          ]}
+            '&.zoomed': {
+              position: 'relative',
+              zIndex: theme.zIndex.modal,
+              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+              [theme.breakpoints.up('md')]: {
+                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                gridTemplateColumns: '1fr auto',
+              },
+              px: 0,
+            },
+          })}
         >
           <TrapFocus open={zoomed}>
             <MotionBox
@@ -233,8 +232,14 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     height: '100%',
                     gridAutoColumns: '100%',
                     gridTemplateRows: '100%',
-                    cursor: disableZoom ? 'auto' : 'zoom-in',
                   },
+                  disableZoom
+                    ? {
+                        cursor: 'auto',
+                      }
+                    : {
+                        cursor: 'zoom-in',
+                      },
                   zoomed && {
                     height: 'var(--client-size-y)',
                     cursor: 'inherit',
@@ -387,7 +392,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               layout='position'
               layoutDependency={zoomed}
               className={classes.sidebar}
-              sx={{
+              sx={(theme) => ({
                 boxSizing: 'border-box',
                 width: '100%',
                 '&:not(.variantMdOneColumn)': {
@@ -396,7 +401,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     paddingLeft: theme.spacings.lg,
                   },
                 },
-              }}
+              })}
             >
               {sidebar}
             </MotionBox>

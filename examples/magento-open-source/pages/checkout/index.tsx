@@ -115,11 +115,9 @@ function ShippingPage() {
                     <ShippingAddressForm step={3} />
                   </>
                 )}
-
                 {!shippingPage.data?.cart?.is_virtual && (
                   <ShippingMethodForm step={4} sx={(theme) => ({ mt: theme.spacings.lg })} />
                 )}
-
                 <ComposedSubmit
                   onSubmitSuccessful={() => router.push('/checkout/payment')}
                   render={(renderProps) => (

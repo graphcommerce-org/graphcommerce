@@ -23,7 +23,6 @@ export function PriceModifierListChildItem(props: PriceModifierListChildItemProp
       <Box className={classes.label} sx={{ color }}>
         {label}
       </Box>
-
       {(quantity > 1 || secondary) && (
         <Box className={classes.quantity} sx={{ color: 'text.secondary', whiteSpace: 'nowrap' }}>
           {quantity > 1 && (
@@ -34,7 +33,6 @@ export function PriceModifierListChildItem(props: PriceModifierListChildItemProp
           {secondary}
         </Box>
       )}
-
       {amount !== 0 && amount && (
         <Box
           className={classes.amount}

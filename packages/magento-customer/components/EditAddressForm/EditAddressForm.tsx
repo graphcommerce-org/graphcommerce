@@ -96,7 +96,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
             showValid
           />
         </FormRow>
-
         <FormActions sx={{ paddingBottom: 0 }}>
           <Button
             type='submit'
@@ -109,7 +108,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
           </Button>
         </FormActions>
       </Form>
-
       <ApolloErrorSnackbar error={error} />
     </>
   )

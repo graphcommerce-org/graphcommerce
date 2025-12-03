@@ -86,7 +86,6 @@ export function CreditMemoTotals(props: CreditMemoTotalsProps) {
       )}
 
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
-
       <Box
         className={classes.totalsRow}
         sx={(theme) => ({

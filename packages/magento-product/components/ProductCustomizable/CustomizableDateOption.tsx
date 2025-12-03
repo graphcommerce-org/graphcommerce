@@ -38,13 +38,16 @@ export function CustomizableDateOption(props: CustomizableDateOptionProps) {
       <TextFieldElement
         control={control}
         name={name}
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           '& ::-webkit-calendar-picker-indicator': {
-            filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+            filter: 'none',
             mr: '10px',
+            ...theme.applyStyles('dark', {
+              filter: 'invert(100%)',
+            }),
           },
-        }}
+        })}
         required={!!required}
         type={getInputType(dateValue.type)}
         InputProps={{

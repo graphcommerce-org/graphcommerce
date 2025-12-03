@@ -71,7 +71,6 @@ export function CartItem(props: CartItemProps) {
             gridTemplateColumns: `${rowImageSize} 4fr 1fr minmax(120px, 1fr) minmax(75px, 1fr)`,
             marginBottom: theme.spacings.md,
           },
-
           '&:not(.withOptions)': {
             display: 'grid',
             gridTemplate: `

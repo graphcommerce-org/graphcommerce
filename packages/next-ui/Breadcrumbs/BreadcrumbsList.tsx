@@ -34,7 +34,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
       ref={listRef}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
-      sx={{
+      sx={(theme) => ({
         backgroundColor: 'background.paper',
         borderRadius: 3,
         boxShadow: 12,
@@ -56,7 +56,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
             },
           },
         },
-      }}
+      })}
     >
       <Link
         href='/'
@@ -66,13 +66,13 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
         noWrap
         onClick={onClose}
         tabIndex={0}
-        sx={{
+        sx={(theme) => ({
           flex: 1,
           padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
           '&:hover': {
             backgroundColor: alpha(theme.palette.action.hover, 0.025),
           },
-        }}
+        })}
       >
         <Trans>Home</Trans>
       </Link>
@@ -86,13 +86,13 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           noWrap
           onClick={onClose}
           tabIndex={0}
-          sx={{
+          sx={(theme) => ({
             flex: 1,
             padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
             '&:hover': {
               backgroundColor: alpha(theme.palette.action.hover, 0.025),
             },
-          }}
+          })}
         >
           {breadcrumb.name}
         </Link>

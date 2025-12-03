@@ -106,8 +106,7 @@ function CompareProductToggleBase(
           color='inherit'
           sx={[
             (theme) => ({
-              backgroundColor:
-                theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
+              backgroundColor: 'transparent',
               flex: '0 0 auto',
               '& svg': {
                 stroke: strokeColorPlp,
@@ -121,6 +120,9 @@ function CompareProductToggleBase(
               '.SidebarGallery-root & svg': {
                 stroke: strokeColorPdp,
               },
+              ...theme.applyStyles('light', {
+                backgroundColor: theme.palette.background.paper,
+              }),
             }),
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
@@ -130,7 +132,6 @@ function CompareProductToggleBase(
           loading={loading}
         />
       )}
-
       {displayMessageBar && (
         <CompareMessageSnackbar
           displayMessageBar={displayMessageBar}

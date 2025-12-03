@@ -62,17 +62,25 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
       <Box
         component='span'
         className={classes.line}
-        sx={{
-          maxWidth: 40,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          height: 2,
-          background: (theme) => theme.palette.primary.main,
-          margin: '0 auto',
-          marginTop: '6px',
-          opacity: activeValue ? 1 : 0,
-        }}
+        sx={[
+          (theme) => ({
+            maxWidth: 40,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            height: 2,
+            background: theme.palette.primary.main,
+            margin: '0 auto',
+            marginTop: '6px',
+          }),
+          activeValue
+            ? {
+                opacity: 1,
+              }
+            : {
+                opacity: 0,
+              },
+        ]}
       />
     </Link>
   )

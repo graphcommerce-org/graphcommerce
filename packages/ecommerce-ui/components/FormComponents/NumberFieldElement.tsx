@@ -146,11 +146,19 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 // Round to nearest step
                 onChange(roundStep(valueAsNumber - step, step))
               }}
-              sx={{
-                boxShadow: variant === 'standard' ? 4 : 0,
-                minHeight: '30px',
-                minWidth: '30px',
-              }}
+              sx={[
+                {
+                  minHeight: '30px',
+                  minWidth: '30px',
+                },
+                variant === 'standard'
+                  ? {
+                      boxShadow: 4,
+                    }
+                  : {
+                      boxShadow: 0,
+                    },
+              ]}
               tabIndex={-1}
               color='inherit'
               {...DownProps}
@@ -168,11 +176,19 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 // Round to nearest step
                 onChange(roundStep(valueAsNumber + step, step))
               }}
-              sx={{
-                boxShadow: variant === 'standard' ? 4 : 0,
-                minHeight: '30px',
-                minWidth: '30px',
-              }}
+              sx={[
+                {
+                  minHeight: '30px',
+                  minWidth: '30px',
+                },
+                variant === 'standard'
+                  ? {
+                      boxShadow: 4,
+                    }
+                  : {
+                      boxShadow: 0,
+                    },
+              ]}
               tabIndex={-1}
               color='inherit'
               {...UpProps}

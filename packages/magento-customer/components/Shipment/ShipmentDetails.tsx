@@ -36,10 +36,7 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: lighten(theme.palette.background.default, 0.15),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -50,6 +47,9 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
             mt: 0,
             mb: theme.spacings.xs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.palette.background.default,
+          }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -79,7 +79,6 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
             <Typography>{number}</Typography>
           </SectionContainer>
         </Box>
-
         {tracking && tracking.length > 0 && (
           <Box className={classes.shipmentDetailRow}>
             <SectionContainer

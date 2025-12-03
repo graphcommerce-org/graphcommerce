@@ -32,9 +32,15 @@ function CustomizableRadioActionCard(props: RadioActionCardProps) {
           ? null
           : price && (
               <Box
-                sx={{
-                  color: selected ? 'text.primary' : 'text.secondary',
-                }}
+                sx={[
+                  selected
+                    ? {
+                        color: 'text.primary',
+                      }
+                    : {
+                        color: 'text.secondary',
+                      },
+                ]}
               >
                 {/* Change fontFamily so the + is properly outlined */}
                 <span style={{ fontFamily: 'arial' }}>{'+ '}</span>

@@ -48,7 +48,6 @@ export function ConfirmCustomerForm() {
           <Typography variant='h6' textAlign='center'>
             <Trans>Fill in your email to confirm registration</Trans>
           </Typography>
-
           <FormRow>
             <EmailElement
               variant='outlined'
@@ -59,7 +58,6 @@ export function ConfirmCustomerForm() {
               disabled={isSubmitSuccessful}
             />
           </FormRow>
-
           <FormRow sx={{ justifyItems: 'center' }}>
             <Button
               type='submit'
@@ -72,7 +70,6 @@ export function ConfirmCustomerForm() {
               <Trans>Confirm registration</Trans>
             </Button>
           </FormRow>
-
           <ApolloCustomerErrorAlert
             sx={(theme) => ({ my: theme.spacings.xxs })}
             error={error}

@@ -99,7 +99,6 @@ function CartPage() {
     </>
   )
 }
-
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'cart',
   Layout: LayoutOverlay,
@@ -113,15 +112,11 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   },
 }
 CartPage.pageOptions = pageOptions
-
 export default CartPage
-
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCartDisabled(context.locale)) return { notFound: true }
-
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),

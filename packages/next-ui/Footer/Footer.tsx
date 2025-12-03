@@ -54,7 +54,6 @@ export function Footer(props: FooterProps) {
             `,
             gap: theme.spacings.md,
             '& > *': { maxWidth: 'max-content' },
-
             [theme.breakpoints.up('md')]: {
               gap: theme.spacings.sm,
               gridTemplateAreas: `

@@ -74,7 +74,6 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
           pb: spacing,
           mx: `calc(${spacing} / 2)`,
           transition: 'background-color 0.2s ease-in-out',
-
           '&:hover:not(.selected) .TabItem-content': {
             bgcolor: alpha(color(theme), 0.5),
           },

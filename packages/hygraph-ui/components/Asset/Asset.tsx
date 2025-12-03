@@ -39,10 +39,8 @@ export const Asset = memo<AssetProps>((props) => {
       />
     )
   }
-
   if (asset.mimeType === 'video/mp4') {
     const Video = styled('video')({})
-
     return (
       <Video
         src={asset.url}
@@ -55,7 +53,6 @@ export const Asset = memo<AssetProps>((props) => {
       />
     )
   }
-
   if (process.env.NODE_ENV !== 'production') return <div>{asset.mimeType} not supported</div>
   return null
 })

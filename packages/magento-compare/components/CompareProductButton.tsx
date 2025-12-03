@@ -45,7 +45,6 @@ export function CompareProductButton(props: CompareProductButtonProps) {
           {inCompareList ? <Trans>In comparelist</Trans> : <Trans>Compare</Trans>}
         </Button>
       </Badge>
-
       {displayMessageBar && (
         <CompareMessageSnackbar
           displayMessageBar={displayMessageBar}

@@ -453,12 +453,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             '&.canGrab': {
               cursor: 'default',
             },
-            '&.mdSnapDirInline': {
-              overflow: active ? 'auto' : 'hidden',
-            },
-
             height: dvh(100),
-
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
                 overscrollBehaviorX: 'none',
@@ -477,7 +472,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 overscrollBehaviorY: 'none',
                 gridTemplate: '"beforeOverlay" "overlay"',
                 height: `calc(${dvh(100)} - 1px)`,
-
                 '&::after': {
                   content: '""',
                   display: 'block',
@@ -511,6 +505,17 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
             },
           }),
+          active
+            ? {
+                '&.mdSnapDirInline': {
+                  overflow: 'auto',
+                },
+              }
+            : {
+                '&.mdSnapDirInline': {
+                  overflow: 'hidden',
+                },
+              },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
@@ -522,7 +527,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             scrollSnapAlign: 'start',
             display: 'grid',
             alignContent: 'end',
-
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
                 width: dvw(100),
@@ -565,7 +569,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             [theme.breakpoints.up('md')]: {
               justifyContent: justifyMd,
               alignItems: justifyMd,
-
               '&.variantMdBottom, &.variantMdTop': {
                 display: 'grid',
               },
@@ -586,14 +589,12 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             ref={overlayPaneRef}
             sx={(theme) => ({
               pointerEvents: 'auto',
-
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
                 overflowY: 'auto',
                 '&:not(.sizeSmFull)': {
                   width: 'auto',
                 },
-
                 '&.variantSmBottom': {
                   maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
                   paddingTop: smSpacingTop,
@@ -611,11 +612,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: 'none',
                     borderRadius: 0,
                   },
-
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
-
                 '&.variantSmLeft, &.variantSmRight': {
                   overscrollBehaviorY: 'none',
                   width: widthSm || 'max-content',
@@ -643,7 +642,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
                   width: widthMd,
                 },
-
                 '&.variantMdBottom, &.variantMdTop': {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                   paddingTop: mdSpacingTop,
@@ -662,7 +660,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: 'none',
                     borderRadius: 0,
                   },
-
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },

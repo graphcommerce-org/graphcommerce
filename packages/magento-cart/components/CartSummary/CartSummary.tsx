@@ -71,10 +71,7 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: lighten(theme.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
@@ -83,6 +80,9 @@ export function CartSummary(props: CartSummaryProps) {
             gridTemplateColumns: '1fr 1fr',
             marginTop: theme.spacings.xxs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.palette.background.default,
+          }),
         })}
       >
         <Box>

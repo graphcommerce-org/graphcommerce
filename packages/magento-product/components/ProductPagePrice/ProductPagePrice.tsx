@@ -80,7 +80,6 @@ export function ProductPagePrice(props: ProductPagePriceProps) {
       >
         <Money {...price} value={finalPriceValue} asNumber={asNumber} />
       </PrivateQueryMask>
-
       {suffix && (
         <PrivateQueryMask
           component='span'

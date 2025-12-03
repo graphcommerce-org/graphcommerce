@@ -83,7 +83,6 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />
-
       <ActionCardListForm<
         ActionCardItemBase & ConfigurableOptionValueFragment,
         AddProductsToCartFields

@@ -77,7 +77,6 @@ export function LayoutHeaderBack(props: BackProps) {
       </LinkOrButton>
     )
   }
-
   if (up?.href && up.href !== path)
     return (
       <LinkOrButton
@@ -93,6 +92,5 @@ export function LayoutHeaderBack(props: BackProps) {
         </Box>
       </LinkOrButton>
     )
-
   return null
 }

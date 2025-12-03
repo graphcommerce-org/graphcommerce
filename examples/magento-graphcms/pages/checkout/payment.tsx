@@ -108,14 +108,11 @@ function PaymentPage() {
               >
                 <Trans>Payment method</Trans>
               </Typography>
-
               <PaymentMethodContextProvider>
                 <PaymentMethodActionCardListForm step={4} />
-
                 <CartSummary editable>
                   <CartTotals />
                 </CartSummary>
-
                 <CouponAccordion />
                 <SubscribeToNewsletter
                   step={3}
@@ -123,9 +120,7 @@ function PaymentPage() {
                   sx={(theme) => ({ marginTop: theme.spacings.md })}
                 />
                 <CartAgreementsForm step={2} sx={{ pt: 0 }} />
-
                 <PaymentMethodPlaceOrder step={5} />
-
                 <FormActions>
                   <PaymentMethodButton
                     id='place-order'
@@ -146,26 +141,20 @@ function PaymentPage() {
     </ComposedForm>
   )
 }
-
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
 }
 PaymentPage.pageOptions = pageOptions
-
 export default PaymentPage
-
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
-
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
-
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-
   return {
     props: {
       ...(await layout).data,

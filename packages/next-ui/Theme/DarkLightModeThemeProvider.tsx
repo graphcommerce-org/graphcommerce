@@ -128,7 +128,7 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
   }
 
   return (
-    <ListItemButton {...props} sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]} dense onClick={toggle}>
+    <ListItemButton {...props} sx={[...(Array.isArray(sx) ? sx : [sx])]} dense onClick={toggle}>
       <ListItemIcon sx={{ minWidth: 'unset', paddingRight: '8px' }}>
         <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='medium' />
       </ListItemIcon>

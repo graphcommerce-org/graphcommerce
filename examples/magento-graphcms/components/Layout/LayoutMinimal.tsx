@@ -14,7 +14,9 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
       {...uiProps}
       header={<Logo />}
       footer={<Footer footer={footer} />}
-      sx={{ background: (theme) => theme.palette.background.paper }}
+      sx={(theme) => ({
+        background: theme.palette.background.paper,
+      })}
     >
       {children}
     </LayoutDefault>

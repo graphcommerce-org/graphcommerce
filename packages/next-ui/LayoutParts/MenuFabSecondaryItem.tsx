@@ -34,7 +34,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       component={NextLink}
       href={href}
       className={classes.root}
-      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[...(Array.isArray(sx) ? sx : [sx])]}
       dense
       selected={router.asPath.startsWith(href)}
     >

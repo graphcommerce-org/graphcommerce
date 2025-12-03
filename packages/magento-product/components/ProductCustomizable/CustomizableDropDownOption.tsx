@@ -61,13 +61,21 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
 
             {option.price ? (
               <Box
-                sx={{
-                  // display: 'flex',
-                  typography: 'body1',
-                  '&.sizeMedium': { typographty: 'subtitle1' },
-                  '&.sizeLarge': { typography: 'h6' },
-                  color: option.uid === value ? 'text.primary' : 'text.secondary',
-                }}
+                sx={[
+                  {
+                    // display: 'flex',
+                    typography: 'body1',
+                    '&.sizeMedium': { typographty: 'subtitle1' },
+                    '&.sizeLarge': { typography: 'h6' },
+                  },
+                  option.uid === value
+                    ? {
+                        color: 'text.primary',
+                      }
+                    : {
+                        color: 'text.secondary',
+                      },
+                ]}
               >
                 <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+&nbsp;</span>
                 <Money

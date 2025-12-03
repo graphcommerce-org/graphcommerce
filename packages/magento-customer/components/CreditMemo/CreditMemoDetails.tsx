@@ -34,10 +34,7 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: lighten(theme.palette.background.default, 0.15),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -48,6 +45,9 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
             mt: 0,
             mb: theme.spacings.xs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.palette.background.default,
+          }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
@@ -77,7 +77,6 @@ export function CreditMemoDetails(props: CreditMemoDetailsProps) {
             <Typography>{number}</Typography>
           </SectionContainer>
         </Box>
-
         <Box className={classes.creditMemoDetailRow}>
           {/* <SectionContainer
             variantLeft='h5'

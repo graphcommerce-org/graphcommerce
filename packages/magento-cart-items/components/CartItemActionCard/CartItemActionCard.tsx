@@ -69,9 +69,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '& .ActionCard-end': {
             justifyContent: 'space-between',
           },
-          '& .ActionCard-action': {
-            pr: readOnly ? 0 : theme.spacings.xs,
-          },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
           },
@@ -81,10 +78,31 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             justifyItems: 'start',
           },
           '& .ActionCard-price': {
-            pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
         }),
+        readOnly
+          ? {
+              '& .ActionCard-action': {
+                pr: 0,
+              },
+            }
+          : {
+              '& .ActionCard-action': {
+                pr: theme.spacings.xs,
+              },
+            },
+        readOnly
+          ? {
+              '& .ActionCard-price': {
+                pr: 0,
+              },
+            }
+          : {
+              '& .ActionCard-price': {
+                pr: theme.spacings.xs,
+              },
+            },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       image={

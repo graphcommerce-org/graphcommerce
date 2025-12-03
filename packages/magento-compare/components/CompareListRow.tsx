@@ -21,23 +21,41 @@ export function CompareListRow(props: CompareRowProps) {
     <Box>
       <SectionContainer
         labelLeft={attribute?.label}
-        sx={(theme) => ({
-          '& .SectionHeader-root': {
-            justifyContent: 'center',
-            borderBottom: 'none',
-            pb: 0,
-            '& > .MuiTypography-root': {
-              pb: theme.spacings.xxs,
-              borderBottom: `1px solid ${theme.palette.divider}`,
-              width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
-                columnCount > 1 ? theme.spacings.md : '0px'
-              })`,
-              [theme.breakpoints.down('md')]: {
-                width: '100%',
+        sx={[
+          (theme) => ({
+            '& .SectionHeader-root': {
+              justifyContent: 'center',
+              borderBottom: 'none',
+              pb: 0,
+              '& > .MuiTypography-root': {
+                pb: theme.spacings.xxs,
+                borderBottom: `1px solid ${theme.palette.divider}`,
+                [theme.breakpoints.down('md')]: {
+                  width: '100%',
+                },
               },
             },
-          },
-        })}
+          }),
+          columnCount > 1
+            ? {
+                '& .SectionHeader-root': {
+                  '& > .MuiTypography-root': {
+                    width: {
+                      width: theme.spacings.md,
+                    },
+                  },
+                },
+              }
+            : {
+                '& .SectionHeader-root': {
+                  '& > .MuiTypography-root': {
+                    width: {
+                      width: '0px',
+                    },
+                  },
+                },
+              },
+        ]}
       >
         <Box sx={[compareListStyles, (theme) => ({ mb: theme.spacings.lg })]}>
           {compareAbleItems?.map((item, idx) => (

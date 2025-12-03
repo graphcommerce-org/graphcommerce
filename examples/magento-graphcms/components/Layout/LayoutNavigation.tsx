@@ -108,21 +108,18 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           itemPadding='md'
         />
       </NavigationProvider>
-
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />
-
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
                   {item?.name}
                 </DesktopNavItem>
               ))}
-
               <DesktopNavItem
                 onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}
                 onKeyUp={(evt) => {
@@ -135,12 +132,10 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 {menu?.items?.[0]?.name}
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
-
               <DesktopNavItem href='/blog'>
                 <Trans>Blog</Trans>
               </DesktopNavItem>
             </DesktopNavBar>
-
             <DesktopNavActions>
               <SearchField
                 formControl={{ sx: { width: '400px' } }}
@@ -155,7 +150,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
-
             <MobileTopRight>
               <SearchFab size='responsiveMedium' />
             </MobileTopRight>

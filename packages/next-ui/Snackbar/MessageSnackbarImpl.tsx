@@ -154,7 +154,6 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                 gridArea: 'children',
               },
             },
-
             '&.disableIcon .MuiSnackbarContent-message': {
               gridTemplate: {
                 xs: `"children close"

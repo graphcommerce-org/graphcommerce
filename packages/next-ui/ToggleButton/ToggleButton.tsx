@@ -65,11 +65,9 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
           border: 1,
           borderColor: 'divider',
           bgcolor: 'background.paper',
-
           '&.disabled': {
             borderWidth: 2,
           },
-
           '&.selected': {
             border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${

@@ -20,7 +20,6 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
           borderRadius: '3px',
           fontWeight: 'normal',
           background: alpha(theme.palette.secondary.main, 0.125),
-
           '&.orderStatePending': {
             color: theme.palette.text.disabled,
           },

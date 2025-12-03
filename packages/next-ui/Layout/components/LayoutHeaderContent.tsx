@@ -72,7 +72,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             width: '100%',
             backgroundColor: theme.palette.background[bgColor],
             boxShadow: theme.shadows[1],
-
             height: theme.appShell.headerHeightSm,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
@@ -80,9 +79,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             '&.sizeSmall': {
               height: theme.appShell.headerHeightSm,
             },
-            borderTopLeftRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
-            borderTopRightRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 display: 'none',
@@ -93,17 +89,29 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
                 display: 'none',
               },
             },
-
             opacity: 0,
             transition: 'opacity 150ms',
             '&.scrolled': {
               opacity: 1,
             },
-
             '&.divider': {
               boxShadow: 'unset',
             },
           }),
+          switchPoint <= 0
+            ? {
+                borderTopLeftRadius: theme.shape.borderRadius * 3,
+              }
+            : {
+                borderTopLeftRadius: 0,
+              },
+          switchPoint <= 0
+            ? {
+                borderTopRightRadius: theme.shape.borderRadius * 3,
+              }
+            : {
+                borderTopRightRadius: 0,
+              },
           ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
         ]}
       />
@@ -133,7 +141,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
                 px: 2,
               },
             },
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 background: 'none',
@@ -177,20 +184,17 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'start',
             overflow: 'hidden',
             justifySelf: 'center',
-
             transition: 'opacity 150ms',
             opacity: 0,
             '&.scrolled': {
               opacity: 1,
               '& > *': { pointerEvents: 'all' },
             },
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 display: 'none',
               },
             },
-
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
                 display: 'none',
@@ -228,7 +232,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               bottom: 0,
               left: 0,
               right: 0,
-
               '&.floatingSm': {
                 [theme.breakpoints.down('md')]: {
                   display: 'none',

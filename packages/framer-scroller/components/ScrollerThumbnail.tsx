@@ -85,11 +85,11 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       layout='position'
       style={{ boxShadow }}
       layoutDependency={layoutDependency}
-      sx={{
+      sx={(theme) => ({
         padding: '2px',
         mx: `calc(${theme.spacing(1)} / 2)`,
         borderRadius: theme.shape.borderRadius,
-      }}
+      })}
     >
       <Image
         {...image}

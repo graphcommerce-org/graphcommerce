@@ -61,16 +61,15 @@ export function DesktopNavBar(props: MenuTabsProps) {
             pointerEvents: 'none',
             '& > *': { pointerEvents: 'all' },
           }}
-          sx={{
+          sx={(theme) => ({
             pointerEvents: 'all',
             boxShadow: 'none',
             height: 48,
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
             backgroundColor: 'transparent',
-            backgroundImage: (theme) =>
-              `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
-          }}
+            backgroundImage: `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+          })}
           direction='left'
           size='small'
           tabIndex={-1}
@@ -87,16 +86,15 @@ export function DesktopNavBar(props: MenuTabsProps) {
               pointerEvents: 'all',
             },
           }}
-          sx={{
+          sx={(theme) => ({
             pointerEvents: 'all',
             boxShadow: 'none',
             height: 48,
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
             backgroundColor: 'transparent',
-            backgroundImage: (theme) =>
-              `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
-          }}
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+          })}
           direction='right'
           size='small'
           tabIndex={-1}

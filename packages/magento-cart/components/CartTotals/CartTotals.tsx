@@ -76,7 +76,6 @@ export function CartTotals(props: CartTotalsProps) {
               ? theme.palette.background.default
               : lighten(theme.palette.background.default, 0.15),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-
           '&.containerMargin': {
             marginTop: theme.spacings.md,
             px: theme.spacings.xs,

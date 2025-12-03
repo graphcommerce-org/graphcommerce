@@ -86,10 +86,11 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           sx={[
             (theme) => ({
               '& .MuiInputBase-input': { ...inputSx },
-              ...(selected && {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-              }),
             }),
+            selected &&
+              ((theme) => ({
+                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
+              })),
             ...(Array.isArray(sx) ? sx : [sx]),
           ]}
           {...rest}
@@ -105,7 +106,6 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     )
   },
 )
-
 if (process.env.NODE_ENV !== 'production') {
   SearchInput.displayName = 'SearchInput'
 }

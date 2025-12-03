@@ -74,7 +74,6 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <CompanyFields<SetBillingAddressMutationVariables> form={form} />
         <NameFields form={form} prefix />
         <AddressFields<SetBillingAddressMutationVariables> form={form} />
-
         <FormRow>
           <TelephoneElement
             variant='outlined'
@@ -85,9 +84,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
             showValid
           />
         </FormRow>
-
         <FormDivider />
-
         <FormActions sx={{ paddingBottom: 0 }}>
           <Button
             type='submit'
@@ -100,7 +97,6 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
           </Button>
         </FormActions>
       </Form>
-
       <ApolloCustomerErrorAlert error={error} />
     </>
   )

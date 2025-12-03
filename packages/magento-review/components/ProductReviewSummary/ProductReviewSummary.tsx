@@ -22,7 +22,6 @@ export function ProductReviewSummary(props: ProductReviewSummaryProps) {
       sx={(theme) => ({ stroke: 'none', fill: theme.palette.grey[300] })}
     />
   )
-
   const star = (
     <IconSvg
       src={iconStar}

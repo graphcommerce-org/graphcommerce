@@ -34,7 +34,6 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           />
         </Container>
       )}
-
       {category ? (
         <>
           <LayoutTitle
@@ -65,7 +64,6 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           Search {params.search}
         </LayoutTitle>
       )}
-
       <StickyBelowHeader>
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>

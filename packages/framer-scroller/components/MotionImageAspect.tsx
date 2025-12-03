@@ -34,7 +34,6 @@ export const MotionImageAspect = m.create(
         sx={[
           {
             position: 'relative',
-
             '& > picture': {
               display: 'block',
               '@supports (aspect-ratio: 1 / 1)': {
@@ -42,12 +41,10 @@ export const MotionImageAspect = m.create(
                 maxHeight: '100%',
                 width: 'auto',
                 height: 'auto',
-
                 position: 'absolute',
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-
                 '&:after': {
                   display: 'block',
                   content: '""',

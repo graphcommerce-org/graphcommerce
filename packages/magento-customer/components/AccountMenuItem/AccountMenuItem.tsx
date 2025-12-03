@@ -61,7 +61,6 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
             // fix: disableElevation does not work when button is focused
             boxShadow: 'none',
           },
-
           '&:not(.noBorderBottom)': {
             borderBottom: `1px solid ${theme.palette.divider}`,
           },

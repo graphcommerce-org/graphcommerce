@@ -74,7 +74,6 @@ export function InvoiceTotals(props: InvoiceTotalsProps) {
       )}
 
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
-
       <Box
         className={classes.totalsRow}
         sx={(theme) => ({

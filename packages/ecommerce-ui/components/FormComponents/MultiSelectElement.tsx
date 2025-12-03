@@ -153,10 +153,15 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
             <MenuItem
               key={val}
               value={val}
-              sx={{
-                fontWeight: (theme) =>
-                  isChecked ? theme.typography.fontWeightBold : theme.typography.fontWeightRegular,
-              }}
+              sx={[
+                isChecked
+                  ? {
+                      fontWeight: theme.typography.fontWeightBold,
+                    }
+                  : {
+                      fontWeight: theme.typography.fontWeightRegular,
+                    },
+              ]}
             >
               {showCheckbox && <Checkbox checked={isChecked} />}
               <ListItemText primary={item[itemLabel] || item} />

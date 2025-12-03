@@ -110,7 +110,6 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           }}
         />
       </FormRow>
-
       <Box
         className={classes.ratingContainer}
         sx={(theme) => ({

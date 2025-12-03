@@ -77,9 +77,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
               /300px   auto
             `,
           },
-
           columnGap: { md: theme.spacings.md, xl: theme.spacings.xxl },
-
           '& .ProductListItemsBase-root.sizeNormal': {
             gridTemplateColumns: {
               xs: 'repeat(2, 1fr)',
@@ -101,12 +99,10 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           {horizontalFilters}
         </StickyBelowHeader>
-
         <Box gridArea='beforeContent' sx={{ mt: { md: 0 } }}>
           {count}
         </Box>
         <Box gridArea='items'>{items}</Box>
-
         {pagination && <Box gridArea='afterContent'>{pagination}</Box>}
       </Container>
     </>

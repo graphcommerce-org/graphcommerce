@@ -98,7 +98,6 @@ export function ProductListFiltersContainer(props: ProductListFiltersContainerPr
           top: theme.page.vertical,
           zIndex: 9,
           margin: '0 auto',
-
           [theme.breakpoints.down('md')]: {
             textAlign: 'center',
             maxWidth: 'unset',

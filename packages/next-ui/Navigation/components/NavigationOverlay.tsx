@@ -195,18 +195,10 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               alignItems: !stretchColumns ? 'start' : undefined,
               justifyContent: 'end',
               [theme.breakpoints.down('md')]: {
-                width:
-                  sizeSm !== 'floating'
-                    ? itemWidthSm
-                    : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
                 scrollSnapType: 'x mandatory',
                 '& .NavigationItem-item': {
-                  width:
-                    sizeSm !== 'floating'
-                      ? `calc(${itemWidthSm} - (${itemPad} * 2))`
-                      : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
                   minWidth: `calc(200px - (${itemPad} * 2))`,
                 },
               },
@@ -216,6 +208,32 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 },
               },
             }),
+            sizeSm !== 'floating'
+              ? {
+                  [theme.breakpoints.down('md')]: {
+                    width: itemWidthSm,
+                  },
+                }
+              : {
+                  [theme.breakpoints.down('md')]: {
+                    width: `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
+                  },
+                },
+            sizeSm !== 'floating'
+              ? {
+                  [theme.breakpoints.down('md')]: {
+                    '& .NavigationItem-item': {
+                      width: `calc(${itemWidthSm} - (${itemPad} * 2))`,
+                    },
+                  },
+                }
+              : {
+                  [theme.breakpoints.down('md')]: {
+                    '& .NavigationItem-item': {
+                      width: `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
+                    },
+                  },
+                },
           ]}
         >
           <Box

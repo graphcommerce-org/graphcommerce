@@ -39,7 +39,15 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
           disableRipple
           variant='inline'
           color='secondary'
-          sx={{ display: available ? undefined : 'none' }}
+          sx={[
+            available
+              ? {
+                  display: null,
+                }
+              : {
+                  display: 'none',
+                },
+          ]}
           tabIndex={-1}
         >
           <Trans>Select</Trans>

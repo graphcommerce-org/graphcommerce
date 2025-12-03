@@ -31,9 +31,15 @@ function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
           ? null
           : price && (
               <Box
-                sx={{
-                  color: selected ? 'text.primary' : 'text.secondary',
-                }}
+                sx={[
+                  selected
+                    ? {
+                        color: 'text.primary',
+                      }
+                    : {
+                        color: 'text.secondary',
+                      },
+                ]}
               >
                 <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
                 <Money

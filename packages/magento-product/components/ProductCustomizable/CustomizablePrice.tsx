@@ -21,13 +21,21 @@ export function CustomizablePrice(props: CustomizablePriceProps) {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        typography: 'body1',
-        '&.sizeMedium': { typographty: 'subtitle1' },
-        '&.sizeLarge': { typography: 'h6' },
-        color: optionValue ? 'text.primary' : 'text.secondary',
-      }}
+      sx={[
+        {
+          display: 'flex',
+          typography: 'body1',
+          '&.sizeMedium': { typographty: 'subtitle1' },
+          '&.sizeLarge': { typography: 'h6' },
+        },
+        optionValue
+          ? {
+              color: 'text.primary',
+            }
+          : {
+              color: 'text.secondary',
+            },
+      ]}
     >
       {/* Change fontFamily so the + is properly outlined */}
       <span style={{ fontFamily: 'arial' }}>+{'\u00A0'}</span>

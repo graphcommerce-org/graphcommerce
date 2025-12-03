@@ -75,7 +75,6 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
       maxItems={maxItems}
       color='inherit'
       sx={[
-        {},
         !maxItems && {
           '& .MuiBreadcrumbs-ol': {
             flexWrap: 'nowrap',
@@ -100,7 +99,6 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
               },
             },
           },
-
           [theme.breakpoints.down('md')]: showButtonMobile && {
             '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
               display: 'none',
@@ -109,7 +107,6 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
               },
             },
           },
-
           [theme.breakpoints.up('md')]: showButtonDesktop && {
             '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
               display: 'none',
@@ -158,7 +155,6 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           </Box>
         </ClickAwayListener>
       )}
-
       {disableHome ? null : (
         <Link
           href='/'
@@ -185,7 +181,6 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           {breadcrumb.name}
         </Link>
       ))}
-
       {last && (
         <Typography
           component='span'

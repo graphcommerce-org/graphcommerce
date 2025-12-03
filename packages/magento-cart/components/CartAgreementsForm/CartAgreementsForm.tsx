@@ -64,7 +64,6 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
               // check if the agreement text contains an anchor tag
               const containsLink = containsAnchorTag(agreement.checkbox_text)
               let labelContent: React.ReactNode
-
               if (containsLink) {
                 labelContent = (
                   <Typography

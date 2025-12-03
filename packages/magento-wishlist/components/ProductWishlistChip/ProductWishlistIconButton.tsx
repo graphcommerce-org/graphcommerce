@@ -60,23 +60,22 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             size='medium'
             className={classes.wishlistIcon}
             sx={(theme) => ({
-              color:
-                theme.palette.mode === 'light'
-                  ? theme.palette.text.secondary
-                  : theme.palette.background.paper,
+              color: theme.palette.background.paper,
               '.SidebarGallery-root &': {
                 // todo
-                color:
-                  theme.palette.mode === 'light'
-                    ? theme.palette.text.secondary
-                    : theme.palette.primary.contrastText,
+                color: theme.palette.primary.contrastText,
+                ...theme.applyStyles('light', {
+                  color: theme.palette.text.secondary,
+                }),
               },
+              ...theme.applyStyles('light', {
+                color: theme.palette.text.secondary,
+              }),
             })}
             {...iconSvgProps}
           />
         )}
       </IconButton>
-
       {wishlistShowFeedbackMessage && (
         <MessageSnackbar
           open={showSuccess}

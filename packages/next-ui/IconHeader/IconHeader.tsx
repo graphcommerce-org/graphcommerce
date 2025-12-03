@@ -66,11 +66,24 @@ export function IconHeader(props: IconHeaderProps) {
         className={`${classes.innerContainer} ${!stayInline ? classes.breakColumnsDesktop : ''}`}
         sx={[
           {
-            display: { xs: 'flex', md: stayInline ? 'flex' : 'unset' },
+            display: {
+              xs: 'flex',
+            },
             alignItems: 'center',
             justifyContent: 'center',
             gap: 4,
           },
+          stayInline
+            ? {
+                display: {
+                  md: 'flex',
+                },
+              }
+            : {
+                display: {
+                  md: 'unset',
+                },
+              },
         ]}
       >
         <IconSvg src={src} />

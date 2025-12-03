@@ -55,7 +55,6 @@ export function OrderCard(props: OrderCardProps) {
       </Box>
     )
   }
-
   return (
     <Box
       component={NextLink}

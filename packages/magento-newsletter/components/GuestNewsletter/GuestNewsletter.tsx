@@ -31,7 +31,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
         size='medium'
         disabled={submittedWithoutErrors}
       />
-
       <Button
         loading={formState.isSubmitting}
         variant='pill'
@@ -42,7 +41,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       >
         {submittedWithoutErrors ? <Trans>Subscribed</Trans> : <Trans>Subscribe</Trans>}
       </Button>
-
       <MessageSnackbar
         open={submittedWithoutErrors}
         variant='pill'
@@ -55,7 +53,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       >
         <Trans>You have been successfully subscribed to our newsletter.</Trans>
       </MessageSnackbar>
-
       <ApolloErrorSnackbar error={error} />
     </Form>
   )

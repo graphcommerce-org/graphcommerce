@@ -65,7 +65,6 @@ function CreditMemoDetailPage() {
               >
                 <Trans>Credit Memo #{creditMemoNumber}</Trans>
               </LayoutTitle>
-
               <PageMeta
                 title={t`Credit Memo #${String(creditMemoNumber)}`}
                 metaRobots={['noindex']}
@@ -86,26 +85,20 @@ function CreditMemoDetailPage() {
     </>
   )
 }
-
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
 }
 CreditMemoDetailPage.pageOptions = pageOptions
-
 export default CreditMemoDetailPage
-
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
-
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })
-
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
   })
-
   return {
     props: {
       ...(await countryRegions).data,

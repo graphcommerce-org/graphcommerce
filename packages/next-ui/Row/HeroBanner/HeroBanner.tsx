@@ -32,7 +32,7 @@ export function HeroBanner(props: HeroBannerProps) {
       maxWidth={false}
       {...containerProps}
       className={classes.root}
-      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[...(Array.isArray(sx) ? sx : [sx])]}
     >
       <Box
         className={classes.wrapper}

@@ -84,7 +84,6 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
     </Box>
   )
 })
-
 export function EmailForm(props: EmailFormProps) {
   const { loggedIn } = useCustomerSession()
   if (loggedIn) return null

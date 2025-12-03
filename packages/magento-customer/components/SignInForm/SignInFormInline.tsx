@@ -64,7 +64,10 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         loading={formState.isSubmitting}
         color='secondary'
         variant='pill'
-        sx={{ alignSelf: 'start', marginTop: (theme) => `calc(${theme.spacings.xxs} * .33)` }}
+        sx={(theme) => ({
+          alignSelf: 'start',
+          marginTop: `calc(${theme.spacings.xxs} * .33)`,
+        })}
       >
         <Trans>Sign in</Trans>
       </Button>

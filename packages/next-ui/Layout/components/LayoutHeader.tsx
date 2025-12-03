@@ -113,10 +113,8 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
       className={classes.root}
       sx={[
         (theme) => ({
-          zIndex: children ? theme.zIndex.appBar : theme.zIndex.appBar - 2,
           position: 'sticky',
           pointerEvents: 'none',
-
           [theme.breakpoints.down('md')]: {
             top: 0,
             marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
@@ -137,7 +135,6 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
               display: 'none',
             },
           },
-
           [theme.breakpoints.up('md')]: {
             top: 0,
             height: theme.appShell.appBarHeightMd,
@@ -166,6 +163,13 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
             },
           },
         }),
+        children
+          ? {
+              zIndex: theme.zIndex.appBar,
+            }
+          : {
+              zIndex: theme.zIndex.appBar - 2,
+            },
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
     >

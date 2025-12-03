@@ -53,7 +53,6 @@ function AccountOrdersPage() {
     </>
   )
 }
-
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'guest',
   sharedKey: () => 'guest/orders',
@@ -63,15 +62,11 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   },
 }
 AccountOrdersPage.pageOptions = pageOptions
-
 export default AccountOrdersPage
-
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
-
   if (magentoVersion < 247) return { notFound: true }
-
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),

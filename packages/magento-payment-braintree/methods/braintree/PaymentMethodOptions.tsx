@@ -295,7 +295,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
                 label='Card Number'
               />
             </FormRow>
-
             <FormRow>
               <BraintreeField
                 control={form.control}
