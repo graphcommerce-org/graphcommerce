@@ -108,9 +108,7 @@ function AccountIndexPage() {
                 href='/account/reviews'
                 iconSrc={iconStar}
                 title={<Trans>Reviews</Trans>}
-                subtitle={
-                  <Trans>Written {customer?.reviews.items.length} reviews</Trans>
-                }
+                subtitle={<Trans>Written {customer?.reviews.items.length} reviews</Trans>}
               />
             )}
             <AccountMenuItem

@@ -24,7 +24,10 @@ function AccountForgotPasswordPage() {
           <Trans>Forgot your password?</Trans>
         </LayoutTitle>
         <Typography variant='subtitle1'>
-          <Trans>No worries! Enter your email address and we will send an email with instructions to reset your password.</Trans>
+          <Trans>
+            No worries! Enter your email address and we will send an email with instructions to
+            reset your password.
+          </Trans>
         </Typography>
         <ForgotPasswordForm />
       </Container>

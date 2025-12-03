@@ -30,11 +30,7 @@ export function EmptyCart(props: EmptyCartProps) {
       }
       {...rest}
     >
-      {children ?? (
-        <Trans>
-          Discover our collection and add items to your cart!
-        </Trans>
-      )}
+      {children ?? <Trans>Discover our collection and add items to your cart!</Trans>}
     </FullPageMessage>
   )
 }

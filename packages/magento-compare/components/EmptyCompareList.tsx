@@ -12,9 +12,7 @@ export function EmptyCompareList() {
         </OverlayCloseButton>
       }
     >
-      <Trans>
-        Discover our collection and add items to your comparelist!
-      </Trans>
+      <Trans>Discover our collection and add items to your comparelist!</Trans>
     </FullPageMessage>
   )
 }

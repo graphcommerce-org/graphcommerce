@@ -40,7 +40,6 @@ export function DownloadsPage() {
           <Trans>Downloads</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <Container maxWidth='md'>
         <WaitForCustomer waitFor={dashboard}>
           <PageMeta title={t`Downloads`} metaRobots={['noindex']} />

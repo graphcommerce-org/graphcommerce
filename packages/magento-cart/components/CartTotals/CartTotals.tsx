@@ -132,7 +132,9 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans>Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})</Trans>
+            <Trans>
+              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
+            </Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money

@@ -4,8 +4,8 @@ import type {
   ProductPageJsonLdProps,
 } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { useConfigurableSelectedVariant } from '../../hooks'
 import { isTypename } from '@graphcommerce/next-ui'
+import { useConfigurableSelectedVariant } from '../../hooks'
 
 export const config: PluginConfig = {
   type: 'component',

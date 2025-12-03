@@ -143,8 +143,10 @@ export function MenuFab(props: MenuFabProps) {
             }),
           }}
           className={classes.menu}
-          MenuListProps={{ dense: true }}
           {...MenuProps}
+          slotProps={{
+            list: { dense: true },
+          }}
         >
           {[
             search ? (

@@ -130,66 +130,69 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      InputProps={{
-        ...InputPropsFiltered,
-        startAdornment: (
-          <Fab
-            aria-label={t`Decrease`}
-            size='smaller'
-            onClick={() => {
-              if (
-                (valueAsNumber ?? Infinity) <= inputProps.min ||
-                (inputProps.min === 0 && valueAsNumber <= inputProps.min)
-              )
-                return
-              // Round to nearest step
-              onChange(roundStep(valueAsNumber - step, step))
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...DownProps}
-            className={`${classes.button} ${DownProps.className ?? ''}`}
-          >
-            {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-          </Fab>
-        ),
-        endAdornment: (
-          <Fab
-            aria-label={t`Increase`}
-            size='smaller'
-            onClick={() => {
-              if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              // Round to nearest step
-              onChange(roundStep(valueAsNumber + step, step))
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...UpProps}
-            className={`${classes.button} ${UpProps.className ?? ''}`}
-          >
-            {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-          </Fab>
-        ),
-      }}
-      inputProps={{
-        'aria-label': t`Number`,
-        ...inputProps,
-        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
-        sx: {
-          typography: 'body1',
-          textAlign: 'center',
-          '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-            appearance: 'none',
+      slotProps={{
+        input: {
+          ...InputPropsFiltered,
+          startAdornment: (
+            <Fab
+              aria-label={t`Decrease`}
+              size='smaller'
+              onClick={() => {
+                if (
+                  (valueAsNumber ?? Infinity) <= inputProps.min ||
+                  (inputProps.min === 0 && valueAsNumber <= inputProps.min)
+                )
+                  return
+                // Round to nearest step
+                onChange(roundStep(valueAsNumber - step, step))
+              }}
+              sx={{
+                boxShadow: variant === 'standard' ? 4 : 0,
+                minHeight: '30px',
+                minWidth: '30px',
+              }}
+              tabIndex={-1}
+              color='inherit'
+              {...DownProps}
+              className={`${classes.button} ${DownProps.className ?? ''}`}
+            >
+              {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
+            </Fab>
+          ),
+          endAdornment: (
+            <Fab
+              aria-label={t`Increase`}
+              size='smaller'
+              onClick={() => {
+                if (valueAsNumber >= (inputProps.max ?? Infinity)) return
+                // Round to nearest step
+                onChange(roundStep(valueAsNumber + step, step))
+              }}
+              sx={{
+                boxShadow: variant === 'standard' ? 4 : 0,
+                minHeight: '30px',
+                minWidth: '30px',
+              }}
+              tabIndex={-1}
+              color='inherit'
+              {...UpProps}
+              className={`${classes.button} ${UpProps.className ?? ''}`}
+            >
+              {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
+            </Fab>
+          ),
+        },
+
+        htmlInput: {
+          'aria-label': t`Number`,
+          ...inputProps,
+          className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
+          sx: {
+            typography: 'body1',
+            textAlign: 'center',
+            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+              appearance: 'none',
+            },
           },
         },
       }}

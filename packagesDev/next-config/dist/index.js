@@ -31,7 +31,7 @@ async function fsExists(file) {
   }
 }
 async function fsRealpath(file) {
-  return await fsExists(file) ? fs.realpath(file) : file;
+  return (await fsExists(file)) ? fs.realpath(file) : file;
 }
 async function restoreOriginalFile(fileWithOriginalInTheName) {
   const restoredPath = fileWithOriginalInTheName.replace(/\.original\.(tsx?)$/, ".$1");
@@ -65,8 +65,8 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
     const targetFilePath = await fsRealpath(path.resolve(cwd, targetFileName));
     const dotOriginalPath = await fsRealpath(path.resolve(cwd, fileNameDotOriginal));
     processedFiles.push(dotOriginalPath);
-    const targetSource = await fsExists(targetFilePath) ? await fs.readFile(targetFilePath, "utf8") : null;
-    const dotOriginalSource = await fsExists(dotOriginalPath) ? await fs.readFile(dotOriginalPath, "utf8") : null;
+    const targetSource = (await fsExists(targetFilePath)) ? await fs.readFile(targetFilePath, "utf8") : null;
+    const dotOriginalSource = (await fsExists(dotOriginalPath)) ? await fs.readFile(dotOriginalPath, "utf8") : null;
     const isPreviouslyApplied = dotOriginalSource !== null && targetSource?.includes("/* hash:");
     let status = "";
     if (isPreviouslyApplied) {
@@ -1070,7 +1070,7 @@ async function updateGitignore(managedFiles) {
   const escapedFiles = managedFiles.map(
     (file) => (
       // Escape special characters in file names
-      file.replace(/[*+?^${}()|[\]\\]/g, "\\$&")
+      (file.replace(/[*+?^${}()|[\]\\]/g, "\\$&"))
     )
   ).sort();
   const gitignorePath = path.join(process.cwd(), ".gitignore");
@@ -1384,11 +1384,11 @@ async function generateConfig() {
           }
         }
       },
-      ...findParentPath(process.cwd()) && {
+      ...(findParentPath(process.cwd()) && {
         "../../docs/framework/config.md": {
           plugins: ["@graphcommerce/graphql-codegen-markdown-docs"]
         }
-      }
+      })
     }
   });
   writeFileSync(
@@ -1569,7 +1569,7 @@ function domains(config) {
         if (!loc.domain) return acc;
         acc[loc.domain] = {
           defaultLocale: loc.locale,
-          locales: [...acc[loc.domain]?.locales ?? [], loc.locale],
+          locales: [...(acc[loc.domain]?.locales ?? []), loc.locale],
           domain: loc.domain,
           http: process.env.NODE_ENV === "development" || void 0
         };
@@ -1584,7 +1584,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
   const { storefront } = graphcommerceConfig;
   const transpilePackages = [
     ...[...resolveDependenciesSync().keys()].slice(1),
-    ...nextConfig.transpilePackages ?? []
+    ...(nextConfig.transpilePackages ?? [])
   ];
   return {
     ...nextConfig,
@@ -1600,12 +1600,12 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       "@whatwg-node/promise-helpers",
       "@whatwg-node/server",
       "@whatwg-node/server-plugin-cookies",
-      ...nextConfig.serverExternalPackages ?? []
+      ...(nextConfig.serverExternalPackages ?? [])
     ],
     turbopack: {
-      ...nextConfig.turbopack ?? {},
+      ...(nextConfig.turbopack ?? {}),
       rules: {
-        ...nextConfig.turbopack?.rules ?? {},
+        ...(nextConfig.turbopack?.rules ?? {}),
         "*.yaml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
         "*.yml": { loaders: [{ loader: "js-yaml-loader", options: {} }], as: "*.js" },
         "*.po": { loaders: [{ loader: "@lingui/loader", options: {} }], as: "*.js" }
@@ -1614,33 +1614,33 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
-      swcPlugins: [...nextConfig.experimental?.swcPlugins ?? [], ["@lingui/swc-plugin", {}]],
+      swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ["@lingui/swc-plugin", {}]],
       optimizePackageImports: [
         ...transpilePackages,
-        ...nextConfig.experimental?.optimizePackageImports ?? []
+        ...(nextConfig.experimental?.optimizePackageImports ?? [])
       ]
     },
     i18n: {
       ...nextConfig.i18n,
       defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
       locales: storefront.map((locale) => locale.locale),
-      domains: [...domains(graphcommerceConfig), ...nextConfig.i18n?.domains ?? []]
+      domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])]
     },
     images: {
       ...nextConfig.images,
       // GraphCommerce uses quality 52 by default for optimized image delivery
-      qualities: [52, 75, ...nextConfig.images?.qualities ?? []],
+      qualities: [52, 75, ...(nextConfig.images?.qualities ?? [])],
       remotePatterns: [
         "magentoEndpoint" in graphcommerceConfig ? {
           hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname
         } : void 0,
         { hostname: "**.graphassets.com" },
         { hostname: "*.graphcommerce.org" },
-        ...nextConfig.images?.remotePatterns ?? []
+        ...(nextConfig.images?.remotePatterns ?? [])
       ].filter((v) => !!v)
     },
     rewrites: async () => {
-      let rewrites = await nextConfig.rewrites?.() ?? [];
+      let rewrites = (await nextConfig.rewrites?.()) ?? [];
       if (Array.isArray(rewrites)) {
         rewrites = { beforeFiles: rewrites, afterFiles: [], fallback: [] };
       }
@@ -1658,7 +1658,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       config.module = {
         ...config.module,
         rules: [
-          ...config.module.rules ?? [],
+          ...(config.module.rules ?? []),
           // Allow importing yml/yaml files for graphql-mesh
           { test: /\.ya?ml$/, use: "js-yaml-loader" },
           // @lingui .po file support
@@ -1668,13 +1668,13 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       };
       if (!config.plugins) config.plugins = [];
       config.snapshot = {
-        ...config.snapshot ?? {},
+        ...(config.snapshot ?? {}),
         managedPaths: [
           new RegExp(`^(.+?[\\/]node_modules[\\/])(?!${transpilePackages.join("|")})`)
         ]
       };
       config.watchOptions = {
-        ...config.watchOptions ?? {},
+        ...(config.watchOptions ?? {}),
         ignored: new RegExp(
           `^((?:[^/]*(?:/|$))*)(.(git|next)|(node_modules[\\/](?!${transpilePackages.join(
             "|"

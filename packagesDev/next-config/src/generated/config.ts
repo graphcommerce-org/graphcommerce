@@ -1,4 +1,5 @@
 import { z } from 'zod'
+
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -311,8 +312,7 @@ export type GraphCommerceConfig = {
    * - Delete public content views
    * - Can see schema view
    *
-   *     GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
-   *     yarn graphcommerce hygraph-migrate
+   *   GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph" yarn graphcommerce hygraph-migrate
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
   /**

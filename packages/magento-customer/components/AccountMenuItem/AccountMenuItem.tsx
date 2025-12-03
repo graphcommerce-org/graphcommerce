@@ -80,16 +80,19 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
           <IconSvg src={iconSrc} size='large' />
         </ListItemIcon>
         <ListItemText
-          primaryTypographyProps={{ sx: { typography: 'subtitle1' } }}
-          secondaryTypographyProps={{
-            sx: {
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'elipsis',
-            },
-          }}
           primary={title}
           secondary={subtitle}
+          slotProps={{
+            primary: { sx: { typography: 'subtitle1' } },
+
+            secondary: {
+              sx: {
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'elipsis',
+              },
+            },
+          }}
         />
         {endIcon ?? <IconSvg src={iconChevronRight} />}
       </ListItem>

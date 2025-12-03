@@ -19,9 +19,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
     subtitle = <Trans>We are sorry, this product is currently out of stock.</Trans>
   } else if (stock_status === 'IN_STOCK' && only_x_left_in_stock) {
     title = <Trans>Only a few left</Trans>
-    subtitle = (
-      <Trans>Only {only_x_left_in_stock} left in stock.</Trans>
-    )
+    subtitle = <Trans>Only {only_x_left_in_stock} left in stock.</Trans>
   }
   if (only_x_left_in_stock === 1) {
     subtitle = <Trans>Only 1 left in stock.</Trans>

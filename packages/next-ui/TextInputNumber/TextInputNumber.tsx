@@ -120,58 +120,61 @@ export function TextInputNumber(props: TextInputNumberProps) {
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       autoComplete='off'
-      InputProps={{
-        ...textFieldProps.InputProps,
-        startAdornment: (
-          <Box>
-            <Fab
-              aria-label={t`Decrease`}
-              size='smaller'
-              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
-              onPointerDown={() => setDirection('down')}
-              onPointerUp={stop}
-              tabIndex={-1}
-              {...DownProps}
-              className={`${classes.button} ${DownProps.className ?? ''}`}
-            >
-              {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-            </Fab>
-          </Box>
-        ),
-        endAdornment: (
-          <Box>
-            <Fab
-              aria-label={t`Increase`}
-              size='smaller'
-              sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
-              onPointerDown={() => setDirection('up')}
-              onPointerUp={() => setDirection(null)}
-              tabIndex={-1}
-              {...UpProps}
-              className={`${classes.button} ${UpProps.className ?? ''}`}
-            >
-              {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-            </Fab>
-          </Box>
-        ),
-      }}
       onChange={(e: ChangeEvent<HTMLInputElement>) => {
         if (textFieldProps.onChange) textFieldProps.onChange(e)
         updateDisabled(e.target)
       }}
-      inputProps={{
-        'aria-label': t`Number`,
-        ...inputProps,
-        sx: [
-          {
-            typography: 'body1',
-            textAlign: 'center',
-            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-              appearance: 'none',
+      slotProps={{
+        input: {
+          ...textFieldProps.InputProps,
+          startAdornment: (
+            <Box>
+              <Fab
+                aria-label={t`Decrease`}
+                size='smaller'
+                sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
+                onPointerDown={() => setDirection('down')}
+                onPointerUp={stop}
+                tabIndex={-1}
+                {...DownProps}
+                className={`${classes.button} ${DownProps.className ?? ''}`}
+              >
+                {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
+              </Fab>
+            </Box>
+          ),
+          endAdornment: (
+            <Box>
+              <Fab
+                aria-label={t`Increase`}
+                size='smaller'
+                sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
+                onPointerDown={() => setDirection('up')}
+                onPointerUp={() => setDirection(null)}
+                tabIndex={-1}
+                {...UpProps}
+                className={`${classes.button} ${UpProps.className ?? ''}`}
+              >
+                {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
+              </Fab>
+            </Box>
+          ),
+        },
+
+        htmlInput: {
+          'aria-label': t`Number`,
+          ...inputProps,
+          sx: [
+            {
+              typography: 'body1',
+              textAlign: 'center',
+              '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+                appearance: 'none',
+              },
             },
-          },
-        ],
-        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
+          ],
+          className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
+        },
       }}
     />
   )

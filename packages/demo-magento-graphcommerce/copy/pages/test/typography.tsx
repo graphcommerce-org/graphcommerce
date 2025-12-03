@@ -35,9 +35,7 @@ function TypographyOverview() {
       <LayoutHeader>
         <LayoutTitle size='small'>Typography</LayoutTitle>
       </LayoutHeader>
-
       <LayoutTitle>Typography</LayoutTitle>
-
       <Container>
         <Typography variant='h1' display='block' gutterBottom>
           Headline 1 {useRenderedSize()}
@@ -51,7 +49,14 @@ function TypographyOverview() {
           Headline 3 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h4' display='block' paragraph gutterBottom>
+        <Typography
+          variant='h4'
+          display='block'
+          gutterBottom
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Headline 4 — Maecenas efficitur velit a metus.
           {useRenderedSize()}
         </Typography>
@@ -64,11 +69,25 @@ function TypographyOverview() {
           Headline 6 — Ut luctus mi ante {useRenderedSize()}
         </Typography>
 
-        <Typography variant='subtitle1' display='block' paragraph gutterBottom>
+        <Typography
+          variant='subtitle1'
+          display='block'
+          gutterBottom
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Subtitle 1 — In dictum velit quis lorem dignissim volutpat. {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body1' display='block' paragraph gutterBottom>
+        <Typography
+          variant='body1'
+          display='block'
+          gutterBottom
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Body1 — Maecenas efficitur velit a metus feugiat egestas. Donec sit amet maximus sapien,
           in malesuada mi. Duis eget finibus urna, vitae suscipit felis. Duis aliquet tortor a
           turpis euismod gravida. Nunc eu hendrerit leo. Integer dapibus dapibus augue, sit amet
@@ -82,7 +101,14 @@ function TypographyOverview() {
           Subtitle 2 — Nunc eu hendrerit leo {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body2' display='block' paragraph gutterBottom>
+        <Typography
+          variant='body2'
+          display='block'
+          gutterBottom
+          sx={{
+            marginBottom: '16px',
+          }}
+        >
           Body2 — Suspendisse nec consectetur massa. Proin mollis ante lorem, a lacinia orci
           pellentesque ut. Donec porta fringilla commodo. In hac habitasse platea dictumst. Donec
           quis elementum mauris. Cras rutrum lectus et magna convallis, vitae dignissim elit

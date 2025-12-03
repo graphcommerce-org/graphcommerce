@@ -51,12 +51,14 @@ export function SearchBox(props: SearchBoxProps) {
       variant='outlined'
       type='text'
       name='search'
-      InputProps={{ endAdornment }}
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
       sx={[{ mt: 1, mb: 1 }, ...(Array.isArray(sx) ? sx : [sx])]}
       {...textFieldProps}
+      slotProps={{
+        input: { endAdornment },
+      }}
     />
   )
 }

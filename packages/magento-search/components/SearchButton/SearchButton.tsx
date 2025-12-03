@@ -26,13 +26,6 @@ export function SearchButton(props: SearchButtonProps) {
       className={classes.root}
       label={label ?? <Trans>Search...</Trans>}
       id='search-input'
-      InputLabelProps={{ shrink: false }}
-      InputProps={{
-        readOnly: true,
-        endAdornment: <IconSvg src={iconSearch} size='medium' />,
-        classes: { root: classes.inputRoot },
-        ...InputProps,
-      }}
       {...textFieldProps}
       sx={[
         (theme) => ({
@@ -52,6 +45,16 @@ export function SearchButton(props: SearchButtonProps) {
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
+      slotProps={{
+        input: {
+          readOnly: true,
+          endAdornment: <IconSvg src={iconSearch} size='medium' />,
+          classes: { root: classes.inputRoot },
+          ...InputProps,
+        },
+
+        inputLabel: { shrink: false },
+      }}
     />
   )
 }
