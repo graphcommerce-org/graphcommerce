@@ -1,1 +1,1 @@
-yarn graphcommerce cleanup-interceptors
+corepack yarn graphcommerce cleanup-interceptors
