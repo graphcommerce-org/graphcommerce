@@ -21,7 +21,7 @@
     "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.57",
     "@graphcommerce/react-hook-form": "^10.0.0-canary.57",
     "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.57",
-    "@mui/material": "^5.14.20",
+    "@mui/material": "^7.0.0",
     "next": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

@@ -16,7 +16,7 @@
     "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.57",
     "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.57",
     "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.57",
-    "@mui/utils": "^5",
+    "@mui/utils": "^7.0.0",
     "graphql": "^16.6.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

@@ -29,7 +29,7 @@
     "@graphcommerce/next-ui": "^10.0.0-canary.57",
     "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.57",
     "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.57",
-    "@mui/material": "^5.10.16",
+    "@mui/material": "^7.0.0",
     "framer-motion": "^11.0.0",
     "next": "*",
     "react": "^19.2.0",
