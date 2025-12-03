@@ -130,11 +130,11 @@
     "@graphcommerce/typescript-config-pwa": "9.1.0-canary.55",
     "@lingui/cli": "5.6.1",
     "@playwright/test": "1.57.0",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "@types/react-is": "^18",
-    "eslint": "^8.57.1",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-is": "^19.2.0",
+    "eslint": "^9.39.1",
     "prettier": "^3.7.4",
     "type-fest": "^5.3.0",
     "typescript": "5.9.3"
@@ -146,11 +146,5 @@
     "> 1% in alt-EU",
     "not IE 11"
   ],
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  }
+  "prettier": "@graphcommerce/prettier-config-pwa"
 }

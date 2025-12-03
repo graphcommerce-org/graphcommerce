@@ -21,7 +21,7 @@ export async function getSortedIndex(
   const dir = dirEnum.toLowerCase()
   const candidates = ((await settings).replicas ?? [])
     .filter((v) => !!v)
-    .filter((r) => r.startsWith(`virtual(${baseIndex}_${attr}`) && r.endsWith(`_${dir})`))
+    .filter((r) => r?.startsWith(`virtual(${baseIndex}_${attr}`) && r.endsWith(`_${dir})`))
 
   if (candidates.length === 0) {
     console.warn(
@@ -34,7 +34,7 @@ export async function getSortedIndex(
     const enabled = algolia.customerGroupPricingEnabled
 
     const groupId = enabled ? getGroupId(context) : 'default'
-    const found = candidates.find((r) => r.endsWith(`${groupId}_${dir})`))
+    const found = candidates.find((r) => r?.endsWith(`${groupId}_${dir})`))
 
     if (!found) {
       console.warn(
@@ -44,11 +44,11 @@ export async function getSortedIndex(
         'Available indexes (using the first one):',
         candidates,
       )
-      return stripVirtual(candidates[0])
+      return stripVirtual(candidates[0] ?? '')
     }
 
     return stripVirtual(found)
   }
 
-  return stripVirtual(candidates[0])
+  return stripVirtual(candidates[0] ?? '')
 }

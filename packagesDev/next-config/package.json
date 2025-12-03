@@ -47,7 +47,7 @@
     "@swc/core": "1.15.3",
     "@swc/wasm-web": "^1.15.3",
     "@types/js-yaml": "^4.0.9",
-    "@types/lodash": "^4.17.20",
+    "@types/lodash": "^4.17.21",
     "chalk": "^4.1.2",
     "cosmiconfig": "^8.3.6",
     "fast-glob": "^3.3.3",
