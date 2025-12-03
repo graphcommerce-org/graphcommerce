@@ -1,11 +1,11 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { compareVariant } from '@graphcommerce/next-config/config'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { Button, Fab, iconCompare, sxx } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare, sxx, varAlpha } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { alpha, Checkbox, useTheme } from '@mui/material'
+import { Checkbox, useTheme } from '@mui/material'
 import { useState } from 'react'
 import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -112,7 +112,7 @@ function CompareProductToggleBase(
                 stroke: strokeColorPlp,
               },
               '&:hover': {
-                backgroundColor: alpha(
+                backgroundColor: varAlpha(
                   theme.vars.palette.text.primary,
                   theme.vars.palette.action.hoverOpacity,
                 ),

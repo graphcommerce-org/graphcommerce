@@ -1,8 +1,9 @@
 import { Box, ButtonBase, type SxProps, type Theme } from '@mui/material'
-import { alpha, useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import { forwardRef } from 'react'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
+import { varAlpha } from '../Styles/colorManipulator'
 import { sxx } from '../utils/sxx'
 
 export type TabItemVariant = 'chrome'
@@ -75,10 +76,10 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
           mx: `calc(${spacing} / 2)`,
           transition: 'background-color 0.2s ease-in-out',
           '&:hover:not(.selected) .TabItem-content': {
-            bgcolor: alpha(color(theme), 0.5),
+            bgcolor: varAlpha(color(theme), 0.5),
           },
           '&:focus:not(.selected) .TabItem-content': {
-            bgcolor: alpha(color(theme), 0.5),
+            bgcolor: varAlpha(color(theme), 0.5),
           },
           '&::before': {
             opacity: 0,

@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
-import { alpha, Box, ListItemButton, styled, useEventCallback } from '@mui/material'
+import { Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { useMatchMedia } from '../../hooks'
+import { varAlpha } from '../../Styles/colorManipulator'
 import { iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
@@ -97,7 +98,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
               gap: theme.spacings.xxs,
               '&.Mui-disabled': {
                 opacity: 1,
-                background: alpha(theme.vars.palette.action.hover, 0.025),
+                background: varAlpha(theme.vars.palette.action.hover, 0.025),
               },
             }),
             hideItem
