@@ -22,7 +22,7 @@
     "@mui/material": "^5.10.16",
     "next": "*",
     "react": "^19.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^19.2.0"
   },
   "exports": {
     ".": "./index.ts",

@@ -45,7 +45,7 @@
     "@graphql-mesh/cli": "*",
     "@graphql-mesh/types": "*",
     "@graphql-mesh/utils": "*",
-    "react": "^18.2.0"
+    "react": "^19.2.0"
   },
   "peerDependenciesMeta": {
     "@graphcommerce/hygraph-cli": {

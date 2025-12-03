@@ -23,7 +23,7 @@
     "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
     "framer-motion": "^11.0.0",
     "react": "^19.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^19.2.0"
   },
   "dependencies": {
     "framesync": "^6.1.2"

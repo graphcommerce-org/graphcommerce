@@ -111,7 +111,7 @@
     "@mui/utils": "^5.17.1",
     "@next/env": "16.0.6",
     "@parcel/watcher": "^2.5.1",
-    "@serwist/next": "^9.1.1",
+    "@serwist/next": "10.0.0-preview.14",
     "@unts/patch-package": "^8.1.1",
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
@@ -123,7 +123,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "7.67.0",
-    "serwist": "^9.1.1",
+    "serwist": "10.0.0-preview.14",
     "sharp": "0.34.5",
     "ts-node": "^10.9.2",
     "webpack": "^5.103.0"

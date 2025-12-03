@@ -31,6 +31,6 @@
     "framer-motion": "^11.0.0",
     "next": "*",
     "react": "^19.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^19.2.0"
   }
 }
