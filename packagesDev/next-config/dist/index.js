@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
+import { spawn } from 'child_process';
 import { l as loadConfig, t as toEnvStr } from './loadConfig-C9xRVdWx.js';
 export { r as replaceConfigInString } from './loadConfig-C9xRVdWx.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
@@ -119,6 +120,19 @@ async function cleanupInterceptors(cwd = process.cwd()) {
   }
   console.info("\u2705 Interceptor cleanup completed!");
   console.info(`\u{1F4CA} ${restoredCount} files restored from .original`);
+}
+
+function run(cmd) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, { stdio: "inherit", cwd: process.cwd(), shell: true });
+    child.on("close", (code) => code === 0 ? resolve() : reject(new Error(`${cmd} failed`)));
+  });
+}
+async function codegen() {
+  await run("graphcommerce copy-files");
+  await run("graphcommerce codegen-config");
+  await run("graphcommerce codegen-config-values");
+  await run("graphcommerce codegen-interceptors");
 }
 
 class TopologicalSort {
@@ -1307,6 +1321,41 @@ Source: ${sourcePath}`);
   debug(`Total execution time: ${(performance.now() - startTime).toFixed(0)}ms`);
 }
 
+const fmt = (value) => {
+  let formattedValue = value;
+  if (typeof formattedValue === "boolean") {
+    formattedValue = formattedValue ? "1" : "0";
+  }
+  if (typeof formattedValue === "object") {
+    formattedValue = JSON.stringify(formattedValue);
+  }
+  if (typeof formattedValue === "number") {
+    formattedValue = String(formattedValue);
+  }
+  return formattedValue;
+};
+function exportConfigToEnv(config) {
+  let env = "";
+  Object.entries(config).forEach(([key, value]) => {
+    if (Array.isArray(value)) {
+      value.forEach((val, idx) => {
+        env += `${toEnvStr([key, `${idx}`])}='${fmt(val)}'
+`;
+      });
+    } else {
+      env += `${toEnvStr([key])}='${fmt(value)}'
+`;
+    }
+  });
+  return env;
+}
+
+dotenv.config();
+async function exportConfig() {
+  const conf = loadConfig(process.cwd());
+  console.log(exportConfigToEnv(conf));
+}
+
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
 const resolve$1 = resolveDependency();
 dotenv.config();
@@ -1509,52 +1558,6 @@ ${rootExports.join("\n")}
   console.log(`\u2705 Generated config values in ${targetDir} and ${targetDistDir}`);
   console.log(`\u{1F4C1} Created ${nestedObjects.length} nested object files + index.ts/.js`);
   console.log(`\u{1F4DD} Root exports: ${configEntries.length - nestedObjects.length}`);
-}
-
-async function codegen() {
-  console.info("\u{1F504} Copying files from packages to project...");
-  await copyFiles();
-  console.info("\u2699\uFE0F  Generating GraphCommerce config types...");
-  await generateConfig();
-  console.info("\u{1F4E6} Generating treeshakable config values...");
-  await generateConfigValues();
-  console.info("\u{1F50C} Generating interceptors...");
-  await codegenInterceptors();
-}
-
-const fmt = (value) => {
-  let formattedValue = value;
-  if (typeof formattedValue === "boolean") {
-    formattedValue = formattedValue ? "1" : "0";
-  }
-  if (typeof formattedValue === "object") {
-    formattedValue = JSON.stringify(formattedValue);
-  }
-  if (typeof formattedValue === "number") {
-    formattedValue = String(formattedValue);
-  }
-  return formattedValue;
-};
-function exportConfigToEnv(config) {
-  let env = "";
-  Object.entries(config).forEach(([key, value]) => {
-    if (Array.isArray(value)) {
-      value.forEach((val, idx) => {
-        env += `${toEnvStr([key, `${idx}`])}='${fmt(val)}'
-`;
-      });
-    } else {
-      env += `${toEnvStr([key])}='${fmt(value)}'
-`;
-    }
-  });
-  return env;
-}
-
-dotenv.config();
-async function exportConfig() {
-  const conf = loadConfig(process.cwd());
-  console.log(exportConfigToEnv(conf));
 }
 
 let graphcommerceConfig;

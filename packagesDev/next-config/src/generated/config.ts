@@ -21,8 +21,6 @@ export type Scalars = {
 
 export type CartPermissions = 'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED'
 
-export type CatalogPricingPermissions = 'CUSTOMER_ONLY' | 'ENABLED'
-
 export type CompareVariant = 'CHECKBOX' | 'ICON'
 
 /**
@@ -37,6 +35,46 @@ export type CustomerAccountPermissions = 'DISABLED' | 'DISABLE_REGISTRATION' | '
 export type DatalayerConfig = {
   /** Enable core web vitals tracking for GraphCommerce */
   coreWebVitals?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** Algolia configuration for GraphCommerce. */
+export type GraphCommerceAlgoliaConfig = {
+  /**
+   * Configure your Algolia application ID. [Algolia API Keys
+   * Dashboard](https://www.algolia.com/account/api-keys)
+   */
+  applicationId: Scalars['String']['input']
+  /**
+   * By default the catalog will not use algolia. Set this to true to enable Algolia for the
+   * catalog.
+   */
+  catalogEnabled?: InputMaybe<Scalars['Boolean']['input']>
+  /**
+   * Enable Algolia customer group pricing.
+   *
+   * Please be aware that personalization needs to be enabled to make this work.
+   */
+  customerGroupPricingEnabled?: InputMaybe<Scalars['Boolean']['input']>
+  /** Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix */
+  indexNamePrefix: Scalars['String']['input']
+  /**
+   * Configure your Search API Key. [Algolia API Keys
+   * Dashboard](https://www.algolia.com/account/api-keys)
+   *
+   * Make sure the API key has the following ACL: search, listIndexes and settings [Lookup
+   * here](https://dashboard.algolia.com/account/api-keys/restricted)
+   */
+  searchOnlyApiKey: Scalars['String']['input']
+  /**
+   * To enable Algolia suggestions, please provide the Suffix that is used for your suggestions
+   * index.
+   *
+   * The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`. Something like
+   * `_suggestions` or `_query_suggestions`
+   *
+   * For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
+   */
+  suggestionsSuffix?: InputMaybe<Scalars['String']['input']>
 }
 
 /**
@@ -124,6 +162,12 @@ export type DatalayerConfig = {
  * Below is a list of all possible configurations that can be set by GraphCommerce.
  */
 export type GraphCommerceConfig = {
+  /**
+   * Configure your Algolia application ID.
+   *
+   * Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+   */
+  algolia: GraphCommerceAlgoliaConfig
   /** Configuration for the SidebarGallery component */
   breadcrumbs?: InputMaybe<Scalars['Boolean']['input']>
   /**
@@ -408,8 +452,6 @@ export type GraphCommercePermissions = {
    * or completely disables it.
    */
   cart?: InputMaybe<CartPermissions>
-  /** Permissions to show the catalog pricing on the frontend. */
-  catalogPricing?: InputMaybe<CatalogPricingPermissions>
   /** Changes the availability of the checkout to either customer only or completely disables it. */
   checkout?: InputMaybe<CartPermissions>
   /**
@@ -554,8 +596,6 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
 
-export const CatalogPricingPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'ENABLED'])
-
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
 
 export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
@@ -580,8 +620,22 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
   })
 }
 
+export function GraphCommerceAlgoliaConfigSchema(): z.ZodObject<
+  Properties<GraphCommerceAlgoliaConfig>
+> {
+  return z.object({
+    applicationId: z.string().min(1),
+    catalogEnabled: z.boolean().nullish(),
+    customerGroupPricingEnabled: z.boolean().nullish(),
+    indexNamePrefix: z.string().min(1),
+    searchOnlyApiKey: z.string().min(1),
+    suggestionsSuffix: z.string().nullish(),
+  })
+}
+
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
+    algolia: GraphCommerceAlgoliaConfigSchema(),
     breadcrumbs: z.boolean().default(false).nullish(),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -652,7 +706,6 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
 > {
   return z.object({
     cart: CartPermissionsSchema.nullish(),
-    catalogPricing: CatalogPricingPermissionsSchema.nullish(),
     checkout: CartPermissionsSchema.nullish(),
     customerAccount: CustomerAccountPermissionsSchema.nullish(),
     website: WebsitePermissionsSchema.nullish(),

@@ -6,10 +6,6 @@ export const CartPermissionsSchema = z.enum([
     'DISABLED',
     'ENABLED'
 ]);
-export const CatalogPricingPermissionsSchema = z.enum([
-    'CUSTOMER_ONLY',
-    'ENABLED'
-]);
 export const CompareVariantSchema = z.enum([
     'CHECKBOX',
     'ICON'
@@ -43,8 +39,19 @@ export function DatalayerConfigSchema() {
         coreWebVitals: z.boolean().nullish()
     });
 }
+export function GraphCommerceAlgoliaConfigSchema() {
+    return z.object({
+        applicationId: z.string().min(1),
+        catalogEnabled: z.boolean().nullish(),
+        customerGroupPricingEnabled: z.boolean().nullish(),
+        indexNamePrefix: z.string().min(1),
+        searchOnlyApiKey: z.string().min(1),
+        suggestionsSuffix: z.string().nullish()
+    });
+}
 export function GraphCommerceConfigSchema() {
     return z.object({
+        algolia: GraphCommerceAlgoliaConfigSchema(),
         breadcrumbs: z.boolean().default(false).nullish(),
         canonicalBaseUrl: z.string().min(1),
         cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -106,7 +113,6 @@ export function GraphCommerceGooglePlaystoreConfigSchema() {
 export function GraphCommercePermissionsSchema() {
     return z.object({
         cart: CartPermissionsSchema.nullish(),
-        catalogPricing: CatalogPricingPermissionsSchema.nullish(),
         checkout: CartPermissionsSchema.nullish(),
         customerAccount: CustomerAccountPermissionsSchema.nullish(),
         website: WebsitePermissionsSchema.nullish()

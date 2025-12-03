@@ -7,6 +7,43 @@ GoogleDatalayerConfig to allow enabling certain aspects of the datalayer
 
 Enable core web vitals tracking for GraphCommerce
 
+### GraphCommerceAlgoliaConfig
+
+Algolia configuration for GraphCommerce.
+
+#### applicationId: string (required)
+
+Configure your Algolia application ID. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+
+#### indexNamePrefix: string (required)
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
+
+#### searchOnlyApiKey: string (required)
+
+Configure your Search API Key. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
+
+Make sure the API key has the following ACL: search, listIndexes and settings [Lookup here](https://dashboard.algolia.com/account/api-keys/restricted)
+
+#### catalogEnabled: boolean
+
+By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
+
+#### customerGroupPricingEnabled: boolean
+
+Enable Algolia customer group pricing.
+
+Please be aware that personalization needs to be enabled to make this work.
+
+#### suggestionsSuffix: string
+
+To enable Algolia suggestions, please provide the Suffix that is used for your suggestions index.
+
+The pattern is `${indexNamePrefix}_{storeCode}_{suggestionsSuffix}`.
+Something like `_suggestions` or `_query_suggestions`
+
+For the index `magento2_demo_en_US_suggestions` this would be `_suggestions`
+
 # GraphCommerce configuration system
 
 Global GraphCommerce configuration can be configured in your `graphcommerce.config.js` file
@@ -84,6 +121,12 @@ extend input GraphCommerceStorefrontConfig {
 Below is a list of all possible configurations that can be set by GraphCommerce.
 
 ### GraphCommerceConfig
+
+#### algolia: [GraphCommerceAlgoliaConfig](#GraphCommerceAlgoliaConfig) (required)
+
+Configure your Algolia application ID.
+
+Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
 
 #### canonicalBaseUrl: string (required)
 
@@ -394,10 +437,6 @@ Permissions input
 #### cart: CUSTOMER_ONLY | DISABLED | ENABLED
 
 Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
-
-#### catalogPricing: CUSTOMER_ONLY | ENABLED
-
-Permissions to show the catalog pricing on the frontend.
 
 #### checkout: CUSTOMER_ONLY | DISABLED | ENABLED
 
