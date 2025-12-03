@@ -51,19 +51,19 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
           height: responsiveVal(88, 104),
           padding: 0,
           borderRadius: 0,
-          background: theme.palette.background.paper,
+          background: theme.vars.palette.background.paper,
           '&:hover': {
-            background: theme.palette.background.default,
+            background: theme.vars.palette.background.default,
           },
           '&:disabled': {
-            background: theme.palette.background.default,
+            background: theme.vars.palette.background.default,
           },
           '&:focus': {
             // fix: disableElevation does not work when button is focused
             boxShadow: 'none',
           },
           '&:not(.noBorderBottom)': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           },
         }),
         sx,

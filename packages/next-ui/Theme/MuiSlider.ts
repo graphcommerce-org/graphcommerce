@@ -13,22 +13,22 @@ export const MuiSlider: SliderVariants = [
     props: {},
     style: ({ theme }) => ({
       '& .MuiSlider-rail': {
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
       },
       '& .MuiSlider-thumb': {
-        background: theme.palette.background.default,
+        background: theme.vars.palette.background.default,
         boxShadow: theme.shadows[6],
       },
       '& .MuiSlider-valueLabel': {
         top: 0,
         backgroundColor: 'unset',
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
         '&:before': {
           display: 'none',
         },
         '& *': {
           background: 'transparent',
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
         },
       },
     }),

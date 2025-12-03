@@ -64,7 +64,7 @@ function CartFabContent(props: CartFabContentProps) {
         style={{ backgroundColor }}
         sx={(theme) => ({
           [theme.breakpoints.down('md')]: {
-            backgroundColor: `${theme.palette.background.paper} !important`,
+            backgroundColor: `${theme.vars.palette.background.paper} !important`,
           },
         })}
         {...fabProps}

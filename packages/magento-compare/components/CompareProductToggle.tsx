@@ -113,15 +113,15 @@ function CompareProductToggleBase(
               },
               '&:hover': {
                 backgroundColor: alpha(
-                  theme.palette.text.primary,
-                  theme.palette.action.hoverOpacity,
+                  theme.vars.palette.text.primary,
+                  theme.vars.palette.action.hoverOpacity,
                 ),
               },
               '.SidebarGallery-root & svg': {
                 stroke: strokeColorPdp,
               },
               ...theme.applyStyles('light', {
-                backgroundColor: theme.palette.background.paper,
+                backgroundColor: theme.vars.palette.background.paper,
               }),
             }),
             sx,

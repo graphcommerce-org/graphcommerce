@@ -35,7 +35,9 @@ export function AccountAddresses(props: AccountAddressesProps) {
       >
         <Box
           className={classes.addresses}
-          sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
+          sx={(theme) => ({
+            '& > div': { borderBottom: `1px solid ${theme.vars.palette.divider}` },
+          })}
         >
           <Skeleton height={128} />
           <Skeleton height={128} />
@@ -77,7 +79,9 @@ export function AccountAddresses(props: AccountAddressesProps) {
         <SectionContainer labelLeft={<Trans>Shipping addresses</Trans>}>
           <Box
             className={classes.addresses}
-            sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
+            sx={(theme) => ({
+              '& > div': { borderBottom: `1px solid ${theme.vars.palette.divider}` },
+            })}
           >
             {addresses.map((address) => (
               <AccountAddress key={address.id} {...address} />

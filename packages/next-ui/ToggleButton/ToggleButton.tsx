@@ -70,12 +70,12 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             borderWidth: 2,
           },
           '&.selected': {
-            border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+            border: `1px solid ${theme.palette[color]?.main ?? theme.vars.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${
-              theme.palette[color]?.main ?? theme.palette.primary.main
+              theme.palette[color]?.main ?? theme.vars.palette.primary.main
             },0 0 0 4px ${alpha(
-              theme.palette.primary.main,
-              theme.palette.action.hoverOpacity,
+              theme.vars.palette.primary.main,
+              theme.vars.palette.action.hoverOpacity,
             )} !important`,
           },
           ':not(&.sizeSmall)': {

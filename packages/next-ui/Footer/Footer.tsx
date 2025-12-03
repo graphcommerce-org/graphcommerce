@@ -41,7 +41,7 @@ export function Footer(props: FooterProps) {
         sx={sxx(
           (theme) => ({
             gridTemplateColumns: '5fr 3fr',
-            borderTop: `1px solid ${theme.palette.divider}`,
+            borderTop: `1px solid ${theme.vars.palette.divider}`,
             display: 'grid',
             alignItems: 'center',
             pt: theme.spacings.lg,

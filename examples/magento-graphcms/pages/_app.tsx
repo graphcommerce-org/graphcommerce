@@ -2,7 +2,7 @@ import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 import { GraphQLProvider } from '@graphcommerce/graphql'
 import { GlobalHead } from '@graphcommerce/magento-store'
 import { CssAndFramerMotionProvider, PageLoadIndicator } from '@graphcommerce/next-ui'
-import { CssBaseline, CssVarsProvider } from '@mui/material'
+import { CssBaseline, ThemeProvider } from '@mui/material'
 import { AppProps } from 'next/app'
 import { theme } from '../components/theme'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
@@ -15,12 +15,12 @@ export default function ThemedApp(props: AppProps) {
     <CssAndFramerMotionProvider {...props}>
       <I18nProvider key={locale} locale={locale}>
         <GraphQLProvider {...props}>
-          <CssVarsProvider theme={theme}>
+          <ThemeProvider theme={theme}>
             <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
-          </CssVarsProvider>
+          </ThemeProvider>
         </GraphQLProvider>
       </I18nProvider>
     </CssAndFramerMotionProvider>

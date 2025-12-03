@@ -123,8 +123,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
           className={classes.content}
           sx={(theme) => ({
             '&.variantPill': {
-              backgroundColor: theme.palette.background.paper,
-              color: theme.palette.text.primary,
+              backgroundColor: theme.vars.palette.background.paper,
+              color: theme.vars.palette.text.primary,
               [theme.breakpoints.up('md')]: {
                 ...breakpointVal(
                   'borderRadius',
@@ -208,7 +208,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                   onMouseDown={preventAnimationBubble}
                   onTouchStart={preventAnimationBubble}
                   sx={(theme) => ({
-                    backgroundColor: lighten(theme.palette.background.paper, 0.1),
+                    backgroundColor: lighten(theme.vars.palette.background.paper, 0.1),
                   })}
                 >
                   <IconSvg src={iconClose} />

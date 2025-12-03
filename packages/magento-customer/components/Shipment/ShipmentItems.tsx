@@ -36,7 +36,7 @@ export function ShipmentItems(props: ShipmentItemsProps) {
         (theme) => ({
           my: theme.spacings.md,
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
+          border: `1px ${theme.vars.palette.divider} solid`,
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,

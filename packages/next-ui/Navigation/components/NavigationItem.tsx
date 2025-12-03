@@ -97,7 +97,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
               gap: theme.spacings.xxs,
               '&.Mui-disabled': {
                 opacity: 1,
-                background: alpha(theme.palette.action.hover, 0.025),
+                background: alpha(theme.vars.palette.action.hover, 0.025),
               },
             }),
             hideItem

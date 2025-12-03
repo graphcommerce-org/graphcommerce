@@ -53,8 +53,8 @@ export function withTheme<T>(
           sx={sxx(
             {
               typography: 'body1',
-              color: theme.palette.text.primary,
-              backgroundColor: theme.palette.background.default,
+              color: theme.vars.palette.text.primary,
+              backgroundColor: theme.vars.palette.background.default,
             },
             sx,
           )}

@@ -69,7 +69,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
             backgroundColor: 'transparent',
-            backgroundImage: `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+            backgroundImage: `linear-gradient(to left, rgba(255,255,255,0) 0%, ${theme.vars.palette.background.default} 35%)`,
           })}
           direction='left'
           size='small'
@@ -94,7 +94,7 @@ export function DesktopNavBar(props: MenuTabsProps) {
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
             backgroundColor: 'transparent',
-            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.palette.background.default} 35%)`,
+            backgroundImage: `linear-gradient(to right, rgba(255,255,255,0) 0%, ${theme.vars.palette.background.default} 35%)`,
           })}
           direction='right'
           size='small'

@@ -126,7 +126,7 @@ export function ProductVideo(props: ProductVideoProps) {
             sx={(theme) => ({
               width: '100%',
               height: '100%',
-              background: theme.palette.background.image,
+              background: theme.vars.palette.background.image,
             })}
           >
             <Iframe

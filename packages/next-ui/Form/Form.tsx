@@ -15,13 +15,13 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
       padding: `${theme.spacings.xxs} 0`,
     },
     background === 'default' && {
-      background: darken(theme.palette.background.default, 0.03),
+      background: darken(theme.vars.palette.background.default, 0.03),
       ...theme.applyStyles('dark', {
-        background: lighten(theme.palette.background.default, 0.1),
+        background: lighten(theme.vars.palette.background.default, 0.1),
       }),
     },
     background === 'secondary' && {
-      background: theme.palette.secondary.light,
+      background: theme.vars.palette.secondary.light,
     },
     contained && {
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,

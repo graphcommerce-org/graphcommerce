@@ -67,7 +67,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
             display: 'flex',
             justifyContent: 'center',
             height: 2,
-            background: theme.palette.primary.main,
+            background: theme.vars.palette.primary.main,
             margin: '0 auto',
             marginTop: '6px',
           }),

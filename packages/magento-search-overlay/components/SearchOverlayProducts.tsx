@@ -30,7 +30,7 @@ function withUseMenu<T extends keyof ProductListItemRenderer>(
     const sx: SxProps<Theme> = [
       root.selected &&
         ((theme) => ({
-          outline: `2px solid ${theme.palette.primary.main}`,
+          outline: `2px solid ${theme.vars.palette.primary.main}`,
           outlineOffset: '7px',
         })),
     ]

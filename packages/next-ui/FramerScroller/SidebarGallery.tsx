@@ -191,7 +191,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   gridArea: 'left',
                   willChange: 'transform',
                   height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-                  backgroundColor: theme.palette.background.image,
+                  backgroundColor: theme.vars.palette.background.image,
                   position: 'relative',
                   paddingTop: `min(${ratio}, ${maxHeight})`,
                   [theme.breakpoints.down('md')]: {

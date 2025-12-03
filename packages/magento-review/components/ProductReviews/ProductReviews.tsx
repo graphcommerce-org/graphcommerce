@@ -112,7 +112,7 @@ export function ProductReviews(props: ProductReviewsProps) {
           sx={(theme) => ({
             display: 'grid',
             gap: theme.spacings.sm,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
             padding: `${theme.spacings.md} 0`,
             typography: 'body1',
           })}
@@ -150,7 +150,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             sx={(theme) => ({
               display: 'grid',
               gap: theme.spacings.sm,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `1px solid ${theme.vars.palette.divider}`,
               padding: `${theme.spacings.md} 0`,
               typography: 'body1',
             })}
@@ -179,7 +179,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: theme.spacings.sm,
-                  color: theme.palette.text.disabled,
+                  color: theme.vars.palette.text.disabled,
                   typography: 'body2',
                 })}
               >
@@ -212,7 +212,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             <Box
               className={classes.meta}
               sx={(theme) => ({
-                color: theme.palette.text.disabled,
+                color: theme.vars.palette.text.disabled,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 justifyContent: 'space-between',

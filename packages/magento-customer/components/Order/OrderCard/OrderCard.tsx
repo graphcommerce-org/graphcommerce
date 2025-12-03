@@ -68,9 +68,9 @@ export function OrderCard(props: OrderCardProps) {
           py: theme.spacings.xxs,
           gap: theme.spacings.sm,
           alignItems: 'flex-start',
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.palette.background.default, 0.15),
+            background: lighten(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',
@@ -79,7 +79,7 @@ export function OrderCard(props: OrderCardProps) {
             theme.breakpoints.values,
           ),
           '&:hover': {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: theme.vars.palette.action.hover,
           },
         }),
         sx,

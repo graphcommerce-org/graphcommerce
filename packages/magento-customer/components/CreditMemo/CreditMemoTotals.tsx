@@ -32,9 +32,9 @@ export function CreditMemoTotals(props: CreditMemoTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.palette.background.default, 0.15),
+            background: lighten(theme.vars.palette.background.default, 0.15),
           }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),
@@ -91,7 +91,7 @@ export function CreditMemoTotals(props: CreditMemoTotalsProps) {
         sx={(theme) => ({
           display: 'flex',
           justifyContent: 'space-between',
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         })}
       >
         <Typography>
@@ -107,7 +107,7 @@ export function CreditMemoTotals(props: CreditMemoTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           })}
         >
           <Typography>

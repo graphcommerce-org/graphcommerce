@@ -65,7 +65,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
           display: 'grid',
           gridTemplateRows: { xs: 'auto 1fr auto', md: 'auto auto 1fr auto' },
           gridTemplateColumns: '100%',
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
         }),
         sx,
       )}

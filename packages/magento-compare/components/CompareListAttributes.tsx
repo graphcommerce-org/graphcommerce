@@ -20,7 +20,7 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
     <Box
       sx={sxx(
         (theme) => ({
-          bgcolor: theme.palette.background.default,
+          bgcolor: theme.vars.palette.background.default,
           '& :first-of-type > div': {
             mt: 0,
           },

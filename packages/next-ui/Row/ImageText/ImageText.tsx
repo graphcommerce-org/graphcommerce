@@ -24,7 +24,7 @@ export function ImageText(props: ImageTextProps) {
         className={classes.wrapper}
         sx={(theme) => ({
           display: 'grid',
-          background: theme.palette.background.paper,
+          background: theme.vars.palette.background.paper,
           justifyItems: 'center',
           columnGap: theme.spacings.lg,
           marginTop: theme.spacings.lg,
@@ -42,7 +42,7 @@ export function ImageText(props: ImageTextProps) {
             theme.breakpoints.values,
           ),
           ...theme.applyStyles('light', {
-            background: theme.palette.background.image,
+            background: theme.vars.palette.background.image,
           }),
         })}
       >
@@ -70,7 +70,7 @@ export function ImageText(props: ImageTextProps) {
           className={classes.copy}
           sx={(theme) => ({
             marginTop: theme.spacings.lg,
-            color: theme.palette.text.primary,
+            color: theme.vars.palette.text.primary,
             maxWidth: '80%',
             display: 'grid',
             alignContent: 'center',

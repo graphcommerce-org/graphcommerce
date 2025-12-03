@@ -35,7 +35,7 @@ export function InvoiceDetails(props: InvoiceDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background: lighten(theme.palette.background.default, 0.15),
+          background: lighten(theme.vars.palette.background.default, 0.15),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -47,7 +47,7 @@ export function InvoiceDetails(props: InvoiceDetailsProps) {
             mb: theme.spacings.xs,
           },
           ...theme.applyStyles('light', {
-            background: theme.palette.background.default,
+            background: theme.vars.palette.background.default,
           }),
         }),
         sx,

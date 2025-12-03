@@ -26,9 +26,9 @@ export function InvoiceCard(props: InvoiceCardProps) {
           px: theme.spacings.xxs,
           py: theme.spacings.xxs,
           gap: theme.spacings.sm,
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lighten(theme.palette.background.default, 0.15),
+            background: lighten(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',
@@ -37,7 +37,7 @@ export function InvoiceCard(props: InvoiceCardProps) {
             theme.breakpoints.values,
           ),
           '&:hover': {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: theme.vars.palette.action.hover,
           },
           display: 'grid',
           gridTemplate: `

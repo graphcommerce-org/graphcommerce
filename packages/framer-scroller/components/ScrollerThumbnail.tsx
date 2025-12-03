@@ -41,9 +41,9 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
     item.visibility,
     [1, 0],
     [
-      `inset 0 0 0 2px ${theme.palette.primary.main}, 0 0 0 4px ${alpha(
-        theme.palette.primary.main,
-        theme.palette.action.hoverOpacity,
+      `inset 0 0 0 2px ${theme.vars.palette.primary.main}, 0 0 0 4px ${alpha(
+        theme.vars.palette.primary.main,
+        theme.vars.palette.action.hoverOpacity,
       )}`,
       'inset 0 0 0 2px #ffffff00, 0 0 0 4px #ffffff00',
     ],

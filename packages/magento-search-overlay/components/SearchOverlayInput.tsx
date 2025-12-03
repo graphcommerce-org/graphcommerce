@@ -84,7 +84,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             }),
             selected &&
               ((theme) => ({
-                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
+                boxShadow: `inset 0 0 0 2px ${theme.vars.palette.primary.main}`,
               })),
             sx,
           )}

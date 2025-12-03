@@ -46,7 +46,7 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
     sx,
     disableRipple = true,
     className,
-    color = (theme) => theme.palette.background.default,
+    color = (theme) => theme.vars.palette.background.default,
     variant = 'chrome',
     ...other
   } = props

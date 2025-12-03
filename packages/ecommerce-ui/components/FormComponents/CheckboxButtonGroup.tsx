@@ -99,7 +99,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
                   sx={sxx(
                     invalid
                       ? {
-                          color: theme.palette.error.main,
+                          color: theme.vars.palette.error.main,
                         }
                       : {
                           color: null,

@@ -89,7 +89,7 @@ export const LinkOrButton = React.forwardRef<
           },
           !!disabled &&
             ((theme) => ({
-              opacity: theme.palette.action.disabledOpacity,
+              opacity: theme.vars.palette.action.disabledOpacity,
               pointerEvents: 'none',
             })),
           linkSx,

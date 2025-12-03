@@ -62,7 +62,7 @@ export function CustomerTokensPage() {
                 sx={(theme) => ({
                   px: theme.spacings.xxs,
                   py: theme.spacings.xxs,
-                  background: lighten(theme.palette.background.default, 0.15),
+                  background: lighten(theme.vars.palette.background.default, 0.15),
                   ...breakpointVal(
                     'borderRadius',
                     theme.shape.borderRadius * 2,
@@ -77,7 +77,7 @@ export function CustomerTokensPage() {
                   rowGap: 0.5,
                   columnGap: 1,
                   ...theme.applyStyles('light', {
-                    background: theme.palette.background.default,
+                    background: theme.vars.palette.background.default,
                   }),
                 })}
               >

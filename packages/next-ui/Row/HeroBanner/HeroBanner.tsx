@@ -49,7 +49,7 @@ export function HeroBanner(props: HeroBannerProps) {
             alignContent: 'center',
             textAlign: 'center',
             p: theme.spacings.md,
-            color: theme.palette.secondary.contrastText,
+            color: theme.vars.palette.secondary.contrastText,
           })}
         >
           {children}

@@ -270,7 +270,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 1 / 999 / 2',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -279,7 +279,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 2 / 999 / 3',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -288,7 +288,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 3 / 999 / 4',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -297,7 +297,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 4 / 999 / 5',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />

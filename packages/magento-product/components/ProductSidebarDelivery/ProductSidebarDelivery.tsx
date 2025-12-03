@@ -36,7 +36,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
         `,
         gridTemplateColumns: 'min-content auto',
         columnGap: theme.spacings.xxs,
-        background: lighten(theme.palette.background.default, 0.2),
+        background: lighten(theme.vars.palette.background.default, 0.2),
         padding: theme.spacings.xxs,
         ...breakpointVal(
           'borderRadius',
@@ -45,7 +45,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
           theme.breakpoints.values,
         ),
         ...theme.applyStyles('light', {
-          background: darken(theme.palette.background.default, 0.01),
+          background: darken(theme.vars.palette.background.default, 0.01),
         }),
       })}
     >

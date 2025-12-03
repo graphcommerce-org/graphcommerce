@@ -15,7 +15,7 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
       header={<Logo />}
       footer={<Footer footer={footer} />}
       sx={(theme) => ({
-        background: theme.palette.background.paper,
+        background: theme.vars.palette.background.paper,
       })}
     >
       {children}

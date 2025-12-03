@@ -94,7 +94,7 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
                 sx={sxx(
                   invalid
                     ? {
-                        color: theme.palette.error.main,
+                        color: theme.vars.palette.error.main,
                       }
                     : {
                         color: null,
@@ -117,7 +117,7 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
                   sx={sxx(
                     invalid
                       ? {
-                          color: theme.palette.error.main,
+                          color: theme.vars.palette.error.main,
                         }
                       : {
                           color: null,

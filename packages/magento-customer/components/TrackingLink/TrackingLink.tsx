@@ -18,7 +18,7 @@ export function TrackingLink(props: TrackingLinkProps) {
         (theme) => ({
           display: 'flex',
           alignItems: 'center',
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         }),
         sx,
       )}

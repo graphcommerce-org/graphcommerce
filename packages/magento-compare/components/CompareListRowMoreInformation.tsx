@@ -25,7 +25,7 @@ export function CompareListRowMoreInformation(props: CompareListRowMoreInformati
               pb: 0,
               '& > .MuiTypography-root': {
                 pb: theme.spacings.xxs,
-                borderBottom: `1px solid ${theme.palette.divider}`,
+                borderBottom: `1px solid ${theme.vars.palette.divider}`,
                 [theme.breakpoints.down('md')]: {
                   width: '100%',
                 },

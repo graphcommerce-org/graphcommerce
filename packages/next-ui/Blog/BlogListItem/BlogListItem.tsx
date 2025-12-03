@@ -29,7 +29,7 @@ export function BlogListItem(props: BlogListItemProps) {
           display: 'grid',
           gridTemplateRows: 'auto auto auto',
           alignContent: 'start',
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
           gap: theme.spacings.xxs,
           marginBottom: theme.spacings.sm,
         }),
@@ -64,7 +64,7 @@ export function BlogListItem(props: BlogListItemProps) {
           sx={(theme) => ({
             display: 'inline-block',
             textDecoration: 'none',
-            color: theme.palette.text.secondary,
+            color: theme.vars.palette.text.secondary,
           })}
         >
           <DateFormat dateStyle='long' date={date} />

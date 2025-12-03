@@ -28,7 +28,7 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
       className={classes.signup}
       sx={sxx(
         (theme) => ({
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           display: 'grid',
           alignItems: 'center',
           gridAutoFlow: 'column',

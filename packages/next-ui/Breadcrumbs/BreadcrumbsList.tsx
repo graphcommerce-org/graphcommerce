@@ -70,7 +70,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           flex: 1,
           padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
           '&:hover': {
-            backgroundColor: alpha(theme.palette.action.hover, 0.025),
+            backgroundColor: alpha(theme.vars.palette.action.hover, 0.025),
           },
         })}
       >
@@ -90,7 +90,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
             flex: 1,
             padding: `calc(${theme.spacings.xxs} / 2) ${theme.spacings.xs}`,
             '&:hover': {
-              backgroundColor: alpha(theme.palette.action.hover, 0.025),
+              backgroundColor: alpha(theme.vars.palette.action.hover, 0.025),
             },
           })}
         >
