@@ -72,7 +72,7 @@ async function findConfig(options) {
   return config;
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 function resolvePath(pathStr) {
   return fileURLToPath(import.meta.resolve(pathStr));
 }

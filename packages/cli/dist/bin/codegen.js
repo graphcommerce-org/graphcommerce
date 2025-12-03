@@ -5752,7 +5752,7 @@ var outExports = requireOut();
 var glob = /*@__PURE__*/getDefaultExportFromCjs(outExports);
 
 const [, , cmd] = process.argv;
-dotenv.config();
+dotenv.config({ quiet: true });
 const root = process.cwd();
 const configLocation = path$1.join(root, "._tmp_codegen.yml");
 async function cleanup() {

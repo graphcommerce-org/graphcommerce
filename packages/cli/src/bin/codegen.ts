@@ -13,7 +13,7 @@ import yaml from 'yaml'
 
 const [, , cmd] = process.argv
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const root = process.cwd()
 const configLocation = path.join(root, '._tmp_codegen.yml')

@@ -11,7 +11,7 @@ import { resolveDependency } from '../utils/resolveDependency'
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
 const resolve = resolveDependency()
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 export async function generateConfig() {
   const resolved = resolve('@graphcommerce/next-config')

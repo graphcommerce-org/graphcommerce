@@ -6,7 +6,7 @@ import { updatePackageExports } from '../interceptors/updatePackageExports'
 import { writeInterceptors } from '../interceptors/writeInterceptors'
 import { resolveDependency } from '../utils/resolveDependency'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function codegenInterceptors() {

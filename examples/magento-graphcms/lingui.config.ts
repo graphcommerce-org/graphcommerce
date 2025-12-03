@@ -4,7 +4,7 @@ import { findParentPath } from '@graphcommerce/next-config/findParentPath'
 import type { LinguiConfig } from '@lingui/conf'
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const locales = loadConfig(process.cwd()).storefront.map(({ locale, linguiLocale }) => {
   if (linguiLocale) return linguiLocale

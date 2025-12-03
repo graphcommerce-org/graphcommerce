@@ -21,7 +21,7 @@ import type { Entries, OmitIndexSignature } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 function resolvePath(pathStr: string) {
   return fileURLToPath(import.meta.resolve(pathStr))

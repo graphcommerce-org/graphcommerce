@@ -16,7 +16,7 @@ const graphcommerceLog = (message, type) => {
   console.log(type ? color[type] : "", `${message}`);
 };
 
-dotenv.config();
+dotenv.config({ quiet: true });
 function migrationActionFactory(schema, client) {
   const actionMap = client ? {
     create: {
@@ -848,7 +848,7 @@ function getManagementClient(config) {
   });
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 async function migrateHygraphCli() {
   const hygraphConfig = getConfig(loadConfig(process.cwd()));
   const packageJson = fs.readFileSync("package.json", "utf8");

@@ -10,7 +10,7 @@ import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
 import { resolveDependency } from '../utils/resolveDependency'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const resolve = resolveDependency()
 

@@ -3,7 +3,7 @@ import withSerwistInit from '@serwist/next'
 import dotenv from 'dotenv'
 import type { NextConfig } from 'next'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const withPWA = withSerwistInit({
   disable: process.env.NODE_ENV === 'development',

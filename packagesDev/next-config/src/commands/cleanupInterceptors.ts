@@ -1,7 +1,7 @@
 import dotenv from 'dotenv'
 import { findDotOriginalFiles, restoreOriginalFile } from '../interceptors/writeInterceptors'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 export async function cleanupInterceptors(cwd: string = process.cwd()) {
   console.info('🧹 Starting interceptor cleanup...')

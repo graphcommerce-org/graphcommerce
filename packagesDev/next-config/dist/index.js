@@ -103,7 +103,7 @@ async function writeInterceptors(interceptors, cwd = process.cwd()) {
   );
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 async function cleanupInterceptors(cwd = process.cwd()) {
   console.info("\u{1F9F9} Starting interceptor cleanup...");
   let restoredCount = 0;
@@ -1048,7 +1048,7 @@ async function updatePackageExports(plugins, cwd = process.cwd()) {
   await Promise.all(updatePromises);
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 async function codegenInterceptors() {
   const conf = loadConfig(process.cwd());
   const [plugins] = findPlugins(conf);
@@ -1350,7 +1350,7 @@ function exportConfigToEnv(config) {
   return env;
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 async function exportConfig() {
   const conf = loadConfig(process.cwd());
   console.log(exportConfigToEnv(conf));
@@ -1358,7 +1358,7 @@ async function exportConfig() {
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
 const resolve$1 = resolveDependency();
-dotenv.config();
+dotenv.config({ quiet: true });
 async function generateConfig() {
   const resolved = resolve$1("@graphcommerce/next-config");
   if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
@@ -1411,7 +1411,7 @@ async function generateConfig() {
   writeFileSync(targetJs, result.code);
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 const resolve = resolveDependency();
 function toFileName(key) {
   return key;

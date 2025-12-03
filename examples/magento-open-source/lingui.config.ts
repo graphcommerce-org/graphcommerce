@@ -2,7 +2,7 @@ import linguiNextConfig from '@graphcommerce/lingui-next/config'
 import { loadConfig } from '@graphcommerce/next-config'
 import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const locales = loadConfig(process.cwd()).storefront.map(({ locale, linguiLocale }) => {
   if (linguiLocale) return linguiLocale
