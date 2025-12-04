@@ -1,5 +1,187 @@
 # Change Log
 
+## 10.0.0-canary.65
+
+### Patch Changes
+
+- [#2543](https://github.com/graphcommerce-org/graphcommerce/pull/2543) [`7e1e33e`](https://github.com/graphcommerce-org/graphcommerce/commit/7e1e33e6d6238155884ba80cf249209e8eb3d542) - Fix IconBlocks width ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`87fc3c2`](https://github.com/graphcommerce-org/graphcommerce/commit/87fc3c28165c7c66b48882b0f044bbc9b63b9846) - Created new Tabs and TabItem component to be used for MultiCart setup ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`286a20e`](https://github.com/graphcommerce-org/graphcommerce/commit/286a20e01f2a565f058415fa1c8dfbb2eeb3163b) - Added an OverlayCloseButton and implemented it for various locations. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`65dcefb`](https://github.com/graphcommerce-org/graphcommerce/commit/65dcefb8740166fd5df662e0e895c65d70273393) - Solve hydration error because multiple literals could be in a DateTimeFormat ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`88fd114`](https://github.com/graphcommerce-org/graphcommerce/commit/88fd11485f9368e79d277fa45942e58214f794a6) - Created a LayoutOverlayHeader2 that does not support any floating modes or something and thus is simpler to customize. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`23793aa`](https://github.com/graphcommerce-org/graphcommerce/commit/23793aab26455b1bea0d1b3b37c96a228b656bc4) - Prevent excessive rerender when multiple images with the same url are in a product ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`a419257`](https://github.com/graphcommerce-org/graphcommerce/commit/a4192571eb2332630ba3d103f61ff69dac8b2e5c) - Solve issue where the sidebar wasn't 100% width on the PDP on mobile ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+### Patch Changes
+
+- [`4564271`](https://github.com/graphcommerce-org/graphcommerce/commit/4564271e702aab11c28e425029f4a7c09a4d5d61) - Created a revalidate method that returns a single value so that it can be overwritten centrally ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+### Patch Changes
+
+- [`b423879`](https://github.com/graphcommerce-org/graphcommerce/commit/b4238796f1f8cce62325e57d90cc7a84a921a0fa) - DateTimeFormat, NumberFormat and RelativeTimeFormat (and all derivatives) will now wrap all number parts in a span, so that individual parts can be styled properly. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`90f8dd8`](https://github.com/graphcommerce-org/graphcommerce/commit/90f8dd89efd62e2b5a13e9c2bf265840d99e2473) - Create useCookies hook and simplify the useCookie query ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`6a3e7f9`](https://github.com/graphcommerce-org/graphcommerce/commit/6a3e7f9bec6d03c146718ad594b064a75b536e99) - cssFlag and cssNotFlag css selector can now select values ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`a4344ed`](https://github.com/graphcommerce-org/graphcommerce/commit/a4344ed7ff7b3b5f88185c1f6a5fc4b6306fc472) - Created a useCookie hook that is synced between usages ([@paales](https://github.com/paales))
+
+- [#2528](https://github.com/graphcommerce-org/graphcommerce/pull/2528) [`f89210b`](https://github.com/graphcommerce-org/graphcommerce/commit/f89210b09e64f520d308cb1bac693c027be1ac46) - Solve issue where the MenuFabSecondaryItem coudn't handle text overflow. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
 ## 9.1.0-canary.32
 
 ## 9.1.0-canary.31
@@ -672,7 +854,6 @@
 - [#1610](https://github.com/graphcommerce-org/graphcommerce/pull/1610) [`bb94e7045`](https://github.com/graphcommerce-org/graphcommerce/commit/bb94e7045460cb671c45d612a0833731d7c20c30) Thanks [@mikekeehnen](https://github.com/mikekeehnen)! - Previously when the persisted selected value didn't exist in the list of ActionCard items, all items would be hidden. In this fix we set the hidden prop in the ActionCardList component, where we check if the value exists, if not, we display all items
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -782,7 +963,6 @@
 ### Minor Changes
 
 - [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
-
   - Navigation is always present in the DOM
   - Configurable in LayoutNavigation.tsx
   - Show categories directly, or nest them in a 'products' button

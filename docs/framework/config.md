@@ -22,9 +22,9 @@ Configuration can be accessed in your project with the `import.meta.graphCommerc
 
 ```tsx
 import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
-
+import { cartDisplayPricesInclTax } from '@graphcommerce/next-config/config'
 // Accessing a global value
-const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
+const globalConf = cartDisplayPricesInclTax
 
 function MyComponent() {
   // Configuration configured per storefront locale.
@@ -35,7 +35,7 @@ function MyComponent() {
 
   // Or as single line
   const scopedConfigWithFallback2 =
-    useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+    useStorefrontConfig().cartDisplayPricesInclTax ?? cartDisplayPricesInclTax
 
   return <div>{googleRecaptchaKey}</div>
 }
@@ -71,10 +71,10 @@ You can export configuration by running `yarn graphcommerce export-config`
 Create a graphql/Config.graphqls file in your project and extend the GraphCommerceConfig, GraphCommerceStorefrontConfig inputs to add configuration.
 
 ```graphql
-input GraphCommerceConfig {
+extend input GraphCommerceConfig {
   myConfig: String # or Boolean, or Int, or Float, make required with `!`
 }
-input GraphCommerceStorefrontConfig {
+extend input GraphCommerceStorefrontConfig {
   myField: Boolean
 }
 ```
@@ -96,7 +96,7 @@ Examples:
 
 #### hygraphEndpoint: string (required)
 
-The HyGraph endpoint.
+The Hygraph endpoint.
 
 > Read-only endpoint that allows low latency and high read-throughput content delivery.
 

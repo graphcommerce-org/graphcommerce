@@ -1,0 +1,11 @@
+fragment GroupedProductItem on GroupedProductItem {
+  position
+  qty
+  product {
+    url_key
+    url_rewrites {
+      url
+    }
+    ...ProductListItem
+  }
+}

@@ -2,8 +2,6 @@ import prettierConf from '@graphcommerce/prettier-config-pwa'
 import prettier from 'prettier'
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependencyReturn } from '../utils/resolveDependency'
-import { RenameVisitor } from './RenameVisitor'
-import { parseSync, printSync } from './swc'
 
 type PluginBaseConfig = {
   type: 'component' | 'function' | 'replace'
@@ -49,7 +47,7 @@ export function isMethodPluginConfig(
 /** @public */
 export function isReplacePluginConfig(
   plugin: Partial<PluginBaseConfig>,
-): plugin is ReactPluginConfig {
+): plugin is ReplacePluginConfig {
   if (!isPluginBaseConfig(plugin)) return false
   return plugin.type === 'replace'
 }
@@ -63,14 +61,19 @@ export function isPluginConfig(plugin: Partial<PluginConfig>): plugin is PluginC
 export type Interceptor = ResolveDependencyReturn & {
   targetExports: Record<string, PluginConfig[]>
   target: string
-  source: string
-  template?: string
 }
 
-export type MaterializedPlugin = Interceptor & { template: string }
+export type MaterializedPlugin = Interceptor & {
+  template: string
+}
 
-export const SOURCE_START = '/** SOURCE_START */'
-export const SOURCE_END = '/** SOURCE_END */'
+export function moveRelativeDown(plugins: PluginConfig[]) {
+  return [...plugins].sort((a, b) => {
+    if (a.sourceModule.startsWith('.') && !b.sourceModule.startsWith('.')) return 1
+    if (!a.sourceModule.startsWith('.') && b.sourceModule.startsWith('.')) return -1
+    return 0
+  })
+}
 
 const originalSuffix = 'Original'
 const interceptorSuffix = 'Interceptor'
@@ -87,25 +90,29 @@ const sourceName = (n: string) => `${n}`
 const interceptorName = (n: string) => `${n}${interceptorSuffix}`
 const interceptorPropsName = (n: string) => `${n}Props`
 
-export function moveRelativeDown(plugins: PluginConfig[]) {
-  return [...plugins].sort((a, b) => {
-    if (a.sourceModule.startsWith('.') && !b.sourceModule.startsWith('.')) return 1
-    if (!a.sourceModule.startsWith('.') && b.sourceModule.startsWith('.')) return -1
-    return 0
-  })
-}
-
 const generateIdentifyer = (s: string) =>
   Math.abs(
     s.split('').reduce((a, b) => {
-      // eslint-disable-next-line no-param-reassign, no-bitwise
-      a = (a << 5) - a + b.charCodeAt(0)
-      // eslint-disable-next-line no-bitwise
-      return a & a
+      const value = ((a << 5) - a + b.charCodeAt(0)) & 0xffffffff
+      return value < 0 ? value * -2 : value
     }, 0),
   ).toString()
 
-/** The is on the first line, with the format: /* hash:${identifer} */
+// Create a stable string representation of an object by sorting keys recursively
+const stableStringify = (obj: any): string => {
+  if (obj === null || obj === undefined) return String(obj)
+  if (typeof obj !== 'object') return String(obj)
+  if (Array.isArray(obj)) return `[${obj.map(stableStringify).join(',')}]`
+
+  const keys = Object.keys(obj).sort()
+  const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`)
+  return `{${pairs.join(',')}}`
+}
+
+/**
+ * Extract the identifier from the first line of the source file. The identifier is in the format:
+ * slash-star hash:${identifer} star-slash
+ */
 function extractIdentifier(source: string | undefined) {
   if (!source) return null
   const match = source.match(/\/\* hash:(\d+) \*\//)
@@ -118,18 +125,24 @@ export async function generateInterceptor(
   config: GraphCommerceDebugConfig,
   oldInterceptorSource?: string,
 ): Promise<MaterializedPlugin> {
-  const identifer = generateIdentifyer(JSON.stringify(interceptor) + JSON.stringify(config))
+  // Create a stable hash based only on the content that affects the output
+  const hashInput = {
+    dependency: interceptor.dependency,
+    targetExports: interceptor.targetExports,
+    // Only include config properties that affect the output
+    debugConfig: config.pluginStatus ? { pluginStatus: config.pluginStatus } : {},
+  }
+  const identifer = generateIdentifyer(stableStringify(hashInput))
 
-  const { dependency, targetExports, source } = interceptor
+  const { dependency, targetExports } = interceptor
 
   if (oldInterceptorSource && identifer === extractIdentifier(oldInterceptorSource))
     return { ...interceptor, template: oldInterceptorSource }
 
   const pluginConfigs = [...Object.entries(targetExports)].map(([, plugins]) => plugins).flat()
 
-  // console.log('pluginConfigs', pluginConfigs)
+  // Generate plugin imports
   const duplicateImports = new Set()
-
   const pluginImports = moveRelativeDown(
     [...pluginConfigs].sort((a, b) => a.sourceModule.localeCompare(b.sourceModule)),
   )
@@ -142,128 +155,153 @@ export async function generateInterceptor(
       duplicateImports.add(str)
       return true
     })
-    .join('\n')
+    .join('\n    ')
 
-  const ast = parseSync(source)
-
-  new RenameVisitor(Object.keys(targetExports), (s) => originalName(s)).visitModule(ast)
-
-  const pluginExports = Object.entries(targetExports)
-    .map(([base, plugins]) => {
-      const duplicateInterceptors = new Set()
-
-      let carry = originalName(base)
-      let carryProps: string[] = []
-      const pluginSee: string[] = []
-
-      pluginSee.push(
-        `@see {@link file://${interceptor.sourcePathRelative}} for original source file`,
-      )
-
-      const pluginStr = plugins
-        .reverse()
-        .filter((p: PluginConfig) => {
-          if (duplicateInterceptors.has(name(p))) return false
-          duplicateInterceptors.add(name(p))
-          return true
-        })
-        .map((p) => {
-          let result
-
-          const wrapChain = plugins
-            .reverse()
-            .map((pl) => name(pl))
-            .join(' wrapping ')
-
-          if (isReplacePluginConfig(p)) {
-            new RenameVisitor([originalName(p.targetExport)], (s) =>
-              s.replace(originalSuffix, disabledSuffix),
-            ).visitModule(ast)
-
-            carryProps.push(`React.ComponentProps<typeof ${sourceName(name(p))}>`)
-
-            pluginSee.push(
-              `@see {${sourceName(name(p))}} for replacement of the original source (original source not used)`,
-            )
-          }
-
-          if (isReactPluginConfig(p)) {
-            const withBraces = config.pluginStatus || process.env.NODE_ENV === 'development'
-
-            result = `
-              type ${interceptorPropsName(name(p))} = ${carryProps.join(' & ')} & OmitPrev<React.ComponentProps<typeof ${sourceName(name(p))}>, 'Prev'>
-              
-              const ${interceptorName(name(p))} = (props: ${interceptorPropsName(name(p))}) => ${withBraces ? '{' : '('}
-                ${config.pluginStatus ? `logOnce(\`🔌 Rendering ${base} with plugin(s): ${wrapChain} wrapping <${base}/>\`)` : ''}
-
-                ${
-                  process.env.NODE_ENV === 'development'
-                    ? `if(!props['data-plugin'])
-                  logOnce('${fileName(p)} does not spread props to prev: <Prev {...props}/>. This will cause issues if multiple plugins are applied to this component.')`
-                    : ''
-                }
-                ${withBraces ? 'return' : ''} <${sourceName(name(p))} {...props} Prev={${carry}} />
-              ${withBraces ? '}' : ')'}`
-
-            carryProps = [interceptorPropsName(name(p))]
-            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
-          }
-
-          if (isMethodPluginConfig(p)) {
-            result = `const ${interceptorName(name(p))}: typeof ${carry} = (...args) => {
-                ${config.pluginStatus ? `logOnce(\`🔌 Calling ${base} with plugin(s): ${wrapChain} wrapping ${base}()\`)` : ''}
-                return ${sourceName(name(p))}(${carry}, ...args)
-              }`
-            pluginSee.push(`@see {${sourceName(name(p))}} for source of applied plugin`)
-          }
-
-          carry = p.type === 'replace' ? sourceName(name(p)) : interceptorName(name(p))
-          return result
-        })
-        .filter((v) => !!v)
-        .join('\n')
-
-      const isComponent = plugins.every((p) => isReactPluginConfig(p))
-      if (isComponent && plugins.some((p) => isMethodPluginConfig(p))) {
-        throw new Error(`Cannot mix React and Method plugins for ${base} in ${dependency}.`)
-      }
-
-      const seeString = `
-      /**
-       * Here you see the 'interceptor' that is applying all the configured plugins.
-       *
-       * This file is NOT meant to be modified directly and is auto-generated if the plugins or the original source changes.
-       * 
-       ${pluginSee.map((s) => `* ${s}`).join('\n')}
-       */`
-
-      if (process.env.NODE_ENV === 'development' && isComponent) {
-        return `${pluginStr}
-          ${seeString}
-          export const ${base}: typeof ${carry} = (props) => {
-            return <${carry} {...props} data-plugin />
-          }`
-      }
-
-      return `
-        ${pluginStr}
-        ${seeString}
-        export const ${base} = ${carry}
-      `
+  // Generate imports for original components (only when no replace plugin exists)
+  const originalImports = [...Object.entries(targetExports)]
+    .filter(([targetExport, plugins]) => {
+      // Only import original if there's no replace plugin for this export
+      return !plugins.some((p) => p.type === 'replace')
     })
-    .join('\n')
+    .map(([targetExport]) => {
+      const extension = interceptor.sourcePath.endsWith('.tsx') ? '.tsx' : '.ts'
+      const importPath = `./${interceptor.target.split('/').pop()}.original`
+      return `import { ${targetExport} as ${targetExport}${originalSuffix} } from '${importPath}'`
+    })
+    .join('\n    ')
 
-  const logOnce =
-    config.pluginStatus || process.env.NODE_ENV === 'development'
-      ? `
-        const logged: Set<string> = new Set();
-        const logOnce = (log: string, ...additional: unknown[]) => {
-          if (logged.has(log)) return
-          logged.add(log)
-          console.warn(log, ...additional)
+  let logOnce = ''
+  // Note: logInterceptors config option removed for now
+  // if (config.logInterceptors)
+  //   logOnce = `
+  // if (process.env.NODE_ENV === 'development') {
+  //   console.log('🚦 Intercepted ${dependency}')
+  // }
+  // `
+
+  // Generate the plugin chain for each target export
+  const pluginExports = [...Object.entries(targetExports)]
+    .map(([targetExport, plugins]) => {
+      if (plugins.some((p) => p.type === 'component')) {
+        // Component plugins
+        const componentPlugins = plugins.filter((p) => p.type === 'component')
+
+        // Build interceptor chain - each plugin wraps the previous one
+        // Check if there's a replace plugin to use as the base instead of original
+        const replacePlugin = plugins.find((p) => p.type === 'replace')
+        let carry = replacePlugin
+          ? sourceName(name(replacePlugin))
+          : `${targetExport}${originalSuffix}`
+        const pluginSee: string[] = []
+
+        if (replacePlugin) {
+          pluginSee.push(
+            `@see {${sourceName(name(replacePlugin))}} for source of replaced component`,
+          )
+        } else {
+          pluginSee.push(`@see {@link file://./${targetExport}.tsx} for original source file`)
         }
-        `
-      : ''
+
+        const pluginInterceptors = componentPlugins
+          .reverse() // Start from the last plugin and work backwards
+          .map((plugin) => {
+            const pluginName = sourceName(name(plugin))
+            const interceptorName = `${pluginName}${interceptorSuffix}`
+            const propsName = `${pluginName}Props`
+
+            pluginSee.push(`@see {${pluginName}} for source of applied plugin`)
+
+            const result = `type ${propsName} = OmitPrev<
+  React.ComponentProps<typeof ${pluginName}>,
+  'Prev'
+>
+
+const ${interceptorName} = (
+  props: ${propsName},
+) => (
+  <${pluginName}
+    {...props}
+    Prev={${carry}}
+  />
+)`
+            carry = interceptorName
+            return result
+          })
+          .join('\n\n')
+
+        const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join('\n')}
+ */`
+
+        return `${pluginInterceptors}
+
+${seeString}
+export const ${targetExport} = ${carry}`
+      } else if (plugins.some((p) => p.type === 'function')) {
+        // Function plugins
+        const functionPlugins = plugins.filter((p) => p.type === 'function')
+
+        // Build interceptor chain - each plugin wraps the previous one
+        // Check if there's a replace plugin to use as the base instead of original
+        const replacePlugin = plugins.find((p) => p.type === 'replace')
+        let carry = replacePlugin
+          ? sourceName(name(replacePlugin))
+          : `${targetExport}${originalSuffix}`
+        const pluginSee: string[] = []
+
+        if (replacePlugin) {
+          pluginSee.push(
+            `@see {${sourceName(name(replacePlugin))}} for source of replaced function`,
+          )
+        } else {
+          pluginSee.push(`@see {@link file://./${targetExport}.ts} for original source file`)
+        }
+
+        const pluginInterceptors = functionPlugins
+          .reverse() // Start from the last plugin and work backwards
+          .map((plugin) => {
+            const pluginName = sourceName(name(plugin))
+            const interceptorName = `${pluginName}${interceptorSuffix}`
+
+            pluginSee.push(`@see {${pluginName}} for source of applied plugin`)
+
+            const result = `const ${interceptorName}: typeof ${carry} = (...args) => {
+  return ${pluginName}(${carry}, ...args)
+}`
+            carry = interceptorName
+            return result
+          })
+          .join('\n')
+
+        const seeString = `/**
+ * Here you see the 'interceptor' that is applying all the configured plugins.
+ *
+ * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
+ * original source changes.
+ *
+${pluginSee.map((s) => ` * ${s}`).join('\n')}
+ */`
+
+        return `${pluginInterceptors}
+
+${seeString}
+export const ${targetExport} = ${carry}`
+      } else if (plugins.some((p) => p.type === 'replace')) {
+        // Replace plugins (just export the replacement)
+        const replacePlugin = plugins.find((p) => p.type === 'replace')
+        if (replacePlugin) {
+          return `export { ${replacePlugin.sourceExport} as ${targetExport} } from '${replacePlugin.sourceModule}'`
+        }
+      }
+      return ''
+    })
+    .filter(Boolean)
+    .join('\n\n    ')
 
   const template = `/* hash:${identifer} */
     /* eslint-disable */
@@ -276,21 +314,18 @@ export async function generateInterceptor(
 
     ${pluginImports}
 
-    /** @see {@link file://${interceptor.sourcePathRelative}} for source of original */
-    ${SOURCE_START}
-    ${printSync(ast).code}
-    ${SOURCE_END}
+    ${originalImports}
+
+    // Re-export everything from the original file except the intercepted exports
+    export * from './${interceptor.target.split('/').pop()}.original'
+
     ${logOnce}${pluginExports}
   `
 
-  let templateFormatted
-  try {
-    templateFormatted = await prettier.format(template, { ...prettierConf, parser: 'typescript' })
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('Error formatting interceptor: ', e, 'using raw template.')
-    templateFormatted = template
-  }
+  const formatted = await prettier.format(template, {
+    ...prettierConf,
+    parser: 'typescript',
+  })
 
-  return { ...interceptor, template: templateFormatted }
+  return { ...interceptor, template: formatted }
 }

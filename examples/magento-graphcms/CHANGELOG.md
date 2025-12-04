@@ -1,5 +1,159 @@
 # Change Log
 
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+### Patch Changes
+
+- [#2556](https://github.com/graphcommerce-org/graphcommerce/pull/2556) [`4aa6c92`](https://github.com/graphcommerce-org/graphcommerce/commit/4aa6c9284cdc6a43abe1ba8173ad4840e0e808fc) - Bump next from 16.0.6 to 16.0.7 ([@dependabot](https://github.com/apps/dependabot))
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`22094bd`](https://github.com/graphcommerce-org/graphcommerce/commit/22094bd1724bf7917373200501217653bb588f5f) - Solve a version-skew problem where certain JS files weren't properly cached by the Service Worker, but the page was cached. The moment a user wanted to load the page the JS files would not exist and result in a 404. This in turn caused the the frontend to be broken until the page was reloaded.
+
+  The cause is that if the prefetch requests fail, other prefetch requests are not made anymore. And since the js file wasn't cached by other buckets, it would result in a 404. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
 ## 9.1.0-canary.32
 
 ## 9.1.0-canary.31
@@ -288,7 +442,6 @@
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
 
 - [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Created a completely new [GraphCommerce config system](https://www.graphcommerce.org/docs/framework/config) to allow for greater confiugration options and rely less on a .env file to configuration.
-
   - GraphCommerce can be configured in the graphcommerce.config.js
   - The configuration is automatically validated on startup.
   - All configuration values can be overwritten by environment variables. ([@paales](https://github.com/paales))
@@ -1316,11 +1469,9 @@
 ### Minor Changes
 
 - [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
-
   - Fixes bugs where loaders where shown on all pages that require user to log in
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible
@@ -1732,7 +1883,6 @@
 ### Minor Changes
 
 - [#1566](https://github.com/graphcommerce-org/graphcommerce/pull/1566) [`e167992df`](https://github.com/graphcommerce-org/graphcommerce/commit/e167992dfdc6964a392af719667f8a188626ab1b) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Introduced `@graphcommerce/next-ui/navigation` component.
-
   - Navigation is always present in the DOM
   - Configurable in LayoutNavigation.tsx
   - Show categories directly, or nest them in a 'products' button

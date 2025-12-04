@@ -2,6 +2,7 @@
 import type {
   AlgoliaLookingSimilarInput,
   AlgoliaRelatedProductsInput,
+  Maybe,
   MeshContext,
   ProductInterfaceResolvers,
   ResolverFn,
@@ -10,11 +11,8 @@ import type {
   ResolversTypes,
 } from '@graphcommerce/graphql-mesh'
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
-import type {
-  GraphCommerceAlgoliaRecommendationLocation,
-  InputMaybe,
-  Maybe,
-} from '@graphcommerce/next-config'
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
+import { algolia } from '@graphcommerce/next-config/config'
 import { createProductMapper } from './createProductMapper'
 import { createFacetValueMapper } from './createValueFacetMapper'
 import { getRecommendationsArgs } from './getRecommendationArgs'
@@ -66,13 +64,11 @@ const resolvers: Resolvers = {
   },
 }
 
-function isEnabled(location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined) {
+function isEnabled(location: GraphCommerceConfig['algolia']['lookingSimilar'] | undefined) {
   return location && location !== 'DISABLED'
 }
 
-function enumToLocation(
-  location: InputMaybe<GraphCommerceAlgoliaRecommendationLocation> | undefined,
-) {
+function enumToLocation(location: GraphCommerceConfig['algolia']['lookingSimilar'] | undefined) {
   if (!isEnabled(location)) throw Error('Check for isEnabled before calling this function')
   if (location === 'CROSSSELL_PRODUCTS') return 'crosssell_products' as const
   if (location === 'UPSELL_PRODUCTS') return 'upsell_products' as const
@@ -86,8 +82,8 @@ type ProductResolver = ResolverFn<
   Record<string, never>
 >
 
-if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.relatedProducts)
+if (isEnabled(algolia.relatedProducts)) {
+  const fieldName = enumToLocation(algolia.relatedProducts)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
@@ -112,8 +108,8 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
   })
 }
 
-if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.lookingSimilar)
+if (isEnabled(algolia.lookingSimilar)) {
+  const fieldName = enumToLocation(algolia.lookingSimilar)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
@@ -137,8 +133,8 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
   })
 }
 
-if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)
+if (isEnabled(algolia.frequentlyBoughtTogether)) {
+  const fieldName = enumToLocation(algolia.frequentlyBoughtTogether)
 
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, maxRecommendations, queryParameters } =

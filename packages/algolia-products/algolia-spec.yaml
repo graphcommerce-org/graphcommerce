@@ -264,6 +264,7 @@ paths:
       tags:
         - search
       operationId: searchSingleIndex
+      x-mcp-tool: true
       x-use-read-transporter: true
       x-cacheable: true
       x-acl:
@@ -291,6 +292,75 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/searchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/*/queries:
+    post:
+      tags:
+        - search
+      operationId: search
+      x-use-read-transporter: true
+      x-cacheable: true
+      x-legacy-signature: true
+      x-acl:
+        - search
+      summary: Search multiple indices
+      description: >
+        Sends multiple search requests to one or more indices.
+        
+        
+        This can be useful in these cases:
+        
+        
+        - Different indices for different purposes, such as, one index for products, another one for marketing content.
+        
+        - Multiple searches to the same index—for example, with different filters.
+        
+        
+        Use the helper `searchForHits` or `searchForFacets` to get the results in a more convenient format, if you already know the return type you want.
+
+      requestBody:
+        required: true
+        description: >-
+          Muli-search request body. Results are returned in the same order as the requests.
+
+        content:
+          application/json:
+            schema:
+              title: searchMethodParams
+              type: object
+              additionalProperties: false
+              properties:
+                requests:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SearchQuery'
+                strategy:
+                  $ref: '#/components/schemas/searchStrategy'
+              required:
+                - requests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: searchResponses
+                type: object
+                additionalProperties: false
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/searchResult'
+                required:
+                  - results
         '400':
           $ref: '#/components/responses/BadRequest'
         '402':
@@ -364,8 +434,9 @@ paths:
       tags:
         - search
       operationId: getSettings
+      x-mcp-tool: true
       x-acl:
-        - search
+        - settings
       description: Retrieves an object with non-null index settings.
       summary: Retrieve index settings
       parameters:
@@ -377,6 +448,310 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/settingsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/{indexName}/synonyms/{objectID}:
+    get:
+      tags:
+        - search
+      operationId: getSynonym
+      x-acl:
+        - settings
+      summary: Retrieve a synonym
+      description: |
+        Retrieves a synonym by its ID.
+        To find the object IDs for your synonyms,
+        use the [`search` operation](#tag/Synonyms/operation/searchSynonyms).
+      parameters:
+        - $ref: '#/components/parameters/IndexName'
+        - $ref: '#/components/parameters/parameters_ObjectID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/synonymHit'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/{indexName}/synonyms/search:
+    post:
+      tags:
+        - search
+      operationId: searchSynonyms
+      x-mcp-tool: true
+      x-use-read-transporter: true
+      x-cacheable: true
+      x-acl:
+        - settings
+      summary: Search for synonyms
+      description: Searches for synonyms in your index.
+      parameters:
+        - $ref: '#/components/parameters/IndexName'
+      requestBody:
+        description: Body of the `searchSynonyms` operation.
+        content:
+          application/json:
+            schema:
+              title: searchSynonymsParams
+              type: object
+              additionalProperties: false
+              properties:
+                query:
+                  $ref: '#/components/schemas/query'
+                type:
+                  $ref: '#/components/schemas/SynonymType'
+                page:
+                  $ref: '#/components/schemas/page'
+                hitsPerPage:
+                  $ref: '#/components/schemas/hitsPerPage'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/searchSynonymsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/{indexName}/rules/{objectID}:
+    get:
+      tags:
+        - search
+      operationId: getRule
+      x-acl:
+        - settings
+      summary: Retrieve a rule
+      description: >
+        Retrieves a rule by its ID.
+        
+        To find the object ID of rules, use the [`search` operation](#tag/Rules/operation/searchRules).
+
+      parameters:
+        - $ref: '#/components/parameters/IndexName'
+        - $ref: '#/components/parameters/ObjectIDRule'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/indexes/{indexName}/rules/search:
+    post:
+      tags:
+        - search
+      operationId: searchRules
+      x-mcp-tool: true
+      x-use-read-transporter: true
+      x-cacheable: true
+      x-acl:
+        - settings
+      summary: Search for rules
+      description: Searches for rules in your index.
+      parameters:
+        - $ref: '#/components/parameters/IndexName'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              title: searchRulesParams
+              type: object
+              description: Rules search parameters.
+              additionalProperties: false
+              properties:
+                query:
+                  $ref: '#/components/schemas/parameters_query'
+                anchoring:
+                  $ref: '#/components/schemas/anchoring'
+                context:
+                  type: string
+                  description: Only return rules that match the context (exact match).
+                  example: mobile
+                page:
+                  $ref: '#/components/schemas/parameters_page'
+                hitsPerPage:
+                  $ref: '#/components/schemas/parameters_hitsPerPage'
+                enabled:
+                  oneOf:
+                    - type: boolean
+                      description: |
+                        If `true`, return only enabled rules.
+                        If `false`, return only inactive rules.
+                        By default, _all_ rules are returned.
+                    - type: 'null'
+                  default: null
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: searchRulesResponse
+                type: object
+                additionalProperties: false
+                required:
+                  - hits
+                  - nbHits
+                  - page
+                  - nbPages
+                properties:
+                  hits:
+                    type: array
+                    description: Rules that matched the search criteria.
+                    items:
+                      $ref: '#/components/schemas/rule'
+                  nbHits:
+                    type: integer
+                    description: Number of rules that matched the search criteria.
+                  page:
+                    type: integer
+                    description: Current page.
+                  nbPages:
+                    type: integer
+                    description: Number of pages.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/dictionaries/{dictionaryName}/search:
+    post:
+      tags:
+        - search
+      operationId: searchDictionaryEntries
+      x-use-read-transporter: true
+      x-cacheable: true
+      x-acl:
+        - settings
+      description: Searches for standard and custom dictionary entries.
+      summary: Search dictionary entries
+      parameters:
+        - $ref: '#/components/parameters/DictionaryName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: searchDictionaryEntriesParams
+              description: Search parameter.
+              type: object
+              required:
+                - query
+              additionalProperties: false
+              properties:
+                query:
+                  $ref: '#/components/schemas/query'
+                page:
+                  $ref: '#/components/schemas/page'
+                hitsPerPage:
+                  $ref: '#/components/schemas/hitsPerPage'
+                language:
+                  $ref: '#/components/schemas/supportedLanguage'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/searchDictionaryEntriesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/dictionaries/*/settings:
+    get:
+      tags:
+        - search
+      operationId: getDictionarySettings
+      x-acl:
+        - settings
+      summary: Retrieve dictionary settings
+      description: >-
+        Retrieves the languages for which standard dictionary entries are turned off.
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: getDictionarySettingsResponse
+                additionalProperties: false
+                type: object
+                required:
+                  - disableStandardEntries
+                properties:
+                  disableStandardEntries:
+                    $ref: '#/components/schemas/standardEntries'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          $ref: '#/components/responses/FeatureNotEnabled'
+        '403':
+          $ref: '#/components/responses/MethodNotAllowed'
+        '404':
+          $ref: '#/components/responses/IndexNotFound'
+  /1/dictionaries/*/languages:
+    get:
+      tags:
+        - search
+      operationId: getDictionaryLanguages
+      x-acl:
+        - settings
+      description: >
+        Lists supported languages with their supported dictionary types and number of custom entries.
+
+      summary: List available languages
+      externalDocs:
+        url: >-
+          https://www.algolia.com/doc/guides/managing-results/optimize-search-results/handling-natural-languages-nlp/in-depth/supported-languages/
+
+        description: Supported languages.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                title: getDictionaryLanguagesResponse
+                type: object
+                additionalProperties:
+                  x-additionalPropertiesName: language
+                  $ref: '#/components/schemas/languages'
         '400':
           $ref: '#/components/responses/BadRequest'
         '402':
@@ -1085,6 +1460,8 @@ components:
       enum:
         - min
         - strict
+        - 'true'
+        - 'false'
     typoTolerance:
       description: >
         Whether [typo tolerance](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/typo-tolerance/) is enabled and how it is applied.
@@ -2058,8 +2435,6 @@ components:
     baseSearchResponse:
       type: object
       additionalProperties: true
-      required:
-        - processingTimeMS
       properties:
         abTestID:
           type: integer
@@ -2271,6 +2646,7 @@ components:
         - partial
         - full
     highlightResultOption:
+      title: highlightResultOption
       type: object
       description: Surround words that match the query with HTML tags for highlighting.
       additionalProperties: false
@@ -2297,6 +2673,7 @@ components:
         - matchLevel
         - matchedWords
     highlightResultMap:
+      title: highlightResultMap
       type: object
       description: Surround words that match the query with HTML tags for highlighting.
       x-is-free-form: false
@@ -2309,11 +2686,13 @@ components:
         - $ref: '#/components/schemas/highlightResultMap'
         - $ref: '#/components/schemas/highlightResultArray'
     highlightResultArray:
+      title: highlightResultArray
       type: array
       description: Surround words that match the query with HTML tags for highlighting.
       items:
         $ref: '#/components/schemas/highlightResult'
     snippetResultOption:
+      title: snippetResultOption
       type: object
       description: Snippets that show the context around a matching search query.
       additionalProperties: false
@@ -2328,6 +2707,7 @@ components:
       x-discriminator-fields:
         - matchLevel
     snippetResultMap:
+      title: snippetResultMap
       type: object
       description: Snippets that show the context around a matching search query.
       x-is-free-form: false
@@ -2340,6 +2720,7 @@ components:
         - $ref: '#/components/schemas/snippetResultMap'
         - $ref: '#/components/schemas/snippetResultArray'
     snippetResultArray:
+      title: snippetResultArray
       type: array
       description: Snippets that show the context around a matching search query.
       items:
@@ -4102,10 +4483,12 @@ components:
           example: 100
         dataSize:
           type: integer
+          format: int64
           description: Number of bytes of the index in minified format.
           example: 48450
         fileSize:
           type: integer
+          format: int64
           description: Number of bytes of the index binary file.
           example: 112927
         lastBuildTimeS:
@@ -4262,6 +4645,127 @@ components:
         - copyOperationResponse
         - batchResponses
         - moveOperationResponse
+    RunID:
+      type: string
+      description: Universally unique identifier (UUID) of a task run.
+      example: 6c02aeb1-775e-418e-870b-1faccd4b2c0f
+    EventID:
+      type: string
+      description: Universally unique identifier (UUID) of an event.
+      example: 6c02aeb1-775e-418e-870b-1faccd4b2c0f
+    EventStatus:
+      oneOf:
+        - type: string
+          enum:
+            - created
+            - started
+            - retried
+            - failed
+            - succeeded
+            - critical
+        - type: 'null'
+    EventType:
+      type: string
+      enum:
+        - fetch
+        - record
+        - log
+        - transform
+    PublishedAt:
+      type: string
+      description: Date of publish RFC 3339 format.
+    Event:
+      type: object
+      description: An event describe a step of the task execution flow..
+      additionalProperties: false
+      properties:
+        eventID:
+          $ref: '#/components/schemas/EventID'
+        runID:
+          $ref: '#/components/schemas/RunID'
+        status:
+          $ref: '#/components/schemas/EventStatus'
+        type:
+          $ref: '#/components/schemas/EventType'
+        batchSize:
+          type: integer
+          description: The extracted record batch size.
+          example: 10
+          minimum: 0
+          multipleOf: 1
+        data:
+          oneOf:
+            - type: object
+              additionalProperties: true
+            - type: 'null'
+        publishedAt:
+          $ref: '#/components/schemas/PublishedAt'
+      required:
+        - eventID
+        - runID
+        - status
+        - type
+        - batchSize
+        - publishedAt
+    CreatedAt:
+      type: string
+      description: Date of creation in RFC 3339 format.
+    WatchResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        runID:
+          $ref: '#/components/schemas/RunID'
+        eventID:
+          $ref: '#/components/schemas/EventID'
+        data:
+          type: array
+          description: >
+            This field is always null when used with the Push endpoint.
+            
+            When used for a source discover or source validate run, it will include the sampled data of the source.
+
+          items:
+            type: object
+        events:
+          description: >-
+            in case of error, observability events will be added to the response.
+
+          type: array
+          items:
+            $ref: '#/components/schemas/Event'
+        message:
+          description: >-
+            a message describing the outcome of the operation that has been ran (push, discover or validate) run.
+
+          type: string
+        createdAt:
+          $ref: '#/components/schemas/CreatedAt'
+      required:
+        - runID
+    replaceAllObjectsWithTransformationResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        copyOperationResponse:
+          description: >-
+            The response of the `operationIndex` request for the `copy` operation.
+
+          $ref: '#/components/schemas/updatedAtResponse'
+        watchResponses:
+          type: array
+          description: The response of the `push` request(s).
+          items:
+            $ref: '#/components/schemas/WatchResponse'
+        moveOperationResponse:
+          description: >-
+            The response of the `operationIndex` request for the `move` operation.
+
+          $ref: '#/components/schemas/updatedAtResponse'
+      required:
+        - copyOperationResponse
+        - watchResponses
+        - moveOperationResponse
     builtInOperationType:
       type: string
       enum:
@@ -4297,7 +4801,7 @@ components:
     PathInPath:
       name: path
       in: path
-      description: Path of the endpoint, anything after "/1" must be specified.
+      description: Path of the endpoint, for example `1/newFeature`.
       required: true
       schema:
         type: string

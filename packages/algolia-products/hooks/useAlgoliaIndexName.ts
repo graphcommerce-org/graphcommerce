@@ -1,5 +1,6 @@
+import { algolia } from '@graphcommerce/next-config/config'
 import { useStorefrontConfig } from '@graphcommerce/next-ui'
 
 export function useAlgoliaIndexName() {
-  return `${import.meta.graphCommerce.algolia.indexNamePrefix}${useStorefrontConfig().magentoStoreCode}_products`
+  return `${algolia.indexNamePrefix}${useStorefrontConfig().magentoStoreCode}_products`
 }

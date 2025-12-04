@@ -1,7 +1,7 @@
 # Upgrading from GraphCommerce 8 to 9
 
 Depending on the amounts of customisations you've made, there are some manual
-steps. Please follow the regular [upgrade steps first](./readme.md).
+steps.
 
 1. ReactPlugin TypeScript definition is removed.
 2. Locales now require an explicit configuration.

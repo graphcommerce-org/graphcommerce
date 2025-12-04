@@ -6,6 +6,7 @@ import {
   type RecentlyViewedProductsProps,
 } from '@graphcommerce/magento-recently-viewed-products'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { recentlyViewedProducts } from '@graphcommerce/next-config/config'
 import {
   filterNonNullableKeys,
   RenderType,
@@ -34,7 +35,7 @@ export function RecentlyViewedProducts(props: PluginProps<RecentlyViewedProducts
   })
 
   if (
-    !import.meta.graphCommerce.recentlyViewedProducts?.enabled ||
+    !recentlyViewedProducts?.enabled ||
     (!productList.loading && !productList.products.length && isInView)
   ) {
     return null

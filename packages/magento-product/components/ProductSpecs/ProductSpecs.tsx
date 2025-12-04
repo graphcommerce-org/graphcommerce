@@ -19,7 +19,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations, items, title, children, sx = [] } = props
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
-    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
+    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.label !== '0',
   )
 
   if (specs?.length === 0) return null

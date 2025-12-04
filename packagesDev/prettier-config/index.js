@@ -15,7 +15,7 @@ module.exports = {
       },
     },
     {
-      files: ['**/.changeset/*.md', '**/CHANGELOG.md'],
+      files: ['**/.changeset/*.md', '**/CHANGELOG.md', '**/llm/*.md'],
       options: {
         proseWrap: 'never',
       },

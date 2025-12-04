@@ -10,6 +10,7 @@ import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { revalidate } from '@graphcommerce/next-ui'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
@@ -93,6 +94,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

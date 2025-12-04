@@ -17,27 +17,24 @@ type SwitchElementComponent = <TFieldValues extends FieldValues>(
   props: SwitchElementProps<TFieldValues>,
 ) => React.ReactNode
 
-function SwitchElementBase(props: SwitchElementProps): JSX.Element {
-  const {
-    name,
-    control,
-    defaultValue,
-    disabled: disabledField,
-    shouldUnregister,
-    rules,
-    ...other
-  } = props
+function SwitchElementBase(props: SwitchElementProps): React.ReactNode {
+  const { name, control, defaultValue, shouldUnregister, rules, disabled, ...other } = props
 
   const { field } = useController({
     name,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
     rules,
   })
 
-  return <FormControlLabel control={<Switch {...field} checked={!!field.value} />} {...other} />
+  return (
+    <FormControlLabel
+      control={<Switch {...field} checked={!!field.value} />}
+      {...other}
+      disabled={disabled}
+    />
+  )
 }
 
 /** @public */

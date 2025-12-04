@@ -4,7 +4,7 @@ import {
   type AttributeFormAutoLayoutProps,
 } from '@graphcommerce/magento-store'
 import { Button, FormActions, type ButtonProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { styled } from '@mui/material'
 import type { ComponentProps } from 'react'
 import { CustomerAttributeField } from './CustomerAttributeField'
@@ -56,7 +56,7 @@ export function CustomerUpdateForm(props: CustomerUpdateFormProps) {
           loading={formState.isSubmitting}
           {...slotProps?.button}
         >
-          <Trans id='Save changes' />
+          <Trans>Save changes</Trans>
         </Button>
       </FormActions>
       <ApolloErrorSnackbar error={error} />

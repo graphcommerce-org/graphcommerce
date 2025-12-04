@@ -13,6 +13,7 @@ import {
 import type { SetRequired } from 'type-fest'
 import { useProductListLinkReplace } from '../../hooks/useProductListLinkReplace'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
+import { hasUserFilterActive } from '../ProductListItems/hasUserFilterActive'
 import { ProductListLink } from '../ProductListLink/ProductListLink'
 import type { ProductListFiltersFragment } from './ProductListFilters.gql'
 
@@ -55,7 +56,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     in: [],
   }
 
-  const anyFilterActive = Object.keys(params?.filters ?? {}).length >= 1
+  const anyFilterActive = hasUserFilterActive(params)
 
   const currentLabels =
     options

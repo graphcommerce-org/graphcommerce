@@ -1,4 +1,5 @@
 import type { StrictTypedTypePolicies } from '@graphcommerce/graphql'
+import type { KeyFieldsFunction } from '@apollo/client/cache/inmemory/policies'
 import { mergeDeep } from '../../apollo'
 
 export const mergeTypePolicies = (policies: StrictTypedTypePolicies[]): StrictTypedTypePolicies =>

@@ -1,4 +1,5 @@
 export * from 'react-hook-form'
+export { default as diff } from './src/diff'
 export * from './src/ComposedForm'
 export * from './src/useFormAutoSubmit'
 export * from './src/useFormGql'

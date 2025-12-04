@@ -2,8 +2,10 @@
 const commands = {
   codegen: () => import('@graphcommerce/next-config').then((m) => m.codegen),
   "codegen-config": () => import('@graphcommerce/next-config').then((m) => m.generateConfig),
+  "codegen-config-values": () => import('@graphcommerce/next-config').then((m) => m.generateConfigValues),
   "copy-files": () => import('@graphcommerce/next-config').then((m) => m.copyFiles),
   "codegen-interceptors": () => import('@graphcommerce/next-config').then((m) => m.codegenInterceptors),
+  "cleanup-interceptors": () => import('@graphcommerce/next-config').then((m) => m.cleanupInterceptors),
   "export-config": () => import('@graphcommerce/next-config').then((m) => m.exportConfig),
   "hygraph-migrate": () => import('@graphcommerce/hygraph-cli').then((m) => m.migrateHygraph)
 };

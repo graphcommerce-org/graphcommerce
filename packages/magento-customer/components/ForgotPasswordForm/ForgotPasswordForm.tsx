@@ -1,8 +1,8 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Alert } from '@mui/material'
@@ -32,7 +32,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
           marginBottom: theme.spacings.sm,
         })}
       >
-        <Trans id='We’ve send a password reset link to your email address!' />
+        <Trans>We’ve send a password reset link to your email address!</Trans>
       </Alert>
     )
   }
@@ -44,12 +44,12 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.email}
-          label={<Trans id='Email' />}
+          label={<Trans>Email</Trans>}
           required={required.email}
           name='email'
           control={control}
           rules={{
-            pattern: { value: emailPattern, message: i18n._(/* i18n */ 'Invalid email address') },
+            pattern: { value: emailPattern, message: t`Invalid email address` },
           }}
           helperText={formState.errors.email?.message}
           disabled={formState.isSubmitting}
@@ -68,7 +68,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
           size='large'
           {...buttonProps}
         >
-          <Trans id='Send password reset email' />
+          <Trans>Send password reset email</Trans>
         </Button>
       </FormActions>
     </Form>

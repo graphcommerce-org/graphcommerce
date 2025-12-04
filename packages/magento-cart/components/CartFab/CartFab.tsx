@@ -1,4 +1,3 @@
-import { WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import {
   DesktopHeaderBadge,
   extendableComponent,
@@ -7,7 +6,7 @@ import {
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
 import { alpha, Box, Fab, styled, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -61,7 +60,7 @@ function CartFabContent(props: CartFabContentProps) {
       <MotionFab
         href='/cart'
         className={classes.cart}
-        aria-label={i18n._(/* i18n */ 'Cart')}
+        aria-label={t`Cart`}
         color='inherit'
         size='responsive'
         style={{ backgroundColor }}
@@ -111,9 +110,5 @@ export function CartFab(props: CartFabProps) {
   })
   if (!cartEnabled) return null
 
-  return (
-    <WaitForQueries waitFor={cartQuery} fallback={<CartFabContent {...props} total_quantity={0} />}>
-      <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
-    </WaitForQueries>
-  )
+  return <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
 }

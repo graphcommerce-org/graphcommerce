@@ -6,8 +6,14 @@ import {
   HygraphPagesQuery,
 } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument, redirectOrNotFound } from '@graphcommerce/magento-store'
-import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import {
+  PageMeta,
+  GetStaticProps,
+  LayoutOverlayHeader,
+  LayoutTitle,
+  revalidate,
+} from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -18,6 +24,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
+import { limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery
 type RouteProps = { url: string[] }
@@ -65,7 +72,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
+        first: limitSsg ? 1 : 1000,
         urlStartsWith: 'service',
       },
     })
@@ -96,9 +103,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await page).data,
       ...(await layout).data,
-      up: isRoot ? null : { href: '/service', title: i18n._(/* i18n */ 'Customer Service') },
+      up: isRoot ? null : { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

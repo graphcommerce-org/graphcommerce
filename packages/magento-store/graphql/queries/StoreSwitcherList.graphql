@@ -4,6 +4,7 @@ query StoreSwitcherList {
     store_code
     locale
     base_currency_code
+    default_display_currency_code
     store_group_name
     store_group_code
     currency {

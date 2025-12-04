@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { FabProps } from '@mui/material'
 import { Fab, styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -39,7 +39,7 @@ export function ScrollerDot(props: ScrollerDotProps) {
         scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
       }}
       className={classes.dot}
-      aria-label={i18n._(/* i18n */ 'Navigate to item {0}', { 0: idx + 1 })}
+      aria-label={t`Navigate to item ${idx + 1}`}
       sx={{
         boxShadow: 'none',
         background: 'transparent',

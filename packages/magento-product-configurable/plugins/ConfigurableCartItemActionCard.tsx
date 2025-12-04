@@ -4,6 +4,7 @@ import {
 } from '@graphcommerce/magento-cart-items'
 import type { PriceModifier } from '@graphcommerce/magento-store'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { configurableVariantValues } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, isTypename } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
@@ -31,11 +32,11 @@ export function CartItemActionCard(props: PluginProps<CartItemActionCardProps>) 
         ...rest.cartItem,
         product: {
           ...rest.cartItem.product,
-          name: import.meta.graphCommerce.configurableVariantValues?.content
+          name: configurableVariantValues?.content
             ? rest.cartItem.configured_variant.name
             : rest.cartItem.product.name,
           thumbnail: rest.cartItem.configured_variant.thumbnail,
-          // url_key: import.meta.graphCommerce.configurableVariantValues?.url
+          // url_key: configurableVariantValues?.url
           //   ? rest.cartItem.configured_variant.url_key
           //   : rest.cartItem.product.url_key,
         },

@@ -1,10 +1,15 @@
-import type { SubmitHandler } from '@graphcommerce/ecommerce-ui'
-import { useForm, useWatch, type UseFormReturn } from '@graphcommerce/ecommerce-ui'
+import {
+  useForm,
+  useWatch,
+  type SubmitHandler,
+  type UseFormReturn,
+} from '@graphcommerce/ecommerce-ui'
 import { useIsomorphicLayoutEffect } from '@graphcommerce/framer-utils'
 import {
   cookie,
   filterNonNullableKeys,
   storefrontAll,
+  useCookie,
   useStorefrontConfig,
   type RequiredKeys,
 } from '@graphcommerce/next-ui'
@@ -28,7 +33,7 @@ export type StoreSwitcherGroup = Pick<
   disabled: boolean
 }
 
-export type StoreSwitcherFormValues = {
+export interface StoreSwitcherFormValues {
   storeGroupCode: string
   storeCode: string
   currency: string
@@ -39,7 +44,7 @@ type StoreSwitcherFormContextType = {
   storeGroups: StoreSwitcherGroup[]
 } & UseFormReturn<StoreSwitcherFormValues>
 
-const StoreSwitcherFormContext = createContext<StoreSwitcherFormContextType | null>(null)
+export const StoreSwitcherFormContext = createContext<StoreSwitcherFormContextType | null>(null)
 
 export function useStoreSwitcherForm(
   context?: StoreSwitcherFormContextType,
@@ -87,29 +92,32 @@ export function useSelectedCurrency(context?: StoreSwitcherFormContextType): str
     : null
 }
 
-export function useStoreSwitcher({
-  availableStores,
-}: StoreSwitcherListQuery): StoreSwitcherFormContextType {
-  const stores: StoreSwitcherStore[] = useMemo(
-    () =>
-      filterNonNullableKeys(availableStores, [
-        'store_name',
-        'store_code',
-        'store_group_code',
-        'store_group_name',
-        'base_currency_code',
-        'locale',
-      ])
-        .map((store) => ({
-          ...store,
-          country: store.locale.split('_')[1]?.toLowerCase(),
-          disabled: !storefrontAll.find((l) => l.magentoStoreCode === store.store_code),
-        }))
-        .filter((store) => !store.disabled),
-    [availableStores],
-  )
+export type StoreSwitcherFormProviderProps = {
+  children?: React.ReactNode
+  onSubmit?: SubmitHandler<StoreSwitcherFormValues>
+} & StoreSwitcherListQuery
 
-  const storeGroups = Object.values(
+export function normalizeAvailableStores(
+  availableStores: StoreSwitcherListQuery['availableStores'],
+): StoreSwitcherStore[] {
+  return filterNonNullableKeys(availableStores, [
+    'store_name',
+    'store_code',
+    'store_group_code',
+    'store_group_name',
+    'base_currency_code',
+    'locale',
+  ])
+    .map((store) => ({
+      ...store,
+      country: store.locale.split('_')[1]?.toLowerCase(),
+      disabled: !storefrontAll.find((l) => l.magentoStoreCode === store.store_code),
+    }))
+    .filter((store) => !store.disabled)
+}
+
+function normalizeStoreGroups(stores: StoreSwitcherStore[]): StoreSwitcherGroup[] {
+  return Object.values(
     stores.reduce<{
       [group: string]: StoreSwitcherGroup
     }>((storesGrouped, store) => {
@@ -127,70 +135,66 @@ export function useStoreSwitcher({
       if (storesGrouped[store.store_group_code].country !== store.country) {
         storesGrouped[store.store_group_code].country = undefined
       }
-
       storesGrouped[store.store_group_code].stores.push(store)
       return storesGrouped
     }, {}),
   )
+}
+
+function useNormalizeMemo(availableStores: StoreSwitcherListQuery['availableStores']) {
+  return useMemo(() => {
+    const stores = normalizeAvailableStores(availableStores)
+    const storeGroups = normalizeStoreGroups(stores)
+    return { stores, storeGroups }
+  }, [availableStores])
+}
+
+export function StoreSwitcherFormProvider(props: StoreSwitcherFormProviderProps) {
+  const { children, onSubmit, availableStores } = props
+
+  const { stores, storeGroups } = useNormalizeMemo(availableStores)
 
   const storeCode = useStorefrontConfig().magentoStoreCode
+  const store = stores.find((s) => s.store_code === storeCode)
 
   const form = useForm<StoreSwitcherFormValues>({
     defaultValues: {
       storeCode,
-      storeGroupCode:
-        stores.find((store) => store.store_code === storeCode)?.store_group_code ?? '',
+      storeGroupCode: stores.find((s) => s.store_code === storeCode)?.store_group_code ?? '',
+      currency: cookie('Magento-Content-Currency') ?? store?.default_display_currency_code ?? '',
     },
   })
 
-  return { storeGroups, stores, ...form }
-}
-
-export function StoreSwitcherFormProvider(
-  props: {
-    children?: React.ReactNode
-    onSubmit?: SubmitHandler<StoreSwitcherFormValues>
-  } & StoreSwitcherListQuery,
-) {
-  const { children, onSubmit, availableStores } = props
-  const context = useStoreSwitcher({ availableStores })
-  const { setValue, storeGroups } = context
+  const context: StoreSwitcherFormContextType = useMemo(
+    () => ({ storeGroups, stores, ...form }),
+    [form, storeGroups, stores],
+  )
+  const { setValue } = context
 
   const selectedStoreGroup = useSelectedStoreGroup(context) ?? storeGroups[0]
   const selectedStore = useSelectedStore(context)
   const selectedCurrency = useSelectedCurrency(context)
 
   useIsomorphicLayoutEffect(() => {
-    const currency = cookie('Magento-Content-Currency')
-    if (currency) setValue('currency', currency)
-  }, [setValue])
-
-  useIsomorphicLayoutEffect(() => {
     const defaultStore = selectedStoreGroup.stores[0]
-    if (!selectedStore) {
-      setValue('storeCode', defaultStore.store_code)
-    }
+    if (!selectedStore) setValue('storeCode', defaultStore.store_code)
 
     const currencyCode =
       selectedStore?.currency?.default_display_currency_code ??
       defaultStore.currency?.default_display_currency_code
 
-    if (!selectedCurrency && currencyCode) {
-      setValue('currency', currencyCode)
-    }
+    if (!selectedCurrency && currencyCode) setValue('currency', currencyCode)
   }, [selectedCurrency, selectedStore, selectedStoreGroup.stores, setValue])
 
-  const submit = context.handleSubmit(async (data, event) => {
-    if (
-      data.currency ===
-      context.stores.find((store) => store.store_code === data.storeCode)?.base_currency_code
-    ) {
-      cookie('Magento-Content-Currency', null)
-    } else {
-      cookie('Magento-Content-Currency', data.currency)
-    }
+  const submit = context.handleSubmit(async (formValues, event) => {
+    const formStore = context.stores.find((s) => s.store_code === formValues.storeCode)
+    const isDefaultDisplayCurrency =
+      formValues.currency === formStore?.default_display_currency_code
 
-    onSubmit?.(data, event)
+    if (isDefaultDisplayCurrency) cookie('Magento-Content-Currency', null)
+    else cookie('Magento-Content-Currency', formValues.currency)
+
+    await onSubmit?.(formValues, event)
   })
 
   return (

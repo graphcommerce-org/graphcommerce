@@ -11,6 +11,7 @@ import {
   ProductFiltersDocument,
   ProductListQuery,
   ProductFiltersQuery,
+  hasUserFilterActive,
 } from '@graphcommerce/magento-product'
 import {
   SearchField,
@@ -20,7 +21,7 @@ import {
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import {
   ProductListLayoutClassic,
   ProductListLayoutDefault,
@@ -30,6 +31,7 @@ import {
   LayoutNavigationProps,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { productFiltersPro, productFiltersLayout } from '@graphcommerce/next-config/config'
 
 type SearchResultProps = MenuQueryFragment &
   ProductListQuery &
@@ -49,11 +51,7 @@ function SearchResultPage(props: SearchResultProps) {
   return (
     <>
       <PageMeta
-        title={
-          search
-            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
-            : i18n._(/* i18n */ 'Search')
-        }
+        title={search ? t`Results for ‘${search}’` : t`Search`}
         metaRobots={['noindex']}
         canonical='/search'
       />
@@ -62,17 +60,13 @@ function SearchResultPage(props: SearchResultProps) {
       </LayoutHeader>
 
       <PrivateQueryMaskProvider mask={mask}>
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-            <ProductListLayoutSidebar {...productList} menu={menu} />
-          )}
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-            <ProductListLayoutDefault {...productList} menu={menu} />
-          )}
-        {!import.meta.graphCommerce.productFiltersPro && (
-          <ProductListLayoutClassic {...productList} menu={menu} />
+        {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+          <ProductListLayoutSidebar {...productList} menu={menu} />
         )}
+        {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+          <ProductListLayoutDefault {...productList} menu={menu} />
+        )}
+        {!productFiltersPro && <ProductListLayoutClassic {...productList} menu={menu} />}
       </PrivateQueryMaskProvider>
     </>
   )
@@ -110,12 +104,14 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true }
 
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: searchDefaultsToProductListFilters(
-      productListApplySearchDefaults(productListParams, (await conf).data),
-    ),
-  })
+  const filters = hasUserFilterActive(productListParams)
+    ? staticClient.query({
+        query: ProductFiltersDocument,
+        variables: searchDefaultsToProductListFilters(
+          productListApplySearchDefaults(productListParams, (await conf).data),
+        ),
+      })
+    : undefined
 
   const products = staticClient.query({
     query: ProductListDocument,
@@ -125,11 +121,11 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
   const result = {
     props: {
       ...(await products).data,
-      ...(await filters).data,
+      ...(await filters)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -66,8 +66,8 @@ import {
   LayoutNavigationProps,
 } from '../../components'
 import {
-  graphqlSsrClient,
   graphqlSharedClient,
+  graphqlSsrClient,
 } from '../../lib/graphql/graphqlSsrClient'
 
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps>
@@ -108,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 ```
@@ -168,8 +168,8 @@ import {
   RowRenderer,
 } from '../../components'
 import {
-  graphqlSsrClient,
   graphqlSharedClient,
+  graphqlSsrClient,
 } from '../../lib/graphql/graphqlSsrClient'
 
 type Props = HygraphPagesQuery
@@ -221,7 +221,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: 'cache-first',
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0])
+    return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
@@ -229,7 +230,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 ```
@@ -271,7 +272,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: 'cache-first',
   })
 
-  if (!(await page).data.pages?.[0]) return { notFound: true }
+  if (!(await page).data.pages?.[0])
+    return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
@@ -279,7 +281,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 ```
@@ -316,7 +318,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
+        first: limitSsg ? 1 : 1000,
         urlStartsWith: 'about',
       },
     })

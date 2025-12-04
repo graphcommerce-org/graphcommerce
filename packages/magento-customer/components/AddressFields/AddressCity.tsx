@@ -1,6 +1,6 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'
 
@@ -13,12 +13,13 @@ export function AddressCity<
 
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.city}
       variant='outlined'
       type='text'
       required={required[name.city]}
-      label={<Trans id='City' />}
+      label={<Trans>City</Trans>}
       showValid
       InputProps={{ readOnly }}
     />

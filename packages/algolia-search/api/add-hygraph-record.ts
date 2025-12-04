@@ -1,4 +1,11 @@
 import type { Page } from '@graphcommerce/graphql-mesh'
+import {
+  algoliaApplicationId,
+  algoliaHygraphIndex,
+  algoliaSearchOnlyApiKey,
+  canonicalBaseUrl,
+  hygraphSecret,
+} from '@graphcommerce/next-config/config'
 import { verifyWebhookSignature } from '@hygraph/utils'
 import algoliasearch from 'algoliasearch'
 import type { NextApiRequest, NextApiResponse } from 'next'
@@ -12,12 +19,9 @@ type AlgoliaResult = {
   algoliaLastUpdateAtCET: string
 }
 
-const algolia = algoliasearch(
-  import.meta.graphCommerce.algoliaApplicationId,
-  import.meta.graphCommerce.algoliaSearchOnlyApiKey,
-)
+const algolia = algoliasearch(algoliaApplicationId, algoliaSearchOnlyApiKey)
 
-const indexName = import.meta.graphCommerce.algoliaHygraphIndex
+const indexName = algoliaHygraphIndex
 const index = typeof indexName === 'string' ? algolia.initIndex(indexName) : undefined
 
 export function addHygraphRecord(req: NextApiRequest, res: NextApiResponse) {
@@ -26,7 +30,7 @@ export function addHygraphRecord(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req
   const gcms = req.headers['gcms-signature']
   const signature = Array.isArray(gcms) ? gcms[0] : gcms
-  const secret = import.meta.graphCommerce.hygraphSecret
+  const secret = hygraphSecret
 
   if (!index) return res.status(400).send('Missing "algoliaHygraphIndex" config variable')
   if (!secret) return res.status(400).send('Missing "hygraphSecret" config variable')
@@ -40,7 +44,7 @@ export function addHygraphRecord(req: NextApiRequest, res: NextApiResponse) {
     const { id: objectID, localizations } = data
 
     const objects = localizations.map((localization: Page & { updatedAt: string }) => {
-      const url = `${import.meta.graphCommerce.canonicalBaseUrl}/${localization?.url}`
+      const url = `${canonicalBaseUrl}/${localization?.url}`
       const algoliaObject: AlgoliaResult = {
         name: localization?.title ?? '',
         content: localization?.metaDescription,

@@ -32,7 +32,10 @@ function flattenKeys(
       ...Object.keys(value)
         .map((key) => {
           const deep = (value as Record<string, unknown>)[key]
-          return flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify)
+          return {
+            ...flattenKeys(deep, `${initialPathPrefix}.${key}`, stringify),
+            ...flattenKeys(deep, `${initialPathPrefix}?.${key}`, stringify),
+          }
         })
         .reduce((acc, path) => ({ ...acc, ...path }), {}),
     }

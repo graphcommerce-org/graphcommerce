@@ -2,8 +2,8 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { CartAgreementsDocument, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutOverlayProps } from '../../../components'
@@ -92,6 +92,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

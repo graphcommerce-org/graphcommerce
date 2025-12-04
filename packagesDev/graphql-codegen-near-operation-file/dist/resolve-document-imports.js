@@ -85,6 +85,7 @@ function resolveDocumentImports(presetOptions, schemaObject, importResolverOptio
                         baseOutputDir,
                         outputPath: generatedFilePath,
                         typesImport,
+                        importExtension: '',
                     });
                     importStatements.unshift(schemaTypesImportStatement);
                 }
@@ -109,6 +110,7 @@ function resolveDocumentImports(presetOptions, schemaObject, importResolverOptio
                     baseOutputDir,
                     outputPath: generatedFilePath,
                     typesImport,
+                    importExtension: '',
                 });
                 importStatements.unshift(schemaTypesImportStatement);
             }

@@ -1,7 +1,7 @@
 import { Controller } from '@graphcommerce/ecommerce-ui'
 import type { ProductAttributeFilterInput } from '@graphcommerce/graphql-mesh'
 import { ActionCardAccordion, Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { isFilterTypeRange } from '../ProductListItems/filterTypes'
 import { getMinMaxFromOptions, PriceSlider } from './PriceSlider'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -46,7 +46,7 @@ export function ProductFilterRangeSection(props: FilterProps) {
                     form.setValue(name, null)
                   }}
                 >
-                  <Trans id='Clear' />
+                  <Trans>Clear</Trans>
                 </Button>
               ) : undefined
             }

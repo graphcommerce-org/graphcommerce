@@ -69,15 +69,16 @@ roadmap.
       the AddToCartMessage without loading the complete cart and support many
       products.
 - [ ] Magento 2.4.7: Migrate to createGuestCartId instead of createCart.
-- [ ] GraphCommerce B2B: Login for pricing
 - [ ] GraphCommerce B2B: Login for catalog
-- [ ] GraphCommerce B2B: Private pricing, private products and private category
-      support for logged in customers.
+- [x] GraphCommerce B2B: Private pricing / Login for pricing
+- [ ] GraphCOmmerce B2b: private products and private category support for
+      logged in customers.
 - [ ] GraphCommerce B2B: Generic UI for creating B2B accounts, creating
       sub-accounts, managing budgets, etc.
 - [ ] GraphCommerce B2B: Account approval workflow.
 - [ ] GraphCommerce Pro: Shop in shop functionality
 - [ ] GraphCommerce POS: Create a light POS integration for GraphCommerce
+- [x] GraphCommerce B2B: Price views: Including/excluding,
 
 ## Released
 

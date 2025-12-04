@@ -1,5 +1,157 @@
 # Change Log
 
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+## 9.1.0-canary.54
+
+### Patch Changes
+
+- [#2544](https://github.com/graphcommerce-org/graphcommerce/pull/2544) [`09a79c0`](https://github.com/graphcommerce-org/graphcommerce/commit/09a79c061c874dd9b5896d37edb2fc1031c7678c) - Solve issue whre Configurable Options would not respect the option position. ([@ThisIsRuddy](https://github.com/ThisIsRuddy))
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+### Patch Changes
+
+- [`f7d2bf1`](https://github.com/graphcommerce-org/graphcommerce/commit/f7d2bf13f7e82d5c8e918a51c1375c276ad3d80f) - Fix build issue ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
 ## 9.1.0-canary.32
 
 ## 9.1.0-canary.31
@@ -181,7 +333,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -521,7 +672,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible

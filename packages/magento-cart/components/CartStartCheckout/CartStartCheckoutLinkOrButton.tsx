@@ -1,6 +1,6 @@
 import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { iconChevronRight, IconSvg, LinkOrButton } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { iconChevronRight, IconSvg, LinkOrButton, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCheckoutShouldLoginToContinue } from '../../hooks'
@@ -8,13 +8,12 @@ import type { CartStartCheckoutFragment } from './CartStartCheckout.gql'
 
 export type CartStartCheckoutLinkOrButtonProps = {
   children?: React.ReactNode
-  sx?: SxProps<Theme>
   disabled?: boolean
   cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
     e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement>,
     cart: CartStartCheckoutFragment | null | undefined,
-  ) => void
+  ) => Promise<void>
   linkOrButtonProps?: LinkOrButtonProps
 }
 
@@ -24,6 +23,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
     disabled,
     linkOrButtonProps: { onClick, button, ...linkOrButtonProps } = {},
     cart,
+    children,
   } = props
 
   const shouldLoginToContinue = useCheckoutShouldLoginToContinue()
@@ -34,11 +34,11 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
   return (
     <LinkOrButton
       href='/checkout'
-      onClick={(
+      onClick={async (
         e: React.MouseEvent<HTMLButtonElement & HTMLAnchorElement & HTMLSpanElement, MouseEvent>,
       ) => {
         onClick?.(e)
-        onStart?.(e, cart)
+        await onStart?.(e, cart)
       }}
       button={{ variant: 'pill', ...button }}
       disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
@@ -46,7 +46,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}
     >
-      <Trans id='Next' />
+      {children ?? <Trans>Next</Trans>}
     </LinkOrButton>
   )
 }

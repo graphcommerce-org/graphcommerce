@@ -7,9 +7,10 @@ import {
 } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import { Fab, TextField, useForkRef } from '@mui/material'
+import React from 'react'
 import type { FieldElementProps } from './types'
 
 type AdditionalProps = {
@@ -33,6 +34,12 @@ const { withState } = extendableComponent<OwnerState, typeof componentName, type
   parts,
 )
 
+// Add precision rounding helper
+const roundToPrecision = (num: number, precision: number = 2): number => {
+  const factor = Math.pow(10, precision)
+  return Math.round(num * factor) / factor
+}
+
 /** @public */
 function NumberFieldElementBase(props: NumberFieldElementProps) {
   const {
@@ -48,7 +55,6 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
     required,
     defaultValue,
     variant = 'outlined',
-    disabled: disabledField,
     shouldUnregister,
     ...rest
   } = props
@@ -63,28 +69,27 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   }
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {
-    field: { value, onChange, ref, onBlur, disabled },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     control,
     rules,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
   const valueAsNumber = value ? parseFloat(value) : 0
+  const step: number = inputProps.step ?? 1
 
   return (
     <TextField
       {...rest}
       onBlur={onBlur}
-      disabled={disabled}
       inputRef={useForkRef(ref, rest.inputRef)}
       value={value ?? ''}
       onChange={(ev) => {
@@ -128,7 +133,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ...InputPropsFiltered,
         startAdornment: (
           <Fab
-            aria-label={i18n._(/* i18n */ 'Decrease')}
+            aria-label={t`Decrease`}
             size='smaller'
             onClick={() => {
               if (
@@ -136,7 +141,9 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
                 (inputProps.min === 0 && valueAsNumber <= inputProps.min)
               )
                 return
-              onChange(value - 1)
+              // Round to nearest step with precision fix
+              const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
+              onChange(newValue)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -153,11 +160,13 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ),
         endAdornment: (
           <Fab
-            aria-label={i18n._(/* i18n */ 'Increase')}
+            aria-label={t`Increase`}
             size='smaller'
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              onChange(valueAsNumber + 1)
+              // Round to nearest step with precision fix
+              const newValue = roundToPrecision(Math.round((valueAsNumber + step) / step) * step)
+              onChange(newValue)
             }}
             sx={{
               boxShadow: variant === 'standard' ? 4 : 0,
@@ -174,7 +183,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ),
       }}
       inputProps={{
-        'aria-label': i18n._(/* i18n */ 'Number'),
+        'aria-label': t`Number`,
         ...inputProps,
         className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
         sx: {
@@ -189,4 +198,6 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   )
 }
 
-export const NumberFieldElement = NumberFieldElementBase as NumberFieldElementComponent
+export const NumberFieldElement = React.forwardRef<HTMLInputElement, NumberFieldElementProps>(
+  (props, ref) => NumberFieldElementBase({ ...props, ref }),
+) as NumberFieldElementComponent

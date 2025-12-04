@@ -17,8 +17,14 @@ export function DateTimeFormat(props: DateTimeFormatProps) {
 
   const dateValue = useMemo(() => toDate(date), [date])
   return (
-    <Box component='span' suppressHydrationWarning sx={sx}>
-      {dateValue ? formatter.format(dateValue) : null}
+    <Box component='span' className='DateTimeFormat' suppressHydrationWarning sx={sx}>
+      {dateValue &&
+        formatter.formatToParts(dateValue).map((part, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <span className={part.type} key={`${part.type}-${index}`} suppressHydrationWarning>
+            {part.value}
+          </span>
+        ))}
     </Box>
   )
 }

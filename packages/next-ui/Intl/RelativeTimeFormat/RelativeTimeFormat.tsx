@@ -34,8 +34,19 @@ export const RelativeTimeFormat = forwardRef<HTMLSpanElement, RelativeTimeFormat
     const result = relativeTimeFormatUnitAuto({ value, unit })
 
     return (
-      <Box component='span' suppressHydrationWarning ref={ref} {...rest}>
-        {result.value ? formatter.format(result.value, result.unit) : null}
+      <Box
+        component='span'
+        className='RelativeTimeFormat'
+        suppressHydrationWarning
+        ref={ref}
+        {...rest}
+      >
+        {result.value &&
+          formatter.formatToParts(result.value, result.unit).map((part) => (
+            <span className={part.type} key={part.type} suppressHydrationWarning>
+              {part.value}
+            </span>
+          ))}
       </Box>
     )
   },

@@ -2,7 +2,7 @@
 import { InputCheckmark } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { emailPattern, useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { TextFieldProps } from '@mui/material'
 import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
@@ -46,14 +46,13 @@ function toValue(incomingValue: unknown, type: React.HTMLInputTypeAttribute) {
 }
 
 /** @public */
-function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
+function TextFieldElementBase(props: TextFieldElementProps): React.ReactNode {
   const {
     name,
     control,
     defaultValue,
     rules = {},
     shouldUnregister,
-    disabled: disabledField,
     type = 'text',
     required,
     showValid,
@@ -62,18 +61,18 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
   } = props as TextFieldProps & InternalProps & BaseControllerProps
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   if (type === 'email' && !rules.pattern) {
     rules.pattern = {
       value: emailPattern,
-      message: i18n._(/* i18n */ 'Please enter a valid email address'),
+      message: t`Please enter a valid email address`,
     }
   }
 
   const {
-    field: { onChange, ref, value = '', onBlur, disabled },
+    field: { onChange, ref, value = '', onBlur },
     fieldState: { error },
   } = useController({
     name,
@@ -81,7 +80,6 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
     rules,
     defaultValue,
     shouldUnregister,
-    disabled: disabledField,
   })
 
   // https://stackoverflow.com/questions/76830737/chrome-autofill-causes-textbox-collision-for-textfield-label-and-value
@@ -101,7 +99,6 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
       {...rest}
       onBlur={onBlur}
       name={name}
-      disabled={disabled}
       value={toValue(value, type)}
       inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {

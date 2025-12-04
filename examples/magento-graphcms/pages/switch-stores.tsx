@@ -20,8 +20,8 @@ import {
   LayoutTitle,
   SectionHeader,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutDocument, LayoutOverlay, LayoutOverlayProps } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
@@ -39,28 +39,30 @@ function StoresIndexPage({ availableStores }: Props) {
   return (
     <StoreSwitcherFormProvider
       availableStores={availableStores}
-      onSubmit={async (data) => {
-        await router.push(prev?.asPath ?? '/', undefined, {
-          locale: storeToLocale(data.storeCode),
-          scroll: false,
-        })
-      }}
+      onSubmit={async (data) =>
+        prev?.asPath && prev?.locale === storeToLocale(data.storeCode)
+          ? router.back()
+          : router.push(prev?.asPath ?? '/', undefined, {
+              locale: storeToLocale(data.storeCode),
+              scroll: false,
+            })
+      }
     >
-      <PageMeta title={i18n._(/* i18n */ 'Switch stores')} metaRobots={['noindex']} />
+      <PageMeta title={t`Switch stores`} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         primary={
           <StoreSwitcherLinkOrButton color='secondary' button={{ variant: 'pill' }}>
-            <Trans id='Switch' />
+            <Trans>Save</Trans>
           </StoreSwitcherLinkOrButton>
         }
       >
         <LayoutTitle size='small' component='span' icon={iconLanguage}>
-          <Trans id='Switch Stores' />
+          <Trans>Store Settings</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm' sx={(theme) => ({ mb: theme.spacings.lg })}>
         <LayoutTitle icon={iconLanguage}>
-          <Trans id='Switch Stores' />
+          <Trans>Store Settings</Trans>
         </LayoutTitle>
         <StoreSwitcherGroupSelector
           // header={<SectionHeader labelLeft='Country' />}
@@ -75,7 +77,7 @@ function StoresIndexPage({ availableStores }: Props) {
 
         <FormActions>
           <StoreSwitcherApplyButton color='secondary' variant='pill' size='large'>
-            <Trans id='Switch' />
+            <Trans>Save</Trans>
           </StoreSwitcherApplyButton>
         </FormActions>
       </Container>

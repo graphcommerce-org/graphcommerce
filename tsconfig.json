@@ -15,8 +15,7 @@
     "noImplicitAny": false,
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
-    "incremental": true,
-    "moduleSuffixes": [".interceptor", ""]
+    "incremental": true
   },
   "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "jest.config.mjs"],
   "exclude": ["node_modules"]

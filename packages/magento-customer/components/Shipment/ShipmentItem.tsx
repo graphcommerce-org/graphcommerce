@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import { ActionCard, actionCardImageSizes, type ActionCardProps } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import type { ShipmentItemFragment } from './ShipmentItem.gql'
 
@@ -103,7 +103,7 @@ export function ShipmentItem(props: ShipmentItemProps) {
         <>
           {priceModifiers && priceModifiers.length > 0 && (
             <PriceModifiersList
-              label={<Trans id='Base Price'>Base price</Trans>}
+              label={<Trans>Base price</Trans>}
               modifiers={[...priceModifiers]}
               total={product_sale_price.value ?? 0}
               currency={product_sale_price.currency}

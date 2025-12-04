@@ -1,4 +1,3 @@
-import type { EmotionJSX } from '@emotion/react/types/jsx-namespace'
 import createEmotionServer from '@emotion/server/create-instance'
 import type { AppType } from 'next/app'
 // eslint-disable-next-line @next/next/no-document-import-in-page
@@ -8,7 +7,7 @@ import type { DocumentContext } from 'next/document'
 import { createEmotionCache } from './createEmotionCache'
 import type { EmotionProviderProps } from './EmotionProvider'
 
-export type EmotionCacheProps = { emotionStyleTags: EmotionJSX.Element[] }
+export type EmotionCacheProps = { emotionStyleTags: React.ReactNode[] }
 
 export function withEmotionCache(Document: typeof NextDocument): typeof NextDocument {
   return class DocumentWithEmotionCache extends Document {
@@ -32,7 +31,6 @@ export function withEmotionCache(Document: typeof NextDocument): typeof NextDocu
         <style
           data-emotion={`${style.key} ${style.ids.join(' ')}`}
           key={style.key}
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: style.css }}
         />
       ))

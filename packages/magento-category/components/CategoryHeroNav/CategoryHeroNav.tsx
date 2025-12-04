@@ -94,7 +94,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
               color='textPrimary'
               href={productListLink({
                 url: category.url_path,
-                filters: { category_uid: { eq: category.uid } },
+                filters: { category_uid: { in: [category.uid] } },
                 sort: {},
               })}
               key={category.uid}

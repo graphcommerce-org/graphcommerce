@@ -1,7 +1,7 @@
 import type { ProductListParams } from '@graphcommerce/magento-product'
 import { useProductFiltersPro } from '@graphcommerce/magento-product'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 
 export type ProductFiltersProSearchHeaderProps = {

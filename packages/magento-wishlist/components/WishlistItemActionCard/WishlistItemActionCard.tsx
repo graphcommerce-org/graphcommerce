@@ -1,10 +1,10 @@
+import type { InputMaybe } from '@graphcommerce/graphql-mesh'
 import { Image } from '@graphcommerce/image'
 import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
-import type { InputMaybe } from '@graphcommerce/next-config'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, actionCardImageSizes, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { Button, Link } from '@mui/material'
 import type { ReactNode } from 'react'
@@ -173,7 +173,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
             onClick={() => remove([id])}
             {...actionButtonProps}
           >
-            <Trans id='Remove' />
+            <Trans>Remove</Trans>
           </Button>
         }
         size={size}

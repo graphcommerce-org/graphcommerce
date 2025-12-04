@@ -3,7 +3,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
@@ -110,7 +110,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
                       formControl={{ sx: { display: 'block' } }}
                       name={`agreement${agreement.agreement_id}`}
                       rules={{
-                        required: i18n._(/* i18n */ 'You have to agree in order to proceed'),
+                        required: t`You have to agree in order to proceed`,
                       }}
                       label={labelContent}
                     />

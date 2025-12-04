@@ -11,8 +11,8 @@ A Magento Payment Method module must implement
 
 ```tsx
 export interface PaymentModule {
-  PaymentOptions: React.VFC<PaymentOptionsProps>
-  PaymentButton?: React.VFC<PaymentButtonProps>
+  PaymentOptions: React.FC<PaymentOptionsProps>
+  PaymentButton?: React.FC<PaymentButtonProps>
   expandMethods?: ExpandPaymentMethods
 }
 ```

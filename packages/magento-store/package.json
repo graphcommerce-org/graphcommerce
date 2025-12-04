@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-store",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.32",
+  "version": "10.0.0-canary.65",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -11,22 +11,29 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/meshMagentoStore": "./plugins/meshMagentoStore.ts",
+    "./plugins/magentoStoreGraphqlConfig": "./plugins/magentoStoreGraphqlConfig.ts",
+    "./plugins/magentoCurrencyCode": "./plugins/magentoCurrencyCode.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts"
+  },
   "peerDependencies": {
-    "@graphcommerce/ecommerce-ui": "^9.1.0-canary.32",
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.32",
-    "@graphcommerce/framer-utils": "^9.1.0-canary.32",
-    "@graphcommerce/graphql": "^9.1.0-canary.32",
-    "@graphcommerce/graphql-mesh": "^9.1.0-canary.32",
-    "@graphcommerce/image": "^9.1.0-canary.32",
-    "@graphcommerce/next-ui": "^9.1.0-canary.32",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.32",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.32",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@graphcommerce/ecommerce-ui": "^10.0.0-canary.65",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.65",
+    "@graphcommerce/framer-utils": "^10.0.0-canary.65",
+    "@graphcommerce/graphql": "^10.0.0-canary.65",
+    "@graphcommerce/graphql-mesh": "^10.0.0-canary.65",
+    "@graphcommerce/image": "^10.0.0-canary.65",
+    "@graphcommerce/next-ui": "^10.0.0-canary.65",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.65",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.65",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

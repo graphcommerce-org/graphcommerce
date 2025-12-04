@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.32",
+  "version": "10.0.0-canary.65",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -12,14 +12,26 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/magentoOrderItemMesh": "./plugins/magentoOrderItemMesh.ts",
+    "./plugins/magentoOrders": "./plugins/magentoOrders.ts",
+    "./plugins/meshConfigAttrValue": "./plugins/meshConfigAttrValue.ts",
+    "./plugins/magentoGraphqlConfig": "./plugins/magentoGraphqlConfig.ts",
+    "./mesh/customAttributeV2Resolver.ts": "./mesh/customAttributeV2Resolver.ts",
+    "./mesh/attributeValueResolver.ts": "./mesh/attributeValueResolver.ts",
+    "./mesh/scopedUidResolver.ts": "./mesh/scopedUidResolver.ts",
+    "./mesh/magentoOrdersResolver.ts": "./mesh/magentoOrdersResolver.ts",
+    "./mesh/magentoOrderItemResolvers.ts": "./mesh/magentoOrderItemResolvers.ts"
+  },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.32",
-    "@graphcommerce/graphql": "^9.1.0-canary.32",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.32",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.32",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.65",
+    "@graphcommerce/graphql": "^10.0.0-canary.65",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.65",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.65",
     "graphql": "^16.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

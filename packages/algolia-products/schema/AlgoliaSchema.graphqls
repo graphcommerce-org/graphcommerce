@@ -21,7 +21,7 @@ type AlgoliaProductHitAdditionalProperties {
   # categories
   # categories_without_path
   # categoryIds
-  is_stock: Int
+  in_stock: Int
   ordered_qty: Int
   created_at: String
   url: String

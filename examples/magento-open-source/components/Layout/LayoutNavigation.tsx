@@ -3,6 +3,10 @@ import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import { CmsBlock } from '@graphcommerce/magento-cms'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchFab, SearchField } from '@graphcommerce/magento-search'
+import {
+  StoreSwitcherButton,
+  StoreSwitcherMenuFabSecondaryItem,
+} from '@graphcommerce/magento-store'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
 import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
@@ -24,8 +28,8 @@ import {
   useMemoDeep,
   useNavigationSelection,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
 import { productListRenderer } from '../ProductListItems/productListRenderer'
@@ -52,7 +56,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         selection={selection}
         items={useMemoDeep(
           () => [
-            { id: 'home', name: <Trans id='Home' />, href: '/' },
+            { id: 'home', name: <Trans>Home</Trans>, href: '/' },
             {
               id: 'manual-item-one',
               href: `/${menu?.items?.[0]?.children?.[0]?.url_path}`,
@@ -71,23 +75,24 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               guestHref='/account/signin'
               authHref='/account'
             >
-              <Trans id='Account' />
+              <Trans>Account</Trans>
             </CustomerMenuFabItem>,
             <MenuFabSecondaryItem
               key='service'
               icon={<IconSvg src={iconCustomerService} size='medium' />}
               href='/service'
             >
-              <Trans id='Customer Service' />
+              <Trans>Customer Service</Trans>
             </MenuFabSecondaryItem>,
             <WishlistMenuFabItem
               onClick={() => selection.set(false)}
               key='wishlist'
               icon={<IconSvg src={iconHeart} size='medium' />}
             >
-              <Trans id='Wishlist' />
+              <Trans>Wishlist</Trans>
             </WishlistMenuFabItem>,
             <DarkLightModeMenuSecondaryItem key='darkmode' />,
+            <StoreSwitcherMenuFabSecondaryItem key='store-switcher' />,
           ],
           [menu, selection],
         )}
@@ -135,16 +140,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavBar>
 
             <DesktopNavActions>
+              <StoreSwitcherButton />
               <SearchField
                 formControl={{ sx: { width: '400px' } }}
                 searchField={{ productListRenderer }}
               />
-              <Fab
-                href='/service'
-                aria-label={i18n._(/* i18n */ 'Customer Service')}
-                size='large'
-                color='inherit'
-              >
+              <Fab href='/service' aria-label={t`Customer Service`} size='large' color='inherit'>
                 <IconSvg src={iconCustomerService} size='large' />
               </Fab>
               <WishlistFab

@@ -3,6 +3,7 @@ import { Image } from '@graphcommerce/image'
 import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { crossSellsRedirectItems } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   Button,
@@ -12,8 +13,8 @@ import {
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import type { LayoutOverlayProps } from '../../components'
@@ -31,11 +32,11 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? <Trans id='Product'>Product</Trans>
+  const name = addedItem?.product.name ?? <Trans>Product</Trans>
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
+      <PageMeta title={t`Cart`} metaRobots={['noindex']} />
 
       <Container
         maxWidth={false}
@@ -134,7 +135,7 @@ function CheckoutAdded() {
           </Container>
           <AddProductsToCartForm
             snackbarProps={{ disableSuccessSnackbar: true }}
-            redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
+            redirect={crossSellsRedirectItems ? 'added' : false}
           >
             <ProductScroller
               productListRenderer={productListRenderer}

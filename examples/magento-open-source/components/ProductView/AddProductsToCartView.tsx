@@ -46,7 +46,7 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
 
             <AddProductsToCartError>
               <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
+                <ProductPagePrice product={product} variant='total' />
               </Typography>
             </AddProductsToCartError>
           </ProductPageAddToCartQuantityRow>

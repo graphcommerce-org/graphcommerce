@@ -1,8 +1,8 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { InputBaseProps } from '@mui/material'
-import { InputBase } from '@mui/material'
+import { InputBase, useForkRef } from '@mui/material'
 import React from 'react'
 import type { FieldElementProps } from './types'
 
@@ -15,7 +15,7 @@ type InputBaseElementComponent = <TFieldValues extends FieldValues>(
 
 function InputBaseElementBase(
   props: InputBaseElementProps & { ref?: React.Ref<HTMLInputElement> },
-): JSX.Element {
+): React.ReactElement {
   const {
     type,
     required,
@@ -24,13 +24,14 @@ function InputBaseElementBase(
     defaultValue,
     rules = {},
     shouldUnregister,
-    disabled: disabledField,
     ref,
+    inputRef,
+    disabled,
     ...rest
   } = props
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {
@@ -42,13 +43,14 @@ function InputBaseElementBase(
     rules,
     defaultValue,
     shouldUnregister,
-    disabled: disabledField,
   })
 
   return (
     <InputBase
       {...rest}
       {...field}
+      disabled={disabled}
+      inputRef={useForkRef(field.ref, inputRef)}
       ref={ref}
       required={required}
       type={type}

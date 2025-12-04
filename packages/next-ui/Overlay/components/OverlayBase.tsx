@@ -160,7 +160,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     () => (match.up('md') ? variantMd : variantSm),
     [match, variantMd, variantSm],
   )
-  const prevVariant = useRef<LayoutOverlayVariant>()
+  const prevVariant = useRef<LayoutOverlayVariant | null>(null)
 
   const openClosePositions = useCallback((): {
     open: [number, number]
@@ -418,7 +418,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
-        inert={active ? undefined : ('true' as unknown as boolean)}
+        inert={active}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
         sx={[
@@ -440,7 +440,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         ]}
       />
       <Scroller
-        inert={disableInert || active ? undefined : ('true' as unknown as boolean)}
+        inert={disableInert || active ? false : true}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}

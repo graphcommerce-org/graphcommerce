@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import {
   AccountDashboardDocument,
   AccountMenu,
@@ -29,8 +30,8 @@ import {
   iconBin,
   RelativeToTimeFormat,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutDocument, LayoutMinimal, LayoutMinimalProps } from '../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -49,49 +50,49 @@ function AccountIndexPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Account')} metaRobots={['noindex']} />
+      <PageMeta title={t`Account`} metaRobots={['noindex']} />
 
       <LayoutHeader>
         <LayoutTitle component='span' size='small' icon={iconPerson}>
-          <Trans id='Account' />
+          <Trans>Account</Trans>
         </LayoutTitle>
       </LayoutHeader>
 
       <WaitForCustomer waitFor={dashboard}>
         <Container maxWidth='md'>
           <LayoutTitle icon={iconPerson}>
-            <Trans id='Account' />
+            <Trans>Account</Trans>
           </LayoutTitle>
 
           <AccountMenu>
             <AccountMenuItem
               href='/account/name'
               iconSrc={iconId}
-              title={<Trans id='Personal details' />}
+              title={<Trans>Personal details</Trans>}
               subtitle={`${customer?.firstname} ${customer?.lastname}`}
             />
             <AccountMenuItem
               href='/account/contact'
               iconSrc={iconEmailOutline}
-              title={<Trans id='Contact' />}
+              title={<Trans>Contact</Trans>}
               subtitle={customer?.email}
             />
             <AccountMenuItem
               href='/account/authentication'
               iconSrc={iconLock}
-              title={<Trans id='Authentication' />}
-              subtitle={<Trans id='Password' />}
+              title={<Trans>Authentication</Trans>}
+              subtitle={<Trans>Password</Trans>}
             />
             <AccountMenuItem
               href='/account/addresses'
               iconSrc={iconHome}
-              title={<Trans id='Addresses' />}
+              title={<Trans>Addresses</Trans>}
               subtitle={address ? <AddressSingleLine {...address} /> : undefined}
             />
             <AccountMenuItem
               href='/account/orders'
               iconSrc={iconBox}
-              title={<Trans id='Orders' />}
+              title={<Trans>Orders</Trans>}
               subtitle={
                 latestOrder ? (
                   <>
@@ -106,17 +107,17 @@ function AccountIndexPage() {
               <AccountMenuItem
                 href='/account/reviews'
                 iconSrc={iconStar}
-                title={<Trans id='Reviews' />}
+                title={<Trans>Reviews</Trans>}
                 subtitle={
-                  <Trans id='Written {0} reviews' values={{ 0: customer?.reviews.items.length }} />
+                  <Trans>Written {customer?.reviews.items.length} reviews</Trans>
                 }
               />
             )}
             <AccountMenuItem
               disableRipple
               iconSrc={iconNewspaper}
-              title={<Trans id='Newsletter' />}
-              subtitle={<Trans id='Be the first to know about everything new!' />}
+              title={<Trans>Newsletter</Trans>}
+              subtitle={<Trans>Be the first to know about everything new!</Trans>}
               endIcon={<CustomerNewsletterToggle color='primary' />}
               sx={(theme) => ({
                 cursor: 'default',
@@ -131,7 +132,7 @@ function AccountIndexPage() {
                   iconSrc={iconShutdown}
                   loading={formState.isSubmitting}
                   type='submit'
-                  title={<Trans id='Sign out' />}
+                  title={<Trans>Sign out</Trans>}
                   noBorderBottom
                 />
               )}
@@ -165,9 +166,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

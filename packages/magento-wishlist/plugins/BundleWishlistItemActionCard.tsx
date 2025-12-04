@@ -2,7 +2,7 @@ import { productLink } from '@graphcommerce/magento-product/hooks/useProductLink
 import type { WishlistItemActionCardProps } from '@graphcommerce/magento-wishlist'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 
 export const config: PluginConfig = {
@@ -27,7 +27,7 @@ export function WishlistItemActionCard(props: PluginProps<WishlistItemActionCard
           href={productLink(product)}
           endIcon={<IconSvg src={iconChevronRight} />}
         >
-          <Trans id='Configure' />
+          <Trans>Configure</Trans>
         </Button>
       }
     />

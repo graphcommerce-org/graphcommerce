@@ -2,7 +2,7 @@ import { productListLink } from '@graphcommerce/magento-product'
 import { useCategorySearch, type CategorySearchResultFragment } from '@graphcommerce/magento-search'
 import type { SectionContainerProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, NextLink, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type {
   BreadcrumbsProps,
   LinkProps,
@@ -41,7 +41,7 @@ const SearchOverlayCategory = forwardRef<HTMLAnchorElement, SearchOverlayCategor
         component={NextLink}
         ref={ref}
         href={productListLink({
-          filters: { category_uid: { eq: category.uid } },
+          filters: { category_uid: { in: [category.uid] } },
           sort: {},
           url: category.url_path ?? '',
         })}

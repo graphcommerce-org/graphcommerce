@@ -3,13 +3,13 @@ import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 
 export type ValidatedPasswordElementProps<T extends FieldValues> = PasswordElementProps<T>
 
 export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
   props: PasswordElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const { ...textFieldProps } = props
 
   const storeConfig = useQuery(StoreConfigDocument).data?.storeConfig
@@ -20,9 +20,7 @@ export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
 
   rules.minLength = {
     value: minPasswordLength,
-    message: i18n._(/* i18n */ 'Password must have at least {minPasswordLength} characters', {
-      minPasswordLength,
-    }),
+    message: t`Password must have at least ${minPasswordLength} characters`,
   }
 
   rules.validate = (value: string) => {
@@ -35,10 +33,7 @@ export function ValidatedPasswordElement<TFieldValues extends FieldValues>(
     if (pass.match(/[^a-zA-Z0-9]+/)) counter++
 
     if (counter < passwordMinCharacterSets) {
-      return i18n._(
-        /* i18n */ 'Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.',
-        { passwordMinCharacterSets },
-      )
+      return t`Minimum of different classes of characters in password is ${passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters.`
     }
 
     return true
