@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-products
 
+## 10.0.0-canary.64
+
 ## 10.0.0-canary.63
 
 ### Major Changes
