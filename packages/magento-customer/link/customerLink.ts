@@ -46,12 +46,6 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
-function isErrorCategory(err: GraphQLFormattedError) {
-  const categories: ErrorCategory[] = ['graphql-authorization']
-  if (magentoVersion >= 248) categories.push('graphql-authentication')
-  return categories.includes(err.extensions?.category as ErrorCategory)
-}
-
 const addTokenHeader = setContext((_, context) => {
   if (!context.headers) context.headers = {}
 
@@ -75,7 +69,12 @@ const customerErrorLink = (router: PushRouter) =>
     if (!client) return undefined
 
     const oldHeaders = operation.getContext().headers
-    const authError = graphQLErrors?.find((err) => isErrorCategory(err))
+
+    const authError = graphQLErrors?.find((err: GraphQLFormattedError) =>
+      err.extensions?.category === magentoVersion >= 248
+        ? 'graphql-authentication'
+        : 'graphql-authorization',
+    )
 
     /** If the error we're dealing with is not an authorization error, we're done. */
     if (!authError) return undefined
