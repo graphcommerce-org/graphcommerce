@@ -57,7 +57,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   const showLogin =
     enableGuestCheckoutLogin &&
     canLogin &&
-    !isEmailAvailable.data?.isEmailAvailable?.is_email_available
+    isEmailAvailable.data?.isEmailAvailable?.is_email_available === false
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
