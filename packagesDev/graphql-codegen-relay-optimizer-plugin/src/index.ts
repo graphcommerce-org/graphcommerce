@@ -50,7 +50,8 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     [] as DefinitionNode[],
   )
 
-  const relayDocuments = relayParserTransform(adjustedSchema, documentAsts)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const relayDocuments = relayParserTransform(adjustedSchema, documentAsts as any)
 
   const fragmentCompilerContext = new CompilerContext(adjustedSchema).addAll(relayDocuments)
 

@@ -1,7 +1,7 @@
 import { EmailElement, PasswordRepeatElement } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -68,7 +68,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           name='newPassword'
           autoComplete='new-password'
           variant='outlined'
-          label={<Trans id='New password' />}
+          label={<Trans>New password</Trans>}
           required
           disabled={formState.isSubmitting}
         />
@@ -78,7 +78,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           autoComplete='new-password'
           passwordFieldName='newPassword'
           variant='outlined'
-          label={<Trans id='Confirm password' />}
+          label={<Trans>Confirm password</Trans>}
           required
           disabled={formState.isSubmitting}
         />
@@ -95,7 +95,7 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
           size='large'
           {...buttonProps}
         >
-          <Trans id='Save new password' />
+          <Trans>Save new password</Trans>
         </Button>
       </FormActions>
     </Form>

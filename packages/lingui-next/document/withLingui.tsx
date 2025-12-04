@@ -1,5 +1,6 @@
 import { normalizeLocale } from '@graphcommerce/next-ui/server'
 import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import type { DocumentContext, DocumentInitialProps } from 'next/document'
 // eslint-disable-next-line @next/next/no-document-import-in-page
@@ -13,7 +14,7 @@ export function withLingui(
   Document: typeof NextDocument,
   load: MessageLoader,
 ): typeof NextDocument {
-  return class DocumentWithEmotionCache extends Document {
+  return class DocumentWithLinguiScript extends Document {
     static async getInitialProps(ctx: DocumentContext) {
       const initial = await Document.getInitialProps(ctx)
 

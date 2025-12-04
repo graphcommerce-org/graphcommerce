@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Link } from '@mui/material'
 
 export function SkipLink() {
@@ -32,7 +32,7 @@ export function SkipLink() {
         },
       })}
     >
-      <Trans id='Skip to main content' />
+      <Trans>Skip to main content</Trans>
     </Link>
   )
 }

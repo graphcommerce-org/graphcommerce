@@ -194,6 +194,7 @@ export default function buildFragmentResolver<T>(
           },
           emitLegacyCommonJSImports: presetOptions.config.emitLegacyCommonJSImports,
           typesImport,
+          importExtension: '',
         }),
       ),
     }

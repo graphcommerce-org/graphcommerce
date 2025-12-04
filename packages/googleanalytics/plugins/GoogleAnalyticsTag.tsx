@@ -4,6 +4,7 @@
 
 /* eslint-disable react/no-danger */
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { googleAnalyticsId } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'
 import type { DocumentProps } from 'next/document'
 
@@ -16,8 +17,7 @@ export const config: PluginConfig = {
 export function DocumentHeadEnd(props: PluginProps<DocumentProps>) {
   const { Prev, ...rest } = props
 
-  const id =
-    storefrontConfig(rest.locale)?.googleAnalyticsId ?? import.meta.graphCommerce.googleAnalyticsId
+  const id = storefrontConfig(rest.locale)?.googleAnalyticsId ?? googleAnalyticsId
 
   return (
     <>

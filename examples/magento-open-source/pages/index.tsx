@@ -3,9 +3,10 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import type { CmsPageFragment } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { Container, isTypename, LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
@@ -22,10 +23,10 @@ function HomePage(props: CmsPageProps) {
   return (
     <>
       <PageMeta
-        title={cmsPage.meta_title || cmsPage.title || i18n._(/* i18n */ 'Home')}
+        title={cmsPage.meta_title || cmsPage.title || t`Home`}
         metaDescription={cmsPage.meta_description || undefined}
       />
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs} floatingSm />
+      <LayoutHeader floatingMd hideMd={breadcrumbs} floatingSm />
 
       <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
     </>

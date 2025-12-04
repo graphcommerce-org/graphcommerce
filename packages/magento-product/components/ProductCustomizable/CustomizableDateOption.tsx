@@ -1,7 +1,7 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { CustomizableDateTypeEnum } from '@graphcommerce/graphql-mesh'
 import { SectionHeader } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'

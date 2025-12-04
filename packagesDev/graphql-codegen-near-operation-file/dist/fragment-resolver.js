@@ -126,6 +126,7 @@ function buildFragmentResolver(collectorOptions, presetOptions, schemaObject) {
                 },
                 emitLegacyCommonJSImports: presetOptions.config.emitLegacyCommonJSImports,
                 typesImport,
+                importExtension: '',
             })),
         };
     }

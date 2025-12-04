@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar, EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, MessageSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
 
@@ -40,7 +40,7 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
         size='large'
         disabled={submittedWithoutErrors}
       >
-        {submittedWithoutErrors ? <Trans id='Subscribed' /> : <Trans id='Subscribe' />}
+        {submittedWithoutErrors ? <Trans>Subscribed</Trans> : <Trans>Subscribe</Trans>}
       </Button>
 
       <MessageSnackbar
@@ -49,11 +49,11 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
         severity='success'
         action={
           <Button size='medium' variant='pill' color='secondary' fullWidth>
-            <Trans id='Ok' />
+            <Trans>Ok</Trans>
           </Button>
         }
       >
-        <Trans id='You have been successfully subscribed to our newsletter.' />
+        <Trans>You have been successfully subscribed to our newsletter.</Trans>
       </MessageSnackbar>
 
       <ApolloErrorSnackbar error={error} />

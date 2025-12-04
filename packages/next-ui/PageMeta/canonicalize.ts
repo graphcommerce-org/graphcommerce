@@ -1,4 +1,5 @@
 import type {} from '@graphcommerce/next-config'
+import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { addBasePath } from 'next/dist/client/add-base-path'
 import { addLocale } from 'next/dist/client/add-locale'
 import { getDomainLocale } from 'next/dist/client/get-domain-locale'
@@ -49,7 +50,7 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
         addLocale(as, curLocale, conf?.domain ? conf.locale : router.defaultLocale),
       )
 
-      let siteUrl = conf?.canonicalBaseUrl || import.meta.graphCommerce.canonicalBaseUrl
+      let siteUrl = conf?.canonicalBaseUrl || canonicalBaseUrl
 
       if (conf?.domain && !conf?.canonicalBaseUrl) siteUrl = `https://${conf.domain}`
 

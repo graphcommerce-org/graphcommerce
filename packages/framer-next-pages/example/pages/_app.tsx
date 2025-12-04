@@ -1,4 +1,4 @@
-/// <reference types="@graphcommerce/next-ui/types" />
+import '@graphcommerce/next-ui/types'
 import type { PageComponent } from '@graphcommerce/framer-next-pages'
 import { FramerNextPages } from '@graphcommerce/framer-next-pages'
 // eslint-disable-next-line import/no-extraneous-dependencies

@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert } from '@mui/material'
 import React from 'react'
@@ -168,7 +168,7 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
             variant='text'
             onClick={() => setShow(!show)}
           >
-            {!show ? <Trans id='More options' /> : <Trans id='Less options' />}{' '}
+            {!show ? <Trans>More options</Trans> : <Trans>Less options</Trans>}{' '}
             <IconSvg
               sx={{
                 transform: show ? 'rotate(180deg)' : 'rotate(0deg)',

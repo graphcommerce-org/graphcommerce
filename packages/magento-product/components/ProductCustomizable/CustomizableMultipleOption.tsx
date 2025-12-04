@@ -2,7 +2,7 @@ import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -48,8 +48,9 @@ function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
 }
 
 export function CustomizableMultipleOption(props: CustomizableMultipleOptionProps) {
-  const { uid, required, index, title: label, multipleValue, currency, productPrice } = props
+  const { uid, required, index, title, multipleValue, currency, productPrice } = props
   const { control } = useFormAddProductsToCart()
+  const label = title ?? ''
 
   return (
     <Box>
@@ -67,9 +68,7 @@ export function CustomizableMultipleOption(props: CustomizableMultipleOptionProp
         })}
         multiple
         rules={{
-          required: required
-            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
-            : false,
+          required: required ? t`Please select a value for ‘${label}’` : false,
         }}
         control={control}
         render={CustomizableMultipleActionCard}

@@ -14,7 +14,7 @@ export type PasswordElementProps<T extends FieldValues> = TextFieldElementProps<
 /** @public */
 export function PasswordElement<TFieldValues extends FieldValues>(
   props: PasswordElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const { iconColor, ...textFieldProps } = props
   const [password, setPassword] = useState<boolean>(true)
   return (

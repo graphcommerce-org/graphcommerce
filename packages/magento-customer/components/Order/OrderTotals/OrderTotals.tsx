@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, lighten, Typography } from '@mui/material'
 import type { OrderTotalsFragment } from './OrderTotals.gql'
@@ -44,7 +44,7 @@ export function OrderTotals(props: OrderTotalsProps) {
     >
       <Box className={classes.totalsRow} sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Typography>
-          <Trans id='Products' />
+          <Trans>Products</Trans>
         </Typography>
         <Money {...total?.subtotal} />
       </Box>
@@ -68,7 +68,9 @@ export function OrderTotals(props: OrderTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Typography>
-            <Trans id='Shipping ({0} {1})' values={{ 0: carrier, 1: shipping_method }} />
+            <Trans>
+              Shipping ({carrier} {shipping_method})
+            </Trans>
           </Typography>
           <Money {...total?.total_shipping} />
         </Box>
@@ -87,7 +89,7 @@ export function OrderTotals(props: OrderTotalsProps) {
         })}
       >
         <Typography>
-          <Trans id='Grand total' />
+          <Trans>Grand total</Trans>
         </Typography>
         <Money {...total?.grand_total} />
       </Box>
@@ -105,7 +107,7 @@ export function OrderTotals(props: OrderTotalsProps) {
           })}
         >
           <Typography>
-            <Trans id='Including {0}' values={{ 0: tax?.title }} />
+            <Trans>Including {tax?.title}</Trans>
           </Typography>
           <Money {...tax?.amount} />
         </Box>

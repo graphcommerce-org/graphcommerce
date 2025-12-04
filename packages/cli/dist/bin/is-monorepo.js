@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { spawn } from 'node:child_process';
-import path from 'node:path';
+import { spawn } from 'child_process';
+import path from 'path';
 import { findParentPath } from '@graphcommerce/next-config';
 import { detect } from 'detect-package-manager';
 

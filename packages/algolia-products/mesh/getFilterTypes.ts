@@ -1,5 +1,6 @@
 import type { AttributeFrontendInputEnum, MeshContext } from '@graphcommerce/graphql-mesh'
 import type { FilterTypes } from '@graphcommerce/magento-product'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Kind, type GraphQLSchema } from 'graphql'
 
@@ -8,7 +9,7 @@ import { Kind, type GraphQLSchema } from 'graphql'
  * mesh.
  */
 export async function getFilterTypes(context: MeshContext): Promise<FilterTypes> {
-  if (import.meta.graphCommerce.magentoVersion >= 247) {
+  if (magentoVersion >= 247) {
     try {
       const types = await context.m2.Query.attributesList({
         context,

@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 import { DeleteCustomerAddressFormDocument } from './DeleteCustomerAddressForm.gql'
 
@@ -22,7 +22,7 @@ export function DeleteCustomerAddressForm(props: DeleteCustomerAddressFormProps)
   return (
     <form onSubmit={submitHandler} noValidate>
       <Button type='submit' variant='text' color='primary'>
-        <Trans id='Delete this address' />
+        <Trans>Delete this address</Trans>
       </Button>
       <ApolloErrorSnackbar error={error} />
     </form>

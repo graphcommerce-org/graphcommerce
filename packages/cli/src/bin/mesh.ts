@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { promises as fs } from 'node:fs'
-import path from 'node:path'
-import { exit } from 'node:process'
+import { promises as fs } from 'fs'
+import path from 'path'
+import { exit } from 'process'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
@@ -21,7 +21,7 @@ import type { Entries, OmitIndexSignature } from 'type-fest'
 import yaml from 'yaml'
 import { findConfig } from '../utils/findConfig'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 function resolvePath(pathStr: string) {
   return fileURLToPath(import.meta.resolve(pathStr))
@@ -62,9 +62,7 @@ const main = async () => {
   const baseConf = (await findConfig({})) as YamlConfig.Config
   const graphCommerce = loadConfig(root)
 
-  const meshConfigf = (await import(
-    '@graphcommerce/graphql-mesh/meshConfig.interceptor'
-  )) as unknown as {
+  const meshConfigf = (await import('@graphcommerce/graphql-mesh/meshConfig')) as unknown as {
     default: {
       meshConfig: typeof meshConfigBase
     }

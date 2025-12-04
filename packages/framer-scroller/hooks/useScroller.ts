@@ -2,9 +2,9 @@ import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import type { SxProps, Theme } from '@mui/material'
-import type { HTMLMotionProps, MotionValue, PanHandlers, PanInfo } from 'framer-motion'
+import type { HTMLMotionProps, PanHandlers, PanInfo } from 'framer-motion'
 import { motionValue, useTransform } from 'framer-motion'
-import type { MouseEventHandler, ReactHTML } from 'react'
+import type { MouseEventHandler } from 'react'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 import { isHTMLMousePointerEvent } from '../utils/isHTMLMousePointerEvent'
@@ -13,7 +13,7 @@ import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 import { useVelocitySnapTo } from './useVelocitySnapTo'
 
-export type ScrollableProps<TagName extends keyof ReactHTML = 'div'> = Omit<
+export type ScrollableProps<TagName extends React.HTMLElementType = 'div'> = Omit<
   HTMLMotionProps<TagName>,
   'children'
 > & {
@@ -41,7 +41,7 @@ const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>
 
 /** Make any HTML */
 export function useScroller<
-  TagName extends keyof ReactHTML = 'div',
+  TagName extends React.HTMLElementType = 'div',
   E extends HTMLElement = HTMLElement,
 >(props: ScrollableProps<TagName>, forwardedRef: React.ForwardedRef<E>) {
   const { hideScrollbar = false, children, grid = false, disableDrag, ...divProps } = props
@@ -123,7 +123,7 @@ export function useScroller<
   }
 
   const ref: React.RefCallback<E> = (el) => {
-    scrollerRef.current = el ?? undefined
+    scrollerRef.current = el
     if (typeof forwardedRef === 'function') forwardedRef(el)
     else if (forwardedRef) forwardedRef.current = el
   }

@@ -7,10 +7,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
-  Button,
-  DateFormat,
   filterNonNullableKeys,
-  iconCreditCard,
   iconDownload,
   LayoutOverlayHeader,
   LayoutTitle,
@@ -18,8 +15,8 @@ import {
   SectionContainer,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { t, Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Link, Typography } from '@mui/material'
 import React from 'react'
 import { DownloadsPageDocument } from '../../graphql/queries/DownloadsPage.gql'
@@ -40,7 +37,7 @@ export function DownloadsPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconDownload}>
-          <Trans id='Downloads'>Downloads</Trans>
+          <Trans>Downloads</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
@@ -53,11 +50,11 @@ export function DownloadsPage() {
             sx={(theme) => ({ mb: theme.spacings.xs })}
             gutterBottom={false}
           >
-            <Trans id='Downloads'>Downloads</Trans>
+            <Trans>Downloads</Trans>
           </LayoutTitle>
 
           <Box>
-            <SectionContainer labelLeft={<Trans id='Downloads'>Downloads</Trans>}>
+            <SectionContainer labelLeft={<Trans>Downloads</Trans>}>
               <Box
                 sx={{
                   display: 'grid',
@@ -67,19 +64,19 @@ export function DownloadsPage() {
                 }}
               >
                 <Typography variant='subtitle1'>
-                  <Trans id='Order'>Order</Trans>
+                  <Trans>Order</Trans>
                 </Typography>
                 <Typography variant='subtitle1'>
-                  <Trans id='Download'>Download</Trans>
+                  <Trans>Download</Trans>
                 </Typography>
                 <Typography variant='subtitle1'>
-                  <Trans id='Remaining'>Remaining</Trans>
+                  <Trans>Remaining</Trans>
                 </Typography>
                 <Typography variant='subtitle1'>
-                  <Trans id='Status'>Status</Trans>
+                  <Trans>Status</Trans>
                 </Typography>
                 <Typography variant='subtitle1'>
-                  <Trans id='Date'>Date</Trans>
+                  <Trans>Date</Trans>
                 </Typography>
 
                 {downloads.map((item, index) => (
@@ -127,7 +124,7 @@ export function createGetStaticProps(
       props: {
         apolloState: await conf.then(() => client.cache.extract()),
         variantMd: 'bottom',
-        up: { href: '/account', title: i18n._('Account') },
+        up: { href: '/account', title: t`Account` },
       },
     }
   }

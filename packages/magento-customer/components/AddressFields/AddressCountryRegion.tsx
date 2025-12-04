@@ -3,7 +3,7 @@ import { SelectElement, TextFieldElement, useWatch } from '@graphcommerce/ecomme
 import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useMemo } from 'react'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'
@@ -52,7 +52,7 @@ export function AddressCountryRegionBase(props: AddressFieldsOptions) {
     return (
       <FormRow>
         <TextFieldElement
-          label={<Trans id='Country' />}
+          label={<Trans>Country</Trans>}
           control={control}
           required={required[name.countryCode]}
           name={name.countryCode}
@@ -70,7 +70,7 @@ export function AddressCountryRegionBase(props: AddressFieldsOptions) {
         name={name.countryCode}
         SelectProps={{ autoWidth: true }}
         variant='outlined'
-        label={<Trans id='Country' />}
+        label={<Trans>Country</Trans>}
         required={required[name.countryCode]}
         showValid
         InputProps={{ readOnly }}
@@ -85,7 +85,7 @@ export function AddressCountryRegionBase(props: AddressFieldsOptions) {
           control={control}
           name={name.regionId}
           variant='outlined'
-          label={<Trans id='Region' />}
+          label={<Trans>Region</Trans>}
           required
           showValid
           InputProps={{ readOnly }}

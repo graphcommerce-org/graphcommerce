@@ -2,7 +2,7 @@
   "name": "@graphcommerce/algolia-insights",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.55",
+  "version": "10.0.0-canary.62",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -15,20 +15,28 @@
     "generate": "tsx scripts/generate-insights-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/algolia-products": "^9.1.0-canary.55",
-    "@graphcommerce/google-datalayer": "^9.1.0-canary.55",
-    "@graphcommerce/graphql": "^9.1.0-canary.55",
-    "@graphcommerce/graphql-mesh": "^9.1.0-canary.55",
-    "@graphcommerce/magento-customer": "^9.1.0-canary.55",
-    "@graphcommerce/magento-product": "^9.1.0-canary.55",
-    "@graphcommerce/next-config": "^9.1.0-canary.55",
-    "@graphcommerce/next-ui": "^9.1.0-canary.55",
-    "@graphcommerce/react-hook-form": "^9.1.0-canary.55",
+    "@graphcommerce/algolia-products": "^10.0.0-canary.62",
+    "@graphcommerce/google-datalayer": "^10.0.0-canary.62",
+    "@graphcommerce/graphql": "^10.0.0-canary.62",
+    "@graphcommerce/graphql-mesh": "^10.0.0-canary.62",
+    "@graphcommerce/magento-customer": "^10.0.0-canary.62",
+    "@graphcommerce/magento-product": "^10.0.0-canary.62",
+    "@graphcommerce/next-config": "^10.0.0-canary.62",
+    "@graphcommerce/next-ui": "^10.0.0-canary.62",
+    "@graphcommerce/react-hook-form": "^10.0.0-canary.62",
     "@mui/material": "*",
-    "react": "^18.2.0"
+    "react": "^19.2.0"
   },
   "devDependencies": {
-    "graphql": "^16.10.0",
-    "tsx": "^4.19.2"
+    "graphql": "^16.12.0",
+    "tsx": "^4.21.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/getSearchResultsInputInsights": "./plugins/getSearchResultsInputInsights.ts",
+    "./plugins/getSearchSuggestionsInputInsights": "./plugins/getSearchSuggestionsInputInsights.ts",
+    "./plugins/meshConfigAlgoliaInsights": "./plugins/meshConfigAlgoliaInsights.ts",
+    "./plugins/useSendEventAlgolia": "./plugins/useSendEventAlgolia.ts",
+    "./algolia-insights-spec.yaml": "./algolia-insights-spec.yaml"
   }
 }

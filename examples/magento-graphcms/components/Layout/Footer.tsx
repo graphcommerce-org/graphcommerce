@@ -1,8 +1,9 @@
 import { Image } from '@graphcommerce/image'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Button, IconButton, Link } from '@mui/material'
 import { FooterQueryFragment } from './FooterQueryFragment.gql'
 import { useQuery } from '@graphcommerce/graphql'
@@ -57,12 +58,12 @@ export function Footer(props: FooterProps) {
               {link.title}
             </Link>
           ))}
-          {import.meta.graphCommerce.magentoVersion >= 247 && cartEnabled && (
+          {magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
               <Trans>Order status</Trans>
             </Link>
           )}
-          {import.meta.graphCommerce.magentoVersion >= 247 && (
+          {magentoVersion >= 247 && (
             <Link href='/service/contact-us' color='textPrimary' underline='always'>
               <Trans>Contact</Trans>
             </Link>

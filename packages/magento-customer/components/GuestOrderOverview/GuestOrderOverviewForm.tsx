@@ -9,7 +9,7 @@ import {
   useUrlQuery,
 } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
 import { useMemo } from 'react'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
@@ -18,16 +18,16 @@ import type { GuestOrderQueryVariables } from './GuestOrder.gql'
 import { GuestOrderDocument } from './GuestOrder.gql'
 
 export function GuestOrderOverviewForm() {
-  const [urlQuery, setUrlQuery] = useUrlQuery<Partial<GuestOrderQueryVariables>>(true)
+  const [urlQuery, setUrlQuery] = useUrlQuery<Partial<GuestOrderQueryVariables['input']>>(true)
 
   const form = useFormGqlQuery(GuestOrderDocument, {
-    defaultValues: urlQuery,
+    defaultValues: { input: urlQuery },
     onBeforeSubmit: (variables) => {
-      variables.orderNumber = variables.orderNumber.replace(/^#/, '')
+      variables.input.number = variables.input.number.replace(/^#/, '')
       return variables
     },
     onComplete: async (data, variables) => {
-      await setUrlQuery(variables)
+      await setUrlQuery(variables.input)
     },
   })
 
@@ -57,17 +57,17 @@ export function GuestOrderOverviewForm() {
           <FormRow>
             <TextFieldElement
               control={control}
-              name='orderNumber'
-              required={required.orderNumber}
+              name='input.number'
+              required
               label={<Trans>Order number</Trans>}
             />
           </FormRow>
           <FormRow>
-            <EmailElement control={control} name='email' required={required.email} />
+            <EmailElement control={control} name='input.email' required />
             <TextFieldElement
               control={control}
-              name='postcode'
-              required={required.postcode}
+              name='input.postcode'
+              required
               label={<Trans>Postcode</Trans>}
               autoComplete='postal_code'
             />

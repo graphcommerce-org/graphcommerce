@@ -44,7 +44,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   const { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
   const router = useRouter()
   const client = useApolloClient()
-  const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
+  const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>> | undefined>(undefined)
 
   const form = useFormGqlMutationCart<AddProductsToCartMutation, AddProductsToCartFields>(
     AddProductsToCartDocument,

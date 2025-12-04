@@ -3,7 +3,7 @@ import { ActionCardListForm, useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ActionCard, ActionCardAccordion, Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -25,7 +25,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
       (storeConfigQuery?.storeConfig?.grid_per_page_values?.split(',').map(Number) ?? []).map(
         (count) => ({
           value: count === defaultPerPage ? null : count,
-          title: <Trans id='{count} Per page' values={{ count }} />,
+          title: <Trans>{count} Per page</Trans>,
         }),
       ),
     [defaultPerPage, storeConfigQuery?.storeConfig?.grid_per_page_values],
@@ -37,7 +37,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
     <ActionCardAccordion
       sx={sx}
       defaultExpanded={!!activePageSize}
-      summary={<Trans id='Per page' />}
+      summary={<Trans>Per page</Trans>}
       details={
         <ActionCardListForm
           sx={{ mb: 2 }}
@@ -61,7 +61,7 @@ export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSecti
               form.setValue('currentPage', 1)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }

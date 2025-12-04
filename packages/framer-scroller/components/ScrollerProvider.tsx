@@ -67,8 +67,8 @@ function useObserveItems(scrollerRef: ReactHtmlRefObject, items: MotionValue<Ite
 }
 
 export function ScrollerProvider(props: ScrollerProviderProps) {
-  const scrollerRef = useRef<HTMLDivElement>()
-  const running = useRef<PlaybackControls>()
+  const scrollerRef = useRef<HTMLDivElement | null>(null)
+  const running = useRef<PlaybackControls | null>(null)
   const scroll = useElementScroll(scrollerRef)
 
   const {
@@ -94,7 +94,7 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
   // Cancel any running animations to prevent onComplete to be ran
   const stop = useCallback(() => {
     running.current?.stop()
-    running.current = undefined
+    running.current = null
   }, [])
 
   // Register any running animations so they become cancelable
@@ -225,7 +225,6 @@ export function ScrollerProvider(props: ScrollerProviderProps) {
 
         // Skip child if it doesn't intersect the parent's opposite axis (it can never be in view)
         if (excludeOffAxis && !domRectIntersects(parentRect, childRect, orthogonalAxis)) {
-          // eslint-disable-next-line no-continue
           continue
         }
 

@@ -1,4 +1,5 @@
 import type { MeshContext } from '@graphcommerce/graphql-mesh'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterNonNullableKeys'
 import { getIndexName } from './getIndexName'
@@ -11,7 +12,7 @@ export async function getAttributeList(context: MeshContext): Promise<AttributeL
   if (attributeListCached) return attributeListCached
 
   if (
-    import.meta.graphCommerce.magentoVersion >= 247 &&
+    magentoVersion >= 247 &&
     'attributesList' in context.m2.Query &&
     typeof context.m2.Query.attributesList === 'function'
   ) {

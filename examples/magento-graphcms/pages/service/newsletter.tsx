@@ -5,7 +5,8 @@ import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
+import { t } from '@lingui/core/macro'
 import { Container, Typography } from '@mui/material'
 import {
   LayoutDocument,
@@ -46,7 +47,7 @@ function NewsletterSubscribe({ pages }: Props) {
       <Container maxWidth='sm'>
         {page?.title && (
           <Typography variant='h3'>
-            <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>
+            <Trans>Subscribe to newsletter</Trans>
           </Typography>
         )}
         <GuestNewsletter />

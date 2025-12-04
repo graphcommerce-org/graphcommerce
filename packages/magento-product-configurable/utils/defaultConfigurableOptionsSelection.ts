@@ -1,5 +1,6 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
 import type { AddProductsToCartFormProps } from '@graphcommerce/magento-product'
+import { configurableVariantForSimple } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 import type { DefaultConfigurableOptionsSelectionFragment } from './DefaultConfigurableOptionsSelection.gql'
@@ -30,10 +31,7 @@ export async function defaultConfigurableOptionsSelection<Q extends BaseQuery = 
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)
   const configurable = findByTypename(query?.products?.items, 'ConfigurableProduct')
 
-  if (
-    simple?.__typename === 'SimpleProduct' &&
-    !import.meta.graphCommerce.configurableVariantForSimple
-  ) {
+  if (simple?.__typename === 'SimpleProduct' && !configurableVariantForSimple) {
     const product = query?.products?.items?.find((p) => p?.url_key === urlKey)
     return { ...query, products: { ...query?.products, items: [product] }, defaultValues: {} }
   }
