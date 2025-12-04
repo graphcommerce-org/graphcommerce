@@ -37,7 +37,7 @@ export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
         render={(bc) => ({ '@context': 'https://schema.org', ...jsonLdBreadcrumb(bc, router) })}
       />
       <Breadcrumbs
-        breadcrumbs={[...breadcrumbs, { name: product.name }]}
+        breadcrumbs={[...breadcrumbs, { name: product.name, href: productLink(product) }]}
         hideLastOnMobile
         {...breadcrumbsProps}
       />
