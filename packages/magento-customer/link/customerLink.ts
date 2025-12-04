@@ -69,10 +69,10 @@ const customerErrorLink = (router: PushRouter) =>
 
     const oldHeaders = operation.getContext().headers
 
-    const authError = graphQLErrors?.find((err: GraphQLFormattedError) =>
-      err.extensions?.category === magentoVersion >= 248
-        ? 'graphql-authentication'
-        : 'graphql-authorization',
+    const authError = graphQLErrors?.find(
+      (err: GraphQLFormattedError) =>
+        err.extensions?.category ===
+        (magentoVersion >= 248 ? 'graphql-authentication' : 'graphql-authorization'),
     )
 
     /** If the error we're dealing with is not an authorization error, we're done. */
