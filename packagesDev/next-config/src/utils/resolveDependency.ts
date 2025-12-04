@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+import fs from 'fs'
 import { resolveDependenciesSync } from './resolveDependenciesSync'
 
 export type ResolveDependencyReturn =

@@ -71,12 +71,12 @@ extend input GraphCommerceConfig {
   algoliaSearchDebounceTime: Int
 
   """
-  Configure your Algolia HyGraph index. This will create a new index for HyGraph data if it doesn't exist in Algolia.
+  Configure your Algolia Hygraph index. This will create a new index for Hygraph data if it doesn't exist in Algolia.
   """
   algoliaHygraphIndex: String
 
   """
-  Configure your Algolia HyGraph secret. This will be used to authenticate the HyGraph data.
+  Configure your Algolia Hygraph secret. This will be used to authenticate the Hygraph data.
   """
   hygraphSecret: String
 }

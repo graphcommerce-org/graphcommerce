@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import type { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard, useIconSvgSize } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useAdyenPaymentMethod } from '../../hooks/useAdyenPaymentMethod'
 
 export function AdyenPaymentActionCard(props: PaymentMethodActionCardProps) {
@@ -13,7 +13,7 @@ export function AdyenPaymentActionCard(props: PaymentMethodActionCardProps) {
   return (
     <ActionCard
       {...props}
-      details={child === 'ideal' && <Trans id='Pay with iDEAL' />}
+      details={child === 'ideal' && <Trans>Pay with iDEAL</Trans>}
       image={
         !!icon?.url &&
         !!icon?.width &&

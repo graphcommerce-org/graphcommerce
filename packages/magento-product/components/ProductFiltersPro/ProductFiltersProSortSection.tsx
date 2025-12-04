@@ -1,6 +1,6 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { ActionCard, ActionCardAccordion, Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { UseProductFiltersProSortProps } from './useProductFiltersProSort'
@@ -21,7 +21,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
     <ActionCardAccordion
       sx={sx}
       defaultExpanded={selected}
-      summary={<Trans id='Sort By' />}
+      summary={<Trans>Sort By</Trans>}
       details={
         <ActionCardListForm
           control={form.control}
@@ -44,7 +44,7 @@ export function ProductFiltersProSortSection(props: ProductFiltersProSortSection
               form.setValue('currentPage', 1)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }

@@ -19,8 +19,9 @@ export function DateTimeFormat(props: DateTimeFormatProps) {
   return (
     <Box component='span' className='DateTimeFormat' suppressHydrationWarning sx={sx}>
       {dateValue &&
-        formatter.formatToParts(dateValue).map((part) => (
-          <span className={part.type} key={part.type} suppressHydrationWarning>
+        formatter.formatToParts(dateValue).map((part, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <span className={part.type} key={`${part.type}-${index}`} suppressHydrationWarning>
             {part.value}
           </span>
         ))}

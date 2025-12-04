@@ -4,7 +4,7 @@ import type {
   NavigationNodeHref,
 } from '@graphcommerce/next-ui'
 import { NavigationNodeType, nonNullable } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { MenuQueryFragment } from '../queries/MenuQueryFragment.gql'
 import type { NavigationItemFragment } from '../queries/NavigationItem.gql'
 

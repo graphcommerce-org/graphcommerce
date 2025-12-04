@@ -1,6 +1,6 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type {
   CheckboxProps,
   FormControlLabelProps,
@@ -32,7 +32,7 @@ type CheckboxElementComponent = <TFieldValues extends FieldValues>(
   props: CheckboxElementProps<TFieldValues>,
 ) => React.ReactNode
 
-function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
+function CheckboxElementBase(props: CheckboxElementProps): React.ReactNode {
   const {
     name,
     rules = {},
@@ -43,24 +43,22 @@ function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
     sx,
     formControl,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
     ...rest
   } = props
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {
-    field: { value, onChange, ref, onBlur, disabled },
+    field: { value, onChange, ref, onBlur },
     fieldState: { invalid, error },
   } = useController({
     name,
     rules,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -75,7 +73,6 @@ function CheckboxElementBase(props: CheckboxElementProps): JSX.Element {
             <Checkbox
               {...rest}
               onBlur={onBlur}
-              disabled={disabled}
               name={name}
               inputRef={useForkRef(ref, rest.inputRef)}
               color={rest.color || 'primary'}

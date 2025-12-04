@@ -2,8 +2,10 @@ import { FormPersist, PasswordRepeatElement, SwitchElement } from '@graphcommerc
 import { useQuery } from '@graphcommerce/graphql'
 import { AttributesFormAutoLayout, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
+import { t } from '@lingui/core/macro'
 import { Alert } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
@@ -64,7 +66,7 @@ export function SignUpForm(props: SignUpFormProps) {
   ) {
     return (
       <Alert>
-        <Trans id='Registration successful. Please check your inbox to confirm your email address ({email})'>
+        <Trans>
           Registration successful. Please check your inbox to confirm your email address ({email})
         </Trans>
       </Alert>
@@ -78,7 +80,7 @@ export function SignUpForm(props: SignUpFormProps) {
           control={control}
           name='input.password'
           variant='outlined'
-          label={<Trans id='Password'>Password</Trans>}
+          label={<Trans>Password</Trans>}
           autoFocus={!!email}
           autoComplete='new-password'
           required
@@ -88,13 +90,13 @@ export function SignUpForm(props: SignUpFormProps) {
           name='confirmPassword'
           passwordFieldName='input.password'
           variant='outlined'
-          label={<Trans id='Confirm password'>Confirm password</Trans>}
+          label={<Trans>Confirm password</Trans>}
           autoComplete='new-password'
           required
         />
       </FormRow>
 
-      {import.meta.graphCommerce.magentoVersion < 247 ? (
+      {magentoVersion < 247 ? (
         <NameFields
           form={form}
           names={{
@@ -116,7 +118,7 @@ export function SignUpForm(props: SignUpFormProps) {
         control={control}
         name='input.is_subscribed'
         disabled={formState.isSubmitting}
-        label={<Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>}
+        label={<Trans>Subscribe to newsletter</Trans>}
       />
 
       <ApolloCustomerErrorSnackbar error={error} />
@@ -130,7 +132,7 @@ export function SignUpForm(props: SignUpFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans id='Create Account'>Create Account</Trans>
+          <Trans>Create Account</Trans>
         </Button>
       </FormActions>
       <FormPersist form={form} name='SignUp' exclude={['input.password', 'confirmPassword']} />

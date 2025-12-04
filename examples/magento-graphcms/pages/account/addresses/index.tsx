@@ -13,8 +13,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -33,15 +33,15 @@ function AccountAddressesPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans id='Addresses' />
+          <Trans>Addresses</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Addresses')} metaRobots={['noindex']} />
+        <PageMeta title={t`Addresses`} metaRobots={['noindex']} />
         <WaitForCustomer waitFor={addresses}>
           {((customer?.addresses && customer.addresses.length >= 1) || !customer?.addresses) && (
             <LayoutTitle icon={iconAddresses}>
-              <Trans id='Addresses' />
+              <Trans>Addresses</Trans>
             </LayoutTitle>
           )}
           <AccountAddresses {...data} loading={!data} addresses={customer?.addresses} />
@@ -76,7 +76,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
+      up: { href: '/account', title: t`Account` },
     },
   }
 }

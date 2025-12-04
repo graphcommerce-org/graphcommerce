@@ -13,7 +13,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 import {
   AddressFields,
   CompanyFields,
@@ -23,8 +23,9 @@ import {
   useImmutableBillingAddress,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
@@ -169,7 +170,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         />
       )}
 
-      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+      {!isVirtual && customerAddressNoteEnable && (
         <FormRow>
           <TextFieldElement
             control={form.control}

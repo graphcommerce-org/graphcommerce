@@ -11,7 +11,7 @@ import {
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -39,7 +39,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}
       defaultExpanded={defaultExpanded}
-      summary={<Trans id='Categories' />}
+      summary={<Trans>Categories</Trans>}
       right={
         clearable && currentFilter && currentFilter.length > 0 ? (
           <Button
@@ -49,7 +49,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
               form.setValue(name, null)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }

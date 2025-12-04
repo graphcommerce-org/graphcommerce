@@ -4,7 +4,7 @@ import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useRouter } from 'next/router'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
@@ -88,12 +88,12 @@ export function CreateCustomerAddressForm() {
             size='large'
             loading={formState.isSubmitting}
           >
-            <Trans id='Save changes' />
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
       </Form>
       <MessageSnackbar open={Boolean(data) && !error} variant='pill' severity='success'>
-        <Trans id='Your address has been added' components={{ 0: <strong /> }} />
+        <Trans>Your address has been added</Trans>
       </MessageSnackbar>
 
       <ApolloErrorSnackbar error={error} />

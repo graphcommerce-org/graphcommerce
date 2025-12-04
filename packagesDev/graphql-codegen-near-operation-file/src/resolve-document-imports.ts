@@ -115,6 +115,7 @@ export function resolveDocumentImports<T>(
             baseOutputDir,
             outputPath: generatedFilePath,
             typesImport,
+            importExtension: '',
           })
           importStatements.unshift(schemaTypesImportStatement)
         }
@@ -152,6 +153,7 @@ export function resolveDocumentImports<T>(
           baseOutputDir,
           outputPath: generatedFilePath,
           typesImport,
+          importExtension: '',
         })
         importStatements.unshift(schemaTypesImportStatement)
       }

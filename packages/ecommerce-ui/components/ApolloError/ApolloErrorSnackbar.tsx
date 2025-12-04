@@ -4,7 +4,7 @@ import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorSnackbarProps = {
-  error?: ApolloError
+  error?: ApolloError | null
 } & Pick<ErrorSnackbarProps, 'action' | 'onClose'>
 
 export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {

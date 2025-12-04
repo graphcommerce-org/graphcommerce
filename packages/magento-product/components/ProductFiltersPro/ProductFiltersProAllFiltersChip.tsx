@@ -1,6 +1,6 @@
 import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { ChipOverlayOrPopper } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { activeAggregations } from './activeAggregations'
 import { applyAggregationCount } from './applyAggregationCount'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -40,7 +40,7 @@ export function ProductFiltersProAllFiltersChip(props: ProductFiltersProAllFilte
 
   return (
     <ChipOverlayOrPopper
-      label={<Trans id='All filters' />}
+      label={<Trans>All filters</Trans>}
       chipProps={{ variant: 'outlined' }}
       onApply={submit}
       onReset={hasFilters ? clearAll : undefined}

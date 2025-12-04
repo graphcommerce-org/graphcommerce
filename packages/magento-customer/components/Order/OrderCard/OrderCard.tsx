@@ -10,7 +10,7 @@ import {
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Avatar, Box, lighten, Paper, Skeleton } from '@mui/material'
 import { OrderStateLabel } from '../OrderStateLabel/OrderStateLabel'
@@ -140,11 +140,11 @@ export function OrderCard(props: OrderCardProps) {
         </Box>
         <Box sx={{ typography: 'body1', color: 'text.secondary' }}>#{number}</Box>
         <Box>
-          <Trans id='Grand total'>Grand Total</Trans>: <Money {...total?.grand_total} />
+          <Trans>Grand Total</Trans>: <Money {...total?.grand_total} />
         </Box>
 
         <Box>
-          <Trans id='Status'>Status</Trans>:{' '}
+          <Trans>Status</Trans>:{' '}
           <OrderStateLabel {...props} status={status} sx={{ typography: 'body1' }} short />
         </Box>
       </Box>

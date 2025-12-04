@@ -2,8 +2,8 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import type { GetStaticProps } from '@graphcommerce/next-ui/Page/types'
-import { i18n } from '@lingui/core'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { Container, Typography } from '@mui/material'
 import { useEffect, useRef, useState } from 'react'
 import type { LayoutMinimalProps } from '../../components'
@@ -129,7 +129,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

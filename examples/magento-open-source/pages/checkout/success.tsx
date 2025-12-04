@@ -18,8 +18,8 @@ import {
   LayoutHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Button, CircularProgress, Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutMinimalProps, LayoutNavigationProps } from '../../components'
@@ -36,30 +36,30 @@ function OrderSuccessPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Checkout summary')} metaRobots={['noindex']} />
+      <PageMeta title={t`Checkout summary`} metaRobots={['noindex']} />
 
       <WaitForQueries
         waitFor={router.isReady}
-        fallback={<FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />} />}
+        fallback={<FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>} />}
       >
         {!hasCartId && (
           <FullPageMessage
-            title={<Trans id='You have not placed an order' />}
+            title={<Trans>You have not placed an order</Trans>}
             icon={<IconSvg src={iconSadFace} size='xxl' />}
             button={
               <Button href='/' variant='pill' color='secondary' size='large'>
-                <Trans id='Continue shopping' />
+                <Trans>Continue shopping</Trans>
               </Button>
             }
           >
-            <Trans id='Discover our collection and add items to your cart!' />
+            <Trans>Discover our collection and add items to your cart!</Trans>
           </FullPageMessage>
         )}
 
         {hasCartId && (
           <LayoutHeader floatingMd disableBackNavigation>
             <LayoutTitle size='small' icon={iconParty}>
-              <Trans id='Thank you for your order!' />
+              <Trans>Thank you for your order!</Trans>
             </LayoutTitle>
           </LayoutHeader>
         )}
@@ -68,7 +68,7 @@ function OrderSuccessPage() {
           <Container maxWidth='md'>
             <LayoutTitle icon={iconParty} sx={{ flexDirection: { md: 'column' } }}>
               <Box sx={{ display: 'grid', columns: 1, justifyItems: 'center' }}>
-                <Trans id='Thank you for your order!' />
+                <Trans>Thank you for your order!</Trans>
                 {order_number && <Typography variant='subtitle1'>#{order_number}</Typography>}
               </Box>
             </LayoutTitle>
@@ -81,7 +81,7 @@ function OrderSuccessPage() {
 
             <Box textAlign='center' m={8}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
-                <Trans id='Back to home' />
+                <Trans>Back to home</Trans>
               </Button>
             </Box>
           </Container>
@@ -112,7 +112,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

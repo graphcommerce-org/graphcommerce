@@ -8,6 +8,8 @@
     "noLib": false,
     "noEmit": false,
     "sourceMap": false,
-    "strict": true
+    "strict": true,
+    "moduleResolution": "bundler",
+    "module": "esnext"
   }
 }

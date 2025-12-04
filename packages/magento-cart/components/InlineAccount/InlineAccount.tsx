@@ -6,7 +6,7 @@ import {
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
 import { Button, extendableComponent, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
@@ -75,9 +75,9 @@ export function InlineAccount(props: InlineAccountProps) {
         >
           <div>
             <Typography variant='h4' className={classes.title} sx={{ paddingBottom: '8px' }}>
-              {title ?? <Trans id='No account yet?' />}
+              {title ?? <Trans>No account yet?</Trans>}
             </Typography>
-            {description ?? <Trans id='You can track your order status and much more!' />}
+            {description ?? <Trans>You can track your order status and much more!</Trans>}
           </div>
           <div>
             {!toggled && (
@@ -89,7 +89,7 @@ export function InlineAccount(props: InlineAccountProps) {
                 className={classes.button}
                 sx={{ minWidth: 160 }}
               >
-                <Trans id='Create an account' />
+                <Trans>Create an account</Trans>
               </Button>
             )}
           </div>
@@ -99,7 +99,7 @@ export function InlineAccount(props: InlineAccountProps) {
             <FormRow>
               <TextField
                 variant='outlined'
-                label={<Trans id='Email address' />}
+                label={<Trans>Email address</Trans>}
                 value={cart?.email}
                 InputProps={{
                   readOnly: true,

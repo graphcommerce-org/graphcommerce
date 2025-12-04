@@ -41,7 +41,7 @@ export function assertFormGqlOperation<
 /** Bindings between react-hook-form's useForm and Apollo Client's useMutation hook. */
 export function useFormGqlMutation<Q extends Record<string, unknown>, V extends FieldValues>(
   document: TypedDocumentNode<Q, V>,
-  options: UseFormGraphQlOptions<Q, V> = {},
+  options: NoInfer<UseFormGraphQlOptions<Q, V>> = {},
   operationOptions?: MutationHookOptions<Q, V>,
 ): UseFormGqlMutationReturn<Q, V> {
   const form = useForm<V>(options)

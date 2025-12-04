@@ -3,8 +3,8 @@ import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-import { type SxProps, type Theme } from '@mui/material'
+import { Trans } from '@lingui/react/macro'
+import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useImmutableBillingAddress } from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -101,7 +101,10 @@ export function EditAddressForm(props: EditAddressFormProps) {
         </FormRow>
 
         {immutableBillingAddress && address?.default_billing ? (
-          <Trans id='You can not change this address as it is your billing address. Not correct? Please contact our support to update this.' />
+          <Trans>
+            You can not change this address as it is your billing address. Not correct? Please
+            contact our support to update this.
+          </Trans>
         ) : (
           <FormActions sx={{ paddingBottom: 0 }}>
             <Button
@@ -111,7 +114,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
               size='large'
               loading={formState.isSubmitting}
             >
-              <Trans id='Save changes' />
+              <Trans>Save changes</Trans>
             </Button>
           </FormActions>
         )}

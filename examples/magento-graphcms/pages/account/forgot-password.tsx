@@ -2,8 +2,8 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ForgotPasswordForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container, Typography } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -15,16 +15,16 @@ function AccountForgotPasswordPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          <Trans id='Forgot your password?' />
+          <Trans>Forgot your password?</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm'>
-        <PageMeta title={i18n._(/* i18n */ 'Forgot Password')} metaRobots={['noindex']} />
+        <PageMeta title={t`Forgot Password`} metaRobots={['noindex']} />
         <LayoutTitle size='medium'>
-          <Trans id='Forgot your password?' />
+          <Trans>Forgot your password?</Trans>
         </LayoutTitle>
         <Typography variant='subtitle1'>
-          <Trans id='No worries! Enter your email address and we will send an email with instructions to reset your password.' />
+          <Trans>No worries! Enter your email address and we will send an email with instructions to reset your password.</Trans>
         </Typography>
         <ForgotPasswordForm />
       </Container>
@@ -51,7 +51,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
+      up: { href: '/account/signin', title: t`Sign in` },
     },
   }
 }

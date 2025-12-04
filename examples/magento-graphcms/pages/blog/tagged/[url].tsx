@@ -4,8 +4,8 @@ import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -22,6 +22,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -35,14 +36,14 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small'>{title}</LayoutTitle>
       </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
         <BlogTitle>
-          <Trans id='Tagged in: {title}' values={{ title }} />
+          <Trans>Tagged in: {title}</Trans>
         </BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
@@ -62,7 +63,7 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+  if (limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })
@@ -105,7 +106,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

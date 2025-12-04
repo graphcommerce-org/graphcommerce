@@ -1,12 +1,9 @@
+import { permissions } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 
 /** @public */
 function getCartPermissions(locale: string | undefined) {
-  return (
-    storefrontConfig(locale)?.permissions?.cart ??
-    import.meta.graphCommerce.permissions?.cart ??
-    'ENABLED'
-  )
+  return storefrontConfig(locale)?.permissions?.cart ?? permissions?.cart ?? 'ENABLED'
 }
 
 /** @public */

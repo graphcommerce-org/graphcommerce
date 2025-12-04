@@ -19,3 +19,11 @@
       `https://$domain/$locale/checkout/payment?locked=1&success=0&cart_id={{quote.masked_id}}&method={{payment.code}}&order_number={{order.increment_id}}`
     - _Custom "Success page" url_:
       `https://$domain/$locale/checkout/payment?locked=1&success=1&cart_id={{quote.masked_id}}&method={{payment.code}}&order_number={{order.increment_id}}`
+4.  Add a rewrite to ensure payments can be processed when returning from MSP.
+    Ensure `next.config.ts` contains the following rewrite:
+    ```
+    {
+        source: '/multisafepay/connect/:slug*',
+        destination: `${yourMagentoUrl}/multisafepay/connect/:slug*`,
+    },
+    ```

@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import type { PriceModifier } from '@graphcommerce/magento-store/components/PriceModifiers'
+import type { PriceModifier } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'

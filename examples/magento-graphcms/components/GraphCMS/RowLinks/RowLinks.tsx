@@ -1,9 +1,9 @@
-import { RowLinksFragment } from './RowLinks.gql'
+import type { RowLinksFragment } from './RowLinks.gql'
 import { LogoSwiper, ImageLabelSwiper, Inline, Usps } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowLinksFragment['linksVariant']>,
-  React.VFC<RowLinksFragment>
+  React.FC<RowLinksFragment>
 >
 
 type RowLinksProps = RowLinksFragment & {

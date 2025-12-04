@@ -18,8 +18,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
@@ -67,10 +67,7 @@ function InvoiceDetailPage() {
                 <Trans>Invoice #{invoiceNumber}</Trans>
               </LayoutTitle>
 
-              <PageMeta
-                title={i18n._(/* i18n */ 'Invoice #{invoiceNumber}', { invoiceNumber })}
-                metaRobots={['noindex']}
-              />
+              <PageMeta title={t`Invoice #${String(invoiceNumber)}`} metaRobots={['noindex']} />
 
               <OrderDetails order={order} />
               <InvoiceItems invoice={invoice} />
@@ -111,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
+      up: { href: '/account/orders', title: t`Orders` },
     },
   }
 }

@@ -1,5 +1,5 @@
 import { filterNonNullableKeys, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, type SxProps, type Theme } from '@mui/material'
 import { type AddToCartItemSelector } from '../AddProductsToCart'
 import { ProductListPrice } from '../ProductListPrice'
