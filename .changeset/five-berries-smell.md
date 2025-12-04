@@ -6,4 +6,4 @@
 '@graphcommerce/magento-cart': patch
 ---
 
-Add immutableBillingAddress permission that prevents the end user from updating their default billing address and changing their billing address in the checkout
+Add billingAddress permission (EDITABLE | READONLY) that controls whether the end user can update their billing address in the account section and checkout.

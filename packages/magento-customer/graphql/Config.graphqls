@@ -4,13 +4,18 @@ enum CustomerAccountPermissions {
   DISABLED
 }
 
+enum BillingAddressPermissions {
+  EDITABLE
+  READONLY
+}
+
 extend input GraphCommercePermissions {
   """
   Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
   """
   customerAccount: CustomerAccountPermissions
   """
-  Prevents the user from updating their billing address through the front-end
+  Allows customers to change their billing address or locks it down.
   """
-  immutableBillingAddress: Boolean
+  billingAddress: BillingAddressPermissions
 }

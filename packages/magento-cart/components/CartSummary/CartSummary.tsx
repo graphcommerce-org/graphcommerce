@@ -1,5 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { useImmutableBillingAddress } from '@graphcommerce/magento-customer'
+import { useBillingAddressPermission } from '@graphcommerce/magento-customer'
 import { breakpointVal, extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -28,7 +28,7 @@ export function CartSummary(props: CartSummaryProps) {
     href: '/checkout',
   })
 
-  const immutableBillingAddress = useImmutableBillingAddress()
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   if (!data?.cart) return null
 
@@ -140,7 +140,7 @@ export function CartSummary(props: CartSummaryProps) {
             labelLeft={<Trans>Billing address</Trans>}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
-              editable && !immutableBillingAddress ? (
+              editable && !billingAddressReadonly ? (
                 <Link
                   href='/checkout/edit/billing-address'
                   color='secondary'

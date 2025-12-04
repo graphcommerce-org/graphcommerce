@@ -1,7 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { EditBillingAddressForm, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
-import { getImmutableBillingAddress } from '@graphcommerce/magento-customer'
+import { getBillingAddressPermission } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
@@ -47,7 +47,10 @@ EditBillingAddress.pageOptions = pageOptions
 export default EditBillingAddress
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
-  if (getCheckoutIsDisabled(context.locale) || getImmutableBillingAddress(context.locale)) {
+  if (
+    getCheckoutIsDisabled(context.locale) ||
+    getBillingAddressPermission(context.locale) === 'READONLY'
+  ) {
     return { notFound: true }
   }
 

@@ -24,7 +24,7 @@ extend input GraphCommerceConfig {
     - Delete public content views
     - Can see schema view
 
-  ```
+  ```bash
   GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
   yarn graphcommerce hygraph-migrate
   ```

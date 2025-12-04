@@ -19,8 +19,8 @@ import {
   CompanyFields,
   CustomerDocument,
   NameFields,
+  useBillingAddressPermission,
   useCustomerQuery,
-  useImmutableBillingAddress,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
@@ -46,6 +46,7 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
+// eslint-disable-next-line react/display-name
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
   const { step, sx } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
@@ -54,7 +55,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
-  const immutableBillingAddress = useImmutableBillingAddress()
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -89,8 +90,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
     Mutation = SetBillingAddressDocument
   }
 
-  // If the immutableBillingAddress permission is true we are never allowed to update the billing address.
-  if (immutableBillingAddress) {
+  // If the billingAddress permission is READONLY we are never allowed to update the billing address.
+  if (billingAddressReadonly) {
     Mutation = SetShippingAddressDocument
   }
 
