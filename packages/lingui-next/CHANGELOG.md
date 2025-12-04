@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.59
+
+### Patch Changes
+
+- [`f498226`](https://github.com/graphcommerce-org/graphcommerce/commit/f4982262289bf525da7b102d44fb9c1f06367edb) - Solve issue where the translations weren't loaded when only using graphqlSharedClient instead of graphqlSsrClient. ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.58
 
 ## 10.0.0-canary.57
