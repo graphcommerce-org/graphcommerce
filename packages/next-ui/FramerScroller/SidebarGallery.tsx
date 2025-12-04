@@ -10,6 +10,7 @@ import {
   unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
+import { sidebarGallery } from '@graphcommerce/next-config/config'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
@@ -242,7 +243,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
-                    key={typeof image.src === 'string' ? image.src : idx}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={idx}
                     layout
                     layoutDependency={zoomed}
                     src={image.src}
@@ -349,8 +351,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
-                'THUMBNAILS_BOTTOM' ? (
+                {sidebarGallery?.paginationVariant === 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails layoutDependency={zoomed} images={images} />
                 ) : (
                   <ScrollerDots layout />
@@ -362,7 +363,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             className={classes.sidebarWrapper}
             sx={[
               {
-                width: sidebarSize,
+                width: { xs: '100%', md: sidebarSize },
                 gridArea: 'right',
                 boxSizing: 'content-box',
                 display: 'grid',

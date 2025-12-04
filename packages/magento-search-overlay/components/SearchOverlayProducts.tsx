@@ -1,7 +1,7 @@
 import type { ProductListItemRenderer } from '@graphcommerce/magento-product'
 import { ProductListItemsBase, productListLink } from '@graphcommerce/magento-product'
 import { SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Link } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -71,14 +71,14 @@ export function SearchOverlayProducts({ productListRenderer }: SearchOverlayProd
     <>
       {!params.search && <SearchPlaceholder />}
       {noResult && (
-        <SectionContainer labelLeft={<Trans id='Products'>Products</Trans>}>
+        <SectionContainer labelLeft={<Trans>Products</Trans>}>
           <Trans>We couldn’t find any results for ‘{term}’</Trans>
         </SectionContainer>
       )}
 
       {params.search && products?.items && products.items.length > 0 && (
         <SectionContainer
-          labelLeft={<Trans id='Products'>Products</Trans>}
+          labelLeft={<Trans>Products</Trans>}
           labelRight={
             <Link
               color='secondary'

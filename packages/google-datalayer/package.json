@@ -2,7 +2,7 @@
   "name": "@graphcommerce/google-datalayer",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.52",
+  "version": "10.0.0-canary.62",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,19 +12,19 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/magento-cart": "^9.1.0-canary.52",
-    "@graphcommerce/magento-cart-payment-method": "^9.1.0-canary.52",
-    "@graphcommerce/magento-cart-shipping-method": "^9.1.0-canary.52",
-    "@graphcommerce/magento-product": "^9.1.0-canary.52",
-    "@graphcommerce/next-ui": "^9.1.0-canary.52",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/react-hook-form": "^9.1.0-canary.52",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.52",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.62",
+    "@graphcommerce/magento-cart": "^10.0.0-canary.62",
+    "@graphcommerce/magento-cart-payment-method": "^10.0.0-canary.62",
+    "@graphcommerce/magento-cart-shipping-method": "^10.0.0-canary.62",
+    "@graphcommerce/magento-product": "^10.0.0-canary.62",
+    "@graphcommerce/next-ui": "^10.0.0-canary.62",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.62",
+    "@graphcommerce/react-hook-form": "^10.0.0-canary.62",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.62",
     "@mui/material": "^5.14.20",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "peerDependenciesMeta": {
     "@graphcommerce/magento-cart": {
@@ -44,6 +44,22 @@
     }
   },
   "dependencies": {
-    "web-vitals": "^4.2.4"
+    "web-vitals": "^5.1.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/GoogleDatalayerAddProductsToCartForm": "./plugins/GoogleDatalayerAddProductsToCartForm.tsx",
+    "./plugins/GoogleDatalayerCartStartCheckout": "./plugins/GoogleDatalayerCartStartCheckout.tsx",
+    "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton": "./plugins/GoogleDatalayerCartStartCheckoutLinkOrButton.tsx",
+    "./plugins/GoogleDatalayerPaymentMethodButton": "./plugins/GoogleDatalayerPaymentMethodButton.tsx",
+    "./plugins/GoogleDatalayerPaymentMethodContextProvider": "./plugins/GoogleDatalayerPaymentMethodContextProvider.tsx",
+    "./plugins/GoogleDatalayerProductListItem": "./plugins/GoogleDatalayerProductListItem.tsx",
+    "./plugins/GoogleDatalayerProductListItemsBase": "./plugins/GoogleDatalayerProductListItemsBase.tsx",
+    "./plugins/GoogleDatalayerRemoveItemFromCart": "./plugins/GoogleDatalayerRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerShippingMethodForm": "./plugins/GoogleDatalayerShippingMethodForm.tsx",
+    "./plugins/GoogleDatalayerUseRemoveItemFromCart": "./plugins/GoogleDatalayerUseRemoveItemFromCart.tsx",
+    "./plugins/GoogleDatalayerUseSignInForm": "./plugins/GoogleDatalayerUseSignInForm.tsx",
+    "./plugins/GoogleDatalayerViewItem": "./plugins/GoogleDatalayerViewItem.tsx",
+    "./plugins/GoogleDatalayerWebVitals": "./plugins/GoogleDatalayerWebVitals.tsx"
   }
 }

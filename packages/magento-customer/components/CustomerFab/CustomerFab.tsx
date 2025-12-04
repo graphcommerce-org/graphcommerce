@@ -4,7 +4,7 @@ import {
   iconPerson,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
 import { Fab } from '@mui/material'
 import React from 'react'
@@ -33,7 +33,7 @@ function CustomerFabContent(props: CustomerFabContentProps) {
       href={session?.loggedIn ? authHref : guestHref}
       color='inherit'
       id='account'
-      aria-label={i18n._(/* i18n */ 'Account')}
+      aria-label={t`Account`}
       size='large'
       className={classes.root}
       {...FabProps}

@@ -6,6 +6,7 @@
 
 /* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { googleTagmanagerId } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'
 import type { DocumentProps } from 'next/document'
 
@@ -18,9 +19,7 @@ export const config: PluginConfig = {
 export function DocumentBodyStart(props: PluginProps<DocumentProps>) {
   const { Prev, ...rest } = props
 
-  const id =
-    storefrontConfig(rest.locale)?.googleTagmanagerId ??
-    import.meta.graphCommerce.googleTagmanagerId
+  const id = storefrontConfig(rest.locale)?.googleTagmanagerId ?? googleTagmanagerId
 
   if (!id) return <Prev {...rest} />
 
@@ -39,9 +38,7 @@ export function DocumentBodyStart(props: PluginProps<DocumentProps>) {
 export function DocumentHeadEnd(props: PluginProps<DocumentProps>) {
   const { Prev, ...rest } = props
 
-  const id =
-    storefrontConfig(rest.locale)?.googleTagmanagerId ??
-    import.meta.graphCommerce.googleTagmanagerId
+  const id = storefrontConfig(rest.locale)?.googleTagmanagerId ?? googleTagmanagerId
 
   return (
     <>

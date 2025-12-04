@@ -1,6 +1,7 @@
-import { useFormState } from '@graphcommerce/ecommerce-ui'
+import { useFormState, useWatch } from '@graphcommerce/ecommerce-ui'
 import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import { nonNullable } from '@graphcommerce/next-ui'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import { AddProductsToCartSnackbarMessage } from './AddProductsToCartSnackbarMessage'
 import { findAddedItems } from './findAddedItems'
@@ -15,10 +16,14 @@ export type AddProductsToCartSnackbarProps = {
 
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
   const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
-  const { error, data, redirect, control, submittedVariables } = useFormAddProductsToCart()
+  const { error, data, control, submittedVariables } = useFormAddProductsToCart()
+  const router = useRouter()
+  let redirect = useWatch({ control, name: 'redirect' })
+
+  if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
+    redirect = undefined
 
   const formState = useFormState({ control })
-
   const userErrors = toUserErrors(data)
 
   const showSuccess =
@@ -42,6 +47,7 @@ export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps)
       addedItems={addedItems.map((item) => item.itemInCart?.product.name).filter(nonNullable)}
       errorSnackbar={errorSnackbar}
       successSnackbar={successSnackbar}
+      cart={data?.addProductsToCart?.cart}
     />
   )
 }

@@ -1,13 +1,16 @@
+import {
+  algoliaApplicationId,
+  algoliaHygraphIndex,
+  algoliaSearchOnlyApiKey,
+  hygraphSecret,
+} from '@graphcommerce/next-config/config'
 import { verifyWebhookSignature } from '@hygraph/utils'
 import algoliasearch from 'algoliasearch'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const algolia = algoliasearch(
-  import.meta.graphCommerce.algoliaApplicationId,
-  import.meta.graphCommerce.algoliaSearchOnlyApiKey,
-)
+const algolia = algoliasearch(algoliaApplicationId, algoliaSearchOnlyApiKey)
 
-const indexName = import.meta.graphCommerce.algoliaHygraphIndex
+const indexName = algoliaHygraphIndex
 const index = indexName ? algolia.initIndex(indexName) : undefined
 
 export async function removeHygraphRecord(req: NextApiRequest, res: NextApiResponse) {
@@ -16,7 +19,7 @@ export async function removeHygraphRecord(req: NextApiRequest, res: NextApiRespo
   const { body } = req
   const gcms = req.headers['gcms-signature']
   const signature = Array.isArray(gcms) ? gcms[0] : gcms
-  const secret = import.meta.graphCommerce.hygraphSecret
+  const secret = hygraphSecret
 
   if (!index) return res.status(400).send('Missing "algoliaHygraphIndex" config variable')
   if (!secret) return res.status(400).send('Missing "hygraphSecret" config variable')

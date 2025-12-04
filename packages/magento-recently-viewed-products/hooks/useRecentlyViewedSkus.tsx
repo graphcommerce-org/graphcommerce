@@ -1,4 +1,5 @@
 import { useQuery } from '@graphcommerce/graphql'
+import { recentlyViewedProducts } from '@graphcommerce/next-config/config'
 import { RecentlyViewedProductsDocument } from '../graphql/RecentlyViewedProducts.gql'
 
 export type UseRecentlyViewedSkusProps = { exclude?: string[] }
@@ -6,7 +7,7 @@ export type UseRecentlyViewedSkusProps = { exclude?: string[] }
 export function useRecentlyViewedSkus(props: UseRecentlyViewedSkusProps = {}) {
   const { exclude } = props
   const { data, loading, previousData } = useQuery(RecentlyViewedProductsDocument, {
-    skip: !import.meta.graphCommerce.recentlyViewedProducts?.enabled,
+    skip: !recentlyViewedProducts?.enabled,
   })
   let skus = (loading ? previousData : data)?.recentlyViewedProducts?.items || []
 

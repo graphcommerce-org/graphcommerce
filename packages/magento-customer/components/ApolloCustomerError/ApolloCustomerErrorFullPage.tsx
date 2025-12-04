@@ -1,7 +1,7 @@
 import type { ApolloErrorFullPageProps } from '@graphcommerce/ecommerce-ui'
 import { ApolloErrorFullPage } from '@graphcommerce/ecommerce-ui'
 import { iconPerson, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 import type { SetOptional } from 'type-fest'
 import { useCustomerAccountCanSignUp } from '../../hooks'
@@ -27,7 +27,7 @@ export function ApolloCustomerErrorFullPage(props: ApolloCustomerErrorFullPagePr
       button={
         unauthorized ? (
           <Button href='/account/signin' variant='pill' color='primary' size='large'>
-            {canSignUp ? <Trans id='Sign in or create an account!' /> : <Trans id='Sign in' />}
+            {canSignUp ? <Trans>Sign in or create an account!</Trans> : <Trans>Sign in</Trans>}
           </Button>
         ) : (
           button

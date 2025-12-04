@@ -1,6 +1,9 @@
 import type { ApolloError } from '@graphcommerce/graphql'
 import type { CartUserInputError } from '@graphcommerce/graphql-mesh'
-import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
+import {
+  ApolloCartErrorSnackbar,
+  type CartItemCountChangedFragment,
+} from '@graphcommerce/magento-cart'
 import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import {
   Button,
@@ -10,15 +13,16 @@ import {
   ListFormat,
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
-import { Plural, Trans } from '@lingui/macro'
+import { Plural, Trans } from '@lingui/react/macro'
 
 export type AddProductsToCartSnackbarMessageProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  error?: ApolloError
+  error?: ApolloError | null
   userErrors?: Pick<CartUserInputError, 'message'>[]
   showSuccess: boolean
   addedItems: string[]
+  cart?: CartItemCountChangedFragment | null | undefined
 }
 
 export function AddProductsToCartSnackbarMessage(props: AddProductsToCartSnackbarMessageProps) {

@@ -37,7 +37,7 @@ export function ActionCardListForm<
     errorMessage,
     defaultValue,
     multiple,
-    disabled: disabledField,
+    disabled,
     shouldUnregister,
     requireOptionSelection,
     ...other
@@ -54,7 +54,7 @@ export function ActionCardListForm<
   )
 
   const {
-    field: { onChange, value, ref, onBlur, disabled },
+    field: { onChange, value, ref, onBlur },
     fieldState,
     formState,
   } = useController({
@@ -63,7 +63,6 @@ export function ActionCardListForm<
     name,
     defaultValue,
     rules: { required, ...rules },
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -80,7 +79,7 @@ export function ActionCardListForm<
       {...other}
       multiple={multiple}
       required={required}
-      value={value}
+      value={value ?? null}
       ref={ref}
       onChange={(_, incoming) => onChange(incoming)}
       error={formState.isSubmitted && !!fieldState.error}

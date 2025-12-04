@@ -1,5 +1,5 @@
 import type { ServerError, ServerParseError } from '@graphcommerce/graphql'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 
 function isServerError(error: Error | ServerParseError | ServerError | null): error is ServerError {
   return 'name' in (error as ServerError)
@@ -19,12 +19,12 @@ export function maskNetworkError(networkError: Error | ServerParseError | Server
   }
 
   if (isServerParseError(networkError) || isServerError(networkError)) {
-    return <Trans id='Something went wrong on the server, please try again later.' />
+    return <Trans>Something went wrong on the server, please try again later.</Trans>
   }
 
   if (globalThis.navigator && !globalThis.navigator?.onLine) {
-    return <Trans id='It appears you are offline, please try again later.' />
+    return <Trans>It appears you are offline, please try again later.</Trans>
   }
 
-  return <Trans id='Something went wrong' />
+  return <Trans>Something went wrong</Trans>
 }

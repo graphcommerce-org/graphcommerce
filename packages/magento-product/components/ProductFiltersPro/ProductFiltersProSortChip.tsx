@@ -1,7 +1,7 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { ActionCard, ChipOverlayOrPopper } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { UseProductFiltersProSortProps } from './useProductFiltersProSort'
 import { useProductFiltersProSort } from './useProductFiltersProSort'
@@ -23,7 +23,7 @@ export function ProductFiltersProSortChip(props: ProductListActionSortProps) {
     <ChipOverlayOrPopper
       {...rest}
       overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal', ...rest.overlayProps }}
-      label={<Trans id='Sort By' />}
+      label={<Trans>Sort By</Trans>}
       selected={selected}
       selectedLabel={selectedLabel}
       onApply={submit}

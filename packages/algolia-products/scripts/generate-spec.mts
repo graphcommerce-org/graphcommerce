@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises'
+import { writeFile } from 'fs/promises'
 import conf from '@graphcommerce/prettier-config-pwa'
 import yaml from 'js-yaml'
 import type { OpenAPIV3 } from 'openapi-types'

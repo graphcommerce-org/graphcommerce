@@ -6,7 +6,6 @@ fragment CartItem on CartItemInterface {
     ...ProductLink
     sku
     name
-    sku
     thumbnail {
       ...ProductImage
     }

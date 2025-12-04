@@ -1,8 +1,10 @@
-export const storefrontAll = import.meta.graphCommerce.storefront
+import { storefront } from '@graphcommerce/next-config/config'
+
+export const storefrontAll = storefront
 
 /** Get the current storefront config based on the provided locale */
 export const storefrontConfig = (locale?: string | undefined) =>
-  storefrontAll.find((l) => l.locale === locale)
+  storefront.find((l) => l.locale === locale)
 
 export const storefrontConfigDefault = () =>
-  storefrontAll.find((l) => l.defaultLocale) ?? storefrontAll[0]
+  storefront.find((l) => l.defaultLocale) ?? storefrontAll[0]

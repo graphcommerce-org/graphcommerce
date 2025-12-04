@@ -6,6 +6,10 @@ import type {
 } from '@graphcommerce/magento-product'
 import { useConfigurableSelectedVariant } from '@graphcommerce/magento-product-configurable/hooks'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import {
+  configurableVariantForSimple,
+  recentlyViewedProducts,
+} from '@graphcommerce/next-config/config'
 import { useEventCallback } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
@@ -28,9 +32,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
     const skus = recentlyViewed.data.recentlyViewedProducts?.items ?? []
 
     const isValidVariant =
-      (variant?.url_rewrites ?? []).length > 0 &&
-      variant?.url_key &&
-      import.meta.graphCommerce.configurableVariantForSimple
+      (variant?.url_rewrites ?? []).length > 0 && variant?.url_key && configurableVariantForSimple
 
     const parentSku = product.sku || ''
     const sku = (isValidVariant ? variant.sku : product.sku) || ''
@@ -54,7 +56,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
     const items = [
       { __typename: 'RecentlyViewedProduct' as const, parentSku, sku },
       ...viewedSkus,
-    ].splice(0, import.meta.graphCommerce.recentlyViewedProducts?.maxCount || 10)
+    ].splice(0, recentlyViewedProducts?.maxCount || 10)
 
     client.writeQuery({
       query: RecentlyViewedProductsDocument,

@@ -1,5 +1,6 @@
 import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
+import { enableGuestCheckoutLogin } from '@graphcommerce/next-config/config'
 import { useUrlQuery } from '@graphcommerce/next-ui'
 import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
@@ -20,7 +21,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   const { token, valid } = useCustomerSession()
 
   const canSignUp = useCustomerAccountCanSignUp()
-  const isToggleMethod = !import.meta.graphCommerce.enableGuestCheckoutLogin || !canSignUp
+  const isToggleMethod = !enableGuestCheckoutLogin || !canSignUp
 
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 

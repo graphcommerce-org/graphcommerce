@@ -28,9 +28,14 @@ import {
   useProductList,
 } from '@graphcommerce/magento-product'
 import { redirectOrNotFound, redirectTo, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  breadcrumbs,
+  productFiltersLayout,
+  productFiltersPro,
+} from '@graphcommerce/next-config/config'
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
 import {
@@ -66,14 +71,14 @@ function CategoryPage(props: CategoryProps) {
   return (
     <PrivateQueryMaskProvider mask={mask}>
       <CategoryMeta params={params} {...category} />
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {category?.name}
         </LayoutTitle>
       </LayoutHeader>
       {isCategory && isLanding && (
         <>
-          {import.meta.graphCommerce.breadcrumbs && (
+          {breadcrumbs && (
             <Container maxWidth={false}>
               <CategoryBreadcrumbs
                 category={category}
@@ -94,27 +99,25 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && !isLanding && (
         <>
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-              <ProductListLayoutSidebar
-                {...productList}
-                key={category.uid}
-                title={category.name ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-              <ProductListLayoutDefault
-                {...productList}
-                key={category.uid}
-                title={category.name ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {!import.meta.graphCommerce.productFiltersPro && (
+          {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+            <ProductListLayoutSidebar
+              {...productList}
+              key={category.uid}
+              title={category.name ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+            <ProductListLayoutDefault
+              {...productList}
+              key={category.uid}
+              title={category.name ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {!productFiltersPro && (
             <ProductListLayoutClassic
               {...productList}
               key={category.uid}
@@ -201,7 +204,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  if (!hasCategory) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!(await category)?.uid) return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) {
     const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
@@ -218,7 +221,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
 
   await waitForSiblings
   const result = {

@@ -1,5 +1,5 @@
 import { Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import type { ProductFiltersProAggregationsProps } from './ProductFiltersProAggregations'
 import { useProductFiltersProClearAllAction } from './useProductFiltersProClearAllAction'
@@ -30,7 +30,7 @@ export function ProductFiltersProClearAll(props: AllFiltersSidebar) {
         return clearAll()
       }}
     >
-      <Trans id='Clear all filters' />
+      <Trans>Clear all filters</Trans>
     </Button>
   )
 }

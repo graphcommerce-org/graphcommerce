@@ -1,9 +1,10 @@
+import { permissions } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 
 function getCustomerAccountPermission(locale: string | undefined) {
   return (
     storefrontConfig(locale)?.permissions?.customerAccount ??
-    import.meta.graphCommerce.permissions?.customerAccount ??
+    permissions?.customerAccount ??
     'ENABLED'
   )
 }

@@ -1,7 +1,7 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { TextFieldElement, useWatch } from '@graphcommerce/ecommerce-ui'
 import type { CountryCodeEnum } from '@graphcommerce/graphql-mesh'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { CompanyFieldsOptions } from './useCompanyFieldsForm'
 import { useCompanyFieldsForm } from './useCompanyFieldsForm'
 
@@ -27,7 +27,7 @@ export function CompanyVAT<
       variant='outlined'
       type='text'
       required={required ? !optional?.includes(countryCode) : optional?.includes(countryCode)}
-      label={<Trans id='VAT Number' />}
+      label={<Trans>VAT Number</Trans>}
       showValid
       InputProps={{ readOnly }}
     />

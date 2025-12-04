@@ -1,4 +1,5 @@
 export * from './fragments/AccountDashboardQueryFragment.gql'
+export * from './fragments/AccountDashboardQueryFragment.gql'
 export * from './queries/AccountDashboard.gql'
 export * from './queries/AccountDashboardAddresses.gql'
 export * from './queries/AccountDashboardCustomer.gql'

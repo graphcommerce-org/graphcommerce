@@ -3,7 +3,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
@@ -105,7 +105,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
             size='large'
             loading={formState.isSubmitting}
           >
-            <Trans id='Save changes' />
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
       </Form>

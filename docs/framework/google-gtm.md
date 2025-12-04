@@ -116,7 +116,7 @@ The following events are supported by default in GraphCommerce:
 Enable core web vitals tracking.
 
 ```js
-const confog = {
+const config = {
   dataLayer: { coreWebVitals: true },
 }
 ```

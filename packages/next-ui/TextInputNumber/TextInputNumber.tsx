@@ -1,4 +1,4 @@
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import {
   Box,
@@ -125,7 +125,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         startAdornment: (
           <Box>
             <Fab
-              aria-label={i18n._(/* i18n */ 'Decrease')}
+              aria-label={t`Decrease`}
               size='smaller'
               sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
               onPointerDown={() => setDirection('down')}
@@ -141,7 +141,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         endAdornment: (
           <Box>
             <Fab
-              aria-label={i18n._(/* i18n */ 'Increase')}
+              aria-label={t`Increase`}
               size='smaller'
               sx={{ boxShadow: variant === 'standard' ? 4 : 0, minHeight: '30px' }}
               onPointerDown={() => setDirection('up')}
@@ -160,7 +160,7 @@ export function TextInputNumber(props: TextInputNumberProps) {
         updateDisabled(e.target)
       }}
       inputProps={{
-        'aria-label': i18n._(/* i18n */ 'Number'),
+        'aria-label': t`Number`,
         ...inputProps,
         sx: [
           {

@@ -7,12 +7,12 @@ import {
   Form,
   FormActions,
   FormRow,
+  OverlayCloseButton,
   responsiveVal,
   StarRatingField,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, Button, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -79,12 +79,12 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
     return (
       <>
         <Alert severity='success' variant='standard'>
-          <Trans id='Thank you! Your review was successfully submitted for approval' />
+          <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
         <Box mt={6}>
-          <Button variant='pill' color='secondary' size='large' onClick={() => router.back()}>
-            <Trans id='Continue shopping' />
-          </Button>
+          <OverlayCloseButton variant='pill' color='secondary' size='large'>
+            <Trans>Continue shopping</Trans>
+          </OverlayCloseButton>
         </Box>
       </>
     )
@@ -97,7 +97,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.nickname || !!error}
-          label={<Trans id='Name' />}
+          label={<Trans>Name</Trans>}
           required={required.nickname}
           name='nickname'
           rules={{ required: required.nickname }}
@@ -178,7 +178,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.summary || !!error}
-          label={<Trans id='Summary' />}
+          label={<Trans>Summary</Trans>}
           required={required.summary}
           name='summary'
           rules={{ required: required.summary }}
@@ -194,7 +194,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           variant='outlined'
           type='text'
           error={!!formState.errors.text || !!error}
-          label={<Trans id='Review' />}
+          label={<Trans>Review</Trans>}
           required={required.text}
           name='text'
           rules={{ required: required.text }}
@@ -215,7 +215,7 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           size='medium'
           className={classes.submitButton}
         >
-          <Trans id='Submit review' />
+          <Trans>Submit review</Trans>
         </Button>
       </FormActions>
 

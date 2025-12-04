@@ -1,5 +1,5 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { CreateEmptyCartDocument } from './CreateEmptyCart.gql'
 import { readCartId, useAssignCurrentCartId } from './useAssignCurrentCartId'
 
@@ -13,7 +13,7 @@ export function useCartIdCreate() {
     if (currentCartId) return currentCartId
 
     const { data } = await client.mutate({ mutation: CreateEmptyCartDocument })
-    if (!data?.createEmptyCart) throw Error(i18n._(/* i18n */ 'Could not create an empty cart'))
+    if (!data?.createEmptyCart) throw Error(t`Could not create an empty cart`)
 
     // We store the cartId that is returned as the currentCartId result
     assignCurrentCartId(data.createEmptyCart)

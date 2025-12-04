@@ -1,6 +1,6 @@
 import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, lighten, Typography } from '@mui/material'
 import type { InvoiceFragment } from './Invoice.gql'

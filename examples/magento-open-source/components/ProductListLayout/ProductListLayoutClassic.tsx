@@ -11,6 +11,7 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
 import { ProductListItems, productListRenderer } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
@@ -25,7 +26,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
 
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs && category && (
+      {breadcrumbs && category && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
             category={category}

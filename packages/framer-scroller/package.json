@@ -2,10 +2,13 @@
   "name": "@graphcommerce/framer-scroller",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.52",
+  "version": "10.0.0-canary.62",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
+  },
+  "exports": {
+    ".": "./index.ts"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -18,17 +21,17 @@
     "popmotion": "11.0.5"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/framer-utils": "^9.1.0-canary.52",
-    "@graphcommerce/image": "^9.1.0-canary.52",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.52",
-    "@lingui/core": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.62",
+    "@graphcommerce/framer-utils": "^10.0.0-canary.62",
+    "@graphcommerce/image": "^10.0.0-canary.62",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.62",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.62",
+    "@lingui/core": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

@@ -28,6 +28,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery & BlogListQuery & BlogPathsQuery
 type RouteProps = { page: string }
@@ -46,16 +47,14 @@ function BlogPage(props: Props) {
     <>
       <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>
       </LayoutHeader>
 
       <Container maxWidth={false}>
-        {import.meta.graphCommerce.breadcrumbs && (
-          <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />
-        )}
+        {breadcrumbs && <Breadcrumbs breadcrumbs={[{ href: `/${page.url}`, name: title }]} />}
         <LayoutTitle variant='h1'>{title}</LayoutTitle>
       </Container>
 

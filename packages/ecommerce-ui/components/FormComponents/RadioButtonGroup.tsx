@@ -1,6 +1,6 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import {
   FormControl,
   FormControlLabel,
@@ -37,7 +37,7 @@ type RadioButtonGroupComponent = <TFieldValues extends FieldValues>(
   props: RadioButtonGroupProps<TFieldValues>,
 ) => React.ReactNode
 
-function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
+function RadioButtonGroupBase(props: RadioButtonGroupProps): React.ReactNode {
   const {
     helperText,
     options,
@@ -50,21 +50,20 @@ function RadioButtonGroupBase(props: RadioButtonGroupProps): JSX.Element {
     row,
     control,
     defaultValue,
-    disabled: disabledField,
+    disabled,
     shouldUnregister,
     ...rest
   } = props
 
   const theme = useTheme()
   const {
-    field: { value, onChange, onBlur, ref, disabled },
+    field: { value, onChange, onBlur, ref },
     fieldState: { invalid, error },
   } = useController({
     name,
-    rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
+    rules: required ? { required: t`This field is required` } : undefined,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 

@@ -27,9 +27,9 @@ export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   return (
     <Prev
       {...rest}
-      onStart={(e, cart) => {
+      onStart={async (e, cart) => {
+        await onStart?.(e, cart)
         if (cart) sendEvent('begin_checkout', cartToBeginCheckout(cart))
-        return onStart?.(e, cart)
       }}
     />
   )
