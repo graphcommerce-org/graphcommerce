@@ -1,5 +1,7 @@
 # @graphcommerce/google-datalayer
 
+## 10.0.0-canary.61
+
 ## 10.0.0-canary.60
 
 ## 10.0.0-canary.59
