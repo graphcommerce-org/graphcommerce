@@ -2,6 +2,7 @@ import { globalApolloClient } from '@graphcommerce/graphql'
 import type { ApolloCache } from '@graphcommerce/graphql/apollo'
 import { ApolloLink, fromPromise, onError, setContext } from '@graphcommerce/graphql/apollo'
 import type { ErrorCategory } from '@graphcommerce/magento-graphql'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GraphQLFormattedError } from 'graphql'
 import type { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
@@ -47,10 +48,7 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
 
 function isErrorCategory(err: GraphQLFormattedError) {
   const categories: ErrorCategory[] = ['graphql-authorization']
-
-  if (import.meta.graphCommerce.magentoVersion >= 248) {
-    categories.push('graphql-authentication')
-  }
+  if (magentoVersion >= 248) categories.push('graphql-authentication')
   return categories.includes(err.extensions?.category as ErrorCategory)
 }
 
@@ -60,7 +58,7 @@ const addTokenHeader = setContext((_, context) => {
   try {
     const query = context.cache?.readQuery({ query: CustomerTokenDocument })
 
-    if (query?.customerToken?.token) {
+    if (query?.customerToken?.token && query?.customerToken?.valid !== false) {
       context.headers.authorization = `Bearer ${query?.customerToken?.token}`
       return context
     }
@@ -92,17 +90,10 @@ const customerErrorLink = (router: PushRouter) =>
 
     const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
     if (!currentToken) throw Error('We currenly do not have a customer token in the cache.')
-    if (import.meta.graphCommerce.magentoVersion < 248) {
-      client.writeQuery({
-        query: CustomerTokenDocument,
-        data: { customerToken: { ...currentToken, valid: false } },
-      })
-    } else {
-      client.writeQuery({
-        query: CustomerTokenDocument,
-        data: { customerToken: { __typename: 'CustomerToken', valid: false, token: null } },
-      })
-    }
+    client.writeQuery({
+      query: CustomerTokenDocument,
+      data: { customerToken: { ...currentToken, valid: false } },
+    })
 
     // After submission of the signIn form, navigate back to the current route.
     // Resolve the promomise.

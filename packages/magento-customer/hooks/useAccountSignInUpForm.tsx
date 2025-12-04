@@ -66,7 +66,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
 
   let mode: AccountSignInUpState
   if (token && valid) mode = 'signedin'
-  else if (valid === false) mode = 'session-expired'
+  else if (token && !valid) mode = 'session-expired'
   else if (isToggleMethod) {
     mode = form.watch('requestedMode') ?? 'signin'
   } else {
