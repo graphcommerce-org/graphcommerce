@@ -48,9 +48,10 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
  * browser's cache.
  */
 export function graphqlSharedClient(context: GetStaticPropsContext) {
-  if (context.preview || context.draftMode) return client(context, 'no-cache')
   const locale = context.locale ?? storefrontConfigDefault().locale
   i18nSsrLoader(locale)
+
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   return client(context, 'cache-first')
 }
 
@@ -59,9 +60,10 @@ const ssrClient: {
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
-  if (context.preview || context.draftMode) return client(context, 'no-cache')
   const locale = context.locale ?? storefrontConfigDefault().locale
   i18nSsrLoader(locale)
+
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
 
   // Create a client if it doesn't exist for the locale.
   if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
