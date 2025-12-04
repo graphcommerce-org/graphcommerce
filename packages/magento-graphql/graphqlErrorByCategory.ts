@@ -11,7 +11,7 @@ export type ErrorCategory =
 
 export type GraphQLErrorByCategoryProps = {
   category: ErrorCategory
-  error?: ApolloError
+  error?: ApolloError | null
   extract?: true
   mask?: string
 }
@@ -37,7 +37,7 @@ export function graphqlErrorByCategory(
 ): [ApolloError | undefined, GraphQLFormattedError | undefined] {
   const { category, error, extract = true, mask } = props
 
-  if (!error) return [error, undefined]
+  if (!error) return [undefined, undefined]
 
   const newError = new ApolloError({
     ...error,

@@ -5,7 +5,7 @@ import {
   iconChevronDown,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { AccordionProps, SxProps, Theme } from '@mui/material'
 import { Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material'
 import { useState } from 'react'
@@ -76,7 +76,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
         ]}
       >
         <Box sx={{ flex: 1 }}>
-          <Trans id='Discount code' />
+          <Trans>Discount code</Trans>
         </Box>
         <RemoveCouponForm {...data.cart} sx={{ flex: 0 }} />
       </AccordionSummary>

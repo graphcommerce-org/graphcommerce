@@ -1,5 +1,5 @@
 import { DesktopHeaderBadge, extendableComponent, iconHeart, IconSvg } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
 import { Fab } from '@mui/material'
 import React from 'react'
@@ -27,7 +27,7 @@ function WishlistFabContent(props: WishlistFabContentProps) {
       href='/wishlist'
       color='inherit'
       data-test-id='wishlist-fab'
-      aria-label={i18n._(/* i18n */ 'Wishlist')}
+      aria-label={t`Wishlist`}
       size='large'
       className={classes.root}
       {...FabProps}

@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { ApolloLink } from '@apollo/client'
 import { print } from '@apollo/client/utilities'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
@@ -168,7 +169,7 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
 
       const meshUrl = new URL(
         process.env.NODE_ENV === 'production'
-          ? `${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`
+          ? `${canonicalBaseUrl}/api/graphql`
           : 'http://localhost:3000/api/graphql',
       )
 

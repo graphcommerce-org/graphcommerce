@@ -1,14 +1,15 @@
 #!/usr/bin/env node
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import fs from 'fs/promises';
+import path from 'path';
 import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli';
 import dotenv from 'dotenv';
+import glob from 'fast-glob';
 import { rimraf } from 'rimraf';
 import yaml from 'yaml';
 
 const [, , cmd] = process.argv;
-dotenv.config();
+dotenv.config({ quiet: true });
 const root = process.cwd();
 const configLocation = path.join(root, "._tmp_codegen.yml");
 async function cleanup() {
@@ -23,7 +24,12 @@ async function cleanup() {
 }
 function appendDocumentLocations(conf, packages) {
   const documents = Array.isArray(conf.documents) ? conf.documents : [conf.documents];
-  documents.push(...packages.map((p) => `${p}/**/*.graphql`));
+  const packagePatterns = packages.map((p) => `${p}/**/*.graphql`);
+  const resolvedFiles = glob.sync(packagePatterns, {
+    ignore: ["**/node_modules/**"],
+    followSymbolicLinks: false
+  });
+  documents.push(...resolvedFiles);
   return conf;
 }
 async function main() {

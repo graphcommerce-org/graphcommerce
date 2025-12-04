@@ -1,6 +1,6 @@
 import type { FetchResult } from '@graphcommerce/graphql'
 import { ApolloError } from '@graphcommerce/graphql'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import type { PaymentMethodPlaceOrderNoopMutation } from './PaymentMethodPlaceOrderNoop.gql'
 
 export type PlacedOrder<T extends FetchResult<PaymentMethodPlaceOrderNoopMutation>> = NonNullable<

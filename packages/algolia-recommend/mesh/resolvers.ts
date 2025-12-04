@@ -12,6 +12,7 @@ import type {
 } from '@graphcommerce/graphql-mesh'
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
 import type { GraphCommerceConfig } from '@graphcommerce/next-config'
+import { algolia } from '@graphcommerce/next-config/config'
 import { createProductMapper } from './createProductMapper'
 import { createFacetValueMapper } from './createValueFacetMapper'
 import { getRecommendationsArgs } from './getRecommendationArgs'
@@ -81,8 +82,8 @@ type ProductResolver = ResolverFn<
   Record<string, never>
 >
 
-if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.relatedProducts)
+if (isEnabled(algolia.relatedProducts)) {
+  const fieldName = enumToLocation(algolia.relatedProducts)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
@@ -107,8 +108,8 @@ if (isEnabled(import.meta.graphCommerce.algolia.relatedProducts)) {
   })
 }
 
-if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.lookingSimilar)
+if (isEnabled(algolia.lookingSimilar)) {
+  const fieldName = enumToLocation(algolia.lookingSimilar)
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, fallbackParameters, maxRecommendations, queryParameters } =
       await getRecommendationsArgs(root, args, context)
@@ -132,8 +133,8 @@ if (isEnabled(import.meta.graphCommerce.algolia.lookingSimilar)) {
   })
 }
 
-if (isEnabled(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)) {
-  const fieldName = enumToLocation(import.meta.graphCommerce.algolia.frequentlyBoughtTogether)
+if (isEnabled(algolia.frequentlyBoughtTogether)) {
+  const fieldName = enumToLocation(algolia.frequentlyBoughtTogether)
 
   const resolve: ProductResolver = async (root, args, context, info) => {
     const { objectID, threshold, maxRecommendations, queryParameters } =

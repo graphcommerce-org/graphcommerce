@@ -12,7 +12,7 @@ import {
   LayoutHeader,
   Breadcrumbs,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -29,6 +29,7 @@ import {
   RowRenderer,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery & BlogListQuery
 type RouteProps = { url: string[] }
@@ -43,12 +44,12 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {title}
         </LayoutTitle>
       </LayoutHeader>
-      {import.meta.graphCommerce.breadcrumbs && (
+      {breadcrumbs && (
         <Container maxWidth={false}>
           <Breadcrumbs
             sx={(theme) => ({
@@ -59,7 +60,7 @@ function BlogPage(props: Props) {
               },
             })}
             breadcrumbs={[
-              { href: '/blog', name: i18n._(/* i18n*/ 'Blog') },
+              { href: '/blog', name: t`Blog` },
               { href: `/${page.url}`, name: title },
             ]}
           />
@@ -87,7 +88,7 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+  if (limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })
@@ -127,7 +128,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await page).data,
       ...(await blogPosts).data,
       ...(await layout).data,
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

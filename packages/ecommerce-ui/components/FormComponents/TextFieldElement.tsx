@@ -2,7 +2,7 @@
 import { InputCheckmark } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { emailPattern, useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { TextFieldProps } from '@mui/material'
 import { TextField, useForkRef } from '@mui/material'
 import React, { useState } from 'react'
@@ -46,7 +46,7 @@ function toValue(incomingValue: unknown, type: React.HTMLInputTypeAttribute) {
 }
 
 /** @public */
-function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
+function TextFieldElementBase(props: TextFieldElementProps): React.ReactNode {
   const {
     name,
     control,
@@ -61,13 +61,13 @@ function TextFieldElementBase(props: TextFieldElementProps): JSX.Element {
   } = props as TextFieldProps & InternalProps & BaseControllerProps
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   if (type === 'email' && !rules.pattern) {
     rules.pattern = {
       value: emailPattern,
-      message: i18n._(/* i18n */ 'Please enter a valid email address'),
+      message: t`Please enter a valid email address`,
     }
   }
 

@@ -1,4 +1,5 @@
 import type { PreviewData } from '@graphcommerce/graphql'
+import { previewSecret } from '@graphcommerce/next-config/config'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { previewModeDefaults } from '../components/PreviewMode/previewModeDefaults'
 
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (action === 'enable' && req.query.secret) {
-    if (req.query.secret !== import.meta.graphCommerce.previewSecret) {
+    if (req.query.secret !== previewSecret) {
       // This secret should only be known to this API route and the CMS
       res.status(401).json({ message: 'Invalid token' })
       res.end()

@@ -5,7 +5,7 @@ import {
   type AccountMenuItemProps,
 } from '@graphcommerce/magento-customer'
 import { filterNonNullableKeys, iconDownload } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SetOptional } from 'type-fest'
 
 type StoreCreditAccountMenuItemProps = SetOptional<
@@ -26,7 +26,7 @@ export function DownloadableAccountMenuItem(props: StoreCreditAccountMenuItemPro
     <AccountMenuItem
       href='/account/downloads'
       iconSrc={iconDownload}
-      title={<Trans id='Downloads'>Downloads</Trans>}
+      title={<Trans>Downloads</Trans>}
       subtitle={<Trans>You have {count} downloads available.</Trans>}
       {...props}
     />

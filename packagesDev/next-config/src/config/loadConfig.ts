@@ -5,7 +5,6 @@ import { GraphCommerceConfigSchema } from '../generated/config'
 import { demoConfig } from './demoConfig'
 import { formatAppliedEnv, mergeEnvIntoConfig } from './utils/mergeEnvIntoConfig'
 
-export * from './utils/configToImportMeta'
 export * from './utils/replaceConfigInString'
 
 const moduleName = 'graphcommerce'

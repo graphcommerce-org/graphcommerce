@@ -1,12 +1,9 @@
 import { useCustomerSession } from '@graphcommerce/magento-customer/hooks/useCustomerSession'
+import { permissions } from '@graphcommerce/next-config/config'
 import { useStorefrontConfig } from '@graphcommerce/next-ui'
 
 function useCheckoutPermission() {
-  return (
-    useStorefrontConfig().permissions?.checkout ??
-    import.meta.graphCommerce.permissions?.checkout ??
-    'ENABLED'
-  )
+  return useStorefrontConfig().permissions?.checkout ?? permissions?.checkout ?? 'ENABLED'
 }
 
 export function useCheckoutGuestEnabled() {

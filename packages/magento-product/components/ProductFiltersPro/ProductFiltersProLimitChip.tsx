@@ -4,7 +4,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { ChipOverlayOrPopperProps } from '@graphcommerce/next-ui'
 import { ActionCard, ChipOverlayOrPopper } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useMemo } from 'react'
 import { useProductFiltersPro } from './ProductFiltersPro'
 
@@ -27,7 +27,7 @@ export function ProductFiltersProLimitChip(props: ProductFiltersProLimitChipProp
       (storeConfigQuery?.storeConfig?.grid_per_page_values?.split(',').map(Number) ?? []).map(
         (count) => ({
           value: count === defaultPerPage ? null : count,
-          title: <Trans id='{count} Per page' values={{ count }} />,
+          title: <Trans>{count} Per page</Trans>,
         }),
       ),
     [defaultPerPage, storeConfigQuery?.storeConfig?.grid_per_page_values],
@@ -39,9 +39,9 @@ export function ProductFiltersProLimitChip(props: ProductFiltersProLimitChipProp
     <ChipOverlayOrPopper
       {...rest}
       overlayProps={{ sizeSm: 'minimal', sizeMd: 'minimal', ...rest.overlayProps }}
-      label={<Trans id='Per page' />}
+      label={<Trans>Per page</Trans>}
       selected={Boolean(params.pageSize)}
-      selectedLabel={<Trans id='{count} Per page' values={{ count: params.pageSize }} />}
+      selectedLabel={<Trans>{params.pageSize} Per page</Trans>}
       onApply={submit}
       onReset={
         activePageSize

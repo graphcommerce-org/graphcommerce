@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-dynamic-rows",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.55",
+  "version": "10.0.0-canary.60",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,16 +12,20 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",
-    "@graphcommerce/graphql": "^9.1.0-canary.55",
-    "@graphcommerce/hygraph-ui": "^9.1.0-canary.55",
-    "@graphcommerce/image": "^9.1.0-canary.55",
-    "@graphcommerce/next-ui": "^9.1.0-canary.55",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.60",
+    "@graphcommerce/graphql": "^10.0.0-canary.60",
+    "@graphcommerce/hygraph-ui": "^10.0.0-canary.60",
+    "@graphcommerce/image": "^10.0.0-canary.60",
+    "@graphcommerce/next-ui": "^10.0.0-canary.60",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.60",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.60",
     "@mui/material": "^5.10.16",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/hygraphDynamicRowsPageContent": "./plugins/hygraphDynamicRowsPageContent.ts"
   }
 }

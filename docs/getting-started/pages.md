@@ -318,7 +318,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
     const { data } = await client.query({
       query: PagesStaticPathsDocument,
       variables: {
-        first: import.meta.graphCommerce.limitSsg ? 1 : 1000,
+        first: limitSsg ? 1 : 1000,
         urlStartsWith: 'about',
       },
     })

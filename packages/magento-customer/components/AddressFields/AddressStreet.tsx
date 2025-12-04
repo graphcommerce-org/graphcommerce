@@ -1,6 +1,6 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'
 
@@ -18,7 +18,7 @@ export function AddressStreet<
       required={required[name.street]}
       name={name.street}
       type='text'
-      label={<Trans id='Street' />}
+      label={<Trans>Street</Trans>}
       autoComplete='address-line1'
       showValid
       InputProps={{ readOnly }}

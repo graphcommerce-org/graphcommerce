@@ -35,7 +35,7 @@ export function FramerNextPages(props: PluginProps<PagesProps>) {
     onCLS((m) => sendCoreWebVitals(m, m.attribution.largestShiftTarget))
     onFCP((m) => sendCoreWebVitals(m), opts)
     onINP((m) => sendCoreWebVitals(m, m.attribution.interactionTarget), opts)
-    onLCP((m) => sendCoreWebVitals(m, m.attribution.element), opts)
+    onLCP((m) => sendCoreWebVitals(m, m.attribution.target), opts)
     onTTFB((m) => sendCoreWebVitals(m), opts)
   }, [sendCoreWebVitals])
 

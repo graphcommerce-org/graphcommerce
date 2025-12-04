@@ -1,6 +1,6 @@
 import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
 import { iconChevronRight, IconSvg, LinkOrButton, sxx } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { useCheckoutShouldLoginToContinue } from '../../hooks'
@@ -46,7 +46,7 @@ export function CartStartCheckoutLinkOrButton(props: CartStartCheckoutLinkOrButt
       endIcon={<IconSvg src={iconChevronRight} />}
       {...linkOrButtonProps}
     >
-      {children ?? <Trans id='Next' />}
+      {children ?? <Trans>Next</Trans>}
     </LinkOrButton>
   )
 }

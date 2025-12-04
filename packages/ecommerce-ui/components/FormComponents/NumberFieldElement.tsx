@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'
 import { Fab, TextField, useForkRef } from '@mui/material'
 import React from 'react'
@@ -70,7 +70,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
   }
 
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {
@@ -134,7 +134,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ...InputPropsFiltered,
         startAdornment: (
           <Fab
-            aria-label={i18n._(/* i18n */ 'Decrease')}
+            aria-label={t`Decrease`}
             size='smaller'
             onClick={() => {
               if (
@@ -160,7 +160,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ),
         endAdornment: (
           <Fab
-            aria-label={i18n._(/* i18n */ 'Increase')}
+            aria-label={t`Increase`}
             size='smaller'
             onClick={() => {
               if (valueAsNumber >= (inputProps.max ?? Infinity)) return
@@ -182,7 +182,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
         ),
       }}
       inputProps={{
-        'aria-label': i18n._(/* i18n */ 'Number'),
+        'aria-label': t`Number`,
         ...inputProps,
         className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
         sx: {

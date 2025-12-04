@@ -3,7 +3,7 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Container, Divider, Link } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
@@ -76,7 +76,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       url,
-      up: url !== 'index' ? { href: '/', title: i18n._(/* i18n */ 'Home') } : null,
+      up: url !== 'index' ? { href: '/', title: t`Home` } : null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

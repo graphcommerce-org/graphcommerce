@@ -1,7 +1,7 @@
 import { Image } from '@graphcommerce/image'
 import type { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard, responsiveVal as rv } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 
 export function MSPPaymentActionCard(props: PaymentMethodActionCardProps) {
   const { child, multisafepay_additional_data } = props
@@ -10,7 +10,7 @@ export function MSPPaymentActionCard(props: PaymentMethodActionCardProps) {
   return (
     <ActionCard
       {...props}
-      details={child === 'ideal' && <Trans id='Pay with iDEAL' />}
+      details={child === 'ideal' && <Trans>Pay with iDEAL</Trans>}
       image={
         multisafepay_additional_data?.image && (
           <Image
