@@ -1,7 +1,6 @@
 import { globalApolloClient } from '@graphcommerce/graphql'
 import type { ApolloCache } from '@graphcommerce/graphql/apollo'
 import { ApolloLink, fromPromise, onError, setContext } from '@graphcommerce/graphql/apollo'
-import type { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GraphQLFormattedError } from 'graphql'
 import type { NextRouter } from 'next/router'
