@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.0.0-canary.60
+
+### Patch Changes
+
+- [#2556](https://github.com/graphcommerce-org/graphcommerce/pull/2556) [`4aa6c92`](https://github.com/graphcommerce-org/graphcommerce/commit/4aa6c9284cdc6a43abe1ba8173ad4840e0e808fc) - Bump next from 16.0.6 to 16.0.7 ([@dependabot](https://github.com/apps/dependabot))
+
 ## 10.0.0-canary.59
 
 ### Patch Changes
