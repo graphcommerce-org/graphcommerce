@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.58
+
+### Patch Changes
+
+- [`d7ad6a3`](https://github.com/graphcommerce-org/graphcommerce/commit/d7ad6a32acdd0c9540656feae9fbb1d5f5f3dbf9) - Additional export for GetCartTotals ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.57
 
 ## 10.0.0-canary.56
