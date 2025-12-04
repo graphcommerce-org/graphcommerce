@@ -13,7 +13,8 @@
   },
   "exports": {
     ".": "./index.ts",
-    "./queries/getCategoryStaticPaths": "./queries/getCategoryStaticPaths.ts"
+    "./queries/getCategoryStaticPaths": "./queries/getCategoryStaticPaths.ts",
+    "./components/CategoryBreadcrumb/categoryToBreadcrumbs": "./components/CategoryBreadcrumb/categoryToBreadcrumbs.ts"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.65",
