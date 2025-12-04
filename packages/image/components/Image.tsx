@@ -228,7 +228,7 @@ function generateSizesString(sizes?: Sizes) {
 
 /** Since we're handling stuff ourselves we omit some stuff */
 type IntrisincImage = Omit<
-  JSX.IntrinsicElements['img'],
+  React.JSX.IntrinsicElements['img'],
   'src' | 'srcSet' | 'ref' | 'width' | 'height' | 'loading' | 'sizes'
 > & { loading?: LoadingValue }
 
@@ -241,7 +241,7 @@ export type ImageProps = IntrisincImage & {
   dontReportWronglySizedImages?: boolean
   width?: number
   height?: number
-  pictureProps?: JSX.IntrinsicElements['picture'] & { sx?: SxProps<Theme> }
+  pictureProps?: React.JSX.IntrinsicElements['picture'] & { sx?: SxProps<Theme> }
   /**
    * Possible values:
    *

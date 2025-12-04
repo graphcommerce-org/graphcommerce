@@ -1,6 +1,6 @@
 import { ApolloErrorSnackbar, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
 import { Fab, iconBin, sxx } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { type SxProps, type Theme } from '@mui/material'
 import { DeletePaymentTokenDocument } from '../graphql/mutations/DeletePaymentToken.gql'
 

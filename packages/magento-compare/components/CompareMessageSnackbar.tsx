@@ -1,5 +1,5 @@
 import { Button, iconChevronRight, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SetStateAction } from 'react'
 
 export type CompareMessageSnackbarProps = {
@@ -37,21 +37,19 @@ export function CompareMessageSnackbar(props: CompareMessageSnackbarProps) {
             fullWidth
             endIcon={<IconSvg src={iconChevronRight} />}
           >
-            <Trans id='View comparison' />
+            <Trans>View comparison</Trans>
           </Button>
         ) : null
       }
     >
       <>
-        <Trans
-          id='<0>{name}</0> has been added to your comparison!'
-          components={{ 0: <strong /> }}
-          values={{ name }}
-        />
+        <Trans>
+          <strong>{name}</strong> has been added to your comparison!
+        </Trans>
         {count === 1 ? (
           <>
             {' '}
-            <Trans id='Add another product to start comparing.' />
+            <Trans>Add another product to start comparing.</Trans>
           </>
         ) : null}
       </>

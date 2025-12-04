@@ -5,8 +5,8 @@ import {
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Badge, Box, Button, styled } from '@mui/material'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -56,7 +56,7 @@ function CompareFabContent(props: CompareFabContentProps) {
         <MotionFab
           href='/compare'
           className={classes.compare}
-          aria-label={i18n._(/* i18n */ 'Compare')}
+          aria-label={t`Compare`}
           color='inherit'
           sx={(theme) => ({
             width: 'unset',
@@ -65,7 +65,7 @@ function CompareFabContent(props: CompareFabContentProps) {
           })}
           {...rest}
         >
-          {compareIcon} <Trans id='Compare' />
+          {compareIcon} <Trans>Compare</Trans>
         </MotionFab>
       </Badge>
 

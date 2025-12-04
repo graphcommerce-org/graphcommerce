@@ -1,4 +1,4 @@
-import type { MotionImageAspectProps } from '@graphcommerce/framer-scroller/components/MotionImageAspect'
+import type { MotionImageAspectProps } from '@graphcommerce/framer-scroller'
 import type { SidebarGalleryProps, TypeRenderer } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, nonNullable, SidebarGallery } from '@graphcommerce/next-ui'
 import type { ProductPageGalleryFragment } from './ProductPageGallery.gql'

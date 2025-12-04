@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 import { MessageSnackbar } from './MessageSnackbar'
 import type { MessageSnackbarProps } from './MessageSnackbarImpl'
@@ -15,7 +15,7 @@ export function ErrorSnackbar(props: ErrorSnackbarProps) {
       action={
         action ?? (
           <Button size='medium' variant='pill' color='secondary' fullWidth>
-            <Trans id='Ok' />
+            <Trans>Ok</Trans>
           </Button>
         )
       }

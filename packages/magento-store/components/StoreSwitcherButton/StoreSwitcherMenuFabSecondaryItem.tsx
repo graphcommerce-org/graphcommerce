@@ -4,7 +4,7 @@ import {
   MenuFabSecondaryItem,
   type FabMenuSecondaryItemProps,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { StoreSwitcherText, type StoreSwitcherTextProps } from './StoreSwitcherText'
 import { useShowStoreSwitcherButton } from './useStoreSwitcherButton'
 

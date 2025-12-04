@@ -2,7 +2,7 @@ import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, nonNullable, SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { Box, Checkbox } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -53,8 +53,9 @@ function CustomizableCheckboxActionCard(props: CheckboxActionCardProps) {
 }
 
 export function CustomizableCheckboxOption(props: CustomizableCheckboxOptionProps) {
-  const { uid, required, index, title: label, checkboxValue, productPrice, currency } = props
+  const { uid, required, index, title, checkboxValue, productPrice, currency } = props
   const { control } = useFormAddProductsToCart()
+  const label = title ?? ''
 
   return (
     <Box>
@@ -73,9 +74,7 @@ export function CustomizableCheckboxOption(props: CustomizableCheckboxOptionProp
         multiple
         control={control}
         rules={{
-          required: required
-            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
-            : false,
+          required: required ? t`Please select a value for ‘${label}’` : false,
         }}
         render={CustomizableCheckboxActionCard}
         name={`cartItems.${index}.selected_options_record.${uid}`}

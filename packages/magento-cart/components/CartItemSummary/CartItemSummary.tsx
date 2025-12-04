@@ -8,7 +8,7 @@ import {
   nonNullable,
   SectionContainer,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider } from '@mui/material'
 import { useCartQuery } from '../../hooks'
@@ -54,7 +54,7 @@ export function CartItemSummary(props: OrderSummaryProps) {
     >
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}
-        labelLeft={<Trans id='Order summary' />}
+        labelLeft={<Trans>Order summary</Trans>}
         variantLeft='h6'
         className={classes.items}
       >

@@ -1,7 +1,7 @@
 import type { ApolloErrorAlertProps } from '@graphcommerce/ecommerce-ui'
 import { ApolloErrorAlert } from '@graphcommerce/ecommerce-ui'
 import { Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useAuthorizationErrorMasked } from './useAuthorizationErrorMasked'
 
 export type ApolloCustomerErrorAlertProps = ApolloErrorAlertProps
@@ -19,7 +19,7 @@ export function ApolloCustomerErrorAlert(props: ApolloCustomerErrorAlertProps) {
           <>
             {graphqlErrorAlertProps?.action}
             <Button href='/account/signin' color='error' size='small'>
-              <Trans id='Sign in' />
+              <Trans>Sign in</Trans>
             </Button>
           </>
         ) : (

@@ -1,5 +1,5 @@
 import { iconLocation, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import type { TrackingLinkFragment } from './TrackingLink.gql'
@@ -32,7 +32,7 @@ export function TrackingLink(props: TrackingLinkProps) {
           sx={{ display: 'inline-flex', alignItems: 'center' }}
         >
           <IconSvg src={iconLocation} size='small' />
-          <Trans id='Follow order' />
+          <Trans>Follow order</Trans>
         </Link>
       )}
 

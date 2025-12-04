@@ -35,7 +35,7 @@ import {
   LayoutTitle,
   MetaRobots,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { GetStaticPaths } from 'next'
 import {
   ProductListLayoutClassic,
@@ -49,6 +49,11 @@ import {
 } from '../components'
 import { CategoryPageDocument, CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import {
+  breadcrumbs,
+  productFiltersLayout,
+  productFiltersPro,
+} from '@graphcommerce/next-config/config'
 
 export type CategoryProps = CategoryPageQuery &
   HygraphPagesQuery &
@@ -68,7 +73,7 @@ function CategoryPage(props: CategoryProps) {
   const { products, params, category } = productList
 
   const isLanding = category?.display_mode === 'PAGE'
-  const page = pages?.[0]
+  const page: HygraphPagesQuery['pages'][number] | undefined = pages?.[0]
   const isCategory = params && category && products?.items
 
   return (
@@ -81,9 +86,9 @@ function CategoryPage(props: CategoryProps) {
         canonical={page?.url ? `/${page.url}` : undefined}
         {...category}
       />
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
-          {category?.name ?? page.title}
+          {category?.name ?? page?.title}
         </LayoutTitle>
       </LayoutHeader>
       {!isCategory && !isLanding && (
@@ -95,7 +100,7 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && isLanding && (
         <>
-          {import.meta.graphCommerce.breadcrumbs && (
+          {breadcrumbs && (
             <Container maxWidth={false}>
               <CategoryBreadcrumbs
                 category={category}
@@ -117,27 +122,25 @@ function CategoryPage(props: CategoryProps) {
       )}
       {isCategory && !isLanding && (
         <>
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-              <ProductListLayoutSidebar
-                {...productList}
-                key={category.uid}
-                title={category.name ?? page.title ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {import.meta.graphCommerce.productFiltersPro &&
-            import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-              <ProductListLayoutDefault
-                {...productList}
-                key={category.uid}
-                title={category.name ?? page.title ?? ''}
-                id={category.uid}
-                category={category}
-              />
-            )}
-          {!import.meta.graphCommerce.productFiltersPro && (
+          {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+            <ProductListLayoutSidebar
+              {...productList}
+              key={category.uid}
+              title={category.name ?? page.title ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+            <ProductListLayoutDefault
+              {...productList}
+              key={category.uid}
+              title={category.name ?? page.title ?? ''}
+              id={category.uid}
+              category={category}
+            />
+          )}
+          {!productFiltersPro && (
             <ProductListLayoutClassic
               {...productList}
               key={category.uid}
@@ -238,7 +241,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     : undefined
 
   const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
-  if (!hasCategory && !hasPage) return redirectOrNotFound(staticClient, conf, params, locale)
+  if (!(await category)?.uid && !hasPage)
+    return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.errors) {
     const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
@@ -255,7 +259,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
 
   await waitForSiblings
   const result = {

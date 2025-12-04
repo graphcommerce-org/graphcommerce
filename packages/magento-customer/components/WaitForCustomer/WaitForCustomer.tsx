@@ -2,7 +2,7 @@ import type { WaitForQueriesProps } from '@graphcommerce/ecommerce-ui'
 import { mergeErrors, WaitForQueries } from '@graphcommerce/ecommerce-ui'
 import type { FullPageMessageProps } from '@graphcommerce/next-ui'
 import { FullPageMessage, iconPerson, IconSvg, nonNullable } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button, CircularProgress } from '@mui/material'
 import React from 'react'
 import type { SetOptional } from 'type-fest'
@@ -61,10 +61,10 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
         fallback ?? (
           <FullPageMessage
             icon={<CircularProgress />}
-            title={<Trans id='Loading your data' />}
+            title={<Trans>Loading your data</Trans>}
             {...rest}
           >
-            <Trans id='This may take a second' />
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         )
       }
@@ -73,13 +73,13 @@ export function WaitForCustomer(props: WaitForCustomerProps) {
         (unauthenticated ?? (
           <FullPageMessage
             icon={<IconSvg src={iconPerson} size='xxl' />}
-            title={<Trans id='You must sign in to continue' />}
+            title={<Trans>You must sign in to continue</Trans>}
             button={
               <Button href='/account/signin' variant='pill' color='secondary' size='large'>
                 {!session.valid ? (
-                  <Trans id='Sign in' />
+                  <Trans>Sign in</Trans>
                 ) : (
-                  <Trans id='Sign in or create an account!' />
+                  <Trans>Sign in or create an account!</Trans>
                 )}
               </Button>
             }

@@ -1,3 +1,4 @@
+import { graphqlMeshEditMode } from '@graphcommerce/next-config/config'
 import type { MeshInstance } from '@graphql-mesh/runtime'
 import type {
   ServerAdapter,
@@ -20,7 +21,7 @@ declare global {
 }
 
 const shouldGlobalThisMeshBeCreated =
-  process.env.NODE_ENV === 'development' && import.meta.graphCommerce.graphqlMeshEditMode !== true
+  process.env.NODE_ENV === 'development' && graphqlMeshEditMode !== true
 
 /**
  * We are creating a global instance of the mesh so it doesn't get recreated on every change.

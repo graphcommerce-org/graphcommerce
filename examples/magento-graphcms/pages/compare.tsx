@@ -21,11 +21,12 @@ import {
   LayoutTitle,
   PageMeta,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, CircularProgress, Container, Typography } from '@mui/material'
 import { productListRenderer } from '../components'
 import { graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
+import { compare } from '@graphcommerce/next-config/config'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutOverlayProps, Props>
@@ -36,7 +37,7 @@ export function ComparePage() {
 
   return (
     <CompareListForm key={compareList.data?.compareList?.uid}>
-      <PageMeta title={i18n._(/* i18n */ 'Compare products')} metaRobots={['noindex']} />
+      <PageMeta title={t`Compare products`} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader
         switchPoint={-1000}
@@ -44,15 +45,15 @@ export function ComparePage() {
         divider={<Box />}
       >
         <LayoutTitle size='small' component='span' icon={iconCompare}>
-          <Trans id='Compare ({0})' values={{ 0: compareListCount }} />
+          <Trans>Compare ({compareListCount})</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <WaitForQueries
         waitFor={compareList}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >
@@ -63,7 +64,7 @@ export function ComparePage() {
             {compareListCount === 1 && (
               <CompareListIntroText>
                 <Typography variant='body1'>
-                  <Trans id='Add another product to start comparing.' />
+                  <Trans>Add another product to start comparing.</Trans>
                 </Typography>
               </CompareListIntroText>
             )}
@@ -97,7 +98,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (!import.meta.graphCommerce.compare) return { notFound: true }
+  if (!compare) return { notFound: true }
 
   return {
     props: {

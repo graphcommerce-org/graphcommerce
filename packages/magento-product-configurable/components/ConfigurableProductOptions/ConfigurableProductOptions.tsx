@@ -3,7 +3,7 @@ import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import type { ActionCardListProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, useLocale } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
@@ -57,7 +57,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
   useEffect(() => {
     if (unavailable) {
       setError(`cartItems.${index}.sku`, {
-        message: i18n._(/* i18n */ 'Product not available in {allLabels}', { allLabels }),
+        message: t`Product not available in ${allLabels}`,
       })
     }
     if (!unavailable) clearErrors(`cartItems.${index}.sku`)

@@ -1,5 +1,5 @@
 import { dvw, useMotionSelector, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useEventCallback, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
@@ -160,7 +160,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                   onClick={handleOnBack}
                   sx={{ boxShadow: 'none', my: fabMarginY }}
                   size='responsive'
-                  aria-label={i18n._(/* i18n */ 'Back')}
+                  aria-label={t`Back`}
                 >
                   <IconSvg src={iconChevronLeft} size='large' aria-hidden />
                 </Fab>
@@ -173,7 +173,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 onClick={handleClose}
                 sx={{ boxShadow: 'none', my: fabMarginY }}
                 size='responsive'
-                aria-label={i18n._(/* i18n */ 'Close')}
+                aria-label={t`Close`}
                 ref={a11yFocusRef}
               >
                 <IconSvg src={iconClose} size='large' aria-hidden />

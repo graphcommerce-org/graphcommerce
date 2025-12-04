@@ -14,8 +14,8 @@ import {
   IconSvg,
   GetStaticProps,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -30,11 +30,11 @@ function AccountReviewsPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Reviews')} metaRobots={['noindex']} />
+      <PageMeta title={t`Reviews`} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconStar}>
-          <Trans id='Reviews' />
+          <Trans>Reviews</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
@@ -42,17 +42,17 @@ function AccountReviewsPage() {
         <Container maxWidth='md'>
           {((customer?.reviews && customer?.reviews.items.length < 1) || !customer?.reviews) && (
             <FullPageMessage
-              title={<Trans id="You haven't placed any reviews yet" />}
+              title={<Trans>You haven't placed any reviews yet</Trans>}
               icon={<IconSvg src={iconStar} size='xxl' />}
             >
-              <Trans id='Discover our collection and write your first review!' />
+              <Trans>Discover our collection and write your first review!</Trans>
             </FullPageMessage>
           )}
 
           {customer?.reviews && customer?.reviews.items.length >= 1 && (
             <>
               <LayoutTitle icon={iconStar}>
-                <Trans id='Reviews' />
+                <Trans>Reviews</Trans>
               </LayoutTitle>
               {customer?.reviews && <AccountReviews {...customer?.reviews} />}
             </>
@@ -83,7 +83,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
+      up: { href: '/account', title: t`Account` },
     },
   }
 }

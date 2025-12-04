@@ -1,6 +1,6 @@
 import { EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
 import { Button, FormRow, iconPerson, LayoutTitle } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Alert, Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError'
@@ -28,25 +28,25 @@ export function ConfirmCustomerForm() {
 
   const signInButton = (
     <Button variant='text' size='small' href={`/account/signin?email=${submittedVariables?.email}`}>
-      <Trans id='Sign in' />
+      <Trans>Sign in</Trans>
     </Button>
   )
 
   return (
     <Box component='form' onSubmit={submitHandler}>
       <LayoutTitle icon={iconPerson}>
-        <Trans id='Account confirmation' />
+        <Trans>Account confirmation</Trans>
       </LayoutTitle>
 
       {!key && (
         <Alert severity='error' sx={(theme) => ({ my: theme.spacings.xxs })}>
-          <Trans id='You can only confirm you account by clicking on the link in your email.' />
+          <Trans>You can only confirm you account by clicking on the link in your email.</Trans>
         </Alert>
       )}
       {key && (
         <>
           <Typography variant='h6' textAlign='center'>
-            <Trans id='Fill in your email to confirm registration' />
+            <Trans>Fill in your email to confirm registration</Trans>
           </Typography>
 
           <FormRow>
@@ -69,7 +69,7 @@ export function ConfirmCustomerForm() {
               size='large'
               disabled={isSubmitSuccessful}
             >
-              <Trans id='Confirm registration' />
+              <Trans>Confirm registration</Trans>
             </Button>
           </FormRow>
 
@@ -85,7 +85,7 @@ export function ConfirmCustomerForm() {
               sx={(theme) => ({ my: theme.spacings.xxs })}
               action={signInButton}
             >
-              <Trans id='Account confirmed. You can now proceed to sign in.' />
+              <Trans>Account confirmed. You can now proceed to sign in.</Trans>
             </Alert>
           )}
         </>

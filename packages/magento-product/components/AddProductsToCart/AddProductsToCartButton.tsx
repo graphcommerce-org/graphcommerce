@@ -1,7 +1,7 @@
 import { useCartEnabled } from '@graphcommerce/magento-cart'
 import type { ButtonProps } from '@graphcommerce/next-ui'
 import { Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import React from 'react'
 import type { UseAddProductsToCartActionProps } from './useAddProductsToCartAction'
 import { useAddProductsToCartAction } from './useAddProductsToCartAction'

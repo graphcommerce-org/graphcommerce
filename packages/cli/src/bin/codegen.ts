@@ -1,18 +1,17 @@
 #!/usr/bin/env node
-
-/* eslint-disable import/no-extraneous-dependencies */
-import fs from 'node:fs/promises'
-import path from 'node:path'
+import fs from 'fs/promises'
+import path from 'path'
 import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-config'
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
+import glob from 'fast-glob'
 import { rimraf } from 'rimraf'
 import yaml from 'yaml'
 
 const [, , cmd] = process.argv
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const root = process.cwd()
 const configLocation = path.join(root, '._tmp_codegen.yml')
@@ -34,7 +33,14 @@ function appendDocumentLocations(
   packages: string[],
 ): Types.ConfiguredOutput {
   const documents = Array.isArray(conf.documents) ? conf.documents : [conf.documents]
-  documents.push(...packages.map((p) => `${p}/**/*.graphql`))
+
+  // Pre-resolve GraphQL files to avoid graphql-codegen following symlinks into node_modules
+  const packagePatterns = packages.map((p) => `${p}/**/*.graphql`)
+  const resolvedFiles = glob.sync(packagePatterns, {
+    ignore: ['**/node_modules/**'],
+    followSymbolicLinks: false,
+  })
+  documents.push(...resolvedFiles)
 
   return conf
 }

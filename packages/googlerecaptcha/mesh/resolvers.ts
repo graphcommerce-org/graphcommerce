@@ -1,11 +1,12 @@
 import type { Resolvers } from '@graphcommerce/graphql-mesh'
 import { storefrontFromContext } from '@graphcommerce/magento-store'
+import { googleRecaptchaKey } from '@graphcommerce/next-config/config'
 
 export const resolvers: Resolvers = {
   Query: {
     recaptchaV3Config: (root, args, context, info) => {
       const config = storefrontFromContext(context)
-      const key = config?.googleRecaptchaKey ?? import.meta.graphCommerce.googleRecaptchaKey
+      const key = config?.googleRecaptchaKey ?? googleRecaptchaKey
 
       if (!key) return null
       return {

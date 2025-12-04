@@ -2,8 +2,8 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ConfirmCustomerForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
@@ -14,14 +14,11 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 function AccountConfirmPage() {
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ 'Account confirmation')}
-        metaRobots={['noindex', 'nofollow']}
-      />
+      <PageMeta title={t`Account confirmation`} metaRobots={['noindex', 'nofollow']} />
 
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
-          <Trans id='Account confirmation' />
+          <Trans>Account confirmation</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='sm'>

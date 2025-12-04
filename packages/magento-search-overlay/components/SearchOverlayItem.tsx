@@ -46,4 +46,4 @@ export const SearchOverlayItem = memo(
   props: SearchOverlayItemProps<C> & {
     ref?: React.Ref<C extends 'li' ? HTMLLIElement : HTMLAnchorElement>
   },
-) => JSX.Element
+) => React.ReactNode

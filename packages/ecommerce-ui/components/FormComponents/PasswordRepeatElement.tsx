@@ -1,6 +1,6 @@
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { PasswordElementProps } from './PasswordElement'
 import { PasswordElement } from './PasswordElement'
 
@@ -18,8 +18,7 @@ export function PasswordRepeatElement<TFieldValues extends FieldValues>({
     <PasswordElement
       {...rest}
       rules={{
-        validate: (value: string) =>
-          value === pwValue || i18n._(/* i18n */ "Passwords don't match"),
+        validate: (value: string) => value === pwValue || t`Passwords don't match`,
       }}
     />
   )

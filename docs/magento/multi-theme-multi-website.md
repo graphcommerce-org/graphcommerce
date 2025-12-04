@@ -82,11 +82,13 @@ During deploy you'd have to set the theme that is being build:
 Create a separate theme for each brand:
 
 ```tsx
+import { themeName } from '@graphcommerce/next-config/config'
+
 let theme: Theme
-if (import.meta.graphCommerce.theme === 'BRAND_1') {
+if (themeName === 'BRAND_1') {
   const brand1Palette = ...
   theme = createThemeWithPalette(brand1Palette)
-} else if (import.meta.graphCommerce.theme === 'BRAND_2') {
+} else if (themeName === 'BRAND_2') {
   const brand2Palette = ...
   theme = createThemeWithPalette(brand2Palette)
 }

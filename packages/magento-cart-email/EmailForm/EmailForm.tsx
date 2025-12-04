@@ -10,10 +10,11 @@ import {
   useCustomerAccountCanSignIn,
   useCustomerSession,
 } from '@graphcommerce/magento-customer'
+import { enableGuestCheckoutLogin } from '@graphcommerce/next-config/config'
 import { extendableComponent, FormRow } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormAutoSubmit, useFormCompose } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Button } from '@mui/material'
@@ -45,7 +46,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   const isEmailAvailable = useQuery(IsEmailAvailableDocument, {
     variables: { email },
-    skip: !import.meta.graphCommerce.enableGuestCheckoutLogin || !email,
+    skip: !enableGuestCheckoutLogin || !email,
   })
 
   const { required, error, handleSubmit } = form
@@ -54,7 +55,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
   useFormCompose({ form, step, submit, key: 'EmailForm' })
 
   const showLogin =
-    import.meta.graphCommerce.enableGuestCheckoutLogin &&
+    enableGuestCheckoutLogin &&
     canLogin &&
     !isEmailAvailable.data?.isEmailAvailable?.is_email_available
 
@@ -76,7 +77,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
                 color='secondary'
                 style={{ whiteSpace: 'nowrap' }}
               >
-                <Trans id='Sign in' />
+                <Trans>Sign in</Trans>
               </Button>
             ),
           }}

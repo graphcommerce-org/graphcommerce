@@ -1,7 +1,7 @@
 import type { CustomAttributeMetadata } from '@graphcommerce/magento-store'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import type { HTMLInputTypeAttribute } from 'react'
 
 export type InputValidationValue =

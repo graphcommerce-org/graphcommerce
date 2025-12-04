@@ -1,7 +1,7 @@
 import { iconClose, iconSearch, IconSvg } from '@graphcommerce/next-ui'
 import type { Control, FieldPath, FieldValues } from '@graphcommerce/react-hook-form'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { IconButton } from '@mui/material'
 
 export function SearchFormAdornment<TFieldValues extends FieldValues = FieldValues>(props: {
@@ -15,7 +15,7 @@ export function SearchFormAdornment<TFieldValues extends FieldValues = FieldValu
   const searchValue = useWatch({ control, name })
 
   return !searchValue ? (
-    <IconButton size='small' aria-label={i18n._(/* i18n */ 'Search')}>
+    <IconButton size='small' aria-label={t`Search`}>
       <IconSvg src={iconSearch} />
     </IconButton>
   ) : (

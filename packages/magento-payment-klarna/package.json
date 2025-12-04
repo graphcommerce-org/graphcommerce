@@ -2,7 +2,7 @@
   "name": "@graphcommerce/magento-payment-klarna",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.55",
+  "version": "10.0.0-canary.61",
   "private": true,
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -12,22 +12,25 @@
       "project": "./tsconfig.json"
     }
   },
+  "exports": {
+    ".": "./index.ts"
+  },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.55",
-    "@graphcommerce/graphql": "^9.1.0-canary.55",
-    "@graphcommerce/image": "^9.1.0-canary.55",
-    "@graphcommerce/magento-cart": "^9.1.0-canary.55",
-    "@graphcommerce/magento-store": "^9.1.0-canary.55",
-    "@graphcommerce/next-ui": "^9.1.0-canary.55",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.55",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.55",
-    "@lingui/core": "^4.2.1",
-    "@lingui/macro": "^4.2.1",
-    "@lingui/react": "^4.2.1",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.61",
+    "@graphcommerce/graphql": "^10.0.0-canary.61",
+    "@graphcommerce/image": "^10.0.0-canary.61",
+    "@graphcommerce/magento-cart": "^10.0.0-canary.61",
+    "@graphcommerce/magento-store": "^10.0.0-canary.61",
+    "@graphcommerce/next-ui": "^10.0.0-canary.61",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.61",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.61",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

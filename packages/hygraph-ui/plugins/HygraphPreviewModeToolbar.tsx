@@ -9,7 +9,6 @@ import type { TypedDocumentNode } from '@graphcommerce/graphql'
 import { gql, useQuery } from '@graphcommerce/graphql'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import React, { useMemo } from 'react'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -36,7 +35,7 @@ const ContentStages = gql`
   }
 }>
 
-const HygraphConfig = React.memo(() => {
+function HygraphConfig() {
   const form = usePreviewModeForm()
   const { control } = form
 
@@ -47,31 +46,28 @@ const HygraphConfig = React.memo(() => {
     previewModeDefaults().hygraphStage ??
     'PUBLISHED'
 
-  return useMemo(
-    () => (
-      <SelectElement
-        control={control}
-        name='previewData.hygraphStage'
-        color='secondary'
-        defaultValue={defaultValue}
-        label='Hygraph Stage'
-        size='small'
-        sx={{ width: '150px' }}
-        SelectProps={{ MenuProps: { style: { zIndex: 20000 } } }}
-        onChange={() => {}}
-        options={
-          contentStages.loading
-            ? [{ id: defaultValue, label: defaultValue }]
-            : filterNonNullableKeys(contentStages.data?.__type.enumValues).map(({ name }) => ({
-                id: name,
-                label: name,
-              }))
-        }
-      />
-    ),
-    [contentStages.data?.__type.enumValues, contentStages.loading, control, defaultValue],
+  return (
+    <SelectElement
+      control={control}
+      name='previewData.hygraphStage'
+      color='secondary'
+      defaultValue={defaultValue}
+      label='Hygraph Stage'
+      size='small'
+      sx={{ width: '150px' }}
+      SelectProps={{ MenuProps: { style: { zIndex: 20000 } } }}
+      onChange={() => {}}
+      options={
+        contentStages.loading
+          ? [{ id: defaultValue, label: defaultValue }]
+          : filterNonNullableKeys(contentStages.data?.__type.enumValues).map(({ name }) => ({
+              id: name,
+              label: name,
+            }))
+      }
+    />
   )
-})
+}
 
 export function PreviewModeToolbar(props: PluginProps<PreviewModeToolbarProps>) {
   const { Prev, ...rest } = props

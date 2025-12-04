@@ -6,7 +6,7 @@ import {
 } from '@graphcommerce/ecommerce-ui'
 import { Button, Form, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { CustomerQuery } from '../../hooks'
 import { CustomerDocument, useCustomerQuery } from '../../hooks'
 import type { ContactUsMutationVariables } from './ContactUsMutation.gql'

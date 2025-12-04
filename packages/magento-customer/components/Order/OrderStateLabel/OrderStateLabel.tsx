@@ -1,5 +1,5 @@
 import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { OrderState, OrderStateProps } from '../../../utils'

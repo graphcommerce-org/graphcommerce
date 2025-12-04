@@ -10,8 +10,8 @@ import {
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
 import type {
   UpdateCustomerEmailMutation,
@@ -57,7 +57,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         <TextFieldElement
           variant='outlined'
           type='text'
-          label={<Trans id='Current email' />}
+          label={<Trans>Current email</Trans>}
           required
           name='currentEmail'
           control={control}
@@ -73,7 +73,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.email}
           helperText={formState.isSubmitted && formState.errors.email?.message}
-          label={<Trans id='New email' />}
+          label={<Trans>New email</Trans>}
           required={required.email}
           name='email'
           rules={{
@@ -90,12 +90,12 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           autoComplete='off'
           error={formState.isSubmitted && !!formState.errors.confirmEmail}
           helperText={formState.isSubmitted && formState.errors.confirmEmail?.message}
-          label={<Trans id='Confirm new email' />}
+          label={<Trans>Confirm new email</Trans>}
           required
           name='confirmEmail'
           rules={{
             required: true,
-            validate: (value) => value === watchNewEmail || i18n._(/* i18n */ "Emails don't match"),
+            validate: (value) => value === watchNewEmail || t`Emails don't match`,
           }}
           showValid
           control={control}
@@ -107,7 +107,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           control={control}
           variant='outlined'
           name='password'
-          label={<Trans id='Password' />}
+          label={<Trans>Password</Trans>}
           autoComplete='current-password'
           required={required.password}
           disabled={formState.isSubmitting}
@@ -127,7 +127,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
           size='large'
           loading={formState.isSubmitting}
         >
-          <Trans id='Save changes' />
+          <Trans>Save changes</Trans>
         </Button>
       </FormActions>
 
@@ -137,7 +137,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
         sticky
         open={formState.isSubmitSuccessful && !formState.isSubmitting && !error}
       >
-        <Trans id='Successfully updated email' />
+        <Trans>Successfully updated email</Trans>
       </MessageSnackbar>
     </Form>
   )

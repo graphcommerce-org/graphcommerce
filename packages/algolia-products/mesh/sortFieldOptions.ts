@@ -1,5 +1,4 @@
 import type { MeshContext, SortEnum, SortField } from '@graphcommerce/graphql-mesh'
-import { nonNullable } from '@graphcommerce/magento-customer'
 import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import type { AttributeList } from './getAttributeList'
 import { getIndexName } from './getIndexName'
@@ -32,7 +31,7 @@ export function sortFieldsOptions(
         ? { dir: 'DESC' as const, sortIndex }
         : { dir: 'ASC' as const, sortIndex }
     })
-    .filter(nonNullable)
+    .filter((v) => !!v)
     .forEach((curr) => {
       let attributeCode = curr.sortIndex
       if (curr.sortIndex.startsWith('price')) attributeCode = 'price'

@@ -9,6 +9,7 @@ import {
   ZodDefault,
   ZodEffects,
   ZodEnum,
+  ZodLazy,
   ZodNullable,
   ZodNumber,
   ZodObject,
@@ -47,6 +48,7 @@ export type ZodNode =
   | ZodEffects<ZodTypeAny>
   | ZodObject<ZodRawShape>
   | ZodArray<ZodTypeAny>
+  | ZodLazy<ZodTypeAny>
   | ZodString
   | ZodNumber
   | ZodBoolean
@@ -59,10 +61,31 @@ export function configToEnvSchema(schema: ZodNode) {
   function walk(incomming: ZodNode, path: string[] = []) {
     let node = incomming
 
-    if (node instanceof ZodEffects) node = node.innerType()
-    if (node instanceof ZodOptional) node = node.unwrap()
-    if (node instanceof ZodNullable) node = node.unwrap()
-    if (node instanceof ZodDefault) node = node.removeDefault()
+    // Unwrap wrapper types in a loop to handle chained wrappers (e.g., ZodLazy containing ZodOptional)
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      if (node instanceof ZodEffects) {
+        node = node.innerType()
+        continue
+      }
+      if (node instanceof ZodOptional) {
+        node = node.unwrap()
+        continue
+      }
+      if (node instanceof ZodNullable) {
+        node = node.unwrap()
+        continue
+      }
+      if (node instanceof ZodDefault) {
+        node = node.removeDefault()
+        continue
+      }
+      if (node instanceof ZodLazy) {
+        node = node.schema
+        continue
+      }
+      break
+    }
 
     if (node instanceof ZodObject) {
       if (path.length > 0) {

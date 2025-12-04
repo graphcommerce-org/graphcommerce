@@ -1,6 +1,6 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { CompanyFieldsOptions } from './useCompanyFieldsForm'
 import { useCompanyFieldsForm } from './useCompanyFieldsForm'
 
@@ -18,7 +18,7 @@ export function CompanyName<
       variant='outlined'
       type='text'
       required
-      label={<Trans id='Company name' />}
+      label={<Trans>Company name</Trans>}
       showValid
       InputProps={{ readOnly }}
     />

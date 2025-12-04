@@ -1,6 +1,6 @@
 import { Asset } from '@graphcommerce/hygraph-ui'
 import { BlogListItem } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Typography, useTheme } from '@mui/material'
 import { BlogItemFragment } from './BlogItem.gql'
 
@@ -26,7 +26,7 @@ export function BlogItem(props: BlogItemProps) {
           />
         ) : (
           <Typography variant='body2'>
-            <Trans id='No Image' />
+            <Trans>No Image</Trans>
           </Typography>
         )
       }

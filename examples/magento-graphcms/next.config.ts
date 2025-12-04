@@ -3,7 +3,7 @@ import withSerwistInit from '@serwist/next'
 import dotenv from 'dotenv'
 import type { NextConfig } from 'next'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const withPWA = withSerwistInit({
   disable: process.env.NODE_ENV === 'development',
@@ -19,9 +19,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
+    qualities: [52, 75],
   },
 }
 

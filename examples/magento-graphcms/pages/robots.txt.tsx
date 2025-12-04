@@ -1,3 +1,4 @@
+import { robotsAllow } from '@graphcommerce/next-config/config'
 import {
   canonicalize,
   getServerSidePropsRobotsTxt,
@@ -22,10 +23,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const checkStore = allStores.find((store) => store.defaultLocale) ?? allStores[0]
   if (storefront !== checkStore) return { notFound: true }
 
-  const robotsAllow =
-    typeof storefront.robotsAllow === 'boolean'
-      ? storefront.robotsAllow
-      : import.meta.graphCommerce.robotsAllow
+  const robotsAllowValue =
+    typeof storefront.robotsAllow === 'boolean' ? storefront.robotsAllow : robotsAllow
 
   const sitemaps = allStores
     .flatMap((store) =>
@@ -43,8 +42,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     .join('\n')
 
   const robots = robotsTxt`
-    ${!robotsAllow && 'User-agent: *'}
-    ${!robotsAllow && 'Disallow: /'}
+    ${!robotsAllowValue && 'User-agent: *'}
+    ${!robotsAllowValue && 'Disallow: /'}
 
     User-agent: *
     Disallow: /switch-stores

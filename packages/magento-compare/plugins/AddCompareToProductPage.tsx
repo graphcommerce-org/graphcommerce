@@ -1,5 +1,6 @@
 import type { ProductPageAddToCartRowProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { compareVariant } from '@graphcommerce/next-config/config'
 import { CompareProductToggle } from '../components'
 
 export const config: PluginConfig = {
@@ -11,7 +12,7 @@ export const config: PluginConfig = {
 export function ProductPageAddToCartActionsRow(props: PluginProps<ProductPageAddToCartRowProps>) {
   const { Prev, ...rest } = props
   const { children, after, product } = props
-  if (import.meta.graphCommerce.compareVariant === 'CHECKBOX')
+  if (compareVariant === 'CHECKBOX')
     return (
       <Prev
         {...rest}
@@ -24,10 +25,7 @@ export function ProductPageAddToCartActionsRow(props: PluginProps<ProductPageAdd
       />
     )
 
-  if (
-    import.meta.graphCommerce.compareVariant === 'ICON' ||
-    !import.meta.graphCommerce.compareVariant
-  )
+  if (compareVariant === 'ICON' || !compareVariant)
     return (
       <Prev {...rest}>
         {children}

@@ -8,7 +8,7 @@ import {
   iconCirle,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
@@ -79,7 +79,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
               form.setValue(name, null)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }

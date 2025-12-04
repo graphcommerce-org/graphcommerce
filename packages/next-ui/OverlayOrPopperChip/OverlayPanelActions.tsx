@@ -1,5 +1,5 @@
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Button, Fab, Typography } from '@mui/material'
 import { iconClose } from '../icons'
 import { IconSvg, useIconSvgSize } from '../IconSvg'
@@ -30,7 +30,7 @@ export function OverlayPanelActions(props: PanelActionsProps) {
         primary={
           onReset && (
             <Button variant='inline' color='primary' onClick={onReset}>
-              <Trans id='Reset' />
+              <Trans>Reset</Trans>
             </Button>
           )
         }
@@ -43,7 +43,7 @@ export function OverlayPanelActions(props: PanelActionsProps) {
               ml: `calc((${fabSize} - ${svgSize}) * -0.5)`,
             }}
             size='small'
-            aria-label={i18n._(/* i18n */ 'Close')}
+            aria-label={t`Close`}
           >
             <IconSvg src={iconClose} size='large' aria-hidden />
           </Fab>
@@ -68,7 +68,7 @@ export function OverlayPanelActions(props: PanelActionsProps) {
           fullWidth
           // sx={(theme) => ({ mt: theme.spacings.md })}
         >
-          <Trans id='Apply' />
+          <Trans>Apply</Trans>
         </Button>
       </OverlayStickyBottom>
     </>
