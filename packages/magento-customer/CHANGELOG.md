@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.62
+
+### Patch Changes
+
+- [#2553](https://github.com/graphcommerce-org/graphcommerce/pull/2553) [`66ba029`](https://github.com/graphcommerce-org/graphcommerce/commit/66ba029d2cc9dee6f8ff8c92a628d4fc0cf4d309) - Unset token when on magento 248 to prevent repeated graphql-authentication errors ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.0.0-canary.61
 
 ## 10.0.0-canary.60
