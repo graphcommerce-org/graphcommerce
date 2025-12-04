@@ -1,2 +1,9 @@
+# Stash unstaged changes to preserve partial staging
+git stash push --quiet --keep-index --include-untracked -m "pre-commit-stash"
+
 corepack yarn graphcommerce cleanup-interceptors
+npx pretty-quick --staged
 git update-index --again
+
+# Restore unstaged changes
+git stash pop --quiet 2>/dev/null || true
