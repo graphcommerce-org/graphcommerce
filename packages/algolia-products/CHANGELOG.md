@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 10.0.0-canary.63
+
+### Major Changes
+
+- [#2550](https://github.com/graphcommerce-org/graphcommerce/pull/2550) [`5d94c13`](https://github.com/graphcommerce-org/graphcommerce/commit/5d94c13c313546f00ee96c7b3db46e29bbe5185d) - Fix stock status mapping: use in_stock instead of is_stock in Algolia hit to Magento product conversion ([@davido-priority](https://github.com/davido-priority))
+
 ## 10.0.0-canary.62
 
 ## 10.0.0-canary.61
