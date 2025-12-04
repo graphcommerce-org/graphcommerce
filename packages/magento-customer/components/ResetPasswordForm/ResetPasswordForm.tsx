@@ -36,14 +36,12 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
     { errorPolicy: 'all' },
   )
 
-  const { handleSubmit, data, formState, error, control, reset } = form
+  const { handleSubmit, data, formState, error, control, setValue } = form
   const submitHandler = handleSubmit(() => {})
 
   useEffect(() => {
-    if (emailFromUrl) {
-      reset({ email: emailFromUrl })
-    }
-  }, [emailFromUrl, reset])
+    if (emailFromUrl) setValue('email', emailFromUrl)
+  }, [emailFromUrl, setValue])
 
   if (formState.isSubmitSuccessful && data && !error) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
