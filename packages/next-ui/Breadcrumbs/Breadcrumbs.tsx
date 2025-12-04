@@ -36,6 +36,11 @@ export type BreadcrumbsProps = BreadcrumbsType &
     itemSx?: SxProps<Theme>
     linkProps?: Omit<LinkProps, 'href'>
     disableHome?: boolean
+    /**
+     * Hide the last breadcrumb item (and its separator) on mobile. Useful when the last item
+     * duplicates the page title.
+     */
+    hideLastOnMobile?: boolean
   }
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
@@ -49,13 +54,19 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
     itemSx = [],
     linkProps,
     disableHome = false,
+    hideLastOnMobile = false,
     ...rest
   } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
 
+  // When hiding the last item on mobile, show one more item to compensate
+  const effectiveBreadcrumbsAmountMobile = hideLastOnMobile
+    ? breadcrumbsAmountMobile + 1
+    : breadcrumbsAmountMobile
+
   const isDefaultMobile = breadcrumbsAmountMobile === 0
-  const showButtonMobile = breadcrumbs.length > breadcrumbsAmountMobile && !isDefaultMobile
+  const showButtonMobile = breadcrumbs.length > effectiveBreadcrumbsAmountMobile && !isDefaultMobile
   const isDefaultDesktop = breadcrumbsAmountDesktop === 0
   const showButtonDesktop = breadcrumbs.length > breadcrumbsAmountDesktop && !isDefaultDesktop
 
@@ -104,7 +115,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           [theme.breakpoints.down('md')]: showButtonMobile && {
             '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
               display: 'none',
-              [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
+              [`&:nth-last-of-type(-n+${effectiveBreadcrumbsAmountMobile * 2})`]: {
                 display: 'flex',
               },
             },
@@ -116,6 +127,17 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
               [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
                 display: 'flex',
               },
+            },
+          },
+        },
+        // Hide the last item and its separator on mobile
+        hideLastOnMobile && {
+          [theme.breakpoints.down('md')]: {
+            '& .MuiBreadcrumbs-ol .MuiBreadcrumbs-li:nth-last-of-type(1)': {
+              display: 'none',
+            },
+            '& .MuiBreadcrumbs-ol > :nth-last-child(2)': {
+              display: 'none',
             },
           },
         },
