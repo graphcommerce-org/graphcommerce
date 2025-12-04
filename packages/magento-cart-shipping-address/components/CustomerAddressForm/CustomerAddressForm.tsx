@@ -12,7 +12,7 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import { CustomerDocument } from '@graphcommerce/magento-customer'
+import { CustomerDocument, useBillingAddressPermission } from '@graphcommerce/magento-customer'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, FormRow } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
@@ -43,6 +43,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
   const cartQuery = useCartQuery(GetAddressesDocument)
   const cart = cartQuery.data?.cart
   const isVirtual = cart?.is_virtual ?? false
+
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   const customerAddresses = filterNonNullableKeys(customer.data?.customer?.addresses, ['id'])
 
@@ -78,6 +80,13 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
     Mutation = SetCustomerBillingAddressOnCartDocument
     cartAddressId = cartBillingId
     mode = 'billing'
+  }
+
+  // If the billingAddress permission is READONLY we are never allowed to update the billing address.
+  if (billingAddressReadonly) {
+    Mutation = SetCustomerShippingAddressOnCartDocument
+    cartAddressId = cartShippingId
+    mode = 'shipping'
   }
 
   const form = useFormGqlMutationCart<

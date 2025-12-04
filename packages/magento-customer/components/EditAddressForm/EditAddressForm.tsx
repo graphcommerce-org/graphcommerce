@@ -6,6 +6,7 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useBillingAddressPermission } from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
@@ -24,10 +25,12 @@ export function EditAddressForm(props: EditAddressFormProps) {
   const { address, sx } = props
 
   const router = useRouter()
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
     {
+      disabled: billingAddressReadonly && (address?.default_billing ?? false),
       defaultValues: {
         id: address?.id ?? undefined,
         firstname: address?.firstname,
@@ -97,17 +100,24 @@ export function EditAddressForm(props: EditAddressFormProps) {
           />
         </FormRow>
 
-        <FormActions sx={{ paddingBottom: 0 }}>
-          <Button
-            type='submit'
-            variant='pill'
-            color='primary'
-            size='large'
-            loading={formState.isSubmitting}
-          >
-            <Trans>Save changes</Trans>
-          </Button>
-        </FormActions>
+        {billingAddressReadonly && address?.default_billing ? (
+          <Trans>
+            You can not change this address as it is your billing address. Not correct? Please
+            contact our support to update this.
+          </Trans>
+        ) : (
+          <FormActions sx={{ paddingBottom: 0 }}>
+            <Button
+              type='submit'
+              variant='pill'
+              color='primary'
+              size='large'
+              loading={formState.isSubmitting}
+            >
+              <Trans>Save changes</Trans>
+            </Button>
+          </FormActions>
+        )}
       </Form>
 
       <ApolloErrorSnackbar error={error} />

@@ -31,6 +31,7 @@
     "@graphcommerce/magento-graphql": "^10.0.0-canary.66",
     "@graphcommerce/magento-store": "^10.0.0-canary.66",
     "@graphcommerce/next-ui": "^10.0.0-canary.66",
+    "@graphcommerce/next-config": "^10.0.0-canary.66",
     "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.66",
     "@graphcommerce/react-hook-form": "^10.0.0-canary.66",
     "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.66",

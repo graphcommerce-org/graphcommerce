@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+# Skip pre-commit hook during merge commits
+if [ -f .git/MERGE_HEAD ]; then
+  exit 0
+fi
+
 # Track stash count to know if we created one
 STASH_COUNT=$(git stash list | wc -l)
 
@@ -16,7 +21,8 @@ fi
 # Trap to ensure stash is always restored, even on early termination
 cleanup() {
   if [ "$STASH_CREATED" -eq 1 ]; then
-    git stash pop --quiet
+    # Use || true to prevent stash pop failures from affecting exit code
+    git stash pop --quiet 2>/dev/null || true
   fi
 }
 trap cleanup EXIT

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -18,6 +19,8 @@ export type Scalars = {
   Int: { input: number; output: number }
   Float: { input: number; output: number }
 }
+
+export type BillingAddressPermissions = 'EDITABLE' | 'READONLY'
 
 export type CartPermissions = 'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED'
 
@@ -311,8 +314,10 @@ export type GraphCommerceConfig = {
    * - Delete public content views
    * - Can see schema view
    *
-   *     GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
-   *     yarn graphcommerce hygraph-migrate
+   * ```bash
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   * yarn graphcommerce hygraph-migrate
+   * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
   /**
@@ -417,6 +422,8 @@ export type GraphCommerceGooglePlaystoreConfig = {
 
 /** Permissions input */
 export type GraphCommercePermissions = {
+  /** Allows customers to change their billing address or locks it down. */
+  billingAddress?: InputMaybe<BillingAddressPermissions>
   /**
    * Changes the availability of the add to cart buttons and the cart page to either customer only
    * or completely disables it.
@@ -569,6 +576,8 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v))
 
+export const BillingAddressPermissionsSchema = z.enum(['EDITABLE', 'READONLY'])
+
 export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
@@ -668,6 +677,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
   Properties<GraphCommercePermissions>
 > {
   return z.object({
+    billingAddress: BillingAddressPermissionsSchema.nullish(),
     cart: CartPermissionsSchema.nullish(),
     checkout: CartPermissionsSchema.nullish(),
     customerAccount: CustomerAccountPermissionsSchema.nullish(),
