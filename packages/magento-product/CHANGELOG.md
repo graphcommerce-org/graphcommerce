@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.67
+
+### Patch Changes
+
+- [#2506](https://github.com/graphcommerce-org/graphcommerce/pull/2506) [`cfb5ed6`](https://github.com/graphcommerce-org/graphcommerce/commit/cfb5ed6c457314ac7bc3379c5947e88e5d87dfa5) - feat(GCOM-1577): show product name and link on PDP breadcrumbs ([@FrankHarland](https://github.com/FrankHarland))
+
 ## 10.0.0-canary.66
 
 ## 10.0.0-canary.65
