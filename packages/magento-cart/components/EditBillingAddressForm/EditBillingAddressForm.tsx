@@ -13,7 +13,7 @@ import {
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from '../../graphql'
 import { useCartQuery, useFormGqlMutationCart } from '../../hooks'
@@ -96,7 +96,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
             size='large'
             loading={formState.isSubmitting}
           >
-            <Trans id='Save changes' />
+            <Trans>Save changes</Trans>
           </Button>
         </FormActions>
       </Form>

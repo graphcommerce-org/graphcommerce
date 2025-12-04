@@ -1,5 +1,5 @@
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type {
   LinkProps,
   BreadcrumbsProps as MuiBreadcrumbProps,
@@ -71,7 +71,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   return (
     <MuiBreadcrumbs
       {...rest}
-      aria-label={i18n._(/* i18n*/ 'Breadcrumbs')}
+      aria-label={t`Breadcrumbs`}
       maxItems={maxItems}
       color='inherit'
       sx={[
@@ -167,7 +167,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           {...linkProps}
           sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
         >
-          <Trans id='Home' />
+          <Trans>Home</Trans>
         </Link>
       )}
       {breadcrumbLinks.map((breadcrumb) => (

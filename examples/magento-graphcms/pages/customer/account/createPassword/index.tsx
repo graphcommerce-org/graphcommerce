@@ -2,8 +2,8 @@ import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { ResetPasswordForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Link, Button } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
@@ -18,13 +18,13 @@ function CustomerAccountCreatePasswordPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Create new password')} metaRobots={['noindex']} />
+      <PageMeta title={t`Create new password`} metaRobots={['noindex']} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span'>
           {!success ? (
-            <Trans id='Set your new password' />
+            <Trans>Set your new password</Trans>
           ) : (
-            <Trans id='You have now successfully reset your password' />
+            <Trans>You have now successfully reset your password</Trans>
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
@@ -32,12 +32,12 @@ function CustomerAccountCreatePasswordPage() {
       {!success && (
         <Container maxWidth='sm'>
           <LayoutTitle gutterBottom={false}>
-            <Trans id='Set your new password' />
+            <Trans>Set your new password</Trans>
           </LayoutTitle>
 
           <Box textAlign='center'>
             <p>
-              <Trans id='Fill in your new password, confirm it and click on the save button.' />
+              <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
             </p>
           </Box>
 
@@ -48,21 +48,22 @@ function CustomerAccountCreatePasswordPage() {
       {success && (
         <Container>
           <LayoutTitle gutterBottom={false}>
-            <Trans id='You have now successfully reset your password' />
+            <Trans>You have now successfully reset your password</Trans>
           </LayoutTitle>
 
           <Box textAlign='center'>
             <p>
-              <Trans
-                id='You can now <0>sign in again</0>.'
-                components={{
-                  0: <Link color='primary' href='/account/signin' underline='hover' />,
-                }}
-              />
+              <Trans>
+                You can now{' '}
+                <Link color='primary' href='/account/signin' underline='hover'>
+                  sign in again
+                </Link>
+                .
+              </Trans>
             </p>
 
             <Button href='/' variant='pill' color='secondary' size='large'>
-              <Trans id='Continue shopping' />
+              <Trans>Continue shopping</Trans>
             </Button>
           </Box>
         </Container>
@@ -90,7 +91,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/signin', title: i18n._(/* i18n */ 'Sign in') },
+      up: { href: '/account/signin', title: t`Sign in` },
     },
   }
 }

@@ -3,11 +3,8 @@
 import type { NextConfig } from 'next'
 import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'
-import webpack from 'webpack'
 import { loadConfig } from './config/loadConfig'
-import { configToImportMeta } from './config/utils/configToImportMeta'
 import type { GraphCommerceConfig } from './generated/config'
-import { InterceptorPlugin } from './interceptors/InterceptorPlugin'
 import { resolveDependenciesSync } from './utils/resolveDependenciesSync'
 
 let graphcommerceConfig: GraphCommerceConfig
@@ -33,7 +30,7 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
 }
 
 /**
- * GraphCommerce configuration: .
+ * GraphCommerce configuration with new Turbopack-compatible interceptor system.
  *
  * ```ts
  * const { withGraphCommerce } = require('@graphcommerce/next-config')
@@ -43,7 +40,6 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
  */
 export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
   graphcommerceConfig ??= loadConfig(cwd)
-  const importMetaPaths = configToImportMeta(graphcommerceConfig)
 
   const { storefront } = graphcommerceConfig
 
@@ -55,10 +51,36 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
   return {
     ...nextConfig,
     bundlePagesRouterDependencies: true,
+    serverExternalPackages: [
+      // All @whatwg-node packages to prevent private class field bundling issues
+      // https://github.com/ardatan/whatwg-node/tree/master/packages
+      '@whatwg-node/cookie-store',
+      '@whatwg-node/disposablestack',
+      '@whatwg-node/events',
+      '@whatwg-node/fetch',
+      '@whatwg-node/node-fetch',
+      '@whatwg-node/promise-helpers',
+      '@whatwg-node/server',
+      '@whatwg-node/server-plugin-cookies',
+      ...(nextConfig.serverExternalPackages ?? []),
+    ],
+    turbopack: {
+      ...(nextConfig.turbopack ?? {}),
+      rules: {
+        ...(nextConfig.turbopack?.rules ?? {}),
+        '*.yaml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+        '*.yml': { loaders: [{ loader: 'js-yaml-loader', options: {} }], as: '*.js' },
+        '*.po': { loaders: [{ loader: '@lingui/loader', options: {} }], as: '*.js' },
+      },
+    },
     experimental: {
       ...nextConfig.experimental,
       scrollRestoration: true,
       swcPlugins: [...(nextConfig.experimental?.swcPlugins ?? []), ['@lingui/swc-plugin', {}]],
+      optimizePackageImports: [
+        ...transpilePackages,
+        ...(nextConfig.experimental?.optimizePackageImports ?? []),
+      ],
     },
     i18n: {
       ...nextConfig.i18n,
@@ -69,6 +91,8 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
     },
     images: {
       ...nextConfig.images,
+      // GraphCommerce uses quality 52 by default for optimized image delivery
+      qualities: [52, 75, ...(nextConfig.images?.qualities ?? [])],
       remotePatterns: [
         'magentoEndpoint' in graphcommerceConfig
           ? {
@@ -92,7 +116,7 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         typeof graphcommerceConfig.productRoute === 'string' &&
         graphcommerceConfig.productRoute !== '/p/'
       ) {
-        rewrites.beforeFiles.push({
+        rewrites.beforeFiles?.push({
           source: `${graphcommerceConfig.productRoute ?? '/p/'}:path*`,
           destination: '/p/:path*',
         })
@@ -118,37 +142,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
 
       if (!config.plugins) config.plugins = []
 
-      // Make import.meta.graphCommerce available for usage.
-      config.plugins.push(new webpack.DefinePlugin(importMetaPaths))
-
-      // To properly properly treeshake @apollo/client we need to define the __DEV__ property
-      config.plugins.push(new webpack.DefinePlugin({ 'globalThis.__DEV__': options.dev }))
-
-      if (!options.isServer) {
-        // if (graphcommerceConfig.debug?.webpackCircularDependencyPlugin) {
-        //   config.plugins.push(
-        //     new CircularDependencyPlugin({
-        //       exclude: /readable-stream|duplexer2|node_modules\/next/,
-        //     }),
-        //   )
-        // }
-        // if (graphcommerceConfig.debug?.webpackDuplicatesPlugin) {
-        //   config.plugins.push(
-        //     new DuplicatesPlugin({
-        //       ignoredPackages: [
-        //         // very small
-        //         'react-is',
-        //         // build issue
-        //         'tslib',
-        //         // server
-        //         'isarray',
-        //         'readable-stream',
-        //       ],
-        //     }),
-        //   )
-        // }
-      }
-
       config.snapshot = {
         ...(config.snapshot ?? {}),
         managedPaths: [
@@ -166,18 +159,6 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
       }
 
       if (!config.resolve) config.resolve = {}
-      if (!options.isServer && !options.dev) {
-        config.resolve.alias = {
-          ...config.resolve.alias,
-          '@mui/base': '@mui/base/modern',
-          '@mui/lab': '@mui/lab/modern',
-          '@mui/material': '@mui/material/modern',
-          '@mui/styled-engine': '@mui/styled-engine/modern',
-          '@mui/system': '@mui/system/modern',
-        }
-      }
-
-      config.plugins.push(new InterceptorPlugin(graphcommerceConfig, !options.isServer))
 
       return typeof nextConfig.webpack === 'function' ? nextConfig.webpack(config, options) : config
     },

@@ -1,10 +1,10 @@
-import { RichTextProps } from '@graphcommerce/hygraph-ui'
+import type { RichTextProps } from '@graphcommerce/hygraph-ui'
 import type { RowColumnOneFragment } from './RowColumnOne.gql'
 import { Default, Message } from './variant'
 
 type VariantRenderer = Record<
   NonNullable<RowColumnOneFragment['rowColumnOneVariant']>,
-  React.VFC<RowColumnOneFragment>
+  React.FC<RowColumnOneFragment>
 >
 
 export type RowColumnOneProps = RowColumnOneFragment & {

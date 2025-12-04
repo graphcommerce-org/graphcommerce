@@ -1,4 +1,5 @@
 import type { MeshContext } from '@graphcommerce/graphql-mesh'
+import { algolia } from '@graphcommerce/next-config/config'
 import { storefrontConfigDefault } from '@graphcommerce/next-ui'
 
 function getStoreHeader(context: MeshContext) {
@@ -7,5 +8,5 @@ function getStoreHeader(context: MeshContext) {
 
 export function getIndexName(context: MeshContext) {
   const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
-  return `${import.meta.graphCommerce.algolia.indexNamePrefix}${storeCode}_products`
+  return `${algolia.indexNamePrefix}${storeCode}_products`
 }

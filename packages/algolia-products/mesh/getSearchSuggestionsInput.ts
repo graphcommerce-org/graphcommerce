@@ -1,7 +1,8 @@
 import type { MeshContext, Queryalgolia_searchSingleIndexArgs } from '@graphcommerce/graphql-mesh'
+import { algolia } from '@graphcommerce/next-config/config'
 
 export function isSuggestionsEnabled() {
-  return Boolean(import.meta.graphCommerce.algolia.suggestionsSuffix)
+  return Boolean(algolia.suggestionsSuffix)
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await

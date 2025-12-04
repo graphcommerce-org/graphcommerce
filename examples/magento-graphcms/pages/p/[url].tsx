@@ -32,8 +32,8 @@ import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-r
 import { redirectOrNotFound, Money, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { GetStaticProps, LayoutHeader, LayoutTitle, isTypename } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import {
@@ -50,6 +50,7 @@ import { UspsDocument, UspsQuery } from '../../components/Usps/Usps.gql'
 import { ProductPage2Document, ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { Container } from '@graphcommerce/next-ui'
+import { breadcrumbs, magentoVersion } from '@graphcommerce/next-config/config'
 
 export type Props = HygraphPagesQuery &
   UspsQuery &
@@ -65,7 +66,7 @@ function ProductPage(props: Props) {
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
+    { variables: { urlKey, useCustomAttributes: magentoVersion >= 247 } },
     props,
   )
   const { products, relatedUpsells } = scopedQuery.data
@@ -80,7 +81,7 @@ function ProductPage(props: Props) {
   return (
     <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+        <LayoutHeader floatingMd hideMd={breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -98,7 +99,7 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
+        {breadcrumbs && (
           <Container
             maxWidth={false}
             sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
@@ -172,7 +173,7 @@ function ProductPage(props: Props) {
       )}
 
       <RecentlyViewedProducts
-        title={<Trans id='Recently viewed products' />}
+        title={<Trans>Recently viewed products</Trans>}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
         sx={(theme) => ({ mb: theme.spacings.xxl })}
@@ -207,7 +208,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const productPage = staticClient
     .query({
       query: ProductPage2Document,
-      variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
+      variables: { urlKey, useCustomAttributes: magentoVersion >= 247 },
     })
     .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
 
@@ -225,7 +226,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   const result = {

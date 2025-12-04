@@ -1,6 +1,6 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
 import { Button, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
 import { useSignInForm } from '../../hooks/useSignInForm'
@@ -45,7 +45,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         control={control}
         variant='outlined'
         name='password'
-        label={<Trans id='Password' />}
+        label={<Trans>Password</Trans>}
         autoFocus
         autoComplete='current-password'
         id='current-password'
@@ -54,7 +54,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         InputProps={{
           endAdornment: (
             <Link href='/account/forgot-password' underline='hover' sx={{ whiteSpace: 'nowrap' }}>
-              <Trans id='Forgot password?' />
+              <Trans>Forgot password?</Trans>
             </Link>
           ),
         }}
@@ -66,7 +66,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         variant='pill'
         sx={{ alignSelf: 'start', marginTop: (theme) => `calc(${theme.spacings.xxs} * .33)` }}
       >
-        <Trans id='Sign in' />
+        <Trans>Sign in</Trans>
       </Button>
       {children}
     </Box>

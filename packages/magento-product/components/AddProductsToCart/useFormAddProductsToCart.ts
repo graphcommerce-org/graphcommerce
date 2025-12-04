@@ -1,11 +1,8 @@
 import type { UseFormGqlMutationReturn } from '@graphcommerce/ecommerce-ui'
 import type { CartItemInput } from '@graphcommerce/graphql-mesh'
 import { createContext, useContext } from 'react'
-import type { LiteralUnion, Simplify } from 'type-fest'
-import type {
-  AddProductsToCartMutation,
-  AddProductsToCartMutationVariables,
-} from './AddProductsToCart.gql'
+import type { LiteralUnion } from 'type-fest'
+import type { AddProductsToCartMutation } from './AddProductsToCart.gql'
 
 export type RedirectType = LiteralUnion<'added' | undefined | false, `/${string}`>
 
@@ -39,12 +36,14 @@ type Item = CartItemInput & {
   keep_sku?: boolean
 }
 
-export type AddProductsToCartFields = Omit<AddProductsToCartMutationVariables, 'cartItems'> & {
+export type AddProductsToCartFields = {
+  cartId: string
   cartItems: Item[]
+  redirect: RedirectType
 }
 
 /** https://react-hook-form.com/api/useform/watch/ */
-export type AddProductsToCartContextType = { redirect: RedirectType } & Omit<
+export type AddProductsToCartContextType = Omit<
   UseFormGqlMutationReturn<AddProductsToCartMutation, AddProductsToCartFields>,
   'formState' | 'watch'
 >

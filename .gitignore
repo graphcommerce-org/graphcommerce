@@ -19,7 +19,9 @@ tsctrace
 .env*
 !.env.example
 graphcommerce.config.js
+graphcommerce.config.ts
 !graphcommerce.config.js.example
+!graphcommerce.config.ts.example
 
 # debug
 npm-debug.log*

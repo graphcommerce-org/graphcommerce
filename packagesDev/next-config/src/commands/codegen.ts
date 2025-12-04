@@ -1,18 +1,16 @@
-import { generateConfig } from '../config/commands/generateConfig'
-import { codegenInterceptors } from '../interceptors/commands/codegenInterceptors'
-import { copyFiles } from './copyFiles'
+import { spawn } from 'child_process'
 
-/** Run all code generation steps in sequence */
+function run(cmd: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(cmd, { stdio: 'inherit', cwd: process.cwd(), shell: true })
+    child.on('close', (code) => (code === 0 ? resolve() : reject(new Error(`${cmd} failed`))))
+  })
+}
+
+/** Run all code generation steps in sequence using separate processes */
 export async function codegen() {
-  // Copy files from packages to project
-  console.info('🔄 Copying files from packages to project...')
-  await copyFiles()
-
-  // Generate GraphCommerce config types
-  console.info('⚙️  Generating GraphCommerce config types...')
-  await generateConfig()
-
-  // Generate interceptors
-  console.info('🔌 Generating interceptors...')
-  await codegenInterceptors()
+  await run('graphcommerce copy-files')
+  await run('graphcommerce codegen-config')
+  await run('graphcommerce codegen-config-values')
+  await run('graphcommerce codegen-interceptors')
 }

@@ -2,10 +2,16 @@
   "name": "@graphcommerce/demo-magento-graphcommerce",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.1.0-canary.52",
+  "version": "10.0.0-canary.63",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/demo/DemoRowLinks": "./plugins/demo/DemoRowLinks.tsx",
+    "./plugins/demo/DemoProductListItemConfigurable": "./plugins/demo/DemoProductListItemConfigurable.tsx",
+    "./plugins/demo/DemoRecentlyViewedProducts": "./plugins/demo/DemoRecentlyViewedProducts.tsx"
   },
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -15,18 +21,18 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/framer-scroller": "^9.1.0-canary.52",
-    "@graphcommerce/magento-product": "^9.1.0-canary.52",
-    "@graphcommerce/magento-product-configurable": "^9.1.0-canary.52",
-    "@graphcommerce/magento-recently-viewed-products": "^9.1.0-canary.52",
-    "@graphcommerce/next-ui": "^9.1.0-canary.52",
-    "@graphcommerce/prettier-config-pwa": "^9.1.0-canary.52",
-    "@graphcommerce/typescript-config-pwa": "^9.1.0-canary.52",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.63",
+    "@graphcommerce/framer-scroller": "^10.0.0-canary.63",
+    "@graphcommerce/magento-product": "^10.0.0-canary.63",
+    "@graphcommerce/magento-product-configurable": "^10.0.0-canary.63",
+    "@graphcommerce/magento-recently-viewed-products": "^10.0.0-canary.63",
+    "@graphcommerce/next-ui": "^10.0.0-canary.63",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.63",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.63",
     "@mui/material": "^5.10.16",
     "framer-motion": "^11.0.0",
     "next": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }

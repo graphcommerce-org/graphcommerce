@@ -18,8 +18,8 @@ import {
   LayoutOverlayHeader,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
@@ -62,29 +62,27 @@ function AccountReviewsAddPage() {
   if (!product) {
     return (
       <FullPageMessage
-        title={<Trans id='Product could not be found' />}
+        title={<Trans>Product could not be found</Trans>}
         icon={<IconSvg src={iconBox} size='xxl' />}
       >
-        <Trans id='Try a different product' />
+        <Trans>Try a different product</Trans>
       </FullPageMessage>
     )
   }
+  const name = product?.name ?? ''
 
   return (
     <>
-      <PageMeta
-        title={i18n._(/* i18n */ 'You are reviewing {0}', { 0: product?.name })}
-        metaRobots={['noindex']}
-      />
+      <PageMeta title={t`You are reviewing ${name}`} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader>
         <LayoutTitle size='small'>
-          <Trans id='You are reviewing {0}' values={{ 0: product?.name }} />
+          <Trans>You are reviewing {product?.name}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <LayoutTitle variant='h2'>
-        <Trans id='You are reviewing {0}' values={{ 0: product?.name }} />
+        <Trans>You are reviewing {product?.name}</Trans>
       </LayoutTitle>
 
       <Container maxWidth='md'>

@@ -13,11 +13,12 @@ import { m, useTransform } from 'framer-motion'
 import { useRouter } from 'next/router'
 import type { BaseSyntheticEvent, MutableRefObject } from 'react'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
-import type { Subscription } from 'react-hook-form/dist/utils/createSubject'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
 import type { ProductListFiltersFragment } from '../ProductListFilters/ProductListFilters.gql'
 import type { ProductFilterParams, ProductListParams } from '../ProductListItems/filterTypes'
 import { toFilterParams } from '../ProductListItems/filterTypes'
+
+type Subscription = { unsubscribe: () => void }
 
 type DataProps = {
   filterTypes: Record<string, string | undefined>

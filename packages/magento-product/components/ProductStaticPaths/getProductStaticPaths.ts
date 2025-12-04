@@ -1,4 +1,5 @@
 import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import { limitSsg } from '@graphcommerce/next-config/config'
 import type { GetStaticPathsResult } from 'next'
 import type { ProductStaticPathsQuery } from './ProductStaticPaths.gql'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
@@ -12,7 +13,7 @@ export type ProductTypenames = NonNullable<
 export async function getProductStaticPaths(
   client: ApolloClient<NormalizedCacheObject>,
   locale: string,
-  options: { limit?: boolean } = { limit: import.meta.graphCommerce.limitSsg || false },
+  options: { limit?: boolean } = { limit: limitSsg || false },
 ) {
   const query = client.query({
     query: ProductStaticPathsDocument,

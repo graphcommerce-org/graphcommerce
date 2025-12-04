@@ -1,7 +1,7 @@
 import { globalApolloClient } from '@graphcommerce/graphql'
 import type { ApolloCache } from '@graphcommerce/graphql/apollo'
 import { ApolloLink, fromPromise, onError, setContext } from '@graphcommerce/graphql/apollo'
-import type { ErrorCategory } from '@graphcommerce/magento-graphql'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GraphQLFormattedError } from 'graphql'
 import type { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
@@ -45,17 +45,13 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
-function isErrorCategory(err: GraphQLFormattedError, category: ErrorCategory) {
-  return err.extensions?.category === category
-}
-
 const addTokenHeader = setContext((_, context) => {
   if (!context.headers) context.headers = {}
 
   try {
     const query = context.cache?.readQuery({ query: CustomerTokenDocument })
 
-    if (query?.customerToken?.token) {
+    if (query?.customerToken?.token && query?.customerToken?.valid !== false) {
       context.headers.authorization = `Bearer ${query?.customerToken?.token}`
       return context
     }
@@ -72,7 +68,12 @@ const customerErrorLink = (router: PushRouter) =>
     if (!client) return undefined
 
     const oldHeaders = operation.getContext().headers
-    const authError = graphQLErrors?.find((err) => isErrorCategory(err, 'graphql-authorization'))
+
+    const authError = graphQLErrors?.find(
+      (err: GraphQLFormattedError) =>
+        err.extensions?.category ===
+        (magentoVersion >= 248 ? 'graphql-authentication' : 'graphql-authorization'),
+    )
 
     /** If the error we're dealing with is not an authorization error, we're done. */
     if (!authError) return undefined

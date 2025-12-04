@@ -3,7 +3,7 @@ import type { FilterRangeTypeInput } from '@graphcommerce/graphql-mesh'
 import { Money } from '@graphcommerce/magento-store'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
 import { ChipMenu, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { Box, Slider } from '@mui/material'
 import React, { useEffect } from 'react'
@@ -82,18 +82,16 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
 
     if (from === min && to !== max)
       currentLabel = (
-        <Trans
-          id='Below <0/>'
-          components={{ 0: <Money round value={Number(currentFilter?.to)} /> }}
-        />
+        <Trans>
+          Below <Money round value={Number(currentFilter?.to)} />
+        </Trans>
       )
 
     if (from !== min && to === max)
       currentLabel = (
-        <Trans
-          id='Above <0/>'
-          components={{ 0: <Money round value={Number(currentFilter?.from)} /> }}
-        />
+        <Trans>
+          Above <Money round value={Number(currentFilter?.from)} />
+        </Trans>
       )
 
     if (from !== min && to !== max)

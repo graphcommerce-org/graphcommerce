@@ -1,8 +1,9 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
-import type { ButtonProps, SxProps, Theme } from '@mui/material'
-import { Box, Button, Link } from '@mui/material'
+import type { ButtonProps } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, iconChevronRight, IconSvg } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
+import type { SxProps, Theme } from '@mui/material'
+import { Box, Link } from '@mui/material'
 import React from 'react'
 import { useCheckoutShouldLoginToContinue } from '../../hooks'
 import type { CartStartCheckoutFragment } from './CartStartCheckout.gql'
@@ -12,11 +13,12 @@ export type CartStartCheckoutProps = {
   sx?: SxProps<Theme>
   buttonProps?: ButtonProps<'button'>
   disabled?: boolean
+  hideTotal?: boolean
   cart?: CartStartCheckoutFragment | null | undefined
   onStart?: (
-    e: React.MouseEvent<HTMLButtonElement>,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     cart: CartStartCheckoutFragment | null | undefined,
-  ) => void
+  ) => Promise<void>
 }
 
 const name = 'CartStartCheckout'
@@ -35,6 +37,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
     onStart,
     buttonProps: { onClick, ...buttonProps } = {},
     disabled,
+    hideTotal = false,
     sx = [],
     cart,
   } = props
@@ -70,10 +73,9 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         size='large'
         className={classes.checkoutButton}
         endIcon={<IconSvg src={iconChevronRight} />}
-        onClick={(e) => {
+        onClick={async (e) => {
           onClick?.(e)
-          onStart?.(e, cart)
-          return onClick?.(e)
+          await onStart?.(e, cart)
         }}
         disabled={disabled || !hasTotals || hasErrors || shouldLoginToContinue}
         {...buttonProps}
@@ -88,7 +90,7 @@ export function CartStartCheckout(props: CartStartCheckoutProps) {
         >
           <Trans>Start Checkout</Trans>
         </Box>{' '}
-        {hasTotals && (
+        {hasTotals && !hideTotal && (
           <span className={classes.checkoutMoney}>
             <Money {...cart?.prices?.grand_total} />
           </span>

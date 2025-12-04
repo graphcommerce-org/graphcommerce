@@ -1,3 +1,4 @@
+import { productListPaginationVariant } from '@graphcommerce/next-config/config'
 import { NextLink, Pagination, PaginationExtended } from '@graphcommerce/next-ui'
 import type { PaginationProps } from '@mui/material'
 import { Link } from '@mui/material'
@@ -17,7 +18,7 @@ export function ProductListPagination({
 }: ProductPaginationProps) {
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
-  if (import.meta.graphCommerce.productListPaginationVariant !== 'EXTENDED') {
+  if (productListPaginationVariant !== 'EXTENDED') {
     return (
       <Pagination
         count={page_info?.total_pages}
@@ -41,7 +42,7 @@ export function ProductListPagination({
     )
   }
 
-  if (import.meta.graphCommerce.productListPaginationVariant === 'EXTENDED') {
+  if (productListPaginationVariant === 'EXTENDED') {
     return (
       <PaginationExtended
         count={page_info?.total_pages}

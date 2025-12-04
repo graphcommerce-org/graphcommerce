@@ -7,7 +7,7 @@ import { maskNetworkError } from './maskNetworkError'
 const { classes, selectors } = extendableComponent('ApolloErrorAlert', ['root', 'alert'] as const)
 
 export type ApolloErrorAlertProps = {
-  error?: ApolloError
+  error?: ApolloError | null
   graphqlErrorAlertProps?: Omit<AlertProps, 'severity'>
   networkErrorAlertProps?: Omit<AlertProps, 'severity'>
   sx?: SxProps<Theme>

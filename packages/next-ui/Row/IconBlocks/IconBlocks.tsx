@@ -19,11 +19,7 @@ export function IconBlocks(props: IconBlocksProps) {
   const { title, children, sx = [] } = props
 
   return (
-    <Row
-      maxWidth='md'
-      className={classes.container}
-      sx={[{ maxWidth: 820 }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row maxWidth='820px' className={classes.container} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
       <Box className={classes.wrapper} sx={(theme) => ({ paddingTop: `${theme.spacings.lg}` })}>
         <Box
           className={classes.title}

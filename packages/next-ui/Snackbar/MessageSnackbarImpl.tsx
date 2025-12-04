@@ -1,4 +1,4 @@
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
@@ -190,7 +190,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
               {!disableClose && (
                 <Fab
                   className={classes.close}
-                  aria-label={i18n._(/* i18n */ 'Close')}
+                  aria-label={t`Close`}
                   size='small'
                   onClick={hideSnackbar}
                   onMouseDown={preventAnimationBubble}

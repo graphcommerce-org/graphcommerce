@@ -1,4 +1,4 @@
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { alpha, Box, Link, useTheme } from '@mui/material'
 import type { KeyboardEvent } from 'react'
 import { useEffect, useRef } from 'react'
@@ -74,7 +74,7 @@ export function BreadcrumbsList(props: PopperBreadcrumbsListProps) {
           },
         }}
       >
-        <Trans id='Home' />
+        <Trans>Home</Trans>
       </Link>
       {breadcrumbs.slice(0, breadcrumbs.length).map((breadcrumb) => (
         <Link

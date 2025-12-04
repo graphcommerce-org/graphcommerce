@@ -1,5 +1,5 @@
 import { useMutation } from '@graphcommerce/graphql'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, Box, Button, Checkbox } from '@mui/material'
@@ -42,7 +42,7 @@ export function CompareProductButton(props: CompareProductButtonProps) {
           onMouseDown={(e) => e.stopPropagation()}
           startIcon={<Checkbox checked={inCompareList} />}
         >
-          {inCompareList ? <Trans id='In comparelist' /> : <Trans id='Compare' />}
+          {inCompareList ? <Trans>In comparelist</Trans> : <Trans>Compare</Trans>}
         </Button>
       </Badge>
 

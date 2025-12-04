@@ -11,8 +11,8 @@ import {
   IconSvg,
   LayoutOverlayHeader,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlay, LayoutOverlayProps } from '../../components'
 import { graphqlSharedClient } from '../../lib/graphql/graphqlSsrClient'
@@ -25,7 +25,7 @@ function WishlistPage() {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Wishlist')} metaRobots={['noindex']} />
+      <PageMeta title={t`Wishlist`} metaRobots={['noindex']} />
       <LayoutOverlayHeader
         switchPoint={0}
         noAlign
@@ -35,30 +35,30 @@ function WishlistPage() {
         })}
       >
         <LayoutTitle component='span' size='small' icon={iconHeart}>
-          <Trans id='Wishlist' />
+          <Trans>Wishlist</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <WaitForQueries
         waitFor={[wishlistItems]}
         fallback={
-          <FullPageMessage title={<Trans id='Loading' />} icon={<CircularProgress />}>
-            <Trans id='We are fetching your favorite products, one moment please!' />
+          <FullPageMessage title={<Trans>Loading</Trans>} icon={<CircularProgress />}>
+            <Trans>We are fetching your favorite products, one moment please!</Trans>
           </FullPageMessage>
         }
       >
         <Container maxWidth='md'>
           {wishlistItems.items.length === 0 ? (
             <FullPageMessage
-              title={<Trans id='Your wishlist is empty' />}
+              title={<Trans>Your wishlist is empty</Trans>}
               icon={<IconSvg src={iconHeart} size='xxl' />}
               button={
                 <Button href='/' variant='pill' color='primary' size='large'>
-                  <Trans id='Continue shopping' />
+                  <Trans>Continue shopping</Trans>
                 </Button>
               }
             >
-              <Trans id='Discover our collection and add items to your wishlist!' />
+              <Trans>Discover our collection and add items to your wishlist!</Trans>
             </FullPageMessage>
           ) : (
             <>

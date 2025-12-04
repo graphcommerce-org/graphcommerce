@@ -6,7 +6,7 @@ import {
   IconSvg,
   SectionContainer,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Button, Skeleton } from '@mui/material'
 import { AccountAddress } from '../AccountAddress/AccountAddress'
@@ -29,7 +29,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
   if (loading) {
     return (
       <SectionContainer
-        labelLeft={<Trans id='Shipping addresses' />}
+        labelLeft={<Trans>Shipping addresses</Trans>}
         sx={sx}
         className={classes.root}
       >
@@ -53,7 +53,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
             margin: `${theme.spacings.md} auto`,
           })}
         >
-          <Trans id='Add new address' />
+          <Trans>Add new address</Trans>
         </Button>
       </SectionContainer>
     )
@@ -63,18 +63,18 @@ export function AccountAddresses(props: AccountAddressesProps) {
     <>
       {addresses.length === 0 && (
         <FullPageMessage
-          title={<Trans id='You have no addresses saved yet' />}
+          title={<Trans>You have no addresses saved yet</Trans>}
           icon={<IconSvg src={iconHome} size='xxl' />}
           button={
             <Button href='/account/addresses/add' size='large' variant='pill' color='primary'>
-              <Trans id='Add new address' />
+              <Trans>Add new address</Trans>
             </Button>
           }
         />
       )}
 
       {addresses.length >= 1 && (
-        <SectionContainer labelLeft={<Trans id='Shipping addresses' />}>
+        <SectionContainer labelLeft={<Trans>Shipping addresses</Trans>}>
           <Box
             className={classes.addresses}
             sx={(theme) => ({ '& > div': { borderBottom: `1px solid ${theme.palette.divider}` } })}
@@ -96,7 +96,7 @@ export function AccountAddresses(props: AccountAddressesProps) {
               margin: `${theme.spacings.md} auto`,
             })}
           >
-            <Trans id='Add new address' />
+            <Trans>Add new address</Trans>
           </Button>
         </SectionContainer>
       )}

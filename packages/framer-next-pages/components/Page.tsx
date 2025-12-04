@@ -36,7 +36,7 @@ export function Page(props: PageProps) {
     <m.div
       layoutScroll
       style={{ position, top, zIndex, minHeight: dvh(100), left: 0, right: 0 }}
-      inert={!active ? ('true' as unknown as boolean) : undefined}
+      inert={!active}
       data-nosnippet={!active ? true : undefined}
       aria-hidden={!active ? true : undefined}
     >

@@ -1,5 +1,5 @@
-/// <reference types="@graphcommerce/next-ui/types" />
-
+import '@graphcommerce/next-ui/types'
+import { containerSizingContent, containerSizingShell } from '@graphcommerce/next-config/config'
 import {
   breakpointVal,
   createTheme,
@@ -181,10 +181,8 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       headerHeightMd: '100px',
       appBarHeightMd: '80px',
       appBarInnerHeightMd: '46px',
-      containerSizingShell:
-        import.meta.graphCommerce.containerSizingShell === 'BREAKPOINT' ? 'xl' : false,
-      containerSizingContent:
-        import.meta.graphCommerce.containerSizingContent === 'BREAKPOINT' ? 'xl' : false,
+      containerSizingShell: containerSizingShell === 'BREAKPOINT' ? 'xl' : false,
+      containerSizingContent: containerSizingContent === 'BREAKPOINT' ? 'xl' : false,
     },
   })
 

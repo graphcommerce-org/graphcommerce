@@ -1,7 +1,7 @@
 import { ApolloCartErrorSnackbar } from '@graphcommerce/magento-cart'
 import type { ButtonProps } from '@graphcommerce/next-ui'
 import { Button } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import type { UseRemoveItemFromCartProps } from '../../hooks/useRemoveItemFromCart'
@@ -28,7 +28,7 @@ export function RemoveItemFromCart(props: RemoveItemFromCartProps) {
         type='submit'
         loading={formState.isSubmitting}
       >
-        <Trans id='Remove' />
+        <Trans>Remove</Trans>
       </Button>
       <ApolloCartErrorSnackbar error={error} />
     </Form>

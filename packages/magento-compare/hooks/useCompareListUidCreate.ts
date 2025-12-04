@@ -1,5 +1,5 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { CreateCompareListDocument, CurrentCompareUidDocument } from '../graphql'
 import { useAssignCurrentCompareListUid } from './useAssignCurrentCompareListUid'
 
@@ -16,8 +16,7 @@ export function useCompareListUidCreate() {
       mutation: CreateCompareListDocument,
       variables: { products: [] },
     })
-    if (!data?.createCompareList)
-      throw Error(i18n._(/* i18n */ 'Could not create a new compare list'))
+    if (!data?.createCompareList) throw Error(t`Could not create a new compare list`)
 
     // We store the uid that is returned as the currentCompareList result
     assign(data.createCompareList.uid)

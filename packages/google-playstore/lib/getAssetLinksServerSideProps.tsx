@@ -1,13 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { GraphCommerceConfig } from '@graphcommerce/next-config'
+import { googlePlaystore } from '@graphcommerce/next-config/config'
 import type { GetServerSideProps } from 'next'
 
 export const getAssetLinksServerSideProps: GetServerSideProps = async (context) => {
   context.res.setHeader('Content-Type', 'application/json')
 
-  const package_name = import.meta.graphCommerce.googlePlaystore?.packageName
-  const sha256_cert_fingerprints = import.meta.graphCommerce.googlePlaystore
-    ?.sha256CertificateFingerprint
+  const package_name = googlePlaystore?.packageName
+  const sha256_cert_fingerprints = googlePlaystore?.sha256CertificateFingerprint
 
   if (!package_name || !sha256_cert_fingerprints) return { notFound: true }
 

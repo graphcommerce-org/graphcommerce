@@ -3,7 +3,7 @@ import { useAlgoliaIndexName, useAlgoliaQuery } from '@graphcommerce/algolia-pro
 import type { GoogleEventTypes, sendEvent } from '@graphcommerce/google-datalayer'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { AlgoliaEventsItems_Input } from '@graphcommerce/graphql-mesh'
-import { CustomerDocument } from '@graphcommerce/magento-customer/hooks/Customer.gql'
+import { CustomerDocument } from '@graphcommerce/magento-customer'
 import type { ProductFilterParams } from '@graphcommerce/magento-product'
 import { isFilterTypeEqual } from '@graphcommerce/magento-product'
 import { cookie } from '@graphcommerce/next-ui'

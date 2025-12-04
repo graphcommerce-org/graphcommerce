@@ -1,5 +1,6 @@
 import type { ProductListItemProps } from '@graphcommerce/magento-product'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
+import { compareVariant } from '@graphcommerce/next-config/config'
 import { Box } from '@mui/material'
 import { CompareProductToggle } from '../components'
 import type { CompareProductIdInternalFragment } from '../graphql'
@@ -13,7 +14,7 @@ export const config: PluginConfig = {
 export function ProductListItem(props: PluginProps<ProductListItemProps>) {
   const { Prev, ...rest } = props
   const { children, topRight } = props
-  if (import.meta.graphCommerce.compareVariant === 'CHECKBOX')
+  if (compareVariant === 'CHECKBOX')
     return (
       <Prev topRight={topRight} {...rest}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -23,10 +24,7 @@ export function ProductListItem(props: PluginProps<ProductListItemProps>) {
       </Prev>
     )
 
-  if (
-    import.meta.graphCommerce.compareVariant === 'ICON' ||
-    !import.meta.graphCommerce.compareVariant
-  )
+  if (compareVariant === 'ICON' || !compareVariant)
     return (
       <Prev
         {...rest}

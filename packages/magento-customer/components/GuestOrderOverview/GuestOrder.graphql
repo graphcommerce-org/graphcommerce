@@ -1,5 +1,5 @@
-query GuestOrder($orderNumber: String!, $email: String!, $postcode: String!) {
-  guestOrder(input: { number: $orderNumber, email: $email, postcode: $postcode }) {
+query GuestOrder($input: OrderInformationInput!) {
+  guestOrder(input: $input) {
     ...OrderDetails
     ...OrderItems
   }

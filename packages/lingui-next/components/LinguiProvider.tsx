@@ -1,6 +1,6 @@
 import { useLocale } from '@graphcommerce/next-ui'
-import type { Messages } from '@lingui/core'
-import { i18n } from '@lingui/core'
+import { i18n, type Messages } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { I18nProviderProps } from '@lingui/react'
 import { I18nProvider } from '@lingui/react'
 import React, { useMemo } from 'react'
