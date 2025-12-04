@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+### Patch Changes
+
+- [#2543](https://github.com/graphcommerce-org/graphcommerce/pull/2543) [`7e1e33e`](https://github.com/graphcommerce-org/graphcommerce/commit/7e1e33e6d6238155884ba80cf249209e8eb3d542) - Fix IconBlocks width ([@StefanAngenent](https://github.com/StefanAngenent))
+
+## 10.0.0-canary.64
+
 ## 10.0.0-canary.63
 
 ## 10.0.0-canary.62
