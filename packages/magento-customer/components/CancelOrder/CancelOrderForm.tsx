@@ -75,14 +75,14 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
     >
       <AccordionSummary
         expandIcon={<IconSvg src={iconChevronDown} />}
-        sx={sxx((theme) => ({
+        sx={(theme) => ({
           px: theme.spacings.xs,
           '& .MuiAccordionSummary-content': {
             alignItems: 'center',
             columnGap: 2,
             justifyContent: 'space-between',
           },
-        }))}
+        })}
       >
         <Trans>Cancel order</Trans>
       </AccordionSummary>

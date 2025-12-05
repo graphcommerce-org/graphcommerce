@@ -4,7 +4,7 @@ import { Badge, Chip, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { IconSvg } from '../IconSvg'
-import { lightenColor, responsiveVal } from '../Styles'
+import { responsiveVal } from '../Styles'
 import type { OverlayOrPopperPanelProps } from './OverlayOrPopperPanel'
 import { OverlayOrPopperPanel } from './OverlayOrPopperPanel'
 
@@ -84,25 +84,25 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
           },
           selected
             ? (theme) => ({
-                background: lightenColor(
+                background: theme.lighten(
                   theme.vars.palette.primary.main,
                   1 - theme.vars.palette.action.hoverOpacity,
                 ),
                 border: '1px solid transparent',
                 ...theme.applyStyles('dark', {
-                  background: lightenColor(
+                  background: theme.lighten(
                     theme.vars.palette.background.default,
                     theme.vars.palette.action.hoverOpacity,
                   ),
                 }),
                 '&.MuiChip-clickable:hover': {
-                  background: lightenColor(
+                  background: theme.lighten(
                     theme.vars.palette.primary.main,
                     1 - theme.vars.palette.action.hoverOpacity * 2,
                   ),
                   border: '1px solid transparent',
                   ...theme.applyStyles('dark', {
-                    background: lightenColor(
+                    background: theme.lighten(
                       theme.vars.palette.background.default,
                       theme.vars.palette.action.hoverOpacity * 2,
                     ),

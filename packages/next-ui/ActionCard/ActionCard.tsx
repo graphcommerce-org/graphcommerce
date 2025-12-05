@@ -1,7 +1,7 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, ButtonBase } from '@mui/material'
 import React from 'react'
-import { extendableComponent, lightenColor, responsiveVal, varAlpha } from '../Styles'
+import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 import { sxx } from '../utils/sxx'
 
@@ -169,26 +169,26 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           '&.variantDefault': {
             position: 'relative',
             '&.selected': {
-              backgroundColor: varAlpha(
+              backgroundColor: theme.alpha(
                 theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               ),
               ...theme.applyStyles('dark', {
-                backgroundColor: lightenColor(
+                backgroundColor: theme.lighten(
                   theme.vars.palette.background.default,
                   theme.vars.palette.action.hoverOpacity,
                 ),
               }),
             },
             '&.error': {
-              backgroundColor: varAlpha(
+              backgroundColor: theme.alpha(
                 theme.vars.palette.error.main,
                 theme.vars.palette.action.hoverOpacity,
               ),
             },
             '&:focus': {
               outline: 'none',
-              boxShadow: `0 0 0 4px ${varAlpha(theme.vars.palette[color].main, theme.vars.palette.action.focusOpacity)}`,
+              boxShadow: `0 0 0 4px ${theme.alpha(theme.vars.palette[color].main, theme.vars.palette.action.focusOpacity)}`,
             },
           },
           '&.variantOutlined': {
@@ -234,13 +234,13 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             },
             '&.selected:focus, &.error:focus': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px ${varAlpha(
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px ${theme.alpha(
                 theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               )}`,
             },
             '&:focus': {
-              boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider},0 0 0 4px ${varAlpha(
+              boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider},0 0 0 4px ${theme.alpha(
                 theme.vars.palette[color].main,
                 theme.vars.palette.action.hoverOpacity,
               )}`,

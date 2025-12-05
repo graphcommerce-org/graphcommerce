@@ -1,4 +1,4 @@
-import { sxx, varAlpha } from '@graphcommerce/next-ui'
+import { sxx } from '@graphcommerce/next-ui'
 import type { ListItemButtonProps } from '@mui/material'
 import { ListItemButton } from '@mui/material'
 import type { ElementType } from 'react'
@@ -30,7 +30,7 @@ export const SearchOverlayItem = memo(
               mx: `calc(${theme.page.horizontal} * -1)`,
               '&.Mui-selected': {
                 boxShadow: `inset 0 0 0 2px ${theme.vars.palette.primary.main}`,
-                backgroundColor: varAlpha(
+                backgroundColor: theme.alpha(
                   theme.vars.palette.background.paper,
                   theme.vars.palette.action.selectedOpacity,
                 ),

@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent, lightenColor, sxx } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider, Typography } from '@mui/material'
@@ -35,7 +35,7 @@ export function OrderTotals(props: OrderTotalsProps) {
           ),
           background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lightenColor(theme.vars.palette.background.default, 0.15),
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
           }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),

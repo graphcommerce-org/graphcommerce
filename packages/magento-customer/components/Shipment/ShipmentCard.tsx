@@ -4,7 +4,6 @@ import {
   filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
-  lightenColor,
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
@@ -37,7 +36,7 @@ export function ShipmentCard(props: ShipmentCardProps) {
           gap: theme.spacings.sm,
           background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lightenColor(theme.vars.palette.background.default, 0.15),
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',

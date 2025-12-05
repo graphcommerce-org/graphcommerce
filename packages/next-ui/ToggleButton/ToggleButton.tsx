@@ -4,7 +4,7 @@ import type { ButtonProps } from '@mui/material'
 import { Button } from '@mui/material'
 import type { FormEvent } from 'react'
 import React from 'react'
-import { extendableComponent, varAlpha } from '../Styles'
+import { extendableComponent } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 export type ToggleButtonProps = Omit<ButtonProps, 'onClick' | 'onChange'> & {
@@ -73,7 +73,7 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             border: `1px solid ${theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${
               theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main
-            },0 0 0 4px ${varAlpha(
+            },0 0 0 4px ${theme.alpha(
               theme.vars.palette.primary.main,
               theme.vars.palette.action.hoverOpacity,
             )} !important`,

@@ -1,12 +1,6 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
 import { useBillingAddressPermission } from '@graphcommerce/magento-customer'
-import {
-  breakpointVal,
-  extendableComponent,
-  lightenColor,
-  SectionContainer,
-  sxx,
-} from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, SectionContainer, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
@@ -80,7 +74,7 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background: lightenColor(theme.vars.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,

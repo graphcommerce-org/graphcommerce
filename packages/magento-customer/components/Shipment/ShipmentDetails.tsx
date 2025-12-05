@@ -3,7 +3,6 @@ import {
   DateTimeFormat,
   extendableComponent,
   filterNonNullableKeys,
-  lightenColor,
   SectionContainer,
   sxx,
 } from '@graphcommerce/next-ui'
@@ -38,7 +37,7 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background: lightenColor(theme.vars.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,

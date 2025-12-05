@@ -4,7 +4,6 @@ import { sxx } from '@graphcommerce/next-ui'
 import { Box, ListItemButton, styled, useEventCallback } from '@mui/material'
 import React from 'react'
 import { useMatchMedia } from '../../hooks'
-import { varAlpha } from '../../Styles/colorManipulator'
 import { iconChevronRight } from '../../icons'
 import { IconSvg } from '../../IconSvg'
 import { extendableComponent } from '../../Styles/extendableComponent'
@@ -98,7 +97,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
               gap: theme.spacings.xxs,
               '&.Mui-disabled': {
                 opacity: 1,
-                background: varAlpha(theme.vars.palette.action.hover, 0.025),
+                background: theme.alpha(theme.vars.palette.action.hover, 0.025),
               },
             }),
             hideItem

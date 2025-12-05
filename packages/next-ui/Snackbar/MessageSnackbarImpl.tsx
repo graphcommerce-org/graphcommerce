@@ -7,7 +7,7 @@ import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'
-import { breakpointVal, extendableComponent, lightenColor } from '../Styles'
+import { breakpointVal, extendableComponent } from '../Styles'
 
 type Size = 'normal' | 'wide'
 type Variant = 'contained' | 'pill'
@@ -208,7 +208,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                   onMouseDown={preventAnimationBubble}
                   onTouchStart={preventAnimationBubble}
                   sx={(theme) => ({
-                    backgroundColor: lightenColor(theme.vars.palette.background.paper, 0.1),
+                    backgroundColor: theme.lighten(theme.vars.palette.background.paper, 0.1),
                   })}
                 >
                   <IconSvg src={iconClose} />

@@ -1,6 +1,5 @@
 import type { ComponentsVariants, Theme } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
-import { darkenColor, lightenColor, varAlpha } from '../Styles/colorManipulator'
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
@@ -130,9 +129,9 @@ export const MuiButtonPill: ButtonVariants = [
     style: ({ theme }) => ({
       backgroundColor: theme.vars.palette.background.paper,
       '&:hover:not(.Mui-disabled)': {
-        backgroundColor: darkenColor(theme.vars.palette.background.default, 0.05),
+        backgroundColor: theme.darken(theme.vars.palette.background.default, 0.05),
         ...theme.applyStyles('dark', {
-          backgroundColor: lightenColor(theme.vars.palette.background.default, 0.2),
+          backgroundColor: theme.lighten(theme.vars.palette.background.default, 0.2),
         }),
       },
     }),
@@ -152,7 +151,7 @@ export const MuiButtonInline: ButtonVariants = [
     style: ({ theme }) => ({
       color: theme.vars.palette.primary.main,
       '&:hover:not(.Mui-disabled)': {
-        backgroundColor: varAlpha(theme.vars.palette.primary.main, 0.19),
+        backgroundColor: theme.alpha(theme.vars.palette.primary.main, 0.19),
       },
     }),
   },

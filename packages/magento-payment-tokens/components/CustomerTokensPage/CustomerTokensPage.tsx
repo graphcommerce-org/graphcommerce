@@ -11,7 +11,6 @@ import {
   iconCreditCard,
   LayoutOverlayHeader,
   LayoutTitle,
-  lightenColor,
   sxx,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
@@ -56,14 +55,14 @@ export function CustomerTokensPage() {
               <Trans>No stored payment methods found.</Trans>
             </Alert>
           )}
-          <Box sx={sxx((theme) => ({ display: 'grid', rowGap: theme.spacings.xs }))}>
+          <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.xs })}>
             {paymentTokens?.map((token) => (
               <Box
                 key={token.public_hash}
                 sx={(theme) => ({
                   px: theme.spacings.xxs,
                   py: theme.spacings.xxs,
-                  background: lightenColor(theme.vars.palette.background.default, 0.15),
+                  background: theme.lighten(theme.vars.palette.background.default, 0.15),
                   ...breakpointVal(
                     'borderRadius',
                     theme.shape.borderRadius * 2,

@@ -2,7 +2,6 @@ import {
   breakpointVal,
   DateTimeFormat,
   extendableComponent,
-  lightenColor,
   SectionContainer,
   sxx,
 } from '@graphcommerce/next-ui'
@@ -80,7 +79,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background: lightenColor(theme.vars.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,

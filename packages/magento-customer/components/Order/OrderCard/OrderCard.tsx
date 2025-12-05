@@ -7,7 +7,6 @@ import {
   filterNonNullableKeys,
   iconChevronRight,
   IconSvg,
-  lightenColor,
   NextLink,
   sxx,
 } from '@graphcommerce/next-ui'
@@ -71,7 +70,7 @@ export function OrderCard(props: OrderCardProps) {
           alignItems: 'flex-start',
           background: theme.vars.palette.background.default,
           ...theme.applyStyles('dark', {
-            background: lightenColor(theme.vars.palette.background.default, 0.15),
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
           }),
           ...breakpointVal(
             'borderRadius',

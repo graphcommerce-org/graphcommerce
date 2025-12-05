@@ -2,7 +2,7 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { extendableComponent, responsiveVal, varAlpha } from '@graphcommerce/next-ui/Styles'
+import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { styled, useTheme } from '@mui/material'
 import { m, motionValue, useTransform } from 'framer-motion'
 import { useEffect, useRef } from 'react'
@@ -41,7 +41,7 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
     item.visibility,
     [1, 0],
     [
-      `inset 0 0 0 2px ${theme.vars.palette.primary.main}, 0 0 0 4px ${varAlpha(
+      `inset 0 0 0 2px ${theme.vars.palette.primary.main}, 0 0 0 4px ${theme.alpha(
         theme.vars.palette.primary.main,
         theme.vars.palette.action.hoverOpacity,
       )}`,

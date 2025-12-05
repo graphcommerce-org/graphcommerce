@@ -6,7 +6,6 @@ import {
   sxx,
   useFabSize,
   useScrollY,
-  varAlpha,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
@@ -44,8 +43,8 @@ function CartFabContent(props: CartFabContentProps) {
   const scrollY = useScrollY()
   const opacity = useTransform(scrollY, [50, 60], [0, 1])
 
-  const paper0 = varAlpha(theme2.palette.background.paper, 0)
-  const paper1 = varAlpha(theme2.palette.background.paper, 1)
+  const paper0 = theme2.alpha(theme2.palette.background.paper, 0)
+  const paper1 = theme2.alpha(theme2.palette.background.paper, 1)
   const backgroundColor = useTransform(scrollY, [0, 10], [paper0, paper1])
 
   const cartIcon = icon ?? <IconSvg src={iconShoppingBag} size='large' />

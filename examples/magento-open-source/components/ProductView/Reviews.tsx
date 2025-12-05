@@ -19,7 +19,7 @@ export function Reviews(props: ReviewsProps) {
   return (
     <Row maxWidth='md' id='reviews'>
       <Box
-        sx={sxx((theme) => ({
+        sx={(theme) => ({
           position: 'relative',
           '&:focus': { outline: 'none' },
           display: 'flex',
@@ -29,7 +29,7 @@ export function Reviews(props: ReviewsProps) {
           marginBottom: theme.spacings.xxs,
           paddingBottom: theme.spacings.xxs,
           borderBottom: `1px solid ${theme.vars.palette.divider}`,
-        }))}
+        })}
       >
         <Typography variant='overline' color='textSecondary' component='h2'>
           {title} ({review_count})

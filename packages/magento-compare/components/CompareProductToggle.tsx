@@ -1,7 +1,7 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { compareVariant } from '@graphcommerce/next-config/config'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { Button, Fab, iconCompare, sxx, varAlpha } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -112,7 +112,7 @@ function CompareProductToggleBase(
                 stroke: strokeColorPlp,
               },
               '&:hover': {
-                backgroundColor: varAlpha(
+                backgroundColor: theme.alpha(
                   theme.vars.palette.text.primary,
                   theme.vars.palette.action.hoverOpacity,
                 ),
