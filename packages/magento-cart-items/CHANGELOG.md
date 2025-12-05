@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.0-canary.68
+
+### Major Changes
+
+- [#2557](https://github.com/graphcommerce-org/graphcommerce/pull/2557) [`ceaadd8`](https://github.com/graphcommerce-org/graphcommerce/commit/ceaadd87f0648982a068a3b07b1fa149c9127f49) - ## Material UI v5 → v7 Migration
+
+  This release upgrades Material UI from v5 to v7 with full CSS variables support. ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.67
 
 ## 10.0.0-canary.66
