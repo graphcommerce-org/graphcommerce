@@ -66,7 +66,9 @@ function InvoiceDetailPage() {
               >
                 <Trans>Invoice #{invoiceNumber}</Trans>
               </LayoutTitle>
+
               <PageMeta title={t`Invoice #${String(invoiceNumber)}`} metaRobots={['noindex']} />
+
               <OrderDetails order={order} />
               <InvoiceItems invoice={invoice} />
               <InvoiceTotals invoice={invoice} />
@@ -81,20 +83,26 @@ function InvoiceDetailPage() {
     </>
   )
 }
+
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   Layout: LayoutOverlay,
 }
 InvoiceDetailPage.pageOptions = pageOptions
+
 export default InvoiceDetailPage
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })
+
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
   })
+
   return {
     props: {
       ...(await countryRegions).data,

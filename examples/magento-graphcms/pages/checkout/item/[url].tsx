@@ -108,6 +108,7 @@ function CartItemEdit(props: Props) {
     </>
   )
 }
+
 CartItemEdit.pageOptions = {
   overlayGroup: 'cart',
   sharedKey: ({ asPath }) => asPath,
@@ -121,12 +122,16 @@ CartItemEdit.pageOptions = {
     justifyMd: 'start',
   },
 } as PageOptions<LayoutOverlayProps>
+
 export default CartItemEdit
+
 export const getServerSideProps: GetSSP = async (context) => {
   if (getCartDisabled(context.locale)) return { notFound: true }
   const result = await getStaticProps(context)
   delete result.revalidate
+
   flushMeasurePerf()
+
   if ('props' in result) return { props: { ...result.props, up: null } }
   return result
 }

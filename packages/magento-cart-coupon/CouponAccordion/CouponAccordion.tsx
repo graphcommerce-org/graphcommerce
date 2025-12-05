@@ -61,6 +61,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
         expandIcon={<IconSvg src={iconChevronDown} style={{ opacity: coupon ? 0 : 1 }} />}
         sx={sxx(
           (theme) => ({
+            typography: 'body1',
             px: theme.spacings.xs,
             '& .MuiAccordionSummary-content': {
               alignItems: 'center',
@@ -77,7 +78,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
         </Box>
         <RemoveCouponForm {...data.cart} sx={{ flex: 0 }} />
       </AccordionSummary>
-      <AccordionDetails sx={(theme) => ({ px: theme.spacings.xs })}>
+      <AccordionDetails sx={(theme) => ({ px: theme.spacings.xs, typography: 'body1' })}>
         <ApplyCouponForm />
       </AccordionDetails>
     </Accordion>

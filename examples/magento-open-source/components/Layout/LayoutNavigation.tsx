@@ -68,7 +68,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
             ...magentoMenuToNavigation(menu, true),
-            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem
               onClick={() => selection.set(false)}
               key='account'
@@ -111,12 +111,14 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
           itemPadding='md'
         />
       </NavigationProvider>
+
       <LayoutDefault
         {...uiProps}
         noSticky={router.asPath.split('?')[0] === '/'}
         header={
           <>
             <Logo />
+
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
@@ -157,6 +159,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               {/* The placeholder exists because the CartFab is sticky but we want to reserve the space for the <CartFab /> */}
               {cartEnabled && <PlaceholderFab />}
             </DesktopNavActions>
+
             <MobileTopRight>
               <SearchFab size='responsiveMedium' />
             </MobileTopRight>

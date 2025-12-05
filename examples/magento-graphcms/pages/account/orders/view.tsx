@@ -65,6 +65,7 @@ function OrderDetailPage() {
               >
                 <Trans>Order #{orderNumber}</Trans>
               </LayoutTitle>
+
               <PageMeta title={t`Order #${orderNumber}`} metaRobots={['noindex']} />
               <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
                 <OrderStateLabel {...order} />
@@ -80,21 +81,27 @@ function OrderDetailPage() {
     </>
   )
 }
+
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
   sharedKey: () => 'account/orders',
   Layout: LayoutOverlay,
 }
 OrderDetailPage.pageOptions = pageOptions
+
 export default OrderDetailPage
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const config = client.query({ query: StoreConfigDocument })
+
   const countryRegions = staticClient.query({
     query: CountryRegionsDocument,
   })
+
   return {
     props: {
       ...(await countryRegions).data,
