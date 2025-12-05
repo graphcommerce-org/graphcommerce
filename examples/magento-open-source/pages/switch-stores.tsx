@@ -90,7 +90,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'right', sizeMd: 'floating', justifyMd: 'start' },
 }
-
 StoresIndexPage.pageOptions = pageOptions
 
 export default StoresIndexPage

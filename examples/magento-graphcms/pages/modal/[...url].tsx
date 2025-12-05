@@ -46,6 +46,7 @@ function ModalPage(props: Props) {
           {page.metaDescription ?? ''}
         </Typography>
       </Box>
+
       <RowRenderer content={page.content} />
     </>
   )

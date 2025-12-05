@@ -87,11 +87,15 @@ function OrderSuccessPage() {
     </>
   )
 }
+
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
 }
+
 OrderSuccessPage.pageOptions = pageOptions
+
 export default OrderSuccessPage
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
   const client = graphqlSharedClient(context)

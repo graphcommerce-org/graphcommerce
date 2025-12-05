@@ -84,17 +84,23 @@ export function ComparePage() {
     </CompareListForm>
   )
 }
+
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'compare',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
+
 ComparePage.pageOptions = pageOptions
+
 export default ComparePage
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
+
   if (!compare) return { notFound: true }
+
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
