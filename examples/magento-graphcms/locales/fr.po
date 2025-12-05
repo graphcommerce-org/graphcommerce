@@ -30,14 +30,14 @@ msgid "Other"
 msgstr "Autre"
 
 msgid "Credit Memo number"
-msgstr "Numéro de crédit"
+msgstr "Numéro d'avoir"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Vous pouvez maintenant<0>vous connecter à nouveau</0>."
 
 #. placeholder {0}: maxDate.toLocaleDateString()
 msgid "Date must be before {0}"
-msgstr "La date doit être avant {0}"
+msgstr "La date doit être antérieure à {0}"
 
 msgid "New password"
 msgstr "Nouveau mot de passe"
@@ -46,7 +46,7 @@ msgid "Payment information"
 msgstr "Informations de paiement"
 
 msgid "Page {page} of {max}"
-msgstr "Page {page} de {max}"
+msgstr "Page {page} sur {max}"
 
 msgid "I understand that my account will be deleted and this can not be undone."
 msgstr "Je comprends que mon compte sera supprimé et que cela ne pourra pas être annulé."
@@ -55,7 +55,7 @@ msgid "Add to cart quantity"
 msgstr "Ajouter au panier quantité"
 
 msgid "Credit Memo not found"
-msgstr "Crédit non trouvé"
+msgstr "Avoir non trouvé"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "Pas de soucis! Entrez votre adresse email et nous vous enverrons un email avec les instructions pour réinitialiser votre mot de passe."
@@ -85,7 +85,7 @@ msgid "Passwords don't match"
 msgstr "Les mots de passe ne correspondent pas"
 
 msgid "Empty comparelist"
-msgstr "Équation vide"
+msgstr "Vider la comparaison"
 
 msgid "Free"
 msgstr "Gratuit"
@@ -109,7 +109,7 @@ msgid "Try a different product"
 msgstr "Essayez un autre produit"
 
 msgid "1. You are still paying in another window: Close this window and continue there."
-msgstr "1. Vous payez toujours dans une autre fenêtre : Fermez cette fenêtre et continuez là."
+msgstr "1. Vous êtes encore en train de payer dans une autre fenêtre : Fermez cette fenêtre et continuez là-bas."
 
 msgid "More options"
 msgstr "Plus d'options"
@@ -121,7 +121,7 @@ msgid "City"
 msgstr "Ville"
 
 msgid "Grand Total"
-msgstr "Total"
+msgstr "Total général"
 
 msgid "We couldn't find any results"
 msgstr "Nous n'avons trouvé aucun résultat"
@@ -184,7 +184,7 @@ msgid "Relevance"
 msgstr "Pertinence"
 
 msgid "Breadcrumbs"
-msgstr "Chapelure"
+msgstr "Fil d'Ariane"
 
 msgid "Product could not be found"
 msgstr "Le produit n'a pas pu être trouvé"
@@ -203,6 +203,10 @@ msgstr "Suivre la commande"
 
 msgid "Ordered items"
 msgstr "Articles commandés"
+
+#. placeholder {0}: String(invoiceNumber)
+msgid "Invoice #{0}"
+msgstr "Facture #{0}"
 
 msgid "Business"
 msgstr "Entreprise"
@@ -289,7 +293,7 @@ msgid "You haven't placed any reviews yet"
 msgstr "Vous n'avez pas encore écrit d'évaluation"
 
 msgid "Close overlay"
-msgstr "Fermer le surlignage"
+msgstr "Fermer la superposition"
 
 msgid "Remove from wishlist"
 msgstr "Supprimer de la liste de souhaits"
@@ -315,7 +319,7 @@ msgid "Your cart is empty"
 msgstr "Votre panier est vide"
 
 msgid "Cancel payment and unlock cart"
-msgstr "Annuler le paiement et déverrouiller le panier"
+msgstr "Annuler le paiement et débloquer le panier"
 
 msgid "All filters"
 msgstr "Tous les filtres"
@@ -384,7 +388,7 @@ msgid "This field is invalid"
 msgstr "Ce champ est invalide"
 
 msgid "Invoice #{invoiceNumber}"
-msgstr "Facture #{invoiceNumber}"
+msgstr "Facture n° {invoiceNumber}"
 
 msgid "Zip code or city"
 msgstr "Code postal ou ville"
@@ -420,7 +424,7 @@ msgid "Postcode"
 msgstr "Code postal"
 
 msgid "Grand total"
-msgstr "Total"
+msgstr "Total général"
 
 msgid "Reset"
 msgstr "Réinitialiser"
@@ -566,7 +570,7 @@ msgstr "Naviguer vers l'article {0}"
 
 #. placeholder {0}: params.pageSize
 msgid "{0} Per page"
-msgstr "{0} par page"
+msgstr "{0} Par page"
 
 msgid "Invoice number"
 msgstr "Numéro de facture"
@@ -635,7 +639,7 @@ msgid "Add to Cart"
 msgstr "Ajouter au panier"
 
 msgid "Refund total"
-msgstr "Total remboursé"
+msgstr "Montant total du remboursement"
 
 msgid "Invoice details"
 msgstr "Détails de la facture"
@@ -672,7 +676,7 @@ msgstr "Numéro de rue"
 
 #. placeholder {0}: product.name
 msgid "<0>{0}</0> has been added to your wishlist!"
-msgstr "<0>{0}</0> a été ajouté à votre liste de souhaits!"
+msgstr "<0>{0}</0> a été ajouté à votre liste de souhaits !"
 
 msgid "Shipping address"
 msgstr "Adresse d'expédition"
@@ -684,7 +688,7 @@ msgid "We are sorry, this product is currently out of stock."
 msgstr "Nous sommes désolés, ce produit est actuellement en rupture de stock."
 
 msgid "Shipment #{number}"
-msgstr "Expédition #{number}"
+msgstr "Expédition n° {number}"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Nous traitons votre paiement, cela prendra quelques secondes."
@@ -732,7 +736,7 @@ msgid "Discover our collection and add items to your wishlist!"
 msgstr "Découvrez notre collection et ajoutez des articles à votre liste de souhaits!"
 
 msgid "No stored payment methods found."
-msgstr "Aucune méthode de paiement enregistrée."
+msgstr "Aucune méthode de paiement enregistrée trouvée."
 
 msgid "Forgot your password?"
 msgstr "Mot de passe oublié?"
@@ -758,6 +762,10 @@ msgstr "Date de la commande"
 
 msgid "Shipment details"
 msgstr "Détails de l'expédition"
+
+#. placeholder {0}: String(creditMemoNumber)
+msgid "Credit Memo #{0}"
+msgstr "Avoir #{0}"
 
 msgid "Continue searching"
 msgstr "Continuer la recherche"
@@ -795,6 +803,9 @@ msgstr "Statut de la commande: {statusWithColor}"
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Compte confirmé. Vous pouvez maintenant vous connecter."
 
+msgid "You can not change this address as it is your billing address. Not correct? Please contact our support to update this."
+msgstr "Vous ne pouvez pas modifier cette adresse car il s'agit de votre adresse de facturation. Pas correct ? Veuillez contacter notre support pour la mettre à jour."
+
 msgid "Above <0/>"
 msgstr "Au-dessus de <0/>"
 
@@ -817,7 +828,7 @@ msgid "Something went wrong on the server, please try again later."
 msgstr "Quelque chose s'est mal passé sur le serveur, veuillez réessayer plus tard."
 
 msgid "Credit Memo #{number}"
-msgstr "Crédit #{number}"
+msgstr "Avoir n° {number}"
 
 msgid "More information"
 msgstr "Plus d'informations"
@@ -832,7 +843,7 @@ msgid "All {name}"
 msgstr "Tout {name}"
 
 msgid "As low as <0/>"
-msgstr "A partir de <0/>"
+msgstr "À partir de <0/>"
 
 msgid "Remove from comparison"
 msgstr "Supprimer de la comparaison"
@@ -906,7 +917,7 @@ msgstr "Changer"
 
 #. placeholder {0}: discount.percent_off
 msgid "Buy {quantity} for <0/> and save {0}%"
-msgstr "Acheter {quantity} pour <0/> et économiser {0}%"
+msgstr "Achetez {quantity} pour <0/> et économisez {0}%"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
@@ -945,7 +956,7 @@ msgid "Increase"
 msgstr "Augmenter"
 
 msgid "Credit Memo details"
-msgstr "Détails du crédit"
+msgstr "Détails de l'avoir"
 
 msgid "Refunded items"
 msgstr "Articles remboursés"
@@ -988,7 +999,7 @@ msgstr "Il semble que vous soyez hors ligne, veuillez réessayer plus tard."
 
 #. placeholder {0}: minDate.toLocaleDateString()
 msgid "Date must be after {0}"
-msgstr "La date doit être après {0}"
+msgstr "La date doit être postérieure à {0}"
 
 msgid "Order not found"
 msgstr "Ordre non trouvé"
@@ -1000,7 +1011,7 @@ msgid "Remove"
 msgstr "Supprimer"
 
 msgid "Shipment #{shipmentNumber}"
-msgstr "Expédition #{shipmentNumber}"
+msgstr "Expédition n° {shipmentNumber}"
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "Il y a un maximum de caractères '{maxLength}'"
@@ -1009,13 +1020,13 @@ msgid "Cancel order"
 msgstr "Annuler la commande"
 
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 msgid "Address not found"
 msgstr "Adresse non trouvée"
 
 msgid "Reorder"
-msgstr "Commander"
+msgstr "Commander à nouveau"
 
 msgid "Edit billing address"
 msgstr "Modifier l'adresse de facturation"
@@ -1067,7 +1078,7 @@ msgid "Skip to main content"
 msgstr "Passer au contenu principal"
 
 msgid "Invoice #{number}"
-msgstr "Facture #{number}"
+msgstr "Facture n° {number}"
 
 msgid "Account confirmation"
 msgstr "Confirmation du compte"
@@ -1088,7 +1099,7 @@ msgid "Continue"
 msgstr "Continuer"
 
 msgid "Credit Memo #{creditMemoNumber}"
-msgstr "Crédit #{creditMemoNumber}"
+msgstr "Avoir n° {creditMemoNumber}"
 
 msgid "Adjustment"
 msgstr "Ajustement"

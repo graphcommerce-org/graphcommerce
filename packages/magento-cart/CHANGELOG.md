@@ -1,5 +1,33 @@
 # Change Log
 
+## 10.0.0-canary.67
+
+### Patch Changes
+
+- [#2540](https://github.com/graphcommerce-org/graphcommerce/pull/2540) [`36e2bac`](https://github.com/graphcommerce-org/graphcommerce/commit/36e2bacb4fe765ce1fcd24dc36736e90bb17a7dc) - Add billingAddress permission (EDITABLE | READONLY) that controls whether the end user can update their billing address in the account section and checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+### Patch Changes
+
+- [`d7ad6a3`](https://github.com/graphcommerce-org/graphcommerce/commit/d7ad6a32acdd0c9540656feae9fbb1d5f5f3dbf9) - Additional export for GetCartTotals ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.57
 
 ## 10.0.0-canary.56

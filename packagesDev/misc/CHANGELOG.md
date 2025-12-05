@@ -1,5 +1,33 @@
 # @graphcommerce/misc
 
+## 10.0.0-canary.67
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+### Patch Changes
+
+- [#2556](https://github.com/graphcommerce-org/graphcommerce/pull/2556) [`4aa6c92`](https://github.com/graphcommerce-org/graphcommerce/commit/4aa6c9284cdc6a43abe1ba8173ad4840e0e808fc) - Bump next from 16.0.6 to 16.0.7 ([@dependabot](https://github.com/apps/dependabot))
+
+## 10.0.0-canary.59
+
+### Patch Changes
+
+- [`f498226`](https://github.com/graphcommerce-org/graphcommerce/commit/f4982262289bf525da7b102d44fb9c1f06367edb) - Solve issue where the translations weren't loaded when only using graphqlSharedClient instead of graphqlSsrClient. ([@paales](https://github.com/paales))
+
+## 10.0.0-canary.58
+
 ## 10.0.0-canary.57
 
 ### Patch Changes

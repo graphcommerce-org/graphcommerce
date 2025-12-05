@@ -1,5 +1,29 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 10.0.0-canary.67
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+### Patch Changes
+
+- [`686722c`](https://github.com/graphcommerce-org/graphcommerce/commit/686722cb35dadbbe0dc1c8d144b1f5e2b65d433d) - docs ([@paales](https://github.com/paales))
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
 ## 10.0.0-canary.57
 
 ## 10.0.0-canary.56

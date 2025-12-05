@@ -30,7 +30,7 @@ msgid "Other"
 msgstr "Otro"
 
 msgid "Credit Memo number"
-msgstr "Número de crédito"
+msgstr "Número de nota de crédito"
 
 msgid "You can now <0>sign in again</0>."
 msgstr "Ahora puede<0>iniciar sesión de nuevo</0>."
@@ -55,7 +55,7 @@ msgid "Add to cart quantity"
 msgstr "Añadir al carrito cantidad"
 
 msgid "Credit Memo not found"
-msgstr "Crédito no encontrado"
+msgstr "Nota de crédito no encontrada"
 
 msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
 msgstr "No hay problemas! Introduzca su dirección de correo electrónico y le enviaremos un correo electrónico con instrucciones para restablecer su contraseña."
@@ -85,7 +85,7 @@ msgid "Passwords don't match"
 msgstr "Las contraseñas no coinciden"
 
 msgid "Empty comparelist"
-msgstr "Ecuación vacía"
+msgstr "Vaciar comparación"
 
 msgid "Free"
 msgstr "Gratis"
@@ -109,7 +109,7 @@ msgid "Try a different product"
 msgstr "Pruebe un producto diferente"
 
 msgid "1. You are still paying in another window: Close this window and continue there."
-msgstr "1. Aún estás pagando en otra ventana: Cierra esta ventana y continúa allí."
+msgstr "1. Todavía está pagando en otra ventana: Cierre esta ventana y continúe allí."
 
 msgid "More options"
 msgstr "Más opciones"
@@ -121,7 +121,7 @@ msgid "City"
 msgstr "Ciudad"
 
 msgid "Grand Total"
-msgstr "Total"
+msgstr "Total general"
 
 msgid "We couldn't find any results"
 msgstr "No pudimos encontrar ningún resultado"
@@ -204,6 +204,10 @@ msgstr "Seguir pedido"
 msgid "Ordered items"
 msgstr "Artículos pedidos"
 
+#. placeholder {0}: String(invoiceNumber)
+msgid "Invoice #{0}"
+msgstr "Factura #{0}"
+
 msgid "Business"
 msgstr "Negocio"
 
@@ -256,7 +260,7 @@ msgid "Apply"
 msgstr "Aplicar"
 
 msgid "You are reviewing {name}"
-msgstr "Estás revisando {name}"
+msgstr "Está revisando {name}"
 
 msgid "Current Password"
 msgstr "Contraseña actual"
@@ -378,13 +382,13 @@ msgid "Product not available in {allLabels}"
 msgstr "Producto no disponible en {allLabels}"
 
 msgid "2. You don't have an open payment window: Press the button below."
-msgstr "2. No tienes una ventana de pago abierta: Presiona el botón a continuación."
+msgstr "2. No tiene una ventana de pago abierta: Pulse el botón de abajo."
 
 msgid "This field is invalid"
 msgstr "Este campo es inválido"
 
 msgid "Invoice #{invoiceNumber}"
-msgstr "Factura #{invoiceNumber}"
+msgstr "Factura n.º {invoiceNumber}"
 
 msgid "Zip code or city"
 msgstr "Código postal o ciudad"
@@ -635,7 +639,7 @@ msgid "Add to Cart"
 msgstr "Añadir al carrito"
 
 msgid "Refund total"
-msgstr "Reembolso total"
+msgstr "Total del reembolso"
 
 msgid "Invoice details"
 msgstr "Detalles de la factura"
@@ -644,7 +648,7 @@ msgid "Light Mode"
 msgstr "Modo claro"
 
 msgid "Your address has been added"
-msgstr "Su dirección ha sido añadida"
+msgstr "Tu dirección ha sido añadida"
 
 msgid "Reviews"
 msgstr "Comentarios"
@@ -672,7 +676,7 @@ msgstr "Número de casa"
 
 #. placeholder {0}: product.name
 msgid "<0>{0}</0> has been added to your wishlist!"
-msgstr "<0>{0}</0> ha sido añadido a tu lista de deseos!"
+msgstr "¡<0>{0}</0> ha sido añadido a su lista de deseos!"
 
 msgid "Shipping address"
 msgstr "Dirección de envío"
@@ -684,7 +688,7 @@ msgid "We are sorry, this product is currently out of stock."
 msgstr "Lo sentimos, este producto está agotado actualmente."
 
 msgid "Shipment #{number}"
-msgstr "Envío #{number}"
+msgstr "Envío n.º {number}"
 
 msgid "We’re processing your payment, this will take a few seconds."
 msgstr "Estamos procesando su pago, esto tardará unos segundos."
@@ -732,7 +736,7 @@ msgid "Discover our collection and add items to your wishlist!"
 msgstr "Descubra nuestra colección y añada artículos a su lista de deseos!"
 
 msgid "No stored payment methods found."
-msgstr "No se encontraron métodos de pago almacenados."
+msgstr "No se encontraron métodos de pago guardados."
 
 msgid "Forgot your password?"
 msgstr "¿Olvidó su contraseña?"
@@ -757,7 +761,11 @@ msgid "Order date"
 msgstr "Fecha del pedido"
 
 msgid "Shipment details"
-msgstr "Detalles de envío"
+msgstr "Detalles del envío"
+
+#. placeholder {0}: String(creditMemoNumber)
+msgid "Credit Memo #{0}"
+msgstr "Nota de crédito #{0}"
 
 msgid "Continue searching"
 msgstr "Seguir buscando"
@@ -781,7 +789,7 @@ msgid "Review score"
 msgstr "Puntuación de revisión"
 
 msgid "Stored payment methods"
-msgstr "Métodos de pago almacenados"
+msgstr "Métodos de pago guardados"
 
 msgid "Less options"
 msgstr "Menos opciones"
@@ -794,6 +802,9 @@ msgstr "Estado del pedido: {statusWithColor}"
 
 msgid "Account confirmed. You can now proceed to sign in."
 msgstr "Cuenta confirmada. Ahora puede proceder a iniciar sesión."
+
+msgid "You can not change this address as it is your billing address. Not correct? Please contact our support to update this."
+msgstr "No puede cambiar esta dirección ya que es su dirección de facturación. ¿No es correcto? Por favor, contacte con nuestro soporte para actualizarlo."
 
 msgid "Above <0/>"
 msgstr "Arriba <0/>"
@@ -817,7 +828,7 @@ msgid "Something went wrong on the server, please try again later."
 msgstr "Algo salió mal en el servidor, por favor inténtelo de nuevo más tarde."
 
 msgid "Credit Memo #{number}"
-msgstr "Crédito #{number}"
+msgstr "Nota de crédito n.º {number}"
 
 msgid "More information"
 msgstr "Más información"
@@ -832,7 +843,7 @@ msgid "All {name}"
 msgstr "Todos los {name}"
 
 msgid "As low as <0/>"
-msgstr "A partir de <0/>"
+msgstr "Desde <0/>"
 
 msgid "Remove from comparison"
 msgstr "Eliminar de la comparación"
@@ -906,7 +917,7 @@ msgstr "Cambiar"
 
 #. placeholder {0}: discount.percent_off
 msgid "Buy {quantity} for <0/> and save {0}%"
-msgstr "Comprar {quantity} por <0/> y ahorrar {0}%"
+msgstr "Compre {quantity} por <0/> y ahorre {0}%"
 
 msgid "Total <0/>"
 msgstr "Total <0/>"
@@ -945,7 +956,7 @@ msgid "Increase"
 msgstr "Aumentar"
 
 msgid "Credit Memo details"
-msgstr "Detalles de crédito"
+msgstr "Detalles de la nota de crédito"
 
 msgid "Refunded items"
 msgstr "Artículos reembolsados"
@@ -988,7 +999,7 @@ msgstr "Parece que estás desconectado, por favor inténtalo de nuevo más tarde
 
 #. placeholder {0}: minDate.toLocaleDateString()
 msgid "Date must be after {0}"
-msgstr "La fecha debe ser después de {0}"
+msgstr "La fecha debe ser posterior a {0}"
 
 msgid "Order not found"
 msgstr "Pedido no encontrado"
@@ -1000,7 +1011,7 @@ msgid "Remove"
 msgstr "Eliminar"
 
 msgid "Shipment #{shipmentNumber}"
-msgstr "Envío #{shipmentNumber}"
+msgstr "Envío n.º {shipmentNumber}"
 
 msgid "There is a maximum of ‘{maxLength}’ characters"
 msgstr "Hay un máximo de caracteres '{maxLength}'"
@@ -1034,7 +1045,7 @@ msgstr "Debe iniciar sesión para continuar"
 
 #. placeholder {0}: response.resultCode
 msgid "We can not process your payment, we received an unsupported status \"<0>{0}</0>\". Please try again or select a different payment method."
-msgstr "No podemos procesar su pago, recibimos un estado no admitido \"<0>{0}\". Por favor, inténtelo de nuevo o seleccione un método de pago diferente."
+msgstr "No podemos procesar su pago, recibimos un estado no compatible \"<0>{0}</0>\". Por favor, inténtelo de nuevo o seleccione un método de pago diferente."
 
 msgid "Add another product to start comparing."
 msgstr "Añade otro producto para empezar a comparar."
@@ -1067,7 +1078,7 @@ msgid "Skip to main content"
 msgstr "Saltar al contenido principal"
 
 msgid "Invoice #{number}"
-msgstr "Factura #{number}"
+msgstr "Factura n.º {number}"
 
 msgid "Account confirmation"
 msgstr "Confirmación de cuenta"
@@ -1079,7 +1090,7 @@ msgid "Back to home"
 msgstr "Volver a la página principal"
 
 msgid "Clear"
-msgstr "Filtro claro"
+msgstr "Borrar"
 
 msgid "Message"
 msgstr "Mensaje"
@@ -1088,7 +1099,7 @@ msgid "Continue"
 msgstr "Continuar"
 
 msgid "Credit Memo #{creditMemoNumber}"
-msgstr "Crédito #{creditMemoNumber}"
+msgstr "Nota de crédito n.º {creditMemoNumber}"
 
 msgid "Adjustment"
 msgstr "Ajuste"

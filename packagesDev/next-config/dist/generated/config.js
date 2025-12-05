@@ -1,6 +1,10 @@
 import { z } from 'zod';
 export const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 export const definedNonNullAnySchema = z.any().refine((v)=>isDefinedNonNullAny(v));
+export const BillingAddressPermissionsSchema = z.enum([
+    'EDITABLE',
+    'READONLY'
+]);
 export const CartPermissionsSchema = z.enum([
     'CUSTOMER_ONLY',
     'DISABLED',
@@ -58,12 +62,14 @@ export function GraphCommerceConfigSchema() {
         customerXMagentoCacheIdDisable: z.boolean().nullish(),
         dataLayer: z.lazy(()=>DatalayerConfigSchema().nullish()),
         debug: z.lazy(()=>GraphCommerceDebugConfigSchema().nullish()),
+        demoMode: z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: z.boolean().nullish(),
         googleAnalyticsId: z.string().nullish(),
         googlePlaystore: z.lazy(()=>GraphCommerceGooglePlaystoreConfigSchema().nullish()),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
         graphqlMeshEditMode: z.boolean().default(false).nullish(),
+        hygraphEndpoint: z.string().min(1),
         hygraphManagementApi: z.string().nullish(),
         hygraphProjectId: z.string().nullish(),
         hygraphWriteAccessToken: z.string().nullish(),
@@ -101,6 +107,7 @@ export function GraphCommerceGooglePlaystoreConfigSchema() {
 }
 export function GraphCommercePermissionsSchema() {
     return z.object({
+        billingAddress: BillingAddressPermissionsSchema.nullish(),
         cart: CartPermissionsSchema.nullish(),
         checkout: CartPermissionsSchema.nullish(),
         customerAccount: CustomerAccountPermissionsSchema.nullish(),
@@ -117,6 +124,7 @@ export function GraphCommerceStorefrontConfigSchema() {
         googleAnalyticsId: z.string().nullish(),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
+        hygraphLocales: z.array(z.string().min(1)).nullish(),
         linguiLocale: z.string().nullish(),
         locale: z.string().min(1),
         magentoStoreCode: z.string().min(1),

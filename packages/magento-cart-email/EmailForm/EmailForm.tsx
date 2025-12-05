@@ -54,7 +54,10 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
 
   useFormCompose({ form, step, submit, key: 'EmailForm' })
 
-  const showLogin = enableGuestCheckoutLogin && canLogin && isEmailAvailable.data?.isEmailAvailable
+  const showLogin =
+    enableGuestCheckoutLogin &&
+    canLogin &&
+    isEmailAvailable.data?.isEmailAvailable?.is_email_available === false
 
   return (
     <Box component='form' noValidate onSubmit={submit} sx={sx}>
@@ -70,7 +73,7 @@ const EmailFormBase = React.memo<EmailFormProps>((props) => {
             autoComplete: 'email',
             endAdornment: showLogin && (
               <Button
-                href={`/account/signin?email=${email}`}
+                href={`/account/signin?email=${encodeURIComponent(email)}`}
                 color='secondary'
                 style={{ whiteSpace: 'nowrap' }}
               >

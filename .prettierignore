@@ -1,0 +1,4 @@
+dist
+build
+**/generated/**
+docs/framework/config.md

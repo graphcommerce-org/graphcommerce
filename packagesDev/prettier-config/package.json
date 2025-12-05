@@ -2,7 +2,7 @@
   "name": "@graphcommerce/prettier-config-pwa",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.0.0-canary.57",
+  "version": "10.0.0-canary.67",
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
     "prettier": "^3.7.4",

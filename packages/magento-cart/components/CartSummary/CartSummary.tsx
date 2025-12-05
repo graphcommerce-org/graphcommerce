@@ -1,4 +1,5 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
+import { useBillingAddressPermission } from '@graphcommerce/magento-customer'
 import {
   breakpointVal,
   extendableComponent,
@@ -32,6 +33,8 @@ export function CartSummary(props: CartSummaryProps) {
   const { href: historyHref, onClick: historyOnClick } = useHistoryLink({
     href: '/checkout',
   })
+
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   if (!data?.cart) return null
 
@@ -143,7 +146,7 @@ export function CartSummary(props: CartSummaryProps) {
             labelLeft={<Trans>Billing address</Trans>}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
-              editable ? (
+              editable && !billingAddressReadonly ? (
                 <Link
                   href='/checkout/edit/billing-address'
                   color='secondary'

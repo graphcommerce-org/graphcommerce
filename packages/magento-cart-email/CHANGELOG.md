@@ -1,5 +1,29 @@
 # Change Log
 
+## 10.0.0-canary.67
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+### Patch Changes
+
+- [#2551](https://github.com/graphcommerce-org/graphcommerce/pull/2551) [`d029c16`](https://github.com/graphcommerce-org/graphcommerce/commit/d029c16be3daf94d25c3389dd904adc0a55765f0) - fix(checkout): fix faulty check if email exists in the checkout; keep special characters in email on redirect to login ([@FrankHarland](https://github.com/FrankHarland))
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
 ## 10.0.0-canary.57
 
 ## 10.0.0-canary.56

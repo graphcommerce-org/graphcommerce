@@ -10,7 +10,7 @@ The configuration file is a javascript file that exports a `GraphCommerceConfig`
 
 ## Using configuration
 
-Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+Configuration can be accessed in your project by importing the config from `@graphcommerce/next-config/config`.
 
 ```tsx
 import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
