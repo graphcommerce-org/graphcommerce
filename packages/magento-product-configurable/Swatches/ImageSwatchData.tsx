@@ -1,5 +1,5 @@
 import { Image } from '@graphcommerce/image'
-import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ImageSwatchDataFragment } from './ImageSwatchData.gql'
@@ -20,12 +20,12 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
           '& .image': {
             height: responsiveVal(40, 80),
             width: responsiveVal(40, 80),
-            border: `3px solid ${theme.palette.divider}`,
+            border: `3px solid ${theme.vars.palette.divider}`,
             boxSizing: 'border-box',
             borderRadius: '50%',
             objectFit: 'cover',
@@ -35,8 +35,8 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
             height: 20,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {thumbnail ? (
         <Image

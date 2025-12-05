@@ -2,7 +2,7 @@ import { useQuery } from '@graphcommerce/graphql'
 import type { ProductReviewsProps } from '@graphcommerce/magento-review'
 import { ProductReviews } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { Row } from '@graphcommerce/next-ui'
+import { Row, sxx } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
 
 type ReviewsProps = ProductReviewsProps & { title: React.ReactNode }
@@ -19,19 +19,17 @@ export function Reviews(props: ReviewsProps) {
   return (
     <Row maxWidth='md' id='reviews'>
       <Box
-        sx={[
-          (theme) => ({
-            position: 'relative',
-            '&:focus': { outline: 'none' },
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: theme.spacings.sm,
-            marginBottom: theme.spacings.xxs,
-            paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          }),
-        ]}
+        sx={(theme) => ({
+          position: 'relative',
+          '&:focus': { outline: 'none' },
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.xxs,
+          paddingBottom: theme.spacings.xxs,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
+        })}
       >
         <Typography variant='overline' color='textSecondary' component='h2'>
           {title} ({review_count})

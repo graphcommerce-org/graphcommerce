@@ -56,9 +56,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
           showValid
         />
       </FormRow>
-
       <ApolloCustomerErrorAlert error={error} />
-
       <FormActions>
         <Button
           type='submit'

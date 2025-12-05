@@ -99,7 +99,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
             showValid
           />
         </FormRow>
-
         {billingAddressReadonly && address?.default_billing ? (
           <Trans>
             You can not change this address as it is your billing address. Not correct? Please
@@ -119,7 +118,6 @@ export function EditAddressForm(props: EditAddressFormProps) {
           </FormActions>
         )}
       </Form>
-
       <ApolloErrorSnackbar error={error} />
     </>
   )

@@ -1,6 +1,6 @@
 import type { Components, Theme, ThemeOptions } from '@mui/material'
 import { createTheme as createMuiTheme } from '@mui/material'
-import type { Shadows } from '@mui/material/styles/shadows'
+import type { Shadows } from '@mui/material/styles'
 import { spreadVal } from '../Styles/spreadVal'
 import { breakpoints } from './breakpoints'
 

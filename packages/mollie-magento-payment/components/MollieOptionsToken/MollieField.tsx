@@ -110,18 +110,21 @@ export function MollieField(props: MollieFieldProps) {
         label={label}
         error={isSubmitted && (!!state.error || !state.valid)}
         helperText={isSubmitted && (state.error || (!state.valid && `${label} cannot be empty`))}
-        InputProps={{
-          inputComponent: InputComponent,
-          inputProps: { component: IframeField },
-        }}
-        InputLabelProps={{
-          sx: (theme) => ({
-            background:
-              theme.palette.mode === 'light'
-                ? theme.palette.secondary.light
-                : theme.palette.background.paper,
-          }),
-          shrink: true,
+        slotProps={{
+          input: {
+            inputComponent: InputComponent,
+            inputProps: { component: IframeField },
+          },
+
+          inputLabel: {
+            sx: (theme) => ({
+              background: theme.vars.palette.secondary.light,
+              ...theme.applyStyles('dark', {
+                background: theme.vars.palette.background.paper,
+              }),
+            }),
+            shrink: true,
+          },
         }}
       />
     </mollieFieldContext.Provider>

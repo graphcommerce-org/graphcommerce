@@ -74,12 +74,9 @@ function OrderSuccessPage() {
             </LayoutTitle>
             <CartSummary />
             <CartItemSummary />
-
             <SignupNewsletter />
-
             <InlineAccount />
-
-            <Box textAlign='center' m={8}>
+            <Box sx={{ textAlign: 'center', m: 8 }}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
                 <Trans>Back to home</Trans>
               </Button>
@@ -94,13 +91,13 @@ function OrderSuccessPage() {
 const pageOptions: PageOptions<LayoutMinimalProps> = {
   Layout: LayoutMinimal,
 }
+
 OrderSuccessPage.pageOptions = pageOptions
 
 export default OrderSuccessPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
-
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -108,7 +105,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-
   return {
     props: {
       ...(await layout).data,

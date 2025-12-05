@@ -13,16 +13,19 @@ export function Logo() {
 
   return (
     <LogoBase
-      sx={{
+      sx={(theme) => ({
         '& .GcLogo-logo': {
           display: 'block',
           width: 'auto',
           height: { xs: '16px', md: '27px' },
           paddingLeft: { xs: '10px', md: 0 },
           marginTop: { xs: 0, md: '-5px' },
-          filter: (theme) => (theme.palette.mode === 'dark' ? 'invert(100%)' : 'none'),
+          filter: 'none',
+          ...theme.applyStyles('dark', {
+            filter: 'invert(100%)',
+          }),
         },
-      }}
+      })}
       image={
         magentoLogo
           ? { alt: logo_alt ?? '', src, height: logo_height, width: logo_width }

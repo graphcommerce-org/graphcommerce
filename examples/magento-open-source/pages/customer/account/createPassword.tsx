@@ -37,7 +37,7 @@ function CustomerAccountCreatePasswordPage() {
             <Trans>Set your new password</Trans>
           </LayoutTitle>
 
-          <Box textAlign='center'>
+          <Box sx={{ textAlign: 'center' }}>
             <p>
               <Trans>Fill in your new password, confirm it and click on the save button.</Trans>
             </p>
@@ -53,7 +53,7 @@ function CustomerAccountCreatePasswordPage() {
             <Trans>You have now successfully reset your password</Trans>
           </LayoutTitle>
 
-          <Box textAlign='center'>
+          <Box sx={{ textAlign: 'center' }}>
             <p>
               <Trans>
                 You can now{' '}

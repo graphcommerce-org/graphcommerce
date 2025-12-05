@@ -1,4 +1,4 @@
-import { alpha } from '@mui/material'
+import { sxx } from '@graphcommerce/next-ui'
 import type { OrderStateLabelProps } from './OrderStateLabel'
 import { OrderStateLabel } from './OrderStateLabel'
 
@@ -12,33 +12,32 @@ export function OrderStateLabelInline(props: OrderStateLabelInlineProps) {
     <OrderStateLabel
       {...props}
       short
-      sx={[
+      sx={sxx(
         (theme) => ({
           fontStyle: 'normal',
           display: 'inline-block',
           padding: '0 6px',
           borderRadius: '3px',
           fontWeight: 'normal',
-          background: alpha(theme.palette.secondary.main, 0.125),
-
+          background: theme.alpha(theme.vars.palette.secondary.main, 0.125),
           '&.orderStatePending': {
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           },
           '&.orderStateProcessing': {
-            color: theme.palette.info.main,
-            background: alpha(theme.palette.info.main, 0.125),
+            color: theme.vars.palette.info.main,
+            background: theme.alpha(theme.vars.palette.info.main, 0.125),
           },
           '&.orderStateComplete': {
-            color: theme.palette.success.main,
-            background: alpha(theme.palette.success.main, 0.125),
+            color: theme.vars.palette.success.main,
+            background: theme.alpha(theme.vars.palette.success.main, 0.125),
           },
           '&.orderStateClosed': {
-            color: theme.palette.text.disabled,
-            background: alpha(theme.palette.text.disabled, 0.125),
+            color: theme.vars.palette.text.disabled,
+            background: theme.alpha(theme.vars.palette.text.disabled, 0.125),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

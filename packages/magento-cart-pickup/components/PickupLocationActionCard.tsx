@@ -31,11 +31,9 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
                   border: '0 transparent',
                   width: 'auto!important',
                   maxWidth: '100%',
-
                   '& td': {
                     width: 'auto!important',
                     padding: `0 ${theme.spacings.xl}`,
-
                     '&:first-of-type': {
                       paddingLeft: 0,
                     },

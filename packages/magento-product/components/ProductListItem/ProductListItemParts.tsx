@@ -1,5 +1,5 @@
 import type { ImageProps } from '@graphcommerce/image'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Skeleton } from '@mui/material'
 import React from 'react'
@@ -93,10 +93,7 @@ export function ProductListItemReal(props: ProductListItemRealProps) {
       className={classes.root}
       onClick={(e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>) => onClick?.(e, props)}
       {...slotProps.root}
-      sx={[
-        ...(Array.isArray(sx) ? sx : [sx]),
-        ...(Array.isArray(slotProps.root?.sx) ? slotProps.root.sx : [slotProps.root?.sx]),
-      ]}
+      sx={sxx(sx, slotProps.root?.sx)}
       ref={slotProps.root?.ref as React.Ref<HTMLAnchorElement | HTMLDivElement>}
     >
       <ProductImageContainer className={classes.imageContainer}>

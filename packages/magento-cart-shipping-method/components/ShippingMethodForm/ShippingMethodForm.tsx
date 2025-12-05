@@ -123,7 +123,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
         <FormHeader variant='h4' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
           <Trans>Shipping method</Trans>
         </FormHeader>
-
         <ActionCardListForm
           control={control}
           name='carrierMethod'
@@ -141,7 +140,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     </FormProvider>
   )
 }
-
 /** @public */
 export function useShippingMethod() {
   return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })

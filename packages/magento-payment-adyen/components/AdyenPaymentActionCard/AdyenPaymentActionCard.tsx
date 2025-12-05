@@ -22,10 +22,17 @@ export function AdyenPaymentActionCard(props: PaymentMethodActionCardProps) {
             layout='fixed'
             width={icon.width}
             height={icon.height}
-            sx={{ width: `calc(${iconSize} / ${icon.height} *  ${icon.width})`, height: iconSize }}
+            sx={{
+              width: `calc(${iconSize} / ${'var(--icon-height)'} *  ${'var(--icon-width)'})`,
+              height: iconSize,
+            }}
             sizes={iconSize}
             unoptimized
             src={icon.url}
+            style={{
+              '--icon-height': icon.height,
+              '--icon-width': icon.width,
+            }}
           />
         )
       }

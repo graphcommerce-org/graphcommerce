@@ -1,5 +1,6 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ListItemButtonProps } from '@mui/material'
-import { alpha, ListItemButton } from '@mui/material'
+import { ListItemButton } from '@mui/material'
 import type { ElementType } from 'react'
 import { forwardRef, memo } from 'react'
 import { useSearchItem } from './SearchOverlayProvider'
@@ -23,20 +24,20 @@ export const SearchOverlayItem = memo(
         <ListItemButton
           {...getRootProps()}
           component={component}
-          sx={[
+          sx={sxx(
             (theme) => ({
               px: theme.page.horizontal,
               mx: `calc(${theme.page.horizontal} * -1)`,
               '&.Mui-selected': {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-                backgroundColor: alpha(
-                  theme.palette.background.paper,
-                  theme.palette.action.selectedOpacity,
+                boxShadow: `inset 0 0 0 2px ${theme.vars.palette.primary.main}`,
+                backgroundColor: theme.alpha(
+                  theme.vars.palette.background.paper,
+                  theme.vars.palette.action.selectedOpacity,
                 ),
               },
             }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            sx,
+          )}
           {...rest}
         />
       )

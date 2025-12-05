@@ -1,11 +1,11 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { compareVariant } from '@graphcommerce/next-config/config'
 import type { FabProps } from '@graphcommerce/next-ui'
-import { Button, Fab, iconCompare } from '@graphcommerce/next-ui'
+import { Button, Fab, iconCompare, sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { alpha, Checkbox, useTheme } from '@mui/material'
+import { Checkbox, useTheme } from '@mui/material'
 import { useState } from 'react'
 import type { CompareProductIdInternalFragment } from '../graphql'
 import { AddProductsToCompareListDocument } from '../graphql/AddProductsToCompareList.gql'
@@ -104,33 +104,34 @@ function CompareProductToggleBase(
           onTouchStart={preventAnimationBubble}
           size='responsive'
           color='inherit'
-          sx={[
+          sx={sxx(
             (theme) => ({
-              backgroundColor:
-                theme.palette.mode === 'light' ? theme.palette.background.paper : 'transparent',
+              backgroundColor: 'transparent',
               flex: '0 0 auto',
               '& svg': {
                 stroke: strokeColorPlp,
               },
               '&:hover': {
-                backgroundColor: alpha(
-                  theme.palette.text.primary,
-                  theme.palette.action.hoverOpacity,
+                backgroundColor: theme.alpha(
+                  theme.vars.palette.text.primary,
+                  theme.vars.palette.action.hoverOpacity,
                 ),
               },
               '.SidebarGallery-root & svg': {
                 stroke: strokeColorPdp,
               },
+              ...theme.applyStyles('light', {
+                backgroundColor: theme.vars.palette.background.paper,
+              }),
             }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            sx,
+          )}
           title={label}
           aria-label={label}
           icon={iconCompare}
           loading={loading}
         />
       )}
-
       {displayMessageBar && (
         <CompareMessageSnackbar
           displayMessageBar={displayMessageBar}

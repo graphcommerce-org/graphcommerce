@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
@@ -15,10 +16,10 @@ function ProductPageAddToCartRow(props: ProductPageAddToCartRowProps) {
   return (
     <>
       <Box
-        sx={[
+        sx={sxx(
           (theme) => ({ display: 'flex', alignItems: 'center', columnGap: theme.spacings.xs }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         {children}
       </Box>

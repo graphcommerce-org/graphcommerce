@@ -1,6 +1,7 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { SnackbarProps, SxProps, Theme } from '@mui/material'
-import { Box, Fab, lighten, Portal, Snackbar, SnackbarContent } from '@mui/material'
+import { Box, Fab, Portal, Snackbar, SnackbarContent } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { iconCheckmark, iconClose, iconSadFace } from '../icons'
 import iconInfo from '../icons/info.svg'
@@ -108,13 +109,13 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
         open={showSnackbar}
         autoHideDuration={autoHide ? 5000 : null}
         className={classes.root}
-        sx={[
+        sx={sxx(
           {
             pointerEvents: 'none',
             '& > *': { pointerEvents: 'auto' },
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         onClose={hideSnackbar}
       >
         <SnackbarContent
@@ -122,8 +123,8 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
           className={classes.content}
           sx={(theme) => ({
             '&.variantPill': {
-              backgroundColor: theme.palette.background.paper,
-              color: theme.palette.text.primary,
+              backgroundColor: theme.vars.palette.background.paper,
+              color: theme.vars.palette.text.primary,
               [theme.breakpoints.up('md')]: {
                 ...breakpointVal(
                   'borderRadius',
@@ -154,7 +155,6 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                 gridArea: 'children',
               },
             },
-
             '&.disableIcon .MuiSnackbarContent-message': {
               gridTemplate: {
                 xs: `"children close"
@@ -180,10 +180,22 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
           message={
             <>
               {!disableIcon && <IconSvg src={icon2} size='large' />}
-              <Box gridArea='children'>{children}</Box>
+              <Box
+                sx={{
+                  gridArea: 'children',
+                }}
+              >
+                {children}
+              </Box>
               {/* </Box> */}
               {action && (
-                <Box className={classes.actionButton} onClick={hideSnackbar} gridArea='action'>
+                <Box
+                  className={classes.actionButton}
+                  onClick={hideSnackbar}
+                  sx={{
+                    gridArea: 'action',
+                  }}
+                >
                   {action}
                 </Box>
               )}
@@ -196,7 +208,7 @@ export default function MessageSnackbarImpl(props: MessageSnackbarProps) {
                   onMouseDown={preventAnimationBubble}
                   onTouchStart={preventAnimationBubble}
                   sx={(theme) => ({
-                    backgroundColor: lighten(theme.palette.background.paper, 0.1),
+                    backgroundColor: theme.lighten(theme.vars.palette.background.paper, 0.1),
                   })}
                 >
                   <IconSvg src={iconClose} />

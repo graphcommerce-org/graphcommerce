@@ -100,7 +100,6 @@ function TextFieldElementBase(props: TextFieldElementProps): React.ReactNode {
       onBlur={onBlur}
       name={name}
       value={toValue(value, type)}
-      inputProps={{ ...rest.inputProps, onAnimationStart }}
       onChange={(ev) => {
         let changeValue: string | number | Date = ev.target.value
 
@@ -126,15 +125,19 @@ function TextFieldElementBase(props: TextFieldElementProps): React.ReactNode {
       type={type}
       error={Boolean(error) || rest.error}
       helperText={error ? error.message : rest.helperText}
-      InputLabelProps={{ ...rest.InputLabelProps, shrink }}
-      InputProps={{
-        ...rest.InputProps,
-        endAdornment:
-          showValid && Boolean(value) && !error ? (
-            <InputCheckmark show={!error} />
-          ) : (
-            rest.InputProps?.endAdornment
-          ),
+      slotProps={{
+        input: {
+          ...rest.InputProps,
+          endAdornment:
+            showValid && Boolean(value) && !error ? (
+              <InputCheckmark show={!error} />
+            ) : (
+              rest.InputProps?.endAdornment
+            ),
+        },
+
+        htmlInput: { ...rest.inputProps, onAnimationStart },
+        inputLabel: { ...rest.InputLabelProps, shrink },
       }}
     />
   )

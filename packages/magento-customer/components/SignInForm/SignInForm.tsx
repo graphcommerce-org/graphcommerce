@@ -64,9 +64,7 @@ export function SignInForm(props: SignInFormProps) {
           }}
         />
       </FormRow>
-
       <ApolloCustomerErrorAlert error={remainingError} key='error' />
-
       <FormActions>
         <FormControl>
           <Button

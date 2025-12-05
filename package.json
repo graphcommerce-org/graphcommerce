@@ -79,6 +79,7 @@
     "@types/event-stream": "^4.0.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^20.19.25",
+    "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "16.6.1",
     "eslint": "^9.39.1",
     "event-stream": "^4.0.1",

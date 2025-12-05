@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -19,8 +20,10 @@ export function BlogHeader(props: BlogHeaderProps) {
   return (
     <Box
       className={classes.header}
-      maxWidth='md'
-      sx={[
+      sx={sxx(
+        {
+          maxWidth: 'md',
+        },
         (theme) => ({
           margin: '0 auto',
           marginBottom: theme.spacings.md,
@@ -34,8 +37,8 @@ export function BlogHeader(props: BlogHeaderProps) {
             ),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {asset}
     </Box>

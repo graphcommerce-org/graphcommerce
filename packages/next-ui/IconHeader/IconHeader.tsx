@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import type { IconSvgProps } from '../IconSvg'
@@ -49,7 +50,7 @@ export function IconHeader(props: IconHeaderProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         {
           typography: 'subtitle1',
           textAlign: 'center',
@@ -59,19 +60,32 @@ export function IconHeader(props: IconHeaderProps) {
             marginTop: theme.spacings.sm,
             marginBottom: theme.spacings.sm,
           })),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={`${classes.innerContainer} ${!stayInline ? classes.breakColumnsDesktop : ''}`}
-        sx={[
+        sx={sxx(
           {
-            display: { xs: 'flex', md: stayInline ? 'flex' : 'unset' },
+            display: {
+              xs: 'flex',
+            },
             alignItems: 'center',
             justifyContent: 'center',
             gap: 4,
           },
-        ]}
+          stayInline
+            ? {
+                display: {
+                  md: 'flex',
+                },
+              }
+            : {
+                display: {
+                  md: 'unset',
+                },
+              },
+        )}
       >
         <IconSvg src={src} />
         <Typography
@@ -80,14 +94,14 @@ export function IconHeader(props: IconHeaderProps) {
           className={`${ellipsis ? classes.ellipsis : ''} ${
             size === 'medium' ? classes.mediumFontWeight : ''
           }`}
-          sx={[
+          sx={sxx(
             ellipsis && {
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
             },
             size === 'medium' && { fontWeight: 'bold' },
-          ]}
+          )}
         >
           {children}
         </Typography>

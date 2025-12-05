@@ -1,5 +1,6 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import {
   Box,
@@ -66,7 +67,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
       component={shouldRedirect ? LogoContainer : 'div'}
       href={shouldRedirect ? href : undefined}
       ref={ref}
-      sx={[...(Array.isArray(sx) ? sx : [sx]), commonLogoStyles]}
+      sx={sxx(sx, commonLogoStyles)}
       className={classes.parent}
     >
       {img}

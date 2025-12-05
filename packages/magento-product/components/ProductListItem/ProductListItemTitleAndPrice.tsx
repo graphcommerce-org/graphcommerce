@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import { productListPrice } from '../ProductListPrice'
@@ -17,7 +18,7 @@ export function ProductListItemTitleAndPrice(props: ProductListItemTitleAndPrice
   return (
     <Box
       className={classes.titleContainer}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           alignItems: 'baseline',
@@ -30,8 +31,8 @@ export function ProductListItemTitleAndPrice(props: ProductListItemTitleAndPrice
           gridTemplateColumns: { xs: 'unset', md: 'auto auto 1fr' },
           justifyContent: 'space-between',
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Typography
         component={titleComponent}

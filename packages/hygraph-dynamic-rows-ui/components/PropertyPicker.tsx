@@ -54,9 +54,6 @@ export function PropertyPicker() {
       select={!!fieldPaths.length}
       variant='outlined'
       size='small'
-      SelectProps={{
-        native: true,
-      }}
       value={localValue}
       onChange={(v) => {
         const val = v.target.value
@@ -87,6 +84,11 @@ export function PropertyPicker() {
         },
         '& .MuiInputLabel-root.Mui-focused': {
           color: { xs: 'rgb(90, 92, 236)' },
+        },
+      }}
+      slotProps={{
+        select: {
+          native: true,
         },
       }}
     >

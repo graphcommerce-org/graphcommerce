@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { TypographyProps } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
@@ -17,13 +18,13 @@ export function Separator(props: DividedLinksProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'inline',
           padding: `0 ${theme.spacings.xxs} 0 ${theme.spacings.xxs}`,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {icon ?? (
         <Typography component='span' variant='body1' color={color}>

@@ -52,7 +52,7 @@ export function StoreSwitcherList(props: StoreSwitcherListProps) {
             color='inherit'
             className={classes.listItem}
             sx={(theme) => ({
-              borderTop: `1px solid ${theme.palette.divider}`,
+              borderTop: `1px solid ${theme.vars.palette.divider}`,
               cursor: 'pointer',
             })}
           >

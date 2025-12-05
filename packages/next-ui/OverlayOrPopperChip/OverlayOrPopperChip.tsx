@@ -1,5 +1,6 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, SxProps, Theme } from '@mui/material'
-import { Badge, Chip, lighten, Typography, useEventCallback } from '@mui/material'
+import { Badge, Chip, Typography, useEventCallback } from '@mui/material'
 import React, { useState } from 'react'
 import { iconChevronDown, iconChevronUp } from '../icons'
 import { IconSvg } from '../IconSvg'
@@ -75,40 +76,43 @@ export function ChipOverlayOrPopper(props: ChipOverlayOrPopperProps) {
         onClick={useEventCallback((e: React.MouseEvent<HTMLElement>) =>
           setActiveEl((el) => (el !== e.currentTarget ? e.currentTarget : null)),
         )}
-        sx={[
-          (theme) => ({
+        sx={sxx(
+          {
             '& .MuiChip-deleteIcon': {
               ml: '0px',
             },
-            ...(selected
-              ? {
-                  background:
-                    theme.palette.mode === 'light'
-                      ? lighten(theme.palette.primary.main, 1 - theme.palette.action.hoverOpacity)
-                      : lighten(
-                          theme.palette.background.default,
-                          theme.palette.action.hoverOpacity,
-                        ),
+          },
+          selected
+            ? (theme) => ({
+                background: theme.lighten(
+                  theme.vars.palette.primary.main,
+                  1 - theme.vars.palette.action.hoverOpacity,
+                ),
+                border: '1px solid transparent',
+                ...theme.applyStyles('dark', {
+                  background: theme.lighten(
+                    theme.vars.palette.background.default,
+                    theme.vars.palette.action.hoverOpacity,
+                  ),
+                }),
+                '&.MuiChip-clickable:hover': {
+                  background: theme.lighten(
+                    theme.vars.palette.primary.main,
+                    1 - theme.vars.palette.action.hoverOpacity * 2,
+                  ),
                   border: '1px solid transparent',
-                  '&.MuiChip-clickable:hover': {
-                    background:
-                      theme.palette.mode === 'light'
-                        ? lighten(
-                            theme.palette.primary.main,
-                            1 - theme.palette.action.hoverOpacity * 2,
-                          )
-                        : lighten(
-                            theme.palette.background.default,
-                            theme.palette.action.hoverOpacity * 2,
-                          ),
-                    border: '1px solid transparent',
-                  },
-                }
-              : {}),
-          }),
-          ...(Array.isArray(chipSx) ? chipSx : [chipSx]),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+                  ...theme.applyStyles('dark', {
+                    background: theme.lighten(
+                      theme.vars.palette.background.default,
+                      theme.vars.palette.action.hoverOpacity * 2,
+                    ),
+                  }),
+                },
+              })
+            : {},
+          chipSx,
+          sx,
+        )}
       />
       <OverlayOrPopperPanel
         {...panelProps}

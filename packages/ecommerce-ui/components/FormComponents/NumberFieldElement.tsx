@@ -4,6 +4,7 @@ import {
   iconPlus,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
@@ -104,14 +105,10 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
       size={size}
       type='number'
       className={`${rest.className ?? ''} ${classes.quantity}`}
-      sx={[
+      sx={sxx(
         {
           width: responsiveVal(90, 120),
-        },
-        {
-          '& input[type=number]': {
-            MozAppearance: 'textfield',
-          },
+          '& input[type=number]': { MozAppearance: 'textfield' },
           '& .MuiOutlinedInput-root': {
             px: '2px',
             display: 'grid',
@@ -119,78 +116,93 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
           },
         },
         variant === 'standard' && {
-          '& .MuiOutlinedInput-input': {
-            padding: 0,
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
-            display: 'none',
-          },
+          '& .MuiOutlinedInput-input': { padding: 0 },
+          '& .MuiOutlinedInput-notchedOutline': { display: 'none' },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       autoComplete='off'
-      InputProps={{
-        ...InputPropsFiltered,
-        startAdornment: (
-          <Fab
-            aria-label={t`Decrease`}
-            size='smaller'
-            onClick={() => {
-              if (
-                (valueAsNumber ?? Infinity) <= inputProps.min ||
-                (inputProps.min === 0 && valueAsNumber <= inputProps.min)
-              )
-                return
-              // Round to nearest step with precision fix
-              const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
-              onChange(newValue)
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...DownProps}
-            className={`${classes.button} ${DownProps.className ?? ''}`}
-          >
-            {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
-          </Fab>
-        ),
-        endAdornment: (
-          <Fab
-            aria-label={t`Increase`}
-            size='smaller'
-            onClick={() => {
-              if (valueAsNumber >= (inputProps.max ?? Infinity)) return
-              // Round to nearest step with precision fix
-              const newValue = roundToPrecision(Math.round((valueAsNumber + step) / step) * step)
-              onChange(newValue)
-            }}
-            sx={{
-              boxShadow: variant === 'standard' ? 4 : 0,
-              minHeight: '30px',
-              minWidth: '30px',
-            }}
-            tabIndex={-1}
-            color='inherit'
-            {...UpProps}
-            className={`${classes.button} ${UpProps.className ?? ''}`}
-          >
-            {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
-          </Fab>
-        ),
-      }}
-      inputProps={{
-        'aria-label': t`Number`,
-        ...inputProps,
-        className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
-        sx: {
-          typography: 'body1',
-          textAlign: 'center',
-          '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
-            appearance: 'none',
+      slotProps={{
+        input: {
+          ...InputPropsFiltered,
+          startAdornment: (
+            <Fab
+              aria-label={t`Decrease`}
+              size='smaller'
+              onClick={() => {
+                if (
+                  (valueAsNumber ?? Infinity) <= inputProps.min ||
+                  (inputProps.min === 0 && valueAsNumber <= inputProps.min)
+                )
+                  return
+                // Round to nearest step with precision fix
+                const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
+                onChange(newValue)
+              }}
+              sx={sxx(
+                {
+                  minHeight: '30px',
+                  minWidth: '30px',
+                },
+                variant === 'standard'
+                  ? {
+                      boxShadow: 4,
+                    }
+                  : {
+                      boxShadow: 0,
+                    },
+              )}
+              tabIndex={-1}
+              color='inherit'
+              {...DownProps}
+              className={`${classes.button} ${DownProps.className ?? ''}`}
+            >
+              {DownProps.children ?? <IconSvg src={iconMin} size='small' />}
+            </Fab>
+          ),
+          endAdornment: (
+            <Fab
+              aria-label={t`Increase`}
+              size='smaller'
+              onClick={() => {
+                if (valueAsNumber >= (inputProps.max ?? Infinity)) return
+                // Round to nearest step with precision fix
+                const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
+                onChange(newValue)
+              }}
+              sx={sxx(
+                {
+                  minHeight: '30px',
+                  minWidth: '30px',
+                },
+                variant === 'standard'
+                  ? {
+                      boxShadow: 4,
+                    }
+                  : {
+                      boxShadow: 0,
+                    },
+              )}
+              tabIndex={-1}
+              color='inherit'
+              {...UpProps}
+              className={`${classes.button} ${UpProps.className ?? ''}`}
+            >
+              {UpProps.children ?? <IconSvg src={iconPlus} size='small' />}
+            </Fab>
+          ),
+        },
+
+        htmlInput: {
+          'aria-label': t`Number`,
+          ...inputProps,
+          className: `${inputProps?.className ?? ''} ${classes.quantityInput}`,
+          sx: {
+            typography: 'body1',
+            textAlign: 'center',
+            '&::-webkit-inner-spin-button,&::-webkit-outer-spin-button': {
+              appearance: 'none',
+            },
           },
         },
       }}

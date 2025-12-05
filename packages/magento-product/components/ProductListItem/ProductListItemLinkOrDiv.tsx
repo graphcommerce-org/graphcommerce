@@ -1,4 +1,4 @@
-import { breakpointVal, NextLink } from '@graphcommerce/next-ui'
+import { breakpointVal, NextLink, sxx } from '@graphcommerce/next-ui'
 import type { BoxProps, ButtonBaseProps, SxProps, Theme } from '@mui/material'
 import { Box, ButtonBase } from '@mui/material'
 import React from 'react'
@@ -16,7 +16,7 @@ export const ProductListItemLinkOrDiv = React.forwardRef<
 >((props, ref) => {
   const { sx = [] } = props
 
-  const sxProps: SxProps<Theme> = [
+  const sxProps = sxx(
     (theme) => ({
       display: 'block',
       position: 'relative',
@@ -28,8 +28,8 @@ export const ProductListItemLinkOrDiv = React.forwardRef<
         theme.breakpoints.values,
       ),
     }),
-    ...(Array.isArray(sx) ? sx : [sx]),
-  ]
+    sx,
+  )
 
   return isLink(props) ? (
     <ButtonBase ref={ref} component={NextLink} {...props} sx={sxProps} focusRipple />

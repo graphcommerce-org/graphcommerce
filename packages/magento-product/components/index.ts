@@ -45,4 +45,3 @@ export * from './ProductStaticPaths/getProductStaticPaths'
 export * from './ProductStaticPaths/getSitemapPaths'
 export * from './ProductUpsells/UpsellProducts.gql'
 export * from './ProductWeight/ProductWeight'
-

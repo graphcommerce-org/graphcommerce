@@ -7,6 +7,7 @@ import {
   iconHeart,
   IconSvg,
   MessageSnackbar,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
@@ -42,7 +43,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
         size='small'
         className={classes.wishlistButton}
         {...buttonProps}
-        sx={[(theme) => ({ padding: theme.spacings.xxs }), ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sxx((theme) => ({ padding: theme.spacings.xxs }), sx)}
         title={current ? t`Remove from wishlist` : t`Add to wishlist`}
         aria-label={current ? t`Remove from wishlist` : t`Add to wishlist`}
       >
@@ -51,7 +52,7 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             src={iconHeart}
             size='medium'
             className={classes.wishlistIconActive}
-            sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
+            sx={(theme) => ({ color: theme.vars.palette.primary.main, fill: 'currentcolor' })}
             {...iconSvgProps}
           />
         ) : (
@@ -60,23 +61,22 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             size='medium'
             className={classes.wishlistIcon}
             sx={(theme) => ({
-              color:
-                theme.palette.mode === 'light'
-                  ? theme.palette.text.secondary
-                  : theme.palette.background.paper,
+              color: theme.vars.palette.background.paper,
               '.SidebarGallery-root &': {
                 // todo
-                color:
-                  theme.palette.mode === 'light'
-                    ? theme.palette.text.secondary
-                    : theme.palette.primary.contrastText,
+                color: theme.vars.palette.primary.contrastText,
+                ...theme.applyStyles('light', {
+                  color: theme.vars.palette.text.secondary,
+                }),
               },
+              ...theme.applyStyles('light', {
+                color: theme.vars.palette.text.secondary,
+              }),
             })}
             {...iconSvgProps}
           />
         )}
       </IconButton>
-
       {wishlistShowFeedbackMessage && (
         <MessageSnackbar
           open={showSuccess}

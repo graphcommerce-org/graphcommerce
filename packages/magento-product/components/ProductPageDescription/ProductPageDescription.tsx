@@ -4,17 +4,18 @@ import {
   ColumnTwoWithTop,
   extendableComponent,
   LazyHydrate,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
-import type { Variant } from '@mui/material/styles/createTypography'
+import type { TypographyVariant } from '@mui/material/styles'
 import type { ProductListItemRenderer } from '../ProductListItems/renderer'
 import { ProductPageName } from '../ProductPageName'
 import type { ProductPageDescriptionFragment } from './ProductPageDescription.gql'
 
 export type ProductPageDescriptionProps = Omit<ColumnTwoWithTopProps, 'top' | 'left'> & {
   sx?: SxProps<Theme>
-  fontSize?: 'responsive' | Variant
+  fontSize?: 'responsive' | TypographyVariant
   product: ProductPageDescriptionFragment
   productListRenderer: ProductListItemRenderer
 }
@@ -51,7 +52,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
               className={classes.description}
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: product.description.html }}
-              sx={[
+              sx={sxx(
                 {
                   '& p:first-of-type': {
                     marginTop: 0,
@@ -77,7 +78,7 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
                     fontSize,
                   },
                 },
-              ]}
+              )}
             />
           )
         }

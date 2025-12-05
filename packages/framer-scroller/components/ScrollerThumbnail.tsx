@@ -3,7 +3,7 @@ import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
-import { alpha, styled, useTheme } from '@mui/material'
+import { styled, useTheme } from '@mui/material'
 import { m, motionValue, useTransform } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
@@ -41,9 +41,9 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
     item.visibility,
     [1, 0],
     [
-      `inset 0 0 0 2px ${theme.palette.primary.main}, 0 0 0 4px ${alpha(
-        theme.palette.primary.main,
-        theme.palette.action.hoverOpacity,
+      `inset 0 0 0 2px ${theme.vars.palette.primary.main}, 0 0 0 4px ${theme.alpha(
+        theme.vars.palette.primary.main,
+        theme.vars.palette.action.hoverOpacity,
       )}`,
       'inset 0 0 0 2px #ffffff00, 0 0 0 4px #ffffff00',
     ],
@@ -85,11 +85,11 @@ export function ScrollerThumbnail(props: ScrollerThumbnailProps) {
       layout='position'
       style={{ boxShadow }}
       layoutDependency={layoutDependency}
-      sx={{
+      sx={(theme) => ({
         padding: '2px',
         mx: `calc(${theme.spacing(1)} / 2)`,
         borderRadius: theme.shape.borderRadius,
-      }}
+      })}
     >
       <Image
         {...image}

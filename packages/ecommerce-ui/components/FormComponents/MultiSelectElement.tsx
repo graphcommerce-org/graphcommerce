@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { iconClose, IconSvg } from '@graphcommerce/next-ui'
+import { iconClose, IconSvg, sxx } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -153,10 +153,15 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
             <MenuItem
               key={val}
               value={val}
-              sx={{
-                fontWeight: (theme) =>
-                  isChecked ? theme.typography.fontWeightBold : theme.typography.fontWeightRegular,
-              }}
+              sx={sxx(
+                isChecked
+                  ? {
+                      fontWeight: theme.typography.fontWeightBold,
+                    }
+                  : {
+                      fontWeight: theme.typography.fontWeightRegular,
+                    },
+              )}
             >
               {showCheckbox && <Checkbox checked={isChecked} />}
               <ListItemText primary={item[itemLabel] || item} />

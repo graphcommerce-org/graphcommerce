@@ -1,5 +1,5 @@
 import type { ProductPaginationProps } from '@graphcommerce/magento-product'
-import { Pagination } from '@graphcommerce/next-ui'
+import { Pagination, sxx } from '@graphcommerce/next-ui'
 import { Box } from '@mui/material'
 import { usePagination } from 'react-instantsearch-hooks-web'
 
@@ -20,7 +20,11 @@ export function AlgoliaPagination({
       count={nbPages ?? 0}
       page={currentRefinement + 1}
       renderLink={(page, icon, btnProps) => (
-        <Box {...btnProps} color='inherit' onClick={() => handlePagination(page)}>
+        <Box
+          {...btnProps}
+          onClick={() => handlePagination(page)}
+          sx={sxx({ color: 'inherit' }, btnProps.sx)}
+        >
           {icon}
         </Box>
       )}

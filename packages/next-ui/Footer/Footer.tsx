@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ContainerProps } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -37,10 +38,10 @@ export function Footer(props: FooterProps) {
       <Container
         maxWidth={false}
         sizing='shell'
-        sx={[
+        sx={sxx(
           (theme) => ({
             gridTemplateColumns: '5fr 3fr',
-            borderTop: `1px solid ${theme.palette.divider}`,
+            borderTop: `1px solid ${theme.vars.palette.divider}`,
             display: 'grid',
             alignItems: 'center',
             pt: theme.spacings.lg,
@@ -54,7 +55,6 @@ export function Footer(props: FooterProps) {
             `,
             gap: theme.spacings.md,
             '& > *': { maxWidth: 'max-content' },
-
             [theme.breakpoints.up('md')]: {
               gap: theme.spacings.sm,
               gridTemplateAreas: `
@@ -68,8 +68,8 @@ export function Footer(props: FooterProps) {
               justifyContent: 'space-between',
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         className={classes.root}
         {...containerProps}
       >

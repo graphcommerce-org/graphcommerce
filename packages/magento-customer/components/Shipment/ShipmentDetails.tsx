@@ -4,10 +4,11 @@ import {
   extendableComponent,
   filterNonNullableKeys,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { TrackingLink } from '../TrackingLink/TrackingLink'
 import type { ShipmentFragment } from './Shipment.gql'
 
@@ -32,14 +33,11 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
   return (
     <SectionContainer
       labelLeft={<Trans>Shipment details</Trans>}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: theme.spacings.sm,
           marginBottom: theme.spacings.md,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -50,13 +48,16 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
             mt: 0,
             mb: theme.spacings.xs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.vars.palette.background.default,
+          }),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.shipmentDetailContainer}
-        sx={[
+        sx={sxx(
           (theme) => ({
             gridColumnGap: theme.spacings.xxl,
             gridRowGap: theme.spacings.md,
@@ -66,8 +67,8 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
               marginTop: theme.spacings.xxs,
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         <Box className={classes.shipmentDetailRow}>
           <SectionContainer
@@ -79,7 +80,6 @@ export function ShipmentDetails(props: ShipmentDetailsProps) {
             <Typography>{number}</Typography>
           </SectionContainer>
         </Box>
-
         {tracking && tracking.length > 0 && (
           <Box className={classes.shipmentDetailRow}>
             <SectionContainer

@@ -84,7 +84,4 @@ export type Actions =
 
 export type ComposedFormReducer = React.Reducer<ComposedFormState, Actions>
 
-export type ComposedFormContext = [
-  React.ReducerState<ComposedFormReducer>,
-  React.Dispatch<Actions>,
-]
+export type ComposedFormContext = [React.ReducerState<ComposedFormReducer>, React.Dispatch<Actions>]

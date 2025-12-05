@@ -1,5 +1,5 @@
 import { Box, ButtonBase, type SxProps, type Theme } from '@mui/material'
-import { alpha, useTheme } from '@mui/material/styles'
+import { useTheme } from '@mui/material/styles'
 import { forwardRef } from 'react'
 import { extendableComponent } from '../Styles/extendableComponent'
 import { responsiveVal } from '../Styles/responsiveVal'
@@ -46,7 +46,7 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
     sx,
     disableRipple = true,
     className,
-    color = (theme) => theme.palette.background.default,
+    color = (theme) => theme.vars.palette.background.default,
     variant = 'chrome',
     ...other
   } = props
@@ -74,12 +74,11 @@ export const TabItem = forwardRef<HTMLButtonElement, TabItemProps>((props, ref) 
           pb: spacing,
           mx: `calc(${spacing} / 2)`,
           transition: 'background-color 0.2s ease-in-out',
-
           '&:hover:not(.selected) .TabItem-content': {
-            bgcolor: alpha(color(theme), 0.5),
+            bgcolor: theme.alpha(color(theme), 0.5),
           },
           '&:focus:not(.selected) .TabItem-content': {
-            bgcolor: alpha(color(theme), 0.5),
+            bgcolor: theme.alpha(color(theme), 0.5),
           },
           '&::before': {
             opacity: 0,

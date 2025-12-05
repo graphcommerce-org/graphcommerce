@@ -35,40 +35,89 @@ function TypographyOverview() {
       <LayoutHeader>
         <LayoutTitle size='small'>Typography</LayoutTitle>
       </LayoutHeader>
-
       <LayoutTitle>Typography</LayoutTitle>
-
       <Container>
-        <Typography variant='h1' display='block' gutterBottom>
+        <Typography
+          variant='h1'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 1 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h2' display='block' gutterBottom>
+        <Typography
+          variant='h2'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 2 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h3' display='block' gutterBottom>
+        <Typography
+          variant='h3'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 3 {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h4' display='block' paragraph gutterBottom>
+        <Typography
+          variant='h4'
+          gutterBottom
+          sx={{
+            display: 'block',
+            marginBottom: '16px',
+          }}
+        >
           Headline 4 — Maecenas efficitur velit a metus.
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h5' display='block' gutterBottom>
+        <Typography
+          variant='h5'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 5 — Morbi posuere nunc diam {useRenderedSize()}
         </Typography>
 
-        <Typography variant='h6' display='block' gutterBottom>
+        <Typography
+          variant='h6'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Headline 6 — Ut luctus mi ante {useRenderedSize()}
         </Typography>
 
-        <Typography variant='subtitle1' display='block' paragraph gutterBottom>
+        <Typography
+          variant='subtitle1'
+          gutterBottom
+          sx={{
+            display: 'block',
+            marginBottom: '16px',
+          }}
+        >
           Subtitle 1 — In dictum velit quis lorem dignissim volutpat. {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body1' display='block' paragraph gutterBottom>
+        <Typography
+          variant='body1'
+          gutterBottom
+          sx={{
+            display: 'block',
+            marginBottom: '16px',
+          }}
+        >
           Body1 — Maecenas efficitur velit a metus feugiat egestas. Donec sit amet maximus sapien,
           in malesuada mi. Duis eget finibus urna, vitae suscipit felis. Duis aliquet tortor a
           turpis euismod gravida. Nunc eu hendrerit leo. Integer dapibus dapibus augue, sit amet
@@ -78,11 +127,24 @@ function TypographyOverview() {
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='subtitle2' display='block' gutterBottom>
+        <Typography
+          variant='subtitle2'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Subtitle 2 — Nunc eu hendrerit leo {useRenderedSize()}
         </Typography>
 
-        <Typography variant='body2' display='block' paragraph gutterBottom>
+        <Typography
+          variant='body2'
+          gutterBottom
+          sx={{
+            display: 'block',
+            marginBottom: '16px',
+          }}
+        >
           Body2 — Suspendisse nec consectetur massa. Proin mollis ante lorem, a lacinia orci
           pellentesque ut. Donec porta fringilla commodo. In hac habitasse platea dictumst. Donec
           quis elementum mauris. Cras rutrum lectus et magna convallis, vitae dignissim elit
@@ -94,15 +156,33 @@ function TypographyOverview() {
           {useRenderedSize()}
         </Typography>
 
-        <Typography variant='button' display='block' gutterBottom>
+        <Typography
+          variant='button'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Button: Sed laoreet {useRenderedSize()}
         </Typography>
 
-        <Typography variant='caption' display='block' gutterBottom>
+        <Typography
+          variant='caption'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Caption: vitae enim quis cursus. {useRenderedSize()}
         </Typography>
 
-        <Typography variant='overline' display='block' gutterBottom>
+        <Typography
+          variant='overline'
+          gutterBottom
+          sx={{
+            display: 'block',
+          }}
+        >
           Overline: Nunc scelerisque at massa nec imperdiet {useRenderedSize()}
         </Typography>
       </Container>

@@ -6,7 +6,7 @@ import {
   useFormAddProductsToCart,
 } from '@graphcommerce/magento-product'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, actionCardImageSizes } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes, sxx } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
 import type { GroupedProductItemFragment } from '../graphql/fragments/GroupedProductItem.gql'
 
@@ -39,7 +39,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
       <ActionCard
         variant='default'
         value={uid}
-        sx={[
+        sx={sxx(
           (theme) => ({
             '&.ActionCard-root': {
               px: 0,
@@ -78,8 +78,8 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
               mb: { xs: 0.5, sm: 0 },
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         image={
           small_image?.url && (
             <Image

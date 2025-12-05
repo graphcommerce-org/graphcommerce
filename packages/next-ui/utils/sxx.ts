@@ -10,7 +10,7 @@ import type { SxProps, Theme } from '@mui/material'
  * ```
  */
 export const sxx = (
-  ...sxPropsArray: (SxProps<Theme> | undefined | null | false)[]
+  ...sxPropsArray: (SxProps<Theme> | undefined | null | false | ``)[]
 ): SxProps<Theme> =>
   sxPropsArray
     .filter((v) => !!v)

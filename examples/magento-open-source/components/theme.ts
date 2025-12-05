@@ -15,8 +15,8 @@ import {
   themeBaseDefaults,
 } from '@graphcommerce/next-ui'
 import type { LinkProps, Theme } from '@mui/material'
-import { alpha } from '@mui/material'
 import type { Components, PaletteOptions } from '@mui/material/styles'
+import type {} from '@mui/material/themeCssVarsAugmentation'
 
 const lightPalette: PaletteOptions = {
   mode: 'light',
@@ -84,108 +84,111 @@ const fontSize = (from: number, to: number) =>
   breakpointVal('fontSize', from, to, themeBaseDefaults.breakpoints.values)
 
 // Create a theme instance.
-const createThemeWithPalette = (palette: PaletteOptions) =>
-  createTheme({
-    palette,
-    ...themeBaseDefaults,
-    shape: { borderRadius: 3 },
-    typography: {
-      fontFamily:
-        '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
-      // @see docs typography.md
-      h1: {
-        ...fontSize(28, 64),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 660",
-        lineHeight: 1.22,
-      },
-      h2: {
-        ...fontSize(25, 40),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 630",
-        lineHeight: 1.35,
-      },
-      h3: {
-        ...fontSize(22, 30),
-        fontWeight: 700,
-        fontVariationSettings: "'wght' 660",
-        lineHeight: 1.55,
-      },
-      h4: {
-        ...fontSize(18, 26),
-        fontWeight: 550,
-        fontVariationSettings: "'wght' 550",
-        lineHeight: 1.55,
-      },
-      h5: {
-        ...fontSize(17, 20),
-        fontWeight: 650,
-        fontVariationSettings: "'wght' 650",
-        lineHeight: 1.55,
-      },
-      h6: {
-        ...fontSize(17, 20),
-        fontWeight: 550,
-        fontVariationSettings: "'wght' 510",
-        lineHeight: 1.8,
-      },
-      subtitle1: {
-        ...fontSize(16, 19),
-        fontWeight: 450,
-        fontVariationSettings: "'wght' 460",
-        lineHeight: 1.7,
-      },
-      fontWeightBold: 600,
-      body1: {
-        ...fontSize(14, 18),
-        lineHeight: 1.7,
-      },
-      subtitle2: {
-        ...fontSize(14, 16),
-        fontWeight: 500,
-        fontVariationSettings: "'wght' 520",
-        lineHeight: 1.7,
-      },
-      body2: {
-        ...fontSize(13, 15),
-        lineHeight: 1.7,
-      },
-      caption: {
-        // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
-        ...fontSize(12, 13),
-      },
-      button: {},
-      overline: {
-        // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
-        ...fontSize(12, 14),
-        fontWeight: 500,
-        letterSpacing: 1,
-        lineHeight: 1.2,
-        textTransform: 'uppercase',
-      },
+const theme = createTheme({
+  cssVariables: { colorSchemeSelector: 'class', cssVarPrefix: '', nativeColor: true },
+  colorSchemes: {
+    light: { palette: lightPalette },
+    dark: { palette: darkPalette },
+  },
+  ...themeBaseDefaults,
+  shape: { borderRadius: 3 },
+  typography: {
+    fontFamily:
+      '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
+    // @see docs typography.md
+    h1: {
+      ...fontSize(28, 64),
+      fontWeight: 700,
+      fontVariationSettings: "'wght' 660",
+      lineHeight: 1.22,
     },
-    spacings: {
-      xxs: responsiveVal(10, 16),
-      xs: responsiveVal(12, 20),
-      sm: responsiveVal(14, 30),
-      md: responsiveVal(16, 50),
-      lg: responsiveVal(24, 80),
-      xl: responsiveVal(40, 100),
-      xxl: responsiveVal(80, 160),
+    h2: {
+      ...fontSize(25, 40),
+      fontWeight: 700,
+      fontVariationSettings: "'wght' 630",
+      lineHeight: 1.35,
     },
-    page: {
-      horizontal: responsiveVal(10, 30),
-      vertical: responsiveVal(10, 30),
+    h3: {
+      ...fontSize(22, 30),
+      fontWeight: 700,
+      fontVariationSettings: "'wght' 660",
+      lineHeight: 1.55,
     },
-    appShell: {
-      headerHeightSm: '46px',
-      headerHeightMd: '100px',
-      appBarHeightMd: '80px',
-      appBarInnerHeightMd: '46px',
-      containerSizingShell: containerSizingShell === 'BREAKPOINT' ? 'xl' : false,
-      containerSizingContent: containerSizingContent === 'BREAKPOINT' ? 'xl' : false,
+    h4: {
+      ...fontSize(18, 26),
+      fontWeight: 550,
+      fontVariationSettings: "'wght' 550",
+      lineHeight: 1.55,
     },
-  })
+    h5: {
+      ...fontSize(17, 20),
+      fontWeight: 650,
+      fontVariationSettings: "'wght' 650",
+      lineHeight: 1.55,
+    },
+    h6: {
+      ...fontSize(17, 20),
+      fontWeight: 550,
+      fontVariationSettings: "'wght' 510",
+      lineHeight: 1.8,
+    },
+    subtitle1: {
+      ...fontSize(16, 19),
+      fontWeight: 450,
+      fontVariationSettings: "'wght' 460",
+      lineHeight: 1.7,
+    },
+    fontWeightBold: 600,
+    body1: {
+      ...fontSize(14, 18),
+      lineHeight: 1.7,
+    },
+    subtitle2: {
+      ...fontSize(14, 16),
+      fontWeight: 500,
+      fontVariationSettings: "'wght' 520",
+      lineHeight: 1.7,
+    },
+    body2: {
+      ...fontSize(13, 15),
+      lineHeight: 1.7,
+    },
+    caption: {
+      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
+      ...fontSize(12, 13),
+    },
+    button: {},
+    overline: {
+      // https://web.dev/font-size/#how-the-lighthouse-font-size-audit-fails
+      ...fontSize(12, 14),
+      fontWeight: 500,
+      letterSpacing: 1,
+      lineHeight: 1.2,
+      textTransform: 'uppercase',
+    },
+  },
+  spacings: {
+    xxs: responsiveVal(10, 16),
+    xs: responsiveVal(12, 20),
+    sm: responsiveVal(14, 30),
+    md: responsiveVal(16, 50),
+    lg: responsiveVal(24, 80),
+    xl: responsiveVal(40, 100),
+    xxl: responsiveVal(80, 160),
+  },
+  page: {
+    horizontal: responsiveVal(10, 30),
+    vertical: responsiveVal(10, 30),
+  },
+  appShell: {
+    headerHeightSm: '46px',
+    headerHeightMd: '100px',
+    appBarHeightMd: '80px',
+    appBarInnerHeightMd: '46px',
+    containerSizingShell: containerSizingShell === 'BREAKPOINT' ? 'xl' : false,
+    containerSizingContent: containerSizingContent === 'BREAKPOINT' ? 'xl' : false,
+  },
+})
 
 // todo: move most of the styles to the graphcommerce library while still allowing for extensibility.
 const createOverrides = (theme: Theme): Components<Theme> => ({
@@ -194,8 +197,8 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       body: {
         overflowY: 'scroll',
       },
-      '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
-      '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
+      '::selection': { background: `rgb(${theme.vars.palette.primary.mainChannel} / 0.6)` },
+      '::-moz-selection': { background: `rgb(${theme.vars.palette.primary.mainChannel} / 0.6)` },
       '#__next': {
         position: 'relative',
       },
@@ -243,7 +246,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       ...MuiButtonInline,
       {
         props: { variant: 'contained', color: 'inherit' },
-        style: { backgroundColor: theme.palette.background.paper },
+        style: { backgroundColor: theme.vars.palette.background.paper },
       },
       {
         props: { variant: 'outlined' },
@@ -287,11 +290,11 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
     styleOverrides: {
       root: {
         '&.MuiFab-default': {
-          backgroundColor: theme.palette.background.paper,
+          backgroundColor: theme.vars.palette.background.paper,
           '&:hover': {
-            backgroundColor: theme.palette.background.paper,
+            backgroundColor: theme.vars.palette.background.paper,
           },
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
         },
       },
       colorInherit: {
@@ -329,7 +332,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiListItemIcon: {
     styleOverrides: {
       root: {
-        color: theme.palette.text.primary,
+        color: theme.vars.palette.text.primary,
       },
     },
   },
@@ -341,15 +344,15 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiCheckbox: {
     styleOverrides: {
       colorPrimary: {
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         '&.Mui-checked': {
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         },
       },
       colorSecondary: {
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         '&.Mui-checked': {
-          color: theme.palette.secondary.main,
+          color: theme.vars.palette.secondary.main,
         },
       },
     },
@@ -377,7 +380,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiAvatar: {
     styleOverrides: {
       colorDefault: {
-        backgroundColor: theme.palette.text.disabled,
+        backgroundColor: theme.vars.palette.text.disabled,
       },
     },
   },
@@ -391,8 +394,6 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   },
 })
 
-export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = createOverrides(lightTheme) as never
+theme.components = createOverrides(theme) as never
 
-export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.components = createOverrides(darkTheme) as never
+export { theme }

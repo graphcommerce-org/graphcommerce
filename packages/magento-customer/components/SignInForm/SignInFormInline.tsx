@@ -1,5 +1,5 @@
 import { PasswordElement } from '@graphcommerce/ecommerce-ui'
-import { Button, extendableComponent } from '@graphcommerce/next-ui'
+import { Button, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
@@ -27,7 +27,7 @@ export function SignInFormInline(props: InlineSignInFormProps) {
       onSubmit={submitHandler}
       noValidate
       className={classes.form}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           alignItems: 'center',
@@ -38,8 +38,8 @@ export function SignInFormInline(props: InlineSignInFormProps) {
             gridTemplateColumns: '5fr 1fr',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <PasswordElement
         control={control}
@@ -64,7 +64,10 @@ export function SignInFormInline(props: InlineSignInFormProps) {
         loading={formState.isSubmitting}
         color='secondary'
         variant='pill'
-        sx={{ alignSelf: 'start', marginTop: (theme) => `calc(${theme.spacings.xxs} * .33)` }}
+        sx={(theme) => ({
+          alignSelf: 'start',
+          marginTop: `calc(${theme.spacings.xxs} * .33)`,
+        })}
       >
         <Trans>Sign in</Trans>
       </Button>

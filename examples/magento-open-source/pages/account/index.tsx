@@ -109,9 +109,7 @@ function AccountIndexPage() {
                 href='/account/reviews'
                 iconSrc={iconStar}
                 title={<Trans>Reviews</Trans>}
-                subtitle={
-                  <Trans>Written {customer?.reviews.items.length} reviews</Trans>
-                }
+                subtitle={<Trans>Written {customer?.reviews.items.length} reviews</Trans>}
               />
             )}
             <AccountMenuItem
@@ -122,7 +120,7 @@ function AccountIndexPage() {
               endIcon={<CustomerNewsletterToggle color='primary' />}
               sx={(theme) => ({
                 cursor: 'default',
-                '&:hover': { background: theme.palette.background.paper },
+                '&:hover': { background: theme.vars.palette.background.paper },
               })}
             />
 

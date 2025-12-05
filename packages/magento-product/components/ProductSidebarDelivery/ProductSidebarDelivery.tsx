@@ -1,6 +1,6 @@
 import { breakpointVal, iconOrderBefore, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-import { Box, darken, lighten } from '@mui/material'
+import { Box } from '@mui/material'
 import type { UseAddProductsToCartActionFragment } from '../AddProductsToCart/UseAddProductsToCartAction.gql'
 
 export type ProductSidebarDeliveryProps = {
@@ -19,9 +19,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
     subtitle = <Trans>We are sorry, this product is currently out of stock.</Trans>
   } else if (stock_status === 'IN_STOCK' && only_x_left_in_stock) {
     title = <Trans>Only a few left</Trans>
-    subtitle = (
-      <Trans>Only {only_x_left_in_stock} left in stock.</Trans>
-    )
+    subtitle = <Trans>Only {only_x_left_in_stock} left in stock.</Trans>
   }
   if (only_x_left_in_stock === 1) {
     subtitle = <Trans>Only 1 left in stock.</Trans>
@@ -38,10 +36,7 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
         `,
         gridTemplateColumns: 'min-content auto',
         columnGap: theme.spacings.xxs,
-        background:
-          theme.palette.mode === 'light'
-            ? darken(theme.palette.background.default, 0.01)
-            : lighten(theme.palette.background.default, 0.2),
+        background: theme.lighten(theme.vars.palette.background.default, 0.2),
         padding: theme.spacings.xxs,
         ...breakpointVal(
           'borderRadius',
@@ -49,6 +44,9 @@ export function ProductSidebarDelivery(props: ProductSidebarDeliveryProps) {
           theme.shape.borderRadius * 4,
           theme.breakpoints.values,
         ),
+        ...theme.applyStyles('light', {
+          background: theme.darken(theme.vars.palette.background.default, 0.01),
+        }),
       })}
     >
       <IconSvg src={iconOrderBefore} size='small' sx={{ gridArea: 'image' }} />

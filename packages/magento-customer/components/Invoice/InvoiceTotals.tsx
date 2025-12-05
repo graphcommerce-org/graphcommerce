@@ -2,7 +2,7 @@ import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, lighten, Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 import type { InvoiceFragment } from './Invoice.gql'
 
 export type InvoiceTotalsProps = {
@@ -32,10 +32,10 @@ export function InvoiceTotals(props: InvoiceTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
+          }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
         }),
         sx,
@@ -74,13 +74,12 @@ export function InvoiceTotals(props: InvoiceTotalsProps) {
       )}
 
       <Divider sx={(theme) => ({ my: theme.spacings.xxs })} />
-
       <Box
         className={classes.totalsRow}
         sx={(theme) => ({
           display: 'flex',
           justifyContent: 'space-between',
-          color: theme.palette.primary.main,
+          color: theme.vars.palette.primary.main,
         })}
       >
         <Typography>
@@ -96,7 +95,7 @@ export function InvoiceTotals(props: InvoiceTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.text.disabled,
+            color: theme.vars.palette.text.disabled,
           })}
         >
           <Typography>

@@ -1,6 +1,6 @@
 import { CheckboxElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { extendableComponent, FormDiv } from '@graphcommerce/next-ui'
+import { extendableComponent, FormDiv, sxx } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -50,10 +50,7 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
   if (data?.checkoutAgreements?.length === 0) return null
 
   return (
-    <FormDiv
-      className={classes.form}
-      sx={[(theme) => ({ pt: theme.spacings.md }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <FormDiv className={classes.form} sx={sxx((theme) => ({ pt: theme.spacings.md }), sx)}>
       <form noValidate onSubmit={submit} name='cartAgreements'>
         <Box className={classes.formInner} sx={{ typography: 'body1', display: 'inline-block' }}>
           {data?.checkoutAgreements &&
@@ -64,7 +61,6 @@ export function CartAgreementsForm(props: CartAgreementsFormProps) {
               // check if the agreement text contains an anchor tag
               const containsLink = containsAnchorTag(agreement.checkbox_text)
               let labelContent: React.ReactNode
-
               if (containsLink) {
                 labelContent = (
                   <Typography

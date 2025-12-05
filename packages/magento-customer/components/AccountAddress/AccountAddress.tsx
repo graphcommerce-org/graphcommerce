@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
@@ -22,7 +22,7 @@ export function AccountAddress(props: AccountAddressProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'flex',
           justifyContent: 'space-between',
@@ -30,8 +30,8 @@ export function AccountAddress(props: AccountAddressProps) {
           paddingBottom: theme.spacings.md,
           typography: 'body2',
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box className={classes.address} sx={{ '& > span': { display: 'block' } }}>
         <AddressMultiLine id={id} {...addressProps} />

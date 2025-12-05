@@ -5,6 +5,7 @@ import {
   Pagination,
   responsiveVal,
   StarRatingField,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -104,17 +105,14 @@ export function ProductReviews(props: ProductReviewsProps) {
     return (
       <Box
         className={classes.container}
-        sx={[
-          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
       >
         <Box
           className={classes.review}
           sx={(theme) => ({
             display: 'grid',
             gap: theme.spacings.sm,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
             padding: `${theme.spacings.md} 0`,
             typography: 'body1',
           })}
@@ -142,10 +140,7 @@ export function ProductReviews(props: ProductReviewsProps) {
   return (
     <Box
       className={classes.container}
-      sx={[
-        (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
     >
       {!loading &&
         myReviews.items.map((review) => (
@@ -155,7 +150,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             sx={(theme) => ({
               display: 'grid',
               gap: theme.spacings.sm,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `1px solid ${theme.vars.palette.divider}`,
               padding: `${theme.spacings.md} 0`,
               typography: 'body1',
             })}
@@ -184,7 +179,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: theme.spacings.sm,
-                  color: theme.palette.text.disabled,
+                  color: theme.vars.palette.text.disabled,
                   typography: 'body2',
                 })}
               >
@@ -217,7 +212,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             <Box
               className={classes.meta}
               sx={(theme) => ({
-                color: theme.palette.text.disabled,
+                color: theme.vars.palette.text.disabled,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 justifyContent: 'space-between',

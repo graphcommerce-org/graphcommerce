@@ -13,7 +13,7 @@ export function GlobalHead(props: GlobalHeadProps) {
 
   return (
     <Head>
-      <meta name='theme-color' content={theme.palette.background.default} key='theme-color' />
+      <meta name='theme-color' content={theme.vars.palette.background.default} key='theme-color' />
       <meta
         name='viewport'
         content='minimum-scale=1, initial-scale=1, width=device-width'

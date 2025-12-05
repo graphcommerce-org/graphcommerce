@@ -52,9 +52,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
   return (
     <>
       {headerPosition === 'before' ? header : null}
-
       <FormAutoSubmit control={form.control} disabled={autoSubmitDisabled} submit={submit} />
-
       <Container
         maxWidth={false}
         className={classes.content}
@@ -77,9 +75,7 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
               /300px   auto
             `,
           },
-
           columnGap: { md: theme.spacings.md, xl: theme.spacings.xxl },
-
           '& .ProductListItemsBase-root.sizeNormal': {
             gridTemplateColumns: {
               xs: 'repeat(2, 1fr)',
@@ -89,25 +85,61 @@ export function ProductFiltersProLayoutSidebar(props: ProductFiltersProLayoutSid
           },
         })}
       >
-        <Box gridArea='topleft' sx={{ display: { xs: 'none', md: 'block' }, alignSelf: 'center' }}>
+        <Box
+          sx={{
+            gridArea: 'topleft',
+            display: { xs: 'none', md: 'block' },
+            alignSelf: 'center',
+          }}
+        >
           {clearAll}
         </Box>
         {sidebarFilters && (
-          <Box gridArea='sidebar' sx={{ display: { xs: 'none', md: 'block' } }}>
+          <Box
+            sx={{
+              gridArea: 'sidebar',
+              display: { xs: 'none', md: 'block' },
+            }}
+          >
             {sidebarFilters}
           </Box>
         )}
-        {children && <Box gridArea='content'>{children}</Box>}
+        {children && (
+          <Box
+            sx={{
+              gridArea: 'content',
+            }}
+          >
+            {children}
+          </Box>
+        )}
         <StickyBelowHeader sx={{ display: { md: 'none', gridArea: 'horizontalFilters' } }}>
           {horizontalFilters}
         </StickyBelowHeader>
-
-        <Box gridArea='beforeContent' sx={{ mt: { md: 0 } }}>
+        <Box
+          sx={{
+            gridArea: 'beforeContent',
+            mt: { md: 0 },
+          }}
+        >
           {count}
         </Box>
-        <Box gridArea='items'>{items}</Box>
-
-        {pagination && <Box gridArea='afterContent'>{pagination}</Box>}
+        <Box
+          sx={{
+            gridArea: 'items',
+          }}
+        >
+          {items}
+        </Box>
+        {pagination && (
+          <Box
+            sx={{
+              gridArea: 'afterContent',
+            }}
+          >
+            {pagination}
+          </Box>
+        )}
       </Container>
     </>
   )

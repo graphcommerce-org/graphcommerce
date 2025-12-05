@@ -24,8 +24,8 @@ export function SkipLink() {
         zIndex: '-1',
         marginLeft: theme.page.horizontal,
         padding: theme.spacings.xxs,
-        backgroundColor: theme.palette.background.paper,
-        border: theme.palette.text.primary,
+        backgroundColor: theme.vars.palette.background.paper,
+        border: theme.vars.palette.text.primary,
         borderRadius: theme.shape.borderRadius,
         '&:focus': {
           zIndex: 9999,

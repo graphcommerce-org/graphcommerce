@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import React from 'react'
@@ -29,21 +30,19 @@ export function ButtonLinkList(props: ButtonLinkListProps) {
   return (
     <Row maxWidth='820px' className={classes.root} sx={sx}>
       <Box
-        sx={[
-          (theme) => ({
-            position: 'relative',
-            '&:focus': {
-              outline: 'none',
-            },
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginTop: theme.spacings.sm,
-            marginBottom: theme.spacings.xxs,
-            paddingBottom: theme.spacings.xxs,
-            borderBottom: `1px solid ${theme.palette.divider}`,
-          }),
-        ]}
+        sx={sxx((theme) => ({
+          position: 'relative',
+          '&:focus': {
+            outline: 'none',
+          },
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginTop: theme.spacings.sm,
+          marginBottom: theme.spacings.xxs,
+          paddingBottom: theme.spacings.xxs,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
+        }))}
       >
         <Typography variant='overline' color='textSecondary' component={component}>
           {title}

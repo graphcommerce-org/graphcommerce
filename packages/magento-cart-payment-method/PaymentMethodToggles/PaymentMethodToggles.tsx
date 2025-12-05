@@ -7,6 +7,7 @@ import {
   iconChevronRight,
   IconSvg,
   responsiveVal,
+  sxx,
   ToggleButton,
 } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
@@ -83,12 +84,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
       onSubmit={submitHandler}
       noValidate
       className={classes.formRoot}
-      sx={[
+      sx={sxx(
         {
           padding: '5px 0',
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <input type='hidden' {...register('code', { required: true })} required />
       <FormRow className={classes.root} sx={{ position: 'relative', padding: 0 }}>
@@ -101,12 +102,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               direction='left'
               className={(classes.buttonRoot, classes.leftButtonRoot)}
               sx={(theme) => ({
-                background: theme.palette.background.paper,
+                background: theme.vars.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
                 height: responsiveVal(60, 85),
                 boxShadow: 'none',
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.vars.palette.divider}`,
                 '&:focus': {
                   boxShadow: 'none',
                 },
@@ -159,16 +160,16 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
                         selected={value === buttonValue}
                         sx={(theme) => ({
                           typography: 'h6',
-                          border: `1px solid ${theme.palette.divider}`,
+                          border: `1px solid ${theme.vars.palette.divider}`,
                           boxShadow: 'none',
                           transition: 'color .15s ease',
                           whiteSpace: 'nowrap',
                           '&.selected': {
-                            border: `1px solid ${theme.palette.secondary.main}`,
-                            background: `${theme.palette.secondary.main}`,
-                            color: `${theme.palette.secondary.contrastText}`,
+                            border: `1px solid ${theme.vars.palette.secondary.main}`,
+                            background: `${theme.vars.palette.secondary.main}`,
+                            color: `${theme.vars.palette.secondary.contrastText}`,
                             '&:hover': {
-                              background: `${theme.palette.secondary.main}`,
+                              background: `${theme.vars.palette.secondary.main}`,
                             },
                           },
                         })}
@@ -196,12 +197,12 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
               direction='right'
               className={`${classes.buttonRoot} ${classes.rightButtonRoot}`}
               sx={(theme) => ({
-                background: theme.palette.background.paper,
+                background: theme.vars.palette.background.paper,
                 borderRadius: 0,
                 width: 30,
                 height: responsiveVal(60, 85),
                 boxShadow: 'none',
-                border: `1px solid ${theme.palette.divider}`,
+                border: `1px solid ${theme.vars.palette.divider}`,
                 '&:focus': {
                   boxShadow: 'none',
                 },

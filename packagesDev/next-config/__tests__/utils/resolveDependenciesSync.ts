@@ -1,4 +1,5 @@
 import { resolveDependenciesSync, sortDependencies } from '../../src/utils/resolveDependenciesSync'
+
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 it('It resolves and sorts dependencies beginning with the root example package and ending with the the packages used everywhere.', () => {
   const dependencies = resolveDependenciesSync(projectRoot)

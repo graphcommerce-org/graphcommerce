@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Container } from '@mui/material'
 import React from 'react'
@@ -18,7 +19,7 @@ export function StickyBelowHeader(props: StickyBelowHeaderProps) {
       className={classes.root}
       maxWidth={false}
       {...props}
-      sx={[
+      sx={sxx(
         (theme) => ({
           position: 'sticky',
           top: { xs: theme.appShell.headerHeightSm, md: `${theme.page.vertical} !important` },
@@ -28,8 +29,8 @@ export function StickyBelowHeader(props: StickyBelowHeaderProps) {
             pointerEvents: 'auto',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

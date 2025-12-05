@@ -65,7 +65,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             },
             ...magentoMenuToNavigation(menu, true),
             { id: 'blog', name: 'Blog', href: '/blog' },
-            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem
               onClick={() => selection.set(false)}
               key='account'

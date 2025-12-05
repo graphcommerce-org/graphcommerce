@@ -20,7 +20,7 @@ export function ProductPageDescription(
   if (product.__typename !== 'ConfigurableProduct') {
     return <Prev product={product} index={index} {...rest} />
   }
-  
+
   return (
     <Prev
       product={{

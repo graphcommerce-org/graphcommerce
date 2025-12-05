@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { RowLinksProps } from '../RowLinks'
 import { RowLinks } from '../RowLinks'
 
@@ -8,7 +9,7 @@ export function VariantUsps(props: RowLinksProps) {
     <RowLinks
       inlineTitle={inlineTitle}
       {...rowLinksProps}
-      sx={[
+      sx={sxx(
         (theme) => ({
           '& .RowLinks-title': {
             display: 'none',
@@ -20,8 +21,8 @@ export function VariantUsps(props: RowLinksProps) {
             gap: theme.spacings.lg,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

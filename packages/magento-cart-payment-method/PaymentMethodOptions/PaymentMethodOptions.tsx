@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { PaymentMethodOptionsProps } from '../Api/PaymentMethod'
@@ -17,10 +17,7 @@ export function PaymentMethodOptions(props: PaymentMethodOptionsProps & { sx?: S
   const { selectedMethod, selectedModule } = usePaymentMethodContext()
 
   return (
-    <Box
-      className={classes.root}
-      sx={[(theme) => ({ marginBottom: theme.spacings.sm }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Box className={classes.root} sx={sxx((theme) => ({ marginBottom: theme.spacings.sm }), sx)}>
       {selectedModule && selectedMethod && (
         <Box key={selectedMethod.code}>
           <selectedModule.PaymentOptions {...selectedMethod} {...optionsProps} />

@@ -1,5 +1,4 @@
 import { z } from 'zod'
-
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -53,7 +52,8 @@ export type DatalayerConfig = {
  *
  * ## Using configuration
  *
- * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+ * Configuration can be accessed in your project by importing the config from
+ * `@graphcommerce/next-config/config`.
  *
  * ```tsx
  * import {

@@ -96,7 +96,6 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
           right: 0,
           top: 0,
           marginTop: 0,
-
           // Special positioning for bottom overlays
           [theme.breakpoints.down('md')]: {
             height: theme.appShell.headerHeightSm,
@@ -109,7 +108,6 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
             '.variantMdBottom.sizeMdFull &, .variantMdBottom.sizeMdMinimal &': {
               top: `calc(${theme.appShell.appBarHeightMd} * 0.5 * -1)`,
             },
-
             '&.sizeSmall': {
               height: theme.appShell.headerHeightSm,
             },
@@ -135,23 +133,19 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
               height: theme.appShell.headerHeightSm,
             },
           },
-
           // Default: center only
           gridTemplateAreas: '"center"',
           gridTemplateColumns: '1fr',
-
           // Left only
           '&.left:not(.right)': {
             gridTemplateAreas: '"left center"',
             gridTemplateColumns: justify === 'center' ? '1fr max-content' : 'auto 1fr',
           },
-
           // Right only
           '&.right:not(.left)': {
             gridTemplateAreas: '"center right"',
             gridTemplateColumns: justify === 'center' ? 'max-content 1fr' : '1fr auto',
           },
-
           // Both left and right
           '&.left.right': {
             gridTemplateAreas: '"left center right"',

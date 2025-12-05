@@ -1,4 +1,10 @@
-import { extendableComponent, responsiveVal, Row, SectionContainer } from '@graphcommerce/next-ui'
+import {
+  extendableComponent,
+  responsiveVal,
+  Row,
+  SectionContainer,
+  sxx,
+} from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductSpecsFragment } from './ProductSpecs.gql'
@@ -25,10 +31,7 @@ export function ProductSpecs(props: ProductSpecsProps) {
   if (specs?.length === 0) return null
 
   return (
-    <Row
-      className={classes.root}
-      sx={[{ typography: 'subtitle1' }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row className={classes.root} sx={sxx({ typography: 'subtitle1' }, sx)}>
       <SectionContainer
         labelLeft={title}
         sx={(theme) => ({ '& .SectionHeader-root': { marginBottom: theme.spacings.md } })}

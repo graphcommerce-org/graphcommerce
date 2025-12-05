@@ -1,7 +1,7 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
 import type { ProductListParams } from '@graphcommerce/magento-product'
 import { productListLink } from '@graphcommerce/magento-product'
-import { extendableComponent, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { extendableComponent, filterNonNullableKeys, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link } from '@mui/material'
 import type { CategoryChildrenFragment } from './CategoryChildren.gql'
@@ -38,10 +38,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
     <ScrollerProvider scrollSnapAlign='none'>
       <Box
         className={classes.container}
-        sx={[
-          { display: 'flex', width: '100%', overflow: 'hidden' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx({ display: 'flex', width: '100%', overflow: 'hidden' }, sx)}
       >
         <Scroller
           className={classes.scroller}
@@ -69,7 +66,7 @@ export function CategoryChildren(props: CategoryChildrenProps) {
                   content: '""',
                   width: 40,
                   height: 2,
-                  background: theme.palette.primary.main,
+                  background: theme.vars.palette.primary.main,
                   position: 'absolute',
                   left: 0,
                   right: 0,

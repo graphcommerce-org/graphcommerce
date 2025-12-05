@@ -81,7 +81,11 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
         <Alert severity='success' variant='standard'>
           <Trans>Thank you! Your review was successfully submitted for approval</Trans>
         </Alert>
-        <Box mt={6}>
+        <Box
+          sx={{
+            mt: 6,
+          }}
+        >
           <OverlayCloseButton variant='pill' color='secondary' size='large'>
             <Trans>Continue shopping</Trans>
           </OverlayCloseButton>
@@ -110,7 +114,6 @@ export function CreateProductReviewForm(props: CreateProductReviewFormProps) {
           }}
         />
       </FormRow>
-
       <Box
         className={classes.ratingContainer}
         sx={(theme) => ({

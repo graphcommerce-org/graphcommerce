@@ -3,7 +3,7 @@ import { magentoVersion } from '@graphcommerce/next-config/config'
 import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, lighten } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -71,12 +71,11 @@ export function CartTotals(props: CartTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
+          }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-
           '&.containerMargin': {
             marginTop: theme.spacings.md,
             px: theme.spacings.xs,
@@ -132,7 +131,9 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans>Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})</Trans>
+            <Trans>
+              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
+            </Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money
@@ -171,7 +172,7 @@ export function CartTotals(props: CartTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.primary.main,
+            color: theme.vars.palette.primary.main,
           })}
         >
           <Box>

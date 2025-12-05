@@ -3,7 +3,7 @@ import { Image } from '@graphcommerce/image'
 import { AddProductsToCartForm, useProductLink } from '@graphcommerce/magento-product'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, actionCardImageSizes, extendableComponent } from '@graphcommerce/next-ui'
+import { ActionCard, actionCardImageSizes, extendableComponent, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
 import { Button, Link } from '@mui/material'
@@ -67,7 +67,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
       <ActionCard
         variant={variant}
         value={id}
-        sx={[
+        sx={sxx(
           (theme) => ({
             '&.ActionCard-root': {
               px: 0,
@@ -119,8 +119,8 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               mb: { xs: 0.5, sm: 0 },
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         image={
           product?.small_image?.url && (
             <Image

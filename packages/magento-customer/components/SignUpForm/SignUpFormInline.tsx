@@ -68,7 +68,9 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
   ) {
     return (
       <Alert>
-        <Trans>Registration successful. Please check your inbox to confirm your email address ({email})</Trans>
+        <Trans>
+          Registration successful. Please check your inbox to confirm your email address ({email})
+        </Trans>
       </Alert>
     )
   }

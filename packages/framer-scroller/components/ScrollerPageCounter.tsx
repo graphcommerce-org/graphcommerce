@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -29,7 +30,7 @@ export const ScrollerPageCounter = React.forwardRef<HTMLDivElement, SliderPageCo
     })
 
     return (
-      <MotionDiv ref={ref} sx={[{ typography: 'h4' }, ...(Array.isArray(sx) ? sx : [sx])]}>
+      <MotionDiv ref={ref} sx={sxx({ typography: 'h4' }, sx)}>
         <span>{String(current).padStart(2, '0')}</span> — {String(count).padStart(2, '0')}
       </MotionDiv>
     )

@@ -4,6 +4,7 @@ import {
   extendableComponent,
   nonNullable,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -31,11 +32,11 @@ export function InvoiceItems(props: InvoiceItemsProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           my: theme.spacings.md,
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
+          border: `1px ${theme.vars.palette.divider} solid`,
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -43,8 +44,8 @@ export function InvoiceItems(props: InvoiceItemsProps) {
             theme.breakpoints.values,
           ),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}

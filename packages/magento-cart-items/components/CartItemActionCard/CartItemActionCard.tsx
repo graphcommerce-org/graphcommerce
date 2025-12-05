@@ -3,7 +3,12 @@ import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { productPath } from '@graphcommerce/magento-product'
 import { Money, PriceModifiersList, type PriceModifier } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, actionCardImageSizes, filterNonNullableKeys } from '@graphcommerce/next-ui'
+import {
+  ActionCard,
+  actionCardImageSizes,
+  filterNonNullableKeys,
+  sxx,
+} from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, Button, Link } from '@mui/material'
 import type { CartItemFragment } from '../../Api/CartItem.gql'
@@ -50,7 +55,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
   return (
     <ActionCard
       value={uid}
-      sx={[
+      sx={sxx(
         (theme) => ({
           '&.ActionCard-root': {
             px: 0,
@@ -69,9 +74,6 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           '& .ActionCard-end': {
             justifyContent: 'space-between',
           },
-          '& .ActionCard-action': {
-            pr: readOnly ? 0 : theme.spacings.xs,
-          },
           '& .ActionCard-image': {
             alignSelf: 'flex-start',
           },
@@ -81,12 +83,33 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
             justifyItems: 'start',
           },
           '& .ActionCard-price': {
-            pr: readOnly ? 0 : theme.spacings.xs,
             mb: { xs: 0.5, sm: 0 },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        readOnly
+          ? {
+              '& .ActionCard-action': {
+                pr: 0,
+              },
+            }
+          : (theme) => ({
+              '& .ActionCard-action': {
+                pr: theme.spacings.xs,
+              },
+            }),
+        readOnly
+          ? {
+              '& .ActionCard-price': {
+                pr: 0,
+              },
+            }
+          : (theme) => ({
+              '& .ActionCard-price': {
+                pr: theme.spacings.xs,
+              },
+            }),
+        sx,
+      )}
       image={
         product.thumbnail?.url ? (
           <Image

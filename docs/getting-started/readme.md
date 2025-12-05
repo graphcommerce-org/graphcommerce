@@ -103,7 +103,7 @@ sx={{ '& .MuiBox-root': { background: 'blue' }}}
 Pass the theme object to use global values
 
 ```tsx
-sx={(theme)=>({ margin: theme.spacings.lg, color: theme.palette.text.secondary })}
+sx={(theme)=>({ margin: theme.spacings.lg, color: theme.vars.palette.text.secondary })}
 ```
 
 ## Customization

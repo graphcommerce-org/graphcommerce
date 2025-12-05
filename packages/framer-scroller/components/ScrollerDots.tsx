@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import type { FabProps, SxProps, Theme } from '@mui/material'
@@ -30,7 +31,7 @@ export const ScrollerDots = m.create(
         {...containerProps}
         className={classes.root}
         ref={ref}
-        sx={[
+        sx={sxx(
           {
             width: 'fit-content',
             maxWidth: '100%',
@@ -41,8 +42,8 @@ export const ScrollerDots = m.create(
             background: 'transparent',
             display: 'flex',
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         {itemsArr.map((item, idx) => (
           // eslint-disable-next-line react/no-array-index-key

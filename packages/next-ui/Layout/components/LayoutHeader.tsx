@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -111,12 +112,10 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
-          zIndex: children ? theme.zIndex.appBar : theme.zIndex.appBar - 2,
           position: 'sticky',
           pointerEvents: 'none',
-
           [theme.breakpoints.down('md')]: {
             top: 0,
             marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
@@ -137,7 +136,6 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
               display: 'none',
             },
           },
-
           [theme.breakpoints.up('md')]: {
             top: 0,
             height: theme.appShell.appBarHeightMd,
@@ -166,8 +164,11 @@ export const LayoutHeader = React.memo<LayoutHeaderProps>((props) => {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        children
+          ? (theme) => ({ zIndex: theme.zIndex.appBar })
+          : (theme) => ({ zIndex: theme.zIndex.appBar - 2 }),
+        sx,
+      )}
     >
       <LayoutHeaderContent
         size={size}

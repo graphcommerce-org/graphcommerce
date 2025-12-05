@@ -54,7 +54,6 @@ function CheckoutAdded() {
             xs: 'min-content 1fr auto',
             md: 'min-content 1fr max-content auto',
           },
-
           '&.IconSvg': {
             gridArea: 'children',
           },
@@ -89,7 +88,7 @@ function CheckoutAdded() {
           />
         )}
 
-        <Box gridArea='children'>
+        <Box sx={{ gridArea: 'children' }}>
           <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
             <Trans>
               <strong>{name}</strong> has been added to your shopping cart!
@@ -101,7 +100,7 @@ function CheckoutAdded() {
             </Box>
           )}
         </Box>
-        <Box gridArea='action'>
+        <Box sx={{ gridArea: 'action' }}>
           <Button
             href='/cart'
             id='view-shopping-cart-button'

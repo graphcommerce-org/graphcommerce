@@ -1,5 +1,5 @@
 import { ApolloErrorSnackbar, EmailElement, useFormGqlMutation } from '@graphcommerce/ecommerce-ui'
-import { Button, Form, MessageSnackbar } from '@graphcommerce/next-ui'
+import { Button, Form, MessageSnackbar, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { GuestNewsletterToggleDocument } from '../GuestNewsletterToggle/GuestNewsletterToggle.gql'
@@ -18,11 +18,7 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
   const submittedWithoutErrors = formState.isSubmitSuccessful && !error
 
   return (
-    <Form
-      noValidate
-      onSubmit={submit}
-      sx={[(theme) => ({ gap: theme.spacings.xs }), ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Form noValidate onSubmit={submit} sx={sxx((theme) => ({ gap: theme.spacings.xs }), sx)}>
       <EmailElement
         control={control}
         name='email'
@@ -31,7 +27,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
         size='medium'
         disabled={submittedWithoutErrors}
       />
-
       <Button
         loading={formState.isSubmitting}
         variant='pill'
@@ -42,7 +37,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       >
         {submittedWithoutErrors ? <Trans>Subscribed</Trans> : <Trans>Subscribe</Trans>}
       </Button>
-
       <MessageSnackbar
         open={submittedWithoutErrors}
         variant='pill'
@@ -55,7 +49,6 @@ export function GuestNewsletter(props: GuestNewsletterProps) {
       >
         <Trans>You have been successfully subscribed to our newsletter.</Trans>
       </MessageSnackbar>
-
       <ApolloErrorSnackbar error={error} />
     </Form>
   )

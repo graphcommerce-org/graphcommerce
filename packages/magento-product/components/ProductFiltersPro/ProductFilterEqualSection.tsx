@@ -52,7 +52,6 @@ export function ProductFilterEqualSection(props: FilterProps) {
       })),
     [attrCode, options],
   )
-
   return (
     <ActionCardAccordion
       summary={label}

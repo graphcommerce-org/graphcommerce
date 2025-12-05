@@ -82,7 +82,6 @@ function getSectionSchemaKeys(configKey: keyof GraphCommerceConfig): string[] {
       break
     }
 
-    
     // Direct ZodObject
     if (unwrappedSchema && 'shape' in unwrappedSchema) {
       const shape =

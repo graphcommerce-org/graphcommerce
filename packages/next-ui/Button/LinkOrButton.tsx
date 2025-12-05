@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { Breakpoint, LinkProps } from '@mui/material'
 import { Link, useForkRef } from '@mui/material'
 import React, { useRef } from 'react'
@@ -60,15 +61,15 @@ export const LinkOrButton = React.forwardRef<
         color={color}
         loading={loading}
         disabled={disabled}
-        sx={[
+        sx={sxx(
           {
             display: {
               xs: 'none',
               [breakpoint]: 'inline-flex',
             },
           },
-          ...(Array.isArray(buttonSx) ? buttonSx : [buttonSx]),
-        ]}
+          buttonSx,
+        )}
       >
         {children}
       </Button>
@@ -81,18 +82,18 @@ export const LinkOrButton = React.forwardRef<
         {...link}
         color={loading || disabled ? 'action.disabled' : color}
         aria-disabled={loading || disabled}
-        sx={[
+        sx={sxx(
           {
             display: { xs: 'inline-flex', [breakpoint]: 'none' },
             alignItems: 'center',
           },
           !!disabled &&
             ((theme) => ({
-              opacity: theme.palette.action.disabledOpacity,
+              opacity: theme.vars.palette.action.disabledOpacity,
               pointerEvents: 'none',
             })),
-          ...(Array.isArray(linkSx) ? linkSx : [linkSx]),
-        ]}
+          linkSx,
+        )}
       >
         {startIcon}
         <span>{children}</span>

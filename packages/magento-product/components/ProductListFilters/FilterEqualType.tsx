@@ -1,7 +1,7 @@
 import { cloneDeep } from '@graphcommerce/graphql'
 import type { FilterEqualTypeInput } from '@graphcommerce/graphql-mesh'
 import type { ChipMenuProps } from '@graphcommerce/next-ui'
-import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import {
   Box, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
   Checkbox,
@@ -127,7 +127,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                   padding: `0 ${theme.spacings.xxs} 0`,
                   display: 'block',
                   '&:not(:nth-last-of-type(-n+2)) > div': {
-                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    borderBottom: `1px solid ${theme.vars.palette.divider}`,
                   },
                 })}
               >
@@ -155,7 +155,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                         whiteSpace: 'break-spaces',
                       },
                       [`& .${listItemTextClasses.secondary}`]: {
-                        color: theme.palette.grey[500],
+                        color: theme.vars.palette.grey[500],
                         marginLeft: '4px',
                         fontSize: theme.typography.pxToRem(11),
                         display: 'inline',
@@ -172,7 +172,7 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                       disableRipple
                       inputProps={{ 'aria-labelledby': labelId }}
                       className={cls.checkbox}
-                      sx={[
+                      sx={sxx(
                         {
                           padding: 0,
                           margin: '-10px 0 0 0',
@@ -187,10 +187,10 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
                         },
                         isActive &&
                           ((theme) => ({
-                            border: `1px solid ${theme.palette.primary.main}`,
-                            boxShadow: `inset 0 0 0 4px ${theme.palette.background.paper}`,
+                            border: `1px solid ${theme.vars.palette.primary.main}`,
+                            boxShadow: `inset 0 0 0 4px ${theme.vars.palette.background.paper}`,
                           })),
-                      ]}
+                      )}
                       style={
                         isColor
                           ? { background: `${option?.label}`, color: `${option?.label}` }

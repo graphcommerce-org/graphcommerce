@@ -2,7 +2,7 @@ import type { ActionCardItemBase } from '@graphcommerce/ecommerce-ui'
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { AddProductsToCartFields } from '@graphcommerce/magento-product/components'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product/components'
-import { filterNonNullableKeys, nonNullable, SectionHeader } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable, SectionHeader, sxx } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -77,13 +77,12 @@ export function ConfigurableProductOption(props: ConfigurableProductOptionProps)
   if (!values) return null
 
   return (
-    <Box key={fieldName} sx={[...(Array.isArray(sx) ? sx : [sx])]}>
+    <Box key={fieldName} sx={sx}>
       <SectionHeader
         labelLeft={optionStartLabels?.[attribute_code ?? ''] ?? label}
         labelRight={optionEndLabels?.[attribute_code ?? '']}
         sx={{ mt: 0 }}
       />
-
       <ActionCardListForm<
         ActionCardItemBase & ConfigurableOptionValueFragment,
         AddProductsToCartFields

@@ -3,10 +3,11 @@ import {
   DateTimeFormat,
   extendableComponent,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { AddressMultiLine } from '../../AddressMultiLine/AddressMultiLine'
 import { TrackingLink } from '../../TrackingLink/TrackingLink'
 import type { OrderDetailsFragment } from './OrderDetails.gql'
@@ -41,7 +42,7 @@ export function OrderDetails(props: OrderDetailsProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
           margin: `${theme.spacings.sm} 0`,
           '& > div:last-of-type': {
@@ -60,8 +61,8 @@ export function OrderDetails(props: OrderDetailsProps) {
             ),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.orderDetailContainer}
@@ -78,10 +79,7 @@ export function OrderDetails(props: OrderDetailsProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
@@ -90,6 +88,9 @@ export function OrderDetails(props: OrderDetailsProps) {
             gridTemplateColumns: '1fr 1fr',
             marginTop: theme.spacings.xxs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.vars.palette.background.default,
+          }),
         })}
       >
         <Box className={classes.orderDetailRow}>
@@ -102,7 +103,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             <Typography>{number}</Typography>
           </SectionContainer>
         </Box>
-
         <Box className={classes.orderDetailRow}>
           <SectionContainer
             variantLeft='h5'
@@ -113,7 +113,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             <DateTimeFormat date={order_date} />
           </SectionContainer>
         </Box>
-
         {shipping_method && (
           <Box className={classes.orderDetailRow}>
             <SectionContainer
@@ -123,7 +122,6 @@ export function OrderDetails(props: OrderDetailsProps) {
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '4px' } }}
             >
               <Typography>{shipping_method ?? ''}</Typography>
-
               {shipments && shipments.length > 0 && (
                 <>
                   {shipments?.[0]?.tracking && shipments?.[0]?.tracking?.[0]?.title}
@@ -174,7 +172,6 @@ export function OrderDetails(props: OrderDetailsProps) {
             </SectionContainer>
           </Box>
         )}
-
         <Box className={classes.orderDetailRow}>
           <SectionContainer
             variantLeft='h5'

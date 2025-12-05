@@ -2,7 +2,7 @@ import { Money } from '@graphcommerce/magento-store'
 import { breakpointVal, iconChevronRight, IconSvg, NextLink, sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten } from '@mui/material'
+import { Box } from '@mui/material'
 import type { CreditMemoCardFragment } from './CreditMemoCard.gql'
 
 export type CreditMemoCardProps = {
@@ -26,10 +26,10 @@ export function CreditMemoCard(props: CreditMemoCardProps) {
           px: theme.spacings.xxs,
           py: theme.spacings.xxs,
           gap: theme.spacings.sm,
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
+          }),
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -37,7 +37,7 @@ export function CreditMemoCard(props: CreditMemoCardProps) {
             theme.breakpoints.values,
           ),
           '&:hover': {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: theme.vars.palette.action.hover,
           },
           display: 'grid',
           gridTemplate: `

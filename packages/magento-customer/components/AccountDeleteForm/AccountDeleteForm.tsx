@@ -2,8 +2,8 @@ import { CheckboxElement, EmailElement } from '@graphcommerce/ecommerce-ui'
 import { useApolloClient, useMutation } from '@graphcommerce/graphql'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useForm } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react/macro'
 import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import { CustomerDocument, CustomerTokenDocument, useCustomerQuery } from '../../hooks'
@@ -50,10 +50,20 @@ export function AccountDeleteForm() {
       {!called || error || loading ? (
         <WaitForCustomer waitFor={dashboard}>
           <Box component='form' onSubmit={submitHandler} noValidate>
-            <Typography variant='h6' textAlign='center'>
+            <Typography
+              variant='h6'
+              sx={{
+                textAlign: 'center',
+              }}
+            >
               <Trans>Are you sure you want to delete your account?</Trans>
             </Typography>
-            <Typography variant='body1' textAlign='center'>
+            <Typography
+              variant='body1'
+              sx={{
+                textAlign: 'center',
+              }}
+            >
               <Trans>
                 Doing so will remove all your data including order history and saved shipping /
                 billing addresses.
@@ -91,7 +101,7 @@ export function AccountDeleteForm() {
         </WaitForCustomer>
       ) : (
         <>
-          <Typography variant='h6' textAlign='center'>
+          <Typography variant='h6' sx={{ textAlign: 'center' }}>
             <Trans>Account deletion successful</Trans>
           </Typography>
           <FormActions>

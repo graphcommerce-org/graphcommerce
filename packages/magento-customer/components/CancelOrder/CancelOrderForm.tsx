@@ -8,6 +8,7 @@ import {
   FormRow,
   iconChevronDown,
   IconSvg,
+  sxx,
 } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
@@ -52,10 +53,9 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
         <Trans>Order has successfully been canceled</Trans>
       </Alert>
     )
-
   return (
     <Accordion
-      sx={[
+      sx={sxx(
         (theme) => ({
           mb: theme.spacings.xxl,
           ...breakpointVal(
@@ -69,22 +69,20 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
             mb: theme.spacings.xxl,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...rest}
     >
       <AccordionSummary
         expandIcon={<IconSvg src={iconChevronDown} />}
-        sx={[
-          (theme) => ({
-            px: theme.spacings.xs,
-            '& .MuiAccordionSummary-content': {
-              alignItems: 'center',
-              columnGap: 2,
-              justifyContent: 'space-between',
-            },
-          }),
-        ]}
+        sx={(theme) => ({
+          px: theme.spacings.xs,
+          '& .MuiAccordionSummary-content': {
+            alignItems: 'center',
+            columnGap: 2,
+            justifyContent: 'space-between',
+          },
+        })}
       >
         <Trans>Cancel order</Trans>
       </AccordionSummary>
@@ -103,7 +101,6 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
               }))}
             />
           </FormRow>
-
           <CheckboxElement
             required
             control={control}
@@ -113,19 +110,15 @@ export function CancelOrderForm(props: CancelOrderFormProps) {
               <Trans>I understand that my order will be canceled and this can not be undone.</Trans>
             }
           />
-
           {submittedWithoutErrors && (
             <Alert>
               <Trans>Order has successfully been canceled</Trans>
             </Alert>
           )}
-
           {cancelOrderData?.cancelOrder?.error && (
             <Alert severity='error'>{cancelOrderData?.cancelOrder?.error}</Alert>
           )}
-
           <ApolloErrorSnackbar error={error} />
-
           <FormRow
             sx={(theme) => ({
               justifyContent: 'center',

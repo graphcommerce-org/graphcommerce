@@ -8,6 +8,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 /* eslint-disable jsx-a11y/alt-text */
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled, useForkRef } from '@mui/material'
 import type { ImageConfigComplete, LoaderValue } from 'next/dist/shared/lib/image-config'
@@ -517,7 +518,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             width={width}
             height={height}
             data-nimg
-            sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+            sx={sxx(style, sx)}
           />
         ) : (
           <Picture {...pictureProps}>
@@ -535,7 +536,7 @@ const Image = React.forwardRef<HTMLImageElement, ImageProps>(
               loading={loading ?? 'lazy'}
               width={width}
               height={height}
-              sx={[style, ...(Array.isArray(sx) ? sx : [sx])]}
+              sx={sxx(style, sx)}
               sizes={sizes}
               data-nimg
               decoding='async'

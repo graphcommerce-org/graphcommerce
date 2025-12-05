@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -34,7 +35,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       component={NextLink}
       href={href}
       className={classes.root}
-      sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sx}
       dense
       selected={router.asPath.startsWith(href)}
     >
@@ -45,8 +46,10 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       )}
       <ListItemText
         className={classes.icon}
-        primaryTypographyProps={{
-          sx: { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+        slotProps={{
+          primary: {
+            sx: { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' },
+          },
         }}
       >
         {children}

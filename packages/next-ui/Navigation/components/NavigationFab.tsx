@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
@@ -49,12 +50,7 @@ export function NavigationFab(props: NavigationFabProps) {
   const classes = withState({ scrolled })
 
   return (
-    <Box
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+    <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
         sx={{
@@ -73,20 +69,44 @@ export function NavigationFab(props: NavigationFabProps) {
             boxShadow: 'none',
             '&:hover, &:focus': {
               boxShadow: 'none',
-              background: theme.palette.text.primary,
+              background: theme.vars.palette.text.primary,
             },
-            background: theme.palette.text.primary,
+            background: theme.vars.palette.text.primary,
             pointerEvents: 'all',
-            color: theme.palette.background.paper,
+            color: theme.vars.palette.background.paper,
           }}
           className={classes.fab}
           {...fabProps}
         >
           {closeIcon ?? (
-            <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
+            <IconSvg
+              src={iconClose}
+              size='large'
+              sx={sxx(
+                openEl
+                  ? {
+                      display: 'block',
+                    }
+                  : {
+                      display: 'none',
+                    },
+              )}
+            />
           )}
           {menuIcon ?? (
-            <IconSvg src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
+            <IconSvg
+              src={iconMenu}
+              size='large'
+              sx={sxx(
+                openEl
+                  ? {
+                      display: 'none',
+                    }
+                  : {
+                      display: 'block',
+                    },
+              )}
+            />
           )}
         </Fab>
         <MotionDiv

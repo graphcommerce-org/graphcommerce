@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type {
@@ -85,8 +86,7 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
       aria-label={t`Breadcrumbs`}
       maxItems={maxItems}
       color='inherit'
-      sx={[
-        {},
+      sx={sxx(
         !maxItems && {
           '& .MuiBreadcrumbs-ol': {
             flexWrap: 'nowrap',
@@ -106,30 +106,32 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           '& .MuiBreadcrumbs-separator': {
             '&:nth-of-type(2)': {
               display: {
-                xs: !showButtonMobile && 'none',
-                md: !showButtonDesktop && 'none',
-              },
-            },
-          },
-
-          [theme.breakpoints.down('md')]: showButtonMobile && {
-            '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
-              display: 'none',
-              [`&:nth-last-of-type(-n+${effectiveBreadcrumbsAmountMobile * 2})`]: {
-                display: 'flex',
-              },
-            },
-          },
-
-          [theme.breakpoints.up('md')]: showButtonDesktop && {
-            '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
-              display: 'none',
-              [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
-                display: 'flex',
+                xs: showButtonMobile ? undefined : 'none',
+                md: showButtonDesktop ? undefined : 'none',
               },
             },
           },
         },
+        !maxItems &&
+          showButtonMobile && {
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${effectiveBreadcrumbsAmountMobile * 2})`]: {
+                  display: 'flex',
+                },
+              },
+            },
+          },
+        !maxItems &&
+          showButtonDesktop && {
+            [theme.breakpoints.up('md')]: {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: { display: 'flex' },
+              },
+            },
+          },
         // Hide the last item and its separator on mobile
         hideLastOnMobile && {
           [theme.breakpoints.down('md')]: {
@@ -141,8 +143,8 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
             },
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {!maxItems && (
         <ClickAwayListener
@@ -180,15 +182,8 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           </Box>
         </ClickAwayListener>
       )}
-
       {disableHome ? null : (
-        <Link
-          href='/'
-          color='inherit'
-          underline='hover'
-          {...linkProps}
-          sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
-        >
+        <Link href='/' color='inherit' underline='hover' {...linkProps} sx={sxx(itemSx)}>
           <Trans>Home</Trans>
         </Link>
       )}
@@ -199,22 +194,13 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           underline='hover'
           {...breadcrumb}
           {...linkProps}
-          sx={[
-            ...(Array.isArray(breadcrumb.sx) ? breadcrumb.sx : [breadcrumb.sx]),
-            ...(Array.isArray(itemSx) ? itemSx : [itemSx]),
-          ]}
+          sx={sxx(breadcrumb.sx, itemSx)}
         >
           {breadcrumb.name}
         </Link>
       ))}
-
       {last && (
-        <Typography
-          component='span'
-          noWrap
-          color='inherit'
-          sx={[{ fontWeight: '600' }, ...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
-        >
+        <Typography component='span' noWrap color='inherit' sx={sxx({ fontWeight: '600' }, itemSx)}>
           {last.name}
         </Typography>
       )}

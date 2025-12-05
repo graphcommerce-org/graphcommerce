@@ -68,7 +68,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
             ...magentoMenuToNavigation(menu, true),
-            <Divider sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
             <CustomerMenuFabItem
               onClick={() => selection.set(false)}
               key='account'
@@ -118,13 +118,13 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
         header={
           <>
             <Logo />
+
             <DesktopNavBar>
               {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
                 <DesktopNavItem key={item?.uid} href={`/${item?.url_path}`}>
                   {item?.name}
                 </DesktopNavItem>
               ))}
-
               <DesktopNavItem
                 onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}
                 onKeyUp={(evt) => {
@@ -138,7 +138,6 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
                 <IconSvg src={iconChevronDown} />
               </DesktopNavItem>
             </DesktopNavBar>
-
             <DesktopNavActions>
               <StoreSwitcherButton />
               <SearchField

@@ -16,7 +16,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-import { Alert, Box, Container, lighten, Typography } from '@mui/material'
+import { Alert, Box, Container, Typography } from '@mui/material'
 import type { PaymentTokenFragment } from '../../graphql/fragments/PaymentToken.gql'
 import { CustomerPaymentTokensDocument } from '../../graphql/queries/PaymentTokens.gql'
 import { DeletePaymentTokenButton } from '../DeletePaymentTokenButton'
@@ -43,32 +43,26 @@ export function CustomerTokensPage() {
           <Trans>Payment information</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-
       <Container maxWidth='md'>
         <PageMeta title={t`Payment information`} metaRobots={['noindex']} />
 
         <LayoutTitle icon={iconCreditCard} sx={(theme) => ({ mb: theme.spacings.xs })}>
           <Trans>Stored payment methods</Trans>
         </LayoutTitle>
-
         <WaitForCustomer waitFor={!loading}>
           {!paymentTokens?.length && (
             <Alert severity='info'>
               <Trans>No stored payment methods found.</Trans>
             </Alert>
           )}
-
-          <Box sx={sxx((theme) => ({ display: 'grid', rowGap: theme.spacings.xs }))}>
+          <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.xs })}>
             {paymentTokens?.map((token) => (
               <Box
                 key={token.public_hash}
                 sx={(theme) => ({
                   px: theme.spacings.xxs,
                   py: theme.spacings.xxs,
-                  background:
-                    theme.palette.mode === 'light'
-                      ? theme.palette.background.default
-                      : lighten(theme.palette.background.default, 0.15),
+                  background: theme.lighten(theme.vars.palette.background.default, 0.15),
                   ...breakpointVal(
                     'borderRadius',
                     theme.shape.borderRadius * 2,
@@ -82,6 +76,9 @@ export function CustomerTokensPage() {
                 `,
                   rowGap: 0.5,
                   columnGap: 1,
+                  ...theme.applyStyles('light', {
+                    background: theme.vars.palette.background.default,
+                  }),
                 })}
               >
                 <Box sx={{ gridArea: 'details', color: 'text.secondary' }}>{token.details}</Box>

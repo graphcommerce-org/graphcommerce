@@ -64,9 +64,7 @@ function AccountOrdersPage() {
               title={<Trans>You have no orders yet</Trans>}
               icon={<IconSvg src={iconBox} size='xxl' />}
             >
-              <Trans>
-                Discover our collection and place your first order!
-              </Trans>
+              <Trans>Discover our collection and place your first order!</Trans>
             </FullPageMessage>
           )}
         </WaitForCustomer>

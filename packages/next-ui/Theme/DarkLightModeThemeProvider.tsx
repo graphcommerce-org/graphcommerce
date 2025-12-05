@@ -1,100 +1,41 @@
 import { Trans } from '@lingui/react/macro'
-import type { FabProps, ListItemButtonProps, Theme } from '@mui/material'
-import {
-  Fab,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  ThemeProvider, // eslint-disable-next-line @typescript-eslint/no-restricted-imports
-  useMediaQuery,
-} from '@mui/material'
-import { useRouter } from 'next/router'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import type { FabProps, ListItemButtonProps } from '@mui/material'
+import { Fab, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { useColorScheme } from '@mui/material/styles'
 import { iconMoon, iconSun } from '../icons'
 import { IconSvg } from '../IconSvg'
-import { getCssFlag, setCssFlag } from '../utils/cssFlags'
 
 type Mode = 'dark' | 'light'
-type UserMode = 'auto' | Mode
-
-type ColorModeContext = {
-  userMode: UserMode
-  browserMode: Mode
-  currentMode: Mode
-  isSingleMode: boolean
-  toggle: () => void
-}
-
-/** @public */
-export const colorModeContext = createContext(undefined as unknown as ColorModeContext)
-colorModeContext.displayName = 'ColorModeContext'
-
-export type ThemeProviderProps = {
-  children: React.ReactNode
-  ssrMode?: Mode
-  listenToBrowser?: boolean
-} & (
-  | { light: Theme; dark?: undefined }
-  | { light?: undefined; dark: Theme }
-  | { light: Theme; dark: Theme }
-)
 
 /**
- * Wrapper around `import { ThemeProvider } from '@mui/material'`
+ * Hook to get and set the color mode. Uses MUI's useColorScheme() when CSS variables are enabled.
  *
- * The multi DarkLightModeThemeProvider allows switching between light and dark mode based on URL
- * and on user input.
+ * @public
  */
-export function DarkLightModeThemeProvider(props: ThemeProviderProps) {
-  const { children, light, dark, ssrMode = 'light', listenToBrowser = true } = props
-  const [configuredMode, setConfiguredMode] = useState<UserMode>(listenToBrowser ? 'auto' : ssrMode)
-  const setThemeMode = (mode: UserMode) => {
-    setConfiguredMode(mode)
-    setCssFlag('color-scheme', mode)
+export function useColorMode() {
+  const colorScheme = useColorScheme()
+
+  if (!colorScheme.mode) {
+    // CSS variables not enabled, return safe defaults
+    return {
+      userMode: 'light' as const,
+      browserMode: 'light' as Mode,
+      currentMode: 'light' as Mode,
+      isSingleMode: true,
+      toggle: () => {},
+    }
   }
 
-  const browserMode: Mode = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+  const { mode, setMode, systemMode } = colorScheme
+  const currentMode: Mode = mode === 'system' ? (systemMode ?? 'light') : mode
 
-  // If the user has set a mode, use that. Otherwise, use the browser mode.
-  const currentMode = configuredMode === 'auto' ? browserMode : configuredMode
-
-  let theme: Theme = light || dark // Default
-  if (light && currentMode === 'light') theme = light
-  else if (dark) theme = dark
-
-  useEffect(() => {
-    const flag = getCssFlag('color-scheme') as Mode
-    if (flag) setConfiguredMode(flag)
-  }, [setConfiguredMode])
-
-  // If a URL parameter is present, switch from auto to light or dark mode
-  const { asPath } = useRouter()
-  useEffect(() => {
-    if (asPath.includes('darkmode')) setConfiguredMode('dark')
-  }, [asPath])
-
-  // Create the context
-  const colorContext: ColorModeContext = useMemo(
-    () => ({
-      browserMode,
-      userMode: configuredMode,
-      currentMode,
-      isSingleMode: !light || !dark,
-      toggle: () => setThemeMode(currentMode === 'light' ? 'dark' : 'light'),
-    }),
-    [browserMode, configuredMode, currentMode, light, dark],
-  )
-
-  return (
-    <colorModeContext.Provider value={colorContext}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </colorModeContext.Provider>
-  )
-}
-
-/** @public */
-export function useColorMode() {
-  return useContext(colorModeContext)
+  return {
+    userMode: mode,
+    browserMode: (systemMode ?? 'light') as Mode,
+    currentMode,
+    isSingleMode: false,
+    toggle: () => setMode(currentMode === 'light' ? 'dark' : 'light'),
+  }
 }
 
 /** @public */
@@ -115,8 +56,6 @@ export function DarkLightModeToggleFab(props: Omit<FabProps, 'onClick'>) {
 /**
  * A button that switches between light and dark mode
  *
- * To disable this functionality
- *
  * @public
  */
 export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
@@ -128,7 +67,7 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
   }
 
   return (
-    <ListItemButton {...props} sx={[{}, ...(Array.isArray(sx) ? sx : [sx])]} dense onClick={toggle}>
+    <ListItemButton {...props} sx={sx} dense onClick={toggle}>
       <ListItemIcon sx={{ minWidth: 'unset', paddingRight: '8px' }}>
         <IconSvg src={currentMode === 'light' ? iconMoon : iconSun} size='medium' />
       </ListItemIcon>
@@ -138,3 +77,17 @@ export function DarkLightModeMenuSecondaryItem(props: ListItemButtonProps) {
     </ListItemButton>
   )
 }
+
+/**
+ * @deprecated Use ThemeProvider from @mui/material with cssVariables enabled instead. The
+ *   dark/light mode toggle now uses MUI's built-in useColorScheme() hook.
+ */
+export function DarkLightModeThemeProvider({ children }: { children: React.ReactNode }) {
+  console.warn(
+    'DarkLightModeThemeProvider is deprecated. Use ThemeProvider from @mui/material with cssVariables enabled instead.',
+  )
+  return children
+}
+
+/** @deprecated No longer needed, context is provided by MUI's ThemeProvider with cssVariables */
+export const colorModeContext = null

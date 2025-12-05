@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { sxx } from '@graphcommerce/next-ui'
 import type { ButtonProps } from '@mui/material'
-import { alpha, Button } from '@mui/material'
+import { Button } from '@mui/material'
 import type { FormEvent } from 'react'
 import React from 'react'
 import { extendableComponent } from '../Styles'
@@ -60,23 +61,21 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
       size={size}
       {...other}
       classes={classes}
-      sx={[
+      sx={sxx(
         (theme) => ({
           border: 1,
           borderColor: 'divider',
           bgcolor: 'background.paper',
-
           '&.disabled': {
             borderWidth: 2,
           },
-
           '&.selected': {
-            border: `1px solid ${theme.palette[color]?.main ?? theme.palette.primary.main}`,
+            border: `1px solid ${theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main}`,
             boxShadow: `inset 0 0 0 1px ${
-              theme.palette[color]?.main ?? theme.palette.primary.main
-            },0 0 0 4px ${alpha(
-              theme.palette.primary.main,
-              theme.palette.action.hoverOpacity,
+              theme.vars.palette[color]?.main ?? theme.vars.palette.primary.main
+            },0 0 0 4px ${theme.alpha(
+              theme.vars.palette.primary.main,
+              theme.vars.palette.action.hoverOpacity,
             )} !important`,
           },
           ':not(&.sizeSmall)': {
@@ -98,8 +97,8 @@ export const ToggleButton = React.forwardRef<any, ToggleButtonProps>((props, ref
             padding: '8px 12px',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </Button>

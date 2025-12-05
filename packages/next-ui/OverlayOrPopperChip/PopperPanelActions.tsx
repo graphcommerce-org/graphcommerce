@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Box, Button, Fab, Typography } from '@mui/material'
@@ -18,7 +19,7 @@ export function PopperPanelActions(props: PanelActionsProps) {
     <>
       <LayoutHeader
         noAlign
-        sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sxx({ '&.noAlign': { mb: 0 } }, sx)}
         switchPoint={-10000}
         size='small'
         primary={

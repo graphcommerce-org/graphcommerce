@@ -2,7 +2,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { LayoutOverlayProps, LayoutOverlayVariant } from '@graphcommerce/next-ui'
 import { LayoutHeader, LayoutOverlay, LayoutTitle } from '@graphcommerce/next-ui'
-import Link, { Container } from '@mui/material'
+import { Container, Link } from '@mui/material'
 import { m } from 'framer-motion'
 import type { GetStaticPathsResult, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
