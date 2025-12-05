@@ -199,21 +199,29 @@ function ProductPage(props: Props) {
     </PrivateQueryMaskProvider>
   )
 }
+
 ProductPage.pageOptions = {
   Layout: LayoutNavigation,
 } as PageOptions
+
 export default ProductPage
+
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+
   const path = (locale: string) => getProductStaticPaths(graphqlSsrClient({ locale }), locale)
   const paths = (await Promise.all(locales.map(path))).flat(1)
+
   return { paths, fallback: 'blocking' }
 }
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale, params } = context
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
+
   const urlKey = params?.url ?? '??'
+
   const conf = client.query({ query: StoreConfigDocument })
   const productPage = staticClient
     .query({
@@ -221,17 +229,22 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       variables: { urlKey, useCustomAttributes: magentoVersion >= 247 },
     })
     .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
+
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+
   const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
+
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
+
   const category = productPageCategory(await product)
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
       : { href: '/', title: t`Home` }
+
   const result = {
     props: {
       urlKey,
@@ -242,6 +255,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     },
     revalidate: revalidate(),
   }
+
   flushMeasurePerf()
   return result
 }
