@@ -30,6 +30,7 @@ function CustomerAccountCreatePasswordPage() {
           )}
         </LayoutTitle>
       </LayoutOverlayHeader>
+
       {!success && (
         <Container maxWidth='sm'>
           <LayoutTitle gutterBottom={false}>
@@ -45,6 +46,7 @@ function CustomerAccountCreatePasswordPage() {
           <ResetPasswordForm token={(token as string) ?? ''} />
         </Container>
       )}
+
       {success && (
         <Container>
           <LayoutTitle gutterBottom={false}>

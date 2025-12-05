@@ -75,6 +75,7 @@ function StoresIndexPage({ availableStores }: Props) {
           showCurrencies={1}
         />
         <StoreSwitcherCurrencySelector header={<SectionHeader labelLeft='Currency' />} />
+
         <FormActions>
           <StoreSwitcherApplyButton color='secondary' variant='pill' size='large'>
             <Trans>Save</Trans>
@@ -100,6 +101,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({ query: LayoutDocument })
   const stores = staticClient.query({ query: StoreSwitcherListDocument })
+
   return {
     props: {
       ...(await stores).data,

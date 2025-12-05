@@ -90,7 +90,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'bottom', variantSm: 'bottom' },
 }
-
 ComparePage.pageOptions = pageOptions
 
 export default ComparePage

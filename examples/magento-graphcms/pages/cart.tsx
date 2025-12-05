@@ -112,7 +112,6 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
     justifyMd: 'start',
   },
 }
-
 CartPage.pageOptions = pageOptions
 
 export default CartPage

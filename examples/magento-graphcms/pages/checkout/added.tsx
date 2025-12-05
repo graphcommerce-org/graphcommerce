@@ -145,6 +145,7 @@ function CheckoutAdded() {
     </>
   )
 }
+
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'added',
   Layout: LayoutOverlay,
@@ -159,11 +160,15 @@ const pageOptions: PageOptions<LayoutOverlayProps> = {
   },
 }
 CheckoutAdded.pageOptions = pageOptions
+
 export default CheckoutAdded
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCartDisabled(context.locale)) return { notFound: true }
+
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
+
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
