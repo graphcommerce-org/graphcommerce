@@ -101,12 +101,7 @@ export function AccountDeleteForm() {
         </WaitForCustomer>
       ) : (
         <>
-          <Typography
-            variant='h6'
-            sx={{
-              textAlign: 'center',
-            }}
-          >
+          <Typography variant='h6' sx={{ textAlign: 'center' }}>
             <Trans>Account deletion successful</Trans>
           </Typography>
           <FormActions>

@@ -41,6 +41,7 @@ function OrderSuccessPage() {
   return (
     <>
       <PageMeta title={t`Checkout summary`} metaRobots={['noindex']} />
+
       <WaitForQueries
         waitFor={router.isReady}
         fallback={<FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>} />}
@@ -79,12 +80,7 @@ function OrderSuccessPage() {
             <CartItemSummary />
             <SignupNewsletter />
             <InlineAccount />
-            <Box
-              sx={{
-                textAlign: 'center',
-                m: 8,
-              }}
-            >
+            <Box sx={{ textAlign: 'center', m: 8 }}>
               <Button href='/' color='primary' variant='pill' size='large' id='back-to-home'>
                 <Trans>Back to home</Trans>
               </Button>

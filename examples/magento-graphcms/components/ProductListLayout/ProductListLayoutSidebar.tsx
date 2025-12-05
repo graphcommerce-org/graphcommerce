@@ -181,16 +181,8 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           query={(theme) => theme.breakpoints.up('md')}
           display='block'
           sx={sxx(
-            {
-              gridArea: 'sidebar',
-            },
-            breadcrumbs === true
-              ? {
-                  mt: 0,
-                }
-              : (theme) => ({
-                  mt: theme.spacings.lg,
-                }),
+            { gridArea: 'sidebar' },
+            breadcrumbs === true ? { mt: 0 } : (theme) => ({ mt: theme.spacings.lg }),
           )}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />

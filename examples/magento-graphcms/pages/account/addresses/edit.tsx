@@ -51,11 +51,7 @@ function EditAddressPage() {
 
           <SectionContainer labelLeft={<Trans>Edit address</Trans>}>
             {!address && (
-              <Box
-                sx={{
-                  marginTop: 3,
-                }}
-              >
+              <Box sx={{ marginTop: 3 }}>
                 <IconHeader src={iconAddresses} size='small'>
                   <Trans>Address not found</Trans>
                 </IconHeader>

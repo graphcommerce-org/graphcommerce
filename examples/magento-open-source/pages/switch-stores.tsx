@@ -84,13 +84,17 @@ function StoresIndexPage({ availableStores }: Props) {
     </StoreSwitcherFormProvider>
   )
 }
+
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'left',
   Layout: LayoutOverlay,
   layoutProps: { variantMd: 'right', sizeMd: 'floating', justifyMd: 'start' },
 }
+
 StoresIndexPage.pageOptions = pageOptions
+
 export default StoresIndexPage
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)

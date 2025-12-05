@@ -35,6 +35,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           />
         </Container>
       )}
+
       {category ? (
         <>
           <LayoutTitle

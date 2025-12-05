@@ -36,6 +36,7 @@ function CheckoutAdded() {
   return (
     <>
       <PageMeta title={t`Cart`} metaRobots={['noindex']} />
+
       <Container
         maxWidth={false}
         sx={(theme) => ({
