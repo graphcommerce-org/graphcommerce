@@ -6,7 +6,6 @@
 '@graphcommerce/magento-cart-coupon': major
 '@graphcommerce/magento-cart-items': major
 '@graphcommerce/magento-customer': major
-'@graphcommerce/magento-customer-order': major
 '@graphcommerce/magento-product': major
 '@graphcommerce/magento-product-configurable': major
 '@graphcommerce/magento-review': major
