@@ -139,17 +139,17 @@ export const LayoutOverlayHeader2 = React.memo<LayoutOverlayHeader2Props>((props
           // Left only
           '&.left:not(.right)': {
             gridTemplateAreas: '"left center"',
-            gridTemplateColumns: justify === 'center' ? '1fr max-content' : 'auto 1fr',
+            gridTemplateColumns: justify === 'center' ? '1fr auto' : 'auto 1fr',
           },
           // Right only
           '&.right:not(.left)': {
             gridTemplateAreas: '"center right"',
-            gridTemplateColumns: justify === 'center' ? 'max-content 1fr' : '1fr auto',
+            gridTemplateColumns: justify === 'center' ? 'auto 1fr' : '1fr auto',
           },
           // Both left and right
           '&.left.right': {
             gridTemplateAreas: '"left center right"',
-            gridTemplateColumns: justify === 'center' ? '1fr max-content 1fr' : 'auto 1fr auto',
+            gridTemplateColumns: justify === 'center' ? '1fr auto 1fr' : 'auto 1fr auto',
           },
         }))}
       >
