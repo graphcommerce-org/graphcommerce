@@ -143,12 +143,19 @@ function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
     submit,
     parallel,
     noValidate,
-    name = [],
+    name,
     ...watchOptions
   } = props
 
   // We create a stable object from the values, so that we can compare them later
-  const values = useMemoObject(cloneDeep(useWatch({ ...watchOptions, name })))
+  const values = useMemoObject(
+    cloneDeep(
+      useWatch({
+        ...watchOptions,
+        name: name as Path<TFieldValues>[],
+      }),
+    ),
+  )
   const oldValues = useRef<PathValue<TFieldValues, Path<TFieldValues>>[]>(values)
   const { isValidating, isSubmitting, isValid } = useFormState(watchOptions)
 
