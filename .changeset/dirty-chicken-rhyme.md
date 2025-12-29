@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/algolia-insights": patch
+'@graphcommerce/algolia-insights': patch
 ---
 
 Update useSendAlgoliaEvent.ts

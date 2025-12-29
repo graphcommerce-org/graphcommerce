@@ -15,7 +15,8 @@ const parts = ['menu', 'item'] as const
 const { classes } = extendableComponent(name, parts)
 
 export interface RefinementFilterChipProps
-  extends Omit<UseRefinementListProps, 'transformItems'>,
+  extends
+    Omit<UseRefinementListProps, 'transformItems'>,
     Omit<UseClearRefinementsProps, 'transformItems'> {
   transformItems?: UseClearRefinementsProps['transformItems']
   title: string

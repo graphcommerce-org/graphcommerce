@@ -47,7 +47,6 @@
   ### 🚀 Turbopack-Compatible Interceptor System
 
   The entire plugin/interceptor system has been rewritten to work with Turbopack:
-
   - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
   - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
   - **Direct imports** - Interceptors import from `.original` files instead of embedding source
@@ -59,7 +58,6 @@
   ### ⚙️ Treeshakable Configuration System
 
   Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
-
   - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
   - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
   - **Fully treeshakable** - Unused config values are eliminated from the bundle
@@ -67,7 +65,6 @@
   - **Separate files for nested objects** - Optimal treeshaking for complex configurations
 
   ### 🔧 withGraphCommerce Changes
-
   - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
   - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
   - **Removed** `@mui/*` alias rewrites - No longer required
@@ -77,31 +74,26 @@
   - **Added** `images.qualities: [52, 75]` for Next.js image optimization
 
   ### 📦 Lingui Configuration
-
   - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
   - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
   - **Simplified** formatter options
 
   ### ⚛️ React 19 & Next.js 16 Compatibility
-
   - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
   - Replaced deprecated `React.VFC` with `React.FC`
   - Fixed `useRef` calls to require explicit initial values
   - Updated `MutableRefObject` usage in `framer-scroller`
 
   ### 📋 ESLint 9 Flat Config
-
   - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
   - Updated `@typescript-eslint/*` packages to v8
   - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
 
   ### 🔄 Apollo Client
-
   - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
   - Updated error handling types to accept `ApolloError | null | undefined`
 
   ### ⚠️ Breaking Changes
-
   - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
   - **Interceptor files changed** - Original components now at `.original.tsx`
   - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
@@ -109,7 +101,6 @@
   - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
 
   ### 🗑️ Removed
-
   - `InterceptorPlugin` webpack plugin
   - `configToImportMeta` utility
   - Webpack `DefinePlugin` usage for config
@@ -277,7 +268,6 @@
 - [#2223](https://github.com/graphcommerce-org/graphcommerce/pull/2223) [`7652234`](https://github.com/graphcommerce-org/graphcommerce/commit/7652234e222c3f4d8de3817fe907b5b6925a5493) - Fully replaced the sitemap and robots.txt generation. We previously relied on next-sitemap to generate the sitemap based on static generated pages. However with bigger shops the SSG woudn't be complete. Full support for multi domain setups. ([@bramvanderholst](https://github.com/bramvanderholst))
 
 - [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
-
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
@@ -450,7 +440,6 @@
 - [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
 
 - [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
-
   - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
   - NextLink automatically adds `target="_blank"` when the href is external.
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
@@ -525,13 +514,11 @@
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`f0816973b`](https://github.com/graphcommerce-org/graphcommerce/commit/f0816973ba38ed091189338b1863983da8c6e806) - Redirect old product URLs to the new /p/ route ([@paales](https://github.com/paales))
 
 - [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
   - Fixes an issue where the cart can get into a broken state, if items contain errors.
   - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
   - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -1507,7 +1494,6 @@
 - [#1590](https://github.com/graphcommerce-org/graphcommerce/pull/1590) [`9660fe5d1`](https://github.com/graphcommerce-org/graphcommerce/commit/9660fe5d1839662a5064943538c4a15ce36364cc) Thanks [@paales](https://github.com/paales)! - Leverage Magento Varnish caching by enabling useGETForQueries to backends
 
 * [#1604](https://github.com/graphcommerce-org/graphcommerce/pull/1604) [`c98cef65e`](https://github.com/graphcommerce-org/graphcommerce/commit/c98cef65eb7cfed42f016b6134d10bf5d3c67d92) Thanks [@paales](https://github.com/paales)! - Downgrade next-pwa because there are issue with the latest release:
-
   - https://github.com/shadowwalker/next-pwa/issues/375
   - https://github.com/shadowwalker/next-pwa/pull/384
 

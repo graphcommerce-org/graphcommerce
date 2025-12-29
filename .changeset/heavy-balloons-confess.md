@@ -1,5 +1,5 @@
 ---
-"@graphcommerce/docs": patch
+'@graphcommerce/docs': patch
 ---
 
 Add correct link to demo project
