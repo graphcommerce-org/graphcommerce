@@ -1,5 +1,7 @@
 # @graphcommerce/magento-wishlist
 
+## 10.0.0-canary.69
+
 ## 10.0.0-canary.68
 
 ### Major Changes

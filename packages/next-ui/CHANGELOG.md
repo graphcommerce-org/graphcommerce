@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.0-canary.69
+
+### Patch Changes
+
+- [#2567](https://github.com/graphcommerce-org/graphcommerce/pull/2567) [`a0ba773`](https://github.com/graphcommerce-org/graphcommerce/commit/a0ba773171bb76c7a998deb5bbacd974e5a3764d) - Fix LayoutOverlayHeader2 text overflowing beyond overlay size constraints ([@paales](https://github.com/paales))
+
+- [#2567](https://github.com/graphcommerce-org/graphcommerce/pull/2567) [`4908a45`](https://github.com/graphcommerce-org/graphcommerce/commit/4908a457cac15c429d83d6b9274a8be9c8277ef6) - Allow setting OverlayContainer props, such as event listeners ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.68
 
 ### Major Changes

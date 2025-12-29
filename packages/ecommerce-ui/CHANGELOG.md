@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 10.0.0-canary.69
+
+### Patch Changes
+
+- [#2567](https://github.com/graphcommerce-org/graphcommerce/pull/2567) [`0af3466`](https://github.com/graphcommerce-org/graphcommerce/commit/0af34663f882ad9906dc13ae6c835c158598b945) - Fix NumberFieldElement plus button decreasing the number instead of increasing ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.68
 
 ### Major Changes

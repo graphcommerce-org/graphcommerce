@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.69
+
+### Patch Changes
+
+- [#2567](https://github.com/graphcommerce-org/graphcommerce/pull/2567) [`41f9619`](https://github.com/graphcommerce-org/graphcommerce/commit/41f96194a5740465663d8f8e5ee1c10af0365748) - Fix issue where FormAutoSubmit would not listen for changes when no field names were provided (meaning it should watch changes on all fields) ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.68
 
 ## 10.0.0-canary.67
