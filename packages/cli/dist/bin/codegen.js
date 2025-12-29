@@ -4,7 +4,6 @@ import path from 'path';
 import { resolveDependenciesSync, packageRoots } from '@graphcommerce/next-config';
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli';
 import dotenv from 'dotenv';
-import glob from 'fast-glob';
 import { rimraf } from 'rimraf';
 import yaml from 'yaml';
 
@@ -24,12 +23,7 @@ async function cleanup() {
 }
 function appendDocumentLocations(conf, packages) {
   const documents = Array.isArray(conf.documents) ? conf.documents : [conf.documents];
-  const packagePatterns = packages.map((p) => `${p}/**/*.graphql`);
-  const resolvedFiles = glob.sync(packagePatterns, {
-    ignore: ["**/node_modules/**"],
-    followSymbolicLinks: false
-  });
-  documents.push(...resolvedFiles);
+  documents.push(...packages.map((p) => `${p}/**/*.graphql`));
   return conf;
 }
 async function main() {
