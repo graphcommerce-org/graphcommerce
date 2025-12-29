@@ -1,13 +1,11 @@
 import type { Operation } from '@graphcommerce/graphql'
 import { globalApolloClient } from '@graphcommerce/graphql'
-import { ApolloLink } from '@graphcommerce/graphql/apollo'
+import { ApolloLink, CombinedGraphQLErrors, ErrorLink } from '@graphcommerce/graphql/apollo'
 import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
 import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
 import type { ErrorCategory } from '@graphcommerce/magento-graphql'
 import { permissions } from '@graphcommerce/next-config/config'
-import { CombinedGraphQLErrors } from '@apollo/client/errors'
-import { ErrorLink } from '@apollo/client/link/error'
 import { t } from '@lingui/core/macro'
 import type { GraphQLFormattedError } from 'graphql'
 import { GraphQLError } from 'graphql'
@@ -87,7 +85,7 @@ const cartErrorLink = new ErrorLink(({ error, operation, forward }) => {
 const cartPermissionLink = (router: PushRouter) =>
   new ApolloLink((operation, forward) => {
     const { locale } = router
-    const { cache } = operation.client
+    const { cache } = operation.getContext()
 
     if (!isProtectedCartOperation(operation.operationName ?? '')) return forward(operation)
 
