@@ -1,4 +1,4 @@
-import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import {
   getCustomerAccountIsDisabled,
   useCustomerQuery,
@@ -111,9 +111,7 @@ export function DownloadsPage() {
   )
 }
 
-export function createGetStaticProps(
-  client: ApolloClient<NormalizedCacheObject>,
-): DownloadsGetStaticProps {
+export function createGetStaticProps(client: ApolloClient): DownloadsGetStaticProps {
   return async (context) => {
     if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
 

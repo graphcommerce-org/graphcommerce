@@ -61,7 +61,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const path = async (locale: string) => {
     const client = graphqlSsrClient({ locale })
     const { data } = await client.query({ query: CartAgreementsDocument })
-    return (data.checkoutAgreements ?? []).map((agreement) => ({
+    return (data?.checkoutAgreements ?? []).map((agreement) => ({
       locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
@@ -82,7 +82,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })
 
-  const agreement = agreements.data.checkoutAgreements?.find(
+  const agreement = agreements.data?.checkoutAgreements?.find(
     (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
   )
 

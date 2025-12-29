@@ -1,3 +1,4 @@
+import type { FetchPolicy, PreviewConfig } from '@graphcommerce/graphql'
 import {
   ApolloClient,
   ApolloLink,
@@ -7,14 +8,10 @@ import {
   fragments,
   graphqlConfig,
   mergeTypePolicies,
-  FetchPolicy,
-  DefaultOptions,
-  PreviewConfig,
-  NormalizedCacheObject,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
-import { GetStaticPropsContext } from 'next'
+import type { GetStaticPropsContext } from 'next'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-cache') {
@@ -39,7 +36,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },
-    } as DefaultOptions,
+    } as ApolloClient.DefaultOptions,
   })
 }
 
@@ -56,7 +53,7 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
 }
 
 const ssrClient: {
-  [locale: string]: ApolloClient<NormalizedCacheObject>
+  [locale: string]: ApolloClient
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {

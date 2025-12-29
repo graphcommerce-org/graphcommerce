@@ -48,7 +48,7 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       await lock({
         method: selectedMethod?.code ?? '',
-        order_number: result.data.placeOrder.order.order_number,
+        order_number: order?.order_number ?? '',
       })
 
       await new Promise((resolve) => setTimeout(resolve, 1000))

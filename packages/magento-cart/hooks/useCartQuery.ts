@@ -1,9 +1,22 @@
-import type { QueryHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
-import { ApolloError, useQuery } from '@graphcommerce/graphql'
+import type {
+  OperationVariables,
+  TypedDocumentNode,
+  WatchQueryFetchPolicy,
+} from '@graphcommerce/graphql'
+import { useQuery } from '@graphcommerce/graphql'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
+import type { useQuery as useQueryType } from '@apollo/client/react'
 import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
 import { useCartShouldLoginToContinue } from './useCartPermissions'
 import { useCurrentCartId } from './useCurrentCartId'
+
+type CartQueryOptions<Q, V extends OperationVariables> = Omit<
+  useQueryType.Options<Q, V>,
+  'variables'
+> & {
+  variables?: Omit<V, 'cartId'>
+}
 
 /**
  * Requires the query to have a `$cartId: String!` argument. It will automatically inject the
@@ -15,12 +28,10 @@ import { useCurrentCartId } from './useCurrentCartId'
  * const { data } = useCartQuery(CartFabQueryDocument)
  * ```
  */
-export function useCartQuery<Q, V extends { cartId: string; [index: string]: unknown }>(
-  document: TypedDocumentNode<Q, V>,
-  options: QueryHookOptions<Q, Omit<V, 'cartId'>> = {},
-) {
-  const { ...queryOptions } = options
-
+export function useCartQuery<
+  Q,
+  V extends OperationVariables & { cartId: string; [index: string]: unknown },
+>(document: TypedDocumentNode<Q, V>, options?: CartQueryOptions<Q, V>) {
   const router = useRouter()
   const { currentCartId, locked } = useCurrentCartId()
 
@@ -29,23 +40,27 @@ export function useCartQuery<Q, V extends { cartId: string; [index: string]: unk
   const cartId = usingUrl ? urlCartId : currentCartId
   const shouldLoginToContinue = useCartShouldLoginToContinue()
 
-  if (usingUrl || locked) queryOptions.fetchPolicy = 'cache-only'
+  let fetchPolicy: WatchQueryFetchPolicy | undefined = options?.fetchPolicy
+  let returnPartialData: boolean | undefined = options?.returnPartialData
 
-  if (usingUrl && typeof queryOptions.returnPartialData === 'undefined')
-    queryOptions.returnPartialData = true
+  if (usingUrl || locked) fetchPolicy = 'cache-only'
+  if (usingUrl && typeof returnPartialData === 'undefined') returnPartialData = true
 
-  queryOptions.variables = { cartId, ...options?.variables } as V
+  const variables = { cartId, ...options?.variables } as V
 
   const query = useQuery(document, {
-    ...(queryOptions as QueryHookOptions<Q, V>),
-    skip: queryOptions.skip || !cartId || shouldLoginToContinue,
+    ...options,
+    fetchPolicy,
+    returnPartialData,
+    variables,
+    skip: options?.skip || !cartId || shouldLoginToContinue,
   })
 
-  if (shouldLoginToContinue && !queryOptions?.skip) {
+  if (shouldLoginToContinue && !options?.skip) {
     return {
       ...query,
-      error: new ApolloError({
-        graphQLErrors: [
+      error: new CombinedGraphQLErrors({
+        errors: [
           new GraphQLError('Action can not be performed by the current user', {
             extensions: { category: 'graphql-authorization' },
           }),

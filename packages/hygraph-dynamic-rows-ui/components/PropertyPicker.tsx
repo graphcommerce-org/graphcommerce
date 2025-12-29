@@ -1,4 +1,5 @@
-import { ApolloClient, gql, InMemoryCache, useQuery } from '@apollo/client'
+import { ApolloClient, gql, HttpLink, InMemoryCache } from '@apollo/client'
+import { useQuery } from '@apollo/client/react'
 import type { FieldExtensionProps } from '@hygraph/app-sdk-react'
 import { useFieldExtension } from '@hygraph/app-sdk-react'
 import { TextField } from '@mui/material'
@@ -11,11 +12,15 @@ function useClient(extension: FieldExtensionProps['extension']) {
   return useMemo(
     () =>
       new ApolloClient({
-        uri:
-          typeof extension.config.backend === 'string'
-            ? extension.config.backend
-            : 'https://graphcommerce.vercel.app/api/graphql', // fallback on the standard GraphCommerce Schema
         cache: new InMemoryCache(),
+
+        link: new HttpLink({
+          // fallback on the standard GraphCommerce Schema
+          uri:
+            typeof extension.config.backend === 'string'
+              ? extension.config.backend
+              : 'https://graphcommerce.vercel.app/api/graphql',
+        }),
       }),
     [extension.config.backend],
   )

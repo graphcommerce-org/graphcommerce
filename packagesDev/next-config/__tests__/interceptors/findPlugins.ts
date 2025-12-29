@@ -737,14 +737,6 @@ it('finds plugins', () => {
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
-      {
-        "enabled": true,
-        "sourceExport": "meshConfig",
-        "sourceModule": "@graphcommerce/graphql-mesh/plugins/meshConfigFake",
-        "targetExport": "meshConfig",
-        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
-        "type": "function",
-      },
     ]
   `)
   expect(disabled).toMatchInlineSnapshot(

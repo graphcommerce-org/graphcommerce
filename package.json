@@ -35,8 +35,8 @@
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
-    "jest-watch": "yarn test --watch",
-    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" NODE_OPTIONS=\"--experimental-vm-modules\" jest"
+    "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest run",
+    "test:watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -56,7 +56,7 @@
     "remark": "^15.0.1"
   },
   "devDependencies": {
-    "@apollo/client": "^3.14.0",
+    "@apollo/client": "^4.0.11",
     "@graphcommerce/cli": "workspace:^",
     "@graphcommerce/eslint-config-pwa": "workspace:^",
     "@graphcommerce/graphql-mesh": "workspace:^",
@@ -64,7 +64,6 @@
     "@graphcommerce/next-config": "workspace:^",
     "@graphcommerce/prettier-config-pwa": "workspace:^",
     "@graphcommerce/typescript-config-pwa": "workspace:^",
-    "@graphql-codegen/testing": "4.0.1",
     "@graphql-mesh/cli": "0.100.21",
     "@graphql-mesh/runtime": "0.106.19",
     "@graphql-mesh/types": "0.104.18",
@@ -74,20 +73,17 @@
     "@lingui/react": "5.7.0",
     "@playwright/test": "1.57.0",
     "@testing-library/dom": "^10.4.1",
-    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@types/event-stream": "^4.0.6",
-    "@types/jest": "^30.0.0",
     "@types/node": "^20.19.27",
+    "@vitejs/plugin-react": "^4.4.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "16.6.1",
     "eslint": "^9.39.2",
     "event-stream": "^4.0.1",
     "graphql": "^16.12.0",
     "husky": "^9.1.7",
-    "jest": "^30.2.0",
     "jest-diff": "^29.7.0",
-    "jest-environment-jsdom": "^30.2.0",
     "knip": "^5.63.0",
     "next": "16.1.1",
     "prettier": "^3.7.4",
@@ -96,6 +92,7 @@
     "tsx": "^4.21.0",
     "typescript": "5.9.3",
     "unified": "^11.0.5",
+    "vitest": "^3.0.0",
     "webpack": "^5.103.0"
   },
   "resolutions": {

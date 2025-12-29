@@ -1,24 +1,15 @@
-import type { ServerError, ServerParseError } from '@graphcommerce/graphql'
+import type { ErrorLike } from '@apollo/client'
+import { ServerError, ServerParseError } from '@apollo/client/errors'
 import { Trans } from '@lingui/react/macro'
 
-function isServerError(error: Error | ServerParseError | ServerError | null): error is ServerError {
-  return 'name' in (error as ServerError)
-}
-
-function isServerParseError(
-  error: Error | ServerParseError | ServerError | null,
-): error is ServerParseError {
-  return 'bodyText' in (error as ServerParseError)
-}
-
-export function maskNetworkError(networkError: Error | ServerParseError | ServerError | null) {
-  if (!networkError) return null
+export function maskNetworkError(error: ErrorLike | null) {
+  if (!error) return null
 
   if (process.env.NODE_ENV === 'development') {
-    console.log(networkError)
+    console.log(error)
   }
 
-  if (isServerParseError(networkError) || isServerError(networkError)) {
+  if (ServerParseError.is(error) || ServerError.is(error)) {
     return <Trans>Something went wrong on the server, please try again later.</Trans>
   }
 

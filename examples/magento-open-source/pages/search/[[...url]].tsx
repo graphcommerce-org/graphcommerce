@@ -107,26 +107,27 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true }
 
+  const confData = (await conf).data
+  if (!confData) return { notFound: true }
+
   const filters = hasUserFilterActive(productListParams)
     ? staticClient.query({
         query: ProductFiltersDocument,
         variables: searchDefaultsToProductListFilters(
-          productListApplySearchDefaults(productListParams, (await conf).data),
+          productListApplySearchDefaults(productListParams, confData),
         ),
       })
     : undefined
 
   const products = staticClient.query({
     query: ProductListDocument,
-    variables: productListApplySearchDefaults(productListParams, (await conf).data),
+    variables: productListApplySearchDefaults(productListParams, confData),
   })
 
-  const categories = false
-    ? staticClient.query({
-        query: CategorySearchDocument,
-        variables: categoriesApplySearchDefaults({ search }, (await conf).data),
-      })
-    : undefined
+  // Category search is disabled - keeping code for potential future use
+  const categories = undefined as
+    | Awaited<ReturnType<typeof staticClient.query<CategorySearchQuery>>>
+    | undefined
 
   const result = {
     props: {

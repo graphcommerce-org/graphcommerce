@@ -1,10 +1,10 @@
-import type { QueryResult } from '@graphcommerce/graphql'
+import type { ApolloClient, useQuery } from '@graphcommerce/graphql'
 import { useIsSSR } from '@graphcommerce/next-ui'
 import React from 'react'
 
 export type WaitForQueriesProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  waitFor: QueryResult<any, any> | boolean | (QueryResult<any, any> | boolean)[] | undefined
+  waitFor: useQuery.Result<any, any> | boolean | (useQuery.Result<any, any> | boolean)[] | undefined
   children: React.ReactNode
   fallback?: React.ReactNode
 }

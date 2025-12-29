@@ -1,5 +1,5 @@
 import type { ParsedUrlQuery } from 'querystring'
-import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
 import type { ProductInterfaceResolvers } from '@graphcommerce/graphql-mesh'
 import fragments from '@graphcommerce/graphql/generated/fragments.json'
@@ -64,8 +64,10 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
 }
 
 export async function redirectOrNotFound(
-  client: ApolloClient<NormalizedCacheObject>,
-  config: Promise<ApolloQueryResult<StoreConfigQuery>> | ApolloQueryResult<StoreConfigQuery>,
+  client: ApolloClient,
+  config:
+    | Promise<ApolloClient.QueryResult<StoreConfigQuery>>
+    | ApolloClient.QueryResult<StoreConfigQuery>,
   params?: ParsedUrlQuery,
   locale?: string,
 ): RedirectOr404Return {
@@ -76,7 +78,8 @@ export async function redirectOrNotFound(
 
   try {
     // Get the configured suffixes from the store config
-    const { product_url_suffix, category_url_suffix } = (await config).data.storeConfig ?? {}
+    const configResult = await config
+    const { product_url_suffix, category_url_suffix } = configResult.data?.storeConfig ?? {}
 
     const candidates = new Set([from])
 

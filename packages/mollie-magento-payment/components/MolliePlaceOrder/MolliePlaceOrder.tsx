@@ -30,12 +30,12 @@ export function MolliePlaceOrder(props: PaymentPlaceOrderProps) {
     onComplete: async (result) => {
       assertMollieOrderPlaced(result)
 
-      const { mollie_payment_token, order_number, mollie_redirect_url } =
-        result.data.placeOrder.order
+      const order = result.data?.placeOrder?.order
+      const { mollie_payment_token, order_number, mollie_redirect_url } = order
 
       // Redirect to the payment gateway
-      await lock({ mollie_payment_token, method: code, order_number })
-      await push(mollie_redirect_url)
+      await lock({ mollie_payment_token: mollie_payment_token ?? null, method: code, order_number })
+      if (mollie_redirect_url) await push(mollie_redirect_url)
     },
   })
 

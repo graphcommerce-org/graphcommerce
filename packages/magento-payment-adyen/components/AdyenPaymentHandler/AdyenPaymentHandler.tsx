@@ -42,7 +42,7 @@ export function AdyenPaymentHandler() {
       let paymentStatus = details.data?.adyenPaymentDetails
 
       // Atempt 2; The adyenPaymentDetails mutation failed, because it was already called previously or no payment had been made.
-      if (details.errors) {
+      if (details.error) {
         const status = await getStatus({
           errorPolicy: 'all',
           variables: { cartId: currentCartId, orderNumber },

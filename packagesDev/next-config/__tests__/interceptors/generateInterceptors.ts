@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findOriginalSource } from '../../src/interceptors/findOriginalSource'
 import { generateInterceptors } from '../../src/interceptors/generateInterceptors'
@@ -524,9 +525,9 @@ export const plugin: FunctionPlugin<typeof getSitemapPathsType> = (prev, ...args
   return prev(...args)
 }
 `
-  console.error = jest.fn()
+  console.error = vi.fn()
   const plugins = parseStructure(parseSync(src), fakeconfig, './plugins/MyPlugin.tsx')
-  expect((console.error as jest.Mock).mock.calls[0][0]).toMatchInlineSnapshot(
+  expect((console.error as ReturnType<typeof vi.fn>).mock.calls[0][0]).toMatchInlineSnapshot(
     '"Plugin configuration invalid! See ./plugins/MyPlugin.tsx"',
   )
   expect(plugins).toMatchInlineSnapshot('[]')

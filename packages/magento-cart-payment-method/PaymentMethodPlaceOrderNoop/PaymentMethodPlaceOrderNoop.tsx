@@ -12,7 +12,10 @@ export function PaymentMethodPlaceOrderNoop(props: PaymentPlaceOrderProps) {
   const form = useFormGqlMutationCart(PaymentMethodPlaceOrderNoopDocument, {
     onComplete: async (result) => {
       assertOrderPlaced(result)
-      await onSuccess(result.data.placeOrder.order.order_number)
+      // After assertOrderPlaced, result.data.placeOrder.order.order_number is guaranteed
+      const orderNumber = (result.data as { placeOrder: { order: { order_number: string } } })
+        .placeOrder.order.order_number
+      await onSuccess(orderNumber)
     },
     submitWhileLocked: true,
   })

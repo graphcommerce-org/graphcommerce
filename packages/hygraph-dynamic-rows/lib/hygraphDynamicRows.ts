@@ -89,7 +89,7 @@ type Page = HygraphPagesQuery['pages'][number]
  * - Implements an alias sytem to merge the content of multiple pages.
  */
 export async function hygraphDynamicRows(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   pageQuery: Promise<{ data: HygraphPagesQuery }>,
   url: string,
   cached: boolean,
@@ -119,7 +119,7 @@ export async function hygraphDynamicRows(
   // Create a copy of the content array.
   const content = [...(page?.content ?? [])]
 
-  dynamicResult?.data.dynamicRows.forEach((dynamicRow) => {
+  dynamicResult?.data?.dynamicRows.forEach((dynamicRow) => {
     const { placement, target, rows } = dynamicRow
     if (!rows) return
 

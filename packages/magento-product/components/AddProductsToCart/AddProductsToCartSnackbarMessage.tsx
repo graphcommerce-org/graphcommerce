@@ -1,4 +1,3 @@
-import type { ApolloError } from '@graphcommerce/graphql'
 import type { CartUserInputError } from '@graphcommerce/graphql-mesh'
 import {
   ApolloCartErrorSnackbar,
@@ -13,12 +12,13 @@ import {
   ListFormat,
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
+import type { ErrorLike } from '@apollo/client'
 import { Plural, Trans } from '@lingui/react/macro'
 
 export type AddProductsToCartSnackbarMessageProps = {
   errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
   successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  error?: ApolloError | null
+  error?: ErrorLike | null
   userErrors?: Pick<CartUserInputError, 'message'>[]
   showSuccess: boolean
   addedItems: string[]

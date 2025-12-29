@@ -61,9 +61,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-  const url = (await conf).data.storeConfig?.cms_no_route ?? ''
+  const confData = (await conf).data
+  const url = confData?.storeConfig?.cms_no_route ?? ''
   const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
-  const cmsPage = (await cmsPageQuery).data.route
+  const cmsPage = (await cmsPageQuery).data?.route
 
   return {
     props: {

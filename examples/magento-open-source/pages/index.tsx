@@ -44,13 +44,14 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
-  const url = (await conf).data.storeConfig?.cms_home_page ?? 'home'
+  const confData = (await conf).data
+  const url = confData?.storeConfig?.cms_home_page ?? 'home'
   const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-  const cmsPage = (await cmsPageQuery).data.route
+  const cmsPage = (await cmsPageQuery).data?.route
 
   const result = {
     props: {

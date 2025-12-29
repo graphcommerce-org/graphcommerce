@@ -1,5 +1,4 @@
-import { type FetchResult } from '@graphcommerce/graphql'
-import type { AssertedOrderPlaced, PlacedOrder } from '@graphcommerce/magento-cart-payment-method'
+import type { ApolloLink } from '@graphcommerce/graphql'
 import {
   assertOrderPlaced,
   throwGenericPlaceOrderError,
@@ -7,18 +6,20 @@ import {
 import type { MolliePlaceOrderMutation } from './MolliePlaceOrder.gql'
 
 /** Assert that the order was place successfully. */
-export function assertMollieOrderPlaced<T extends FetchResult<MolliePlaceOrderMutation>>(
+export function assertMollieOrderPlaced<T extends ApolloLink.Result<MolliePlaceOrderMutation>>(
   result: T,
-): asserts result is AssertedOrderPlaced<T> & {
-  data: {
-    placeOrder: {
-      order: PlacedOrder<T> & {
-        mollie_redirect_url: NonNullable<PlacedOrder<T>['mollie_redirect_url']>
-        mollie_payment_token: NonNullable<PlacedOrder<T>['mollie_payment_token']>
+): asserts result is T &
+  ApolloLink.Result<MolliePlaceOrderMutation> & {
+    data: {
+      placeOrder: {
+        order: {
+          order_number: string
+          mollie_redirect_url: string
+          mollie_payment_token: string
+        }
       }
     }
-  }
-} {
+  } {
   assertOrderPlaced(result)
 
   const { mollie_redirect_url, mollie_payment_token } = result.data.placeOrder.order

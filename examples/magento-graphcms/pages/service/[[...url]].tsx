@@ -76,8 +76,11 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
         urlStartsWith: 'service',
       },
     })
-    return data.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
+    return (
+      data?.pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
+    )
   }
+
   const paths = (await Promise.all(locales.map(path))).flat(1)
 
   return { paths, fallback: 'blocking' }

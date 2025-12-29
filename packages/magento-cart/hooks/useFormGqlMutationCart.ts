@@ -1,5 +1,9 @@
-import type { MutationHookOptions, TypedDocumentNode } from '@graphcommerce/graphql'
-import { ApolloError, useApolloClient } from '@graphcommerce/graphql'
+import {
+  CombinedGraphQLErrors,
+  TypedDocumentNode,
+  useApolloClient,
+  useMutation,
+} from '@graphcommerce/graphql'
 import type {
   UseFormGqlMutationReturn,
   UseFormGraphQlOptions,
@@ -18,7 +22,7 @@ export function useFormGqlMutationCart<
 >(
   document: TypedDocumentNode<Q, V>,
   options: UseFormGraphQlOptions<Q, V> & { submitWhileLocked?: boolean } = {},
-  operationOptions?: MutationHookOptions<Q, V>,
+  operationOptions?: useMutation.Options<NoInfer<Q>, NoInfer<V>>,
 ): UseFormGqlMutationReturn<Q, V> {
   const cartIdCreate = useCartIdCreate()
   const cartIdFromContext = useCartIdContext()
@@ -63,8 +67,8 @@ export function useFormGqlMutationCart<
   if (shouldLoginToContinue && result.formState.isSubmitted && shouldBlockOperation) {
     return {
       ...result,
-      error: new ApolloError({
-        graphQLErrors: [
+      error: new CombinedGraphQLErrors({
+        errors: [
           new GraphQLError('Action can not be performed by the current user', {
             extensions: { category: 'graphql-authorization' },
           }),

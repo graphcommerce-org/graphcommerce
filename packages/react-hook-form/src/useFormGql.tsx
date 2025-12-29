@@ -1,14 +1,7 @@
-import type {
-  FetchResult,
-  LazyQueryHookOptions,
-  LazyQueryResultTuple,
-  MaybeMasked,
-  MutationHookOptions,
-  MutationTuple,
-  TypedDocumentNode,
-} from '@apollo/client'
-import { ApolloError, isApolloError } from '@apollo/client'
-import { getOperationName } from '@apollo/client/utilities'
+import { getOperationName } from '@graphcommerce/graphql/apollo'
+import type { ApolloLink, ErrorLike, MaybeMasked, TypedDocumentNode } from '@apollo/client'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
+import type { useLazyQuery, useMutation } from '@apollo/client/react'
 import useEventCallback from '@mui/utils/useEventCallback'
 import { useEffect, useRef } from 'react'
 import type { DefaultValues, FieldValues, UseFormProps, UseFormReturn } from 'react-hook-form'
@@ -23,16 +16,16 @@ type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
    * Mutation.
    *
    * When returning false, it will SKIP the submission. When an Error is thrown, it will be set as
-   * an ApolloError.
+   * an error.
    */
   onBeforeSubmit?: (variables: V, form?: UseFormReturn<V>) => V | false | Promise<V | false>
   /**
    * Called after the mutation has been executed. Allows you to handle the result of the mutation.
    *
-   * When an error is thrown, it will be set as an ApolloError
+   * When an error is thrown, it will be set as an error
    */
   onComplete?: (
-    result: FetchResult<MaybeMasked<Q>>,
+    result: ApolloLink.Result<MaybeMasked<Q>>,
     variables: V,
     form?: UseFormReturn<V>,
   ) => void | Promise<void>
@@ -60,7 +53,7 @@ type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
    *     const result = mutate() // executes the mutation and automatically sets generic errors with setError('root')
    *     // onComplete: now simply use the result after the form, to for example reset the form, or do other things.
    *   })
-   *   ```
+   * ```
    */
   experimental_useV2?: boolean
   /**
@@ -82,14 +75,17 @@ type UseFormGraphQLCallbacks<Q, V extends FieldValues> = {
 export type UseFormGraphQlOptions<Q, V extends FieldValues> = UseFormProps<V> &
   UseFormGraphQLCallbacks<Q, V>
 
+export const UseFormGqlSymbol = Symbol('UseFormGql')
+
 export type UseFormGqlMethods<Q, V extends FieldValues> = Omit<
   UseGqlDocumentHandler<V>,
   'encode' | 'type'
 > &
   Pick<UseFormReturn<V>, 'handleSubmit'> & {
     data?: MaybeMasked<Q> | null
-    error?: ApolloError | null
+    error?: ErrorLike | null
     submittedVariables?: V | null
+    [UseFormGqlSymbol]: true
   }
 
 /**
@@ -104,10 +100,12 @@ export function useFormGql<Q, V extends FieldValues>(
   options: {
     document: TypedDocumentNode<Q, V>
     form: UseFormReturn<V>
-    tuple: MutationTuple<Q, V> | LazyQueryResultTuple<Q, V>
+    tuple:
+      | useMutation.ResultTuple<Q, V>
+      | useLazyQuery.ResultTuple<Q, V, 'streaming' | 'complete' | 'empty'>
     operationOptions?:
-      | Omit<MutationHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
-      | Omit<LazyQueryHookOptions<Q, V>, 'fetchPolicy' | 'variables'>
+      | Omit<useMutation.Options<Q, V>, 'fetchPolicy' | 'variables'>
+      | Omit<useLazyQuery.Options<Q, V>, 'fetchPolicy' | 'variables'>
     defaultValues?: UseFormProps<V>['defaultValues']
     skipUnchanged?: boolean
   } & UseFormGraphQLCallbacks<Q, V>,
@@ -127,7 +125,7 @@ export function useFormGql<Q, V extends FieldValues>(
   const [execute, { data, error, loading }] = tuple
 
   const submittedVariables = useRef<V | null>(null)
-  const returnedError = useRef<ApolloError | null>(null)
+  const returnedError = useRef<ErrorLike | null>(null)
 
   // automatically updates the default values
   const initital = useRef(true)
@@ -175,16 +173,17 @@ export function useFormGql<Q, V extends FieldValues>(
       // Wait for the onBeforeSubmit to complete
       const [onBeforeSubmitResult, onBeforeSubmitError] = await beforeSubmit(variables, form)
       if (onBeforeSubmitError) {
-        if (isApolloError(onBeforeSubmitError)) {
+        // Check if it's a GraphQL error or a regular error
+        if (CombinedGraphQLErrors.is(onBeforeSubmitError)) {
           returnedError.current = onBeforeSubmitError
           form.setError('root', { message: onBeforeSubmitError.message })
         } else {
           const message =
             process.env.NODE_ENV === 'development'
-              ? `A non ApolloError was thrown during the onBeforeSubmit handler: ${onBeforeSubmitError.message}`
+              ? `An error was thrown during the onBeforeSubmit handler: ${onBeforeSubmitError.message}`
               : 'An unexpected error occurred, please contact the store owner'
           form.setError('root', { message })
-          returnedError.current = new ApolloError({ graphQLErrors: [{ message }] })
+          returnedError.current = new CombinedGraphQLErrors({ errors: [{ message }] })
         }
         return
       }
@@ -201,32 +200,39 @@ export function useFormGql<Q, V extends FieldValues>(
         ...operationOptions,
         variables,
         context: {
-          ...operationOptions?.context,
+          ...(operationOptions as { context?: Record<string, unknown> } | undefined)?.context,
           fetchOptions: {
-            ...operationOptions?.context?.fetchOptions,
+            ...(
+              operationOptions as
+                | { context?: { fetchOptions?: Record<string, unknown> } }
+                | undefined
+            )?.context?.fetchOptions,
             signal: controllerRef.current.signal,
           },
         },
       })
 
       // If there are submission errors, set the error and return
-      if (result.errors && result.errors.length > 0) {
-        form.setError('root', { message: result.errors.map((e) => e.message).join(', ') })
+      if (result.error) {
+        const errorMessage = CombinedGraphQLErrors.is(result.error)
+          ? result.error.errors.map((e) => e.message).join(', ')
+          : result.error.message
+        form.setError('root', { message: errorMessage })
         return
       }
 
       const [, onCompleteError] = await complete(result, variables, form)
       if (onCompleteError) {
-        if (isApolloError(onCompleteError)) {
+        if (CombinedGraphQLErrors.is(onCompleteError)) {
           returnedError.current = onCompleteError
           form.setError('root', { message: onCompleteError.message })
         } else {
           const message =
             process.env.NODE_ENV === 'development'
-              ? `A non ApolloError was thrown during the onComplete handler: ${onCompleteError.message}`
+              ? `An error was thrown during the onComplete handler: ${onCompleteError.message}`
               : 'An unexpected error occurred, please contact the store owner'
           form.setError('root', { message })
-          returnedError.current = new ApolloError({ graphQLErrors: [{ message }] })
+          returnedError.current = new CombinedGraphQLErrors({ errors: [{ message }] })
         }
         return
       }
@@ -244,5 +250,6 @@ export function useFormGql<Q, V extends FieldValues>(
     data,
     error: returnedError.current ?? error,
     submittedVariables: submittedVariables.current,
+    [UseFormGqlSymbol]: true,
   }
 }

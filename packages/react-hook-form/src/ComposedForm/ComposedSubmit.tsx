@@ -1,5 +1,7 @@
-import { ApolloError } from '@apollo/client'
-import React, { useContext, useEffect, useRef } from 'react'
+import type { ErrorLike } from '@apollo/client'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
+import type React from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { isFormGqlOperation } from '../useFormGqlMutation'
 import { composedFormContext } from './context'
 import type { ComposedSubmitRenderComponentProps } from './types'
@@ -9,13 +11,29 @@ export type ComposedSubmitProps = {
   render: React.FC<ComposedSubmitRenderComponentProps>
 }
 
-export function mergeErrors(errors: ApolloError[]): ApolloError | undefined {
+export function mergeErrors(errors: ErrorLike[]): ErrorLike | undefined {
   if (!errors.length) return undefined
-  return new ApolloError({
-    errorMessage: 'Composed submit error',
-    networkError: errors.find((error) => error.networkError)?.networkError,
-    graphQLErrors: errors.map((error) => error.graphQLErrors ?? []).flat(1),
-  })
+
+  // Collect all GraphQL errors from CombinedGraphQLErrors instances
+  const graphQLErrors = errors.flatMap((error) =>
+    CombinedGraphQLErrors.is(error) ? error.errors : [],
+  )
+
+  // Collect non-GraphQL errors (network errors, etc.)
+  const nonGraphQLErrors = errors.filter((error) => !CombinedGraphQLErrors.is(error))
+
+  // If we have GraphQL errors, return a CombinedGraphQLErrors
+  // Include non-GraphQL error messages as additional GraphQL errors to avoid losing them
+  if (graphQLErrors.length > 0) {
+    const allErrors = [
+      ...graphQLErrors,
+      ...nonGraphQLErrors.map((error) => ({ message: error.message })),
+    ]
+    return new CombinedGraphQLErrors({ errors: allErrors })
+  }
+
+  // If we only have non-GraphQL errors, return the first one
+  return nonGraphQLErrors[0]
 }
 
 export function ComposedSubmit(props: ComposedSubmitProps) {
@@ -118,7 +136,7 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
     }
   }
 
-  const errors: ApolloError[] = []
+  const errors: ErrorLike[] = []
 
   formEntries.forEach(([, { form }]) => {
     if (form && isFormGqlOperation(form) && form.error) errors.push(form.error)

@@ -1,6 +1,6 @@
-import type { Operation } from '@graphcommerce/graphql'
-import { fromPromise, globalApolloClient } from '@graphcommerce/graphql'
-import { ApolloLink, Observable, onError } from '@graphcommerce/graphql/apollo'
+import { globalApolloClient } from '@graphcommerce/graphql'
+import { ApolloLink, CombinedGraphQLErrors, ErrorLink } from '@graphcommerce/graphql/apollo'
+import { filter, from, of, switchMap } from '@graphcommerce/graphql/rxjs'
 import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
 import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
@@ -14,8 +14,8 @@ import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
 import { getCartEnabledForUser } from '../utils'
 import { isProtectedCartOperation } from './isProtectedCartOperation'
 
-type CartOperation = Operation & { variables: { cartId: string } }
-function isCartOperation(operation: Operation): operation is CartOperation {
+type CartOperation = ApolloLink.Operation & { variables: { cartId: string } }
+function isCartOperation(operation: ApolloLink.Operation): operation is CartOperation {
   return typeof operation.variables.cartId === 'string'
 }
 
@@ -24,13 +24,16 @@ function errorIsIncluded(errorPath: readonly (string | number)[] | undefined, ke
   return keys.some((value) => value === error)
 }
 
-const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
+const cartErrorLink = new ErrorLink(({ error, operation, forward }) => {
   if (!globalApolloClient.current) return undefined
 
   const client = globalApolloClient.current
   const { cache } = client
 
-  if (!isCartOperation(operation) || !graphQLErrors) return undefined
+  // Check if this is a GraphQL error
+  if (!CombinedGraphQLErrors.is(error)) return undefined
+
+  if (!isCartOperation(operation)) return undefined
 
   const isErrorCategory = (err: GraphQLFormattedError, category: ErrorCategory) =>
     err.extensions?.category === category
@@ -54,7 +57,7 @@ const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
       // 'applyCouponToCart',
       // 'removeCouponFromCart'
     ])
-  const cartErr = graphQLErrors.find((err) => isNoSuchEntityError(err))
+  const cartErr = error.errors.find((err) => isNoSuchEntityError(err))
 
   if (!cartErr) return undefined
 
@@ -63,9 +66,9 @@ const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
     if (urlParams.get('cart_id')) return forward(operation)
   }
 
-  return fromPromise(client?.mutate({ mutation: CreateEmptyCartDocument }))
-    .filter((value) => Boolean(value))
-    .flatMap((cartData) => {
+  return from(client?.mutate({ mutation: CreateEmptyCartDocument })).pipe(
+    filter((value) => Boolean(value)),
+    switchMap((cartData) => {
       const cartId = cartData.data?.createEmptyCart
       if (!cartId) return forward(operation)
 
@@ -74,7 +77,8 @@ const cartErrorLink = onError(({ graphQLErrors, operation, forward }) => {
 
       // retry the request, returning the new observable
       return forward(operation)
-    })
+    }),
+  )
 })
 
 const cartPermissionLink = (router: PushRouter) =>
@@ -82,7 +86,7 @@ const cartPermissionLink = (router: PushRouter) =>
     const { locale } = router
     const { cache } = operation.getContext()
 
-    if (!isProtectedCartOperation(operation.operationName)) return forward(operation)
+    if (!isProtectedCartOperation(operation.operationName ?? '')) return forward(operation)
 
     const check = () => Boolean(cache?.readQuery({ query: CustomerTokenDocument }))
     if (getCartEnabledForUser(locale, check)) return forward(operation)
@@ -95,33 +99,35 @@ const cartPermissionLink = (router: PushRouter) =>
     const oldHeaders = operation.getContext().headers
     const signInAgainPromise = pushWithPromise(router, '/account/signin')
 
-    return fromPromise(signInAgainPromise).flatMap(() => {
-      const tokenQuery = cache?.readQuery({ query: CustomerTokenDocument })
+    return from(signInAgainPromise).pipe(
+      switchMap(() => {
+        const tokenQuery = cache?.readQuery({ query: CustomerTokenDocument })
 
-      if (tokenQuery?.customerToken?.valid) {
-        // Customer is authenticated, retrying request.
-        operation.setContext({
-          headers: {
-            ...oldHeaders,
-            authorization: `Bearer ${tokenQuery?.customerToken?.token}`,
-          },
+        if (tokenQuery?.customerToken?.valid) {
+          // Customer is authenticated, retrying request.
+          operation.setContext({
+            headers: {
+              ...oldHeaders,
+              authorization: `Bearer ${tokenQuery?.customerToken?.token}`,
+            },
+          })
+          return forward(operation)
+        }
+
+        return of({
+          data: null,
+          errors: [
+            new GraphQLError(t`Please login to add products to your cart`, {
+              extensions: { category: 'graphql-authorization' },
+            }),
+          ],
         })
-        return forward(operation)
-      }
-
-      return Observable.of({
-        data: null,
-        errors: [
-          new GraphQLError(t`Please login to add products to your cart`, {
-            extensions: { category: 'graphql-authorization' },
-          }),
-        ],
-      })
-    })
+      }),
+    )
   })
 
 export const cartLink = (router: PushRouter) => {
-  const links = [cartErrorLink]
+  const links: ApolloLink[] = [cartErrorLink]
 
   if (!(permissions?.cart === 'ENABLED')) {
     links.push(cartPermissionLink(router))

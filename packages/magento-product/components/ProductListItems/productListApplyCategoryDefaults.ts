@@ -33,7 +33,7 @@ export function useProductListApplyCategoryDefaults(
 
 export async function productListApplyCategoryDefaults(
   params: ProductListParams,
-  conf: StoreConfigQuery,
+  conf: StoreConfigQuery | undefined,
   category:
     | Promise<CategoryDefaultFragment | null | undefined>
     | CategoryDefaultFragment
@@ -42,7 +42,7 @@ export async function productListApplyCategoryDefaults(
 ): Promise<ProductListQueryVariables>
 export async function productListApplyCategoryDefaults(
   params: ProductListParams | undefined,
-  conf: StoreConfigQuery,
+  conf: StoreConfigQuery | undefined,
   category:
     | Promise<CategoryDefaultFragment | null | undefined>
     | CategoryDefaultFragment
@@ -52,11 +52,12 @@ export async function productListApplyCategoryDefaults(
   if (!params) return params
 
   const newParams = cloneDeep(params)
-  if (!newParams.pageSize) newParams.pageSize = conf.storeConfig?.grid_per_page ?? 12
+  if (!newParams.pageSize) newParams.pageSize = conf?.storeConfig?.grid_per_page ?? 12
 
   if (Object.keys(params.sort).length === 0) {
     const categorySort = (await category)?.default_sort_by as keyof ProductListParams['sort']
-    const defaultSort = conf.storeConfig?.catalog_default_sort_by as keyof ProductListParams['sort']
+    const defaultSort = conf?.storeConfig
+      ?.catalog_default_sort_by as keyof ProductListParams['sort']
     if (categorySort) newParams.sort = { [categorySort]: 'ASC' }
     else if (defaultSort) newParams.sort = { [defaultSort]: 'ASC' }
   }

@@ -1,7 +1,7 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
 import { removeCssFlag } from '@graphcommerce/next-ui'
 
-export function signOut(client: ApolloClient<object>) {
+export function signOut(client: ApolloClient) {
   removeCssFlag('private-query')
   globalThis?.sessionStorage?.clear()
   client.cache.evict({ fieldName: 'currentCartId' })

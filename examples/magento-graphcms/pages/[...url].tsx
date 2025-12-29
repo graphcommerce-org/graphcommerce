@@ -208,7 +208,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const productListParams = parseParams(url, query, await filterTypes)
   const filteredCategoryUid = productListParams && productListParams.filters.category_uid?.in?.[0]
 
-  const category = categoryPage.then((res) => res.data.categories?.items?.[0])
+  const category = categoryPage.then((res) => res.data?.categories?.items?.[0])
   const waitForSiblings = appendSiblingsAsChildren(category, staticClient)
   let categoryUid = filteredCategoryUid
   if (!categoryUid) {
@@ -240,12 +240,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  const hasPage = filteredCategoryUid ? false : (await pages).data.pages.length > 0
+  const hasPage = filteredCategoryUid ? false : ((await pages).data?.pages?.length ?? 0) > 0
   if (!(await category)?.uid && !hasPage)
     return redirectOrNotFound(staticClient, conf, params, locale)
 
-  if ((await products)?.errors) {
-    const totalPages = (await filters)?.data.filters?.page_info?.total_pages ?? 0
+  if ((await products)?.error) {
+    const totalPages = (await filters)?.data?.filters?.page_info?.total_pages ?? 0
     if (productListParams?.currentPage && productListParams.currentPage > totalPages) {
       const to = productListLink({ ...productListParams, currentPage: totalPages })
       return redirectTo(to, false, locale)

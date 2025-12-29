@@ -1,21 +1,23 @@
-import type { FetchResult } from '@graphcommerce/graphql'
-import { ApolloError } from '@graphcommerce/graphql'
+import type { ApolloLink } from '@graphcommerce/graphql'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
 import { t } from '@lingui/core/macro'
 import type { PaymentMethodPlaceOrderNoopMutation } from './PaymentMethodPlaceOrderNoop.gql'
 
-export type PlacedOrder<T extends FetchResult<PaymentMethodPlaceOrderNoopMutation>> = NonNullable<
-  NonNullable<NonNullable<T['data']>['placeOrder']>['order']
->
+type PlaceOrderResult = ApolloLink.Result<PaymentMethodPlaceOrderNoopMutation>
 
-export type AssertedOrderPlaced<T extends FetchResult<PaymentMethodPlaceOrderNoopMutation>> = T & {
+export type PlacedOrder = {
+  order_number: string
+}
+
+export type AssertedOrderPlaced = PlaceOrderResult & {
   data: {
-    placeOrder: { order: PlacedOrder<T> }
+    placeOrder: { order: PlacedOrder }
   }
 }
 
-export function throwGenericPlaceOrderError() {
-  throw new ApolloError({
-    graphQLErrors: [
+export function throwGenericPlaceOrderError(): never {
+  throw new CombinedGraphQLErrors({
+    errors: [
       {
         message: t`An error occurred while processing your payment. Please contact the store owner`,
       },
@@ -24,20 +26,26 @@ export function throwGenericPlaceOrderError() {
 }
 
 /** Assert that the order was place successfully. */
-export function assertOrderPlaced<T extends FetchResult<PaymentMethodPlaceOrderNoopMutation>>(
-  result: T,
-): asserts result is AssertedOrderPlaced<T> {
+export function assertOrderPlaced(result: PlaceOrderResult): asserts result is AssertedOrderPlaced {
+  // Check for GraphQL errors in the result
   if (result.errors && result.errors.length > 0) {
-    const graphQLErrors = result.errors.filter((e) => e !== null)
-    throw new ApolloError({ graphQLErrors })
+    throw new CombinedGraphQLErrors(result)
   }
 
-  if (result.data?.placeOrder?.errors && result.data.placeOrder.errors.length > 0) {
-    const graphQLErrors = result.data.placeOrder.errors.filter((e) => e !== null)
-    throw new ApolloError({ graphQLErrors })
+  // Check for place order specific errors
+  const placeOrderData = result.data?.placeOrder as
+    | { errors?: { message: string }[] | null; order?: { order_number?: string } | null }
+    | null
+    | undefined
+
+  if (placeOrderData?.errors && placeOrderData.errors.length > 0) {
+    throw new CombinedGraphQLErrors({
+      errors: placeOrderData.errors.filter((e) => e !== null),
+    })
   }
 
-  if (!result.data?.placeOrder?.order?.order_number) {
+  const orderNumber = placeOrderData?.order?.order_number
+  if (!orderNumber) {
     console.info('Error while placing order', result)
     throwGenericPlaceOrderError()
   }

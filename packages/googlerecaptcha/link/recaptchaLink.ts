@@ -1,9 +1,9 @@
-import type { GraphQLRequest } from '@graphcommerce/graphql'
-import { setContext } from '@graphcommerce/graphql/apollo'
+import type { ApolloLink } from '@graphcommerce/graphql'
+import { SetContextLink } from '@graphcommerce/graphql/apollo'
 import { Kind, OperationTypeNode } from 'graphql'
 import { RecaptchaV3ConfigDocument } from '../graphql'
 
-const isMutation = (operation: GraphQLRequest) =>
+const isMutation = (operation: ApolloLink.Request) =>
   operation.query.definitions.some(
     (definition) =>
       definition.kind === Kind.OPERATION_DEFINITION &&
@@ -11,11 +11,11 @@ const isMutation = (operation: GraphQLRequest) =>
   )
 
 /** Apollo link that adds the Google reCAPTCHA token to the request context. */
-export const recaptchaLink = setContext(async (operation, context) => {
-  const siteKey = context.cache?.readQuery({ query: RecaptchaV3ConfigDocument })?.recaptchaV3Config
-    ?.website_key
+export const recaptchaLink = new SetContextLink(async (prevContext, operation) => {
+  const siteKey = prevContext.cache?.readQuery({ query: RecaptchaV3ConfigDocument })
+    ?.recaptchaV3Config?.website_key
 
-  if (!siteKey || !globalThis.grecaptcha || !isMutation(operation)) return context
+  if (!siteKey || !globalThis.grecaptcha || !isMutation(operation)) return {}
 
   await new Promise<void>((resolve) => {
     globalThis.grecaptcha?.ready(resolve)
@@ -35,10 +35,10 @@ export const recaptchaLink = setContext(async (operation, context) => {
 
   if (!token) {
     console.error('Failed to get reCAPTCHA token after 5 attempts')
-    return context
+    return prevContext
   }
 
-  if (!context.headers) context.headers = {}
-  context.headers['X-ReCaptcha'] = token
-  return context
+  return {
+    headers: { ...prevContext.headers, 'X-ReCaptcha': token },
+  }
 })

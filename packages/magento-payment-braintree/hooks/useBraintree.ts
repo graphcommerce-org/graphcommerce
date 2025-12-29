@@ -31,7 +31,7 @@ export type StartPaymentOptions = {
 }
 
 let clientPromise: Promise<Client> | undefined
-function getClientPromise(apolloClient: ApolloClient<unknown>) {
+function getClientPromise(apolloClient: ApolloClient) {
   if (!clientPromise) {
     clientPromise = new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -39,8 +39,8 @@ function getClientPromise(apolloClient: ApolloClient<unknown>) {
         const res = await apolloClient.mutate({ mutation: UseBraintreeDocument })
 
         const authorization = res.data?.createBraintreeClientToken
-        if (!authorization || res.errors?.[0]) {
-          reject(res.errors?.[0])
+        if (!authorization || res.error) {
+          reject(res.error)
           return
         }
 

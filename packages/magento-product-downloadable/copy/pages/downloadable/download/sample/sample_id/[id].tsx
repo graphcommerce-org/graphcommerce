@@ -1,9 +1,3 @@
-// managed by: graphcommerce
-// to modify this file, change it to managed by: local
-
-// managed by: graphcommerce
-// to modify this file, change it to managed by: local
-
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -50,7 +44,7 @@ export const getServerSideProps: GetServerSideProps<Props & LayoutNavigationProp
   const staticClient = graphqlSsrClient(context)
   const conf = await staticClient.query({ query: StoreConfigDocument })
 
-  const baseUrl = conf.data.storeConfig?.secure_base_url
+  const baseUrl = conf.data?.storeConfig?.secure_base_url
   if (!baseUrl) return { notFound: true }
 
   const downloadUrl = new URL(baseUrl)

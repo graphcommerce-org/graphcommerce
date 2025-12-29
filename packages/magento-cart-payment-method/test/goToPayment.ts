@@ -4,10 +4,7 @@ import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-ad
 import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/test/fillCartAgreementsForm'
 import type { Page } from '@playwright/test'
 
-export const goToPayment = async (
-  page: Page,
-  apolloClient: ApolloClient<NormalizedCacheObject>,
-) => {
+export const goToPayment = async (page: Page, apolloClient: ApolloClient) => {
   await page.locator('#view-shopping-cart-button').click()
   await page.locator('#cart-start-checkout').click()
 

@@ -25,7 +25,7 @@ type BaseQuery =
  */
 export async function defaultConfigurableOptionsSelection<Q extends BaseQuery = BaseQuery>(
   urlKey: string,
-  client: ApolloClient<object>,
+  client: ApolloClient,
   query: Q,
 ): Promise<Q & Pick<AddProductsToCartFormProps, 'defaultValues'>> {
   const simple = query?.products?.items?.find((p) => p?.url_key === urlKey)

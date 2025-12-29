@@ -7,7 +7,7 @@ import {
   type UseAttributesFormConfig,
 } from '@graphcommerce/magento-store'
 import { useFormGqlMutation, type UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
-import type { MutationHookOptions } from '@apollo/client'
+import type { useMutation } from '@apollo/client/react'
 import type { OmitDeep } from 'type-fest'
 import type { CustomerInfoFragment } from '../../hooks'
 import {
@@ -93,7 +93,7 @@ export function useCustomerUpdateForm(
     UseCustomerUpdateFormMutation,
     UpdateCustomerFormValues
   >,
-  mutationOptions?: MutationHookOptions<UseCustomerUpdateFormMutation, UpdateCustomerFormValues>,
+  mutationOptions?: useMutation.Options<UseCustomerUpdateFormMutation, UpdateCustomerFormValues>,
 ) {
   const { customer, ...attributeFormConfig } = config
   const attributes = useAttributesForm({
