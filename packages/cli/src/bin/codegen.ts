@@ -5,7 +5,6 @@ import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-confi
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
-import glob from 'fast-glob'
 import { rimraf } from 'rimraf'
 import yaml from 'yaml'
 
@@ -33,14 +32,7 @@ function appendDocumentLocations(
   packages: string[],
 ): Types.ConfiguredOutput {
   const documents = Array.isArray(conf.documents) ? conf.documents : [conf.documents]
-
-  // Pre-resolve GraphQL files to avoid graphql-codegen following symlinks into node_modules
-  const packagePatterns = packages.map((p) => `${p}/**/*.graphql`)
-  const resolvedFiles = glob.sync(packagePatterns, {
-    ignore: ['**/node_modules/**'],
-    followSymbolicLinks: false,
-  })
-  documents.push(...resolvedFiles)
+  documents.push(...packages.map((p) => `${p}/**/*.graphql`))
 
   return conf
 }

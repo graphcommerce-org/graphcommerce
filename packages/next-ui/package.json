@@ -30,7 +30,7 @@
     "./RenderType/filterNonNullableKeys": "./RenderType/filterNonNullableKeys.ts"
   },
   "dependencies": {
-    "cookie": "^1.0.2",
+    "cookie": "^1.1.1",
     "react-is": "^19.2.0"
   },
   "devDependencies": {
@@ -38,10 +38,10 @@
     "typescript": "5.9.3"
   },
   "peerDependencies": {
-    "@emotion/cache": "^11",
-    "@emotion/react": "^11",
-    "@emotion/server": "^11",
-    "@emotion/styled": "^11",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.14.1",
     "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.68",
     "@graphcommerce/framer-next-pages": "^10.0.0-canary.68",
     "@graphcommerce/framer-scroller": "^10.0.0-canary.68",
@@ -52,7 +52,7 @@
     "@lingui/core": "^5",
     "@lingui/macro": "^5",
     "@lingui/react": "^5",
-    "@mui/lab": "^7.0.0-beta.0",
+    "@mui/lab": "7.0.1-beta.20",
     "@mui/material": "^7.0.0",
     "framer-motion": "^11.0.0",
     "next": "*",

@@ -44,21 +44,22 @@ export function withTheme<T>(
   Component: (value: T & WithSx) => React.ReactElement<any, any> | null,
   theme: Theme,
 ): React.FC<T & WithSx> {
-  return (data: T & WithSx) => {
+  // eslint-disable-next-line react/function-component-definition
+  return function WithTheme(data: T & WithSx) {
     const { sx = [] } = data
     return (
       <ThemeProvider theme={theme}>
-        <Component
-          {...data}
-          sx={sxx(
+        {React.createElement(Component, {
+          ...data,
+          sx: sxx(
             {
               typography: 'body1',
               color: theme.vars.palette.text.primary,
               backgroundColor: theme.vars.palette.background.default,
             },
             sx,
-          )}
-        />
+          ),
+        })}
       </ThemeProvider>
     )
   }

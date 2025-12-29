@@ -1,4 +1,5 @@
-import React from 'react'
+import { createElement } from 'react'
+import type React from 'react'
 
 /** To make renderers customizable we need to be able to provide renders for all types */
 type TypeObject = { __typename: string; [index: string]: unknown }
@@ -24,6 +25,10 @@ export type TypeRenderer<
   TAdd extends Record<string, unknown> = Record<string, unknown>,
 > = TypeRenderMap<T, T['__typename'], TAdd>
 
+function FallbackRenderer({ __typename }: { __typename: string }) {
+  return <>{process.env.NODE_ENV !== 'production' ? __typename : ''}</>
+}
+
 /**
  * A simple array with renderers but with strict typing that validates of the provided Renderer is
  * actually able to render the Type
@@ -35,11 +40,9 @@ export function RenderType<
   A extends Record<string, unknown> = Record<string, unknown>,
 >(props: { renderer: TypeRenderer<T, A> } & FilterTypeByTypename<T, T['__typename']> & A) {
   const { renderer, __typename, ...typeItemProps } = props
-  const TypeItem: TypeRenderMethod<typeof typeItemProps> = renderer[__typename]
-    ? renderer[__typename]
-    : () => <>{process.env.NODE_ENV !== 'production' ? __typename : ''}</>
+  const TypeItem: TypeRenderMethod<typeof typeItemProps> = renderer[__typename] ?? FallbackRenderer
 
-  return <TypeItem {...typeItemProps} __typename={__typename} />
+  return createElement(TypeItem, { ...typeItemProps, __typename })
 }
 
 /** @public */
