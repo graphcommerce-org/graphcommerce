@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-canary.70
+
+### Minor Changes
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`ea75841`](https://github.com/graphcommerce-org/graphcommerce/commit/ea758413b1ee8b8f2584e8f4135cb582fb87445f) - Migrated to vitest ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.69
 
 ## 10.0.0-canary.68

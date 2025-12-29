@@ -1,5 +1,11 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 10.0.0-canary.70
+
+### Major Changes
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`c96dfcd`](https://github.com/graphcommerce-org/graphcommerce/commit/c96dfcdca981baca387c270ad9e2b9515cdd00cc) - Updated to Apollo Client 4 ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.69
 
 ## 10.0.0-canary.68
