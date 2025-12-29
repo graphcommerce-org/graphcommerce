@@ -1,6 +1,6 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
 import { useRouter } from 'next/router'
 import { useAfterpayCartLock } from '../../hooks/useAfterpayCartLock'
 import { AfterpayPaymentPlaceOrderDocument } from './AfterpayPaymentPlaceOrder.gql'
@@ -28,8 +28,7 @@ export function AfterpayPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       await lock({ orderToken, method: code })
       // We are going to redirect, but we're not waiting, because we need to complete the submission to release the buttons
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      push(start)
+      void push(start)
     },
   })
 

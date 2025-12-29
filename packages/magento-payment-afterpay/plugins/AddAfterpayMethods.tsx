@@ -1,7 +1,5 @@
-import {
-  PaymentMethodContextProviderProps,
-  PaymentMethodOptionsNoop,
-} from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
+import { PaymentMethodOptionsNoop } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginProps } from '@graphcommerce/next-config'
 import { AfterpayPaymentActionCard } from '../components/AfterpayPaymentActionCard/AfterpayPaymentActionCard'
 import { AfterpayPaymentHandler } from '../components/AfterpayPaymentHandler/AfterpayPaymentHandler'
