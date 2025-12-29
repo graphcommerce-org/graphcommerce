@@ -2,7 +2,7 @@
   "name": "@graphcommerce/lingui-next",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.0.0-canary.71",
+  "version": "10.0.0-canary.72",
   "sideEffects": false,
   "scripts": {
     "dev": "tsc -W"
@@ -21,11 +21,11 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.71",
-    "@graphcommerce/next-config": "^10.0.0-canary.71",
-    "@graphcommerce/next-ui": "^10.0.0-canary.71",
-    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.71",
-    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.71",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.72",
+    "@graphcommerce/next-config": "^10.0.0-canary.72",
+    "@graphcommerce/next-ui": "^10.0.0-canary.72",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.72",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.72",
     "@lingui/conf": "^5",
     "@lingui/core": "^5",
     "@lingui/format-po": "^5",
