@@ -1,7 +1,7 @@
 import type { ProductFiltersProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import { useRouter } from 'next/router'
 import { useSortBy } from 'react-instantsearch-hooks-web'
 import { RenderChip } from '../components/Chip/RenderChip'
@@ -20,14 +20,7 @@ function AlgoliaProductSortPlugin(props: PluginProps<ProductFiltersProps>) {
 
   if (!options) return null
 
-  return (
-    <RenderChip
-      __typename='Sort'
-      title={rest.title ?? i18n._(/* i18n */ 'Sort')}
-      attribute='sort'
-      {...sort}
-    />
-  )
+  return <RenderChip __typename='Sort' title={rest.title ?? t`Sort`} attribute='sort' {...sort} />
 }
 
 export const Plugin = AlgoliaProductSortPlugin

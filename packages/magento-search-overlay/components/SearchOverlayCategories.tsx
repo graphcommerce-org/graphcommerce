@@ -1,10 +1,8 @@
-import { useQuery } from '@graphcommerce/graphql'
 import { productListLink } from '@graphcommerce/magento-product'
-import { CategorySearchDocument } from '@graphcommerce/magento-search'
-import type { CategorySearchResultFragment } from '@graphcommerce/magento-search'
+import { useCategorySearch, type CategorySearchResultFragment } from '@graphcommerce/magento-search'
 import type { SectionContainerProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, NextLink, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type {
   BreadcrumbsProps,
   LinkProps,
@@ -43,7 +41,7 @@ const SearchOverlayCategory = forwardRef<HTMLAnchorElement, SearchOverlayCategor
         component={NextLink}
         ref={ref}
         href={productListLink({
-          filters: { category_uid: { eq: category.uid } },
+          filters: { category_uid: { in: [category.uid] } },
           sort: {},
           url: category.url_path ?? '',
         })}
@@ -52,14 +50,21 @@ const SearchOverlayCategory = forwardRef<HTMLAnchorElement, SearchOverlayCategor
         <Breadcrumbs {...slotProps?.breadcrumbs}>
           {filterNonNullableKeys(category.breadcrumbs, ['category_name']).map((breadcrumb) => (
             <Typography
-              color='text.primary'
               key={breadcrumb.category_name}
               {...slotProps?.typography}
+              sx={{
+                color: 'text.primary',
+              }}
             >
               {breadcrumb.category_name}
             </Typography>
           ))}
-          <Typography color='text.primary' {...slotProps?.typography}>
+          <Typography
+            {...slotProps?.typography}
+            sx={{
+              color: 'text.primary',
+            }}
+          >
             {category.name}
           </Typography>
         </Breadcrumbs>
@@ -77,15 +82,8 @@ export function SearchOverlayCategories(props: SearchOverlayCategoriesProps) {
   const { slotProps = {} } = props
   const { sectionContainer: sectionContainerProps = {} } = slotProps
 
-  const categories = useQuery(CategorySearchDocument, {
-    variables: { search, pageSize: 5 },
-    skip: !search || search.length < 3,
-  })
-  const categoryItems = filterNonNullableKeys(
-    categories.data?.categories?.items ?? categories.previousData?.categories?.items,
-  ).filter((c) => c.include_in_menu)
-
-  if (categories.error || categoryItems.length === 0 || !search) return null
+  const categoryItems = useCategorySearch({ search })
+  if (!categoryItems) return null
 
   return (
     <SectionContainer labelLeft={<Trans>Categories</Trans>} {...sectionContainerProps}>

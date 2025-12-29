@@ -1,6 +1,7 @@
 import { useController } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
-import { filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, SectionHeader, sxx } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { Box, MenuItem, TextField } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -13,13 +14,14 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
   const { uid, required, index, title, dropdownValue, productPrice, currency } = props
   const { control } = useFormAddProductsToCart()
 
+  const label = title ?? ''
   const {
     field: { onChange, value, ref, ...field },
     fieldState: { invalid, error },
   } = useController({
-    name: `cartItems.${index}.customizable_options.${uid}`,
+    name: `cartItems.${index}.selected_options_record.${uid}`,
     rules: {
-      required: Boolean(required),
+      required: required ? t`Please select a value for ‘${label}’` : false,
     },
     control,
     defaultValue: '',
@@ -27,8 +29,14 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
 
   return (
     <Box>
-      <SectionHeader labelLeft={title} sx={{ mt: 0 }} />
-
+      <SectionHeader
+        labelLeft={
+          <>
+            {title} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <TextField
         sx={{
           width: '100%',
@@ -44,7 +52,6 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
         inputRef={ref}
         onChange={(event) => onChange(event.target.value)}
         select
-        required={Boolean(required)}
         error={invalid}
         helperText={error?.message}
       >
@@ -54,13 +61,21 @@ export function CustomizableDropDownOption(props: CustomizableDropDownOptionProp
 
             {option.price ? (
               <Box
-                sx={{
-                  // display: 'flex',
-                  typography: 'body1',
-                  '&.sizeMedium': { typographty: 'subtitle1' },
-                  '&.sizeLarge': { typography: 'h6' },
-                  color: option.uid === value ? 'text.primary' : 'text.secondary',
-                }}
+                sx={sxx(
+                  {
+                    // display: 'flex',
+                    typography: 'body1',
+                    '&.sizeMedium': { typographty: 'subtitle1' },
+                    '&.sizeLarge': { typography: 'h6' },
+                  },
+                  option.uid === value
+                    ? {
+                        color: 'text.primary',
+                      }
+                    : {
+                        color: 'text.secondary',
+                      },
+                )}
               >
                 <span style={{ fontFamily: 'arial', paddingTop: '1px' }}>+&nbsp;</span>
                 <Money

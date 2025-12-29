@@ -1,8 +1,8 @@
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { useMutation } from '@graphcommerce/graphql'
 import type { LinkOrButtonProps } from '@graphcommerce/next-ui'
-import { LinkOrButton } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { LinkOrButton, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import { DeleteCompareListDocument } from '../graphql/DeleteCompareList.gql'
 import { useCompareList } from '../hooks'
 import { useClearCurrentCompareListUid } from '../hooks/useClearCurrentCompareListUid'
@@ -30,21 +30,11 @@ export function EmptyCompareListButton(props: EmptyCompareListButtonProps) {
       button={{
         variant: 'pill',
         ...button,
-        sx: [
-          {
-            whiteSpace: 'nowrap',
-          },
-          ...(Array.isArray(button.sx) ? button.sx : [button.sx]),
-        ],
+        sx: sxx({ whiteSpace: 'nowrap' }, button.sx),
       }}
       link={{
         ...link,
-        sx: [
-          {
-            whiteSpace: 'nowrap',
-          },
-          ...(Array.isArray(link.sx) ? link.sx : [link.sx]),
-        ],
+        sx: sxx({ whiteSpace: 'nowrap' }, link.sx),
       }}
       onClick={() => {
         go()
@@ -53,7 +43,7 @@ export function EmptyCompareListButton(props: EmptyCompareListButtonProps) {
         deleteCompareList()
       }}
     >
-      <Trans id='Empty comparelist' />
+      <Trans>Empty comparelist</Trans>
     </LinkOrButton>
   )
 }

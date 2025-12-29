@@ -2,9 +2,9 @@
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartSnackbarMessage'
 import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
-import type { OrderItemsFragment } from '../OrderItems/OrderItems.gql'
+import type { OrderItemsFragment } from '../Order'
 import type { ReorderItemsMutation, ReorderItemsMutationVariables } from './ReorderItems.gql'
 import { ReorderItemsDocument } from './ReorderItems.gql'
 
@@ -45,6 +45,7 @@ export function ReorderItems(props: ReorderItemsProps) {
         error={error}
         userErrors={errors?.filter(nonNullable)}
         showSuccess={!!cart}
+        cart={cart}
       />
     </Box>
   )

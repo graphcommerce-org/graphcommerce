@@ -7,6 +7,11 @@ type UseOrderCardItemImagesProps = UseOrderCardItemImagesFragment | null
 
 export type UseOrderCardItemImages = Record<string, OrderCardItemImageFragment | null | undefined>
 
+/**
+ * @deprecated Not used anymore
+ * @param orders
+ * @returns
+ */
 export default function useOrderCardItemImages(
   orders?: UseOrderCardItemImagesProps,
 ): UseOrderCardItemImages {

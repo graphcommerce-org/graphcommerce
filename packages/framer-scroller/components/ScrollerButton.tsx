@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, SxProps, Theme } from '@mui/material'
 import { Fab, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
@@ -79,11 +80,10 @@ export const ScrollerButton = m.create(
           {...buttonProps}
           onClick={handleClick}
           aria-label={direction}
-          sx={[{ transition: 'all 250ms', ...mode }, ...(Array.isArray(sx) ? sx : [sx])]}
+          sx={sxx({ transition: 'all 250ms', ...mode }, sx)}
         />
       </MotionDiv>
     )
   }),
 )
-
 ScrollerButton.displayName = 'ScrollerButton'

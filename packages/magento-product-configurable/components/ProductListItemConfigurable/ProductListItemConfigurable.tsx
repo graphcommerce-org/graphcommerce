@@ -1,11 +1,14 @@
-import type { OverlayAreaKeys, ProductListItemProps } from '@graphcommerce/magento-product'
+import type {
+  ProductListItemImageAreaKeys,
+  ProductListItemProps,
+} from '@graphcommerce/magento-product'
 import { ProductListItem } from '@graphcommerce/magento-product'
 import { SwatchList } from '../../SwatchList'
 import type { ProductListItemConfigurableFragment } from './ProductListItemConfigurable.gql'
 
 export type ProdustListItemConfigurableProps = ProductListItemConfigurableFragment &
   ProductListItemProps & {
-    swatchLocations?: Partial<Record<OverlayAreaKeys, string[]>>
+    swatchLocations?: Partial<Record<ProductListItemImageAreaKeys, string[]>>
   }
 
 export function ProductListItemConfigurable(props: ProdustListItemConfigurableProps) {

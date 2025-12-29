@@ -5,7 +5,6 @@ import { useGoogleRecaptcha } from '../hooks/useGoogleRecaptcha'
 export const config: PluginConfig = {
   type: 'component',
   module: '@graphcommerce/ecommerce-ui',
-  ifConfig: 'googleRecaptchaKey',
 }
 
 export function ApolloErrorFullPage(props: PluginProps<ApolloErrorFullPageProps>) {

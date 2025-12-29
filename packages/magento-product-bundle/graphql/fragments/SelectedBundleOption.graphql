@@ -1,0 +1,11 @@
+fragment SelectedBundleOption on SelectedBundleOption {
+  uid
+  label
+  type
+  values {
+    uid
+    label
+    quantity
+    price
+  }
+}

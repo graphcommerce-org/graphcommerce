@@ -1,0 +1,6 @@
+query AccountDashboard {
+  customer {
+    email
+  }
+  ...AccountDashboardQueryFragment
+}

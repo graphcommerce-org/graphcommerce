@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, MenuProps as MenuPropsType, SxProps, Theme } from '@mui/material'
 import { Box, Divider, Fab, ListItem, Menu, styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -65,12 +66,7 @@ export function MenuFab(props: MenuFabProps) {
   const classes = withState({ scrolled })
 
   return (
-    <Box
-      sx={[
-        { position: 'relative', width: fabIconSize, height: fabIconSize },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
-    >
+    <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
         sx={(theme) => ({
@@ -92,20 +88,44 @@ export function MenuFab(props: MenuFabProps) {
             boxShadow: 'none',
             '&:hover, &:focus': {
               boxShadow: 'none',
-              background: theme.palette.text.primary,
+              background: theme.vars.palette.text.primary,
             },
-            background: theme.palette.text.primary,
+            background: theme.vars.palette.text.primary,
             pointerEvents: 'all',
-            color: theme.palette.background.paper,
+            color: theme.vars.palette.background.paper,
           })}
           className={classes.fab}
           {...fabProps}
         >
           {closeIcon ?? (
-            <IconSvg src={iconClose} size='large' sx={{ display: openEl ? 'block' : 'none' }} />
+            <IconSvg
+              src={iconClose}
+              size='large'
+              sx={sxx(
+                openEl
+                  ? {
+                      display: 'block',
+                    }
+                  : {
+                      display: 'none',
+                    },
+              )}
+            />
           )}
           {menuIcon ?? (
-            <IconSvg src={iconMenu} size='large' sx={{ display: openEl ? 'none' : 'block' }} />
+            <IconSvg
+              src={iconMenu}
+              size='large'
+              sx={sxx(
+                openEl
+                  ? {
+                      display: 'none',
+                    }
+                  : {
+                      display: 'block',
+                    },
+              )}
+            />
           )}
         </Fab>
         <MotionDiv
@@ -132,9 +152,9 @@ export function MenuFab(props: MenuFabProps) {
           transitionDuration={{ appear: 175, enter: 175, exit: 175 }}
           PaperProps={{
             sx: (theme) => ({
-              backgroundColor: theme.palette.background.paper,
+              backgroundColor: theme.vars.palette.background.paper,
               backgroundImage: 'unset',
-              color: theme.palette.text.primary,
+              color: theme.vars.palette.text.primary,
               minWidth: responsiveVal(200, 280),
               marginTop: '12px',
               [theme.breakpoints.down('md')]: {
@@ -143,8 +163,10 @@ export function MenuFab(props: MenuFabProps) {
             }),
           }}
           className={classes.menu}
-          MenuListProps={{ dense: true }}
           {...MenuProps}
+          slotProps={{
+            list: { dense: true },
+          }}
         >
           {[
             search ? (

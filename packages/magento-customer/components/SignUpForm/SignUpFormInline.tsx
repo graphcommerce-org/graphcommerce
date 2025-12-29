@@ -4,7 +4,7 @@ import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Button, extendableComponent, Form, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Alert, Box } from '@mui/material'
 import React from 'react'
 import { useSignInForm } from '../../hooks/useSignInForm'
@@ -68,10 +68,9 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
   ) {
     return (
       <Alert>
-        <Trans
-          id='Registration successful. Please check your inbox to confirm your email address ({email})'
-          values={{ email }}
-        />
+        <Trans>
+          Registration successful. Please check your inbox to confirm your email address ({email})
+        </Trans>
       </Alert>
     )
   }
@@ -84,7 +83,7 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
           name='password'
           autoComplete='new-password'
           variant='outlined'
-          label={<Trans id='Password' />}
+          label={<Trans>Password</Trans>}
           required={required.password}
           disabled={formState.isSubmitting}
           error={!!inputError}
@@ -96,7 +95,7 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
           passwordFieldName='password'
           autoComplete='new-password'
           variant='outlined'
-          label={<Trans id='Confirm password' />}
+          label={<Trans>Confirm password</Trans>}
           required
           disabled={formState.isSubmitting}
         />
@@ -121,7 +120,7 @@ export function SignUpFormInline(props: SignUpFormInlineProps) {
               color='secondary'
               variant='pill'
             >
-              <Trans id='Create Account' />
+              <Trans>Create Account</Trans>
             </Button>
           </Box>
         </FormRow>

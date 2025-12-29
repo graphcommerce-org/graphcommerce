@@ -1,11 +1,11 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, Button, FormDiv } from '@graphcommerce/next-ui'
+import { ActionCard, Button, FormDiv, sxx } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
 import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useEffect } from 'react'
 import type { PaymentOptionsProps } from '../Api/PaymentMethod'
@@ -31,22 +31,22 @@ function PaymentMethodActionCard(
     <Card
       code={code}
       child={child}
-      sx={[
+      sx={sxx(
         {
           '& .ActionCard-title': { typography: 'h6' },
           '& .ActionCard-details': { lineHeight: 1.5 },
           '& .ActionCard-image svg, .ActionCard-image img': { width: '32px', height: '32px' },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       action={
         <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
-          <Trans id='Select' />
+          <Trans>Select</Trans>
         </Button>
       }
       reset={
         <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
-          <Trans id='Change' />
+          <Trans>Change</Trans>
         </Button>
       }
       after={
@@ -108,7 +108,7 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
       <ActionCardListForm<PaymentOptionsProps & ActionCardProps, FormFields>
         control={control}
         name='paymentMethod'
-        errorMessage={i18n._(/* i18n */ 'Please select a payment method')}
+        errorMessage={t`Please select a payment method`}
         collapse
         size='large'
         color='secondary'

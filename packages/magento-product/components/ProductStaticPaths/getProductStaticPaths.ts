@@ -1,27 +1,34 @@
-import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import { limitSsg } from '@graphcommerce/next-config/config'
 import type { GetStaticPathsResult } from 'next'
-import type { ProductStaticPathsQuery } from './ProductStaticPaths.gql'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
 
 type Return = GetStaticPathsResult<{ url: string }>
 
 export type ProductTypenames = NonNullable<
-  NonNullable<NonNullable<ProductStaticPathsQuery['products']>['items']>[0]
->['__typename']
+  NonNullable<
+    NonNullable<
+      Awaited<ReturnType<typeof getProductStaticPaths>> extends Return
+        ? Return['paths'][number]
+        : never
+    >
+  >
+>
 
 export async function getProductStaticPaths(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   locale: string,
-  options: { limit?: boolean } = { limit: import.meta.graphCommerce.limitSsg || false },
+  options: { limit?: boolean } = { limit: limitSsg || false },
 ) {
   const query = client.query({
     query: ProductStaticPathsDocument,
     variables: { currentPage: 1, pageSize: 100 },
   })
-  const pages: Promise<ApolloQueryResult<ProductStaticPathsQuery>>[] = [query]
 
   const { data } = await query
-  const totalPages = data.products?.page_info?.total_pages ?? 1
+  const totalPages = data?.products?.page_info?.total_pages ?? 1
+
+  const pages = [query]
 
   if (totalPages > 1 && options.limit !== true) {
     for (let i = 2; i <= totalPages; i++) {
@@ -35,7 +42,7 @@ export async function getProductStaticPaths(
   }
 
   const paths: Return['paths'] = (await Promise.all(pages))
-    .map((q) => q.data.products?.items)
+    .map((q) => q.data?.products?.items ?? [])
     .flat(1)
     .map((p) => ({ params: { url: `${p?.url_key}` }, locale }))
 

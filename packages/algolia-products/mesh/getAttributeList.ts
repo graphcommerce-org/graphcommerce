@@ -1,16 +1,18 @@
 import type { MeshContext } from '@graphcommerce/graphql-mesh'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterNonNullableKeys'
+import { getIndexName } from './getIndexName'
 
 export type AttributeList = { label: string; code: string }[]
 
-let attributeListCache: AttributeList | null = null
-
 export async function getAttributeList(context: MeshContext): Promise<AttributeList> {
-  if (attributeListCache) return attributeListCache
+  const cacheKey = `algolia_getAttributeList_${getIndexName(context)}`
+  const attributeListCached = context.cache.get(cacheKey)
+  if (attributeListCached) return attributeListCached
 
   if (
-    import.meta.graphCommerce.magentoVersion >= 247 &&
+    magentoVersion >= 247 &&
     'attributesList' in context.m2.Query &&
     typeof context.m2.Query.attributesList === 'function'
   ) {
@@ -22,7 +24,9 @@ export async function getAttributeList(context: MeshContext): Promise<AttributeL
       selectionSet: '{ items{ code label } }',
       context,
     }).then((res) => res?.items)) as { label?: string; code: string }[]
-    attributeListCache = filterNonNullableKeys(items, ['label'])
+
+    if (!items) throw new Error('Attribute list not found')
+    await context.cache.set(cacheKey, filterNonNullableKeys(items, ['label']))
 
     return filterNonNullableKeys(items, ['label'])
   }

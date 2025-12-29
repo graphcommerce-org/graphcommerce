@@ -33,17 +33,21 @@ function mapPriceRange(
   price: AlgoliaProductHitAdditionalProperties['price'],
   storeConfig: GetStoreConfigReturn,
   customerGroup = 0,
+  currencyHeader?: string,
 ): PriceRange {
   if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
 
-  const key = storeConfig.default_display_currency_code as keyof AlgoliaPrice
-  const currency = storeConfig.default_display_currency_code as CurrencyEnum
+  const curr = currencyHeader ?? storeConfig.default_display_currency_code
 
-  const maxRegular = price?.[key]?.default_max ?? 0
-  const maxFinal = price?.[key]?.[`group_${customerGroup}_max`] ?? price?.[key]?.default_max ?? 0
+  const key = curr as keyof AlgoliaPrice
+  const itemPrice = price?.[key] ?? price?.[storeConfig.default_display_currency_code]
+  const currency = (price?.[key] ? key : storeConfig.default_display_currency_code) as CurrencyEnum
 
-  const minRegular = price?.[key]?.default ?? 0
-  const minFinal = price?.[key]?.[`group_${customerGroup}`] ?? price?.[key]?.default
+  const maxRegular = itemPrice?.default_max ?? 0
+  const maxFinal = itemPrice?.[`group_${customerGroup}_max`] ?? itemPrice?.default_max ?? 0
+
+  const minRegular = itemPrice?.default_max ?? 0
+  const minFinal = itemPrice?.[`group_${customerGroup}`] ?? itemPrice?.default
 
   return {
     maximum_price: {
@@ -65,7 +69,7 @@ function mapPriceRange(
     minimum_price: {
       regular_price: {
         currency,
-        value: price?.[key]?.default,
+        value: minRegular,
       },
       final_price: {
         currency,
@@ -81,9 +85,14 @@ function mapPriceRange(
   }
 }
 
-export function algoliaUrlToUrlKey(url?: string | null, base?: string | null): string | null {
-  if (!url || !base) return null
-  return url.replace(base, '')
+export function algoliaUrlToUrlKey(url?: string | null, urlSuffix?: string | null): string | null {
+  if (!url) return null
+  const path = new URL(url).pathname.split('/')
+  // The URL key is the last part of the URL.
+  const urlKey = path[path.length - 1]
+
+  // The last part of the URL might end with the urlSuffix (something like `.html`), remove from the end of the URL.
+  return urlSuffix ? urlKey.replace(new RegExp(`${urlSuffix}$`), '') : urlKey
 }
 
 /**
@@ -114,6 +123,23 @@ export type ProductsItemsItem = NonNullable<
 }
 
 /**
+ * Ensures a GraphQL-safe string from various input types. If the value is:
+ *
+ * - An array: returns the first non-empty item as a string
+ * - A string: returns it as-is
+ * - Anything else: returns an empty string
+ */
+export function normalizeValue(value: unknown): string | null {
+  if (!value) return null
+  if (typeof value === 'string') return value
+  if (Array.isArray(value)) {
+    const firstNonEmpty = value.find((v) => typeof v === 'string' && v.trim() !== '')
+    return typeof firstNonEmpty === 'string' ? firstNonEmpty : ''
+  }
+  return null
+}
+
+/**
  * Mapping function to map Algolia hit to Magento product.
  *
  * You can create a FunctionPlugin to modify the behavior of this function or implement brand
@@ -123,6 +149,7 @@ export function algoliaHitToMagentoProduct(
   hit: Algoliahit,
   storeConfig: GetStoreConfigReturn,
   customerGroup: number,
+  currency: string | undefined,
 ): (ProductsItemsItem & { staged: boolean }) | null {
   const { objectID, additionalProperties } = hit
   if (!assertAdditional(additionalProperties)) return null
@@ -131,8 +158,7 @@ export function algoliaHitToMagentoProduct(
     sku,
     created_at,
     image_url,
-    is_stock,
-
+    in_stock,
     price,
     thumbnail_url,
     type_id,
@@ -148,14 +174,9 @@ export function algoliaHitToMagentoProduct(
     ...rest
   } = additionalProperties
 
-  // Some custom attributes are returned as array while they need to be a string. Flatten those arrays
-  const flattenedCustomAttributes = {}
-  for (const [key, value] of Object.entries(rest)) {
-    if (value !== null && Array.isArray(value) && value?.length > 0) {
-      flattenedCustomAttributes[key] = value.toString()
-      delete rest[key]
-    }
-  }
+  // We flatten any custom attribute array values to a string as 95% of the time they are an array
+  // because the product is a configurable (which creates an array of values).
+  for (const [key, value] of Object.entries(rest)) rest[key] = normalizeValue(value)
 
   return {
     staged: false,
@@ -164,9 +185,9 @@ export function algoliaHitToMagentoProduct(
     uid: btoa(objectID),
     id: Number(objectID),
     sku: Array.isArray(sku) ? sku[0] : `${sku}`,
-    price_range: mapPriceRange(price, storeConfig, customerGroup),
+    price_range: mapPriceRange(price, storeConfig, customerGroup, currency),
     created_at: created_at ? new Date(created_at).toISOString() : null,
-    stock_status: is_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
+    stock_status: in_stock ? 'IN_STOCK' : 'OUT_OF_STOCK',
     review_count: 0,
     rating_summary: Number(rating_summary),
     reviews: { items: [], page_info: {} },
@@ -187,18 +208,17 @@ export function algoliaHitToMagentoProduct(
     // options_container: null,
     // price_tiers: [],
     // product_links: [],
-    // related_products: null,
-    // short_description: null,
-    // small_image: null,
     // special_price: null,
     // special_to_date: null,
     small_image: { url: getOriginalImage(thumbnail_url) },
     swatch_image: getOriginalImage(image_url),
     thumbnail: { url: getOriginalImage(thumbnail_url) },
     // upsell_products: [],
-    url_key: algoliaUrlToUrlKey(url, storeConfig?.base_link_url),
+    url_key: algoliaUrlToUrlKey(url, storeConfig?.product_url_suffix),
     url_suffix: storeConfig?.product_url_suffix,
+
     ...rest,
-    ...flattenedCustomAttributes,
+    description: rest.description ? { html: rest.description } : null,
+    short_description: rest.short_description ? { html: rest.short_description } : null,
   }
 }

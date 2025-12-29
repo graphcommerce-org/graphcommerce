@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import React from 'react'
 import type { LayoutHeaderProps, TitleProps } from '../../Layout'
 import { LayoutTitle } from '../../Layout'
@@ -14,7 +15,7 @@ export function OverlayHeader(props: OverlayHeaderProps) {
   return (
     <LayoutOverlayHeader
       noAlign
-      sx={[{ '&.noAlign': { mb: 0 } }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx({ '&.noAlign': { mb: 0 } }, sx)}
       switchPoint={-10000}
       size='responsive'
       hideBackButton

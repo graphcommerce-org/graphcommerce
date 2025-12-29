@@ -1,5 +1,5 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
-import { alpha, Box, ButtonBase, lighten } from '@mui/material'
+import { Box, ButtonBase } from '@mui/material'
 import React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
@@ -117,7 +117,6 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
     layout = 'list',
     error = false,
     slotProps = {},
-    ...other
   } = props
 
   const classes = withState({
@@ -170,25 +169,34 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           '&.variantDefault': {
             position: 'relative',
             '&.selected': {
-              backgroundColor:
-                theme.palette.mode === 'light'
-                  ? alpha(theme.palette[color].main, theme.palette.action.hoverOpacity)
-                  : lighten(theme.palette.background.default, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                theme.vars.palette[color].main,
+                theme.vars.palette.action.hoverOpacity,
+              ),
+              ...theme.applyStyles('dark', {
+                backgroundColor: theme.lighten(
+                  theme.vars.palette.background.default,
+                  theme.vars.palette.action.hoverOpacity,
+                ),
+              }),
             },
             '&.error': {
-              backgroundColor: alpha(theme.palette.error.main, theme.palette.action.hoverOpacity),
+              backgroundColor: theme.alpha(
+                theme.vars.palette.error.main,
+                theme.vars.palette.action.hoverOpacity,
+              ),
             },
             '&:focus': {
               outline: 'none',
-              boxShadow: `0 0 0 4px ${alpha(theme.palette[color].main, theme.palette.action.focusOpacity)}`,
+              boxShadow: `0 0 0 4px ${theme.alpha(theme.vars.palette[color].main, theme.vars.palette.action.focusOpacity)}`,
             },
           },
           '&.variantOutlined': {
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: `inset 0 0 0 1px ${theme.palette.divider}`,
-            '&:not(:last-of-type)': {
-              marginBottom: '-2px',
-            },
+            backgroundColor: theme.vars.palette.background.paper,
+            boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider}`,
+            // '&:not(:last-of-type)': {
+            //   marginBottom: '-2px',
+            // },
             '&.layoutList': {
               borderRadius: 0,
               '&:first-of-type': {
@@ -222,23 +230,23 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             },
             '&.selected': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}`,
             },
             '&.selected:focus, &.error:focus': {
               borderColor: 'transparent',
-              boxShadow: `inset 0 0 0 2px ${theme.palette[color].main}, 0 0 0 4px ${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette[color].main}, 0 0 0 4px ${theme.alpha(
+                theme.vars.palette[color].main,
+                theme.vars.palette.action.hoverOpacity,
               )}`,
             },
             '&:focus': {
-              boxShadow: `inset 0 0 0 1px ${theme.palette.divider},0 0 0 4px ${alpha(
-                theme.palette[color].main,
-                theme.palette.action.hoverOpacity,
+              boxShadow: `inset 0 0 0 1px ${theme.vars.palette.divider},0 0 0 4px ${theme.alpha(
+                theme.vars.palette[color].main,
+                theme.vars.palette.action.hoverOpacity,
               )}`,
             },
             '&.error': {
-              boxShadow: `inset 0 0 0 2px ${theme.palette.error.main}`,
+              boxShadow: `inset 0 0 0 2px ${theme.vars.palette.error.main}`,
             },
           },
           '&.selected': {
@@ -248,28 +256,29 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             zIndex: 2,
           },
           '&.disabled': {
-            background: theme.palette.action.disabledBackground,
-            opacity: theme.palette.action.disabledOpacity,
-            color: theme.palette.action.disabled,
+            background: theme.vars.palette.action.disabledBackground,
+            opacity: theme.vars.palette.action.disabledOpacity,
+            color: theme.vars.palette.action.disabled,
           },
         }),
         sx,
-        slotProps.root?.sx,
+        slotProps.root?.sx as SxProps<Theme>,
       )}
       {...slotProps.root}
-      {...other}
+      // {...other}
     >
       <Box
         className={classes.rootInner}
         sx={sxx(
-          {
+          (theme) => ({
             display: 'flex',
             flexDirection: 'row',
             width: '100%',
             justifyContent: 'space-between',
             alignContent: 'stretch',
             alignItems: 'center',
-          },
+            columnGap: theme.spacings.xxs,
+          }),
           slotProps.rootInner?.sx,
         )}
         {...slotProps.rootInner}
@@ -296,6 +305,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'flex-start',
+              justifyContent: 'center',
             }}
           >
             {title && (
@@ -306,7 +316,7 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
                     '&.sizeSmall': { typography: 'body1' },
                     '&.sizeMedium': { typography: 'body1' },
                     '&.sizeLarge': { typography: 'h6' },
-                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'body1', lg: 'body1' } },
+                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
                   },
                   slotProps.title?.sx,
                 )}
@@ -348,11 +358,11 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
           )}
           {...slotProps.end}
         >
-          {action && (
+          {(action || reset) && (
             <Box
               className={classes.action}
               sx={sxx(
-                (theme) => ({ marginBottom: '5px', color: theme.palette[color].main }),
+                (theme) => ({ marginBottom: '5px', color: theme.vars.palette[color].main }),
                 slotProps.action?.sx,
               )}
               {...slotProps.action}

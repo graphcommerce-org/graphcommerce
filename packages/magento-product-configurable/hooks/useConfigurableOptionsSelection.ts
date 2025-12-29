@@ -3,8 +3,8 @@ import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import { findByTypename, nonNullable } from '@graphcommerce/next-ui'
 import { useWatch } from '@graphcommerce/react-hook-form'
-import { GetConfigurableOptionsSelectionDocument } from '../graphql/GetConfigurableOptionsSelection.gql'
-import type { UseConfigurableOptionsFragment } from '../graphql/UseConfigurableOptions.gql'
+import type { UseConfigurableOptionsFragment } from '../graphql'
+import { GetConfigurableOptionsSelectionDocument } from '../graphql'
 
 type UseConfigurableOptionsForSelection = {
   selectedOptions: string[]

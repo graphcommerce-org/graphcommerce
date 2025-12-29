@@ -1,7 +1,7 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { ApolloCartErrorAlert, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { Button, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Button, extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Box, FormControl } from '@mui/material'
@@ -25,26 +25,25 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
       onSubmit={submitHandler}
       noValidate
       className={classes.couponForm}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           alignItems: 'center',
           gridTemplateColumns: `1fr minmax(min-content, ${responsiveVal(70, 140)})`,
           gridColumnGap: theme.spacings.sm,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <TextFieldElement
         variant='outlined'
         type='text'
         error={!!formState.errors.couponCode || !!error}
-        required={required.couponCode}
+        required
         name='couponCode'
         rules={{ required: required.couponCode }}
         control={control}
         helperText={formState.errors.couponCode?.message}
-        disabled={formState.isSubmitting}
         showValid
       />
       <FormControl>
@@ -56,7 +55,7 @@ export function ApplyCouponForm(props: ApplyCouponFormProps) {
           variant='pill'
           sx={{ whiteSpace: 'nowrap' }}
         >
-          <Trans id='Apply' />
+          <Trans>Apply</Trans>
         </Button>
       </FormControl>
 

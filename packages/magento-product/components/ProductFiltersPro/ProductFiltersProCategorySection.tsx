@@ -10,8 +10,9 @@ import {
   iconChevronLeft,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useProductFiltersPro } from './ProductFiltersPro'
@@ -21,10 +22,11 @@ export type ProductFiltersProCategoryAccordionProps = {
   sx?: SxProps<Theme>
   categoryTree: CategoryTreeItem[]
   onChange: (uid: CategoryTreeItem) => void | Promise<void>
+  clearable?: boolean
 } & Pick<ActionCardAccordionProps, 'defaultExpanded'>
 
 export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCategoryAccordionProps) {
-  const { hideTitle, sx, categoryTree, onChange, defaultExpanded } = props
+  const { hideTitle, sx, categoryTree, onChange, defaultExpanded, clearable = false } = props
   const { form } = useProductFiltersPro()
 
   const name = 'filters.category_uid.in'
@@ -32,15 +34,11 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
 
   return (
     <ActionCardAccordion
-      sx={[
-        hideTitle ? { '& .MuiAccordionSummary-root': { display: 'none' } } : {},
-        sx,
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx(hideTitle ? { '& .MuiAccordionSummary-root': { display: 'none' } } : {}, sx, sx)}
       defaultExpanded={defaultExpanded}
-      summary={<Trans id='Categories' />}
+      summary={<Trans>Categories</Trans>}
       right={
-        currentFilter && currentFilter.length > 0 ? (
+        clearable && currentFilter && currentFilter.length > 0 ? (
           <Button
             color='primary'
             onClick={(e) => {
@@ -48,7 +46,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
               form.setValue(name, null)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }
@@ -70,7 +68,7 @@ export function ProductFiltersProCategoryAccordion(props: ProductFiltersProCateg
               <ActionCard
                 key={item.value}
                 {...item}
-                size='responsive'
+                size='medium'
                 title={
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <Box sx={{ marginRight: 1 }}>

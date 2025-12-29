@@ -1,0 +1,8 @@
+fragment ShipmentCard on OrderShipment {
+  id
+  number
+  comments {
+    message
+    timestamp
+  }
+}

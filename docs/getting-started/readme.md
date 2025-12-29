@@ -61,8 +61,8 @@ https://user-images.githubusercontent.com/1251986/227236765-503ccaac-6499-48df-b
 ## Page routing
 
 GraphCommerce uses Next.js file-based
-[page routing ↗](https://nextjs.org/docs/routing/introduction). The files
-inside the `📁 /pages` directory handle routing. Modify these files to meet your
+[page routing ↗](https://nextjs.org/docs/routing/introduction). The files inside
+the `📁 /pages` directory handle routing. Modify these files to meet your
 requirements or [build a custom page](./pages.md).
 
 - Product pages: `📄 /p/[...url].tsx`
@@ -103,7 +103,7 @@ sx={{ '& .MuiBox-root': { background: 'blue' }}}
 Pass the theme object to use global values
 
 ```tsx
-sx={(theme)=>({ margin: theme.spacings.lg, color: theme.palette.text.secondary })}
+sx={(theme)=>({ margin: theme.spacings.lg, color: theme.vars.palette.text.secondary })}
 ```
 
 ## Customization

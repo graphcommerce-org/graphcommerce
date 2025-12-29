@@ -1,4 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
 import type { LayoutProps } from 'framer-motion'
@@ -65,14 +66,13 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
     <>
       <Box
         className={classes.bg}
-        sx={[
+        sx={sxx(
           (theme) => ({
             position: 'absolute',
             left: 0,
             width: '100%',
-            backgroundColor: theme.palette.background[bgColor],
+            backgroundColor: theme.vars.palette.background[bgColor],
             boxShadow: theme.shadows[1],
-
             height: theme.appShell.headerHeightSm,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
@@ -80,9 +80,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             '&.sizeSmall': {
               height: theme.appShell.headerHeightSm,
             },
-            borderTopLeftRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
-            borderTopRightRadius: switchPoint <= 0 ? theme.shape.borderRadius * 3 : 0,
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 display: 'none',
@@ -93,26 +90,38 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
                 display: 'none',
               },
             },
-
             opacity: 0,
             transition: 'opacity 150ms',
             '&.scrolled': {
               opacity: 1,
             },
-
             '&.divider': {
               boxShadow: 'unset',
             },
           }),
-          ...(Array.isArray(sxBg) ? sxBg : [sxBg]),
-        ]}
+          switchPoint <= 0
+            ? (theme) => ({
+                borderTopLeftRadius: theme.shape.borderRadius * 3,
+              })
+            : {
+                borderTopLeftRadius: 0,
+              },
+          switchPoint <= 0
+            ? (theme) => ({
+                borderTopRightRadius: theme.shape.borderRadius * 3,
+              })
+            : {
+                borderTopRightRadius: 0,
+              },
+          sxBg,
+        )}
       />
       <Container
         maxWidth={false}
         className={classes.content}
         sizing='shell'
         ref={ref}
-        sx={[
+        sx={sxx(
           (theme) => ({
             position: 'absolute',
             inset: 0,
@@ -121,7 +130,7 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             gridTemplateAreas: '"left center right"',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            gap: theme.page.horizontal,
+            gap: theme.spacings.sm,
             height: theme.appShell.headerHeightSm,
             [theme.breakpoints.up('md')]: {
               height: theme.appShell.appBarHeightMd,
@@ -133,7 +142,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
                 px: 2,
               },
             },
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 background: 'none',
@@ -147,8 +155,8 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               },
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       >
         {left && (
           <Box
@@ -177,20 +185,17 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
             justifyContent: 'start',
             overflow: 'hidden',
             justifySelf: 'center',
-
             transition: 'opacity 150ms',
             opacity: 0,
             '&.scrolled': {
               opacity: 1,
               '& > *': { pointerEvents: 'all' },
             },
-
             '&.floatingSm': {
               [theme.breakpoints.down('md')]: {
                 display: 'none',
               },
             },
-
             '&.floatingMd': {
               [theme.breakpoints.up('md')]: {
                 display: 'none',
@@ -228,7 +233,6 @@ export function LayoutHeaderContent(props: LayoutHeaderContentProps) {
               bottom: 0,
               left: 0,
               right: 0,
-
               '&.floatingSm': {
                 [theme.breakpoints.down('md')]: {
                   display: 'none',

@@ -18,13 +18,13 @@ The configuration file is a javascript file that exports a `GraphCommerceConfig`
 
 ## Using configuration
 
-Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+Configuration can be accessed in your project by importing the config from `@graphcommerce/next-config/config`.
 
 ```tsx
 import { storefrontAll, storefrontConfig, storefrontConfigDefault, useStorefrontConfig } from '@graphcommerce/next-ui'
-
+import { cartDisplayPricesInclTax } from '@graphcommerce/next-config/config'
 // Accessing a global value
-const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
+const globalConf = cartDisplayPricesInclTax
 
 function MyComponent() {
   // Configuration configured per storefront locale.
@@ -35,7 +35,7 @@ function MyComponent() {
 
   // Or as single line
   const scopedConfigWithFallback2 =
-    useStorefrontConfig().cartDisplayPricesInclTax ?? import.meta.graphCommerce.cartDisplayPricesInclTax
+    useStorefrontConfig().cartDisplayPricesInclTax ?? cartDisplayPricesInclTax
 
   return <div>{googleRecaptchaKey}</div>
 }
@@ -93,14 +93,6 @@ Examples:
 - https://example.com
 - https://example.com/en
 - https://example.com/en-US
-
-#### hygraphEndpoint: string (required)
-
-The HyGraph endpoint.
-
-> Read-only endpoint that allows low latency and high read-throughput content delivery.
-
-Project settings -> API Access -> High Performance Read-only Content API
 
 #### magentoEndpoint: string (required)
 
@@ -205,14 +197,6 @@ Datalayer config
 
 Debug configuration for GraphCommerce
 
-#### demoMode: boolean = `true`
-
-Enables some demo specific code that is probably not useful for a project:
-
-- Adds the "BY GC" to the product list items.
-- Adds "dominant_color" attribute swatches to the product list items.
-- Creates a big list items in the product list.
-
 #### enableGuestCheckoutLogin: boolean
 
 Enable Guest Checkout Login:
@@ -296,7 +280,7 @@ Project settings -> API Access -> Permanent Auth Tokens
   - Delete public content views
   - Can see schema view
 
-```
+```bash
 GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
@@ -407,6 +391,10 @@ The sha256 certificate fingerprint of the Android app.
 
 Permissions input
 
+#### billingAddress: EDITABLE | READONLY
+
+Allows customers to change their billing address or locks it down.
+
 #### cart: CUSTOMER_ONLY | DISABLED | ENABLED
 
 Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
@@ -486,10 +474,6 @@ Locale specific google reCAPTCHA key.
 #### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used per locale.
-
-#### hygraphLocales: string[]
-
-Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
 
 #### linguiLocale: string
 

@@ -25,10 +25,11 @@ import {
   ProductFiltersProCategorySectionSearch,
   ProductFiltersProSearchTerm,
 } from '@graphcommerce/magento-search'
-import { MediaQuery, memoDeep, Container, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
+import { MediaQuery, memoDeep, Container, StickyBelowHeader, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import { Box, Typography } from '@mui/material'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps, useLayoutConfiguration } from './types'
 
 export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSidebar(
@@ -49,7 +50,7 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
       autoSubmitMd
       handleSubmit={handleSubmit}
     >
-      {import.meta.graphCommerce.breadcrumbs && category && (
+      {breadcrumbs && category && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
             category={category}
@@ -62,7 +63,6 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
           />
         </Container>
       )}
-
       <Container
         maxWidth={false}
         sx={(theme) => ({
@@ -78,10 +78,15 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
               "sidebar count"      auto
               "sidebar items"      auto
               "sidebar pagination" 1fr
-              /${configuration.sidebarWidth}   auto
+              /${'var(--configuration-sidebarWidth)'}   auto
             `,
           },
         })}
+        style={
+          {
+            '--configuration-sidebarWidth': configuration.sidebarWidth,
+          } as React.CSSProperties
+        }
       >
         <Box
           className='title'
@@ -96,7 +101,12 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
             <>
               <Typography variant='h1'>{title}</Typography>
 
-              <CategoryDescription textAlignMd='start' textAlignSm='start' category={category} />
+              <CategoryDescription
+                textAlignMd='start'
+                textAlignSm='start'
+                category={category}
+                productListRenderer={productListRenderer}
+              />
               <MediaQuery query={(theme) => theme.breakpoints.down('md')}>
                 <CategoryChildren params={params}>{category?.children}</CategoryChildren>
               </MediaQuery>
@@ -170,10 +180,10 @@ export const ProductListLayoutSidebar = memoDeep(function ProductListLayoutSideb
         <MediaQuery
           query={(theme) => theme.breakpoints.up('md')}
           display='block'
-          sx={(theme) => ({
-            gridArea: 'sidebar',
-            mt: import.meta.graphCommerce.breadcrumbs === true ? 0 : theme.spacings.lg,
-          })}
+          sx={sxx(
+            { gridArea: 'sidebar' },
+            breadcrumbs === true ? { mt: 0 } : (theme) => ({ mt: theme.spacings.lg }),
+          )}
         >
           <ProductFiltersProClearAll sx={{ alignSelf: 'center' }} />
           <>

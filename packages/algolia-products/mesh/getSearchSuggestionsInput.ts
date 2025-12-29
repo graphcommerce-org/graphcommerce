@@ -1,12 +1,8 @@
 import type { MeshContext, Queryalgolia_searchSingleIndexArgs } from '@graphcommerce/graphql-mesh'
-import { getIndexName } from './getIndexName'
+import { algolia } from '@graphcommerce/next-config/config'
 
 export function isSuggestionsEnabled() {
-  return Boolean(import.meta.graphCommerce.algolia.suggestionsSuffix)
-}
-
-export function getSuggestionsIndexName(context: MeshContext) {
-  return `${getIndexName(context).replace('_products', import.meta.graphCommerce.algolia.suggestionsSuffix ?? '')}`
+  return Boolean(algolia.suggestionsSuffix)
 }
 
 // eslint-disable-next-line @typescript-eslint/require-await

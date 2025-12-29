@@ -3,16 +3,14 @@ Algolia configuration for GraphCommerce.
 """
 input GraphCommerceAlgoliaConfig {
   """
-  Configure your Algolia application ID.
-
-  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
+  Configure your Algolia application ID. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
   """
   applicationId: String!
 
   """
-  Configure your Algolia Search Only API Key.
+  Configure your Search API Key. [Algolia API Keys Dashboard](https://www.algolia.com/account/api-keys)
 
-  Stores > Configuration > Algolia Search > Credentials and Basic Setup > Search-only (public) API key
+  Make sure the API key has the following ACL: search, listIndexes and settings [Lookup here](https://dashboard.algolia.com/account/api-keys/restricted)
   """
   searchOnlyApiKey: String!
 

@@ -26,8 +26,8 @@ import {
   PageMeta,
   iconShoppingBag,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Typography } from '@mui/material'
 import { LayoutNavigationProps, AddProductsToCartView } from '../../../components'
 import { Props, getStaticProps } from '../../p/[url]'
@@ -46,7 +46,7 @@ function CartItemEdit(props: Props) {
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
+      <PageMeta title={t`Cart`} metaRobots={['noindex']} />
 
       <LayoutOverlayHeader
         switchPoint={0}
@@ -55,15 +55,15 @@ function CartItemEdit(props: Props) {
         primary={<>&nbsp;</>}
       >
         <LayoutTitle size='small' component='span' icon={iconShoppingBag}>
-          <Trans id='Editing product' />
+          <Trans>Editing product</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <WaitForQueries
         waitFor={cart}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >
@@ -81,7 +81,7 @@ function CartItemEdit(props: Props) {
               cartItem={cartItem}
               defaultValues={defaultValues}
               redirect={false}
-              disableSuccessSnackbar
+              snackbarProps={{ disableSuccessSnackbar: true }}
             >
               <ProductPageGallery
                 product={product}

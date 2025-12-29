@@ -3,11 +3,11 @@ import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-car
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
-import { ErrorSnackbar, FormRow, FullPageMessage } from '@graphcommerce/next-ui'
+import { ErrorSnackbar, FormRow, FullPageMessage, sxx } from '@graphcommerce/next-ui'
 import type { FieldValues, Path, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { FormProvider, useController, useFormCompose } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, CircularProgress, TextField } from '@mui/material'
 import type { HostedFields } from 'braintree-web'
 import type {
@@ -54,9 +54,9 @@ export function BraintreeField<T extends FieldValues>(
         if (!hostedFields) return false
         const hostedField = hostedFields.getState().fields[name]
 
-        if (hostedField.isEmpty) return i18n._(/* i18n */ 'This field is required')
-        if (!hostedField.isPotentiallyValid) return i18n._(/* i18n */ 'This field is invalid')
-        if (!hostedField.isValid) return i18n._(/* i18n */ 'This field is invalid')
+        if (hostedField.isEmpty) return t`This field is required`
+        if (!hostedField.isPotentiallyValid) return t`This field is invalid`
+        if (!hostedField.isValid) return t`This field is invalid`
 
         return true
       },
@@ -115,9 +115,11 @@ export function BraintreeField<T extends FieldValues>(
       error={invalid}
       helperText={error?.message}
       focused={focused}
-      InputProps={{ slots: { input: Field } }}
-      InputLabelProps={{ shrink }}
       {...field}
+      slotProps={{
+        input: { slots: { input: Field } },
+        inputLabel: { shrink },
+      }}
     />
   )
 }
@@ -276,15 +278,15 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         {loading && (
           <FullPageMessage
             icon={<CircularProgress />}
-            title={<Trans id='Loading' />}
+            title={<Trans>Loading</Trans>}
             disableMargin
             sx={{ mb: 0 }}
           />
         )}
 
-        <Box sx={[loading && { display: 'none' }]}>
+        <Box sx={sxx(loading && { display: 'none' })}>
           <Container>
-            <FormRow sx={[]}>
+            <FormRow sx={sxx()}>
               <BraintreeField
                 control={form.control}
                 name='number'
@@ -293,7 +295,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
                 label='Card Number'
               />
             </FormRow>
-
             <FormRow>
               <BraintreeField
                 control={form.control}

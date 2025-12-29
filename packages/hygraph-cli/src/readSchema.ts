@@ -2,10 +2,7 @@ import type { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import { gql } from '@apollo/client'
 import type { Schema } from './types'
 
-export const readSchema = async (
-  managementClient: ApolloClient<NormalizedCacheObject>,
-  projectId: string,
-) => {
+export const readSchema = async (managementClient: ApolloClient, projectId: string) => {
   const { data } = await managementClient.query({
     query: gql`
       query getSchema($projectId: ID!) {

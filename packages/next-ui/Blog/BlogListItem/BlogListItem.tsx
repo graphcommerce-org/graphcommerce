@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
@@ -23,17 +24,17 @@ export function BlogListItem(props: BlogListItemProps) {
   return (
     <Box
       className={classes.item}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gridTemplateRows: 'auto auto auto',
           alignContent: 'start',
-          color: theme.palette.text.primary,
+          color: theme.vars.palette.text.primary,
           gap: theme.spacings.xxs,
           marginBottom: theme.spacings.sm,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Link href={`/${url}`} color='inherit' underline='hover'>
         <Box
@@ -63,7 +64,7 @@ export function BlogListItem(props: BlogListItemProps) {
           sx={(theme) => ({
             display: 'inline-block',
             textDecoration: 'none',
-            color: theme.palette.text.secondary,
+            color: theme.vars.palette.text.secondary,
           })}
         >
           <DateFormat dateStyle='long' date={date} />

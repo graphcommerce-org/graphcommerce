@@ -2,6 +2,7 @@ import {
   ChipMenu,
   extendableComponent,
   responsiveVal,
+  sxx,
   useStorefrontConfig,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
@@ -80,13 +81,11 @@ export function SortChip(props: SortChipProps) {
                 color='primary'
                 disableRipple
                 inputProps={{ 'aria-labelledby': `sort-${option?.value}` }}
-                sx={[
-                  {
-                    padding: 0,
-                    margin: '0 0 0 0',
-                    float: 'right',
-                  },
-                ]}
+                sx={sxx({
+                  padding: 0,
+                  margin: '0 0 0 0',
+                  float: 'right',
+                })}
               />
             </ListItemText>
           </ListItem>

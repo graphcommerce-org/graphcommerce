@@ -5,6 +5,6 @@ import { storefrontConfig } from '../utils/storefrontConfig'
 export function useStorefrontConfig(locale?: string | undefined) {
   const routerLocale = useRouter().locale
   const config = storefrontConfig(locale ?? routerLocale)
-  if (!config) throw Error(`No storefront config found for locale ${locale}`)
+  if (!config) throw Error(`No storefront config found for locale '${locale}'`)
   return config
 }

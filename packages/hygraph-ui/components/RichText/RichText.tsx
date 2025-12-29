@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { defaultRenderers } from './defaultRenderers'
@@ -150,15 +151,7 @@ function mergeSxRenderer(base: SxRenderer, sxRenderer?: SxRenderer) {
     Object.entries<SxProps<Theme>>(base).map(([key, sx]) => {
       const sxOverride: SxProps<Theme> = sxRenderer?.[key]
 
-      return sxOverride
-        ? [
-            key,
-            [
-              ...(Array.isArray(sx) ? sx : [sx]),
-              ...(Array.isArray(sxOverride) ? sxOverride : [sxOverride]),
-            ],
-          ]
-        : [key, sx]
+      return sxOverride ? [key, [sx, sxOverride]] : [key, sx]
     }),
   ) as SxRenderer
 }

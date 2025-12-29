@@ -1,0 +1,7 @@
+mutation UseCustomerCreateForm($input: CustomerCreateInput!) {
+  createCustomerV2(input: $input) {
+    customer {
+      ...CustomerInfo
+    }
+  }
+}

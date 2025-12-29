@@ -1,6 +1,9 @@
-import { algoliaHitToMagentoProduct } from '@graphcommerce/algolia-products'
-import { getGroupId } from '@graphcommerce/algolia-products/mesh/getGroupId'
-import { getStoreConfig } from '@graphcommerce/algolia-products/mesh/getStoreConfig'
+import {
+  algoliaHitToMagentoProduct,
+  getCurrencyHeader,
+  getGroupId,
+  getStoreConfig,
+} from '@graphcommerce/algolia-products'
 import type {
   Algoliahit,
   AlgoliarecommendationsHit,
@@ -15,5 +18,7 @@ export async function createProductMapper(context: MeshContext) {
     '__typename' in hit && hit.__typename === 'AlgoliarecommendHit'
 
   return (hit: AlgoliarecommendationsHit) =>
-    isAlgoliaRecommendHit(hit) ? algoliaHitToMagentoProduct(hit, storeConfig, groupId) : null
+    isAlgoliaRecommendHit(hit)
+      ? algoliaHitToMagentoProduct(hit, storeConfig, groupId, getCurrencyHeader(context))
+      : null
 }

@@ -1,6 +1,7 @@
-import type { ApolloClient, NormalizedCacheObject, TypedDocumentNode } from '@graphcommerce/graphql'
+import type { ApolloClient, TypedDocumentNode } from '@graphcommerce/graphql'
 import { gql } from '@graphcommerce/graphql'
 import type { AttributeFrontendInputEnum, Exact } from '@graphcommerce/graphql-mesh'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
 import { ProductFilterTypesDocument } from './ProductFilterTypes.gql'
 
@@ -31,10 +32,10 @@ const FilterInputTypesDocument = gql`
 export type FilterTypes = Partial<Record<string, AttributeFrontendInputEnum>>
 
 export async function getFilterTypes(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   isSearch: boolean = false,
 ): Promise<FilterTypes> {
-  if (import.meta.graphCommerce.magentoVersion >= 247) {
+  if (magentoVersion >= 247) {
     const types = await client.query({
       query: ProductFilterTypesDocument,
       variables: {
@@ -43,7 +44,7 @@ export async function getFilterTypes(
     })
 
     const typeMap: FilterTypes = Object.fromEntries(
-      filterNonNullableKeys(types.data.attributesList?.items, ['frontend_input'])
+      filterNonNullableKeys(types.data?.attributesList?.items ?? [], ['frontend_input'])
         .map((i) => [i.code, i.frontend_input])
         .filter(nonNullable),
     )
@@ -54,7 +55,7 @@ export async function getFilterTypes(
   const filterInputTypes = await client.query({ query: FilterInputTypesDocument })
 
   const typeMap: FilterTypes = Object.fromEntries(
-    filterInputTypes.data?.__type.inputFields
+    (filterInputTypes.data?.__type?.inputFields ?? [])
       .map<[string, AttributeFrontendInputEnum] | undefined>((field) => {
         if (field.type.name === 'FilterEqualTypeInput') return [field.name, 'SELECT']
         if (field.type.name === 'FilterRangeTypeInput') return [field.name, 'PRICE']

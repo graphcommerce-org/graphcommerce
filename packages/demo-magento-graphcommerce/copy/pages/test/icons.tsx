@@ -62,7 +62,6 @@ export default function IconsPage() {
           // eslint-disable-next-line react/no-array-index-key
           <React.Fragment key={propVariant}>
             <IconSvg {...props} style={{ fontSize: size }} ref={ref} />
-
             <Typography variant='h1' sx={{ mt: 8 }}>
               {propVariant} <IconSvg {...props} />
             </Typography>

@@ -6,6 +6,7 @@ import {
   iconChevronRight,
   IconSvg,
   responsiveVal,
+  sxx,
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material'
@@ -44,30 +45,29 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
       href={href}
       disabled={disabled}
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           width: '100%',
           height: responsiveVal(88, 104),
           padding: 0,
           borderRadius: 0,
-          background: theme.palette.background.paper,
+          background: theme.vars.palette.background.paper,
           '&:hover': {
-            background: theme.palette.background.default,
+            background: theme.vars.palette.background.default,
           },
           '&:disabled': {
-            background: theme.palette.background.default,
+            background: theme.vars.palette.background.default,
           },
           '&:focus': {
             // fix: disableElevation does not work when button is focused
             boxShadow: 'none',
           },
-
           '&:not(.noBorderBottom)': {
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...buttonProps}
     >
       <ListItem disableGutters>
@@ -80,16 +80,19 @@ export function AccountMenuItem(props: AccountMenuItemProps) {
           <IconSvg src={iconSrc} size='large' />
         </ListItemIcon>
         <ListItemText
-          primaryTypographyProps={{ sx: { typography: 'subtitle1' } }}
-          secondaryTypographyProps={{
-            sx: {
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'elipsis',
-            },
-          }}
           primary={title}
           secondary={subtitle}
+          slotProps={{
+            primary: { sx: { typography: 'subtitle1' } },
+
+            secondary: {
+              sx: {
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'elipsis',
+              },
+            },
+          }}
         />
         {endIcon ?? <IconSvg src={iconChevronRight} />}
       </ListItem>

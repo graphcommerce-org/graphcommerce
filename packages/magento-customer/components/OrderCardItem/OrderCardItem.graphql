@@ -1,4 +1,0 @@
-fragment OrderCardItem on OrderItemInterface {
-  product_sku
-  product_url_key
-}

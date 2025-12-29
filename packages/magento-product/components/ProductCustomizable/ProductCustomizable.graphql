@@ -2,6 +2,7 @@ fragment ProductCustomizable on CustomizableProductInterface {
   options {
     uid
     __typename
+    sort_order
     ...CustomizableOption
     ...CustomizableAreaOption
     ...CustomizableCheckboxOption

@@ -5,6 +5,7 @@ import type { LiteralUnion } from 'type-fest'
 import { extendableComponent } from '../Styles/extendableComponent'
 import type { ContainerSizingVariant } from '../Theme/useContainerSizing'
 import { useContainerSizing } from '../Theme/useContainerSizing'
+import { sxx } from '../utils/sxx'
 
 type OwnerProps = {
   /** Can be a breakpoint, 'full' or a actual value */
@@ -74,19 +75,18 @@ export const Container = React.forwardRef(
         {...rest}
         ref={ref}
         className={[className, classes.root].filter((v) => !!v).join(' ')}
-        sx={[
+        sx={sxx(
           {
             width: '100%',
             pl: !breakoutLeft ? padding : undefined,
             pr: !breakoutRight ? padding : undefined,
             '&.breakoutLeft': { pl: 'unset' },
             '&.breakoutRight': { pr: 'unset' },
-
             // Nesting containers will not have padding applied.
             '.MuiContainer-root &': { pl: 0, pr: 0 },
           },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
       />
     )
   },

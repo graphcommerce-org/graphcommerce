@@ -1,8 +1,9 @@
 import { Controller, FormAutoSubmit, useFormGqlMutation } from '@graphcommerce/react-hook-form'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { FormControl, FormControlLabel, FormHelperText, Switch } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
+import { useBillingAddressPermission } from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { UpdateDefaultAddressDocument } from '../AccountAddresses/UpdateDefaultAddress.gql'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'
@@ -33,6 +34,8 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
 
   const submit = handleSubmit(() => {})
 
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
+
   useEffect(() => {
     reset(defaultValues)
   }, [defaultValues, reset])
@@ -47,7 +50,7 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
           <FormControl error={!!formState.errors.defaultShipping}>
             <FormControlLabel
               control={<Switch color='primary' />}
-              label={<Trans id='Shipping address' />}
+              label={<Trans>Shipping address</Trans>}
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
@@ -68,12 +71,13 @@ export function UpdateDefaultAddressForm(props: UpdateDefaultAddressFormProps) {
           <FormControl error={!!formState.errors.defaultBilling}>
             <FormControlLabel
               control={<Switch color='primary' />}
-              label={<Trans id='Billing address' />}
+              label={<Trans>Billing address</Trans>}
               checked={value}
               inputRef={ref}
               onBlur={onBlur}
               name={name}
               onChange={(e) => onChange((e as React.ChangeEvent<HTMLInputElement>).target.checked)}
+              disabled={billingAddressReadonly}
             />
 
             {formState.errors.defaultBilling?.message && (

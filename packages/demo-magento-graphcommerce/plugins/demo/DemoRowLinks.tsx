@@ -1,6 +1,6 @@
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import type { RowLinksProps } from '@graphcommerce/next-ui'
-import { responsiveVal } from '@graphcommerce/next-ui'
+import { responsiveVal, sxx } from '@graphcommerce/next-ui'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -21,7 +21,7 @@ export function RowLinks(props: PluginProps<RowLinksProps>) {
       {...rest}
       maxWidth={false}
       title={title}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'flex',
           flexDirection: 'column',
@@ -80,8 +80,8 @@ export function RowLinks(props: PluginProps<RowLinksProps>) {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </Prev>

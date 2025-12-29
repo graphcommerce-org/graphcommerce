@@ -3,7 +3,7 @@ import { useAlgoliaIndexName, useAlgoliaQuery } from '@graphcommerce/algolia-pro
 import type { GoogleEventTypes, sendEvent } from '@graphcommerce/google-datalayer'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { AlgoliaEventsItems_Input } from '@graphcommerce/graphql-mesh'
-import { CustomerDocument } from '@graphcommerce/magento-customer/hooks/Customer.gql'
+import { CustomerDocument } from '@graphcommerce/magento-customer'
 import type { ProductFilterParams } from '@graphcommerce/magento-product'
 import { isFilterTypeEqual } from '@graphcommerce/magento-product'
 import { cookie } from '@graphcommerce/next-ui'
@@ -249,7 +249,7 @@ const dataLayerToAlgoliaMap: {
     const events: AlgoliaEventsItems_Input[] = []
 
     const objectIDs = eventData.items.map((item) => atob(item.item_uid))
-    const relevant = objectIDs.map((objectID) => mapping[objectID])
+    const relevant = objectIDs.map((objectID) => mapping[objectID]).filter(Boolean)
     const filters = [...new Set(...relevant.map((item) => item?.filters ?? []))]
 
     if (filters.length > 0) {
@@ -327,10 +327,12 @@ export function useSendAlgoliaEvent() {
           mutation: AlgoliaSendEventDocument,
           variables: { events },
         })
-        .then(({ data, errors }) => {
-          const errorMessage = (errors ?? []).map((e) => e.message)
-          if (errorMessage.length > 0) {
-            console.log('There was a problem sending the Algolia event to the server', errorMessage)
+        .then(({ data, error }) => {
+          if (error) {
+            console.log(
+              'There was a problem sending the Algolia event to the server',
+              error.message,
+            )
           }
 
           const response = data?.algolia_pushEvents

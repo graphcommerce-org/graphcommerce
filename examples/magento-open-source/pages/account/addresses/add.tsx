@@ -15,8 +15,8 @@ import {
   LayoutTitle,
   SectionContainer,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -34,16 +34,16 @@ function AddNewAddressPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans id='Addresses' />
+          <Trans>Addresses</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Add address')} metaRobots={['noindex']} />
+        <PageMeta title={t`Add address`} metaRobots={['noindex']} />
         <WaitForCustomer waitFor={addresses}>
           <LayoutTitle icon={iconAddresses}>
-            <Trans id='Addresses' />
+            <Trans>Addresses</Trans>
           </LayoutTitle>
-          <SectionContainer labelLeft={<Trans id='Add new address' />}>
+          <SectionContainer labelLeft={<Trans>Add new address</Trans>}>
             <CreateCustomerAddressForm />
           </SectionContainer>
         </WaitForCustomer>
@@ -71,7 +71,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: i18n._(/* i18n */ 'Account') },
+      up: { href: '/account', title: t`Account` },
     },
   }
 }

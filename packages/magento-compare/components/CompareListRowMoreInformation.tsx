@@ -1,6 +1,6 @@
 import { productLink } from '@graphcommerce/magento-product'
-import { Button, iconChevronRight, IconSvg, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Button, iconChevronRight, IconSvg, SectionContainer, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import { useCompareListStyles } from '../hooks/useCompareListStyles'
 import type { CompareRowProps } from './CompareListRow'
@@ -16,24 +16,42 @@ export function CompareListRowMoreInformation(props: CompareListRowMoreInformati
   return (
     <Box>
       <SectionContainer
-        labelLeft={<Trans id='More information' />}
-        sx={(theme) => ({
-          '& .SectionHeader-root': {
-            justifyContent: 'center',
-            borderBottom: 'none',
-            pb: 0,
-            '& > .MuiTypography-root': {
-              pb: theme.spacings.xxs,
-              borderBottom: `1px solid ${theme.palette.divider}`,
-              width: `calc(calc(calc(100% / 3) * ${columnCount}) + ${
-                columnCount > 1 ? theme.spacings.md : '0px'
-              })`,
-              [theme.breakpoints.down('md')]: {
-                width: '100%',
+        labelLeft={<Trans>More information</Trans>}
+        sx={sxx(
+          (theme) => ({
+            '& .SectionHeader-root': {
+              justifyContent: 'center',
+              borderBottom: 'none',
+              pb: 0,
+              '& > .MuiTypography-root': {
+                pb: theme.spacings.xxs,
+                borderBottom: `1px solid ${theme.vars.palette.divider}`,
+                [theme.breakpoints.down('md')]: {
+                  width: '100%',
+                },
               },
             },
-          },
-        })}
+          }),
+          columnCount > 1
+            ? (theme) => ({
+                '& .SectionHeader-root': {
+                  '& > .MuiTypography-root': {
+                    width: {
+                      width: theme.spacings.md,
+                    },
+                  },
+                },
+              })
+            : {
+                '& .SectionHeader-root': {
+                  '& > .MuiTypography-root': {
+                    width: {
+                      width: '0px',
+                    },
+                  },
+                },
+              },
+        )}
       >
         <Box sx={compareListStyles}>
           {compareAbleItems?.map((item) => {
@@ -46,7 +64,7 @@ export function CompareListRowMoreInformation(props: CompareListRowMoreInformati
                   endIcon={<IconSvg key='icon' src={iconChevronRight} size='inherit' />}
                   sx={{ justifyContent: 'flex-start' }}
                 >
-                  <Trans id='View Product' />
+                  <Trans>View Product</Trans>
                 </Button>
               </Box>
             )

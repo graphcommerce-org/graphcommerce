@@ -1,7 +1,7 @@
 import type { FieldPath, FieldValues } from '@graphcommerce/ecommerce-ui'
 import { houseNumberPattern, TextFieldElement } from '@graphcommerce/ecommerce-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type { AddressFieldsOptions } from './useAddressFieldsForm'
 import { useAddressFieldsForm } from './useAddressFieldsForm'
 
@@ -13,18 +13,19 @@ export function AddressHousenumber<
   const { control, name, readOnly, required } = form
   return (
     <TextFieldElement
+      {...props}
       control={control}
       name={name.houseNumber}
       required={required[name.houseNumber]}
       rules={{
         pattern: {
           value: houseNumberPattern,
-          message: i18n._(/* i18n */ 'Please provide a valid house number'),
+          message: t`Please provide a valid house number`,
         },
       }}
       variant='outlined'
       type='text'
-      label={<Trans id='Housenumber' />}
+      label={<Trans>Housenumber</Trans>}
       autoComplete='address-line2'
       showValid
       InputProps={{ readOnly }}

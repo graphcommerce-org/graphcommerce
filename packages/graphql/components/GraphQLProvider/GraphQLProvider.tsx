@@ -1,7 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useStorefrontConfig } from '@graphcommerce/next-ui/hooks/useStorefrontConfig'
-import type { DefaultOptions, NormalizedCacheObject } from '@apollo/client'
-import { ApolloClient, ApolloLink, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client'
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
+import type { NormalizedCacheObject } from '@apollo/client'
+import { LocalState } from '@apollo/client/local-state'
+import { ApolloProvider } from '@apollo/client/react'
 import type { AppProps } from 'next/app'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ApolloClientConfig, ApolloClientConfigInput, PreviewConfig } from '../../config'
@@ -12,7 +14,7 @@ import { errorLink } from './errorLink'
 import { measurePerformanceLink } from './measurePerformanceLink'
 import { mergeTypePolicies } from './typePolicies'
 
-export const globalApolloClient: { current: ApolloClient<NormalizedCacheObject> | null } = {
+export const globalApolloClient: { current: ApolloClient | null } = {
   current: null,
 }
 
@@ -27,7 +29,7 @@ export type GraphQLProviderProps = AppProps &
  */
 export function GraphQLProvider(props: GraphQLProviderProps) {
   const { children, links, migrations, policies, pageProps, router } = props
-  const state = (pageProps as { apolloState?: NormalizedCacheObject }).apolloState
+  const state = (pageProps as { apolloState?: unknown }).apolloState
 
   const stateRef = useRef(state)
 
@@ -60,19 +62,21 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
     ])
 
     const cache = createCache()
-    if (stateRef.current) cache.restore(stateRef.current)
+    if (stateRef.current) cache.restore(stateRef.current as unknown as NormalizedCacheObject)
 
     const ssrMode = typeof window === 'undefined'
     return new ApolloClient({
       link,
       cache,
-      name: 'web',
+      clientAwareness: { name: 'web' },
       ssrMode,
+
       defaultOptions: {
         preview: {
           preview: router.isPreview,
         } as PreviewConfig,
-      } as DefaultOptions,
+      } as ApolloClient.DefaultOptions,
+      localState: new LocalState({}),
     })
   })
 

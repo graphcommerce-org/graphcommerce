@@ -18,7 +18,7 @@ by adding Hygraph content to pages.
 
 To connect your GraphCommerce app to your Hygraph project, you'll need a Hygraph
 project with the required schema.
-[Clone the demo Hygraph project ↗](https://app.graphcms.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
+[Clone the demo Hygraph project ↗](https://app.hygraph.com/clone/caddaa93cfa9436a9e76ae9c0F34d257)
 as your starting point. Update the variable in the `/graphcommerce.config.js`
 file:
 

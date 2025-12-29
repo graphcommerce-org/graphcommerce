@@ -1,0 +1,9 @@
+fragment StoreConfigQueryFragment on Query {
+  __typename
+  storeConfig {
+    ...StoreConfigFragment
+  }
+  availableStores {
+    store_code
+  }
+}

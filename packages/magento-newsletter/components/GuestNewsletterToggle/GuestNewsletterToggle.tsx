@@ -58,7 +58,6 @@ export function GuestNewsletterToggle(props: GuestNewsletterToggleProps) {
           </FormControl>
         )}
       />
-
       <ApolloCustomerErrorAlert error={error} />
     </Form>
   )

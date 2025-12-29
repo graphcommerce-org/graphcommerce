@@ -2,13 +2,17 @@
   "name": "@graphcommerce/graphql-codegen-markdown-docs",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.14",
+  "version": "10.0.0-canary.69",
   "sideEffects": false,
   "type": "commonjs",
-  "main": "dist/index.js",
-  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "test": "jest",
+    "test": "vitest run",
     "dev": "tsc -W --preserveWatchOutput",
     "build": "tsc",
     "prepack": "tsc"
@@ -21,17 +25,17 @@
     }
   },
   "dependencies": {
-    "@graphql-codegen/add": "5.0.3",
-    "@graphql-codegen/plugin-helpers": "5.1.0",
-    "@graphql-codegen/visitor-plugin-common": "5.6.0",
-    "@graphql-tools/utils": "^10.6.4",
+    "@graphql-codegen/add": "6.0.0",
+    "@graphql-codegen/plugin-helpers": "6.1.0",
+    "@graphql-codegen/visitor-plugin-common": "6.2.2",
+    "@graphql-tools/utils": "^10.11.0",
     "@types/parse-filepath": "^1.0.2",
-    "graphql": "^16.10.0",
+    "graphql": "^16.12.0",
     "parse-filepath": "^1.0.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.14",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.14",
-    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.14"
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.69",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.69",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.69"
   }
 }

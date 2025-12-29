@@ -17,8 +17,8 @@ import {
   LayoutTitle,
   FullPageMessage,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, CircularProgress, Container, Skeleton } from '@mui/material'
 import { useRouter } from 'next/router'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../../components'
@@ -28,16 +28,16 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
-  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
 
   const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 
-  if (loading || !called)
+  if (loading)
     return (
-      <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading your account' />}>
-        <Trans id='This may take a second' />
+      <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading your account</Trans>}>
+        <Trans>This may take a second</Trans>
       </FullPageMessage>
     )
   if (error) return <ApolloCustomerErrorFullPage error={error} />
@@ -46,21 +46,21 @@ function CheckoutCustomerAddressesEdit() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans id='Edit address' />
+          <Trans>Edit address</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
+        <PageMeta title={t`Edit address`} metaRobots={['noindex']} />
 
         <LayoutTitle icon={iconAddresses}>
-          <Trans id='Edit address' />
+          <Trans>Edit address</Trans>
         </LayoutTitle>
 
-        <SectionContainer labelLeft={<Trans id='Edit address' />}>
+        <SectionContainer labelLeft={<Trans>Edit address</Trans>}>
           {!address && !loading && (
-            <Box marginTop={3}>
+            <Box sx={{ marginTop: 3 }}>
               <IconHeader src={iconAddresses} size='small'>
-                <Trans id='Address not found' />
+                <Trans>Address not found</Trans>
               </IconHeader>
             </Box>
           )}
@@ -101,7 +101,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/checkout', title: i18n._(/* i18n */ 'Shipping') },
+      up: { href: '/checkout', title: t`Shipping` },
     },
   }
 }

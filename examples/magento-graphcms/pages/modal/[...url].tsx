@@ -1,5 +1,6 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import {
@@ -39,7 +40,7 @@ function ModalPage(props: Props) {
         metaDescription={page.metaDescription}
         metaRobots={metaRobots ?? ['noindex']}
       />
-      <Box pt={4}>
+      <Box sx={{ pt: 4 }}>
         <LayoutTitle>{page.title}</LayoutTitle>
         <Typography variant='body1' align='center'>
           {page.metaDescription ?? ''}
@@ -92,6 +93,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

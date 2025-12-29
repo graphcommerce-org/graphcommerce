@@ -1,5 +1,7 @@
 import type { SearchFormProps } from '@graphcommerce/magento-search'
-import { Trans } from '@lingui/react'
+import { algoliaSearchDebounceTime } from '@graphcommerce/next-config/config'
+import { sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import { Box, debounce } from '@mui/material'
 import TextField from '@mui/material/TextField'
 import type { ChangeEvent } from 'react'
@@ -20,7 +22,7 @@ export function SearchBox(props: SearchBoxProps) {
   const debounceSearch = useCallback(
     debounce(
       (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => refine(e.target.value),
-      import.meta.graphCommerce.algoliaSearchDebounceTime ?? 0,
+      algoliaSearchDebounceTime ?? 0,
     ),
     [refine],
   )
@@ -35,12 +37,12 @@ export function SearchBox(props: SearchBoxProps) {
     <Box
       sx={(theme) => ({
         minWidth: 'max-content',
-        color: theme.palette.text.disabled,
+        color: theme.vars.palette.text.disabled,
         paddingRight: '7px',
       })}
     >
-      {totalResults === 1 && <Trans id='{totalResults} result' values={{ totalResults }} />}
-      {totalResults > 1 && <Trans id='{totalResults} results' values={{ totalResults }} />}
+      {totalResults === 1 && <Trans>{totalResults} result</Trans>}
+      {totalResults > 1 && <Trans>{totalResults} results</Trans>}
     </Box>
   )
 
@@ -50,12 +52,14 @@ export function SearchBox(props: SearchBoxProps) {
       variant='outlined'
       type='text'
       name='search'
-      InputProps={{ endAdornment }}
       inputRef={searchInputElement}
       onChange={debounceSearch}
       fullWidth
-      sx={[{ mt: 1, mb: 1 }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx({ mt: 1, mb: 1 }, sx)}
       {...textFieldProps}
+      slotProps={{
+        input: { endAdornment },
+      }}
     />
   )
 }

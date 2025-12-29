@@ -24,9 +24,7 @@ export type AnyOption = NonNullable<
 >
 
 export type OptionValueSelector = {
-  [T in AnyOption as T['__typename']]: (
-    option: T,
-  ) => CustomizableProductOptionBase | CustomizableProductOptionBase[]
+  [T in AnyOption as T['__typename']]: (option: AnyOption) => CustomizableProductOptionBase[]
 }
 
 type MissingOptionValueSelectors = Omit<
@@ -44,12 +42,12 @@ type Selectors = Simplify<
 >
 
 export const productCustomizableSelectors = {
-  CustomizableAreaOption: (o: CustomizableAreaOptionFragment) => o.areaValue,
+  CustomizableAreaOption: (o: CustomizableAreaOptionFragment) => [o.areaValue],
   CustomizableCheckboxOption: (o: CustomizableCheckboxOptionFragment) => o.checkboxValue,
-  CustomizableFileOption: (o: CustomizableFileOptionFragment) => o.fileValue,
-  CustomizableDateOption: (o: CustomizableDateOptionFragment) => o.dateValue,
+  CustomizableFileOption: (o: CustomizableFileOptionFragment) => [o.fileValue],
+  CustomizableDateOption: (o: CustomizableDateOptionFragment) => [o.dateValue],
   CustomizableDropDownOption: (o: CustomizableDropDownOptionFragment) => o.dropdownValue,
-  CustomizableFieldOption: (o: CustomizableFieldOptionFragment) => o.fieldValue,
+  CustomizableFieldOption: (o: CustomizableFieldOptionFragment) => [o.fieldValue],
   CustomizableMultipleOption: (o: CustomizableMultipleOptionFragment) => o.multipleValue,
   CustomizableRadioOption: (o: CustomizableRadioOptionFragment) => o.radioValue,
 }

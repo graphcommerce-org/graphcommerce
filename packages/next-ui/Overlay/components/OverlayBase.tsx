@@ -7,6 +7,7 @@ import {
   useElementScroll,
   useIsomorphicLayoutEffect,
 } from '@graphcommerce/framer-utils'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled, useTheme, useThemeProps } from '@mui/material'
 import type { MotionProps } from 'framer-motion'
@@ -87,7 +88,7 @@ const parts = [
 const { withState } = extendableComponent<StyleProps, typeof name, typeof parts>(name, parts)
 
 /** Expose the component to be exendable in your theme.components */
-declare module '@mui/material/styles/components' {
+declare module '@mui/material/styles' {
   interface Components {
     LayoutOverlayBase?: Pick<ExtendableComponent<OverridableProps & StyleProps>, 'defaultProps'>
   }
@@ -160,7 +161,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     () => (match.up('md') ? variantMd : variantSm),
     [match, variantMd, variantSm],
   )
-  const prevVariant = useRef<LayoutOverlayVariant>()
+  const prevVariant = useRef<LayoutOverlayVariant | null>(null)
 
   const openClosePositions = useCallback((): {
     open: [number, number]
@@ -418,10 +419,10 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
   return (
     <>
       <MotionDiv
-        inert={active ? undefined : ('true' as unknown as boolean)}
+        inert={active}
         className={classes.backdrop}
         style={{ opacity: positions.open.visible }}
-        sx={[
+        sx={sxx(
           {
             zIndex: -1,
             position: 'fixed',
@@ -436,29 +437,24 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             WebkitTapHighlightColor: 'transparent',
             willChange: 'opacity',
           },
-          ...(Array.isArray(sxBackdrop) ? sxBackdrop : [sxBackdrop]),
-        ]}
+          sxBackdrop,
+        )}
       />
       <Scroller
-        inert={disableInert || active ? undefined : ('true' as unknown as boolean)}
+        inert={disableInert || active ? false : true}
         className={`${classes.scroller} ${className ?? ''}`}
         grid={false}
         onClick={onClickAway}
         disableDrag={disableDrag}
         hideScrollbar
-        sx={[
+        sx={sxx(
           (theme) => ({
             overscrollBehavior: 'contain',
             display: 'grid',
             '&.canGrab': {
               cursor: 'default',
             },
-            '&.mdSnapDirInline': {
-              overflow: active ? 'auto' : 'hidden',
-            },
-
             height: dvh(100),
-
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
                 overscrollBehaviorX: 'none',
@@ -477,7 +473,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 overscrollBehaviorY: 'none',
                 gridTemplate: '"beforeOverlay" "overlay"',
                 height: `calc(${dvh(100)} - 1px)`,
-
                 '&::after': {
                   content: '""',
                   display: 'block',
@@ -486,7 +481,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                   height: '1px',
                   top: 'calc(100% - 1px)',
                   left: '0',
-                  background: theme.palette.background[bgColor],
+                  background: theme.vars.palette.background[bgColor],
                 },
               },
             },
@@ -511,8 +506,19 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
               },
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          active
+            ? {
+                '&.mdSnapDirInline': {
+                  overflow: 'auto',
+                },
+              }
+            : {
+                '&.mdSnapDirInline': {
+                  overflow: 'hidden',
+                },
+              },
+          sx,
+        )}
       >
         <Box
           className={classes.beforeOverlay}
@@ -522,7 +528,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             scrollSnapAlign: 'start',
             display: 'grid',
             alignContent: 'end',
-
             [theme.breakpoints.down('md')]: {
               '&.variantSmLeft, &.variantSmRight': {
                 width: dvw(100),
@@ -565,7 +570,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             [theme.breakpoints.up('md')]: {
               justifyContent: justifyMd,
               alignItems: justifyMd,
-
               '&.variantMdBottom, &.variantMdTop': {
                 display: 'grid',
               },
@@ -586,14 +590,12 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             ref={overlayPaneRef}
             sx={(theme) => ({
               pointerEvents: 'auto',
-
               [theme.breakpoints.down('md')]: {
                 minWidth: '80vw',
                 overflowY: 'auto',
                 '&:not(.sizeSmFull)': {
                   width: 'auto',
                 },
-
                 '&.variantSmBottom': {
                   maxHeight: `calc(${dvh(100)} - ${smSpacingTop})`,
                   paddingTop: smSpacingTop,
@@ -611,11 +613,9 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: 'none',
                     borderRadius: 0,
                   },
-
                   borderTopLeftRadius: `${theme.shape.borderRadius * 3}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 3}px`,
                 },
-
                 '&.variantSmLeft, &.variantSmRight': {
                   overscrollBehaviorY: 'none',
                   width: widthSm || 'max-content',
@@ -643,7 +643,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                 '&.variantMdBottom.sizeMdFloating:not(.justifyMdStretch)': {
                   width: widthMd,
                 },
-
                 '&.variantMdBottom, &.variantMdTop': {
                   maxHeight: `calc(${dvh(100)} - ${mdSpacingTop})`,
                   paddingTop: mdSpacingTop,
@@ -662,7 +661,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
                     maxHeight: 'none',
                     borderRadius: 0,
                   },
-
                   borderTopLeftRadius: `${theme.shape.borderRadius * 4}px`,
                   borderTopRightRadius: `${theme.shape.borderRadius * 4}px`,
                 },
@@ -686,7 +684,7 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
             <Box
               className={classes.background}
               sx={(theme) => ({
-                backgroundColor: theme.palette.background[bgColor],
+                backgroundColor: theme.vars.palette.background[bgColor],
                 paddingBottom: '0.1px',
                 [theme.breakpoints.down('md')]: {
                   minHeight: '100%',

@@ -1,9 +1,11 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { AccountDeleteForm, getCustomerAccountIsDisabled } from '@graphcommerce/magento-customer'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { customerDeleteEnabled, magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { iconBin, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import type { LayoutOverlayProps } from '../../../components'
 import { LayoutOverlay } from '../../../components'
@@ -34,6 +36,7 @@ function AccountDeletePage() {
 
 const pageOptions: PageOptions<LayoutOverlayProps> = {
   overlayGroup: 'account',
+  sharedKey: ({ asPath }) => asPath,
   Layout: LayoutOverlay,
 }
 AccountDeletePage.pageOptions = pageOptions
@@ -42,8 +45,8 @@ export default AccountDeletePage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (
-    import.meta.graphCommerce.magentoVersion < 246 ||
-    !import.meta.graphCommerce.customerDeleteEnabled ||
+    magentoVersion < 246 ||
+    !customerDeleteEnabled ||
     getCustomerAccountIsDisabled(context.locale)
   )
     return { notFound: true }

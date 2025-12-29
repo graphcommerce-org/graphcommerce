@@ -5,7 +5,9 @@ import type {
   CategoryResult,
   MeshContext,
 } from '@graphcommerce/graphql-mesh'
+import type { FilterTypes } from '@graphcommerce/magento-product'
 import type { AttributeList } from './getAttributeList'
+import { getIndexName } from './getIndexName'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 
 type AlgoliaFacets = { [facetName: string]: AlgoliaFacetOption }
@@ -42,72 +44,24 @@ function compare(a, b) {
 }
 
 /** @public */
-export function algoliaPricesToPricesAggregations(pricesList: {
-  [key: string]: number
-}): AggregationOption[] {
+export function algoliaPricesToPricesAggregations(
+  pricesList: AlgoliaFacetOption,
+): AggregationOption[] {
   const priceArraylist: { value: number; count: number }[] = Object.entries(pricesList)
     .sort(compare)
-    .map((price) => {
-      const value: number = +price[0]
-      return { value, count: price[1] }
-    })
+    .map((price) => ({ value: Number(+price[0]), count: price[1] }))
 
-  const interval = Math.round(
-    (priceArraylist[priceArraylist.length - 1].value - priceArraylist[0].value) / 2,
-  )
+  let minValue = priceArraylist[0].value
+  const maxValue = priceArraylist[priceArraylist.length - 1].value
+  if (minValue === maxValue) minValue = 0
 
-  const pricesBucket: { [key: number]: { count: number; value: string; label: string } } = {}
-  let increasingInterval = interval
-  priceArraylist.forEach((price) => {
-    if (price.value <= increasingInterval) {
-      if (!pricesBucket[increasingInterval]) {
-        pricesBucket[increasingInterval] = {
-          count: price.count,
-          value:
-            increasingInterval === interval
-              ? `0_${interval}`
-              : `${increasingInterval - interval}_${increasingInterval}`,
-          label:
-            increasingInterval === interval
-              ? `0_${interval}`
-              : `${increasingInterval - interval}-${increasingInterval}`,
-        }
-      } else {
-        pricesBucket[increasingInterval].count += price.count
-      }
-    } else {
-      increasingInterval += interval
-      pricesBucket[increasingInterval] = {
-        count: price.count,
-        value:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}_${increasingInterval}`,
-        label:
-          increasingInterval === interval
-            ? `0-${interval}`
-            : `${increasingInterval - interval}-${increasingInterval}`,
-      }
-    }
-    if (
-      price.value === increasingInterval &&
-      priceArraylist[priceArraylist.length - 1].value !== price.value
-    ) {
-      increasingInterval += interval
-      pricesBucket[increasingInterval] = {
-        count: price.count,
-        value:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}_${increasingInterval}`,
-        label:
-          increasingInterval === interval
-            ? `0_${interval}`
-            : `${increasingInterval - interval}-${increasingInterval}`,
-      }
-    }
-  })
-  return Object.values(pricesBucket)
+  return [
+    {
+      value: `${minValue}_${maxValue}`,
+      label: `${minValue}-${maxValue}`,
+      count: priceArraylist.reduce((acc, price) => acc + price.count, 0),
+    },
+  ]
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -117,14 +71,13 @@ function assertAlgoliaFacets(facets: any): facets is AlgoliaFacets {
 
 /**
  * Map algolia facets to aggregations format
- *
- * TODO: Make sure the aggregations are sorted correctly:
  * https://magento-247-git-canary-graphcommerce.vercel.app/men/photography, through position
  */
 export function algoliaFacetsToAggregations(
   algoliaFacets: AlgoliasearchResponse['facets'],
   attributes: AttributeList,
   storeConfig: GetStoreConfigReturn,
+  filterTypes: FilterTypes,
   categoryList?: null | CategoryResult,
   groupId?: number,
 ): Aggregation[] {
@@ -145,6 +98,7 @@ export function algoliaFacetsToAggregations(
 
     const label =
       attributes?.find((attribute) => attribute?.code === attribute_code)?.label ?? attribute_code
+
     if (facetIndex === 'categoryIds') {
       aggregations.push({
         label,
@@ -168,15 +122,22 @@ export function algoliaFacetsToAggregations(
         options: algoliaPricesToPricesAggregations(algoliaFacets[facetIndex]),
         position,
       })
+    } else if (filterTypes[attribute_code] === 'PRICE') {
+      aggregations.push({
+        label,
+        attribute_code,
+        options: algoliaPricesToPricesAggregations(facet),
+        position,
+      })
     } else {
-      // Fallback to code if no label is found
       aggregations.push({
         label,
         attribute_code,
         options: Object.entries(facet).map(([filter, count]) => ({
           label: filter,
           count,
-          value: filter,
+          // @see productFilterInputToAlgoliafacetFiltersInput for the other side.
+          value: filter.replaceAll('/', '_OR_').replaceAll(',', '_AND_'),
         })),
         position,
       })
@@ -186,14 +147,12 @@ export function algoliaFacetsToAggregations(
   return aggregations
 }
 
-let categoryListCache: CategoryResult | null = null
-
 export async function getCategoryList(context: MeshContext) {
-  if (categoryListCache) return categoryListCache
+  const cacheKey = `algolia_getCategoryList_${getIndexName(context)}`
+  const categoryListCached = context.cache.get(cacheKey)
 
-  // context.cache.get('algolia_getCategoryList')
-
-  categoryListCache = await context.m2.Query.categories({
+  if (categoryListCached) return categoryListCached as CategoryResult
+  const categoryListCache = await context.m2.Query.categories({
     args: { filters: {} },
     selectionSet: /* GraphQL */ `
       {
@@ -208,5 +167,8 @@ export async function getCategoryList(context: MeshContext) {
     context,
   })
 
-  return categoryListCache!
+  if (!categoryListCache) throw new Error('Category list not found')
+  await context.cache.set(cacheKey, categoryListCache)
+
+  return categoryListCache
 }

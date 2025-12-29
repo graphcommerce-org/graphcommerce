@@ -1,6 +1,7 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { CheckboxProps } from '@mui/material'
 import {
   Checkbox,
@@ -46,7 +47,7 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
     required,
     labelKey = 'label',
     valueKey = 'id',
-    disabled: disabledField,
+    disabled,
     row,
     control,
     checkboxColor,
@@ -57,14 +58,13 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
 
   const theme = useTheme()
   const {
-    field: { value = [], onChange, onBlur, ref, disabled },
+    field: { value = [], onChange, onBlur, ref },
     fieldState: { invalid, error },
   } = useController({
     name,
-    rules: required ? { required: i18n._(/* i18n */ 'This field is required') } : undefined,
+    rules: required ? { required: t`This field is required` } : undefined,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -96,7 +96,15 @@ function CheckboxButtonGroupBase(props: CheckboxButtonGroupProps) {
             <FormControlLabel
               control={
                 <Checkbox
-                  sx={{ color: invalid ? theme.palette.error.main : undefined }}
+                  sx={sxx(
+                    invalid
+                      ? {
+                          color: theme.vars.palette.error.main,
+                        }
+                      : {
+                          color: null,
+                        },
+                  )}
                   color={checkboxColor || 'primary'}
                   value={optionKey}
                   checked={isChecked}

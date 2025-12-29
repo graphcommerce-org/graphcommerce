@@ -1,7 +1,7 @@
 mutation UpdateNewsletterSubscription($isSubscribed: Boolean!) {
   updateCustomerV2(input: { is_subscribed: $isSubscribed }) {
     customer {
-      is_subscribed
+      ...CustomerNewsletterToggle
     }
   }
 }

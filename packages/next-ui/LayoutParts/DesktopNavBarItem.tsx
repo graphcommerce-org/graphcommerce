@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { LinkProps } from '@mui/material'
 import { Box, Link } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -34,10 +35,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
         underline='none'
         {...linkProps}
         onClick={onClick}
-        sx={[
-          { whiteSpace: 'nowrap', paddingTop: '6px', cursor: 'pointer' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx({ whiteSpace: 'nowrap', paddingTop: '6px', cursor: 'pointer' }, sx)}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
       </Link>
@@ -56,23 +54,31 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
       color='text.primary'
       underline='none'
       {...linkProps}
-      sx={[{ whiteSpace: 'nowrap', paddingTop: '6px' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx({ whiteSpace: 'nowrap', paddingTop: '6px' }, sx)}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>{children}</Box>
       <Box
         component='span'
         className={classes.line}
-        sx={{
-          maxWidth: 40,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          height: 2,
-          background: (theme) => theme.palette.primary.main,
-          margin: '0 auto',
-          marginTop: '6px',
-          opacity: activeValue ? 1 : 0,
-        }}
+        sx={sxx(
+          (theme) => ({
+            maxWidth: 40,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center',
+            height: 2,
+            background: theme.vars.palette.primary.main,
+            margin: '0 auto',
+            marginTop: '6px',
+          }),
+          activeValue
+            ? {
+                opacity: 1,
+              }
+            : {
+                opacity: 0,
+              },
+        )}
       />
     </Link>
   )

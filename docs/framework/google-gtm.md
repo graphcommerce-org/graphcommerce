@@ -42,16 +42,22 @@ Manager (GTM)** to your GraphCommerce webshop.
    }
    ```
 
-3. **GTM Setup:** Ensure you have set up your GTM account and container. Refer
-   to the
-   [official GTM documentation](https://developers.google.com/tag-manager/quickstart)
-   for initial setup steps.
-4. [Configure Google analytics](#configure-google-analytics)
+3. **GTM Setup:** Ensure you have set up your GTM account and container:
+
+![gtm-1](https://github.com/user-attachments/assets/84242ef2-f4e6-4d86-a396-8f48a075f0f9)
+![gtm-2](https://github.com/user-attachments/assets/9615db7c-b3db-428a-ada6-42ae4d7196f2)
+![gtm-3](https://github.com/user-attachments/assets/a23b1d13-90a4-4bb2-8c16-1f42e887babc)
+![gtm-4](https://github.com/user-attachments/assets/a56d9893-839c-45a2-8121-a61759fa7baf)
+![gtm-5](https://github.com/user-attachments/assets/d4c2c003-8868-470e-9223-ce960ca22510)
 
 ## Google Analytics
 
 The `@graphcommerce/googleanalytics` package makes it easy to add Google
 Analytics GA4 to your GraphCommerce webshop.
+
+❗️ You probably want to use GTM instead of Google Analytics directly through the
+datalayer. You should probably never use Google Analytics AND GTM at the same
+time.
 
 ### Installation
 
@@ -110,7 +116,7 @@ The following events are supported by default in GraphCommerce:
 Enable core web vitals tracking.
 
 ```js
-const confog = {
+const config = {
   dataLayer: { coreWebVitals: true },
 }
 ```

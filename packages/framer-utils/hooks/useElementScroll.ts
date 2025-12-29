@@ -15,7 +15,7 @@ export interface ScrollMotionValues {
   yMax: MotionValue<number>
 }
 
-export function useElementScroll(ref?: RefObject<HTMLElement | undefined>): ScrollMotionValues {
+export function useElementScroll(ref?: RefObject<HTMLElement | null>): ScrollMotionValues {
   const animating = useMotionValue(false)
   const x = useMotionValue(0)
   const y = useMotionValue(0)

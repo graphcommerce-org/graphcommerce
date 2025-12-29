@@ -1,8 +1,8 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { useDisplayInclTax } from '@graphcommerce/magento-cart/hooks'
 import { Money } from '@graphcommerce/magento-store'
-import { ActionCard } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { ActionCard, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import { Button, Chip } from '@mui/material'
 import type { AvailableShippingMethodFragment } from './AvailableShippingMethod.gql'
 
@@ -39,10 +39,18 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
           disableRipple
           variant='inline'
           color='secondary'
-          sx={{ display: available ? undefined : 'none' }}
+          sx={sxx(
+            available
+              ? {
+                  display: null,
+                }
+              : {
+                  display: 'none',
+                },
+          )}
           tabIndex={-1}
         >
-          <Trans id='Select' />
+          <Trans>Select</Trans>
         </Button>
       }
       price={
@@ -55,13 +63,13 @@ export function ShippingMethodActionCard(props: ShippingMethodActionCardProps) {
               fontWeight: 'initial',
               fontVariationSettings: 'initial',
             }}
-            label={<Trans id='Free' />}
+            label={<Trans>Free</Trans>}
           />
         )
       }
       reset={
         <Button variant='inline' color='secondary' onClick={onReset} disableRipple>
-          <Trans id='Change' />
+          <Trans>Change</Trans>
         </Button>
       }
     />

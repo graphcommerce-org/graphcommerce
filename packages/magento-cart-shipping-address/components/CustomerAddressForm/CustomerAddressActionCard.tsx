@@ -1,8 +1,8 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
-import type { CustomerAddressFragment } from '@graphcommerce/magento-customer/components/CreateCustomerAddressForm/CustomerAddress.gql'
+import type { CustomerAddressFragment } from '@graphcommerce/magento-customer'
 import { useFindCountry } from '@graphcommerce/magento-store'
 import { ActionCard, iconHome, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Button } from '@mui/material'
 import { useRouter } from 'next/router'
 
@@ -22,16 +22,16 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
     return (
       <ActionCard
         image={<IconSvg src={iconHome} size='large' />}
-        title={<Trans id='New address' />}
-        details={<Trans id='Add new address' />}
+        title={<Trans>New address</Trans>}
+        details={<Trans>Add new address</Trans>}
         action={
           <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
-            <Trans id='Select' />
+            <Trans>Select</Trans>
           </Button>
         }
         reset={
           <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
-            <Trans id='Change' />
+            <Trans>Change</Trans>
           </Button>
         }
         {...cardProps}
@@ -55,12 +55,12 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
       }
       action={
         <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
-          <Trans id='Select' />
+          <Trans>Select</Trans>
         </Button>
       }
       reset={
         <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
-          <Trans id='Change' />
+          <Trans>Change</Trans>
         </Button>
       }
       secondaryAction={
@@ -77,7 +77,7 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
             push(`/checkout/customer/addresses/edit?addressId=${id}`)
           }}
         >
-          <Trans id='Edit address' />
+          <Trans>Edit address</Trans>
         </Button>
       }
       {...cardProps}

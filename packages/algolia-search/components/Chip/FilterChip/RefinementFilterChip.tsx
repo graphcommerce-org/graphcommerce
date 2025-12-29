@@ -1,4 +1,4 @@
-import { ChipMenu, extendableComponent, responsiveVal } from '@graphcommerce/next-ui'
+import { ChipMenu, extendableComponent, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import Box from '@mui/material/Box'
 import Checkbox from '@mui/material/Checkbox'
@@ -15,7 +15,8 @@ const parts = ['menu', 'item'] as const
 const { classes } = extendableComponent(name, parts)
 
 export interface RefinementFilterChipProps
-  extends Omit<UseRefinementListProps, 'transformItems'>,
+  extends
+    Omit<UseRefinementListProps, 'transformItems'>,
     Omit<UseClearRefinementsProps, 'transformItems'> {
   transformItems?: UseClearRefinementsProps['transformItems']
   title: string
@@ -68,13 +69,11 @@ export function RefinementFilterChip(props: RefinementFilterChipProps) {
                 color='primary'
                 disableRipple
                 inputProps={{ 'aria-labelledby': `filter-equal-${attribute}-${option?.value}` }}
-                sx={[
-                  {
-                    padding: 0,
-                    margin: '0 0 0 0',
-                    float: 'right',
-                  },
-                ]}
+                sx={sxx({
+                  padding: 0,
+                  margin: '0 0 0 0',
+                  float: 'right',
+                })}
               />
             </ListItemText>
           </ListItem>

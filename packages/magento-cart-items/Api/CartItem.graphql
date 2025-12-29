@@ -6,7 +6,6 @@ fragment CartItem on CartItemInterface {
     ...ProductLink
     sku
     name
-    sku
     thumbnail {
       ...ProductImage
     }
@@ -14,10 +13,7 @@ fragment CartItem on CartItemInterface {
   }
   prices {
     discounts {
-      amount {
-        ...Money
-      }
-      label
+      ...Discount
     }
     price {
       ...Money
@@ -35,7 +31,6 @@ fragment CartItem on CartItemInterface {
       ...Money
     }
   }
-
   errors {
     code
     message

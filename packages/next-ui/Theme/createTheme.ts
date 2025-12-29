@@ -2,13 +2,11 @@ import type { Breakpoint } from '@mui/material'
 
 export {}
 
-declare module '@mui/material/styles/createPalette' {
+declare module '@mui/material/styles' {
   interface TypeBackground {
     image: string
   }
-}
 
-declare module '@mui/material/styles/createTheme' {
   interface ThemeOptions {
     spacings: {
       xxs: string

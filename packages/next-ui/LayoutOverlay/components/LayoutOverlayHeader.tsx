@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { LayoutHeaderProps } from '../../Layout'
 import { LayoutHeader } from '../../Layout'
 
@@ -8,7 +9,7 @@ export function LayoutOverlayHeader(props: LayoutHeaderProps) {
       {...props}
       noAlign
       switchPoint={switchPoint !== 0 ? switchPoint : -1000}
-      sx={[
+      sx={sxx(
         (theme) => ({
           [theme.breakpoints.down('md')]: {
             '&.noAlign': {
@@ -25,8 +26,8 @@ export function LayoutOverlayHeader(props: LayoutHeaderProps) {
             },
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

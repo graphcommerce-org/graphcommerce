@@ -1,7 +1,7 @@
 export * from './components/Pages'
 export * from './context/pageContext'
 export * from './context/pageRouterContext'
-export type { PageOptions, PageComponent } from './types'
+export type { PageOptions, PageComponent, UpPage } from './types'
 
 export * from './hooks/useGo'
 export * from './hooks/usePageContext'

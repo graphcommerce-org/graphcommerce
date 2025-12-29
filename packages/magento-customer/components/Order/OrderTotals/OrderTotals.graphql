@@ -1,0 +1,7 @@
+fragment OrderTotals on CustomerOrder {
+  total {
+    ...OrderTotal
+  }
+  shipping_method
+  carrier
+}

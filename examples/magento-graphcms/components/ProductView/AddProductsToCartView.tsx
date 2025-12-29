@@ -36,7 +36,6 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
         <DownloadableProductOptions product={product} />
       )}
       {isTypename(product, ['GroupedProduct']) && <GroupedProducts product={product} />}
-
       {!isTypename(product, ['GroupedProduct']) && (
         <>
           <ProductCustomizable product={product} />
@@ -45,8 +44,8 @@ export function AddProductsToCartView(props: AddProductsToCartViewProps) {
             {cartEnabled && <AddProductsToCartQuantity sx={{ flexShrink: '0' }} />}
 
             <AddProductsToCartError>
-              <Typography component='div' variant='h3' lineHeight='1'>
-                <ProductPagePrice product={product} />
+              <Typography component='div' variant='h3' sx={{ lineHeight: '1' }}>
+                <ProductPagePrice product={product} variant='total' />
               </Typography>
             </AddProductsToCartError>
           </ProductPageAddToCartQuantityRow>

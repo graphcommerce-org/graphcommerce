@@ -4,16 +4,18 @@ import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
 import type { CmsPageFragment, CmsPageQuery } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { PageMeta, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import {
   Container,
   isTypename,
   LayoutHeader,
   LayoutTitle,
+  revalidate,
   type GetStaticProps,
 } from '@graphcommerce/next-ui'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
-import { LayoutDocument, LayoutNavigation } from '../../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 
 export type CmsPageProps = { cmsPage: CmsPageFragment }
@@ -32,7 +34,7 @@ function CmsPage(props: CmsPageProps) {
         metaDescription={cmsPage.meta_description || undefined}
       />
 
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small' component='span'>
           {cmsPage.content_heading ?? cmsPage.title}
         </LayoutTitle>
@@ -46,7 +48,7 @@ function CmsPage(props: CmsPageProps) {
         </Container>
       )}
 
-      <CmsPageContent cmsPage={cmsPage} />
+      <CmsPageContent cmsPage={cmsPage} productListRenderer={productListRenderer} />
     </>
   )
 }
@@ -82,7 +84,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const cmsPage = (await cmsPageQuery).data.route
+  const cmsPage = (await cmsPageQuery).data?.route
   if (!cmsPage || !isTypename(cmsPage, ['CmsPage']))
     return redirectOrNotFound(staticClient, conf, params, locale)
 
@@ -92,7 +94,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
   return result
 }

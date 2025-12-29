@@ -1,15 +1,12 @@
 import type { ApolloClient, FetchPolicy } from '@apollo/client'
 import { getPreviewData } from './getPreviewData'
 
-export function cachePolicy(
-  client: ApolloClient<object>,
-  requestedCachePolicy: FetchPolicy,
-): FetchPolicy {
+export function cachePolicy(client: ApolloClient, requestedCachePolicy: FetchPolicy): FetchPolicy {
   return process.env.NODE_ENV !== 'development' && !getPreviewData(client)?.preview
     ? requestedCachePolicy
     : 'network-only'
 }
 
-export function cacheFirst(client: ApolloClient<object>) {
+export function cacheFirst(client: ApolloClient) {
   return cachePolicy(client, 'cache-first')
 }

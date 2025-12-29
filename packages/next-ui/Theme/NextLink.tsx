@@ -1,3 +1,4 @@
+import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import type { LinkProps as NextLinkProps } from 'next/link'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -30,8 +31,7 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
   let { href, target, relative, locale, ...rest } = props
 
   const router = useRouter()
-  const canonicalBaseUrl =
-    useStorefrontConfig().canonicalBaseUrl ?? import.meta.graphCommerce.canonicalBaseUrl
+  const canonical = useStorefrontConfig().canonicalBaseUrl ?? canonicalBaseUrl
 
   // The href is optional in a MUI link, but required in a Next.js link
   // When the href is not a string, we pass it through directly
@@ -44,13 +44,14 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
    * and make the URL relative without the locale. Prevents Next.js prefixing again with the current
    * locale.
    */
-  if (!locale && isFullUrl && href.startsWith(canonicalBaseUrl)) {
+  if (!locale && isFullUrl && href.startsWith(canonical)) {
     const url = new URL(href)
     locale = router.locales?.find((l) => url.pathname.startsWith(`/${l}/`))
     href = locale ? url.pathname.replace(`/${locale}/`, '/') : url.pathname
+    href += url.search
   }
 
-  const isExternal = isFullUrl && !href.startsWith(canonicalBaseUrl)
+  const isExternal = isFullUrl && !href.startsWith(canonical)
   if (isExternal) target = target || '_blank'
 
   // Relative URL's cause more pain than they're worth

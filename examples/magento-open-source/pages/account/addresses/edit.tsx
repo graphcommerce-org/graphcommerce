@@ -15,8 +15,8 @@ import {
   LayoutTitle,
   SectionContainer,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
@@ -40,21 +40,21 @@ function EditAddressPage() {
     <>
       <LayoutOverlayHeader>
         <LayoutTitle size='small' component='span' icon={iconAddresses}>
-          <Trans id='Addresses' />
+          <Trans>Addresses</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
       <Container maxWidth='md'>
-        <PageMeta title={i18n._(/* i18n */ 'Edit address')} metaRobots={['noindex']} />
+        <PageMeta title={t`Edit address`} metaRobots={['noindex']} />
         <WaitForCustomer waitFor={addresses}>
           <LayoutTitle icon={iconAddresses}>
-            <Trans id='Addresses' />
+            <Trans>Addresses</Trans>
           </LayoutTitle>
 
-          <SectionContainer labelLeft={<Trans id='Edit address' />}>
+          <SectionContainer labelLeft={<Trans>Edit address</Trans>}>
             {!address && (
-              <Box marginTop={3}>
+              <Box sx={{ marginTop: 3 }}>
                 <IconHeader src={iconAddresses} size='small'>
-                  <Trans id='Address not found' />
+                  <Trans>Address not found</Trans>
                 </IconHeader>
               </Box>
             )}
@@ -86,7 +86,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/addresses', title: i18n._(/* i18n */ 'Addresses') },
+      up: { href: '/account/addresses', title: t`Addresses` },
     },
   }
 }

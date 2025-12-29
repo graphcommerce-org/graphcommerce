@@ -8,7 +8,7 @@ import {
   iconCirle,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box } from '@mui/material'
 import { useMemo } from 'react'
 import { isFilterTypeEqual } from '../ProductListItems/filterTypes'
@@ -52,7 +52,6 @@ export function ProductFilterEqualSection(props: FilterProps) {
       })),
     [attrCode, options],
   )
-
   return (
     <ActionCardAccordion
       summary={label}
@@ -65,7 +64,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
           multiple
           layout='list'
           variant='default'
-          size='responsive'
+          size='medium'
           items={items}
           showMoreAfter={4}
         />
@@ -79,7 +78,7 @@ export function ProductFilterEqualSection(props: FilterProps) {
               form.setValue(name, null)
             }}
           >
-            <Trans id='Clear' />
+            <Trans>Clear</Trans>
           </Button>
         ) : undefined
       }

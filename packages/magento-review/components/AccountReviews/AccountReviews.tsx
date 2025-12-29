@@ -20,7 +20,6 @@ export function AccountReviews(props: AccountReviewsProps) {
           (review) => review && <CustomerReview key={review.created_at} {...review} />,
         )}
       </SectionContainer>
-
       {items && items.length >= showLatestReviews + 1 && (
         <SectionContainer
           labelLeft='Older'

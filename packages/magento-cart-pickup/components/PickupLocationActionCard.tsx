@@ -1,6 +1,6 @@
 import type { ActionCardItemRenderProps } from '@graphcommerce/ecommerce-ui'
 import { ActionCard } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { Box, Button } from '@mui/material'
 import type { GetPickupLocationsForProductsQuery } from '../graphql/GetPickupLocationsForProducts.gql'
 
@@ -31,11 +31,9 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
                   border: '0 transparent',
                   width: 'auto!important',
                   maxWidth: '100%',
-
                   '& td': {
                     width: 'auto!important',
                     padding: `0 ${theme.spacings.xl}`,
-
                     '&:first-of-type': {
                       paddingLeft: 0,
                     },
@@ -54,12 +52,12 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
       }
       action={
         <Button disableRipple variant='inline' color='secondary' tabIndex={-1}>
-          <Trans id='Select' />
+          <Trans>Select</Trans>
         </Button>
       }
       reset={
         <Button disableRipple variant='inline' color='secondary' onClick={onReset}>
-          <Trans id='Change' />
+          <Trans>Change</Trans>
         </Button>
       }
     />

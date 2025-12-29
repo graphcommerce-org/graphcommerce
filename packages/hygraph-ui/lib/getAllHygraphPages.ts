@@ -1,12 +1,12 @@
 import { cacheFirst } from '@graphcommerce/graphql'
-import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@apollo/client'
+import type { ApolloClient } from '@apollo/client'
 import type { HygraphAllPagesQuery } from '../graphql'
 import { HygraphAllPagesDocument } from '../graphql'
 
 type Urls = { url: string }
 
 export async function getAllHygraphPages(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   options: { pageSize?: number } = {},
 ) {
   const { pageSize = 100 } = options
@@ -16,10 +16,11 @@ export async function getAllHygraphPages(
     variables: { first: pageSize },
     fetchPolicy: cacheFirst(client),
   })
-  const pages: Promise<ApolloQueryResult<HygraphAllPagesQuery>>[] = [query]
 
   const { data } = await query
-  const totalPages = Math.ceil(data.pagesConnection.aggregate.count / pageSize) ?? 1
+  const totalPages = data ? Math.ceil(data.pagesConnection.aggregate.count / pageSize) : 1
+
+  const pages = [query]
 
   if (totalPages > 1) {
     for (let i = 2; i <= totalPages; i++) {
@@ -34,8 +35,9 @@ export async function getAllHygraphPages(
   }
 
   const paths: Urls[] = (await Promise.all(pages))
-    .map((q) => q.data.pages)
+    .map((q) => q.data?.pages ?? [])
     .flat(1)
+    .filter((page): page is NonNullable<typeof page> & { url: string } => !!page?.url)
     .map((page) => ({
       url: page.url,
     }))

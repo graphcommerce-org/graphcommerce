@@ -1,0 +1,5 @@
+fragment DownloadableProductSamples on DownloadableProductSamples {
+  title
+  sort_order
+  sample_url
+}

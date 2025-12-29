@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ListItemButtonProps } from '@mui/material'
 import { ListItemButton, ListItemText } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -20,7 +21,7 @@ export function MenuFabItem(props: MenuFabItemProps) {
   return (
     <ListItemButton href={href} component={NextLink} dense selected={active} {...listItemProps}>
       <ListItemText
-        sx={[{ typography: 'h4', lineHeight: 1.1 }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sxx({ typography: 'h4', lineHeight: 1.1 }, sx)}
         disableTypography
         primary={children}
       />

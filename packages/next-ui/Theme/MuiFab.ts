@@ -9,7 +9,7 @@ type FabSizes = {
 }
 
 /** Expose the component to be exendable in your theme.components */
-declare module '@mui/material/styles/components' {
+declare module '@mui/material/styles' {
   interface Components {
     /**
      * @todo We would rather use MuiFab to override these fields, but I can't get it to work,
@@ -44,7 +44,7 @@ export const useFabSize = (size: FabSize) => {
   return fabSize(size, theme)
 }
 
-declare module '@mui/material/Fab/Fab' {
+declare module '@mui/material/Fab' {
   interface FabPropsSizeOverrides {
     responsive: true
     responsiveSmall: true
@@ -96,10 +96,10 @@ export const MuiFabSizes: FabVariants = sizes.map((size) => ({
 //     style: ({ theme }) => ({
 //       boxShadow: 'none',
 //       '&:hover, &:focus': {
-//         background: theme.palette.text.primary,
+//         background: theme.vars.palette.text.primary,
 //       },
-//       background: theme.palette.text.primary,
-//       color: theme.palette.background.paper,
+//       background: theme.vars.palette.text.primary,
+//       color: theme.vars.palette.background.paper,
 //     }),
 //   },
 // ]

@@ -1,19 +1,18 @@
-import { FullPageMessage, iconCompare, IconSvg } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
-import { Button } from '@mui/material'
+import { FullPageMessage, iconCompare, IconSvg, OverlayCloseButton } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 
 export function EmptyCompareList() {
   return (
     <FullPageMessage
-      title={<Trans id='Your comparelist is empty' />}
+      title={<Trans>Your comparelist is empty</Trans>}
       icon={<IconSvg src={iconCompare} size='xxl' />}
       button={
-        <Button href='/' variant='pill' color='secondary' size='large'>
-          <Trans id='Continue shopping' />
-        </Button>
+        <OverlayCloseButton variant='pill' color='secondary' size='large'>
+          <Trans>Continue shopping</Trans>
+        </OverlayCloseButton>
       }
     >
-      <Trans id='Discover our collection and add items to your comparelist!' />
+      <Trans>Discover our collection and add items to your comparelist!</Trans>
     </FullPageMessage>
   )
 }

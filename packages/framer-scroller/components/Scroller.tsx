@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { m } from 'framer-motion'
@@ -15,7 +16,7 @@ export const Scroller = forwardRef<HTMLDivElement, ScrollableProps & { sx?: SxPr
       forwardedRef,
     )
 
-    return <ScrollerDiv {...scroller} sx={[scroller.sx, ...(Array.isArray(sx) ? sx : [sx])]} />
+    return <ScrollerDiv {...scroller} sx={sxx(scroller.sx, sx)} />
   },
 )
 Scroller.displayName = 'Scroller'

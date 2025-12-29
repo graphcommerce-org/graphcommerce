@@ -7,7 +7,7 @@ function usePreventScroll(shouldPrevent: boolean) {
 
   useEffect(() => {
     if (shouldPrevent) {
-      const scrollbarSize = getScrollbarSize(document)
+      const scrollbarSize = getScrollbarSize(window)
 
       document.body.style.overflow = 'hidden'
       document.body.style.paddingRight = `${scrollbarSize}px`

@@ -1,22 +1,27 @@
 import type { ParsedUrlQuery } from 'querystring'
-import type { ApolloClient, ApolloQueryResult, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { flushMeasurePerf } from '@graphcommerce/graphql'
-import { isTypename, nonNullable, storefrontConfig } from '@graphcommerce/next-ui'
+import type { ProductInterfaceResolvers } from '@graphcommerce/graphql-mesh'
+import fragments from '@graphcommerce/graphql/generated/fragments.json'
+import { productRoute } from '@graphcommerce/next-config/config'
+import { isTypename, nonNullable, revalidate, storefrontConfig } from '@graphcommerce/next-ui'
 import type { Redirect } from 'next'
-import { defaultLocale } from '../localeToStore'
-import type { StoreConfigQuery } from '../StoreConfig.gql'
-import type { HandleRedirectQuery } from './HandleRedirect.gql'
-import { HandleRedirectDocument } from './HandleRedirect.gql'
+import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
+import { HandleRedirectDocument } from '../graphql'
+import { defaultLocale } from './localeToStore'
 
 export type RedirectOr404Return = Promise<
   | { redirect: Redirect; revalidate?: number | boolean }
   | { notFound: true; revalidate?: number | boolean }
 >
 
+type ProductTypes = NonNullable<Awaited<ReturnType<ProductInterfaceResolvers['__resolveType']>>>
+const productInterfaceTypes = fragments.possibleTypes.ProductInterface as ProductTypes[]
+
 const notFound = (from: string, reason: string) => {
   flushMeasurePerf()
   console.info(`[redirectOrNotFound: /${from}] ${reason}`)
-  return { notFound: true, revalidate: 60 * 20 } as const
+  return { notFound: true, revalidate: revalidate() } as const
 }
 
 const urlPrefix = (locale?: string) => {
@@ -34,7 +39,7 @@ export const redirectTo = (
   )
   return {
     redirect: { destination: `${urlPrefix(locale)}${to}`, permanent },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 
@@ -55,12 +60,14 @@ const redirect = (from: string, to: string, permanent: boolean, locale?: string)
     permanent = false
   }
 
-  return { redirect: { destination, permanent }, revalidate: 60 * 20 }
+  return { redirect: { destination, permanent }, revalidate: revalidate() }
 }
 
 export async function redirectOrNotFound(
-  client: ApolloClient<NormalizedCacheObject>,
-  config: Promise<ApolloQueryResult<StoreConfigQuery>> | ApolloQueryResult<StoreConfigQuery>,
+  client: ApolloClient,
+  config:
+    | Promise<ApolloClient.QueryResult<StoreConfigQuery>>
+    | ApolloClient.QueryResult<StoreConfigQuery>,
   params?: ParsedUrlQuery,
   locale?: string,
 ): RedirectOr404Return {
@@ -71,7 +78,8 @@ export async function redirectOrNotFound(
 
   try {
     // Get the configured suffixes from the store config
-    const { product_url_suffix, category_url_suffix } = (await config).data.storeConfig ?? {}
+    const configResult = await config
+    const { product_url_suffix, category_url_suffix } = configResult.data?.storeConfig ?? {}
 
     const candidates = new Set([from])
 
@@ -104,7 +112,6 @@ export async function redirectOrNotFound(
       {},
       ...routeDataArray.map((result) => {
         if (!result.route) delete result.route
-        if (!result.products) delete result.products
         return result
       }),
     )
@@ -122,28 +129,12 @@ export async function redirectOrNotFound(
     // For implicit redirects, always use permanent, otherwise use the given redirect type
     const permanent = !routeData.route?.redirect_code || routeData.route?.redirect_code === 301
 
-    if (
-      isTypename(routeData.route, [
-        'ConfigurableProduct',
-        'BundleProduct',
-        'SimpleProduct',
-        'VirtualProduct',
-        'DownloadableProduct',
-        'GroupedProduct',
-      ])
-    ) {
-      const productRoute = import.meta.graphCommerce.productRoute ?? '/p/'
-
-      if (redirectUrl) return redirect(from, `${productRoute}${redirectUrl}`, permanent, locale)
-
-      const url_key = routeData.route?.url_key
-      if (!routeData.products?.items?.find((i) => i?.url_key === url_key))
-        return notFound(from, "Route found, but product isn't returned from products query")
-
-      return redirect(from, `${productRoute}${url_key}`, true, locale)
+    if (redirectUrl) {
+      const productPath = `${productRoute ?? '/p/'}${redirectUrl}`
+      return isTypename(routeData.route, productInterfaceTypes)
+        ? redirect(from, productPath, permanent, locale)
+        : redirect(from, `/${redirectUrl}`, permanent, locale)
     }
-
-    if (redirectUrl) return redirect(from, `/${redirectUrl}`, permanent, locale)
 
     return notFound(from, 'Route found, but no redirect URL')
   } catch (e) {

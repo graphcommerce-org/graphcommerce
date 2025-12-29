@@ -3,16 +3,18 @@ import { Image } from '@graphcommerce/image'
 import { getCartDisabled, useCrosssellItems } from '@graphcommerce/magento-cart'
 import { AddProductsToCartForm, ProductScroller } from '@graphcommerce/magento-product'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { crossSellsRedirectItems } from '@graphcommerce/next-config/config'
 import {
   Button,
   GetStaticProps,
   iconChevronRight,
+  iconShoppingBag,
   IconSvg,
   responsiveVal,
 } from '@graphcommerce/next-ui'
 import { LayoutHeaderClose } from '@graphcommerce/next-ui/Layout/components/LayoutHeaderClose'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Divider, Typography } from '@mui/material'
 import { useEffect, useRef } from 'react'
 import { LayoutOverlay, LayoutOverlayProps, productListRenderer } from '../../components'
@@ -29,11 +31,11 @@ function CheckoutAdded() {
     a11yFocusRef.current?.focus()
   }, [])
 
-  const name = addedItem?.product.name ?? ''
+  const name = addedItem?.product.name ?? <Trans>Product</Trans>
 
   return (
     <>
-      <PageMeta title={i18n._(/* i18n */ 'Cart')} metaRobots={['noindex']} />
+      <PageMeta title={t`Cart`} metaRobots={['noindex']} />
 
       <Container
         maxWidth={false}
@@ -51,7 +53,6 @@ function CheckoutAdded() {
             xs: 'min-content 1fr auto',
             md: 'min-content 1fr max-content auto',
           },
-
           '&.IconSvg': {
             gridArea: 'children',
           },
@@ -74,7 +75,9 @@ function CheckoutAdded() {
             sizes='100px'
           />
         ) : (
-          <Box
+          <IconSvg
+            src={iconShoppingBag}
+            size='xxl'
             sx={{
               gridArea: 'icon',
               alignSelf: 'stretch',
@@ -84,7 +87,7 @@ function CheckoutAdded() {
           />
         )}
 
-        <Box gridArea='children'>
+        <Box sx={{ gridArea: 'children' }}>
           <Box sx={{ typography: 'h6' }} tabIndex={-1} ref={a11yFocusRef}>
             <Trans>
               <strong>{name}</strong> has been added to your shopping cart!
@@ -96,7 +99,7 @@ function CheckoutAdded() {
             </Box>
           )}
         </Box>
-        <Box gridArea='action'>
+        <Box sx={{ gridArea: 'action' }}>
           <Button
             href='/cart'
             id='view-shopping-cart-button'
@@ -111,7 +114,6 @@ function CheckoutAdded() {
         </Box>
         <LayoutHeaderClose />
       </Container>
-
       {crossSellItems.length > 0 && (
         <>
           <Container maxWidth={false}>
@@ -129,8 +131,8 @@ function CheckoutAdded() {
             </Typography>
           </Container>
           <AddProductsToCartForm
-            disableSuccessSnackbar
-            redirect={import.meta.graphCommerce.crossSellsRedirectItems ? 'added' : false}
+            snackbarProps={{ disableSuccessSnackbar: true }}
+            redirect={crossSellsRedirectItems ? 'added' : false}
           >
             <ProductScroller
               productListRenderer={productListRenderer}

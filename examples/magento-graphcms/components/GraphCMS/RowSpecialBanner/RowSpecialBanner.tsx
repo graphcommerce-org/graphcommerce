@@ -29,7 +29,7 @@ export function RowSpecialBanner(props: RowSpecialBannerProps) {
             '& strong': {
               // https://github.com/rsms/inter/issues/292#issuecomment-674993644
               color: 'background.default',
-              textShadow: `1.2px 0 0 ${theme.palette.text.primary},0 1.2px 0 ${theme.palette.text.primary},-1.2px 0 0 ${theme.palette.text.primary},0 -1.2px 0 ${theme.palette.text.primary}`,
+              textShadow: `1.2px 0 0 ${theme.vars.palette.text.primary},0 1.2px 0 ${theme.vars.palette.text.primary},-1.2px 0 0 ${theme.vars.palette.text.primary},0 -1.2px 0 ${theme.vars.palette.text.primary}`,
             },
           }),
         }}

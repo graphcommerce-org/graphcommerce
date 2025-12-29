@@ -1,9 +1,38 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import type { Types } from '@graphql-codegen/plugin-helpers'
-import '@graphql-codegen/testing'
 import type { ASTNode } from 'graphql'
 import { buildSchema, Kind, parse, print } from 'graphql'
+import { expect, it } from 'vitest'
 import { plugin } from '../../src'
+
+// Custom matcher to compare GraphQL strings ignoring whitespace
+function normalizeGraphQL(str: string): string {
+  return str.replace(/\s+/g, ' ').trim()
+}
+
+expect.extend({
+  toBeSimilarStringTo(received: string, expected: string) {
+    const normalizedReceived = normalizeGraphQL(received)
+    const normalizedExpected = normalizeGraphQL(expected)
+    const pass = normalizedReceived === normalizedExpected
+    return {
+      pass,
+      message: () =>
+        pass
+          ? `Expected GraphQL strings not to be similar`
+          : `Expected GraphQL strings to be similar.\n\nReceived:\n${normalizedReceived}\n\nExpected:\n${normalizedExpected}`,
+    }
+  },
+})
+
+declare module 'vitest' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  interface Assertion<T> {
+    toBeSimilarStringTo(expected: string): void
+  }
+  interface AsymmetricMatchersContaining {
+    toBeSimilarStringTo(expected: string): unknown
+  }
+}
 
 const testSchema = buildSchema(/* GraphQL */ `
   type Avatar {

@@ -13,17 +13,19 @@ import {
   useCartQuery,
   useFormGqlMutationCart,
 } from '@graphcommerce/magento-cart'
-import type { CartAddressFragment } from '@graphcommerce/magento-cart/components/CartAddress/CartAddress.gql'
+import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 import {
   AddressFields,
   CompanyFields,
   CustomerDocument,
   NameFields,
+  useBillingAddressPermission,
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { Form, FormRow } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
 import { isCartAddressACustomerAddress } from '../../utils/findCustomerAddressFromCartAddress'
@@ -44,6 +46,7 @@ export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   sx?: SxProps<Theme>
 }
 
+// eslint-disable-next-line react/display-name
 export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) => {
   const { step, sx } = props
   const { data: cartQuery } = useCartQuery(GetAddressesDocument)
@@ -51,6 +54,8 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const countryQuery = useQuery(CountryRegionsDocument, { fetchPolicy: 'cache-and-network' })
   const countries = countryQuery.data?.countries ?? countryQuery.previousData?.countries
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
+
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -83,6 +88,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   if (isVirtual) {
     currentAddress = billingAddress
     Mutation = SetBillingAddressDocument
+  }
+
+  // If the billingAddress permission is READONLY we are never allowed to update the billing address.
+  if (billingAddressReadonly) {
+    Mutation = SetShippingAddressDocument
   }
 
   const form = useFormGqlMutationCart(Mutation, {
@@ -161,7 +171,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         />
       )}
 
-      {!isVirtual && import.meta.graphCommerce.customerAddressNoteEnable && (
+      {!isVirtual && customerAddressNoteEnable && (
         <FormRow>
           <TextFieldElement
             control={form.control}

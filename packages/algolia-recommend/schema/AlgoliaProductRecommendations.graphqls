@@ -14,6 +14,9 @@ input AlgoliaFallbackParams {
 }
 
 input AlgoliaLookingSimilarInput {
+  """
+  The maximum number of recommendations to return.
+  """
   maxRecommendations: Int = 8
 
   """
@@ -38,6 +41,9 @@ input AlgoliaLookingSimilarInput {
 }
 
 input AlgoliaFrequentlyBoughtTogetherInput {
+  """
+  The maximum number of recommendations to return.
+  """
   maxRecommendations: Int = 8
 
   """
@@ -57,6 +63,9 @@ input AlgoliaFrequentlyBoughtTogetherInput {
 }
 
 input AlgoliaRelatedProductsInput {
+  """
+  The maximum number of recommendations to return.
+  """
   maxRecommendations: Int = 8
 
   """

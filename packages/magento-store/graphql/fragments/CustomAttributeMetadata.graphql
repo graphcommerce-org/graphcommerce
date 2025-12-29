@@ -1,0 +1,15 @@
+fragment CustomAttributeMetadata on CustomAttributeMetadataInterface {
+  __typename
+  code
+  default_value
+  frontend_class
+  frontend_input
+  is_required
+  is_unique
+  label
+  options {
+    is_default
+    label
+    value
+  }
+}

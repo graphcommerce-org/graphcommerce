@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { ContainerProps } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -21,7 +22,7 @@ export function ColumnThree(props: ColumnThreeProps) {
     <Row
       className={classes.root}
       {...containerProps}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gridColumnGap: theme.spacings.md,
@@ -55,8 +56,8 @@ export function ColumnThree(props: ColumnThreeProps) {
             gridTemplateAreas: '"one two three"',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box className={classes.colOne} sx={{ gridArea: 'one' }}>
         {colOneContent}

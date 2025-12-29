@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { map } from '@graphcommerce/graphql/rxjs'
+import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { ApolloLink } from '@apollo/client'
 import { print } from '@apollo/client/utilities'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { responsePathAsArray, stripIgnoredCharacters } from 'graphql'
-import { cliHyperlink } from '../../lib/hyperlinker'
 
 const running = new Map<
   string,
@@ -146,88 +147,93 @@ export const measurePerformanceLink = new ApolloLink((operation, forward) => {
     operation.setContext({ measurePerformanceLinkStart: new Date() })
     const vars =
       Object.keys(operation.variables).length > 0 ? `(${JSON.stringify(operation.variables)})` : ''
-    const operationString = `${operation.operationName}${vars}`
+    const operationString = `${operation.operationName ?? 'anonymous'}${vars}`
 
     running.set(operationString, {
       start: new Date(),
-      operationName: [operation.operationName, operation.operationName],
+      operationName: [
+        operation.operationName ?? 'anonymous',
+        operation.operationName ?? 'anonymous',
+      ],
     })
     markTimeout()
 
-    return forward(operation).map((data) => {
-      const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
+    return forward(operation).pipe(
+      map((data) => {
+        const httpDetails: MeshFetchHTTPInformation[] | undefined = data.extensions?.httpDetails
 
-      const additional = ['', ''] as [string, string]
+        const additional = ['', ''] as [string, string]
 
-      // Called after server responds
-      const query = [
-        `# Variables: ${JSON.stringify(operation.variables)}`,
-        `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
-        stripIgnoredCharacters(print(operation.query)),
-      ].join('\n')
+        // Called after server responds
+        const query = [
+          `# Variables: ${JSON.stringify(operation.variables)}`,
+          `# Headers: ${JSON.stringify(operation.getContext().headers)}`,
+          stripIgnoredCharacters(print(operation.query)),
+        ].join('\n')
 
-      const meshUrl = new URL(
-        process.env.NODE_ENV === 'production'
-          ? `${import.meta.graphCommerce.canonicalBaseUrl}/api/graphql`
-          : 'http://localhost:3000/api/graphql',
-      )
+        const meshUrl = new URL(
+          process.env.NODE_ENV === 'production'
+            ? `${canonicalBaseUrl}/api/graphql`
+            : 'http://localhost:3000/api/graphql',
+        )
 
-      meshUrl.searchParams.set('query', query)
+        meshUrl.searchParams.set('query', query)
 
-      running.delete(operationString)
-      running.set(operationString, {
-        start: operation.getContext().measurePerformanceLinkStart as Date,
-        end: new Date(),
-        operationName: [
-          operation.operationName,
-          operation.operationName,
-          // cliHyperlink(operation.operationName, meshUrl.toString()),
-        ],
-        additional,
-        idx: 0,
-      })
-
-      if (httpDetails) {
-        running.forEach((_, key) => {
-          if (key.startsWith(operationString)) running.delete(key)
+        running.delete(operationString)
+        running.set(operationString, {
+          start: operation.getContext().measurePerformanceLinkStart as Date,
+          end: new Date(),
+          operationName: [
+            operation.operationName ?? 'anonymous',
+            operation.operationName ?? 'anonymous',
+            // cliHyperlink(operation.operationName, meshUrl.toString()),
+          ],
+          additional,
+          idx: 0,
         })
 
-        httpDetails.forEach((d) => {
-          const requestUrl = new URL(d.request.url)
-          requestUrl.searchParams.delete('extensions')
+        if (httpDetails) {
+          running.forEach((_, key) => {
+            if (key.startsWith(operationString)) running.delete(key)
+          })
 
-          const sourceName =
-            !d.sourceName && URL.canParse(d.request.url)
-              ? new URL(d.request.url).hostname
-              : d.sourceName
+          httpDetails.forEach((d) => {
+            const requestUrl = new URL(d.request.url)
+            requestUrl.searchParams.delete('extensions')
 
-          const key = `${operationString}.${responsePathAsArray(d.path).join('.')}`
-          const name = `${operation.operationName}.${responsePathAsArray(d.path).join('.')} (${sourceName})`
+            const sourceName =
+              !d.sourceName && URL.canParse(d.request.url)
+                ? new URL(d.request.url).hostname
+                : d.sourceName
 
-          let start = new Date(d.request.timestamp)
-          let end = new Date(d.response.timestamp)
-          let operationName: [string, string] = [name, name]
-          let idx = 0
+            const key = `${operationString}.${responsePathAsArray(d.path).join('.')}`
+            const name = `${operation.operationName ?? 'anonymous'}.${responsePathAsArray(d.path).join('.')} (${sourceName})`
 
-          if (running.has(key)) {
-            // Get the earliest start time and latest end time.
-            const existing = running.get(key)
-            if (existing) {
-              idx = (existing.idx ?? 0) + 1
-              start = existing.start < start ? existing.start : start
-              end = existing?.end ? (existing.end > end ? existing.end : end) : end
-              operationName = [`${name} ⨉ ${idx}`, `${name} ⨉ ${idx}`]
+            let start = new Date(d.request.timestamp)
+            let end = new Date(d.response.timestamp)
+            let operationName: [string, string] = [name, name]
+            let idx = 0
+
+            if (running.has(key)) {
+              // Get the earliest start time and latest end time.
+              const existing = running.get(key)
+              if (existing) {
+                idx = (existing.idx ?? 0) + 1
+                start = existing.start < start ? existing.start : start
+                end = existing?.end ? (existing.end > end ? existing.end : end) : end
+                operationName = [`${name} ⨉ ${idx}`, `${name} ⨉ ${idx}`]
+              }
             }
-          }
 
-          running.set(key, { start, end, operationName, idx })
-        })
-      }
+            running.set(key, { start, end, operationName, idx })
+          })
+        }
 
-      markTimeout()
+        markTimeout()
 
-      return data
-    })
+        return data
+      }),
+    )
   }
   return forward(operation)
 })

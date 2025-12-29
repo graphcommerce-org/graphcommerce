@@ -1,5 +1,188 @@
 # Change Log
 
+## 10.0.0-canary.69
+
+## 10.0.0-canary.68
+
+## 10.0.0-canary.67
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+### Patch Changes
+
+- [#2523](https://github.com/graphcommerce-org/graphcommerce/pull/2523) [`cc5b602`](https://github.com/graphcommerce-org/graphcommerce/commit/cc5b602694e433ec13688dd3fda60e300461a7d3) - Add correct link to demo project ([@FrankHarland](https://github.com/FrankHarland))
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13
@@ -139,7 +322,6 @@
 - [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`26239ef73`](https://github.com/graphcommerce-org/graphcommerce/commit/26239ef73e49731224b227f1eb850dde56d40584) - Updated the supported NodeJS versions to 16 and 18, removed support for NodeJS 14. ([@paales](https://github.com/paales))
 
 - [#1766](https://github.com/graphcommerce-org/graphcommerce/pull/1766) [`e34169ee2`](https://github.com/graphcommerce-org/graphcommerce/commit/e34169ee2e0fdc052ff589ceca0bc67557584c1f) - Upgraded to Next.js 13
-
   - NextLink integrates the next/link functionality with @mui/material's Link and ButtonBase (and all it's derivatives) components.
   - NextLink automatically adds `target="_blank"` when the href is external.
   - NextLink makes all relative href absolute. `href="my-page"` will be rendered as `href="/my-page"`. ([@paales](https://github.com/paales))
@@ -163,7 +345,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -182,7 +363,6 @@
 - [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
-
   - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))
@@ -200,7 +380,6 @@
 - [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
-
   - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
@@ -506,7 +685,6 @@
 * [#1278](https://github.com/ho-nl/m2-pwa/pull/1278) [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Written documentation for GraphCommerce! 👩‍🏫🧑‍🏫📚📖
 
 - [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
-
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.

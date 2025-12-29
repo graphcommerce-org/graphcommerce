@@ -11,8 +11,9 @@ import {
   ProductListParamsProvider,
   ProductListSort,
 } from '@graphcommerce/magento-product'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { Container, LayoutTitle, memoDeep, StickyBelowHeader } from '@graphcommerce/next-ui'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import type { ProductListLayoutProps } from './types'
 
 export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
@@ -25,7 +26,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
 
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs && category && (
+      {breadcrumbs && category && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
             category={category}
@@ -50,6 +51,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
             category={category}
+            productListRenderer={productListRenderer}
           />
           <CategoryChildren
             params={params}
@@ -63,7 +65,6 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           Search {params.search}
         </LayoutTitle>
       )}
-
       <StickyBelowHeader>
         <ProductListParamsProvider value={params}>
           <ProductListFiltersContainer>

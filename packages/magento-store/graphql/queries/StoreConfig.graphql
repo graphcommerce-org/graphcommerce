@@ -1,0 +1,6 @@
+query StoreConfig {
+  storeConfig {
+    store_code
+  }
+  ...StoreConfigQueryFragment
+}

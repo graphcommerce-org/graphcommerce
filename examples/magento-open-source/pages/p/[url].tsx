@@ -1,6 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
   cacheFirst,
+  flushMeasurePerf,
   mergeDeep,
   PrivateQueryMaskProvider,
   usePrivateQuery,
@@ -20,6 +21,7 @@ import {
   ProductPageJsonLd,
   ProductPageMeta,
   ProductPageName,
+  ProductPagePriceLowest,
   ProductScroller,
   ProductShortDescription,
   ProductSpecs,
@@ -27,18 +29,20 @@ import {
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
 import { jsonLdProductReview, ProductReviewChip } from '@graphcommerce/magento-review'
-import { Money, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
-import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { breadcrumbs, magentoVersion } from '@graphcommerce/next-config/config'
 import {
   isTypename,
   LayoutHeader,
   LayoutTitle,
   nonNullable,
   responsiveVal,
+  revalidate,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
@@ -61,7 +65,7 @@ function ProductPage(props: Props) {
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
-    { variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 } },
+    { variables: { urlKey, useCustomAttributes: magentoVersion >= 247 } },
     props,
   )
   const { products, relatedUpsells } = scopedQuery.data
@@ -76,7 +80,7 @@ function ProductPage(props: Props) {
   return (
     <PrivateQueryMaskProvider mask={scopedQuery.mask}>
       <AddProductsToCartForm key={product.uid} defaultValues={defaultValues}>
-        <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+        <LayoutHeader floatingMd hideMd={breadcrumbs}>
           <LayoutTitle size='small' component='span'>
             <ProductPageName product={product} />
           </LayoutTitle>
@@ -94,13 +98,13 @@ function ProductPage(props: Props) {
 
         <ProductPageMeta product={product} />
 
-        {import.meta.graphCommerce.breadcrumbs && (
+        {breadcrumbs && (
           <ProductPageBreadcrumbs
             product={product}
             sx={(theme) => ({
               py: `calc(${theme.spacings.xxs} / 2)`,
               pl: theme.page.horizontal,
-              background: theme.palette.background.paper,
+              background: theme.vars.palette.background.paper,
               [theme.breakpoints.down('md')]: {
                 '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
               },
@@ -117,12 +121,7 @@ function ProductPage(props: Props) {
         >
           <div>
             {isTypename(product, ['ConfigurableProduct', 'BundleProduct']) && (
-              <Typography component='div' variant='body1' color='text.disabled'>
-                <Trans
-                  id='As low as <0/>'
-                  components={{ 0: <Money {...product.price_range.minimum_price.final_price} /> }}
-                />
-              </Typography>
+              <ProductPagePriceLowest product={product} sx={{ color: 'text.disabled' }} />
             )}
             <Typography variant='h3' component='div' gutterBottom>
               <ProductPageName product={product} />
@@ -142,7 +141,12 @@ function ProductPage(props: Props) {
           </ProductPageAddToCartActionsRow>
         </ProductPageGallery>
 
-        <ProductPageDescription product={product} fontSize='responsive' right='' />
+        <ProductPageDescription
+          product={product}
+          fontSize='responsive'
+          right=''
+          productListRenderer={productListRenderer}
+        />
       </AddProductsToCartForm>
 
       <ProductSpecs title='Specs' {...products} />
@@ -180,7 +184,7 @@ function ProductPage(props: Props) {
       )}
 
       <RecentlyViewedProducts
-        title={<Trans id='Recently viewed products' />}
+        title={<Trans>Recently viewed products</Trans>}
         exclude={[product.sku]}
         productListRenderer={productListRenderer}
         sizes={responsiveVal(200, 400)}
@@ -219,18 +223,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const urlKey = params?.url ?? '??'
 
   const conf = client.query({ query: StoreConfigDocument })
-  const productPage = staticClient.query({
-    query: ProductPage2Document,
-    variables: { urlKey, useCustomAttributes: import.meta.graphCommerce.magentoVersion >= 247 },
-  })
+  const productPage = staticClient
+    .query({
+      query: ProductPage2Document,
+      variables: { urlKey, useCustomAttributes: magentoVersion >= 247 },
+    })
+    .then((pp) => defaultConfigurableOptionsSelection(urlKey, client, pp.data))
+
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const product = productPage.then((pp) =>
-    pp.data.products?.items?.find((p) => p?.url_key === urlKey),
-  )
+  const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
 
   if (!(await product)) return redirectOrNotFound(staticClient, conf, params, locale)
 
@@ -238,16 +243,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: '/', title: i18n._(/* i18n */ 'Home') }
+      : { href: '/', title: t`Home` }
 
-  return {
+  const result = {
     props: {
       urlKey,
-      ...defaultConfigurableOptionsSelection(urlKey, client, (await productPage).data),
+      ...(await productPage),
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
+
+  flushMeasurePerf()
+  return result
 }

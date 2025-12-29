@@ -1,34 +1,30 @@
 import type { UseFormGraphQlOptions } from '@graphcommerce/ecommerce-ui'
-import type { ApolloQueryResult } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { useApolloClient } from '@graphcommerce/graphql'
 import type { CrosssellsQuery } from '@graphcommerce/magento-cart'
 import { CrosssellsDocument, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useMemo, useRef } from 'react'
-import type { AddProductsToCartMutation } from './AddProductsToCart.gql'
-import { AddProductsToCartDocument } from './AddProductsToCart.gql'
-import type { AddProductsToCartSnackbarProps } from './AddProductsToCartSnackbar'
-import { AddProductsToCartSnackbar } from './AddProductsToCartSnackbar'
+import { AddProductsToCartDocument, type AddProductsToCartMutation } from './AddProductsToCart.gql'
+import {
+  AddProductsToCartSnackbar,
+  type AddProductsToCartSnackbarProps,
+} from './AddProductsToCartSnackbar'
 import { toUserErrors } from './toUserErrors'
-import type { AddProductsToCartFields, RedirectType } from './useFormAddProductsToCart'
-import { AddProductsToCartContext } from './useFormAddProductsToCart'
+import {
+  AddProductsToCartContext,
+  type AddProductsToCartFields,
+  type RedirectType,
+} from './useFormAddProductsToCart'
 
 export type AddProductsToCartFormProps = {
   children: React.ReactNode
   sx?: SxProps<Theme>
   redirect?: RedirectType
   snackbarProps?: AddProductsToCartSnackbarProps
-
-  /** @deprecated Use snackbarProps.errorSnackbar instead */
-  errorSnackbar?: Omit<ErrorSnackbarProps, 'open'>
-  /** @deprecated Use snackbarProps.successSnackbar instead */
-  successSnackbar?: Omit<MessageSnackbarProps, 'open' | 'action'>
-  /** @deprecated Use snackbarProps.disableSuccessSnackbar instead */
-  disableSuccessSnackbar?: boolean
 } & UseFormGraphQlOptions<AddProductsToCartMutation, AddProductsToCartFields>
 
 const name = 'AddProductsToCartForm'
@@ -45,64 +41,60 @@ const name = 'AddProductsToCartForm'
  * - Redirects the user to the cart/checkout/added page after successful submission.
  */
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
-  let {
-    children,
-    redirect,
-    onComplete,
-    sx,
-    disableSuccessSnackbar,
-    errorSnackbar,
-    successSnackbar,
-    snackbarProps,
-    ...formProps
-  } = props
+  const { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
   const router = useRouter()
   const client = useApolloClient()
-  const crosssellsQuery = useRef<Promise<ApolloQueryResult<CrosssellsQuery>>>()
-
-  if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
-    redirect = undefined
+  const crosssellsQuery = useRef<Promise<ApolloClient.QueryResult<CrosssellsQuery>> | undefined>(
+    undefined,
+  )
 
   const form = useFormGqlMutationCart<AddProductsToCartMutation, AddProductsToCartFields>(
     AddProductsToCartDocument,
     {
       ...formProps,
+      defaultValues: { redirect },
       // We're stripping out incomplete entered options.
       onBeforeSubmit: async (variables) => {
         const variables2 = (await formProps.onBeforeSubmit?.(variables)) ?? variables
         if (variables2 === false) return false
 
-        const { cartId, cartItems } = variables2
+        const { cartId, cartItems, ...rest } = variables2
 
         const requestData = {
           cartId,
           cartItems: cartItems
             .filter((cartItem) => cartItem.sku && cartItem.quantity !== 0)
-            .map(({ customizable_options, ...cartItem }) => {
-              const options = Object.values(customizable_options ?? {})
-                .flat(1)
-                .filter(Boolean)
-
-              return {
+            .map(
+              ({
+                selected_options_record = {},
+                entered_options_record = {},
+                keep_sku,
+                ...cartItem
+              }) => ({
                 ...cartItem,
                 quantity: cartItem.quantity || 1,
                 selected_options: [
-                  ...(cartItem.selected_options ?? []).filter(Boolean),
-                  ...options,
+                  ...(cartItem.selected_options ?? []).filter(nonNullable),
+                  ...Object.values(selected_options_record).flat(1).filter(nonNullable),
                 ],
                 entered_options: [
-                  ...(cartItem.entered_options
-                    ?.filter((option) => option?.value)
-                    .filter(nonNullable)
-                    .map((option) => ({ uid: option.uid, value: `${option?.value}` })) ?? []),
+                  ...(cartItem.entered_options ?? []).filter(nonNullable),
+                  ...Object.entries(entered_options_record).map(([uid, value]) => {
+                    if (value instanceof Date) {
+                      const dateValue = value.toISOString().replace(/.000Z/, '').replace('T', ' ')
+                      return { uid, value: dateValue }
+                    }
+                    return { uid, value: value.toString() }
+                  }),
                 ],
-              }
-            }),
+              }),
+            ),
+          ...rest,
         }
 
         const sku = requestData.cartItems[requestData.cartItems.length - 1]?.sku
 
-        if (sku && redirect === 'added') {
+        if (sku && requestData.redirect === 'added') {
           // Preload crosssells
           crosssellsQuery.current = client.query({
             query: CrosssellsDocument,
@@ -115,14 +107,16 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
       onComplete: async (result, variables) => {
         await onComplete?.(result, variables)
 
-        // After the form has been submitted, we're resetting the submitted SKU's
+        // After the form has been submitted, we're resetting the submitted SKU's to disable them all.
+        // We use the presence of the SKU to determine if the line is 'enabled'.
+        // After submitting we reset (when using multiple buttons in a single form)
         form.getValues('cartItems').forEach((item, index) => {
-          if (item.sku) form.setValue(`cartItems.${index}.sku`, '')
+          if (item.sku && !item.keep_sku) form.setValue(`cartItems.${index}.sku`, '')
         })
 
-        if (toUserErrors(result.data).length || result.errors?.length || !redirect) return
+        if (toUserErrors(result.data).length || result.errors?.length || !variables.redirect) return
 
-        if (redirect === 'added') {
+        if (variables.redirect === 'added') {
           await crosssellsQuery.current
           const method = router.pathname.startsWith('/checkout/added')
             ? router.replace
@@ -131,9 +125,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
             pathname: '/checkout/added',
             query: { sku: variables.cartItems.map((i) => i.sku) },
           })
-        } else {
-          await router.push({ pathname: redirect })
+        } else if (variables.redirect) {
+          await router.push({ pathname: variables.redirect })
         }
+
+        form.resetField('redirect', { defaultValue: redirect })
       },
     },
   )
@@ -141,18 +137,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   const submit = form.handleSubmit(() => {})
 
   return (
-    <AddProductsToCartContext.Provider
-      value={useMemo(() => ({ ...form, redirect }), [form, redirect])}
-    >
+    <AddProductsToCartContext.Provider value={useMemo(() => ({ ...form }), [form])}>
       <Box component='form' onSubmit={submit} noValidate sx={sx} className={name}>
         {children}
       </Box>
-      <AddProductsToCartSnackbar
-        errorSnackbar={errorSnackbar}
-        successSnackbar={successSnackbar}
-        disableSuccessSnackbar={disableSuccessSnackbar}
-        {...snackbarProps}
-      />
+      <AddProductsToCartSnackbar {...snackbarProps} />
     </AddProductsToCartContext.Provider>
   )
 }

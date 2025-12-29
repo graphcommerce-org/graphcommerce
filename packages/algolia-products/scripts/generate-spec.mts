@@ -1,8 +1,8 @@
+import { writeFile } from 'fs/promises'
+import conf from '@graphcommerce/prettier-config-pwa'
 import yaml from 'js-yaml'
-import { writeFile } from 'node:fs/promises'
 import type { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
-import conf from '@graphcommerce/prettier-config-pwa'
 import { algoliaSchemaBaseFilter } from './base-schema-filter.mjs'
 
 const response = await fetch(
@@ -11,7 +11,7 @@ const response = await fetch(
 
 const openApiSchema = yaml.load(await response.text()) as OpenAPIV3.Document
 
-const acl = ['search']
+const acl = ['search', 'settings']
 
 const newSchema: OpenAPIV3.Document = {
   ...openApiSchema,
@@ -33,7 +33,7 @@ const newSchema: OpenAPIV3.Document = {
           const keys = ['post', 'get', 'put', 'delete', 'patch', 'options'] as const
 
           keys.forEach((method) => {
-            if (!newValue[method]?.['x-acl']?.some((value: string) => acl.includes(value))) {
+            if (!newValue[method]?.['x-acl']?.every((value: string) => acl.includes(value))) {
               newValue[method] = undefined
             }
           })
@@ -45,7 +45,7 @@ const newSchema: OpenAPIV3.Document = {
 
           // Remove the search endpoint + remove the getObjects endpoint.
           if (
-            path === '/1/indexes/*/queries' ||
+            // path === '/1/indexes/*/queries' ||
             path === '/1/indexes/*/objects' ||
             path === '/1/indexes/{indexName}/{objectID}'
           )

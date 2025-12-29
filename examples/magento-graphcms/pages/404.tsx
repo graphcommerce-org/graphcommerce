@@ -1,14 +1,17 @@
-import { PageOptions } from '@graphcommerce/framer-next-pages'
+import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { useCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { GetStaticProps, Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { Separator, icon404, IconSvg } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Box, Container, Typography, Link } from '@mui/material'
 import React from 'react'
-import { LayoutDocument, LayoutNavigation, LayoutNavigationProps } from '../components'
+import type { LayoutNavigationProps } from '../components'
+import { LayoutDocument, LayoutNavigation } from '../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../lib/graphql/graphqlSsrClient'
 
 type Props = Record<string, unknown>
@@ -19,14 +22,14 @@ function RouteNotFoundPage() {
 
   const links = [
     <Link key={0} href='/' color='primary' underline='hover'>
-      <Trans id='Store home' />
+      <Trans>Store home</Trans>
     </Link>,
   ]
 
   if (canSignIn) {
     links.push(
       <Link key={1} href='/account' color='primary' underline='hover'>
-        <Trans id='Account' />
+        <Trans>Account</Trans>
       </Link>,
     )
   }
@@ -35,21 +38,21 @@ function RouteNotFoundPage() {
     <>
       <PageMeta title='Page not found' metaRobots={['noindex']} />
       <Container maxWidth='sm'>
-        <Box textAlign='center' mt={16} mb={16}>
+        <Box sx={{ textAlign: 'center', mt: 16, mb: 16 }}>
           <IconSvg src={icon404} size='xxl' />
           <Typography variant='h3' component='h1' gutterBottom>
-            <Trans id='Whoops our bad...' />
+            <Trans>Whoops our bad...</Trans>
           </Typography>
           <Typography variant='body1'>
-            <Trans id="We couldn't find the page you were looking for" />
+            <Trans>We couldn't find the page you were looking for</Trans>
           </Typography>
-          <Box mt={4} mb={2}>
+          <Box sx={{ mt: 4, mb: 2 }}>
             <SearchLink href='/search' sx={{ width: '100%', py: 2, typography: 'body1' }}>
-              <Trans id='Search...' />
+              <Trans>Search...</Trans>
             </SearchLink>
           </Box>
-          <Trans id='Or follow these links to get you back on track!' />
-          <Box mb={8}>
+          <Trans>Or follow these links to get you back on track!</Trans>
+          <Box sx={{ mb: 8 }}>
             {links.map((link, index) => (
               // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
@@ -82,9 +85,9 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

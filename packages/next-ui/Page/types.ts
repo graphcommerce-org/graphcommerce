@@ -1,8 +1,5 @@
 import type { ParsedUrlQuery } from 'querystring'
-import type { UpPage } from '@graphcommerce/framer-next-pages/types'
-// todo: remove references to GraphQL
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type { NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { UpPage } from '@graphcommerce/framer-next-pages'
 import type {
   GetServerSideProps as GetServerSidePropsNext,
   GetStaticProps as GetStaticPropsNext,
@@ -10,7 +7,7 @@ import type {
 
 type AnyObj = Record<string, unknown>
 
-export type ApolloStateProps = { apolloState: NormalizedCacheObject; up?: UpPage | null }
+export type ApolloStateProps = { apolloState: unknown; up?: UpPage | null }
 
 export type GetStaticProps<
   PL extends AnyObj,

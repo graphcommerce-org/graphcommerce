@@ -57,6 +57,10 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
           ],
         },
       ],
+      additionalResolvers: [
+        ...(baseConfig.additionalResolvers ?? []),
+        '@graphcommerce/magento-graphql-rest',
+      ],
     },
     graphCommerceConfig,
   )

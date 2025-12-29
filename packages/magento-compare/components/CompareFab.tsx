@@ -2,13 +2,14 @@ import {
   extendableComponent,
   iconCompare,
   IconSvg,
+  sxx,
   useFabSize,
   useScrollY,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
+import { Badge, Box, Button, styled } from '@mui/material'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
-import { Badge, Box, Button, NoSsr, styled } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
 import React from 'react'
 import { useCompareSummary } from '../hooks'
@@ -42,10 +43,7 @@ function CompareFabContent(props: CompareFabContentProps) {
   if (total_quantity === 0) return null
 
   return (
-    <Box
-      className={classes.root}
-      sx={[{ position: 'relative', height: fabIconSize }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Box className={classes.root} sx={sxx({ position: 'relative', height: fabIconSize }, sx)}>
       <Badge
         color='primary'
         variant='standard'
@@ -56,16 +54,16 @@ function CompareFabContent(props: CompareFabContentProps) {
         <MotionFab
           href='/compare'
           className={classes.compare}
-          aria-label={i18n._(/* i18n */ 'Compare')}
+          aria-label={t`Compare`}
           color='inherit'
           sx={(theme) => ({
             width: 'unset',
-            backgroundColor: `${theme.palette.background.paper} !important`,
+            backgroundColor: `${theme.vars.palette.background.paper} !important`,
             [theme.breakpoints.down('md')]: {},
           })}
           {...rest}
         >
-          {compareIcon} <Trans id='Compare' />
+          {compareIcon} <Trans>Compare</Trans>
         </MotionFab>
       </Badge>
 
@@ -93,9 +91,5 @@ export function CompareFab(props: CompareFabProps) {
   const compareList = useCompareSummary()
   const totalQuantity = compareList.data?.compareList?.item_count ?? 0
 
-  return (
-    <NoSsr fallback={<CompareFabContent total_quantity={0} {...props} />}>
-      {totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />}
-    </NoSsr>
-  )
+  return totalQuantity > 0 && <CompareFabContent total_quantity={totalQuantity} {...props} />
 }

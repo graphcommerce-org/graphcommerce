@@ -1,4 +1,4 @@
-import { breakpointVal, responsiveVal } from '@graphcommerce/next-ui'
+import { breakpointVal, responsiveVal, sxx } from '@graphcommerce/next-ui'
 import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 
@@ -10,7 +10,7 @@ export function ProductImageContainer(props: ProductImageContainerProps) {
   return (
     <Box
       {...props}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           bgcolor: 'background.image',
@@ -28,8 +28,8 @@ export function ProductImageContainer(props: ProductImageContainerProps) {
             height: 'auto',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

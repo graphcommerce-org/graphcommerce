@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { iconCheckmark } from '../icons'
 import type { IconSvgProps } from '../IconSvg'
 import { IconSvg } from '../IconSvg'
@@ -24,7 +25,7 @@ export function InputCheckmark(props: InputCheckmarkProps) {
     <IconSvg
       src={iconCheckmark}
       className='InputCheckmark'
-      sx={[{ stroke: '#01D26A' }, select && { marginRight: '15px' }]}
+      sx={sxx({ stroke: '#01D26A' }, select && { marginRight: '15px' })}
     />
   )
 }

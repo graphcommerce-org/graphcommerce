@@ -1,7 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import {
-  CancelOrderForm,
   getCustomerAccountIsDisabled,
+  OrderAdditional,
   OrderDetailPageDocument,
   OrderDetails,
   OrderItems,
@@ -9,14 +9,19 @@ import {
   OrderTotals,
   ReorderItems,
   useCustomerQuery,
-  useOrderCardItemImages,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { iconBox, IconHeader, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/macro'
+import {
+  FullPageMessage,
+  iconBox,
+  IconSvg,
+  LayoutOverlayHeader,
+  LayoutTitle,
+} from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { Container, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { LayoutOverlayProps } from '../../../components'
@@ -27,57 +32,54 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function OrderDetailPage() {
   const router = useRouter()
-  const { orderNumber } = router.query
+  const orderNumber = String(router.query.orderNumber)
 
   const orders = useCustomerQuery(OrderDetailPageDocument, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderNumber: orderNumber as string },
+    variables: { orderNumber },
     skip: !orderNumber,
   })
-  const { data } = orders
-  const images = useOrderCardItemImages(data?.customer?.orders)
-  const order = data?.customer?.orders?.items?.[0]
+  const order = orders.data?.customer?.orders?.items?.[0]
 
   return (
-    <WaitForCustomer waitFor={orders}>
+    <>
       <LayoutOverlayHeader primary={order && <ReorderItems order={order} />}>
         <LayoutTitle size='small' component='span' icon={iconBox}>
           <Trans>Order #{orderNumber}</Trans>
         </LayoutTitle>
       </LayoutOverlayHeader>
-      <Container maxWidth='md'>
-        {(!orderNumber || !order) && (
-          <IconHeader src={iconBox} size='large'>
-            <Trans>Order not found</Trans>
-          </IconHeader>
-        )}
-
-        <LayoutTitle
-          icon={iconBox}
-          gutterBottom={false}
-          sx={(theme) => ({ mb: theme.spacings.xxs })}
-        >
-          <Trans>Order #{orderNumber}</Trans>
-        </LayoutTitle>
-
-        {orderNumber && order && (
-          <>
-            <PageMeta
-              title={i18n._(/* i18n */ 'Order #{orderNumber}', { orderNumber })}
-              metaRobots={['noindex']}
+      <WaitForCustomer waitFor={[orders, router.isReady]} sx={{ height: '100%' }}>
+        <Container maxWidth='md'>
+          {(!orderNumber || !order) && (
+            <FullPageMessage
+              title={<Trans>Order not found</Trans>}
+              icon={<IconSvg src={iconBox} size='xxl' />}
             />
-            <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
-              <OrderStateLabel {...order} />
-            </Typography>
-            <OrderDetails {...order} />
-            <OrderItems {...order} images={images} />
-            <OrderTotals {...order} />
+          )}
 
-            <CancelOrderForm order={order} />
-          </>
-        )}
-      </Container>
-    </WaitForCustomer>
+          {orderNumber && order && (
+            <>
+              <LayoutTitle
+                icon={iconBox}
+                gutterBottom={false}
+                sx={(theme) => ({ mb: theme.spacings.xxs })}
+              >
+                <Trans>Order #{orderNumber}</Trans>
+              </LayoutTitle>
+
+              <PageMeta title={t`Order #${orderNumber}`} metaRobots={['noindex']} />
+              <Typography sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.lg })}>
+                <OrderStateLabel {...order} />
+              </Typography>
+              <OrderDetails order={order} />
+              <OrderItems order={order} />
+              <OrderTotals order={order} />
+              <OrderAdditional order={order} />
+            </>
+          )}
+        </Container>
+      </WaitForCustomer>
+    </>
   )
 }
 
@@ -106,7 +108,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await config.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account/orders', title: i18n._(/* i18n */ 'Orders') },
+      up: { href: '/account/orders', title: t`Orders` },
     },
   }
 }

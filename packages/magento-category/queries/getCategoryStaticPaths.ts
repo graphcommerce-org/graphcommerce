@@ -1,4 +1,5 @@
-import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
+import { limitSsg } from '@graphcommerce/next-config/config'
 import type { GetStaticPathsResult } from 'next'
 import type { GetCategoryStaticPathsQuery } from './GetCategoryStaticPaths.gql'
 import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
@@ -6,11 +7,11 @@ import { GetCategoryStaticPathsDocument } from './GetCategoryStaticPaths.gql'
 type StaticPathsResult = GetStaticPathsResult<{ url: string[] }>
 
 const getCategoryStaticPaths = async (
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   locale: string,
-  options: { limit?: boolean } = { limit: import.meta.graphCommerce.limitSsg || false },
+  options: { limit?: boolean } = { limit: limitSsg || false },
 ) => {
-  const { data } = await client.query({
+  const result = await client.query({
     query: GetCategoryStaticPathsDocument,
   })
 
@@ -21,7 +22,7 @@ const getCategoryStaticPaths = async (
     if (cat?.url_path) paths.push({ params: { url: cat.url_path.split('/') }, locale })
     if (cat?.children) cat.children.forEach(add)
   }
-  data.categories?.items?.forEach(add)
+  result.data?.categories?.items?.forEach(add)
 
   return options.limit ? paths.slice(0, 1) : paths
 }

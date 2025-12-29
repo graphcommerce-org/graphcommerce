@@ -1,7 +1,7 @@
 import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
-import { extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Typography } from '@mui/material'
 import { CustomerNewsletterToggle } from '../CustomerNewsletterToggle/CustomerNewsletterToggle'
@@ -26,9 +26,9 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
   return (
     <Box
       className={classes.signup}
-      sx={[
+      sx={sxx(
         (theme) => ({
-          background: theme.palette.background.default,
+          background: theme.vars.palette.background.default,
           display: 'grid',
           alignItems: 'center',
           gridAutoFlow: 'column',
@@ -44,11 +44,11 @@ export function SignupNewsletter(props: SignupNewsletterProps) {
             gridTemplateAreas: '"a b c"',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Typography variant='subtitle1' className={classes.text}>
-        <Trans id='Sign up for our newsletter and stay updated' />
+        <Trans>Sign up for our newsletter and stay updated</Trans>
       </Typography>
       <Box
         className={classes.signupForm}

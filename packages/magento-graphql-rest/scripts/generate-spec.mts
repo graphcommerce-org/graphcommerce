@@ -1,8 +1,8 @@
+import { readFile, writeFile } from 'fs/promises'
+import conf from '@graphcommerce/prettier-config-pwa'
 import yaml from 'js-yaml'
-import { writeFile, readFile } from 'node:fs/promises'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
-import conf from '@graphcommerce/prettier-config-pwa'
 
 function isRef(value: any): value is OpenAPIV3.ReferenceObject {
   return typeof value === 'object' && '$ref' in value

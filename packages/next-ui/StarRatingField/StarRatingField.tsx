@@ -27,7 +27,7 @@ export function StarRatingField(props: StarRatingFieldProps) {
           src={iconStar}
           size='large'
           className={classes.starFull}
-          sx={(theme) => ({ fill: theme.palette.divider, stroke: 'none', margin: '0 3px' })}
+          sx={(theme) => ({ fill: theme.vars.palette.divider, stroke: 'none', margin: '0 3px' })}
         />
       }
       icon={

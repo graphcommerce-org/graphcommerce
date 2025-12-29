@@ -10,6 +10,7 @@ import { Container, Typography } from '@mui/material'
 import { GetStaticPaths } from 'next'
 import { LayoutOverlay, LayoutOverlayProps } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { revalidate } from '@graphcommerce/next-ui'
 
 type Props = { agreement: NonNullable<NonNullable<CartAgreementsQuery['checkoutAgreements']>[0]> }
 type RouteProps = { url: string }
@@ -60,7 +61,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const path = async (locale: string) => {
     const client = graphqlSsrClient({ locale })
     const { data } = await client.query({ query: CartAgreementsDocument })
-    return (data.checkoutAgreements ?? []).map((agreement) => ({
+    return (data?.checkoutAgreements ?? []).map((agreement) => ({
       locale,
       params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
@@ -81,7 +82,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })
 
-  const agreement = agreements.data.checkoutAgreements?.find(
+  const agreement = agreements.data?.checkoutAgreements?.find(
     (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
   )
 
@@ -93,6 +94,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

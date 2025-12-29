@@ -1,17 +1,18 @@
-import { onError } from '@apollo/client/link/error'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
+import { ErrorLink } from '@apollo/client/link/error'
 
-export const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
-  if (graphQLErrors)
+export const errorLink = new ErrorLink(({ error, operation }) => {
+  if (CombinedGraphQLErrors.is(error)) {
     console.error(
-      `[GraphQL errors]: ${graphQLErrors
+      `[GraphQL errors]: ${error.errors
         .map(({ message, path }) => `${message} ${path?.join(',')}`)
         .join(', ')}`,
     )
+  } else if (error) {
+    console.error(`[Graphql error]: ${error}`)
+  }
 
-  if (networkError)
-    console.error(`[Graphql error]: ${networkError}`)
-
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   ;(async () => {
     const graphql = await import('graphql')
 

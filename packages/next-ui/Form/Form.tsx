@@ -1,5 +1,5 @@
 import type { Theme } from '@mui/material'
-import { darken, lighten, styled } from '@mui/material'
+import { styled } from '@mui/material'
 import { breakpointVal } from '../Styles/breakpointVal'
 
 type FormStyleProps = {
@@ -15,13 +15,13 @@ const styles = ({ theme, contained = false, background }: { theme: Theme } & For
       padding: `${theme.spacings.xxs} 0`,
     },
     background === 'default' && {
-      background:
-        theme.palette.mode === 'light'
-          ? darken(theme.palette.background.default, 0.03)
-          : lighten(theme.palette.background.default, 0.1),
+      background: theme.darken(theme.vars.palette.background.default, 0.03),
+      ...theme.applyStyles('dark', {
+        background: theme.lighten(theme.vars.palette.background.default, 0.1),
+      }),
     },
     background === 'secondary' && {
-      background: theme.palette.secondary.light,
+      background: theme.vars.palette.secondary.light,
     },
     contained && {
       padding: `${theme.spacings.xxs} ${theme.spacings.sm}`,

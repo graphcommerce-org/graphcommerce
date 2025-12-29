@@ -1,5 +1,6 @@
 import type {
   AlgolianumericFilters_Input,
+  InputMaybe,
   ProductAttributeFilterInput,
 } from '@graphcommerce/graphql-mesh'
 import {
@@ -7,7 +8,7 @@ import {
   isFilterTypeMatch,
   isFilterTypeRange,
 } from '@graphcommerce/magento-product'
-import type { InputMaybe } from '@graphcommerce/next-config'
+import type { GetAlgoliaSettingsReturn } from './getAlgoliaSettings'
 import type { GetStoreConfigReturn } from './getStoreConfig'
 import { nonNullable } from './utils'
 
@@ -17,24 +18,44 @@ import { nonNullable } from './utils'
  * https://www.algolia.com/doc/api-reference/api-parameters/facetFilters/
  */
 export function productFilterInputToAlgoliaFacetFiltersInput(
+  settings: GetAlgoliaSettingsReturn,
   filters?: InputMaybe<ProductAttributeFilterInput>,
+  query?: string,
 ) {
   const filterArray: (string | string[])[] = []
   if (!filters) {
     return []
   }
 
+  const hasVisibility = settings?.attributesForFaceting?.some(
+    (attr) => attr === 'visibility' || attr?.includes('filterOnly(visibility)'),
+  )
+
+  if (hasVisibility) {
+    if (typeof query === 'string') {
+      filterArray.push(['visibility:Catalog, Search', 'visibility:Search'])
+    } else {
+      filterArray.push(['visibility:Catalog, Search', 'visibility:Catalog'])
+    }
+  }
+
+  // @see algoliaFacetsToAggregations for the other side.
+  const maybeDecode = (value: string) => value.replaceAll('_OR_', '/').replaceAll('_AND_', ',')
+
   Object.entries(filters).forEach(([key, value]) => {
     if (isFilterTypeEqual(value)) {
       if (value.in) {
         const values = value.in.filter(nonNullable)
-        if (key === 'category_uid') filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
-        else filterArray.push(values.map((v) => `${key}:${v}`))
+        if (key === 'category_uid') {
+          filterArray.push(values.map((v) => `categoryIds:${atob(v)}`))
+        } else {
+          filterArray.push(values.map((v) => `${key}:${maybeDecode(v)}`))
+        }
       }
 
       if (value.eq) {
         if (key === 'category_uid') filterArray.push(`categoryIds:${atob(value.eq)}`)
-        else filterArray.push(`${key}:${value.eq}`)
+        else filterArray.push(`${key}:${maybeDecode(value.eq)}`)
       }
     }
 
@@ -42,7 +63,6 @@ export function productFilterInputToAlgoliaFacetFiltersInput(
       throw Error('Match filters are not supported')
     }
   })
-
   return filterArray
 }
 

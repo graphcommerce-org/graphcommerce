@@ -2,8 +2,8 @@ import fs from 'fs';
 import { loadConfig } from '@graphcommerce/next-config';
 import dotenv from 'dotenv';
 import prompts from 'prompts';
-import { SimpleFieldType, RelationalFieldType, VisibilityTypes, Client } from '@hygraph/management-sdk';
-import { gql, ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { SimpleFieldType, VisibilityTypes, RelationalFieldType, Client } from '@hygraph/management-sdk';
+import { gql, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import gql$1 from 'graphql-tag';
 
 const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
@@ -16,7 +16,7 @@ const graphcommerceLog = (message, type) => {
   console.log(type ? color[type] : "", `${message}`);
 };
 
-dotenv.config();
+dotenv.config({ quiet: true });
 function migrationActionFactory(schema, client) {
   const actionMap = client ? {
     create: {
@@ -52,7 +52,7 @@ function migrationActionFactory(schema, client) {
       unionField: (innerprops) => client.deleteField(innerprops),
       componentUnionField: (innerprops) => client.deleteField(innerprops)
     }
-  } : undefined;
+  } : void 0;
   const migrationAction = (_schema, type, action, props, parentApiId, parentType) => {
     const alreadyExists = () => {
       if (action !== "create") {
@@ -724,7 +724,7 @@ class UpsertClient extends Client {
   upsertSimpleField(data) {
     const model = this.schema.models.find((m) => m.apiId === data.parentApiId);
     const exists = model?.fields.some((f) => f.apiId === data.apiId);
-    return exists ? this.createSimpleField(data) : this.updateSimpleField({ ...data, embeddableModels: undefined });
+    return exists ? this.createSimpleField(data) : this.updateSimpleField({ ...data, embeddableModels: void 0 });
   }
   // upsertRemoteField(data: BatchMigrationCreateRemoteFieldInput) {
   //   const model = this.schema.models.find((m) => m.apiId === data.parentApiId)
@@ -848,7 +848,7 @@ function getManagementClient(config) {
   });
 }
 
-dotenv.config();
+dotenv.config({ quiet: true });
 async function migrateHygraphCli() {
   const hygraphConfig = getConfig(loadConfig(process.cwd()));
   const packageJson = fs.readFileSync("package.json", "utf8");

@@ -3,6 +3,7 @@ import {
   iconSearch,
   IconSvg,
   responsiveVal,
+  sxx,
   useFabSize,
   useIconSvgSize,
 } from '@graphcommerce/next-ui'
@@ -59,7 +60,7 @@ export function SearchLink(props: SearchLinkProps) {
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         tabIndex={0}
-        sx={[
+        sx={sxx(
           (theme) => ({
             justifySelf: 'center',
             marginRight: `calc((${fabSize} - ${iconSize}) / 2)`,
@@ -79,8 +80,8 @@ export function SearchLink(props: SearchLinkProps) {
               borderColor: 'text.secondary',
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         {...linkProps}
       >
         <div className={classes.text}>{children ?? <>&nbsp;</>}</div>
@@ -96,10 +97,7 @@ export function SearchLink(props: SearchLinkProps) {
           rel='noindex'
           size={size ?? 'large'}
           color={color ?? 'inherit'}
-          sx={[
-            { display: { xs: 'inline-flex', [breakpoint]: 'none' } },
-            ...(Array.isArray(fabSx) ? fabSx : [fabSx]),
-          ]}
+          sx={sxx({ display: { xs: 'inline-flex', [breakpoint]: 'none' } }, fabSx)}
           {...fabProps}
         >
           <IconSvg src={iconSearch} size='large' sx={{ color: 'text.primary' }} />

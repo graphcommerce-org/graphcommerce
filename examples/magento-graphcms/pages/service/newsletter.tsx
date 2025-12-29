@@ -1,10 +1,12 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, LayoutOverlayHeader, LayoutTitle } from '@graphcommerce/next-ui'
-import { t, Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
+import { t } from '@lingui/core/macro'
 import { Container, Typography } from '@mui/material'
 import {
   LayoutDocument,
@@ -36,16 +38,16 @@ function NewsletterSubscribe({ pages }: Props) {
         </LayoutTitle>
       </LayoutOverlayHeader>
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
       <RowRenderer {...pages[0]} />
 
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         {page?.title && (
           <Typography variant='h3'>
-            <Trans id='Subscribe to newsletter'>Subscribe to newsletter</Trans>
+            <Trans>Subscribe to newsletter</Trans>
           </Typography>
         )}
         <GuestNewsletter />
@@ -83,6 +85,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

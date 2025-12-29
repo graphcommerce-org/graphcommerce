@@ -14,8 +14,6 @@ query ProductPage2(
       ...ProductWeight
       ...ProductPageItem
       ...ConfigurableOptions
-      ...DownloadableProductOptions
-      ...BundleProductOptions
       ...GroupedProduct
     }
   }

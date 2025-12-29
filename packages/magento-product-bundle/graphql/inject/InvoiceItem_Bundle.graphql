@@ -1,0 +1,5 @@
+fragment InvoiceItem_Bundle on BundleInvoiceItem @inject(into: ["InvoiceItem"]) {
+  bundle_options {
+    ...ItemSelectedBundleOption
+  }
+}

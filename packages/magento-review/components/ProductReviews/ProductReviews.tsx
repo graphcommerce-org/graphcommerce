@@ -5,8 +5,9 @@ import {
   Pagination,
   responsiveVal,
   StarRatingField,
+  sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Button, Link, Typography } from '@mui/material'
 import { useRouter } from 'next/router'
@@ -79,7 +80,7 @@ export function ProductReviews(props: ProductReviewsProps) {
           },
         })}
       >
-        <Trans id='Write a review' />
+        <Trans>Write a review</Trans>
       </Button>
 
       {!!total_pages && total_pages > 1 && (
@@ -104,17 +105,14 @@ export function ProductReviews(props: ProductReviewsProps) {
     return (
       <Box
         className={classes.container}
-        sx={[
-          (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
       >
         <Box
           className={classes.review}
           sx={(theme) => ({
             display: 'grid',
             gap: theme.spacings.sm,
-            borderBottom: `1px solid ${theme.palette.divider}`,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
             padding: `${theme.spacings.md} 0`,
             typography: 'body1',
           })}
@@ -130,7 +128,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             })}
           >
             <Typography variant='subtitle1'>
-              <Trans id='Be the first to write a review!' />
+              <Trans>Be the first to write a review!</Trans>
             </Typography>
           </Box>
         </Box>
@@ -142,10 +140,7 @@ export function ProductReviews(props: ProductReviewsProps) {
   return (
     <Box
       className={classes.container}
-      sx={[
-        (theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
     >
       {!loading &&
         myReviews.items.map((review) => (
@@ -155,7 +150,7 @@ export function ProductReviews(props: ProductReviewsProps) {
             sx={(theme) => ({
               display: 'grid',
               gap: theme.spacings.sm,
-              borderBottom: `1px solid ${theme.palette.divider}`,
+              borderBottom: `1px solid ${theme.vars.palette.divider}`,
               padding: `${theme.spacings.md} 0`,
               typography: 'body1',
             })}
@@ -184,7 +179,7 @@ export function ProductReviews(props: ProductReviewsProps) {
                   display: 'flex',
                   flexWrap: 'wrap',
                   gap: theme.spacings.sm,
-                  color: theme.palette.text.disabled,
+                  color: theme.vars.palette.text.disabled,
                   typography: 'body2',
                 })}
               >
@@ -217,14 +212,14 @@ export function ProductReviews(props: ProductReviewsProps) {
             <Box
               className={classes.meta}
               sx={(theme) => ({
-                color: theme.palette.text.disabled,
+                color: theme.vars.palette.text.disabled,
                 display: 'grid',
                 gridAutoFlow: 'column',
                 justifyContent: 'space-between',
               })}
             >
               <Box className={classes.nickname} sx={{ typography: 'body2' }}>
-                <Trans id='Written by {nickname}' values={{ nickname: review?.nickname }} />
+                <Trans>Written by {review?.nickname}</Trans>
               </Box>
               <Box
                 component='time'

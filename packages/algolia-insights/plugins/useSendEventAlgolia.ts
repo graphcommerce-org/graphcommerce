@@ -1,7 +1,4 @@
-import type {
-  sendEvent,
-  useSendEvent as useSendEventBase,
-} from '@graphcommerce/google-datalayer/api/sendEvent'
+import type { sendEvent, useSendEvent as useSendEventBase } from '@graphcommerce/google-datalayer'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
 import { useEventCallback } from '@mui/material'
 import { useSendAlgoliaEvent } from '../hooks/useSendAlgoliaEvent'

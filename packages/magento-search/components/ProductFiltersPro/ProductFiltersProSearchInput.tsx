@@ -1,6 +1,6 @@
 import { globalFormContextRef } from '@graphcommerce/magento-product'
 import { iconClose, IconSvg } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import type {
   ButtonBaseProps,
   FormControlProps,
@@ -26,9 +26,9 @@ export function useProductFiltersProSearchInput<
   const initial = useRef(true)
 
   useEffect(() => {
+    initial.current = false
     // When page initially loads, fill in the search field with the search param.
     if (internalRef.current && initial.current && searchParam) {
-      initial.current = false
       internalRef.current.selectionStart = searchParam.length
       internalRef.current.selectionEnd = searchParam.length
       return
@@ -40,9 +40,9 @@ export function useProductFiltersProSearchInput<
   }, [searchParam])
 
   const result: P = {
+    placeholder: t`Search all products...`,
     ...props,
     inputRef: ref,
-    placeholder: t`Search all products...`,
     name: 'search',
     type: 'text',
     defaultValue: searchParam,
@@ -50,7 +50,7 @@ export function useProductFiltersProSearchInput<
       if (e.key === 'Enter') {
         const context = globalFormContextRef.current
         if (!context || !searchPage) {
-          return router.push(`/search/${e.currentTarget.value}`)
+          return router.push(`/search/${encodeURIComponent(e.currentTarget.value)}`)
         }
         context.form.setValue('currentPage', 1)
         context.form.setValue('search', e.currentTarget.value)
@@ -64,7 +64,7 @@ export function useProductFiltersProSearchInput<
       // When we're not on the search page, we want to navigate as soon as possible.
       // TODO: We only want to navigate once, and let the rest be handled by the search page.
       if (!context || !searchPage) {
-        return router.push(`/search/${e.target.value}`)
+        return router.push(`/search/${encodeURIComponent(e.target.value)}`)
       }
 
       context.form.setValue('currentPage', 1)

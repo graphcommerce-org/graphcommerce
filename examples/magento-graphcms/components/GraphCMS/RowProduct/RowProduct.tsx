@@ -1,6 +1,9 @@
 import { PrivateQueryMaskProvider, usePrivateQuery } from '@graphcommerce/graphql'
-import { ProductListDocument, ProductListItemsFragment } from '@graphcommerce/magento-product'
-import { ProductSpecsFragment } from '@graphcommerce/magento-product/components/ProductSpecs/ProductSpecs.gql'
+import {
+  ProductListDocument,
+  ProductListItemsFragment,
+  ProductSpecsFragment,
+} from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { RowProductFragment } from './RowProduct.gql'
 import {
@@ -40,7 +43,7 @@ export function RowProduct(props: RowProductProps) {
   const { renderer, variant, items, ...rest } = props
   const mergedRenderer = { ...defaultRenderer, ...renderer } as VariantRenderer
 
-  const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key)
+  const urlKeys = filterNonNullableKeys(items).map((item) => item.url_key) as string[]
   const scoped = usePrivateQuery(
     ProductListDocument,
     { variables: { onlyItems: true, filters: { url_key: { in: urlKeys } } } },

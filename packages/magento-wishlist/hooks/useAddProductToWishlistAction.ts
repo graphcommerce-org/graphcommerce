@@ -119,7 +119,7 @@ export function useAddProductToWishlistAction(
             : product.uid,
           configurable_options: allOptionsSelected ? configurableOptions : [],
           product,
-        },
+        } as WishlistItemFragment,
       ]).then(() => setShowSuccess(true))
     }
   }

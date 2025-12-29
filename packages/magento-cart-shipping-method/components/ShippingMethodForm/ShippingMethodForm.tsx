@@ -13,8 +13,8 @@ import {
   useFormCompose,
   useWatch,
 } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useEffect, useMemo } from 'react'
 import { GetShippingMethodsDocument } from './GetShippingMethods.gql'
@@ -91,9 +91,7 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
       value: '',
       available: false,
       carrier_code: '',
-      carrier_title: i18n._(
-        /* i18n */ 'Please fill out an address to be able to select a shipping method',
-      ),
+      carrier_title: t`Please fill out an address to be able to select a shipping method`,
       method_title: '',
       price_incl_tax: {},
       price_excl_tax: {},
@@ -123,15 +121,14 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
       />
       <Form onSubmit={submit} noValidate sx={sx}>
         <FormHeader variant='h4' sx={(theme) => ({ marginBottom: 0, mb: theme.spacings.sm })}>
-          <Trans id='Shipping method' />
+          <Trans>Shipping method</Trans>
         </FormHeader>
-
         <ActionCardListForm
           control={control}
           name='carrierMethod'
           size='large'
           color='secondary'
-          rules={{ required: i18n._(/* i18n */ 'Please select a shipping method') }}
+          rules={{ required: t`Please select a shipping method` }}
           items={renderItems}
           render={
             ShippingMethodActionCard as React.FC<ActionCardItemRenderProps<ActionCardItemBase>>
@@ -143,7 +140,6 @@ export function ShippingMethodForm(props: ShippingMethodFormProps) {
     </FormProvider>
   )
 }
-
 /** @public */
 export function useShippingMethod() {
   return useWatch<{ carrierMethod?: string }>({ name: 'carrierMethod' })

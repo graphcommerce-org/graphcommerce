@@ -1,6 +1,6 @@
 import { iconPerson, IconSvg, MenuFabSecondaryItem } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
-import { Badge, NoSsr } from '@mui/material'
+import { Badge } from '@mui/material'
 import type { MouseEventHandler } from 'react'
 import React from 'react'
 import { useCustomerAccountCanSignIn } from '../../hooks'
@@ -47,9 +47,5 @@ export function CustomerMenuFabItem(props: CustomerMenuFabItemProps) {
   const canSignIn = useCustomerAccountCanSignIn()
   if (!canSignIn) return null
 
-  return (
-    <NoSsr fallback={<CustomerMenuFabItemContent {...props} />}>
-      <CustomerMenuFabItemContent session={session} {...props} />
-    </NoSsr>
-  )
+  return <CustomerMenuFabItemContent session={session} {...props} />
 }

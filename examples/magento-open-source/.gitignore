@@ -33,5 +33,9 @@ yarn-error.log*
 
 # managed by: graphcommerce
 pages/.well-known/assetlinks.json.tsx
-pages/account/store-credit.tsx
+pages/account/downloads.tsx
+pages/account/payment-tokens.tsx
+pages/downloadable/download/link/id/\[id\].tsx
+pages/downloadable/download/linkSample/link_id/\[id\].tsx
+pages/downloadable/download/sample/sample_id/\[id\].tsx
 # end managed by: graphcommerce

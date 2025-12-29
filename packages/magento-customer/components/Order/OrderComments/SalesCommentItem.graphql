@@ -1,0 +1,4 @@
+fragment SalesCommentItem on SalesCommentItem {
+  message
+  timestamp
+}

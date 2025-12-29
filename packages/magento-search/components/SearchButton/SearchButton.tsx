@@ -1,5 +1,11 @@
-import { extendableComponent, iconSearch, IconSvg, responsiveVal } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import {
+  extendableComponent,
+  iconSearch,
+  IconSvg,
+  responsiveVal,
+  sxx,
+} from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TextFieldProps } from '@mui/material'
 import { TextField } from '@mui/material'
@@ -24,22 +30,15 @@ export function SearchButton(props: SearchButtonProps) {
       variant='outlined'
       size='small'
       className={classes.root}
-      label={label ?? <Trans id='Search...' />}
+      label={label ?? <Trans>Search...</Trans>}
       id='search-input'
-      InputLabelProps={{ shrink: false }}
-      InputProps={{
-        readOnly: true,
-        endAdornment: <IconSvg src={iconSearch} size='medium' />,
-        classes: { root: classes.inputRoot },
-        ...InputProps,
-      }}
       {...textFieldProps}
-      sx={[
+      sx={sxx(
         (theme) => ({
           marginRight: theme.spacings.xxs,
           width: responsiveVal(64, 172),
           '& fieldset': {
-            border: `1px solid ${theme.palette.divider}`,
+            border: `1px solid ${theme.vars.palette.divider}`,
           },
           [theme.breakpoints.down('md')]: {
             width: '100%',
@@ -50,8 +49,18 @@ export function SearchButton(props: SearchButtonProps) {
             marginRight: 0,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
+      slotProps={{
+        input: {
+          readOnly: true,
+          endAdornment: <IconSvg src={iconSearch} size='medium' />,
+          classes: { root: classes.inputRoot },
+          ...InputProps,
+        },
+
+        inputLabel: { shrink: false },
+      }}
     />
   )
 }

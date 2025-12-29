@@ -10,12 +10,14 @@ import type {
 import {
   extractUrlQuery,
   getFilterTypes,
+  hasUserFilterActive,
   parseParams,
   ProductFiltersDocument,
   ProductListDocument,
 } from '@graphcommerce/magento-product'
 import type { CategorySearchQuery } from '@graphcommerce/magento-search'
 import {
+  categoriesApplySearchDefaults,
   CategorySearchDocument,
   productListApplySearchDefaults,
   searchDefaultsToProductListFilters,
@@ -23,9 +25,10 @@ import {
   useProductList,
 } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { productFiltersLayout, productFiltersPro } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { LayoutNavigationProps } from '../../components'
 import {
   LayoutDocument,
@@ -54,31 +57,19 @@ function SearchResultPage(props: SearchResultProps) {
 
   return (
     <>
-      <PageMeta
-        title={
-          search
-            ? i18n._(/* i18n */ 'Results for ‘{search}’', { search })
-            : i18n._(/* i18n */ 'Search')
-        }
-        metaRobots={['noindex']}
-        canonical='/search'
-      />
+      <PageMeta title={search ? t`Results for ‘${search}’` : t`Search`} metaRobots={['noindex']} />
       <LayoutHeader floatingMd switchPoint={0}>
         <SearchField size='small' formControl={{ sx: { width: '81vw' } }} />
       </LayoutHeader>
 
       <PrivateQueryMaskProvider mask={mask}>
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout === 'SIDEBAR' && (
-            <ProductListLayoutSidebar {...productList} menu={menu} />
-          )}
-        {import.meta.graphCommerce.productFiltersPro &&
-          import.meta.graphCommerce.productFiltersLayout !== 'SIDEBAR' && (
-            <ProductListLayoutDefault {...productList} menu={menu} />
-          )}
-        {!import.meta.graphCommerce.productFiltersPro && (
-          <ProductListLayoutClassic {...productList} menu={menu} />
+        {productFiltersPro && productFiltersLayout === 'SIDEBAR' && (
+          <ProductListLayoutSidebar {...productList} menu={menu} />
         )}
+        {productFiltersPro && productFiltersLayout !== 'SIDEBAR' && (
+          <ProductListLayoutDefault {...productList} menu={menu} />
+        )}
+        {!productFiltersPro && <ProductListLayoutClassic {...productList} menu={menu} />}
       </PrivateQueryMaskProvider>
     </>
   )
@@ -116,31 +107,37 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
 
   if (!productListParams) return { notFound: true }
 
-  const filters = staticClient.query({
-    query: ProductFiltersDocument,
-    variables: searchDefaultsToProductListFilters(
-      productListApplySearchDefaults(productListParams, (await conf).data),
-    ),
-  })
+  const confData = (await conf).data
+  if (!confData) return { notFound: true }
+
+  const filters = hasUserFilterActive(productListParams)
+    ? staticClient.query({
+        query: ProductFiltersDocument,
+        variables: searchDefaultsToProductListFilters(
+          productListApplySearchDefaults(productListParams, confData),
+        ),
+      })
+    : undefined
 
   const products = staticClient.query({
     query: ProductListDocument,
-    variables: productListApplySearchDefaults(productListParams, (await conf).data),
+    variables: productListApplySearchDefaults(productListParams, confData),
   })
 
-  const categories = false
-    ? staticClient.query({ query: CategorySearchDocument, variables: { search } })
-    : undefined
+  // Category search is disabled - keeping code for potential future use
+  const categories = undefined as
+    | Awaited<ReturnType<typeof staticClient.query<CategorySearchQuery>>>
+    | undefined
 
   const result = {
     props: {
       ...(await products).data,
-      ...(await filters).data,
+      ...(await filters)?.data,
       ...(await categories)?.data,
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
-      up: { href: '/', title: i18n._(/* i18n */ 'Home') },
+      up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

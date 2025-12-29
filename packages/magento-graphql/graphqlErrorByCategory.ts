@@ -1,4 +1,5 @@
-import { ApolloError } from '@graphcommerce/graphql'
+import type { ErrorLike } from '@apollo/client'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
 import type { GraphQLFormattedError } from 'graphql'
 
 export type ErrorCategory =
@@ -11,7 +12,7 @@ export type ErrorCategory =
 
 export type GraphQLErrorByCategoryProps = {
   category: ErrorCategory
-  error?: ApolloError
+  error?: ErrorLike | null
   extract?: true
   mask?: string
 }
@@ -28,30 +29,34 @@ export type GraphQLErrorByCategoryPropsNoExtract = Omit<GraphQLErrorByCategoryPr
  */
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryPropsNoExtract,
-): [ApolloError, GraphQLFormattedError | undefined]
+): [ErrorLike, GraphQLFormattedError | undefined]
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryProps,
-): [ApolloError | undefined, GraphQLFormattedError | undefined]
+): [ErrorLike | undefined, GraphQLFormattedError | undefined]
 export function graphqlErrorByCategory(
   props: GraphQLErrorByCategoryProps | GraphQLErrorByCategoryPropsNoExtract,
-): [ApolloError | undefined, GraphQLFormattedError | undefined] {
+): [ErrorLike | undefined, GraphQLFormattedError | undefined] {
   const { category, error, extract = true, mask } = props
 
-  if (!error) return [error, undefined]
+  if (!error) return [undefined, undefined]
 
-  const newError = new ApolloError({
-    ...error,
-    graphQLErrors: error.graphQLErrors.filter(
-      (err) => !extract || err?.extensions?.category !== category,
-    ),
-  })
+  // Check if this is a CombinedGraphQLErrors
+  if (!CombinedGraphQLErrors.is(error)) {
+    // Not a GraphQL error, return as-is
+    return [error, undefined]
+  }
 
-  let graphqlError = error.graphQLErrors.find((err) => err?.extensions?.category === category)
+  const filteredErrors = error.errors.filter(
+    (err) => !extract || err?.extensions?.category !== category,
+  )
+
+  const newError =
+    filteredErrors.length > 0 ? new CombinedGraphQLErrors({ errors: filteredErrors }) : undefined
+
+  let graphqlError = error.errors.find((err) => err?.extensions?.category === category)
   if (mask && graphqlError) {
     graphqlError = { ...graphqlError, message: mask }
   }
 
-  return newError.graphQLErrors.length === 0 && !newError.networkError
-    ? [undefined, graphqlError]
-    : [newError, graphqlError]
+  return [newError, graphqlError]
 }

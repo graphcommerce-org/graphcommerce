@@ -4,7 +4,7 @@ import { useEventCallback } from '@mui/material'
 import { useEffect } from 'react'
 import type { Metric } from 'web-vitals/attribution'
 import { onCLS, onFCP, onINP, onLCP, onTTFB } from 'web-vitals/attribution'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 
 export const config: PluginConfig = {
   type: 'component',
@@ -35,7 +35,7 @@ export function FramerNextPages(props: PluginProps<PagesProps>) {
     onCLS((m) => sendCoreWebVitals(m, m.attribution.largestShiftTarget))
     onFCP((m) => sendCoreWebVitals(m), opts)
     onINP((m) => sendCoreWebVitals(m, m.attribution.interactionTarget), opts)
-    onLCP((m) => sendCoreWebVitals(m, m.attribution.element), opts)
+    onLCP((m) => sendCoreWebVitals(m, m.attribution.target), opts)
     onTTFB((m) => sendCoreWebVitals(m), opts)
   }, [sendCoreWebVitals])
 

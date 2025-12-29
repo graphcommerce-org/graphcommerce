@@ -7,8 +7,9 @@ import {
   extendableComponent,
   nonNullable,
   SectionContainer,
+  sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Divider } from '@mui/material'
 import { useCartQuery } from '../../hooks'
@@ -16,18 +17,7 @@ import { CartTotals } from '../CartTotals/CartTotals'
 import { CartItemSummaryDocument } from './GetCartItemSummary.gql'
 
 const name = 'CartItemSummary'
-const parts = [
-  'root',
-  'imageScrollerContainer',
-  'image',
-  'scrollerContainer',
-  'scroller',
-  'prevNext',
-  'prev',
-  'next',
-  'sectionHeaderWrapper',
-  'divider',
-] as const
+const parts = ['root', 'items', 'actionCard', 'divider'] as const
 const { classes } = extendableComponent(name, parts)
 
 export type OrderSummaryProps = ActionCardLayoutProps & {
@@ -49,10 +39,10 @@ export function CartItemSummary(props: OrderSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           padding: `${theme.spacings.sm} ${theme.spacings.sm}`,
-          border: `1px ${theme.palette.divider} solid`,
+          border: `1px ${theme.vars.palette.divider} solid`,
           ...breakpointVal(
             'borderRadius',
             theme.shape.borderRadius * 2,
@@ -60,50 +50,40 @@ export function CartItemSummary(props: OrderSummaryProps) {
             theme.breakpoints.values,
           ),
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <SectionContainer
         sx={{ '& .SectionHeader-root': { mt: 0 } }}
-        labelLeft={<Trans id='Order summary' />}
-        // labelRight={
-        //   <PageLink href='/download' passHref>
-        //     <Link color='secondary'>Download invoice</Link>
-        //   </PageLink>
-        // }
+        labelLeft={<Trans>Order summary</Trans>}
         variantLeft='h6'
+        className={classes.items}
       >
-        <Box className={classes.imageScrollerContainer} sx={{ position: 'relative' }}>
-          <ActionCardLayout
-            sx={(theme) => ({
-              marginBottom: theme.spacings.md,
-              '&.layoutStack': {
-                gap: 0,
-              },
-            })}
-            className={classes.scrollerContainer}
-            {...cardLayout}
-          >
-            {(items ?? []).filter(nonNullable).map((item) => (
-              <CartItemActionCard
-                readOnly
-                key={item.uid}
-                cartItem={item}
-                {...itemProps}
-                layout={layout}
-                size={size}
-                variant='default'
-              />
-            ))}
-          </ActionCardLayout>
-        </Box>
+        <ActionCardLayout
+          sx={(theme) => ({ marginBottom: theme.spacings.md, '&.layoutStack': { gap: 0 } })}
+          className={classes.actionCard}
+          {...cardLayout}
+        >
+          {(items ?? []).filter(nonNullable).map((item) => (
+            <CartItemActionCard
+              readOnly
+              key={item.uid}
+              cartItem={item}
+              variant='default'
+              {...itemProps}
+              layout={layout}
+              size={size}
+            />
+          ))}
+        </ActionCardLayout>
+
         <Divider
           classes={{ root: classes.divider }}
           sx={(theme) => ({
             margin: `${theme.spacings.xs} 0 ${theme.spacings.xs} 0`,
           })}
         />
-        <CartTotals sx={{ background: 'none', padding: 0 }} />
+        <CartTotals sx={{ background: 'none', padding: 0 }} readOnly />
       </SectionContainer>
     </Box>
   )

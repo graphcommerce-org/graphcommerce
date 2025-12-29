@@ -1,5 +1,5 @@
 import { productListLink } from '@graphcommerce/magento-product'
-import { breakpointVal, extendableComponent, Row } from '@graphcommerce/next-ui'
+import { breakpointVal, extendableComponent, Row, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
@@ -20,7 +20,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
     <Row
       className={classes.wrapper}
       maxWidth={false}
-      sx={[
+      sx={sxx(
         (theme) => ({
           display: 'grid',
           gridTemplateColumns: '1fr',
@@ -30,7 +30,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
             "placeholder"
           `,
           gridTemplateRows: 'auto auto 1fr',
-          borderBottom: `1px solid ${theme.palette.divider}`,
+          borderBottom: `1px solid ${theme.vars.palette.divider}`,
           marginBottom: theme.spacings.xxl,
           paddingBottom: theme.page.vertical,
           [theme.breakpoints.up('md')]: {
@@ -47,8 +47,8 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
             gridTemplateRows: '0.3fr 0.7fr',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.title}
@@ -94,7 +94,7 @@ export const CategoryHeroNav = React.memo<CategoryHeroNavProps>(
               color='textPrimary'
               href={productListLink({
                 url: category.url_path,
-                filters: { category_uid: { eq: category.uid } },
+                filters: { category_uid: { in: [category.uid] } },
                 sort: {},
               })}
               key={category.uid}

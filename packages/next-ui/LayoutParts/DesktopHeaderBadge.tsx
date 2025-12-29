@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { BadgeProps } from '@mui/material'
 import { Badge } from '@mui/material'
 
@@ -8,7 +9,7 @@ export function DesktopHeaderBadge(props: BadgeProps) {
   return (
     <Badge
       {...props}
-      sx={[
+      sx={sxx(
         {
           '& .MuiBadge-colorError': {
             bgcolor: 'text.disabled',
@@ -23,8 +24,8 @@ export function DesktopHeaderBadge(props: BadgeProps) {
             padding: { xs: '3px', md: '5px' },
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     />
   )
 }

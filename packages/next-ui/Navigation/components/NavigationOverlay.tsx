@@ -1,5 +1,6 @@
 import { dvw, useMotionSelector, useMotionValueValue } from '@graphcommerce/framer-utils'
-import { i18n } from '@lingui/core'
+import { sxx } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useEventCallback, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
@@ -127,15 +128,15 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
           animating.set(false)
         },
       }}
-      sx={[
+      sx={sxx(
         {
           zIndex: 'drawer',
           '& .LayoutOverlayBase-overlayPane': {
             minWidth: itemWidthMd,
           },
         },
-        ...(Array.isArray(overlaySx) ? overlaySx : [overlaySx]),
-      ]}
+        overlaySx,
+      )}
     >
       <MotionDiv layout layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
@@ -160,7 +161,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                   onClick={handleOnBack}
                   sx={{ boxShadow: 'none', my: fabMarginY }}
                   size='responsive'
-                  aria-label={i18n._(/* i18n */ 'Back')}
+                  aria-label={t`Back`}
                 >
                   <IconSvg src={iconChevronLeft} size='large' aria-hidden />
                 </Fab>
@@ -173,7 +174,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 onClick={handleClose}
                 sx={{ boxShadow: 'none', my: fabMarginY }}
                 size='responsive'
-                aria-label={i18n._(/* i18n */ 'Close')}
+                aria-label={t`Close`}
                 ref={a11yFocusRef}
               >
                 <IconSvg src={iconClose} size='large' aria-hidden />
@@ -189,24 +190,16 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
       <MotionDiv layout='position' layoutDependency={selectionValue} sx={{ display: 'grid' }}>
         <Box
           className={classes.wrapper}
-          sx={[
+          sx={sxx(
             (theme) => ({
               display: 'grid',
               alignItems: !stretchColumns ? 'start' : undefined,
               justifyContent: 'end',
               [theme.breakpoints.down('md')]: {
-                width:
-                  sizeSm !== 'floating'
-                    ? itemWidthSm
-                    : `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
                 minWidth: 200,
                 overflow: 'hidden',
                 scrollSnapType: 'x mandatory',
                 '& .NavigationItem-item': {
-                  width:
-                    sizeSm !== 'floating'
-                      ? `calc(${itemWidthSm} - (${itemPad} * 2))`
-                      : `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
                   minWidth: `calc(200px - (${itemPad} * 2))`,
                 },
               },
@@ -216,11 +209,37 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                 },
               },
             }),
-          ]}
+            sizeSm !== 'floating'
+              ? (theme) => ({
+                  [theme.breakpoints.down('md')]: {
+                    width: itemWidthSm,
+                  },
+                })
+              : (theme) => ({
+                  [theme.breakpoints.down('md')]: {
+                    width: `calc(${itemWidthSm} - (${theme.page.horizontal} * 2))`,
+                  },
+                }),
+            sizeSm !== 'floating'
+              ? (theme) => ({
+                  [theme.breakpoints.down('md')]: {
+                    '& .NavigationItem-item': {
+                      width: `calc(${itemWidthSm} - (${itemPad} * 2))`,
+                    },
+                  },
+                })
+              : (theme) => ({
+                  [theme.breakpoints.down('md')]: {
+                    '& .NavigationItem-item': {
+                      width: `calc(${itemWidthSm} - (${itemPad} * 2) - (${theme.page.horizontal} * 2))`,
+                    },
+                  },
+                }),
+          )}
         >
           <Box
             className={classes.navigation}
-            sx={[
+            sx={sxx(
               {
                 py: itemPad,
                 display: 'grid',
@@ -244,14 +263,14 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
                   boxShadow: 'none',
                 },
               },
-              ...(Array.isArray(sx) ? sx : [sx]),
-            ]}
+              sx,
+            )}
           >
             {selectedLevel >= 0 && (
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 1 / 999 / 2',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -260,7 +279,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 2 / 999 / 3',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -269,7 +288,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 3 / 999 / 4',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />
@@ -278,7 +297,7 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
               <Box
                 sx={(theme) => ({
                   gridArea: '1 / 4 / 999 / 5',
-                  boxShadow: `inset 1px 0 ${theme.palette.divider}`,
+                  boxShadow: `inset 1px 0 ${theme.vars.palette.divider}`,
                 })}
                 className={classes.column}
               />

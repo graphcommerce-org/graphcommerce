@@ -2,9 +2,10 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { ContactForm } from '@graphcommerce/magento-customer'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
+import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import { Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
@@ -56,7 +57,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  if (import.meta.graphCommerce.magentoVersion < 247) return { notFound: true }
+  if (magentoVersion < 247) return { notFound: true }
 
   return {
     props: {
@@ -64,6 +65,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

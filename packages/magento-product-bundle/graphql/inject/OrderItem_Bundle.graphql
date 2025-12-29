@@ -1,0 +1,5 @@
+fragment OrderItem_Bundle on BundleOrderItem @inject(into: ["OrderItem"]) {
+  bundle_options {
+    ...ItemSelectedBundleOption
+  }
+}

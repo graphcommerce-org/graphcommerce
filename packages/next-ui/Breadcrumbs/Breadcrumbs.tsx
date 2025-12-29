@@ -1,5 +1,6 @@
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { sxx } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type {
   LinkProps,
   BreadcrumbsProps as MuiBreadcrumbProps,
@@ -36,6 +37,11 @@ export type BreadcrumbsProps = BreadcrumbsType &
     itemSx?: SxProps<Theme>
     linkProps?: Omit<LinkProps, 'href'>
     disableHome?: boolean
+    /**
+     * Hide the last breadcrumb item (and its separator) on mobile. Useful when the last item
+     * duplicates the page title.
+     */
+    hideLastOnMobile?: boolean
   }
 
 export function Breadcrumbs(props: BreadcrumbsProps) {
@@ -49,13 +55,19 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
     itemSx = [],
     linkProps,
     disableHome = false,
+    hideLastOnMobile = false,
     ...rest
   } = props
   const [anchorElement, setAnchorElement] = useState<HTMLButtonElement | null>(null)
   const theme = useTheme()
 
+  // When hiding the last item on mobile, show one more item to compensate
+  const effectiveBreadcrumbsAmountMobile = hideLastOnMobile
+    ? breadcrumbsAmountMobile + 1
+    : breadcrumbsAmountMobile
+
   const isDefaultMobile = breadcrumbsAmountMobile === 0
-  const showButtonMobile = breadcrumbs.length > breadcrumbsAmountMobile && !isDefaultMobile
+  const showButtonMobile = breadcrumbs.length > effectiveBreadcrumbsAmountMobile && !isDefaultMobile
   const isDefaultDesktop = breadcrumbsAmountDesktop === 0
   const showButtonDesktop = breadcrumbs.length > breadcrumbsAmountDesktop && !isDefaultDesktop
 
@@ -71,11 +83,10 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
   return (
     <MuiBreadcrumbs
       {...rest}
-      aria-label={i18n._(/* i18n*/ 'Breadcrumbs')}
+      aria-label={t`Breadcrumbs`}
       maxItems={maxItems}
       color='inherit'
-      sx={[
-        {},
+      sx={sxx(
         !maxItems && {
           '& .MuiBreadcrumbs-ol': {
             flexWrap: 'nowrap',
@@ -95,32 +106,45 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           '& .MuiBreadcrumbs-separator': {
             '&:nth-of-type(2)': {
               display: {
-                xs: !showButtonMobile && 'none',
-                md: !showButtonDesktop && 'none',
-              },
-            },
-          },
-
-          [theme.breakpoints.down('md')]: showButtonMobile && {
-            '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
-              display: 'none',
-              [`&:nth-last-of-type(-n+${breadcrumbsAmountMobile * 2})`]: {
-                display: 'flex',
-              },
-            },
-          },
-
-          [theme.breakpoints.up('md')]: showButtonDesktop && {
-            '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
-              display: 'none',
-              [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: {
-                display: 'flex',
+                xs: showButtonMobile ? undefined : 'none',
+                md: showButtonDesktop ? undefined : 'none',
               },
             },
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        !maxItems &&
+          showButtonMobile && {
+            [theme.breakpoints.down('md')]: {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${effectiveBreadcrumbsAmountMobile * 2})`]: {
+                  display: 'flex',
+                },
+              },
+            },
+          },
+        !maxItems &&
+          showButtonDesktop && {
+            [theme.breakpoints.up('md')]: {
+              '& .MuiBreadcrumbs-li, & .MuiBreadcrumbs-separator': {
+                display: 'none',
+                [`&:nth-last-of-type(-n+${breadcrumbsAmountDesktop * 2})`]: { display: 'flex' },
+              },
+            },
+          },
+        // Hide the last item and its separator on mobile
+        hideLastOnMobile && {
+          [theme.breakpoints.down('md')]: {
+            '& .MuiBreadcrumbs-ol .MuiBreadcrumbs-li:nth-last-of-type(1)': {
+              display: 'none',
+            },
+            '& .MuiBreadcrumbs-ol > :nth-last-child(2)': {
+              display: 'none',
+            },
+          },
+        },
+        sx,
+      )}
     >
       {!maxItems && (
         <ClickAwayListener
@@ -158,16 +182,9 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           </Box>
         </ClickAwayListener>
       )}
-
       {disableHome ? null : (
-        <Link
-          href='/'
-          color='inherit'
-          underline='hover'
-          {...linkProps}
-          sx={[...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
-        >
-          <Trans id='Home' />
+        <Link href='/' color='inherit' underline='hover' {...linkProps} sx={sxx(itemSx)}>
+          <Trans>Home</Trans>
         </Link>
       )}
       {breadcrumbLinks.map((breadcrumb) => (
@@ -177,22 +194,13 @@ export function Breadcrumbs(props: BreadcrumbsProps) {
           underline='hover'
           {...breadcrumb}
           {...linkProps}
-          sx={[
-            ...(Array.isArray(breadcrumb.sx) ? breadcrumb.sx : [breadcrumb.sx]),
-            ...(Array.isArray(itemSx) ? itemSx : [itemSx]),
-          ]}
+          sx={sxx(breadcrumb.sx, itemSx)}
         >
           {breadcrumb.name}
         </Link>
       ))}
-
       {last && (
-        <Typography
-          component='span'
-          noWrap
-          color='inherit'
-          sx={[{ fontWeight: '600' }, ...(Array.isArray(itemSx) ? itemSx : [itemSx])]}
-        >
+        <Typography component='span' noWrap color='inherit' sx={sxx({ fontWeight: '600' }, itemSx)}>
           {last.name}
         </Typography>
       )}

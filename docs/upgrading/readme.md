@@ -65,9 +65,7 @@ Compare your local /package.json with the example's
 `/upgrade/examples/magento-graphcms/package.json` you just downloaded and:
 
 1. Replace your local `dependencies` with the example's `dependencies`. Keep any
-   additional installed local dependencies and
-   [remove PSP's](./getting-started/create.md#remove-unused-psps) your backend
-   doesn't support.
+   additional installed local dependencies and.
 2. Replace your local `devDependencies` with the example's `devDependencies`
 3. Replace your local `resolutions` with the example's `resolutions`
 
@@ -76,6 +74,7 @@ packages:
 
 - `rm yarn.lock && yarn` Remove lock and install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
+- `rm -r .next`
 - `yarn dev` Run the app
 
 ### Resolving diff issues
@@ -108,6 +107,9 @@ After resolving the diff issues, manually process upgrade instructions:
 
 - [Upgrading to GraphCommerce 5 to 6](../upgrading/graphcommerce-5-to-6.md)
 - [Upgrading to GraphCommerce 6 to 7](../upgrading/graphcommerce-6-to-7.md)
+- [Upgrading to GraphCommerce 7 to 8](../upgrading/graphcommerce-7-to-8.md)
+- [Upgrading to GraphCommerce 8 to 9](../upgrading/graphcommerce-8-to-9.md)
+- [Upgrading to GraphCommerce 9 to 10](../upgrading/graphcommerce-9-to-10.md)
 
 Run and validate your local environment:
 

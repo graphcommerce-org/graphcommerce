@@ -63,7 +63,7 @@ component:
   gutterBottom
   sx={{
     h3: (theme) => ({
-      color: theme.palette.primary.main,
+      color: theme.vars.palette.primary.main,
     }),
   }}
 >

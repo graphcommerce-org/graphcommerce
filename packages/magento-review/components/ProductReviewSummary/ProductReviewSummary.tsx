@@ -1,4 +1,4 @@
-import { extendableComponent, iconStar, IconSvg } from '@graphcommerce/next-ui'
+import { extendableComponent, iconStar, IconSvg, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductReviewSummaryFragment } from './ProductReviewSummary.gql'
@@ -19,10 +19,9 @@ export function ProductReviewSummary(props: ProductReviewSummaryProps) {
       src={iconStar}
       size='xs'
       className={classes.iconStarDisabled}
-      sx={(theme) => ({ stroke: 'none', fill: theme.palette.grey[300] })}
+      sx={(theme) => ({ stroke: 'none', fill: theme.vars.palette.grey[300] })}
     />
   )
-
   const star = (
     <IconSvg
       src={iconStar}
@@ -35,7 +34,7 @@ export function ProductReviewSummary(props: ProductReviewSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         {
           width: 'max-content',
           position: 'relative',
@@ -43,8 +42,8 @@ export function ProductReviewSummary(props: ProductReviewSummaryProps) {
             lineHeight: 0,
           },
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <div>
         {disabledStar}

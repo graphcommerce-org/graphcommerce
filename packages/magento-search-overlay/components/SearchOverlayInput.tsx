@@ -2,8 +2,9 @@ import { InputBaseElement } from '@graphcommerce/ecommerce-ui'
 import type { ProductListParams } from '@graphcommerce/magento-product'
 import { useProductFiltersPro } from '@graphcommerce/magento-product'
 import { useSearchResultRemaining } from '@graphcommerce/magento-search'
+import { sxx } from '@graphcommerce/next-ui'
 import { FormAutoSubmit, useDebounce } from '@graphcommerce/react-hook-form'
-import { t } from '@lingui/macro'
+import { t } from '@lingui/core/macro'
 import type { BoxProps, InputBaseProps, SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -19,25 +20,19 @@ function SearchInputShadow(
   return (
     <Box
       component='div'
-      sx={[
-        { display: 'flex', height: '100%', alignItems: 'center' },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      sx={sxx({ display: 'flex', height: '100%', alignItems: 'center' }, sx)}
       {...rest}
     >
       {!resultSearch && !targetSearch ? (
         <Box component='span'>{resultSearch}</Box>
       ) : (
         <>
-          <Box
-            component='span'
-            sx={[{ color: 'transparent' }, ...(Array.isArray(inputSx) ? inputSx : [inputSx])]}
-          >
+          <Box component='span' sx={sxx({ color: 'transparent' }, inputSx)}>
             {resultSearch}
           </Box>
           <Box
             component='span'
-            sx={[
+            sx={sxx(
               {
                 typography: 'h4',
                 color: 'transparent',
@@ -45,8 +40,8 @@ function SearchInputShadow(
                 borderImage: 'linear-gradient(108deg,#0894FF,#C959DD 34%,#FF2E54 68%,#FF9004)',
                 borderImageSlice: 1,
               },
-              ...(Array.isArray(inputSx) ? inputSx : [inputSx]),
-            ]}
+              inputSx,
+            )}
           >
             {remaining}
           </Box>
@@ -83,15 +78,16 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
           type='text'
           spellCheck='false'
           autoComplete='off'
-          sx={[
+          sx={sxx(
             (theme) => ({
               '& .MuiInputBase-input': { ...inputSx },
-              ...(selected && {
-                boxShadow: `inset 0 0 0 2px ${theme.palette.primary.main}`,
-              }),
             }),
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
+            selected &&
+              ((theme) => ({
+                boxShadow: `inset 0 0 0 2px ${theme.vars.palette.primary.main}`,
+              })),
+            sx,
+          )}
           {...rest}
           {...rootProps}
           inputRef={ref}
@@ -105,7 +101,6 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     )
   },
 )
-
 if (process.env.NODE_ENV !== 'production') {
   SearchInput.displayName = 'SearchInput'
 }

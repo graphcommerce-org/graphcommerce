@@ -1,4 +1,5 @@
 import type { ProductListItemFragment } from '@graphcommerce/magento-product'
+import { wishlistShowFeedbackMessage } from '@graphcommerce/next-config/config'
 import type { IconSvgProps } from '@graphcommerce/next-ui'
 import {
   extendableComponent,
@@ -6,9 +7,10 @@ import {
   iconHeart,
   IconSvg,
   MessageSnackbar,
+  sxx,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import type { IconButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, Button, IconButton } from '@mui/material'
 import React from 'react'
@@ -41,20 +43,16 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
         size='small'
         className={classes.wishlistButton}
         {...buttonProps}
-        sx={[(theme) => ({ padding: theme.spacings.xxs }), ...(Array.isArray(sx) ? sx : [sx])]}
-        title={
-          current ? i18n._(/* i18n */ 'Remove from wishlist') : i18n._(/* i18n */ 'Add to wishlist')
-        }
-        aria-label={
-          current ? i18n._(/* i18n */ 'Remove from wishlist') : i18n._(/* i18n */ 'Add to wishlist')
-        }
+        sx={sxx((theme) => ({ padding: theme.spacings.xxs }), sx)}
+        title={current ? t`Remove from wishlist` : t`Add to wishlist`}
+        aria-label={current ? t`Remove from wishlist` : t`Add to wishlist`}
       >
         {current ? (
           <IconSvg
             src={iconHeart}
             size='medium'
             className={classes.wishlistIconActive}
-            sx={(theme) => ({ color: theme.palette.primary.main, fill: 'currentcolor' })}
+            sx={(theme) => ({ color: theme.vars.palette.primary.main, fill: 'currentcolor' })}
             {...iconSvgProps}
           />
         ) : (
@@ -63,24 +61,23 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
             size='medium'
             className={classes.wishlistIcon}
             sx={(theme) => ({
-              color:
-                theme.palette.mode === 'light'
-                  ? theme.palette.text.secondary
-                  : theme.palette.background.paper,
+              color: theme.vars.palette.background.paper,
               '.SidebarGallery-root &': {
                 // todo
-                color:
-                  theme.palette.mode === 'light'
-                    ? theme.palette.text.secondary
-                    : theme.palette.primary.contrastText,
+                color: theme.vars.palette.primary.contrastText,
+                ...theme.applyStyles('light', {
+                  color: theme.vars.palette.text.secondary,
+                }),
               },
+              ...theme.applyStyles('light', {
+                color: theme.vars.palette.text.secondary,
+              }),
             })}
             {...iconSvgProps}
           />
         )}
       </IconButton>
-
-      {import.meta.graphCommerce.wishlistShowFeedbackMessage && (
+      {wishlistShowFeedbackMessage && (
         <MessageSnackbar
           open={showSuccess}
           onClose={hideShowSuccess}
@@ -98,15 +95,13 @@ export const ProductWishlistIconButton = React.memo<ProductWishlistChipProps>((p
               color='secondary'
               endIcon={<IconSvg src={iconChevronRight} />}
             >
-              <Trans id='View wishlist' />
+              <Trans>View wishlist</Trans>
             </Button>
           }
         >
-          <Trans
-            id='<0>{name}</0> has been added to your wishlist!'
-            components={{ 0: <strong /> }}
-            values={{ name: product.name }}
-          />
+          <Trans>
+            <strong>{product.name}</strong> has been added to your wishlist!
+          </Trans>
         </MessageSnackbar>
       )}
     </Box>

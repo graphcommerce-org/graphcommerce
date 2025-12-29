@@ -1,8 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import { iconClose, IconSvg } from '@graphcommerce/next-ui'
+import { iconClose, IconSvg, sxx } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { FormControlProps, SelectProps } from '@mui/material'
 import {
   Checkbox,
@@ -38,7 +38,7 @@ const ITEM_PADDING_TOP = 8
 /** @public */
 export function MultiSelectElement<TFieldValues extends FieldValues>(
   props: MultiSelectElementProps<TFieldValues>,
-): JSX.Element {
+): React.ReactNode {
   const {
     options,
     label = '',
@@ -58,11 +58,10 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     formControlProps,
     shouldUnregister,
     defaultValue,
-    disabled: disabledField,
     ...rest
   } = props
   if (required && !rules.required) {
-    rules.required = i18n._(/* i18n */ 'This field is required')
+    rules.required = t`This field is required`
   }
 
   const {
@@ -73,7 +72,6 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
     rules,
     control,
     defaultValue,
-    disabled: disabledField,
     shouldUnregister,
   })
 
@@ -155,10 +153,15 @@ export function MultiSelectElement<TFieldValues extends FieldValues>(
             <MenuItem
               key={val}
               value={val}
-              sx={{
-                fontWeight: (theme) =>
-                  isChecked ? theme.typography.fontWeightBold : theme.typography.fontWeightRegular,
-              }}
+              sx={sxx(
+                isChecked
+                  ? {
+                      fontWeight: theme.typography.fontWeightBold,
+                    }
+                  : {
+                      fontWeight: theme.typography.fontWeightRegular,
+                    },
+              )}
             >
               {showCheckbox && <Checkbox checked={isChecked} />}
               <ListItemText primary={item[itemLabel] || item} />

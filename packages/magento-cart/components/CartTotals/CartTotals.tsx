@@ -1,8 +1,9 @@
 import { Money } from '@graphcommerce/magento-store'
-import { breakpointVal, extendableComponent } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { magentoVersion } from '@graphcommerce/next-config/config'
+import { breakpointVal, extendableComponent, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, Divider, lighten } from '@mui/material'
+import { Box, Divider } from '@mui/material'
 import { useCartQuery, useDisplayInclTax } from '../../hooks'
 import { GetCartTotalsDocument } from './GetCartTotals.gql'
 
@@ -10,6 +11,7 @@ export type CartTotalsProps = OwnerProps & {
   sx?: SxProps<Theme>
   additionalSubtotals?: React.ReactNode
   additionalTotals?: React.ReactNode
+  readOnly?: boolean
 }
 
 type OwnerProps = { containerMargin?: boolean }
@@ -23,7 +25,12 @@ const parts = [
   'costsTax',
   'money',
 ] as const
-const { withState } = extendableComponent<OwnerProps, typeof name, typeof parts>(name, parts)
+
+export const extendableCartTotals = extendableComponent<OwnerProps, typeof name, typeof parts>(
+  name,
+  parts,
+)
+const { withState } = extendableCartTotals
 
 /**
  * ⚠️ WARNING: The current CartTotals rely heavily on how Magento is configured. It kinda works for
@@ -44,7 +51,7 @@ export function CartTotals(props: CartTotalsProps) {
   const shippingMethod = shipping_addresses?.[0]?.selected_shipping_method
 
   const shippingMethodPrices =
-    import.meta.graphCommerce.magentoVersion >= 246
+    magentoVersion >= 246
       ? shippingMethod
       : shipping_addresses?.[0]?.available_shipping_methods?.find(
           (avail) =>
@@ -56,7 +63,7 @@ export function CartTotals(props: CartTotalsProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -64,19 +71,18 @@ export function CartTotals(props: CartTotalsProps) {
             theme.shape.borderRadius * 5,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.vars.palette.background.default,
+          ...theme.applyStyles('dark', {
+            background: theme.lighten(theme.vars.palette.background.default, 0.15),
+          }),
           padding: `${theme.spacings.xs} ${theme.spacings.sm}`,
-
           '&.containerMargin': {
             marginTop: theme.spacings.md,
             px: theme.spacings.xs,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       key='total-costs'
     >
       {prices?.subtotal_including_tax && (
@@ -86,7 +92,7 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans id='Products' />
+            <Trans>Products</Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money {...(inclTax ? prices.subtotal_including_tax : prices.subtotal_excluding_tax)} />
@@ -125,10 +131,9 @@ export function CartTotals(props: CartTotalsProps) {
           sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Box>
-            <Trans
-              id='Shipping ({0} {1})'
-              values={{ 0: shippingMethod.carrier_title, 1: shippingMethod.method_title }}
-            />
+            <Trans>
+              Shipping ({shippingMethod.carrier_title} {shippingMethod.method_title})
+            </Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money
@@ -167,11 +172,11 @@ export function CartTotals(props: CartTotalsProps) {
           sx={(theme) => ({
             display: 'flex',
             justifyContent: 'space-between',
-            color: theme.palette.primary.main,
+            color: theme.vars.palette.primary.main,
           })}
         >
           <Box>
-            <Trans id='Grand total' />
+            <Trans>Grand total</Trans>
           </Box>
           <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
             <Money {...prices.grand_total} />
@@ -192,7 +197,7 @@ export function CartTotals(props: CartTotalsProps) {
             }}
           >
             <Box>
-              <Trans id='Including {0}' values={{ 0: tax?.label }} />
+              <Trans>Including {tax?.label}</Trans>
             </Box>
             <Box className={classes.money} sx={{ whiteSpace: 'nowrap' }}>
               <Money {...tax?.amount} />

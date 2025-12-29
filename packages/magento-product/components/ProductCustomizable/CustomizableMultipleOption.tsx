@@ -1,67 +1,91 @@
 import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import { Money } from '@graphcommerce/magento-store'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
-import { ActionCard, filterNonNullableKeys, SectionHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { ActionCard, filterNonNullableKeys, SectionHeader, sxx } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { Box } from '@mui/material'
 import { useFormAddProductsToCart } from '../AddProductsToCart'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
+import type { CustomizableMultipleOptionFragment } from './CustomizableMultipleOption.gql'
 
 export type CustomizableMultipleOptionProps = React.ComponentProps<
   OptionTypeRenderer['CustomizableMultipleOption']
 >
 
-export function CustomizableMultipleOption(props: CustomizableMultipleOptionProps) {
-  const { uid, required, index, title: label, multipleValue, currency, productPrice } = props
-  const { control, getValues } = useFormAddProductsToCart()
+type MultipleActionCardProps = Pick<CustomizableMultipleOptionProps, 'productPrice' | 'currency'> &
+  Pick<ActionCardProps, 'value' | 'selected'> & {
+    option: NonNullable<NonNullable<CustomizableMultipleOptionFragment['multipleValue']>[number]>
+  }
 
-  const allSelected = getValues(`cartItems.${index}.customizable_options.${uid}`) || []
+function CustomizableMultipleActionCard(props: MultipleActionCardProps) {
+  const { productPrice, currency, option, selected, ...rest } = props
+  const { title, price, price_type } = option
+
+  return (
+    <ActionCard
+      {...rest}
+      selected={selected}
+      title={title}
+      price={
+        price === 0
+          ? null
+          : price && (
+              <Box
+                sx={sxx(
+                  selected
+                    ? {
+                        color: 'text.primary',
+                      }
+                    : {
+                        color: 'text.secondary',
+                      },
+                )}
+              >
+                <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
+                <Money
+                  value={price_type === 'PERCENT' ? productPrice * (price / 100) : price}
+                  currency={currency}
+                />
+              </Box>
+            )
+      }
+    />
+  )
+}
+
+export function CustomizableMultipleOption(props: CustomizableMultipleOptionProps) {
+  const { uid, required, index, title, multipleValue, currency, productPrice } = props
+  const { control } = useFormAddProductsToCart()
+  const label = title ?? ''
 
   return (
     <Box>
-      <SectionHeader labelLeft={label} sx={{ mt: 0 }} />
+      <SectionHeader
+        labelLeft={
+          <>
+            {label} {required && ' *'}
+          </>
+        }
+        sx={{ mt: 0 }}
+      />
       <ActionCardListForm
         sx={(theme) => ({
           mt: theme.spacings.xxs,
         })}
         multiple
         rules={{
-          required: required
-            ? i18n._(/* i18n*/ 'Please select a value for ‘{label}’', { label })
-            : false,
+          required: required ? t`Please select a value for ‘${label}’` : false,
         }}
         control={control}
-        render={ActionCard}
-        name={`cartItems.${index}.customizable_options.${uid}`}
-        items={filterNonNullableKeys(multipleValue, ['title']).map(
-          (multipleVal) =>
-            ({
-              value: multipleVal.uid,
-              title: multipleVal.title,
-              price:
-                multipleVal.price === 0
-                  ? null
-                  : multipleVal.price && (
-                      <Box
-                        sx={{
-                          color: allSelected.includes(multipleVal.uid)
-                            ? 'text.primary '
-                            : 'text.secondary',
-                        }}
-                      >
-                        <span style={{ fontFamily: 'arial' }}>{'+ '}</span>
-                        <Money
-                          value={
-                            multipleVal.price_type === 'PERCENT'
-                              ? productPrice * (multipleVal.price / 100)
-                              : multipleVal.price
-                          }
-                          currency={currency}
-                        />
-                      </Box>
-                    ),
-            }) satisfies ActionCardProps,
-        )}
+        render={CustomizableMultipleActionCard}
+        name={`cartItems.${index}.selected_options_record.${uid}`}
+        items={filterNonNullableKeys(multipleValue, ['title']).map((multipleVal) => ({
+          productPrice,
+          currency,
+          title: multipleVal.title ?? '',
+          value: multipleVal.uid,
+          option: multipleVal,
+        }))}
       />
     </Box>
   )

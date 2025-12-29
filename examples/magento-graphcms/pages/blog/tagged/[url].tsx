@@ -1,10 +1,11 @@
 import { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
+import { revalidate } from '@graphcommerce/next-ui'
 import { hygraphPageContent, HygraphPagesQuery } from '@graphcommerce/hygraph-ui'
 import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { PageMeta, GetStaticProps, Row, LayoutTitle, LayoutHeader } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { GetStaticPaths } from 'next'
 import {
   BlogAuthor,
@@ -21,6 +22,7 @@ import {
   RowRenderer,
 } from '../../../components'
 import { graphqlSsrClient, graphqlSharedClient } from '../../../lib/graphql/graphqlSsrClient'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 
 type Props = HygraphPagesQuery & BlogListTaggedQuery
 type RouteProps = { url: string }
@@ -34,14 +36,14 @@ function BlogPage(props: Props) {
 
   return (
     <>
-      <LayoutHeader floatingMd hideMd={import.meta.graphCommerce.breadcrumbs}>
+      <LayoutHeader floatingMd hideMd={breadcrumbs}>
         <LayoutTitle size='small'>{title}</LayoutTitle>
       </LayoutHeader>
       <Row>
         <PageMeta title={title} metaDescription={title} canonical={`/${page.url}`} />
 
         <BlogTitle>
-          <Trans id='Tagged in: {title}' values={{ title }} />
+          <Trans>Tagged in: {title}</Trans>
         </BlogTitle>
 
         {page.author ? <BlogAuthor author={page.author} date={page.date} /> : null}
@@ -61,18 +63,16 @@ BlogPage.pageOptions = {
 export default BlogPage
 
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  if (import.meta.graphCommerce.limitSsg) return { paths: [], fallback: 'blocking' }
+  if (limitSsg) return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostTaggedPathsDocument })
-    const { pages } = (await BlogPostPaths).data
-    return (
-      pages.map((page) => ({
-        params: { url: `${page?.url}`.replace('blog/tagged/', '') },
-        locale,
-      })) ?? []
-    )
+    const pages = (await BlogPostPaths).data?.pages ?? []
+    return pages.map((page) => ({
+      params: { url: `${page?.url}`.replace('blog/tagged/', '') },
+      locale,
+    }))
   })
   const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
@@ -96,17 +96,19 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     variables: { currentUrl: [`blog/tagged/${urlKey}`], first: limit, tagged: params?.url },
   })
 
-  if (!(await page).data.pages?.[0])
+  const pageData = await page
+  const posts = await blogPosts
+  if (!pageData.data.pages?.[0] || !posts.data)
     return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
-      ...(await page).data,
-      ...(await blogPosts).data,
+      ...pageData.data,
+      ...posts.data,
       ...(await layout).data,
-      up: { href: '/blog', title: i18n._(/* i18n */ 'Blog') },
+      up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

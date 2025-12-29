@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphql",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "9.0.4-canary.14",
+  "version": "10.0.0-canary.69",
   "sideEffects": false,
   "main": "index.ts",
   "prettier": "@graphcommerce/prettier-config-pwa",
@@ -13,27 +13,36 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "~3.12.3",
-    "@graphql-codegen/add": "5.0.3",
-    "@graphql-codegen/fragment-matcher": "5.0.2",
-    "@graphql-codegen/introspection": "4.0.3",
-    "@graphql-codegen/schema-ast": "4.1.0",
-    "@graphql-codegen/typed-document-node": "5.0.12",
-    "@graphql-codegen/typescript": "4.1.2",
-    "@graphql-codegen/typescript-apollo-client-helpers": "3.0.0",
-    "@graphql-codegen/typescript-document-nodes": "4.0.12",
-    "@graphql-codegen/typescript-operations": "4.4.0",
+    "@apollo/client": "^4.0.11",
+    "@graphql-codegen/add": "6.0.0",
+    "@graphql-codegen/fragment-matcher": "6.0.0",
+    "@graphql-codegen/introspection": "5.0.0",
+    "@graphql-codegen/schema-ast": "5.0.0",
+    "@graphql-codegen/typed-document-node": "6.1.5",
+    "@graphql-codegen/typescript": "5.0.7",
+    "@graphql-codegen/typescript-apollo-client-helpers": "3.0.1",
+    "@graphql-codegen/typescript-document-nodes": "5.0.7",
+    "@graphql-codegen/typescript-operations": "5.0.7",
     "apollo3-cache-persist": "^0.15.0",
-    "graphql": "^16.10.0"
+    "graphql": "^16.12.0",
+    "rxjs": "^7.8.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^9.0.4-canary.14",
-    "@graphcommerce/graphql-codegen-near-operation-file": "9.0.4-canary.14",
-    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "9.0.4-canary.14",
-    "@graphcommerce/prettier-config-pwa": "^9.0.4-canary.14",
-    "@graphcommerce/typescript-config-pwa": "^9.0.4-canary.14",
+    "@graphcommerce/eslint-config-pwa": "^10.0.0-canary.69",
+    "@graphcommerce/graphql-codegen-near-operation-file": "10.0.0-canary.69",
+    "@graphcommerce/graphql-codegen-relay-optimizer-plugin": "10.0.0-canary.69",
+    "@graphcommerce/next-config": "^10.0.0-canary.69",
+    "@graphcommerce/prettier-config-pwa": "^10.0.0-canary.69",
+    "@graphcommerce/typescript-config-pwa": "^10.0.0-canary.69",
     "@graphql-mesh/plugin-http-details-extensions": "*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./apollo": "./apollo.ts",
+    "./config": "./config.ts",
+    "./rxjs": "./rxjs.ts",
+    "./generated/fragments.json": "./generated/fragments.json"
   }
 }

@@ -1,4 +1,5 @@
 import { filterNonNullableKeys, RenderType } from '@graphcommerce/next-ui'
+import { useMemo } from 'react'
 import type { AddToCartItemSelector } from '../AddProductsToCart'
 import type { ProductPagePriceFragment } from '../ProductPagePrice'
 import type { OptionTypeRenderer } from './CustomizableAreaOption'
@@ -42,14 +43,21 @@ export type ProductCustomizableProps = AddToCartItemSelector & {
 export function ProductCustomizable(props: ProductCustomizableProps) {
   const { product, renderer, index = 0 } = props
 
+  const options = useMemo(
+    () =>
+      filterNonNullableKeys(product.options, ['sort_order']).sort(
+        (a, b) => a.sort_order - b.sort_order,
+      ),
+    [product.options],
+  )
+
   return (
     <>
-      {filterNonNullableKeys(product.options, ['sort_order']).map((option) => (
+      {options.map((option) => (
         <RenderType
           key={option.uid}
           renderer={{ ...defaultRenderer, ...renderer }}
           {...option}
-          optionIndex={option.sort_order + 100}
           index={index}
           currency={product.price_range.minimum_price.final_price.currency}
           productPrice={product.price_range.minimum_price.final_price.value}

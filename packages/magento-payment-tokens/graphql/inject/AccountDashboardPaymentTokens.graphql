@@ -1,0 +1,8 @@
+fragment CustomerPaymentTokensAccountDashboard on Query
+@inject(into: ["AccountDashboardQueryFragment"]) {
+  customerPaymentTokens {
+    items {
+      __typename
+    }
+  }
+}

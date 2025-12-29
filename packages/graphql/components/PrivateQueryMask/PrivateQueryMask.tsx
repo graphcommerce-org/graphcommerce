@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { cssFlag, cssNotFlag, useIsSSR } from '@graphcommerce/next-ui'
+import { cssFlag, cssNotFlag, sxx, useIsSSR } from '@graphcommerce/next-ui'
 import type { SkeletonOwnProps, SkeletonProps, SxProps, Theme } from '@mui/material'
 import { Box, Skeleton } from '@mui/material'
 import type { OverrideProps } from '@mui/material/OverridableComponent'
@@ -60,20 +60,20 @@ export function usePrivateQueryMaskSx(props: { sx?: SxProps<Theme>; skeleton?: S
 
   return {
     mask,
-    componentSx: [
+    componentSx: sxx(
       mask && {
         [cssFlag('private-query')]: { display: 'none' },
       },
-      ...(Array.isArray(sx) ? sx : [sx]),
-    ],
-    maskSx: [
+      sx,
+    ),
+    maskSx: sxx(
       {
         display: 'inline-block',
         [cssNotFlag('private-query')]: { display: 'none' },
       },
-      ...(Array.isArray(sx) ? sx : [sx]),
-      ...(Array.isArray(skeleton?.sx) ? skeleton.sx : [skeleton?.sx]),
-    ],
+      sx,
+      skeleton?.sx,
+    ),
   }
 }
 

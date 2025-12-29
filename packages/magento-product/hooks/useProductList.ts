@@ -9,7 +9,7 @@ import type {
   ProductFiltersQuery,
   ProductFiltersQueryVariables,
 } from '../components'
-import { ProductFiltersDocument } from '../components'
+import { hasUserFilterActive, ProductFiltersDocument } from '../components'
 import type {
   ProductListQuery,
   ProductListQueryVariables,
@@ -34,7 +34,7 @@ export const prefetchProductList = debounce(
     variables: ProductListQueryVariables,
     filtersVariables: ProductFiltersQueryVariables,
     next: Next,
-    client: ApolloClient<unknown>,
+    client: ApolloClient,
     shallow: boolean,
   ) => {
     if (!shallow) return next(shallow)
@@ -106,7 +106,10 @@ export function useProductList<
   const result = usePrivateQuery(ProductListDocument, { variables, skip: !shallow }, props)
   const filters = usePrivateQuery(
     ProductFiltersDocument,
-    { variables: categoryDefaultsToProductListFilters(variables), skip: !shallow },
+    {
+      variables: categoryDefaultsToProductListFilters(variables),
+      skip: !shallow || !hasUserFilterActive(params),
+    },
     props,
   )
 
@@ -122,8 +125,8 @@ export function useProductList<
         category,
       )
 
-      const shallowNow =
-        JSON.stringify(vars.filters?.category_uid) === JSON.stringify(params?.filters.category_uid)
+      const shallowNow = hasUserFilterActive(params) === hasUserFilterActive(vars)
+
       await prefetchProductList(
         vars,
         categoryDefaultsToProductListFilters(vars),

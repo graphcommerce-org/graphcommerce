@@ -1,5 +1,5 @@
 import { Money } from '@graphcommerce/magento-store'
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { TextSwatchDataFragment } from './TextSwatchData.gql'
@@ -18,10 +18,7 @@ export function TextSwatchData(props: TextSwatchDataProps) {
   const classes = withState({ size })
 
   return (
-    <Box
-      className={classes.root}
-      sx={[{ width: '100%', height: '100%' }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Box className={classes.root} sx={sxx({ width: '100%', height: '100%' }, sx)}>
       {size !== 'small' ? (
         <>
           <Box

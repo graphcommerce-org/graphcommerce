@@ -1,4 +1,4 @@
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useCompareList } from '../hooks/useCompareList'
@@ -18,9 +18,9 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
-          bgcolor: theme.palette.background.default,
+          bgcolor: theme.vars.palette.background.default,
           '& :first-of-type > div': {
             mt: 0,
           },
@@ -33,8 +33,8 @@ export function CompareListAttributes(props: CompareListAttributesProps) {
             p: theme.spacings.lg,
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {compareListAttributes.map((attribute) => (
         <CompareListRow compareAbleItems={items} attribute={attribute} key={attribute?.code} />

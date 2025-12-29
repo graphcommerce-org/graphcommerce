@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { sxx } from '@graphcommerce/next-ui'
 import type { ToggleButtonGroupProps as ToggleButtonGroupPropsBase } from '@mui/material'
 import { Box } from '@mui/material'
 import React from 'react'
@@ -68,7 +69,7 @@ export const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGr
       <Box
         role='group'
         className={`${classes.root} ${className ?? ''}`}
-        sx={[
+        sx={sxx(
           (theme) => ({
             rowGap: theme.spacings.xxs,
             columnGap: theme.spacings.xs,
@@ -90,8 +91,8 @@ export const ToggleButtonGroup = React.forwardRef<HTMLDivElement, ToggleButtonGr
               gridTemplateColumns: 'repeat(2, 1fr)',
             },
           }),
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+          sx,
+        )}
         ref={ref}
         {...other}
       >

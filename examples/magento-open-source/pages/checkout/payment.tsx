@@ -32,8 +32,8 @@ import {
   LayoutTitle,
   Stepper,
 } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
-import { Trans } from '@lingui/react'
+import { t } from '@lingui/core/macro'
+import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import type { LayoutMinimalProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
@@ -50,13 +50,13 @@ function PaymentPage() {
 
   return (
     <ComposedForm>
-      <PageMeta title={i18n._(/* i18n */ 'Payment')} metaRobots={['noindex']} />
+      <PageMeta title={t`Payment`} metaRobots={['noindex']} />
 
       <WaitForQueries
         waitFor={[billingPage]}
         fallback={
-          <FullPageMessage icon={<CircularProgress />} title={<Trans id='Loading' />}>
-            <Trans id='This may take a second' />
+          <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+            <Trans>This may take a second</Trans>
           </FullPageMessage>
         }
       >
@@ -77,7 +77,7 @@ function PaymentPage() {
                   }}
                   display='inline'
                 >
-                  <Trans id='Pay' />
+                  <Trans>Pay</Trans>
                 </PaymentMethodButton>
               }
               divider={
@@ -87,7 +87,7 @@ function PaymentPage() {
               }
             >
               <LayoutTitle size='small' icon={iconId}>
-                <Trans id='Payment' />
+                <Trans>Payment</Trans>
               </LayoutTitle>
             </LayoutHeader>
 
@@ -96,9 +96,9 @@ function PaymentPage() {
                 <FullPageMessage
                   disableMargin
                   icon={<CircularProgress />}
-                  title={<Trans id='Processing your payment' />}
+                  title={<Trans>Processing your payment</Trans>}
                 >
-                  <Trans id='We’re processing your payment, this will take a few seconds.' />
+                  <Trans>We’re processing your payment, this will take a few seconds.</Trans>
                 </FullPageMessage>
               </Dialog>
 
@@ -106,7 +106,7 @@ function PaymentPage() {
                 variant='h4'
                 sx={(theme) => ({ mt: theme.spacings.lg, mb: theme.spacings.sm })}
               >
-                <Trans id='Payment method' />
+                <Trans>Payment method</Trans>
               </Typography>
 
               <PaymentMethodContextProvider>
@@ -119,9 +119,7 @@ function PaymentPage() {
                 <CouponAccordion />
                 <SubscribeToNewsletter
                   step={3}
-                  label={i18n._(
-                    /* i18n */ 'Subscribe to our newsletter to stay informed about our new products!',
-                  )}
+                  label={t`Subscribe to our newsletter to stay informed about our new products!`}
                   sx={(theme) => ({ marginTop: theme.spacings.md })}
                 />
                 <CartAgreementsForm step={2} sx={{ pt: 0 }} />
@@ -137,7 +135,7 @@ function PaymentPage() {
                     breakpoint='xs'
                     endIcon={<IconSvg src={iconChevronRight} />}
                   >
-                    <Trans id='Place order' />
+                    <Trans>Place order</Trans>
                   </PaymentMethodButton>
                 </FormActions>
               </PaymentMethodContextProvider>
@@ -171,7 +169,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/checkout', title: i18n._(/* i18n */ 'Shipping') },
+      up: { href: '/checkout', title: t`Shipping` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

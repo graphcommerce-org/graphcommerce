@@ -1,5 +1,6 @@
 import type { GraphCommerceConfig } from '../../src/generated/config'
 import { findPlugins } from '../../src/interceptors/findPlugins'
+
 const projectRoot = `${process.cwd()}/examples/magento-graphcms`
 it('finds plugins', () => {
   const fakeconfig = {
@@ -105,6 +106,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "categoriesApplySearchDefaults",
+        "sourceModule": "@graphcommerce/algolia-categories/plugins/categoriesApplySearchDefaultAlgolia",
+        "targetExport": "categoriesApplySearchDefaults",
+        "targetModule": "@graphcommerce/magento-search",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "meshConfig",
         "sourceModule": "@graphcommerce/algolia-products/plugins/meshConfigAlgolia",
         "targetExport": "meshConfig",
@@ -201,6 +210,110 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "cartItemToCartItemInput",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/Downloadable_cartItemToCartItemInput",
+        "targetExport": "cartItemToCartItemInput",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "ProductPagePrice",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableProductPagePrice",
+        "targetExport": "ProductPagePrice",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "OrderItem",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableOrderItem",
+        "targetExport": "OrderItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "InvoiceItem",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableInvoiceItem",
+        "targetExport": "InvoiceItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "CreditMemoItem",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableCreditMemoItem",
+        "targetExport": "CreditMemoItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "CartItemActionCard",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableCartItemActionCard",
+        "targetExport": "CartItemActionCard",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "AccountMenuItem",
+        "sourceModule": "@graphcommerce/magento-product-downloadable/plugins/DownloadableAccountMenuItem",
+        "targetExport": "AccountMenuItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "cartItemToCartItemInput",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/Bundle_cartItemToCartItemInput",
+        "targetExport": "cartItemToCartItemInput",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "ShipmentItem",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleShipmentItem",
+        "targetExport": "ShipmentItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "ProductPagePrice",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleProductPagePrice",
+        "targetExport": "ProductPagePrice",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "OrderItem",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleOrderItem",
+        "targetExport": "OrderItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "InvoiceItem",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleInvoiceItem",
+        "targetExport": "InvoiceItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "CreditMemoItem",
+        "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleCreditMemoItem",
+        "targetExport": "CreditMemoItem",
+        "targetModule": "@graphcommerce/magento-customer",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "sourceExport": "CartItemActionCard",
         "sourceModule": "@graphcommerce/magento-product-bundle/plugins/BundleCartItemActionCard",
         "targetExport": "CartItemActionCard",
@@ -213,6 +326,14 @@ it('finds plugins', () => {
         "sourceModule": "@graphcommerce/magento-product-virtual/plugins/VirtualCartItemActionCard",
         "targetExport": "CartItemActionCard",
         "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "AccountMenuItem",
+        "sourceModule": "@graphcommerce/magento-payment-tokens/plugins/PaymentTokensAccountMenuItem",
+        "targetExport": "AccountMenuItem",
+        "targetModule": "@graphcommerce/magento-customer",
         "type": "component",
       },
       {
@@ -265,7 +386,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/googlerecaptcha/plugins/meshRecaptcha",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "GraphQLProvider",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaGraphQLProvider",
         "targetExport": "GraphQLProvider",
@@ -274,7 +402,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorSnackbar",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorSnackbar",
         "targetExport": "ApolloErrorSnackbar",
@@ -283,7 +410,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorFullPage",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorFullPage",
         "targetExport": "ApolloErrorFullPage",
@@ -292,7 +418,6 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
-        "ifConfig": "googleRecaptchaKey",
         "sourceExport": "ApolloErrorAlert",
         "sourceModule": "@graphcommerce/googlerecaptcha/plugins/GrecaptchaApolloErrorAlert",
         "targetExport": "ApolloErrorAlert",
@@ -434,6 +559,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "cartItemToCartItemInput",
+        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/Configurable_cartItemToCartItemInput",
+        "targetExport": "cartItemToCartItemInput",
+        "targetModule": "@graphcommerce/magento-cart-items",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "CartItemActionCard",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableCartItemActionCard",
         "targetExport": "CartItemActionCard",
@@ -445,6 +578,14 @@ it('finds plugins', () => {
         "sourceExport": "ProductPagePriceTiers",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePriceTiers",
         "targetExport": "ProductPagePriceTiers",
+        "targetModule": "@graphcommerce/magento-product",
+        "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "ProductPagePriceLowest",
+        "sourceModule": "@graphcommerce/magento-product-configurable/plugins/ConfigurableProductPage/ConfigurableProductPagePriceLowest",
+        "targetExport": "ProductPagePriceLowest",
         "targetModule": "@graphcommerce/magento-product",
         "type": "component",
       },
@@ -479,6 +620,14 @@ it('finds plugins', () => {
         "targetExport": "GraphQLProvider",
         "targetModule": "@graphcommerce/graphql",
         "type": "component",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getPrivateQueryContextMesh",
+        "sourceModule": "@graphcommerce/magento-customer/plugins/magentoCustomerPrivateQueryContext",
+        "targetExport": "getPrivateQueryContextMesh",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
       },
       {
         "enabled": true,
@@ -518,9 +667,41 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-store/plugins/meshMagentoStore",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-store/plugins/magentoStoreGraphqlConfig",
         "targetExport": "graphqlConfig",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getPrivateQueryContextMesh",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoCurrencyCode",
+        "targetExport": "getPrivateQueryContextMesh",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "getPrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoCurrencyCode",
+        "targetExport": "getPrivateQueryContext",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "usePrivateQueryContext",
+        "sourceModule": "@graphcommerce/magento-store/plugins/magentoCurrencyCode",
+        "targetExport": "usePrivateQueryContext",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
@@ -534,23 +715,32 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoOrders",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
+        "sourceExport": "meshConfig",
+        "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoOrderItemMesh",
+        "targetExport": "meshConfig",
+        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
+        "type": "function",
+      },
+      {
+        "enabled": true,
         "sourceExport": "graphqlConfig",
         "sourceModule": "@graphcommerce/magento-graphql/plugins/magentoGraphqlConfig",
         "targetExport": "graphqlConfig",
         "targetModule": "@graphcommerce/graphql",
         "type": "function",
       },
-      {
-        "enabled": true,
-        "sourceExport": "meshConfig",
-        "sourceModule": "@graphcommerce/graphql-mesh/plugins/meshConfigFake",
-        "targetExport": "meshConfig",
-        "targetModule": "@graphcommerce/graphql-mesh/meshConfig",
-        "type": "function",
-      },
     ]
   `)
-  expect(disabled).toMatchInlineSnapshot(`
+  expect(disabled).toMatchInlineSnapshot(
+    `
     [
       {
         "enabled": false,
@@ -751,5 +941,6 @@ it('finds plugins', () => {
         "type": "component",
       },
     ]
-  `)
+  `,
+  )
 })

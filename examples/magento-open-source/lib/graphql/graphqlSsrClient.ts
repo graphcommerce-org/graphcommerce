@@ -1,9 +1,4 @@
-import type {
-  DefaultOptions,
-  FetchPolicy,
-  NormalizedCacheObject,
-  PreviewConfig,
-} from '@graphcommerce/graphql'
+import type { FetchPolicy, PreviewConfig } from '@graphcommerce/graphql'
 import {
   ApolloClient,
   ApolloLink,
@@ -37,11 +32,11 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
       typePolicies: mergeTypePolicies(config.policies),
     }),
     ssrMode: true,
-    name: 'ssr',
+    clientAwareness: { name: 'ssr' },
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },
-    } as DefaultOptions,
+    } as ApolloClient.DefaultOptions,
   })
 }
 
@@ -50,21 +45,22 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
  * browser's cache.
  */
 export function graphqlSharedClient(context: GetStaticPropsContext) {
+  const locale = context.locale ?? storefrontConfigDefault().locale
+  i18nSsrLoader(locale)
+
   if (context.preview || context.draftMode) return client(context, 'no-cache')
   return client(context, 'cache-first')
 }
 
 const ssrClient: {
-  [locale: string]: ApolloClient<NormalizedCacheObject>
+  [locale: string]: ApolloClient
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
-  if (context.preview || context.draftMode) return client(context, 'no-cache')
   const locale = context.locale ?? storefrontConfigDefault().locale
   i18nSsrLoader(locale)
 
-  // Create a client if it doesn't exist for the locale.
+  if (context.preview || context.draftMode) return client(context, 'no-cache')
   if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
-
   return ssrClient[locale]
 }

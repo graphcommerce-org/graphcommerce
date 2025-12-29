@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import { Overlay } from '../Overlay/components/Overlay'
 import type { OverlayProps } from '../Overlay/components/OverlaySsr'
 import { nonNullable } from '../RenderType/nonNullable'
@@ -16,17 +17,15 @@ export function OverlayPanel(props: OverlayPanelProps) {
       {...overlayProps}
       onClosed={onClose}
       active={Boolean(activeEl)}
-      sx={[
+      sx={sxx(
         {
           '& .LayoutOverlayBase-overlayPane': {
             display: 'grid',
             gridTemplateRows: 'min-content auto min-content',
           },
         },
-        ...(Array.isArray(overlayProps?.sx) ? overlayProps.sx : [overlayProps?.sx]).filter(
-          nonNullable,
-        ),
-      ]}
+        overlayProps?.sx,
+      )}
     >
       {() => (
         <OverlayPanelActions onClose={onClose} {...rest}>

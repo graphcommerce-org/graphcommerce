@@ -10,6 +10,8 @@ import {
   unstable_usePreventScroll as usePreventScroll,
 } from '@graphcommerce/framer-scroller'
 import { dvh } from '@graphcommerce/framer-utils'
+import { sidebarGallery } from '@graphcommerce/next-config/config'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
@@ -138,6 +140,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
 
   const hasImages = images.length > 0
 
+  const sidebarSize = `calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${theme.page.horizontal} * 2)`
+
   return (
     <ScrollerProvider scrollSnapAlign='center'>
       <Row
@@ -145,52 +149,52 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         disableGutters
         className={classes.row}
         breakoutLeft={variantMd === 'default' && !theme.appShell.containerSizingContent}
-        sx={[
-          { bgcolor: theme.palette.mode === 'light' ? 'background.image' : 'background.paper' },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
+        sx={sxx(
+          (theme) => ({
+            bgcolor: 'background.paper',
+            ...theme.applyStyles('light', {
+              bgcolor: 'background.image',
+            }),
+          }),
+          sx,
+        )}
       >
         <MotionBox
           layout
           layoutDependency={zoomed}
           className={classes.root}
-          sx={[
-            {
-              willChange: 'transform',
-              display: 'grid',
-              gridTemplate: '"left" "right"',
-              [theme.breakpoints.up('md')]: {
-                '&:not(.variantMdOneColumn)': {
-                  gridTemplate: `"left right" / 1fr calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
-                    theme.page.horizontal
-                  } * 2)`,
-                },
-              },
-
-              '&.zoomed': {
-                position: 'relative',
-                zIndex: theme.zIndex.modal,
-                marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
-                [theme.breakpoints.up('md')]: {
-                  marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
-                  gridTemplateColumns: '1fr auto',
-                },
-                px: 0,
+          sx={(theme) => ({
+            willChange: 'transform',
+            display: 'grid',
+            gridTemplate: '"left" "right"',
+            [theme.breakpoints.up('md')]: {
+              '&:not(.variantMdOneColumn)': {
+                gridTemplate: `"left right" / 1fr ${sidebarSize}`,
               },
             },
-          ]}
+            '&.zoomed': {
+              position: 'relative',
+              zIndex: theme.zIndex.modal,
+              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+              [theme.breakpoints.up('md')]: {
+                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
+                gridTemplateColumns: '1fr auto',
+              },
+              px: 0,
+            },
+          })}
         >
           <TrapFocus open={zoomed}>
             <MotionBox
               layout
               layoutDependency={zoomed}
               className={classes.scrollerContainer}
-              sx={[
+              sx={sxx(
                 {
                   gridArea: 'left',
                   willChange: 'transform',
                   height: 0, // https://stackoverflow.com/questions/44770074/css-grid-row-height-safari-bug
-                  backgroundColor: theme.palette.background.image,
+                  backgroundColor: theme.vars.palette.background.image,
                   position: 'relative',
                   paddingTop: `min(${ratio}, ${maxHeight})`,
                   [theme.breakpoints.down('md')]: {
@@ -212,7 +216,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   marginTop: 0,
                   paddingTop: dvh(100),
                 },
-              ]}
+              )}
               onLayoutAnimationComplete={() => {
                 if (!zoomed) document.body.style.overflow = ''
               }}
@@ -223,7 +227,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                 hideScrollbar
                 onMouseDown={onMouseDownScroller}
                 onMouseUp={onMouseUpScroller}
-                sx={[
+                sx={sxx(
                   {
                     willChange: 'transform',
                     position: 'absolute',
@@ -232,17 +236,24 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     height: '100%',
                     gridAutoColumns: '100%',
                     gridTemplateRows: '100%',
-                    cursor: disableZoom ? 'auto' : 'zoom-in',
                   },
+                  disableZoom
+                    ? {
+                        cursor: 'auto',
+                      }
+                    : {
+                        cursor: 'zoom-in',
+                      },
                   zoomed && {
                     height: 'var(--client-size-y)',
                     cursor: 'inherit',
                   },
-                ]}
+                )}
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
-                    key={typeof image.src === 'string' ? image.src : idx}
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={idx}
                     layout
                     layoutDependency={zoomed}
                     src={image.src}
@@ -349,8 +360,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   },
                 }}
               >
-                {import.meta.graphCommerce.sidebarGallery?.paginationVariant ===
-                'THUMBNAILS_BOTTOM' ? (
+                {sidebarGallery?.paginationVariant === 'THUMBNAILS_BOTTOM' ? (
                   <ScrollerThumbnails layoutDependency={zoomed} images={images} />
                 ) : (
                   <ScrollerDots layout />
@@ -360,8 +370,9 @@ export function SidebarGallery(props: SidebarGalleryProps) {
           </TrapFocus>
           <Box
             className={classes.sidebarWrapper}
-            sx={[
+            sx={sxx(
               {
+                width: { xs: '100%', md: sidebarSize },
                 gridArea: 'right',
                 boxSizing: 'content-box',
                 display: 'grid',
@@ -379,13 +390,13 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   } * 2)`,
                 },
               },
-            ]}
+            )}
           >
             <MotionBox
               layout='position'
               layoutDependency={zoomed}
               className={classes.sidebar}
-              sx={{
+              sx={(theme) => ({
                 boxSizing: 'border-box',
                 width: '100%',
                 '&:not(.variantMdOneColumn)': {
@@ -394,7 +405,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     paddingLeft: theme.spacings.lg,
                   },
                 },
-              }}
+              })}
             >
               {sidebar}
             </MotionBox>

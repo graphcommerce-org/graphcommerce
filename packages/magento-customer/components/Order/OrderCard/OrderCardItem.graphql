@@ -1,0 +1,11 @@
+fragment OrderCardItem on OrderItemInterface {
+  id
+  product_sku
+  product_url_key
+  product {
+    uid
+    thumbnail {
+      ...ProductImage
+    }
+  }
+}

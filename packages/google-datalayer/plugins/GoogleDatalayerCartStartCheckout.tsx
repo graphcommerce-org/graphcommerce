@@ -2,7 +2,7 @@ import type { CartStartCheckoutProps } from '@graphcommerce/magento-cart'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { useMemoObject } from '@graphcommerce/next-ui'
 import { useEffect, useRef } from 'react'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartToBeginCheckout } from '../mapping/cartToBeginCheckout/cartToBeginCheckout'
 import { cartToViewCart } from '../mapping/cartToViewCart/cartToViewCart'
 
@@ -27,9 +27,9 @@ export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
   return (
     <Prev
       {...rest}
-      onStart={(e, cart) => {
+      onStart={async (e, cart) => {
+        await onStart?.(e, cart)
         if (cart) sendEvent('begin_checkout', cartToBeginCheckout(cart))
-        return onStart?.(e, cart)
       }}
     />
   )

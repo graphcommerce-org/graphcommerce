@@ -58,7 +58,6 @@ export function ProductFilterEqualChip(props: FilterProps) {
         })),
     [attrCode, options],
   )
-
   return (
     items.length !== 0 && (
       <ChipOverlayOrPopper

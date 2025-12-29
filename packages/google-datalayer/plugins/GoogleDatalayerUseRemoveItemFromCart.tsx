@@ -1,6 +1,6 @@
 import type { UpdateItemQuantityProps } from '@graphcommerce/magento-cart-items'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartItemToDatalayerItem } from '../mapping/cartItemToDatalayerItem/cartItemToDatalayerItem'
 import { datalayerItemsToCurrencyValue } from '../mapping/datalayerItemsToCurrencyValue/datalayerItemsToCurrencyValue'
 

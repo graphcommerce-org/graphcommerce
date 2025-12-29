@@ -11,10 +11,11 @@ import {
   ProductListCount,
   ProductListPagination,
 } from '@graphcommerce/magento-product'
+import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { LayoutTitle, memoDeep, StickyBelowHeader, Container } from '@graphcommerce/next-ui'
-import { ProductListItems } from '../ProductListItems'
+import { ProductListItems, productListRenderer } from '../ProductListItems'
 import { ProductListLayoutProps } from './types'
-import { Trans } from '@lingui/macro'
+import { Trans } from '@lingui/react/macro'
 
 export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClassic(
   props: ProductListLayoutProps,
@@ -26,7 +27,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
 
   return (
     <>
-      {import.meta.graphCommerce.breadcrumbs && category && (
+      {breadcrumbs && category && (
         <Container maxWidth={false}>
           <CategoryBreadcrumbs
             category={category}
@@ -50,6 +51,7 @@ export const ProductListLayoutClassic = memoDeep(function ProductListLayoutClass
           <CategoryDescription
             sx={(theme) => ({ textAlign: 'center', mb: theme.spacings.sm })}
             category={category}
+            productListRenderer={productListRenderer}
           />
           <CategoryChildren
             params={params}

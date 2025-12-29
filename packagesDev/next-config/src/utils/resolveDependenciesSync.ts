@@ -1,5 +1,6 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'fs'
+import path from 'path'
+import { resolve as resolveModule } from 'import-meta-resolve'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
 import { sig } from './sig'
@@ -10,7 +11,10 @@ type DependencyStructure = Record<string, { dirName: string; dependencies: strin
 const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 
 function findPackageJson(id: string, root: string) {
-  let dir = id.startsWith('/') ? id : require.resolve(id)
+  let dir = id.startsWith('/') ? id : resolveModule(id, import.meta.url)
+
+  if (dir.startsWith('file://')) dir = new URL(dir).pathname
+
   let packageJsonLocation = path.join(dir, 'package.json')
   while (!fs.existsSync(packageJsonLocation)) {
     dir = path.dirname(dir)
@@ -28,12 +32,7 @@ function resolveRecursivePackageJson(
 ) {
   const isRoot = dependencyPath === root
 
-  let fileName: string
-  try {
-    fileName = require.resolve(path.join(dependencyPath, 'package.json'))
-  } catch (e) {
-    fileName = findPackageJson(dependencyPath, root)
-  }
+  const fileName = findPackageJson(dependencyPath, root)
   if (!fileName) throw Error(`Can't find package.json for ${dependencyPath}`)
 
   const packageJsonFile = fs.readFileSync(fileName, 'utf-8').toString()

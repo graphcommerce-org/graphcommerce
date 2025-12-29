@@ -1,0 +1,7 @@
+mutation UseCustomerUpdateForm($input: CustomerUpdateInput!) {
+  updateCustomerV2(input: $input) {
+    customer {
+      ...CustomerInfo
+    }
+  }
+}

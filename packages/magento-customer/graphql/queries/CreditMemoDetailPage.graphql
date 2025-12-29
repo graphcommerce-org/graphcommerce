@@ -1,0 +1,14 @@
+query CreditMemoDetailPage($orderNumber: String!) {
+  customer {
+    orders(filter: { number: { eq: $orderNumber } }, scope: GLOBAL) {
+      items {
+        ...OrderDetails
+        id
+        number
+        credit_memos {
+          ...CreditMemo
+        }
+      }
+    }
+  }
+}

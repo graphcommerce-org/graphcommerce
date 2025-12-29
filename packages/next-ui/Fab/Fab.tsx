@@ -36,7 +36,7 @@ export function Fab(props: FabProps) {
       size={size}
       {...fabProps}
       disabled={disabled}
-      sx={[{ display: 'grid' }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={sxx({ display: 'grid' }, sx)}
     >
       <Box sx={{ display: 'flex', placeContent: 'center', gridArea: '1/1' }}>
         <IconSvg src={icon} size='medium' {...slotProps?.icon} />

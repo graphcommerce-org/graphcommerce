@@ -1,0 +1,17 @@
+fragment OrderAddress on OrderAddress {
+  company
+  fax
+  middlename
+  prefix
+  region
+  suffix
+  telephone
+  vat_id
+  city
+  postcode
+  firstname
+  lastname
+  street
+  country_code
+  region_id
+}

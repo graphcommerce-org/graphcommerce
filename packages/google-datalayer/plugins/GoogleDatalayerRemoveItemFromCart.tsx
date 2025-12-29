@@ -1,6 +1,6 @@
 import type { useRemoveItemFromCart as useRemoveItemFromCartBase } from '@graphcommerce/magento-cart-items'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartItemToRemoveFromCart } from '../mapping/cartItemToRemoveFromCart/cartToRemoveFromCart'
 
 export const config: PluginConfig = {

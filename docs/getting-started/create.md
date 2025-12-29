@@ -31,7 +31,7 @@ There are a few starting points to choose from with or without Hygraph:
 Option 1: Only Magento Open Source:
 
 ```bash
-cp -R graphcommerce/examples/magento-magento-open-source/. my-project && cd my-project
+cp -R graphcommerce/examples/magento-open-source/. my-project && cd my-project
 ```
 
 Option 2: Magento Open Source + Hygraph:

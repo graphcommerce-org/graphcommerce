@@ -48,8 +48,11 @@ export function PayPalPaymentHandler(props: PaymentHandlerProps) {
 
       try {
         assertOrderPlaced(result)
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        onSuccess(result.data.placeOrder.order.order_number)
+        const orderNumber = result.data?.placeOrder?.order?.order_number
+        if (orderNumber) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          onSuccess(orderNumber)
+        }
       } catch (e) {
         await unlock({ token: null, PayerID: null })
       }

@@ -4,10 +4,11 @@ import {
   extendableComponent,
   iconChevronDown,
   IconSvg,
+  sxx,
 } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import type { AccordionProps, SxProps, Theme } from '@mui/material'
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material'
 import { useState } from 'react'
 import { ApplyCouponForm } from '../ApplyCouponForm/ApplyCouponForm'
 import { RemoveCouponForm } from '../RemoveCouponForm/RemoveCouponForm'
@@ -41,7 +42,7 @@ export function CouponAccordion(props: CouponAccordionProps) {
       onChange={handleChange}
       expanded={!coupon && open}
       variant='outlined'
-      sx={[
+      sx={sxx(
         (theme) => ({
           ...breakpointVal(
             'borderRadius',
@@ -51,33 +52,33 @@ export function CouponAccordion(props: CouponAccordionProps) {
           ),
           '::before': { display: 'none' },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
       {...rest}
     >
       <AccordionSummary
         onClick={(e) => e.preventDefault()}
-        expandIcon={!coupon && <IconSvg src={iconChevronDown} />}
-        sx={[
+        expandIcon={<IconSvg src={iconChevronDown} style={{ opacity: coupon ? 0 : 1 }} />}
+        sx={sxx(
           (theme) => ({
+            typography: 'body1',
             px: theme.spacings.xs,
             '& .MuiAccordionSummary-content': {
               alignItems: 'center',
-              columnGap: 2,
+              columnGap: theme.spacings.xxs,
+              pr: theme.spacings.xxs,
               justifyContent: 'space-between',
             },
           }),
-          Boolean(coupon) && {
-            '&:hover:not(.Mui-disabled)': {
-              cursor: 'default',
-            },
-          },
-        ]}
+          coupon && { '&:hover:not(.Mui-disabled)': { cursor: 'default' } },
+        )}
       >
-        <Trans id='Discount code' />
-        <RemoveCouponForm {...data.cart} />
+        <Box sx={{ flex: 1 }}>
+          <Trans>Discount code</Trans>
+        </Box>
+        <RemoveCouponForm {...data.cart} sx={{ flex: 0 }} />
       </AccordionSummary>
-      <AccordionDetails sx={(theme) => ({ px: theme.spacings.xs })}>
+      <AccordionDetails sx={(theme) => ({ px: theme.spacings.xs, typography: 'body1' })}>
         <ApplyCouponForm />
       </AccordionDetails>
     </Accordion>

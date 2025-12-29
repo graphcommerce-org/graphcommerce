@@ -1,4 +1,4 @@
-import { extendableComponent } from '@graphcommerce/next-ui'
+import { extendableComponent, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ConfigurableCartItemFragment } from './ConfigurableCartItem.gql'
@@ -18,15 +18,15 @@ export function OptionsList(props: CartItemOptionsListProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         {
           gridArea: 'itemOptions',
           cursor: 'default',
           marginLeft: 0,
           paddingBottom: '4px',
         },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {configurable_options &&
         configurable_options.map((option) => (

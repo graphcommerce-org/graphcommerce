@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Avatar, Box, Chip } from '@mui/material'
 import { DateFormat } from '../../Intl/DateTimeFormat'
@@ -14,16 +15,17 @@ export function BlogAuthor(props: BlogAuthorProps) {
 
   return (
     <Box
-      maxWidth='md'
-      sx={[
+      sx={sxx(
         {
+          maxWidth: 'md',
+        },
+        (theme) => ({
           display: 'flex',
           justifyContent: 'left',
           margin: '0 auto',
-          marginBottom: (theme) => theme.spacings.md,
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+          marginBottom: theme.spacings.md,
+        }),
+      )}
     >
       <Chip
         sx={{
@@ -46,7 +48,7 @@ export function BlogAuthor(props: BlogAuthorProps) {
             <Box slot='Author' sx={{ lineHeight: 1.4 }}>
               {author}
             </Box>
-            <Box sx={(theme) => ({ lineHeight: 1.4, color: theme.palette.text.disabled })}>
+            <Box sx={(theme) => ({ lineHeight: 1.4, color: theme.vars.palette.text.disabled })}>
               <DateFormat dateStyle='long' date={date} />
             </Box>
           </section>

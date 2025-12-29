@@ -1,2 +1,4 @@
-export const applicationId = import.meta.graphCommerce.algoliaApplicationId ?? ''
-export const searchOnlyApiKey = import.meta.graphCommerce.algoliaSearchOnlyApiKey ?? ''
+import { algoliaApplicationId, algoliaSearchOnlyApiKey } from '@graphcommerce/next-config/config'
+
+export const applicationId = algoliaApplicationId ?? ''
+export const searchOnlyApiKey = algoliaSearchOnlyApiKey ?? ''

@@ -1,4 +1,10 @@
-import { extendableComponent, responsiveVal, Row, SectionContainer } from '@graphcommerce/next-ui'
+import {
+  extendableComponent,
+  responsiveVal,
+  Row,
+  SectionContainer,
+  sxx,
+} from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import type { ProductSpecsFragment } from './ProductSpecs.gql'
@@ -19,16 +25,13 @@ export function ProductSpecs(props: ProductSpecsProps) {
   const { aggregations, items, title, children, sx = [] } = props
   const filter = ['price', 'category_id', 'size', 'new', 'sale', 'color']
   const specs = aggregations?.filter(
-    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.value !== '0',
+    (attr) => !filter.includes(attr?.attribute_code ?? '') && attr?.options?.[0]?.label !== '0',
   )
 
   if (specs?.length === 0) return null
 
   return (
-    <Row
-      className={classes.root}
-      sx={[{ typography: 'subtitle1' }, ...(Array.isArray(sx) ? sx : [sx])]}
-    >
+    <Row className={classes.root} sx={sxx({ typography: 'subtitle1' }, sx)}>
       <SectionContainer
         labelLeft={title}
         sx={(theme) => ({ '& .SectionHeader-root': { marginBottom: theme.spacings.md } })}

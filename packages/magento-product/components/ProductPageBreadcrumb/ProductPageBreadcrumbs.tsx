@@ -1,5 +1,7 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
-import { categoryToBreadcrumbs } from '@graphcommerce/magento-category'
+// The magento-product MAY NOT depend on magento-category else plugin loading order breaks.
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { categoryToBreadcrumbs } from '@graphcommerce/magento-category/components/CategoryBreadcrumb/categoryToBreadcrumbs'
 import { Breadcrumbs } from '@graphcommerce/next-ui'
 import { BreadcrumbsJsonLd } from '@graphcommerce/next-ui/Breadcrumbs/BreadcrumbsJsonLd'
 import { jsonLdBreadcrumb } from '@graphcommerce/next-ui/Breadcrumbs/jsonLdBreadcrumb'
@@ -34,7 +36,11 @@ export function ProductPageBreadcrumbs(props: ProductPageBreadcrumbsProps) {
         breadcrumbs={[...breadcrumbs, { name: product.name, href: productLink(product) }]}
         render={(bc) => ({ '@context': 'https://schema.org', ...jsonLdBreadcrumb(bc, router) })}
       />
-      <Breadcrumbs breadcrumbs={breadcrumbs} lastIsLink {...breadcrumbsProps} />
+      <Breadcrumbs
+        breadcrumbs={[...breadcrumbs, { name: product.name, href: productLink(product) }]}
+        hideLastOnMobile
+        {...breadcrumbsProps}
+      />
     </>
   )
 }

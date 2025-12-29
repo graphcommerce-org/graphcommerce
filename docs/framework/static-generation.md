@@ -54,7 +54,7 @@ export const getStaticProps: GetPageStaticProps = async ({ locale }) => {
       up: { href: '/', title: 'Home' },
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }
 ```
@@ -155,7 +155,7 @@ return {
     apolloState: await conf.then(() => client.cache.extract()),
     up,
   },
-  revalidate: 60 * 20,
+  revalidate: revalidate(),
 }
 ```
 

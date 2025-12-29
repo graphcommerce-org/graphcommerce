@@ -40,6 +40,7 @@ const asNextjsDir: WorkspaceEntry = {
   entry: [
     'next.config.js',
     'graphcommerce.config.js',
+    'graphcommerce.config.ts',
     'lingui.config.js',
     'next-sitemap.config.js',
     'next.config.{ts,cjs,mjs}',

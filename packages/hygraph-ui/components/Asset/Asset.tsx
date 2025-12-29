@@ -1,5 +1,6 @@
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { memo } from 'react'
@@ -35,27 +36,14 @@ export const Asset = memo<AssetProps>((props) => {
         {...imgProps}
         {...assetProps}
         unoptimized={typeof unoptimized === 'boolean' ? unoptimized : mimeType === 'image/svg+xml'}
-        sx={[...(Array.isArray(sx) ? sx : [sx])]}
+        sx={sx}
       />
     )
   }
-
   if (asset.mimeType === 'video/mp4') {
     const Video = styled('video')({})
-
-    return (
-      <Video
-        src={asset.url}
-        autoPlay
-        muted
-        loop
-        playsInline
-        disableRemotePlayback
-        sx={[...(Array.isArray(sx) ? sx : [sx])]}
-      />
-    )
+    return <Video src={asset.url} autoPlay muted loop playsInline disableRemotePlayback sx={sx} />
   }
-
   if (process.env.NODE_ENV !== 'production') return <div>{asset.mimeType} not supported</div>
   return null
 })

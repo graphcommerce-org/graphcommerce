@@ -12,7 +12,7 @@ import { getEnvironment } from './utils/getEndpointUrl'
 import { getManagementClient } from './utils/getManagementClient'
 import { graphcommerceLog } from './utils/graphCommerceLog'
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 export async function migrateHygraphCli() {
   const hygraphConfig = getConfig(loadConfig(process.cwd()))

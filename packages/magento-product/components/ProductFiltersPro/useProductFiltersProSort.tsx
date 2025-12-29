@@ -1,11 +1,10 @@
 import { useWatch } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { useMemo } from 'react'
 import type { CategoryDefaultFragment } from '../ProductListItems/CategoryDefault.gql'
-import type { ProductFilterParams } from '../ProductListItems/filterTypes'
 import type { ProductListSortFragment } from '../ProductListSort'
 import { useProductFiltersPro } from './ProductFiltersPro'
 import type { ProductListActionSortProps } from './ProductFiltersProSortChip'
@@ -26,8 +25,8 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
   const sortFields = useMemo(
     () =>
       filterNonNullableKeys(sort_fields?.options).map((o) =>
-        !category?.uid && o.value === 'position'
-          ? { value: 'relevance', label: i18n._(/* i18n*/ 'Relevance') }
+        (!category?.uid && o.value === 'position') || o.value === 'relevance'
+          ? { value: 'relevance', label: t`Relevance` }
           : o,
       ),
     [category?.uid, sort_fields?.options],
@@ -35,11 +34,14 @@ export function useProductFiltersProSort(props: ProductListActionSortProps) {
   const availableSortBy = category?.available_sort_by ?? sortFields.map((o) => o.value)
 
   const conf = useQuery(StoreConfigDocument).data?.storeConfig
-  const defaultSortBy = (
-    category
-      ? (category.default_sort_by ?? conf?.catalog_default_sort_by ?? 'position')
-      : 'relevance'
-  ) as ProductFilterParams['sort']
+
+  const maybeDefaults = [
+    category?.default_sort_by,
+    conf?.catalog_default_sort_by,
+    'position',
+    'relevance',
+  ].filter(nonNullable)
+  const defaultSortBy = maybeDefaults.find((v) => availableSortBy.includes(v)) ?? availableSortBy[0]
 
   const formSort = useWatch({ control, name: 'sort' })
   const formDirection = useWatch({ control, name: 'dir' })

@@ -1,3 +1,0 @@
-query GroupedProductPage($urlKey: String) {
-  ...ProductPageGroupedQueryFragment
-}

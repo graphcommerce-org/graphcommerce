@@ -1,8 +1,9 @@
 import { useHistoryLink } from '@graphcommerce/framer-next-pages'
-import { breakpointVal, extendableComponent, SectionContainer } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { useBillingAddressPermission } from '@graphcommerce/magento-customer'
+import { breakpointVal, extendableComponent, SectionContainer, sxx } from '@graphcommerce/next-ui'
+import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
-import { Box, lighten, Link, Typography } from '@mui/material'
+import { Box, Link, Typography } from '@mui/material'
 import React from 'react'
 import { useCartQuery } from '../../hooks'
 import { CartAddressMultiLine } from '../CartAddressMultiLine/CartAddressMultiLine'
@@ -27,6 +28,8 @@ export function CartSummary(props: CartSummaryProps) {
     href: '/checkout',
   })
 
+  const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
+
   if (!data?.cart) return null
 
   const { email, shipping_addresses, billing_address, is_virtual } = data.cart
@@ -34,7 +37,7 @@ export function CartSummary(props: CartSummaryProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           margin: `${theme.spacings.sm} 0`,
           '& > div:last-of-type': {
@@ -53,8 +56,8 @@ export function CartSummary(props: CartSummaryProps) {
             ),
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Box
         className={classes.detailsContainer}
@@ -71,10 +74,7 @@ export function CartSummary(props: CartSummaryProps) {
             theme.shape.borderRadius * 3,
             theme.breakpoints.values,
           ),
-          background:
-            theme.palette.mode === 'light'
-              ? theme.palette.background.default
-              : lighten(theme.palette.background.default, 0.15),
+          background: theme.lighten(theme.vars.palette.background.default, 0.15),
           padding: theme.spacings.sm,
           gridColumnGap: theme.spacings.xxl,
           gridRowGap: theme.spacings.sm,
@@ -83,13 +83,16 @@ export function CartSummary(props: CartSummaryProps) {
             gridTemplateColumns: '1fr 1fr',
             marginTop: theme.spacings.xxs,
           },
+          ...theme.applyStyles('light', {
+            background: theme.vars.palette.background.default,
+          }),
         })}
       >
         <Box>
           <SectionContainer
             variantLeft='h5'
             labelLeft={
-              is_virtual ? <Trans id='Confirmation' /> : <Trans id='Confirmation + Track & trace' />
+              is_virtual ? <Trans>Confirmation</Trans> : <Trans>Confirmation + Track & trace</Trans>
             }
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
           />
@@ -99,7 +102,7 @@ export function CartSummary(props: CartSummaryProps) {
           <Box>
             <SectionContainer
               variantLeft='h5'
-              labelLeft={<Trans id='Shipping method' />}
+              labelLeft={<Trans>Shipping method</Trans>}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             />
             <Typography variant='body1'>
@@ -112,7 +115,7 @@ export function CartSummary(props: CartSummaryProps) {
           <Box>
             <SectionContainer
               variantLeft='h5'
-              labelLeft={<Trans id='Shipping address' />}
+              labelLeft={<Trans>Shipping address</Trans>}
               sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
               labelRight={
                 editable ? (
@@ -123,7 +126,7 @@ export function CartSummary(props: CartSummaryProps) {
                     onClick={historyOnClick}
                     underline='hover'
                   >
-                    <Trans id='Edit' />
+                    <Trans>Edit</Trans>
                   </Link>
                 ) : undefined
               }
@@ -134,17 +137,17 @@ export function CartSummary(props: CartSummaryProps) {
         <Box>
           <SectionContainer
             variantLeft='h5'
-            labelLeft={<Trans id='Billing address' />}
+            labelLeft={<Trans>Billing address</Trans>}
             sx={{ '& .SectionHeader-root': { marginTop: 0, paddingBottom: '8px' } }}
             labelRight={
-              editable ? (
+              editable && !billingAddressReadonly ? (
                 <Link
                   href='/checkout/edit/billing-address'
                   color='secondary'
                   variant='body2'
                   underline='hover'
                 >
-                  <Trans id='Edit' />
+                  <Trans>Edit</Trans>
                 </Link>
               ) : undefined
             }

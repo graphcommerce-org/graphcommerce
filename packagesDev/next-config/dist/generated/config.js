@@ -1,6 +1,10 @@
 import { z } from 'zod';
 export const isDefinedNonNullAny = (v)=>v !== undefined && v !== null;
 export const definedNonNullAnySchema = z.any().refine((v)=>isDefinedNonNullAny(v));
+export const BillingAddressPermissionsSchema = z.enum([
+    'EDITABLE',
+    'READONLY'
+]);
 export const CartPermissionsSchema = z.enum([
     'CUSTOMER_ONLY',
     'DISABLED',
@@ -47,7 +51,7 @@ export function GraphCommerceConfigSchema() {
         compare: z.boolean().nullish(),
         compareVariant: CompareVariantSchema.default('ICON').nullish(),
         configurableVariantForSimple: z.boolean().default(false).nullish(),
-        configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+        configurableVariantValues: z.lazy(()=>MagentoConfigurableVariantValuesSchema().nullish()),
         containerSizingContent: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
         containerSizingShell: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
         crossSellsHideCartItems: z.boolean().default(false).nullish(),
@@ -56,32 +60,30 @@ export function GraphCommerceConfigSchema() {
         customerCompanyFieldsEnable: z.boolean().nullish(),
         customerDeleteEnabled: z.boolean().nullish(),
         customerXMagentoCacheIdDisable: z.boolean().nullish(),
-        dataLayer: DatalayerConfigSchema().nullish(),
-        debug: GraphCommerceDebugConfigSchema().nullish(),
-        demoMode: z.boolean().default(true).nullish(),
+        dataLayer: z.lazy(()=>DatalayerConfigSchema().nullish()),
+        debug: z.lazy(()=>GraphCommerceDebugConfigSchema().nullish()),
         enableGuestCheckoutLogin: z.boolean().nullish(),
         googleAnalyticsId: z.string().nullish(),
-        googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
+        googlePlaystore: z.lazy(()=>GraphCommerceGooglePlaystoreConfigSchema().nullish()),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
         graphqlMeshEditMode: z.boolean().default(false).nullish(),
-        hygraphEndpoint: z.string().min(1),
         hygraphManagementApi: z.string().nullish(),
         hygraphProjectId: z.string().nullish(),
         hygraphWriteAccessToken: z.string().nullish(),
         limitSsg: z.boolean().nullish(),
         magentoEndpoint: z.string().min(1),
         magentoVersion: z.number(),
-        permissions: GraphCommercePermissionsSchema().nullish(),
+        permissions: z.lazy(()=>GraphCommercePermissionsSchema().nullish()),
         previewSecret: z.string().nullish(),
         productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
         productFiltersPro: z.boolean().nullish(),
         productListPaginationVariant: PaginationVariantSchema.default('COMPACT').nullish(),
         productRoute: z.string().nullish(),
-        recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
+        recentlyViewedProducts: z.lazy(()=>RecentlyViewedProductsConfigSchema().nullish()),
         robotsAllow: z.boolean().nullish(),
-        sidebarGallery: SidebarGalleryConfigSchema().nullish(),
-        storefront: z.array(GraphCommerceStorefrontConfigSchema()),
+        sidebarGallery: z.lazy(()=>SidebarGalleryConfigSchema().nullish()),
+        storefront: z.array(z.lazy(()=>GraphCommerceStorefrontConfigSchema())),
         wishlistHideForGuests: z.boolean().nullish(),
         wishlistShowFeedbackMessage: z.boolean().nullish()
     });
@@ -103,6 +105,7 @@ export function GraphCommerceGooglePlaystoreConfigSchema() {
 }
 export function GraphCommercePermissionsSchema() {
     return z.object({
+        billingAddress: BillingAddressPermissionsSchema.nullish(),
         cart: CartPermissionsSchema.nullish(),
         checkout: CartPermissionsSchema.nullish(),
         customerAccount: CustomerAccountPermissionsSchema.nullish(),
@@ -119,11 +122,10 @@ export function GraphCommerceStorefrontConfigSchema() {
         googleAnalyticsId: z.string().nullish(),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
-        hygraphLocales: z.array(z.string().min(1)).nullish(),
         linguiLocale: z.string().nullish(),
         locale: z.string().min(1),
         magentoStoreCode: z.string().min(1),
-        permissions: GraphCommercePermissionsSchema().nullish(),
+        permissions: z.lazy(()=>GraphCommercePermissionsSchema().nullish()),
         robotsAllow: z.boolean().nullish()
     });
 }

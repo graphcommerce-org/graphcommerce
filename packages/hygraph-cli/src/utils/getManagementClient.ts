@@ -1,4 +1,5 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import { LocalState } from '@apollo/client/local-state'
 import type { HygraphConfig } from './getConfig'
 
 export function getManagementClient(config: HygraphConfig) {
@@ -10,6 +11,8 @@ export function getManagementClient(config: HygraphConfig) {
       fetch,
       headers: { Authorization: `Bearer ${accessToken}` },
     }),
+
     cache: new InMemoryCache(),
+    localState: new LocalState({}),
   })
 }

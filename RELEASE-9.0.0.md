@@ -12,7 +12,6 @@
   [magento-graphcms](#package-magento-graphcms)
 
 - Add `permissions` configuration to disable functionalities.
-
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
@@ -189,7 +188,6 @@
   ```
 
   When to use, replacement for:
-
   1. useMediaQuery: When you are now using useMediaQuery to conditionally render
      content for mobile or desktop. a. Is very slow as it has to wait for the JS
      to initialize on pageload. b. Can cause CLS problems if the useMediaQuery
@@ -227,7 +225,6 @@
 - Big improvements to the plugin system: Typescript validated, deeper
   resolution, new configuration object, replace plugins, and more ifConfig
   options.
-
   1. Plugins now use TypeScript's `"moduleSuffixes": [".interceptor", ""]`
      [functionality](https://www.typescriptlang.org/tsconfig#moduleSuffixes)
      which means that plugins now correctly resolve via TypeScript. So if you
@@ -355,7 +352,6 @@
 
 - Added Intl components, deprecated `useNumberFormat` and
   `useDateTimeFormatter`, and replaced usage sites. New components and hooks:
-
   - `<DisplayNames />` and `useIntlDisplayNames`
   - `<DateTimeFormat />`, `<DateFormat/>`, `<TimeFormat />` and
     `useIntlDateTimeFormat`
@@ -935,16 +931,14 @@
 - Solves the issue `TypeError: url?.startsWith is not a function`. The generated
   `.mesh/index.ts` would be generated as a requirejs module while next.js
   expects an esm module. In the end we properly generated the mesh correctly and
-  now there is an `import.meta.url` instead of using `require('node:url')`. To
-  solve this we needed to solve a chain of issues:
-
+  now there is an `import.meta.url` instead of using `require('url')`. To solve
+  this we needed to solve a chain of issues:
   1. The generation of the mesh is based on the version of the mesh that is
      imported (esm or commonjs). See
      [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10)
      for the lines that need to be different. This meant that we needed to
      change the @graphcommerce/cli package to be of type:module instead of a
      commonjs module.
-
   2) To properly convert the module to an esm module we've migrated the build of
      the cli package to use 'pkgroll' instead of tsc, because tsc is limited in
      what it outputs and can't really convert classic imports to esm.

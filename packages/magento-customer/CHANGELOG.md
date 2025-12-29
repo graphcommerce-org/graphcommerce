@@ -1,5 +1,240 @@
 # Change Log
 
+## 10.0.0-canary.69
+
+## 10.0.0-canary.68
+
+### Major Changes
+
+- [#2557](https://github.com/graphcommerce-org/graphcommerce/pull/2557) [`ceaadd8`](https://github.com/graphcommerce-org/graphcommerce/commit/ceaadd87f0648982a068a3b07b1fa149c9127f49) - ## Material UI v5 → v7 Migration
+
+  This release upgrades Material UI from v5 to v7 with full CSS variables support. ([@paales](https://github.com/paales))
+
+## 10.0.0-canary.67
+
+### Patch Changes
+
+- [#2540](https://github.com/graphcommerce-org/graphcommerce/pull/2540) [`36e2bac`](https://github.com/graphcommerce-org/graphcommerce/commit/36e2bacb4fe765ce1fcd24dc36736e90bb17a7dc) - Add billingAddress permission (EDITABLE | READONLY) that controls whether the end user can update their billing address in the account section and checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+### Patch Changes
+
+- [#2553](https://github.com/graphcommerce-org/graphcommerce/pull/2553) [`66ba029`](https://github.com/graphcommerce-org/graphcommerce/commit/66ba029d2cc9dee6f8ff8c92a628d4fc0cf4d309) - Unset token when on magento 248 to prevent repeated graphql-authentication errors ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`427833d`](https://github.com/graphcommerce-org/graphcommerce/commit/427833d3fa46ec6096853bdc3dfd81321df6e63b) - Forward address field props ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`183d8dd`](https://github.com/graphcommerce-org/graphcommerce/commit/183d8ddef6059f07ffe585b0f05a51731b12b371) - Remove odd nonNullable that is also available in @graphcommmerce/next-ui ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+## 9.1.0-canary.41
+
+## 9.1.0-canary.40
+
+### Patch Changes
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.39
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+## 9.1.0-canary.36
+
+## 9.1.0-canary.35
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+### Patch Changes
+
+- [#2524](https://github.com/graphcommerce-org/graphcommerce/pull/2524) [`dcc46aa`](https://github.com/graphcommerce-org/graphcommerce/commit/dcc46aae34f5eda6a633f472289ac4488ac96492) - Solve issue where the user is getting a 400 error when logging in because the password is not being sent. The password field was disabled before the form was submitted, causing the password not to be sent. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Minor Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`20703bc`](https://github.com/graphcommerce-org/graphcommerce/commit/20703bc5c453fb7ee61eb4350e207e84a749bf5e) - Magento 2.4.7: Implemented the `customer_account_create` and `customer_account_edit` forms using the `attributeForm` query for the registration page and customer information form. The forms respect the settings configured in the 'Customer Configuration section'. It allows configuration for `prefix`, `middlename`, `suffix`,`dob`, `gender` and other fields. This also makes the frontend compatible with Adobe Commerce's Customer Attributes module. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`30f9371`](https://github.com/graphcommerce-org/graphcommerce/commit/30f9371503959b990c65058a88be6f61b4859140) - Added support for viewing Invoices/Shipments and Credit Memo's ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`6cb4815`](https://github.com/graphcommerce-org/graphcommerce/commit/6cb4815a0faf4cc2f60c13d9384e3a96b6bdb2bb) - Deleting an account will now require reauthentication and moved the menu item to the Authentication section ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`2409514`](https://github.com/graphcommerce-org/graphcommerce/commit/240951428ac0bdc11649f4190b6d51c004680b34) - Order/Invoice/CreditMemo and Shipment views ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
+### Patch Changes
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`0cb3ace`](https://github.com/graphcommerce-org/graphcommerce/commit/0cb3aceb09967493ecdd5040446447ff32cc3f43) - Created a AccountDashboardQueryFragment instead of only a query to allow for adding customerDownloadableProducts to the dashboard query ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Migrate to default OrderItem resolver and remove useOrderCardItemImages as OrderItem now returns a product. Add a custom resolver for 2.4.5 and 2.4.6 that implements the functionality for older versions. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`c1f04dc`](https://github.com/graphcommerce-org/graphcommerce/commit/c1f04dcb4ddd621361e6c930fb42afae0aabe9f9) - Created a refactored the AccountOrders page and refactored the OrderCard. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Implemented order sorting for account overview and account list and implement custom resolver for Magento 2.4.5 (which is slow but works). ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`db56933`](https://github.com/graphcommerce-org/graphcommerce/commit/db569336dddd3e955ff0b5b00cafa25079f1adee) - Use OrderStateLabel in my account instead of OrderStateLabelInline and deprecate that one. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`dc387da`](https://github.com/graphcommerce-org/graphcommerce/commit/dc387da4c32585c251fe9dec90aa010e2a435df5) - OrderTotals/OrderDetails now only renders addres information if available ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`623e993`](https://github.com/graphcommerce-org/graphcommerce/commit/623e993579b05e053d2d2f29684649cd4f4586de) - `<WaitForCustomer />` now accepts all props of the FullPageMessage ([@paales](https://github.com/paales))
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13
@@ -47,7 +282,6 @@
 - [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`af83d81`](https://github.com/graphcommerce-org/graphcommerce/commit/af83d81656a4c1a014802fb052a94a079e9f60c1) - Add `reorderItems` mutation, add `reorder` button to order detail page. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
-
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
@@ -284,7 +518,6 @@
 - [#1745](https://github.com/graphcommerce-org/graphcommerce/pull/1745) [`b1444b933`](https://github.com/graphcommerce-org/graphcommerce/commit/b1444b9336107d3ac111563f9b62a884f1b26a8d) - Bring password reset page more in line with standard forms, add missing translations. ([@github-actions](https://github.com/apps/github-actions))
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -495,11 +728,9 @@
 ### Minor Changes
 
 - [#1609](https://github.com/graphcommerce-org/graphcommerce/pull/1609) [`0ad5159eb`](https://github.com/graphcommerce-org/graphcommerce/commit/0ad5159ebef54b4ce7fee6f71b4bf710dba9ef8e) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Use WaitForCustomer component
-
   - Fixes bugs where loaders where shown on all pages that require user to log in
 
 * [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible

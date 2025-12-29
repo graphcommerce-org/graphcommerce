@@ -19,6 +19,8 @@ export type Scalars = {
   Float: { input: number; output: number }
 }
 
+export type BillingAddressPermissions = 'EDITABLE' | 'READONLY'
+
 export type CartPermissions = 'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED'
 
 export type CompareVariant = 'CHECKBOX' | 'ICON'
@@ -50,7 +52,8 @@ export type DatalayerConfig = {
  *
  * ## Using configuration
  *
- * Configuration can be accessed in your project with the `import.meta.graphCommerce` object.
+ * Configuration can be accessed in your project by importing the config from
+ * `@graphcommerce/next-config/config`.
  *
  * ```tsx
  * import {
@@ -59,9 +62,9 @@ export type DatalayerConfig = {
  *   storefrontConfigDefault,
  *   useStorefrontConfig,
  * } from '@graphcommerce/next-ui'
- *
+ * import { cartDisplayPricesInclTax } from '@graphcommerce/next-config/config'
  * // Accessing a global value
- * const globalConf = import.meta.graphCommerce.cartDisplayPricesInclTax
+ * const globalConf = cartDisplayPricesInclTax
  *
  * function MyComponent() {
  *   // Configuration configured per storefront locale.
@@ -72,8 +75,7 @@ export type DatalayerConfig = {
  *
  *   // Or as single line
  *   const scopedConfigWithFallback2 =
- *     useStorefrontConfig().cartDisplayPricesInclTax ??
- *     import.meta.graphCommerce.cartDisplayPricesInclTax
+ *     useStorefrontConfig().cartDisplayPricesInclTax ?? cartDisplayPricesInclTax
  *
  *   return <div>{googleRecaptchaKey}</div>
  * }
@@ -211,14 +213,6 @@ export type GraphCommerceConfig = {
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>
   /**
-   * Enables some demo specific code that is probably not useful for a project:
-   *
-   * - Adds the "BY GC" to the product list items.
-   * - Adds "dominant_color" attribute swatches to the product list items.
-   * - Creates a big list items in the product list.
-   */
-  demoMode?: InputMaybe<Scalars['Boolean']['input']>
-  /**
    * Enable Guest Checkout Login: During customer login, GraphCommerce queries Magento to determine
    * whether the customer account already exists or not. If not, the sign-up form is shown instead.
    *
@@ -263,14 +257,6 @@ export type GraphCommerceConfig = {
    */
   graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
   /**
-   * The HyGraph endpoint.
-   *
-   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
-   *
-   * Project settings -> API Access -> High Performance Read-only Content API
-   */
-  hygraphEndpoint: Scalars['String']['input']
-  /**
    * Hygraph Management API. **Only used for migrations.**
    *
    * Optional: If the hygraphEndpoint is configured with the 'High Performance Content API', this
@@ -312,8 +298,10 @@ export type GraphCommerceConfig = {
    * - Delete public content views
    * - Can see schema view
    *
-   *     GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
-   *     yarn graphcommerce hygraph-migrate
+   * ```bash
+   * GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
+   * yarn graphcommerce hygraph-migrate
+   * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
   /**
@@ -418,6 +406,8 @@ export type GraphCommerceGooglePlaystoreConfig = {
 
 /** Permissions input */
 export type GraphCommercePermissions = {
+  /** Allows customers to change their billing address or locks it down. */
+  billingAddress?: InputMaybe<BillingAddressPermissions>
   /**
    * Changes the availability of the add to cart buttons and the cart page to either customer only
    * or completely disables it.
@@ -477,11 +467,6 @@ export type GraphCommerceStorefrontConfig = {
   googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>
   /** The Google Tagmanager ID to be used per locale. */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
-  /**
-   * Add a gcms-locales header to make sure queries return in a certain language, can be an array to
-   * define fallbacks.
-   */
-  hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>
   /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>
   /**
@@ -570,6 +555,8 @@ export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== und
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v))
 
+export const BillingAddressPermissionsSchema = z.enum(['EDITABLE', 'READONLY'])
+
 export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
 
 export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
@@ -604,7 +591,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.default('ICON').nullish(),
     configurableVariantForSimple: z.boolean().default(false).nullish(),
-    configurableVariantValues: MagentoConfigurableVariantValuesSchema().nullish(),
+    configurableVariantValues: z.lazy(() => MagentoConfigurableVariantValuesSchema().nullish()),
     containerSizingContent: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
     containerSizingShell: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
     crossSellsHideCartItems: z.boolean().default(false).nullish(),
@@ -613,32 +600,30 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
     customerXMagentoCacheIdDisable: z.boolean().nullish(),
-    dataLayer: DatalayerConfigSchema().nullish(),
-    debug: GraphCommerceDebugConfigSchema().nullish(),
-    demoMode: z.boolean().default(true).nullish(),
+    dataLayer: z.lazy(() => DatalayerConfigSchema().nullish()),
+    debug: z.lazy(() => GraphCommerceDebugConfigSchema().nullish()),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
-    googlePlaystore: GraphCommerceGooglePlaystoreConfigSchema().nullish(),
+    googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     graphqlMeshEditMode: z.boolean().default(false).nullish(),
-    hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
-    permissions: GraphCommercePermissionsSchema().nullish(),
+    permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     previewSecret: z.string().nullish(),
     productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
     productFiltersPro: z.boolean().nullish(),
     productListPaginationVariant: PaginationVariantSchema.default('COMPACT').nullish(),
     productRoute: z.string().nullish(),
-    recentlyViewedProducts: RecentlyViewedProductsConfigSchema().nullish(),
+    recentlyViewedProducts: z.lazy(() => RecentlyViewedProductsConfigSchema().nullish()),
     robotsAllow: z.boolean().nullish(),
-    sidebarGallery: SidebarGalleryConfigSchema().nullish(),
-    storefront: z.array(GraphCommerceStorefrontConfigSchema()),
+    sidebarGallery: z.lazy(() => SidebarGalleryConfigSchema().nullish()),
+    storefront: z.array(z.lazy(() => GraphCommerceStorefrontConfigSchema())),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish(),
   })
@@ -669,6 +654,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
   Properties<GraphCommercePermissions>
 > {
   return z.object({
+    billingAddress: BillingAddressPermissionsSchema.nullish(),
     cart: CartPermissionsSchema.nullish(),
     checkout: CartPermissionsSchema.nullish(),
     customerAccount: CustomerAccountPermissionsSchema.nullish(),
@@ -688,11 +674,10 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
-    hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
-    permissions: GraphCommercePermissionsSchema().nullish(),
+    permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     robotsAllow: z.boolean().nullish(),
   })
 }

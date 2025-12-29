@@ -1,4 +1,4 @@
-import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import type { HygraphPagesQuery } from '../graphql'
 import { HygraphPagesDocument } from '../graphql'
 import { getAllHygraphPages } from './getAllHygraphPages'
@@ -6,11 +6,11 @@ import { getAllHygraphPages } from './getAllHygraphPages'
 /**
  * Fetch the page content for the given urls.
  *
- * - Uses an early bailout to check to reduce hygraph calls.
+ * - Uses an early bailout to check to reduce Hygraph calls.
  * - Implements an alias sytem to merge the content of multiple pages.
  */
 async function pageContent(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   url: string,
   cached: boolean,
 ): Promise<{ data: HygraphPagesQuery }> {
@@ -34,13 +34,20 @@ async function pageContent(
   // Only do the query when there the page is found in the allRoutes
   const found = allRoutes.some((page) => page.url === url)
 
-  return found
-    ? client.query({ query: HygraphPagesDocument, variables: { url }, fetchPolicy })
-    : Promise.resolve({ data: { pages: [] } })
+  if (found) {
+    const result = await client.query({
+      query: HygraphPagesDocument,
+      variables: { url },
+      fetchPolicy,
+    })
+    return { data: result.data ?? { pages: [] } }
+  }
+
+  return { data: { pages: [] } }
 }
 
 export async function hygraphPageContent(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   url: string,
   additionalProperties?: Promise<object> | object,
   cached = false,

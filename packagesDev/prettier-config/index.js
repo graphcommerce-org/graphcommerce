@@ -12,12 +12,14 @@ module.exports = {
       options: {
         printWidth: 80,
         proseWrap: 'always',
+        importOrder: [],
       },
     },
     {
-      files: ['**/.changeset/*.md', '**/CHANGELOG.md'],
+      files: ['**/.changeset/*.md', '**/CHANGELOG.md', '**/llm/*.md'],
       options: {
         proseWrap: 'never',
+        importOrder: [],
       },
     },
   ],

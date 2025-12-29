@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-
-/* eslint-disable import/no-extraneous-dependencies */
-import fs from 'node:fs/promises'
-import path from 'node:path'
+import fs from 'fs/promises'
+import path from 'path'
 import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-config'
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli'
 import type { Types } from '@graphql-codegen/plugin-helpers'
@@ -12,7 +10,7 @@ import yaml from 'yaml'
 
 const [, , cmd] = process.argv
 
-dotenv.config()
+dotenv.config({ quiet: true })
 
 const root = process.cwd()
 const configLocation = path.join(root, '._tmp_codegen.yml')

@@ -1,7 +1,7 @@
 import { DesktopHeaderBadge, extendableComponent, iconHeart, IconSvg } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps as FabPropsType, SxProps, Theme } from '@mui/material'
-import { Fab, NoSsr } from '@mui/material'
+import { Fab } from '@mui/material'
 import React from 'react'
 import { useWishlistEnabled, useWishlistItems } from '../../hooks'
 
@@ -27,21 +27,19 @@ function WishlistFabContent(props: WishlistFabContentProps) {
       href='/wishlist'
       color='inherit'
       data-test-id='wishlist-fab'
-      aria-label={i18n._(/* i18n */ 'Wishlist')}
+      aria-label={t`Wishlist`}
       size='large'
       className={classes.root}
       {...FabProps}
       sx={sx}
     >
-      <NoSsr fallback={wishlistIcon}>
-        {activeWishlist ? (
-          <DesktopHeaderBadge color='primary' variant='dot' overlap='circular' {...BadgeProps}>
-            {wishlistIcon}
-          </DesktopHeaderBadge>
-        ) : (
-          wishlistIcon
-        )}
-      </NoSsr>
+      {activeWishlist ? (
+        <DesktopHeaderBadge color='primary' variant='dot' overlap='circular' {...BadgeProps}>
+          {wishlistIcon}
+        </DesktopHeaderBadge>
+      ) : (
+        wishlistIcon
+      )}
     </Fab>
   )
 }
@@ -55,9 +53,5 @@ export function WishlistFab(props: WishlistFabProps) {
   if (!enabled) return null
   const activeWishlist = wishlist.items.length > 0
 
-  return (
-    <NoSsr fallback={<WishlistFabContent {...props} activeWishlist={false} />}>
-      <WishlistFabContent {...props} activeWishlist={activeWishlist} />
-    </NoSsr>
-  )
+  return <WishlistFabContent {...props} activeWishlist={activeWishlist} />
 }

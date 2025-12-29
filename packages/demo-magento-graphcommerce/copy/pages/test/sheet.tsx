@@ -6,7 +6,7 @@ import {
   LayoutOverlayDemo,
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
-import { capitalize, Container, Hidden, ListItemButton, Typography } from '@mui/material'
+import { Box, capitalize, Container, ListItemButton, Typography } from '@mui/material'
 import { m } from 'framer-motion'
 import { useState } from 'react'
 
@@ -30,22 +30,22 @@ function SheetDemo() {
       <FormAutoSubmit control={form.control} submit={submit} wait={0} />
       <LayoutOverlayHeader>
         <LayoutTitle size='small'>
-          <Hidden mdDown>
+          <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
             Overlay Md {variantMd} {justifyMd} {sizeMd}
-          </Hidden>
-          <Hidden smUp>
+          </Box>
+          <Box component='span' sx={{ display: { xs: 'inline', sm: 'none' } }}>
             Overlay Sm {variantSm} {justifySm} {sizeSm}
-          </Hidden>
+          </Box>
         </LayoutTitle>
       </LayoutOverlayHeader>
 
       <LayoutTitle>
-        <Hidden mdDown>
+        <Box component='span' sx={{ display: { xs: 'none', md: 'inline' } }}>
           Overlay Md {variantMd} {justifyMd} {sizeMd}
-        </Hidden>
-        <Hidden smUp>
+        </Box>
+        <Box component='span' sx={{ display: { xs: 'inline', sm: 'none' } }}>
           Overlay Sm {variantSm} {justifySm} {sizeSm}
-        </Hidden>
+        </Box>
       </LayoutTitle>
       <Container maxWidth={false} sx={{ minWidth: responsiveVal(250, 500) }}>
         <form style={{ paddingTop: '100px' }} onSubmit={submit}>

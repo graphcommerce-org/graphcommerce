@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ThemeProvider } from '@mui/material'
 import React from 'react'
@@ -43,21 +44,22 @@ export function withTheme<T>(
   Component: (value: T & WithSx) => React.ReactElement<any, any> | null,
   theme: Theme,
 ): React.FC<T & WithSx> {
-  return (data: T & WithSx) => {
+  // eslint-disable-next-line react/function-component-definition
+  return function WithTheme(data: T & WithSx) {
     const { sx = [] } = data
     return (
       <ThemeProvider theme={theme}>
-        <Component
-          {...data}
-          sx={[
+        {React.createElement(Component, {
+          ...data,
+          sx: sxx(
             {
               typography: 'body1',
-              color: theme.palette.text.primary,
-              backgroundColor: theme.palette.background.default,
+              color: theme.vars.palette.text.primary,
+              backgroundColor: theme.vars.palette.background.default,
             },
-            ...(Array.isArray(sx) ? sx : [sx]),
-          ]}
-        />
+            sx,
+          ),
+        })}
       </ThemeProvider>
     )
   }

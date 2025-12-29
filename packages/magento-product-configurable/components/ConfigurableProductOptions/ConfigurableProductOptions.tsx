@@ -3,11 +3,11 @@ import type { AddToCartItemSelector } from '@graphcommerce/magento-product'
 import { useFormAddProductsToCart } from '@graphcommerce/magento-product'
 import type { ActionCardListProps } from '@graphcommerce/next-ui'
 import { filterNonNullableKeys, useLocale } from '@graphcommerce/next-ui'
-import { i18n } from '@lingui/core'
+import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React, { useEffect, useMemo } from 'react'
-import type { ConfigurableOptionsFragment } from '../../graphql/ConfigurableOptions.gql'
+import type { ConfigurableOptionsFragment } from '../../graphql'
 import { useConfigurableOptionsSelection } from '../../hooks'
 import { ConfigurableOptionValue } from '../ConfigurableOptionValue/ConfigurableOptionValue'
 import { ConfigurableProductOption } from './ConfigurableProductOption'
@@ -57,7 +57,7 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
   useEffect(() => {
     if (unavailable) {
       setError(`cartItems.${index}.sku`, {
-        message: i18n._(/* i18n */ 'Product not available in {allLabels}', { allLabels }),
+        message: t`Product not available in ${allLabels}`,
       })
     }
     if (!unavailable) clearErrors(`cartItems.${index}.sku`)
@@ -65,21 +65,23 @@ export function ConfigurableProductOptions(props: ConfigurableProductOptionsProp
 
   return (
     <Box sx={(theme) => ({ display: 'grid', rowGap: theme.spacings.sm })}>
-      {options.map((option, optionIndex) => (
-        <ConfigurableProductOption
-          {...option}
-          key={option.uid}
-          render={render}
-          optionStartLabels={optionStartLabels}
-          optionEndLabels={optionEndLabels}
-          index={index}
-          optionIndex={optionIndex}
-          sx={sx}
-          __typename={product.__typename}
-          url_key={product.url_key}
-          {...other}
-        />
-      ))}
+      {options
+        .sort((a, b) => (a?.position ?? 0) - (b?.position ?? 0))
+        .map((option, optionIndex) => (
+          <ConfigurableProductOption
+            {...option}
+            key={option.uid}
+            render={render}
+            optionStartLabels={optionStartLabels}
+            optionEndLabels={optionEndLabels}
+            index={index}
+            optionIndex={optionIndex}
+            sx={sx}
+            __typename={product.__typename}
+            url_key={product.url_key}
+            {...other}
+          />
+        ))}
     </Box>
   )
 }

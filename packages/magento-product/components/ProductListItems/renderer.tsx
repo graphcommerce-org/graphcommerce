@@ -1,5 +1,5 @@
 import type { TypeRenderer } from '@graphcommerce/next-ui'
-import type { ProductListItemFragment } from '../../Api/ProductListItem.gql'
+import type { ProductListItemFragment } from '../../graphql'
 import { ProductListItem } from '../ProductListItem/ProductListItem'
 
 type SkeletonType = { __typename: 'Skeleton'; uid: string }

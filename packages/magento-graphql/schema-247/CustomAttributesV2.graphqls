@@ -51,7 +51,7 @@ type CustomerAddress {
   """
   Custom attributes assigned to the customer address.
   """
-  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]!
+  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]
     @deprecated(reason: "Magento >= 2.4.7")
 }
 

@@ -1,4 +1,5 @@
 import { Scroller, ScrollerProvider } from '@graphcommerce/framer-scroller'
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Container, Typography } from '@mui/material'
 import React from 'react'
@@ -21,12 +22,12 @@ export function ContentLinks(props: ContentLinksProps) {
     <Container
       className={classes.root}
       maxWidth={false}
-      sx={[
+      sx={sxx(
         (theme) => ({
           marginBottom: `${theme.spacings.md}`,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <ScrollerProvider scrollSnapAlign='none'>
         <Scroller

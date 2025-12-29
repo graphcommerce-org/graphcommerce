@@ -1,0 +1,32 @@
+fragment OrderTotal on OrderTotal {
+  subtotal {
+    ...Money
+  }
+  total_shipping {
+    ...Money
+  }
+  shipping_handling {
+    ...ShippingHandling
+  }
+  discounts {
+    amount {
+      ...Money
+    }
+    label
+  }
+  base_grand_total {
+    ...Money
+  }
+  grand_total {
+    ...Money
+  }
+  total_tax {
+    ...Money
+  }
+  taxes {
+    ...TaxItem
+  }
+  total_shipping {
+    ...Money
+  }
+}

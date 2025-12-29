@@ -1,3 +1,4 @@
+import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { extendableComponent } from '../Styles'
@@ -18,19 +19,19 @@ export function Stepper(props: StepperProps) {
   return (
     <Box
       className={classes.root}
-      sx={[
+      sx={sxx(
         (theme) => ({
           marginTop: '-2px',
           display: 'grid',
           gridAutoFlow: 'column',
           gap: theme.spacings.xxs,
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {[...Array(steps).keys()].map((step: number) => (
         <Box
-          sx={[
+          sx={sxx(
             {
               height: 2,
               bgcolor: 'divider',
@@ -38,7 +39,7 @@ export function Stepper(props: StepperProps) {
             currentStep - 1 >= step && {
               bgcolor: 'secondary.main',
             },
-          ]}
+          )}
           className={`${classes.step} ${currentStep - 1 >= step ? classes.activeStep : ''}`}
           key={step}
         />

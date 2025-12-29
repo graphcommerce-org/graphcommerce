@@ -1,26 +1,21 @@
-import type { ServerError, ServerParseError } from '@graphcommerce/graphql'
-import { Trans } from '@lingui/react'
+import type { ErrorLike } from '@apollo/client'
+import { ServerError, ServerParseError } from '@apollo/client/errors'
+import { Trans } from '@lingui/react/macro'
 
-function isServerError(error: Error | ServerParseError | ServerError | null): error is ServerError {
-  return 'name' in (error as ServerError)
-}
+export function maskNetworkError(error: ErrorLike | null) {
+  if (!error) return null
 
-function isServerParseError(
-  error: Error | ServerParseError | ServerError | null,
-): error is ServerParseError {
-  return 'bodyText' in (error as ServerParseError)
-}
+  if (process.env.NODE_ENV === 'development') {
+    console.log(error)
+  }
 
-export function maskNetworkError(networkError: Error | ServerParseError | ServerError | null) {
-  if (!networkError) return null
-
-  if (isServerParseError(networkError) || isServerError(networkError)) {
-    return <Trans id='Something went wrong on the server, please try again later.' />
+  if (ServerParseError.is(error) || ServerError.is(error)) {
+    return <Trans>Something went wrong on the server, please try again later.</Trans>
   }
 
   if (globalThis.navigator && !globalThis.navigator?.onLine) {
-    return <Trans id='It appears you are offline, please try again later.' />
+    return <Trans>It appears you are offline, please try again later.</Trans>
   }
 
-  return <Trans id='Something went wrong' />
+  return <Trans>Something went wrong</Trans>
 }

@@ -1,32 +1,49 @@
+// Import after mocks are defined
 import fs from 'fs/promises'
 import path from 'path'
+import fg from 'fast-glob'
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import { copyFiles } from '../../src/commands/copyFiles'
 import { resolveDependenciesSync } from '../../src/utils/resolveDependenciesSync'
 
 // Mock fs/promises
-jest.mock('fs/promises', () => ({
-  readFile: jest.fn(),
-  writeFile: jest.fn(),
-  mkdir: jest.fn(),
-  readdir: jest.fn(),
-  stat: jest.fn(),
-  unlink: jest.fn(),
-  rmdir: jest.fn(),
+vi.mock('fs/promises', () => ({
+  default: {
+    readFile: vi.fn(),
+    writeFile: vi.fn(),
+    mkdir: vi.fn(),
+    readdir: vi.fn(),
+    stat: vi.fn(),
+    unlink: vi.fn(),
+    rmdir: vi.fn(),
+  },
+  readFile: vi.fn(),
+  writeFile: vi.fn(),
+  mkdir: vi.fn(),
+  readdir: vi.fn(),
+  stat: vi.fn(),
+  unlink: vi.fn(),
+  rmdir: vi.fn(),
 }))
 
 // Mock fast-glob
-jest.mock('fast-glob', () => ({
+vi.mock('fast-glob', () => ({
   __esModule: true,
-  default: jest.fn(),
+  default: vi.fn(),
 }))
 
 // Mock resolveDependenciesSync
-jest.mock('../../src/utils/resolveDependenciesSync', () => ({
-  resolveDependenciesSync: jest.fn(),
+vi.mock('../../src/utils/resolveDependenciesSync', () => ({
+  resolveDependenciesSync: vi.fn(),
 }))
 
+// Get mocked versions
+const mockFs = vi.mocked(fs)
+const mockFg = vi.mocked(fg)
+const mockResolveDependenciesSync = vi.mocked(resolveDependenciesSync)
+
 // Mock performance.now
-const mockPerformanceNow = jest.fn()
+const mockPerformanceNow = vi.fn()
 global.performance = { now: mockPerformanceNow } as unknown as typeof performance
 
 // Mock process.cwd
@@ -34,7 +51,7 @@ const mockCwd = '/mock/cwd'
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const originalCwd = process.cwd
 beforeAll(() => {
-  process.cwd = jest.fn().mockReturnValue(mockCwd)
+  process.cwd = vi.fn().mockReturnValue(mockCwd)
 })
 
 afterAll(() => {
@@ -42,31 +59,31 @@ afterAll(() => {
 })
 
 describe('copyFiles', () => {
-  let consoleLog: jest.SpyInstance
-  let consoleInfo: jest.SpyInstance
-  let consoleError: jest.SpyInstance
-  let processExit: jest.SpyInstance
+  let consoleLog: ReturnType<typeof vi.spyOn>
+  let consoleInfo: ReturnType<typeof vi.spyOn>
+  let consoleError: ReturnType<typeof vi.spyOn>
+  let processExit: ReturnType<typeof vi.spyOn>
   let originalDebug: string | undefined
 
-  beforeEach(() => {
-    jest.clearAllMocks()
+  beforeEach(async () => {
+    vi.clearAllMocks()
     originalDebug = process.env.DEBUG
     process.env.DEBUG = undefined
-    ;(resolveDependenciesSync as jest.Mock).mockReturnValue(
+    mockResolveDependenciesSync.mockReturnValue(
       new Map([
         ['@graphcommerce/package1', 'packages/package1'],
         ['@graphcommerce/package2', 'packages/package2'],
       ]),
     )
-    consoleLog = jest.spyOn(console, 'log').mockImplementation(() => {})
-    consoleInfo = jest.spyOn(console, 'info').mockImplementation(() => {})
-    consoleError = jest.spyOn(console, 'error').mockImplementation(() => {})
-    processExit = jest.spyOn(process, 'exit').mockImplementation(() => undefined as never)
+    consoleLog = vi.spyOn(console, 'log').mockImplementation(() => {})
+    consoleInfo = vi.spyOn(console, 'info').mockImplementation(() => {})
+    consoleError = vi.spyOn(console, 'error').mockImplementation(() => {})
+    processExit = vi.spyOn(process, 'exit').mockImplementation(() => undefined as never)
 
     // Setup default .gitignore mock
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -87,12 +104,11 @@ describe('copyFiles', () => {
   })
 
   it('should handle empty source directories', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValue([])
+    mockFg.mockResolvedValue([])
 
     await copyFiles()
 
-    expect(fg).toHaveBeenCalledWith('**/*', {
+    expect(mockFg).toHaveBeenCalledWith('**/*', {
       cwd: mockCwd,
       dot: true,
       ignore: ['**/dist/**', '**/build/**', '**/.next/**', '**/.git/**', '**/node_modules/**'],
@@ -101,48 +117,49 @@ describe('copyFiles', () => {
   })
 
   it('should copy files and add management comments', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
-    const mockStat = fs.stat as jest.Mock
-    mockStat.mockResolvedValue({ isDirectory: () => false })
+    mockFs.stat.mockResolvedValue({ isDirectory: () => false } as Awaited<
+      ReturnType<typeof fs.stat>
+    >)
 
     await copyFiles()
 
     // Verify file was written with management comments
-    const writeCall = (fs.writeFile as jest.Mock).mock.calls.find(
+    const writeCall = mockFs.writeFile.mock.calls.find(
       (call) => call[0] === path.join(mockCwd, 'file.ts'),
     )
     expect(writeCall).toBeTruthy()
-    const content = writeCall[1].toString()
+    const content = writeCall![1].toString()
     expect(content).toContain('// managed by: graphcommerce')
     expect(content).toContain('// to modify this file, change it to managed by: local')
     expect(content).toContain('content')
 
     // Verify .gitignore was updated
-    const gitignoreCall = (fs.writeFile as jest.Mock).mock.calls.find(
+    const gitignoreCall = mockFs.writeFile.mock.calls.find(
       (call) => call[0] === path.join(mockCwd, '.gitignore'),
     )
     expect(gitignoreCall).toBeTruthy()
-    const gitignoreContent = gitignoreCall[1].toString()
+    const gitignoreContent = gitignoreCall![1].toString()
     expect(gitignoreContent).toContain('# managed by: graphcommerce')
     expect(gitignoreContent).toContain('file.ts')
     expect(gitignoreContent).toContain('# end managed by: graphcommerce')
   })
 
   it('should handle existing managed files with identical content', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
 
     const sourceContent = Buffer.from('content')
@@ -153,15 +170,15 @@ describe('copyFiles', () => {
       sourceContent,
     ])
 
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(sourceContent)
+        return Promise.resolve(sourceContent) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, 'file.ts')) {
-        return Promise.resolve(managedContent)
+        return Promise.resolve(managedContent) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -169,13 +186,16 @@ describe('copyFiles', () => {
     await copyFiles()
 
     // Should not write to the file since content is identical
-    expect(fs.writeFile).toHaveBeenCalledTimes(1) // Only .gitignore should be written
-    expect(fs.writeFile).toHaveBeenCalledWith(path.join(mockCwd, '.gitignore'), expect.any(String))
+    expect(mockFs.writeFile).toHaveBeenCalledTimes(1) // Only .gitignore should be written
+    expect(mockFs.writeFile).toHaveBeenCalledWith(
+      path.join(mockCwd, '.gitignore'),
+      expect.any(String),
+    )
   })
 
   it('should update existing managed files with different content', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
 
     const sourceContent = Buffer.from('new content')
@@ -186,15 +206,15 @@ describe('copyFiles', () => {
       Buffer.from('old content'),
     ])
 
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(sourceContent)
+        return Promise.resolve(sourceContent) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, 'file.ts')) {
-        return Promise.resolve(oldContent)
+        return Promise.resolve(oldContent) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -202,25 +222,25 @@ describe('copyFiles', () => {
     await copyFiles()
 
     // Should write the new content
-    const writeCall = (fs.writeFile as jest.Mock).mock.calls.find(
+    const writeCall = mockFs.writeFile.mock.calls.find(
       (call) => call[0] === path.join(mockCwd, 'file.ts'),
     )
     expect(writeCall).toBeTruthy()
-    const content = writeCall[1].toString()
+    const content = writeCall![1].toString()
     expect(content).toContain('new content')
     expect(consoleInfo).toHaveBeenCalledWith('Updated managed file: file.ts')
   })
 
   it('should create new files with management comments', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['new-file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'new-file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, 'new-file.ts')) {
         return Promise.reject(new Error('ENOENT: no such file or directory'))
@@ -233,22 +253,27 @@ describe('copyFiles', () => {
     expect(consoleInfo).toHaveBeenCalledWith(
       'Creating new file: new-file.ts\nSource: packages/package1/copy/new-file.ts',
     )
-    expect(fs.writeFile).toHaveBeenCalledWith(path.join(mockCwd, 'new-file.ts'), expect.any(Buffer))
+    expect(mockFs.writeFile).toHaveBeenCalledWith(
+      path.join(mockCwd, 'new-file.ts'),
+      expect.any(Buffer),
+    )
   })
 
   it('should handle locally managed files', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, 'file.ts')) {
-        return Promise.resolve(Buffer.from('// managed by: local\ncontent'))
+        return Promise.resolve(Buffer.from('// managed by: local\ncontent')) as ReturnType<
+          typeof fs.readFile
+        >
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -256,42 +281,44 @@ describe('copyFiles', () => {
     await copyFiles()
 
     // Should not overwrite locally managed files
-    expect(fs.writeFile).toHaveBeenCalledTimes(1) // Only .gitignore should be written
-    expect(fs.writeFile).toHaveBeenCalledWith(path.join(mockCwd, '.gitignore'), expect.any(String))
+    expect(mockFs.writeFile).toHaveBeenCalledTimes(1) // Only .gitignore should be written
+    expect(mockFs.writeFile).toHaveBeenCalledWith(
+      path.join(mockCwd, '.gitignore'),
+      expect.any(String),
+    )
   })
 
   it('should create destination directory if it does not exist', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['nested/file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'nested/file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
-    const mockMkdir = fs.mkdir as jest.Mock
-    mockMkdir.mockResolvedValue(undefined)
+    mockFs.mkdir.mockResolvedValue(undefined)
 
     await copyFiles()
 
-    expect(mockMkdir).toHaveBeenCalledWith(path.join(mockCwd, 'nested'), { recursive: true })
+    expect(mockFs.mkdir).toHaveBeenCalledWith(path.join(mockCwd, 'nested'), { recursive: true })
   })
 
   it('should handle errors gracefully', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
         return Promise.reject(new Error('Read error'))
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -307,8 +334,8 @@ describe('copyFiles', () => {
   })
 
   it('should detect file conflicts between packages', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['conflict.ts']) // Package 1 files
       .mockResolvedValueOnce(['conflict.ts']) // Package 2 files
 
@@ -321,40 +348,41 @@ describe('copyFiles', () => {
   })
 
   it('should remove files that are no longer provided', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce(['old-file.ts']) // First scan finds existing managed file
+    mockFg
+      .mockResolvedValueOnce(['old-file.ts']) // First scan finds existing managed file
       .mockResolvedValueOnce([]) // Second scan finds no files in packages
 
     // Mock existing managed file
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join(mockCwd, 'old-file.ts')) {
-        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent'))
+        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent')) as ReturnType<
+          typeof fs.readFile
+        >
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
     // Mock directory checks
-    const mockReaddir = fs.readdir as jest.Mock
-    mockReaddir.mockImplementation((dirPath: string) => {
+    mockFs.readdir.mockImplementation((dirPath) => {
       if (dirPath === mockCwd) {
-        return Promise.resolve(['old-file.ts'])
+        return Promise.resolve(['old-file.ts']) as ReturnType<typeof fs.readdir>
       }
-      return Promise.resolve([])
+      return Promise.resolve([]) as ReturnType<typeof fs.readdir>
     })
 
     await copyFiles()
 
     // Verify file was removed
-    expect(fs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'old-file.ts'))
+    expect(mockFs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'old-file.ts'))
 
     // Verify directory was checked
-    expect(mockReaddir).toHaveBeenCalledWith(mockCwd)
+    expect(mockFs.readdir).toHaveBeenCalledWith(mockCwd)
 
     // Verify .gitignore was updated
-    expect(fs.writeFile).toHaveBeenCalledWith(
+    expect(mockFs.writeFile).toHaveBeenCalledWith(
       path.join(mockCwd, '.gitignore'),
       expect.stringContaining('existing\ngitignore\ncontent'),
     )
@@ -362,15 +390,15 @@ describe('copyFiles', () => {
 
   it('should handle debug mode', async () => {
     process.env.DEBUG = 'true'
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -382,18 +410,18 @@ describe('copyFiles', () => {
   })
 
   it('should handle unmanaged files', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce([]) // First scan for existing files
+    mockFg
+      .mockResolvedValueOnce([]) // First scan for existing files
       .mockResolvedValueOnce(['file.ts']) // Second scan for package files
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join('packages/package1/copy', 'file.ts')) {
-        return Promise.resolve(Buffer.from('content'))
+        return Promise.resolve(Buffer.from('content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, 'file.ts')) {
-        return Promise.resolve(Buffer.from('unmanaged content'))
+        return Promise.resolve(Buffer.from('unmanaged content')) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
@@ -406,32 +434,34 @@ describe('copyFiles', () => {
   })
 
   it('should cleanup nested empty directories', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce(['nested/deeply/file.ts']) // First scan finds existing managed file
+    mockFg
+      .mockResolvedValueOnce(['nested/deeply/file.ts']) // First scan finds existing managed file
       .mockResolvedValueOnce([]) // Second scan finds no files in packages
 
     // Mock existing managed file
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join(mockCwd, 'nested/deeply/file.ts')) {
-        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent'))
+        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent')) as ReturnType<
+          typeof fs.readFile
+        >
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
     // Mock directory checks to simulate empty directories
-    ;(fs.readdir as jest.Mock).mockReturnValue(Promise.resolve([]))
+    mockFs.readdir.mockReturnValue(Promise.resolve([]) as ReturnType<typeof fs.readdir>)
 
     await copyFiles()
 
     // Verify file was removed
-    expect(fs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/deeply/file.ts'))
+    expect(mockFs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/deeply/file.ts'))
 
     // Verify directories were checked and removed in the correct order
-    const readdirCalls = (fs.readdir as jest.Mock).mock.calls.map((call) => call[0])
-    const rmdirCalls = (fs.rmdir as jest.Mock).mock.calls.map((call) => call[0])
+    const readdirCalls = mockFs.readdir.mock.calls.map((call) => call[0])
+    const rmdirCalls = mockFs.rmdir.mock.calls.map((call) => call[0])
 
     // Both directories should have been checked
     expect(readdirCalls).toContain(path.join(mockCwd, 'nested/deeply'))
@@ -448,54 +478,60 @@ describe('copyFiles', () => {
   })
 
   it('should handle partial directory cleanup', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce(['nested/remove.ts']) // First scan finds existing managed file
+    mockFg
+      .mockResolvedValueOnce(['nested/remove.ts']) // First scan finds existing managed file
       .mockResolvedValueOnce([]) // Second scan finds no files in packages
 
     // Mock existing managed file
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join(mockCwd, 'nested/remove.ts')) {
-        return Promise.resolve(Buffer.from('// managed by: graphcommerce\nremove content'))
+        return Promise.resolve(
+          Buffer.from('// managed by: graphcommerce\nremove content'),
+        ) as ReturnType<typeof fs.readFile>
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
     // Mock directory check to show directory is not empty
-    ;(fs.readdir as jest.Mock).mockReturnValue(Promise.resolve(['other-file.ts']))
+    mockFs.readdir.mockReturnValue(
+      Promise.resolve(['other-file.ts']) as ReturnType<typeof fs.readdir>,
+    )
 
     await copyFiles()
 
     // Verify file removal
-    expect(fs.unlink).toHaveBeenCalledTimes(1)
-    expect(fs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/remove.ts'))
+    expect(mockFs.unlink).toHaveBeenCalledTimes(1)
+    expect(mockFs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/remove.ts'))
 
     // Verify directory was checked but not removed (since it's not empty)
-    expect(fs.readdir).toHaveBeenCalledWith(path.join(mockCwd, 'nested'))
-    expect(fs.rmdir).not.toHaveBeenCalled()
+    expect(mockFs.readdir).toHaveBeenCalledWith(path.join(mockCwd, 'nested'))
+    expect(mockFs.rmdir).not.toHaveBeenCalled()
   })
 
   it('should handle directory removal errors gracefully', async () => {
-    const fg = jest.requireMock('fast-glob').default as jest.Mock
-    fg.mockResolvedValueOnce(['nested/file.ts']) // First scan finds existing managed file
+    mockFg
+      .mockResolvedValueOnce(['nested/file.ts']) // First scan finds existing managed file
       .mockResolvedValueOnce([]) // Second scan finds no files in packages
 
     // Mock existing managed file
-    ;(fs.readFile as jest.Mock).mockImplementation((filePath: string) => {
+    mockFs.readFile.mockImplementation((filePath) => {
       if (filePath === path.join(mockCwd, 'nested/file.ts')) {
-        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent'))
+        return Promise.resolve(Buffer.from('// managed by: graphcommerce\ncontent')) as ReturnType<
+          typeof fs.readFile
+        >
       }
       if (filePath === path.join(mockCwd, '.gitignore')) {
-        return Promise.resolve('existing\ngitignore\ncontent')
+        return Promise.resolve('existing\ngitignore\ncontent') as ReturnType<typeof fs.readFile>
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
 
     // Mock directory is empty but removal fails with EACCES
-    ;(fs.readdir as jest.Mock).mockReturnValue(Promise.resolve([]))
-    ;(fs.rmdir as jest.Mock).mockImplementation(() => {
+    mockFs.readdir.mockReturnValue(Promise.resolve([]) as ReturnType<typeof fs.readdir>)
+    mockFs.rmdir.mockImplementation(() => {
       const error = new Error('EACCES: permission denied') as NodeJS.ErrnoException
       error.code = 'EACCES'
       return Promise.reject(error)
@@ -504,7 +540,7 @@ describe('copyFiles', () => {
     await copyFiles()
 
     // Verify file removal still succeeded
-    expect(fs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/file.ts'))
+    expect(mockFs.unlink).toHaveBeenCalledWith(path.join(mockCwd, 'nested/file.ts'))
 
     // Verify error was logged but didn't crash the process
     expect(consoleError).toHaveBeenCalledWith(

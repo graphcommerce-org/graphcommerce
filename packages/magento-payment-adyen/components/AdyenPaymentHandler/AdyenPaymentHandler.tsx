@@ -1,7 +1,7 @@
 import { useLazyQuery, useMutation } from '@graphcommerce/graphql'
 import { useCurrentCartId } from '@graphcommerce/magento-cart'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
-import { Trans } from '@lingui/react'
+import { Trans } from '@lingui/react/macro'
 import { useEffect } from 'react'
 import { useAdyenCartLock } from '../../hooks/useAdyenCartLock'
 import {
@@ -42,7 +42,7 @@ export function AdyenPaymentHandler() {
       let paymentStatus = details.data?.adyenPaymentDetails
 
       // Atempt 2; The adyenPaymentDetails mutation failed, because it was already called previously or no payment had been made.
-      if (details.errors) {
+      if (details.error) {
         const status = await getStatus({
           errorPolicy: 'all',
           variables: { cartId: currentCartId, orderNumber },
@@ -70,7 +70,9 @@ export function AdyenPaymentHandler() {
   if (response.resultCode === ResultCodeEnum.RedirectShopper) {
     return (
       <ErrorSnackbar open>
-        <Trans id="The payment hasn't completed, please try again or select a different payment method." />
+        <Trans>
+          The payment hasn't completed, please try again or select a different payment method.
+        </Trans>
       </ErrorSnackbar>
     )
   }
@@ -78,18 +80,20 @@ export function AdyenPaymentHandler() {
   if (response.resultCode === ResultCodeEnum.Refused) {
     return (
       <ErrorSnackbar open>
-        <Trans id='The payment is refused, please try again or select a different payment method.' />
+        <Trans>
+          The payment is refused, please try again or select a different payment method.
+        </Trans>
       </ErrorSnackbar>
     )
   }
 
   return (
     <ErrorSnackbar open>
-      <Trans
-        id='We can not process your payment, we received an unsupported status "<0>{resultCode}</0>". Please try again or select a different payment method.'
-        values={{ resultCode: response.resultCode }}
-        components={{ 0: <strong /> }}
-      />
+      <Trans>
+        We can not process your payment, we received an unsupported status "
+        <strong>{response.resultCode}</strong>". Please try again or select a different payment
+        method.
+      </Trans>
     </ErrorSnackbar>
   )
 }

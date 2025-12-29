@@ -1,4 +1,4 @@
-import { LayoutTitle } from '@graphcommerce/next-ui'
+import { LayoutTitle, sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { memo } from 'react'
 
@@ -13,15 +13,15 @@ export const CategoryHeroNavTitle = memo<CategoryHeroNavTitleProps>((props) => {
   return (
     <LayoutTitle
       variant='h1'
-      sx={[
+      sx={sxx(
         (theme) => ({
           [theme.breakpoints.up('md')]: {
             m: 0,
             justifyContent: 'start',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       {children}
     </LayoutTitle>

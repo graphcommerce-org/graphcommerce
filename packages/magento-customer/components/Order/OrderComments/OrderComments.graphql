@@ -1,0 +1,5 @@
+fragment OrderComments on CustomerOrder {
+  comments {
+    ...SalesCommentItem
+  }
+}

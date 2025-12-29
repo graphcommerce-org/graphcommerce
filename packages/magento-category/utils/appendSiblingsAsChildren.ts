@@ -8,7 +8,7 @@ export function appendSiblingsAsChildren(
   categoryPromise: Promise<
     (CategoryBreadcrumbFragment & CategoryChildrenFragment) | null | undefined
   >,
-  client: ApolloClient<object>,
+  client: ApolloClient,
 ) {
   return categoryPromise.then(async (cat) => {
     const parentUid = findParentBreadcrumbItem(cat)?.category_uid
@@ -18,6 +18,6 @@ export function appendSiblingsAsChildren(
       query: CategorySiblingsDocument,
       variables: { parentUid },
     })
-    cat.children = res.data.categories?.items
+    cat.children = res.data?.categories?.items
   })
 }

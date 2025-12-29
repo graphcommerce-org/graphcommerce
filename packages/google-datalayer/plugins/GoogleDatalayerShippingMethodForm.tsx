@@ -1,6 +1,6 @@
 import type { ShippingMethodFormProps } from '@graphcommerce/magento-cart-shipping-method'
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
-import { useSendEvent } from '../api/sendEvent'
+import { useSendEvent } from '../hooks/useSendEvent'
 import { cartToAddShippingInfo } from '../mapping/cartToAddShippingInfo/cartToAddShippingInfo'
 
 export const config: PluginConfig = {

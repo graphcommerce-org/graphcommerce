@@ -1,5 +1,286 @@
 # Change Log
 
+## 10.0.0-canary.69
+
+## 10.0.0-canary.68
+
+### Major Changes
+
+- [#2557](https://github.com/graphcommerce-org/graphcommerce/pull/2557) [`ceaadd8`](https://github.com/graphcommerce-org/graphcommerce/commit/ceaadd87f0648982a068a3b07b1fa149c9127f49) - ## Material UI v5 → v7 Migration
+
+  This release upgrades Material UI from v5 to v7 with full CSS variables support. ([@paales](https://github.com/paales))
+
+## 10.0.0-canary.67
+
+### Patch Changes
+
+- [#2506](https://github.com/graphcommerce-org/graphcommerce/pull/2506) [`cfb5ed6`](https://github.com/graphcommerce-org/graphcommerce/commit/cfb5ed6c457314ac7bc3379c5947e88e5d87dfa5) - feat(GCOM-1577): show product name and link on PDP breadcrumbs ([@FrankHarland](https://github.com/FrankHarland))
+
+## 10.0.0-canary.66
+
+## 10.0.0-canary.65
+
+## 10.0.0-canary.64
+
+## 10.0.0-canary.63
+
+## 10.0.0-canary.62
+
+## 10.0.0-canary.61
+
+## 10.0.0-canary.60
+
+## 10.0.0-canary.59
+
+## 10.0.0-canary.58
+
+## 10.0.0-canary.57
+
+## 10.0.0-canary.56
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.55
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`21686e3`](https://github.com/graphcommerce-org/graphcommerce/commit/21686e3dd5673de7ada5e1741e4b77e00aeaef48) - Forward the cart to AddProductsToCartSnackbarMessage ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.54
+
+## 9.1.0-canary.53
+
+## 9.1.0-canary.52
+
+### Patch Changes
+
+- [`abdda4c`](https://github.com/graphcommerce-org/graphcommerce/commit/abdda4c052cdf0452dfe0daa36866541ccf502f0) - Solve issue where Specs table values would still be shown when the value would be '0' ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.51
+
+## 9.1.0-canary.50
+
+## 9.1.0-canary.49
+
+### Patch Changes
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`dc3be1d`](https://github.com/graphcommerce-org/graphcommerce/commit/dc3be1da43916b65b1d3d4170c09e63ad3818bac) - Solve issue when a user applies their first filter on a category page, a redundant GraphQL call would be made, even though the user was navigating to the `/c/[..url]` route. ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`45c2fbb`](https://github.com/graphcommerce-org/graphcommerce/commit/45c2fbbed55e3ba42f1ecc45e80039977b6ffe7c) - Solve issue where in some cases a second ProductList query was made because the category used an `eq` filter instead of an `in` filter. ([@paales](https://github.com/paales))
+
+- [#2533](https://github.com/graphcommerce-org/graphcommerce/pull/2533) [`88abcbf`](https://github.com/graphcommerce-org/graphcommerce/commit/88abcbf011b65b0cd1235e984f5d8306256bd518) - When loading the category/search page in the case that there are no filters applied, the amount or product related queries is reduced from 2 to 1 (ProductFilters is skipped). Pagination, sorting and search terms also do not affect this. When a filter is applied we fall back to the previous functionality and do a second query to retrieve the filters.
+
+  This did not matter when the categories/search pages were served by Magento as Magento would cache the result of the ProductFilters query. When the the catalog is served by an external service like Algolia this might be a problem.
+
+  Implementation details: When filters are applied (e.g., filtering by color:blue), the ProductList query only returns products matching that filter, which means other filter options (like other colors) are excluded from the filter options. This behavior is expected since those other options wouldn't return any products. However, when no filters are applied, the ProductList query returns all products along with all available filter options, eliminating the need for a separate ProductFilters query. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.48
+
+## 9.1.0-canary.47
+
+## 9.1.0-canary.46
+
+## 9.1.0-canary.45
+
+### Patch Changes
+
+- [`7d59e59`](https://github.com/graphcommerce-org/graphcommerce/commit/7d59e592b4bc87cb0e05b6128820de2762297f7f) - Make sure you are able to set the defaultValue for the ProductPagePrice when running in total mode, so it works for GroupedProducts that might start with a default quantity of zero. ([@paales](https://github.com/paales))
+
+- [`7d59e59`](https://github.com/graphcommerce-org/graphcommerce/commit/7d59e592b4bc87cb0e05b6128820de2762297f7f) - Forward inputProps for AddProductToCartQuantity ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.44
+
+## 9.1.0-canary.43
+
+## 9.1.0-canary.42
+
+### Patch Changes
+
+- [`fe2ca31`](https://github.com/graphcommerce-org/graphcommerce/commit/fe2ca31286628b563f7b490a736d698e170edd65) - Solve issue where ProductListItemReal couldn't be replaced or extended without also replacing ProductListItem ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.41
+
+### Patch Changes
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`2075f33`](https://github.com/graphcommerce-org/graphcommerce/commit/2075f331eec38e894722d8ba4539d865f2db5507) - Add support for `variant=unit` and `variant=total` rendering of `ProductPagePrice` to include the quantity or not. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`4c60c55`](https://github.com/graphcommerce-org/graphcommerce/commit/4c60c55a0e83a8635fb2e97622cecd981d894970) - Created a ProductPagePriceLowest component that switches when the configurable option changes. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`5900c8d`](https://github.com/graphcommerce-org/graphcommerce/commit/5900c8d56bc9a3e0e4c2c8e61d5ff219877fd9ec) - Solve issue where the tier price doesn't get divided by the quantity, thus showing the wrong price. ([@paales](https://github.com/paales))
+
+- [#2530](https://github.com/graphcommerce-org/graphcommerce/pull/2530) [`f4a20a7`](https://github.com/graphcommerce-org/graphcommerce/commit/f4a20a7bb37701b779dfe7bd3073574eb6c1cab2) - Make sure the product price is updated when the quantity of a product is changed. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.40
+
+## 9.1.0-canary.39
+
+### Patch Changes
+
+- [#2526](https://github.com/graphcommerce-org/graphcommerce/pull/2526) [`94951f2`](https://github.com/graphcommerce-org/graphcommerce/commit/94951f20a2da049c82d6c14519bce145a108c105) - Solve issue where the added item couldn't be properly found based on the input filters, causing problems when sending data to the data layer. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 9.1.0-canary.38
+
+## 9.1.0-canary.37
+
+### Patch Changes
+
+- [`984f5e3`](https://github.com/graphcommerce-org/graphcommerce/commit/984f5e37b9cc83897782f95b8fe652855986a452) - Solve plugin issue with ProductListPrice ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.36
+
+### Patch Changes
+
+- [`c8aa135`](https://github.com/graphcommerce-org/graphcommerce/commit/c8aa13561f2a25b658466c0f3cddaa1bd338c443) - Add support for price prefix and suffix to be able to customize rendering ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.35
+
+### Patch Changes
+
+- [`4b02607`](https://github.com/graphcommerce-org/graphcommerce/commit/4b02607b26dd45e33bba3fb73d36052757dc2dec) - Solve issue where seaches containing a `/` would not consider everything after the `/` as part of the search. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.34
+
+## 9.1.0-canary.33
+
+## 9.1.0-canary.32
+
+## 9.1.0-canary.31
+
+## 9.1.0-canary.30
+
+## 9.1.0-canary.29
+
+### Patch Changes
+
+- [#2525](https://github.com/graphcommerce-org/graphcommerce/pull/2525) [`2f66469`](https://github.com/graphcommerce-org/graphcommerce/commit/2f66469479689ceaf9983b51c77f082e3a44cf97) - Translate relevance sort option when a non translated value is communicated from algolia. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.28
+
+## 9.1.0-canary.27
+
+## 9.1.0-canary.26
+
+### Patch Changes
+
+- [#2522](https://github.com/graphcommerce-org/graphcommerce/pull/2522) [`43641a4`](https://github.com/graphcommerce-org/graphcommerce/commit/43641a48e0f3828d99b686b2f7cbca915f426d64) - Solve issue where grouped products could only be added to the cart correctly once. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.25
+
+## 9.1.0-canary.24
+
+## 9.1.0-canary.23
+
+### Patch Changes
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`78b8640`](https://github.com/graphcommerce-org/graphcommerce/commit/78b86401fc5410ffb3b001bc7c79049496a54ae7) - Solve issue where the category sidebar navigation would show a Clear button while it wasn't clearable. ([@paales](https://github.com/paales))
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`0464fbf`](https://github.com/graphcommerce-org/graphcommerce/commit/0464fbf798723e17c094e264a558ec0ebe73e8b0) - Fix regression issue where the sidebar filter values would be rendered too big and padding was missing on the top when values would be renderd in a bottom sheet. ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.22
+
+## 9.1.0-canary.21
+
+## 9.1.0-canary.20
+
+## 9.1.0-canary.19
+
+### Patch Changes
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Added support for TIME and DATE for the customizable options. Added required stars. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`7565120`](https://github.com/graphcommerce-org/graphcommerce/commit/756512031642371609258fba322a7f3a4845a17b) - Customizable Product Options wouldn't be properly selected because the parent woudln't rerender anymore. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`37c00d8`](https://github.com/graphcommerce-org/graphcommerce/commit/37c00d80419b209850457559d7b7eca4101f5705) - Forward productListRenderer for all locations that can be rendered by pagebuilder ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`e9da6a9`](https://github.com/graphcommerce-org/graphcommerce/commit/e9da6a9e55a9344a1f8ef8f1f20060af2bb38ee9) - Added support for video's on the product page. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`1e38811`](https://github.com/graphcommerce-org/graphcommerce/commit/1e3881177065548165b7141a29cff8ab27692b25) - Added support for meta_keyword for products and categories ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b497116`](https://github.com/graphcommerce-org/graphcommerce/commit/b497116798e26419950982a6a9d05932a9e99961) - Make sure CustomizableOptions are sorted correctly ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`89e785d`](https://github.com/graphcommerce-org/graphcommerce/commit/89e785de9d62c2f6cf6b2885da72ff63b16fc70d) - Created a CustomizablePrice component that will highlight the price, to prevent duplicating logic and preventing rerenders. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`722763f`](https://github.com/graphcommerce-org/graphcommerce/commit/722763f01f9c4726126d5a30919bdcd25929a330) - Support for new_from_date and new_to_date labels ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Refactored the price calculation of customizable options on the product page so required options are correctly handled. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Renamed customizable_options_entered to entered_options_record and customizable_options to selected_options_record ([@paales](https://github.com/paales))
+
+## 9.1.0-canary.18
+
+## 9.1.0-canary.17
+
+## 9.1.0-canary.16
+
+## 9.1.0-canary.15
+
 ## 9.0.4-canary.14
 
 ## 9.0.4-canary.13
@@ -231,7 +512,6 @@
 - [#1749](https://github.com/graphcommerce-org/graphcommerce/pull/1749) [`0cc472915`](https://github.com/graphcommerce-org/graphcommerce/commit/0cc4729154d316227a41712b5f0adf514768e91f) - Introducing the new ProductFiltersPro component set with completely new filter and UI behavior. Filters will appear as a popper on the md and up breakpoints and as an overlay on sm and below breakpoints. Filters now have an Apply button instead of applying directly. ([@paales](https://github.com/paales))
 
 - [#1786](https://github.com/graphcommerce-org/graphcommerce/pull/1786) [`b76679204`](https://github.com/graphcommerce-org/graphcommerce/commit/b766792049e1e6ebe45671c0b36e78746ef159e2) - Created a completely new [GraphCommerce config system](https://www.graphcommerce.org/docs/framework/config) to allow for greater confiugration options and rely less on a .env file to configuration.
-
   - GraphCommerce can be configured in the graphcommerce.config.js
   - The configuration is automatically validated on startup.
   - All configuration values can be overwritten by environment variables. ([@paales](https://github.com/paales))
@@ -239,7 +519,6 @@
 ### Minor Changes
 
 - [#1822](https://github.com/graphcommerce-org/graphcommerce/pull/1822) [`cc02c46e3`](https://github.com/graphcommerce-org/graphcommerce/commit/cc02c46e32c9a44a90789591f43d91ae234dac84) - Added Facebook Open Graph tags to product pages:
-
   - og:title
   - og:image
   - og:url
@@ -273,7 +552,6 @@
 - [#1757](https://github.com/graphcommerce-org/graphcommerce/pull/1757) [`ca2e2ab59`](https://github.com/graphcommerce-org/graphcommerce/commit/ca2e2ab594ab1cc0fedf908869829811e1f4009f) - Handle stock_status OUT_OF_STOCK properly and show only_x_left_in_stock if feature is enabled ([@paales](https://github.com/paales))
 
 - [#1756](https://github.com/graphcommerce-org/graphcommerce/pull/1756) [`1abaaedde`](https://github.com/graphcommerce-org/graphcommerce/commit/1abaaedde4062d3b19696e333d0016972681afaf) - Show cart item error messages when running Magento >= 2.4.5 or this [patch is applied](https://raw.githubusercontent.com/graphcommerce-org/graphcommerce/main/packages/magento-cart/243-244-magento-module-quote-graphql-cart-item-errors.patch)
-
   - Fixes an issue where the cart can get into a broken state, if items contain errors.
   - AddToCartForm now shows a success message if there is an error but the error is related to another item in the cart.
   - Disable checkout buttons when there are cart item errors and show a message. ([@paales](https://github.com/paales))
@@ -283,7 +561,6 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
-
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -559,7 +836,6 @@
 ### Minor Changes
 
 - [#1602](https://github.com/graphcommerce-org/graphcommerce/pull/1602) [`5f781a217`](https://github.com/graphcommerce-org/graphcommerce/commit/5f781a217ce63ed56bc1a9983487b04400a8a315) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Default styles and layout fixes
-
   - Scaled icons and fonts down. Size in typography is now more gradual: https://graphcommerce.vercel.app/test/typography
   - Multiple accessibility fixes. Missing button/input labels, and fixed spacing issues resulting in high % appropriately sized tap targets
   - Replaced responsiveVal usage with better performaning breakpointVal where possible

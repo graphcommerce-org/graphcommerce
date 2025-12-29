@@ -2,8 +2,8 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { CartAgreementsQuery } from '@graphcommerce/magento-cart'
 import { CartAgreementsDocument, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import { Container, Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutOverlayProps } from '../../../components'
@@ -59,9 +59,9 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const path = async (locale: string) => {
     const client = graphqlSsrClient({ locale })
     const { data } = await client.query({ query: CartAgreementsDocument })
-    return (data.checkoutAgreements ?? []).map((agreement) => ({
+    return (data?.checkoutAgreements ?? []).map((agreement) => ({
       locale,
-      params: { url: agreement?.name.toLowerCase().replace(/\s+/g, '-') ?? '' },
+      params: { url: agreement?.name?.toLowerCase().replace(/\s+/g, '-') ?? '' },
     }))
   }
 
@@ -80,7 +80,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   const agreements = await staticClient.query({ query: CartAgreementsDocument })
 
-  const agreement = agreements.data.checkoutAgreements?.find(
+  const agreement = agreements.data?.checkoutAgreements?.find(
     (ca) => ca?.name?.toLowerCase().replace(/\s+/g, '-') === params?.url,
   )
 
@@ -92,6 +92,6 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       agreement,
       apolloState: await conf.then(() => client.cache.extract()),
     },
-    revalidate: 60 * 20,
+    revalidate: revalidate(),
   }
 }

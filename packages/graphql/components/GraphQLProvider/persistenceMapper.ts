@@ -1,5 +1,4 @@
-import type { NormalizedCacheObject } from '@apollo/client'
-import { InMemoryCache } from '@apollo/client'
+import type { ApolloCache, NormalizedCacheObject } from '@apollo/client'
 
 function pruneKey(cacheValue: unknown, path: string[]) {
   if (typeof cacheValue !== 'object' || cacheValue === null) return
@@ -22,25 +21,31 @@ function pruneCache(cacheObject: object, patterns: string[]) {
   patterns.forEach((pattern) => pruneKey(cacheObject, pattern.split('.')))
 }
 
-export const persistenceMapper = (data: string): Promise<string> => {
-  const parsedCache = JSON.parse(data) as NormalizedCacheObject
+export const createPersistenceMapper =
+  (createCache: () => ApolloCache) =>
+  (data: string): Promise<string> => {
+    const parsedCache = JSON.parse(data) as NormalizedCacheObject
 
-  pruneCache(parsedCache, [
-    'ROOT_MUTATION',
-    'ROOT_QUERY.attributesList',
-    'ROOT_QUERY.categories*',
-    'ROOT_QUERY.products*',
-    'ROOT_QUERY.countries',
-    'ROOT_QUERY.checkoutAgreements',
-    'ROOT_QUERY.storeConfig',
-    'ROOT_QUERY.guestOrder',
-    'ROOT_QUERY.__type*',
-    '*Product:{"uid":"*"}.crosssell_products',
-  ])
+    pruneCache(parsedCache, [
+      'ROOT_MUTATION',
+      'ROOT_QUERY.attributesForm',
+      'ROOT_QUERY.attributesList',
+      'ROOT_QUERY.categories*',
+      'ROOT_QUERY.products*',
+      'ROOT_QUERY.countries',
+      'ROOT_QUERY.checkoutAgreements',
+      'ROOT_QUERY.storeConfig',
+      'ROOT_QUERY.currency',
+      'ROOT_QUERY.guestOrder',
+      'ROOT_QUERY.cmsBlocks',
+      'ROOT_QUERY.__type*',
+      '*Product:{"uid":"*"}.crosssell_products',
+      'ROOT_QUERY.recaptchaV3Config',
+    ])
 
-  const cache = new InMemoryCache({})
-  cache.restore(parsedCache)
-  cache.gc()
-  const newCache = cache.extract()
-  return Promise.resolve(JSON.stringify(newCache))
-}
+    const cache = createCache()
+    cache.restore(parsedCache)
+    cache.gc()
+    const newCache = cache.extract()
+    return Promise.resolve(JSON.stringify(newCache))
+  }

@@ -1,6 +1,6 @@
 import { SelectElement } from '@graphcommerce/ecommerce-ui'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { useScrollY } from '@graphcommerce/next-ui'
+import { sxx, useScrollY } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Container, FormControl, useTheme } from '@mui/material'
 import { useCompareList, useCompareListStyles } from '../hooks'
@@ -34,11 +34,11 @@ export function CompareListSelect(props: CompareListSelectProps) {
 
   return (
     <Box
-      sx={[
+      sx={sxx(
         (theme) => ({
           pt: 1,
           pb: theme.spacings.xxs,
-          background: theme.palette.background[bgColor],
+          background: theme.vars.palette.background[bgColor],
           position: 'sticky',
           zIndex: 10,
           top: {
@@ -50,8 +50,8 @@ export function CompareListSelect(props: CompareListSelectProps) {
             md: scrolled.md ? theme.shadows[1] : 'none',
           },
         }),
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+        sx,
+      )}
     >
       <Container sx={{ ...compareListStyles }}>
         {[...Array(gridColumns).keys()].map((compareSelectIndex) => (
