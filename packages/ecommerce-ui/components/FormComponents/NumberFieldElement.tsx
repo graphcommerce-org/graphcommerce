@@ -167,7 +167,7 @@ function NumberFieldElementBase(props: NumberFieldElementProps) {
               onClick={() => {
                 if (valueAsNumber >= (inputProps.max ?? Infinity)) return
                 // Round to nearest step with precision fix
-                const newValue = roundToPrecision(Math.round((valueAsNumber - step) / step) * step)
+                const newValue = roundToPrecision(Math.round((valueAsNumber + step) / step) * step)
                 onChange(newValue)
               }}
               sx={sxx(

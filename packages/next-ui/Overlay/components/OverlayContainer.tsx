@@ -1,14 +1,15 @@
 import { sxx } from '@graphcommerce/next-ui'
+import type { BoxProps } from '@mui/material'
 import { Box } from '@mui/material'
 import type { LayoutOverlayBaseProps } from './OverlayBase'
 
 export type OverlayContainerProps = Pick<LayoutOverlayBaseProps, 'active'> & {
   hidden?: boolean
   children: React.ReactNode
-}
+} & BoxProps
 
 export function OverlayContainer(props: OverlayContainerProps) {
-  const { children, active, hidden } = props
+  const { children, active, hidden, sx, ...rest } = props
 
   return (
     <Box
@@ -47,7 +48,9 @@ export function OverlayContainer(props: OverlayContainerProps) {
                 boxShadow: 0,
               },
             },
+        sx,
       )}
+      {...rest}
     >
       {children}
     </Box>
