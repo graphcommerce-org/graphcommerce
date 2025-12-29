@@ -52,7 +52,7 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
         returnedCartId = res.data?.mollieRestoreCart?.cart.id
       }
 
-      if (result.errors || !paymentStatus) return
+      if (result.error || !paymentStatus) return
 
       if (successStatusses.includes(paymentStatus)) {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises

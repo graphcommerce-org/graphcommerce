@@ -327,10 +327,12 @@ export function useSendAlgoliaEvent() {
           mutation: AlgoliaSendEventDocument,
           variables: { events },
         })
-        .then(({ data, errors }) => {
-          const errorMessage = (errors ?? []).map((e) => e.message)
-          if (errorMessage.length > 0) {
-            console.log('There was a problem sending the Algolia event to the server', errorMessage)
+        .then(({ data, error }) => {
+          if (error) {
+            console.log(
+              'There was a problem sending the Algolia event to the server',
+              error.message,
+            )
           }
 
           const response = data?.algolia_pushEvents

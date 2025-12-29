@@ -74,6 +74,7 @@ packages:
 
 - `rm yarn.lock && yarn` Remove lock and install the dependencies
 - `yarn codegen` Converts all .graphql files to typescript files
+- `rm -r .next`
 - `yarn dev` Run the app
 
 ### Resolving diff issues
@@ -106,6 +107,8 @@ After resolving the diff issues, manually process upgrade instructions:
 
 - [Upgrading to GraphCommerce 5 to 6](../upgrading/graphcommerce-5-to-6.md)
 - [Upgrading to GraphCommerce 6 to 7](../upgrading/graphcommerce-6-to-7.md)
+- [Upgrading to GraphCommerce 7 to 8](../upgrading/graphcommerce-7-to-8.md)
+- [Upgrading to GraphCommerce 8 to 9](../upgrading/graphcommerce-8-to-9.md)
 - [Upgrading to GraphCommerce 9 to 10](../upgrading/graphcommerce-9-to-10.md)
 
 Run and validate your local environment:

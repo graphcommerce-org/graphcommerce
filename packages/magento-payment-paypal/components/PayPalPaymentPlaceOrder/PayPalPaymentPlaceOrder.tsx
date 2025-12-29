@@ -1,7 +1,7 @@
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
-import { ApolloError } from '@graphcommerce/graphql'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { type PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
 import { useRouter } from 'next/router'
 import { usePayPalCartLock } from '../../hooks/usePayPalCartLock'
 import { PayPalPaymentPlaceOrderDocument } from './PayPalPaymentPlaceOrder.gql'
@@ -26,7 +26,7 @@ export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
       if (!start) {
         const message =
           'Error while starting the PayPal payment, please try again with a different payment method'
-        throw new ApolloError({ graphQLErrors: [{ message }] })
+        throw new CombinedGraphQLErrors({ errors: [{ message }] })
       }
 
       await lock({ token, method: code, PayerID: null })
