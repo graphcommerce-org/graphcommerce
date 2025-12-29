@@ -1,6 +1,6 @@
-import type { Operation } from '@graphcommerce/graphql'
 import { globalApolloClient } from '@graphcommerce/graphql'
 import { ApolloLink, CombinedGraphQLErrors, ErrorLink } from '@graphcommerce/graphql/apollo'
+import { filter, from, of, switchMap } from '@graphcommerce/graphql/rxjs'
 import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
 import type { PushRouter } from '@graphcommerce/magento-customer/link/customerLink'
 import { pushWithPromise } from '@graphcommerce/magento-customer/link/customerLink'
@@ -9,14 +9,13 @@ import { permissions } from '@graphcommerce/next-config/config'
 import { t } from '@lingui/core/macro'
 import type { GraphQLFormattedError } from 'graphql'
 import { GraphQLError } from 'graphql'
-import { filter, from, of, switchMap } from 'rxjs'
 import { writeCartId } from '../hooks'
 import { CreateEmptyCartDocument } from '../hooks/CreateEmptyCart.gql'
 import { getCartEnabledForUser } from '../utils'
 import { isProtectedCartOperation } from './isProtectedCartOperation'
 
-type CartOperation = Operation & { variables: { cartId: string } }
-function isCartOperation(operation: Operation): operation is CartOperation {
+type CartOperation = ApolloLink.Operation & { variables: { cartId: string } }
+function isCartOperation(operation: ApolloLink.Operation): operation is CartOperation {
   return typeof operation.variables.cartId === 'string'
 }
 

@@ -1,12 +1,11 @@
 /* eslint-disable no-console */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { map } from '@graphcommerce/graphql/rxjs'
 import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { ApolloLink } from '@apollo/client'
 import { print } from '@apollo/client/utilities'
 import type { MeshFetchHTTPInformation } from '@graphql-mesh/plugin-http-details-extensions'
 import { responsePathAsArray, stripIgnoredCharacters } from 'graphql'
-import { map } from 'rxjs'
-import { cliHyperlink } from '../../lib/hyperlinker'
 
 const running = new Map<
   string,

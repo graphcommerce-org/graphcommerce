@@ -39,7 +39,6 @@ export const recaptchaLink = new SetContextLink(async (prevContext, operation) =
   }
 
   return {
-    ...prevContext,
     headers: { ...prevContext.headers, 'X-ReCaptcha': token },
   }
 })
