@@ -1,6 +1,5 @@
-import { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodContextProviderProps } from '@graphcommerce/magento-cart-payment-method'
 import type { PluginProps } from '@graphcommerce/next-config'
-
 import { klarna } from '../methods'
 
 export const component = 'PaymentMethodContextProvider'

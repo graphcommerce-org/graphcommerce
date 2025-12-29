@@ -1,24 +1,12 @@
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useCartQuery } from '@graphcommerce/magento-cart'
 import { useFormCompose } from '@graphcommerce/ecommerce-ui'
-import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import {
-  PaymentPlaceOrderProps,
-  usePaymentMethodContext,
-} from '@graphcommerce/magento-cart-payment-method'
-import { useKlarnaCartLock } from '../../hooks/useKlarnaCartLock'
+import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
+import type { PaymentPlaceOrderProps } from '@graphcommerce/magento-cart-payment-method'
+import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
+import { useRouter } from 'next/router'
+import { useKlarnaCartLock } from '../../hooks/useKlarnaCartLock'
+import type { KlarnaResponse } from '../../klarna.d'
 import { KlarnaPaymentPlaceOrderDocument } from './KlarnaPaymentPlaceOrder.gql'
-
-declare var Klarna: any
-
-export type KlarnaResponse = {
-  approved?: boolean
-  finalize_required?: boolean
-  authorization_token: string
-  show_form?: boolean
-}
 
 export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { code, step } = props
@@ -27,8 +15,8 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
   const { onSuccess } = usePaymentMethodContext()
   const cart = useCartQuery(BillingPageDocument)
 
-  const klarnaPaymentsAuthorize = () => {
-    return new Promise<KlarnaResponse>((resolve, reject) => {
+  const klarnaPaymentsAuthorize = () =>
+    new Promise<KlarnaResponse>((resolve, reject) => {
       try {
         Klarna.Payments.authorize(
           {
@@ -61,7 +49,7 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
             },
             customer: { type: 'person' },
           },
-          function (response: KlarnaResponse) {
+          (response: KlarnaResponse) => {
             resolve(response)
           },
         )
@@ -69,7 +57,6 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
         reject(error)
       }
     })
-  }
 
   const form = useFormGqlMutationCart(KlarnaPaymentPlaceOrderDocument, {
     onBeforeSubmit: async (variabless) => {
@@ -100,8 +87,7 @@ export function KlarnaPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
         return
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      onSuccess(result.data?.placeOrder?.order.order_number)
+      await onSuccess(result.data?.placeOrder?.order.order_number)
     },
   })
 

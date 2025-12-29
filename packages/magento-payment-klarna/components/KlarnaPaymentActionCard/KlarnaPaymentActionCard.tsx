@@ -1,7 +1,7 @@
-import Script from 'next/script'
 import { Image } from '@graphcommerce/image'
-import { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentMethodActionCardProps } from '@graphcommerce/magento-cart-payment-method'
 import { ActionCard, useIconSvgSize } from '@graphcommerce/next-ui'
+import Script from 'next/script'
 import klarnaMark from '../../icons/klarna.png'
 
 export function KlarnaPaymentActionCard(props: PaymentMethodActionCardProps) {

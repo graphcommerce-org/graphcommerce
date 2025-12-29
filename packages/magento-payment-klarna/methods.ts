@@ -1,4 +1,4 @@
-import { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
 import { KlarnaPaymentActionCard } from './components/KlarnaPaymentActionCard/KlarnaPaymentActionCard'
 import { KlarnaPaymentOptions } from './components/KlarnaPaymentOptions/KlarnaPaymentOptions'
 import { KlarnaPaymentPlaceOrder } from './components/KlarnaPaymentPlaceOrder/KlarnaPaymentPlaceOrder'

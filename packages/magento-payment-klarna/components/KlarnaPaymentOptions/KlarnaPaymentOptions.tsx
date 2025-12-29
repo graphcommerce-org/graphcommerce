@@ -1,9 +1,7 @@
-import { useFormCompose, useFormAutoSubmit } from '@graphcommerce/ecommerce-ui'
+import { useFormAutoSubmit, useFormCompose } from '@graphcommerce/ecommerce-ui'
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
-import { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
+import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { KlarnaPaymentOptionsDocument } from './KlarnaPaymentOptions.gql'
-
-declare var Klarna: any
 
 export function KlarnaPaymentOptions(props: PaymentOptionsProps) {
   const { code, step } = props
@@ -19,15 +17,9 @@ export function KlarnaPaymentOptions(props: PaymentOptionsProps) {
 
       try {
         Klarna.Payments.init({ client_token: clientToken })
-        Klarna.Payments.load(
-          {
-            container: '#klarna-payments-container',
-          },
-          {},
-          function (res) {
-            console.debug(res)
-          },
-        )
+        Klarna.Payments.load({ container: '#klarna-payments-container' }, {}, (res) => {
+          console.info(res)
+        })
       } catch (e) {
         console.error(e)
       }
