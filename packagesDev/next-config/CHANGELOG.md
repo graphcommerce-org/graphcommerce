@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.0-canary.70
+
+### Major Changes
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`c96dfcd`](https://github.com/graphcommerce-org/graphcommerce/commit/c96dfcdca981baca387c270ad9e2b9515cdd00cc) - Updated to Apollo Client 4 ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`ea75841`](https://github.com/graphcommerce-org/graphcommerce/commit/ea758413b1ee8b8f2584e8f4135cb582fb87445f) - Migrated to vitest ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.69
 
 ## 10.0.0-canary.68
