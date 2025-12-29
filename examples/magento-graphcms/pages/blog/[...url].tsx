@@ -93,8 +93,8 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })
     const BlogPostPaths = staticClient.query({ query: BlogPostPathsDocument })
-    const { pages } = (await BlogPostPaths).data
-    return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale })) ?? []
+    const pages = (await BlogPostPaths).data?.pages ?? []
+    return pages.map((page) => ({ params: { url: page.url.split('/').slice(1) }, locale }))
   })
   const paths = (await Promise.all(responses)).flat(1)
   return { paths, fallback: 'blocking' }
@@ -120,13 +120,16 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     variables: { currentUrl: [`blog/${urlKey}`], first: limit },
   })
 
-  if (!(await page).data.pages?.[0])
+  const pageData = (await page).data
+  const blogPostsData = (await blogPosts).data
+
+  if (!pageData?.pages?.[0] || !blogPostsData)
     return redirectOrNotFound(staticClient, conf, { url: `blog/${urlKey}` }, locale)
 
   return {
     props: {
-      ...(await page).data,
-      ...(await blogPosts).data,
+      ...pageData,
+      ...blogPostsData,
       ...(await layout).data,
       up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),

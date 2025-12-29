@@ -1,5 +1,4 @@
-import type { FetchResult, Operation, RequestHandler } from '@apollo/client/core'
-import { ApolloLink, Observable } from '@apollo/client/core'
+import { ApolloLink, Observable } from '@apollo/client'
 import type { ExecuteMeshFn, MeshInstance, SubscribeMeshFn } from '@graphql-mesh/runtime'
 
 function isAsyncIterable<T>(value: any): value is AsyncIterable<T> {
@@ -10,8 +9,8 @@ const ROOT_VALUE = {}
 
 function createMeshApolloRequestHandler(
   mesh: MeshInstance | Promise<MeshInstance>,
-): RequestHandler {
-  return (operation: Operation): Observable<FetchResult> =>
+): ApolloLink.RequestHandler {
+  return (operation: ApolloLink.Operation): Observable<ApolloLink.Result> =>
     new Observable((observer) => {
       Promise.resolve()
         .then(async () => {

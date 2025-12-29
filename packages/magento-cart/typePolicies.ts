@@ -1,8 +1,4 @@
-import type {
-  ApolloCache,
-  NormalizedCacheObject,
-  StrictTypedTypePolicies,
-} from '@graphcommerce/graphql'
+import type { ApolloCache, StrictTypedTypePolicies } from '@graphcommerce/graphql'
 import type { CartPrices, QuerycartArgs, ShippingCartAddress } from '@graphcommerce/graphql-mesh'
 import { CartFabDocument } from './components/CartFab/CartFab.gql'
 import { readCartId, writeCartId } from './hooks'
@@ -57,10 +53,7 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
   },
 }
 
-export const migrateCart = (
-  oldCache: ApolloCache<NormalizedCacheObject>,
-  newCache: ApolloCache<NormalizedCacheObject>,
-) => {
+export const migrateCart = (oldCache: ApolloCache, newCache: ApolloCache) => {
   const cartId = readCartId(oldCache)?.id
 
   if (cartId) {

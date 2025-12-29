@@ -1,5 +1,6 @@
 import type { DefaultContext } from '@graphcommerce/graphql'
 import { ApolloLink } from '@graphcommerce/graphql'
+import { map } from 'rxjs'
 import { CustomerTokenDocument } from '../hooks'
 
 export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
@@ -11,28 +12,30 @@ export const xMagentoCacheIdHeader = new ApolloLink((operation, forward) => {
     return { ...context, headers: { ...context.headers, 'x-magento-cache-id': xMagentoCacheId } }
   })
 
-  return forward(operation).map((data) => {
-    const { cache } = operation.getContext()
-    if (!cache) return data
+  return forward(operation).pipe(
+    map((data) => {
+      const { cache } = operation.getContext()
+      if (!cache) return data
 
-    const xMagentoCacheId = (
-      data.extensions as { forwardedHeaders: Record<string, string> } | undefined
-    )?.forwardedHeaders?.['x-magento-cache-id']
+      const xMagentoCacheId = (
+        data.extensions as { forwardedHeaders: Record<string, string> } | undefined
+      )?.forwardedHeaders?.['x-magento-cache-id']
 
-    if (!xMagentoCacheId) return data
+      if (!xMagentoCacheId) return data
 
-    const tokenResult = cache.readQuery({ query: CustomerTokenDocument })
+      const tokenResult = cache.readQuery({ query: CustomerTokenDocument })
 
-    if (
-      !tokenResult?.customerToken ||
-      tokenResult.customerToken?.xMagentoCacheId === xMagentoCacheId
-    )
+      if (
+        !tokenResult?.customerToken ||
+        tokenResult.customerToken?.xMagentoCacheId === xMagentoCacheId
+      )
+        return data
+
+      cache.writeQuery({
+        query: CustomerTokenDocument,
+        data: { customerToken: { ...tokenResult.customerToken, xMagentoCacheId } },
+      })
       return data
-
-    cache.writeQuery({
-      query: CustomerTokenDocument,
-      data: { customerToken: { ...tokenResult.customerToken, xMagentoCacheId } },
-    })
-    return data
-  })
+    }),
+  )
 })

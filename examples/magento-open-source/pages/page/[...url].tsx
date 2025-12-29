@@ -84,7 +84,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const cmsPage = (await cmsPageQuery).data.route
+  const cmsPage = (await cmsPageQuery).data?.route
   if (!cmsPage || !isTypename(cmsPage, ['CmsPage']))
     return redirectOrNotFound(staticClient, conf, params, locale)
 

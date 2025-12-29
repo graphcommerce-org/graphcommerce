@@ -22,7 +22,7 @@ export type PaymentOptionsProps = PaymentMethod & PaymentMethodOptionsProps
 export type PaymentHandlerProps = { code: string }
 
 export type ExpandPaymentMethodsContext = Partial<PaymentMethodContextFragment> & {
-  client: ApolloClient<object>
+  client: ApolloClient
 }
 
 export type ExpandPaymentMethods = (

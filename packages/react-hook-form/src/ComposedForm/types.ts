@@ -1,4 +1,4 @@
-import type { ApolloError } from '@apollo/client'
+import type { ErrorLike } from '@apollo/client'
 import type { FieldValues, FormState, UseFormHandleSubmit, UseFormTrigger } from 'react-hook-form'
 import type { SetOptional } from 'type-fest'
 
@@ -40,7 +40,7 @@ export type ButtonState = {
 export type ComposedSubmitRenderComponentProps = {
   submit: () => Promise<void>
   buttonState: ButtonState
-  error?: ApolloError
+  error?: ErrorLike
 }
 
 export type ComposedFormState = {
@@ -51,7 +51,7 @@ export type ComposedFormState = {
   buttonState: ButtonState
   formState: FormStateAll
   submitted: boolean
-  error?: ApolloError
+  error?: ErrorLike
 }
 
 /** Register a new form with the useFormCompose hook */

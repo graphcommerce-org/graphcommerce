@@ -1,4 +1,4 @@
-import { cloneDeep, mergeDeep } from '@apollo/client/utilities'
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal'
 import chalk from 'chalk'
 import lodash from 'lodash'
 import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'

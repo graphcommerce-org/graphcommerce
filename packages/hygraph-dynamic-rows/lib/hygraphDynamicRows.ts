@@ -89,7 +89,7 @@ type Page = HygraphPagesQuery['pages'][number]
  * - Implements an alias sytem to merge the content of multiple pages.
  */
 export async function hygraphDynamicRows(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   pageQuery: Promise<{ data: HygraphPagesQuery }>,
   url: string,
   cached: boolean,

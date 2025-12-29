@@ -1,9 +1,4 @@
-import type {
-  DefaultOptions,
-  FetchPolicy,
-  NormalizedCacheObject,
-  PreviewConfig,
-} from '@graphcommerce/graphql'
+import type { FetchPolicy, PreviewConfig } from '@graphcommerce/graphql'
 import {
   ApolloClient,
   ApolloLink,
@@ -41,7 +36,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },
-    } as DefaultOptions,
+    } as ApolloClient.DefaultOptions,
   })
 }
 
@@ -58,7 +53,7 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
 }
 
 const ssrClient: {
-  [locale: string]: ApolloClient<NormalizedCacheObject>
+  [locale: string]: ApolloClient
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {

@@ -22,12 +22,12 @@ export const useSignInForm: FunctionPlugin<typeof useSignInFormType> = (useSignI
 
       cartLock(client.cache, true)
 
-      const destinationCartId = (
-        await client.query({
-          query: CustomerCartDocument,
-          fetchPolicy: 'network-only',
-        })
-      ).data.customerCart.id
+      const customerCartResult = await client.query({
+        query: CustomerCartDocument,
+        fetchPolicy: 'network-only',
+      })
+      const destinationCartId = customerCartResult.data?.customerCart?.id
+      if (!destinationCartId) return
 
       try {
         const sourceCartId = readCartId(client.cache)?.id

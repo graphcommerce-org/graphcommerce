@@ -6,7 +6,7 @@ import {
   type UseAttributesFormConfig,
 } from '@graphcommerce/magento-store'
 import { useFormGqlMutation, type UseFormGraphQlOptions } from '@graphcommerce/react-hook-form'
-import type { MutationHookOptions } from '@apollo/client'
+import type { useMutation } from '@apollo/client/react'
 import {
   UseCustomerCreateFormDocument,
   type UseCustomerCreateFormMutation,
@@ -46,7 +46,7 @@ export function useCustomerCreateForm(
     UseCustomerCreateFormMutation,
     CreateCustomerFormValues
   >,
-  mutationOptions?: MutationHookOptions<UseCustomerCreateFormMutation, CreateCustomerFormValues>,
+  mutationOptions?: useMutation.Options<UseCustomerCreateFormMutation, CreateCustomerFormValues>,
 ) {
   const attributes = useAttributesForm({
     formCode: 'customer_account_create',

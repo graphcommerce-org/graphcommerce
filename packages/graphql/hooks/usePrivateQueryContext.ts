@@ -10,7 +10,7 @@ export function getPrivateQueryContextMesh(
 }
 
 /** Get the private context from the apollo client. */
-export function getPrivateQueryContext(_client: ApolloClient<any>): PrivateContext | null {
+export function getPrivateQueryContext(_client: ApolloClient): PrivateContext | null {
   return null
 }
 

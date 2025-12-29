@@ -28,13 +28,13 @@ type GetPageStaticProps = GetStaticProps<LayoutOverlayProps>
 
 function CheckoutCustomerAddressesEdit() {
   const router = useRouter()
-  const { data, loading, error, called } = useCustomerQuery(AccountDashboardAddressesDocument, {
+  const { data, loading, error } = useCustomerQuery(AccountDashboardAddressesDocument, {
     fetchPolicy: 'cache-and-network',
   })
 
   const address = data?.customer?.addresses?.find((a) => a?.id === Number(router.query.addressId))
 
-  if (loading || !called)
+  if (loading)
     return (
       <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading your account</Trans>}>
         <Trans>This may take a second</Trans>

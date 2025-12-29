@@ -1,4 +1,4 @@
-import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { canonicalize, nonNullable } from '@graphcommerce/next-ui'
 import { productLink } from '../../hooks/useProductLink'
 import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
@@ -8,7 +8,7 @@ import { ProductStaticPathsDocument } from './ProductStaticPaths.gql'
  * @public
  */
 export async function getSitemapPaths(
-  client: ApolloClient<NormalizedCacheObject>,
+  client: ApolloClient,
   ctx: { locale?: string; defaultLocale?: string },
   pageSize: number,
 ) {
@@ -16,11 +16,11 @@ export async function getSitemapPaths(
   const query = ProductStaticPathsDocument
 
   const pageInfo = client.query({ query, variables: { currentPage: 1, pageSize } })
-  const total = (await pageInfo).data.products?.page_info?.total_pages || 0
+  const total = (await pageInfo).data?.products?.page_info?.total_pages || 0
 
   const result = Array.from(Array(total).keys()).map(async (currentPage) => {
     const res = await client.query({ query, variables: { currentPage: currentPage + 1, pageSize } })
-    return res.data.products?.items
+    return res.data?.products?.items
   })
 
   const options = { locale, defaultLocale, pathname: '/', isLocaleDomain: false }

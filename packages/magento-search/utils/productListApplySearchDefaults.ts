@@ -27,16 +27,16 @@ export function useProductListApplySearchDefaults(
 
 export function productListApplySearchDefaults(
   params: ProductListParams,
-  conf: StoreConfigQuery,
+  conf: StoreConfigQuery | undefined,
 ): ProductListQueryVariables
 export function productListApplySearchDefaults(
   params: ProductListParams | undefined,
-  conf: StoreConfigQuery,
+  conf: StoreConfigQuery | undefined,
 ): ProductListQueryVariables | undefined {
   if (!params) return params
   const newParams = cloneDeep(params)
 
-  if (!newParams.pageSize) newParams.pageSize = conf.storeConfig?.grid_per_page ?? 12
+  if (!newParams.pageSize) newParams.pageSize = conf?.storeConfig?.grid_per_page ?? 12
 
   if (Object.keys(newParams.sort).length === 0) {
     newParams.sort = { relevance: 'DESC' }

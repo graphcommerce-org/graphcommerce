@@ -2,10 +2,7 @@ import type { ApolloClient, NormalizedCacheObject } from '@apollo/client'
 import gql from 'graphql-tag'
 import type { HygraphConfig } from './getConfig'
 
-export async function getEnvironment(
-  client: ApolloClient<NormalizedCacheObject>,
-  config: HygraphConfig,
-) {
+export async function getEnvironment(client: ApolloClient, config: HygraphConfig) {
   const endpoints = await client.query<
     {
       viewer: {

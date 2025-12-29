@@ -9,14 +9,14 @@ import { getTypePoliciesVersion } from './typePolicies'
 const APOLLO_CACHE_PERSIST = 'apollo-cache-persist'
 const APOLLO_CACHE_VERSION = 'apollo-cache-version'
 
-let persistor: CachePersistor<NormalizedCacheObject> | null = null
+let persistor: CachePersistor<unknown> | null = null
 
 /** Revives the cache from the localStorage if it is available. */
 export async function createCacheReviver(
-  client: ApolloClient<NormalizedCacheObject>,
-  createCache: () => ApolloCache<NormalizedCacheObject>,
+  client: ApolloClient,
+  createCache: () => ApolloCache,
   config: ApolloClientConfig,
-  incomingState: NormalizedCacheObject = {},
+  incomingState: unknown = {},
 ) {
   let state = incomingState
   const typePoliciesVersion = getTypePoliciesVersion(config.policies)

@@ -22,7 +22,7 @@ function pruneCache(cacheObject: object, patterns: string[]) {
 }
 
 export const createPersistenceMapper =
-  (createCache: () => ApolloCache<NormalizedCacheObject>) =>
+  (createCache: () => ApolloCache) =>
   (data: string): Promise<string> => {
     const parsedCache = JSON.parse(data) as NormalizedCacheObject
 

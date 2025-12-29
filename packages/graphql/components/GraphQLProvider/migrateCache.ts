@@ -1,13 +1,10 @@
-import type { ApolloCache, NormalizedCacheObject } from '../../apollo'
+import type { ApolloCache } from '../../apollo'
 
-export type MigrateCache = (
-  oldCache: ApolloCache<NormalizedCacheObject>,
-  newCache: ApolloCache<NormalizedCacheObject>,
-) => void
+export type MigrateCache = (oldCache: ApolloCache, newCache: ApolloCache) => void
 
 export const migrateCacheHandler = (
-  oldCache: ApolloCache<NormalizedCacheObject>,
-  newCache: ApolloCache<NormalizedCacheObject>,
+  oldCache: ApolloCache,
+  newCache: ApolloCache,
   migrations: MigrateCache[],
 ) => {
   migrations.forEach((migration) => migration(oldCache, newCache))

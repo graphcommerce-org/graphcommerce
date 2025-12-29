@@ -29,7 +29,7 @@ function ViewHandling(props: { product: ProductPageMetaFragment }) {
 
   const registerView = useEventCallback(async () => {
     const recentlyViewed = await client.query({ query: RecentlyViewedProductsDocument })
-    const skus = recentlyViewed.data.recentlyViewedProducts?.items ?? []
+    const skus = recentlyViewed.data?.recentlyViewedProducts?.items ?? []
 
     const isValidVariant =
       (variant?.url_rewrites ?? []).length > 0 && variant?.url_key && configurableVariantForSimple

@@ -1,10 +1,11 @@
-import type { ApolloError } from '@graphcommerce/graphql'
 import type { ErrorSnackbarProps } from '@graphcommerce/next-ui'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
+import type { ErrorLike } from '@apollo/client'
+import { CombinedGraphQLErrors } from '@apollo/client/errors'
 import { maskNetworkError } from './maskNetworkError'
 
 export type ApolloErrorSnackbarProps = {
-  error?: ApolloError | null
+  error?: ErrorLike | null
 } & Pick<ErrorSnackbarProps, 'action' | 'onClose'>
 
 export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
@@ -12,11 +13,15 @@ export function ApolloErrorSnackbar(props: ApolloErrorSnackbarProps) {
 
   if (!error) return null
 
+  // Check if this is a CombinedGraphQLErrors
+  const isGraphQLError = CombinedGraphQLErrors.is(error)
+  const graphQLErrors = isGraphQLError ? error.errors : []
+
   return (
     <ErrorSnackbar variant='pill' severity='error' {...passedProps} open={!!error}>
       <>
-        {error.graphQLErrors.map((e) => e.message).join(', ')}
-        {maskNetworkError(error.networkError)}
+        {graphQLErrors.map((e) => e.message).join(', ')}
+        {!isGraphQLError && maskNetworkError(error)}
       </>
     </ErrorSnackbar>
   )

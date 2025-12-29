@@ -87,7 +87,9 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   const responses = locales.map(async (locale) => {
     const staticClient = graphqlSsrClient({ locale })
     const blogPosts = staticClient.query({ query: BlogPathsDocument })
-    const total = Math.ceil((await blogPosts).data.pagesConnection.aggregate.count / pageSize)
+    const total = Math.ceil(
+      ((await blogPosts).data?.pagesConnection?.aggregate?.count ?? 0) / pageSize,
+    )
     const pages: string[] = []
     for (let i = 1; i < total - 1; i++) {
       pages.push(String(i + 1))
@@ -117,15 +119,20 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   })
   const blogPaths = staticClient.query({ query: BlogPathsDocument })
 
-  if (!(await defaultPage).data.pages?.[0]) return { notFound: true, revalidate: revalidate() }
-  if (!(await blogPosts).data.blogPosts.length) return { notFound: true, revalidate: revalidate() }
+  const defaultPageData = (await defaultPage).data
+  const blogPostsData = (await blogPosts).data
+  const blogPathsData = (await blogPaths).data
+
+  if (!defaultPageData?.pages?.[0]) return { notFound: true, revalidate: revalidate() }
+  if (!blogPostsData?.blogPosts?.length) return { notFound: true, revalidate: revalidate() }
+  if (!blogPathsData) return { notFound: true, revalidate: revalidate() }
   if (Number(params?.page) <= 0) return { notFound: true, revalidate: revalidate() }
 
   return {
     props: {
-      ...(await defaultPage).data,
-      ...(await blogPosts).data,
-      ...(await blogPaths).data,
+      ...defaultPageData,
+      ...blogPostsData,
+      ...blogPathsData,
       ...(await layout).data,
       urlEntity: { relative_url: 'blog' },
       apolloState: await conf.then(() => client.cache.extract()),

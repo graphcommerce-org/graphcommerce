@@ -1,6 +1,6 @@
 import { cosmiconfigSync } from 'cosmiconfig';
 import { GraphCommerceConfigSchema } from './generated/config.js';
-import { cloneDeep, mergeDeep } from '@apollo/client/utilities/index.js';
+import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal';
 import chalk from 'chalk';
 import lodash from 'lodash';
 import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodLazy, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';

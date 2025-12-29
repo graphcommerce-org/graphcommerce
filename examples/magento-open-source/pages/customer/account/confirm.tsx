@@ -44,7 +44,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
-  if (!(await conf).data.storeConfig?.create_account_confirmation)
+  if (!(await conf).data?.storeConfig?.create_account_confirmation)
     return { notFound: true, revalidate: revalidate() }
 
   return {

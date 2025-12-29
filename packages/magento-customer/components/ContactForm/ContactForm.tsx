@@ -7,12 +7,13 @@ import {
 import { Button, Form, FormRow, MessageSnackbar } from '@graphcommerce/next-ui'
 import { FormPersist, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
+import { useEffect } from 'react'
 import type { CustomerQuery } from '../../hooks'
 import { CustomerDocument, useCustomerQuery } from '../../hooks'
 import type { ContactUsMutationVariables } from './ContactUsMutation.gql'
 import { ContactUsDocument } from './ContactUsMutation.gql'
 
-function findTelephone(data: CustomerQuery): string | undefined {
+function findTelephone(data: Partial<CustomerQuery>): string | undefined {
   const { customer } = data
   if (!customer) return undefined
 
@@ -48,31 +49,33 @@ export function ContactForm() {
 
   const { control, formState, error, handleSubmit, setValue, getValues } = form
 
-  useCustomerQuery(CustomerDocument, {
-    onCompleted: (data) => {
-      if (!data.customer) return
+  const customerQuery = useCustomerQuery(CustomerDocument)
 
-      const telephone = findTelephone(data)
+  // Handle customer data when it's loaded
+  useEffect(() => {
+    const data = customerQuery.data
+    if (!data?.customer) return
 
-      if (!getValues('input.telephone') && telephone) {
-        setValue('input.telephone', telephone)
-      }
+    const telephone = findTelephone(data)
 
-      if (!getValues('input.email') && data.customer?.email) {
-        setValue('input.email', data.customer?.email)
-      }
+    if (!getValues('input.telephone') && telephone) {
+      setValue('input.telephone', telephone)
+    }
 
-      if (!getValues('input.name') && data.customer) {
-        setValue(
-          'input.name',
-          `${data.customer?.firstname ?? ''} ${data.customer?.middlename ?? ''} ${data.customer?.lastname ?? ''}`.replaceAll(
-            '  ',
-            ' ',
-          ),
-        )
-      }
-    },
-  })
+    if (!getValues('input.email') && data.customer?.email) {
+      setValue('input.email', data.customer?.email)
+    }
+
+    if (!getValues('input.name') && data.customer) {
+      setValue(
+        'input.name',
+        `${data.customer?.firstname ?? ''} ${data.customer?.middlename ?? ''} ${data.customer?.lastname ?? ''}`.replaceAll(
+          '  ',
+          ' ',
+        ),
+      )
+    }
+  }, [customerQuery.data, getValues, setValue])
 
   const submit = handleSubmit(() => {})
 
