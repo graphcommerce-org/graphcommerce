@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "test": "jest",
+    "test": "vitest run",
     "dev": "tsc -W --preserveWatchOutput",
     "build": "tsc",
     "prepack": "tsc"

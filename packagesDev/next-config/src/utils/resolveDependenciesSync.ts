@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { resolve as resolveModule } from 'import-meta-resolve'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
 import { sig } from './sig'
@@ -10,7 +11,7 @@ type DependencyStructure = Record<string, { dirName: string; dependencies: strin
 const resolveCache: Map<string, PackageNames> = new Map<string, PackageNames>()
 
 function findPackageJson(id: string, root: string) {
-  let dir = id.startsWith('/') ? id : import.meta.resolve(id)
+  let dir = id.startsWith('/') ? id : resolveModule(id, import.meta.url)
 
   if (dir.startsWith('file://')) dir = new URL(dir).pathname
 

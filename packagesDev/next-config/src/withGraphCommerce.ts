@@ -1,5 +1,3 @@
-// import CircularDependencyPlugin from 'circular-dependency-plugin'
-// import { DuplicatesPlugin } from 'inspectpack/plugin'
 import type { NextConfig } from 'next'
 import type { DomainLocale } from 'next/dist/server/config'
 import type { Configuration } from 'webpack'

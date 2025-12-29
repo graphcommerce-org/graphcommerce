@@ -1,0 +1,21 @@
+name: pr-analysis
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+          cache-dependency-path: package.json
+      - run: yarn install
+      - run: cd examples/magento-graphcms && yarn codegen && cd ../..
+      - run: yarn test
+      # - uses: codex-/knip-reporter@v1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     ignore_results: true

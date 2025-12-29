@@ -52,7 +52,7 @@
     "fast-glob": "^3.3.3",
     "glob": "^10.5.0",
     "graphql": "^16.12.0",
-    "inspectpack": "^4.7.1",
+    "import-meta-resolve": "^4.1.0",
     "js-yaml": "^4.1.1",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.17.21",
