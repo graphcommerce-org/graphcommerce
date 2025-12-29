@@ -5,6 +5,7 @@ import prompts from 'prompts';
 import { SimpleFieldType, VisibilityTypes, RelationalFieldType, Client } from '@hygraph/management-sdk';
 import { gql, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 import gql$1 from 'graphql-tag';
+import { LocalState } from '@apollo/client/local-state';
 
 const capitalize = (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
 const graphcommerceLog = (message, type) => {
@@ -844,7 +845,8 @@ function getManagementClient(config) {
       fetch,
       headers: { Authorization: `Bearer ${accessToken}` }
     }),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    localState: new LocalState({})
   });
 }
 

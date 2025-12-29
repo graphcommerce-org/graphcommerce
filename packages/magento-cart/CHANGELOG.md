@@ -1,5 +1,129 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+- [#2557](https://github.com/graphcommerce-org/graphcommerce/pull/2557) [`ceaadd8`](https://github.com/graphcommerce-org/graphcommerce/commit/ceaadd87f0648982a068a3b07b1fa149c9127f49) - ## Material UI v5 → v7 Migration
+
+  This release upgrades Material UI from v5 to v7 with full CSS variables support. ([@paales](https://github.com/paales))
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`c96dfcd`](https://github.com/graphcommerce-org/graphcommerce/commit/c96dfcdca981baca387c270ad9e2b9515cdd00cc) - Updated to Apollo Client 4 ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`cf44b1f`](https://github.com/graphcommerce-org/graphcommerce/commit/cf44b1f723b7f2073a21abd6821768427cb95315) - Added hideTotals to MultiCartStartCheckout ([@paales](https://github.com/paales))
+
+- [`d7ad6a3`](https://github.com/graphcommerce-org/graphcommerce/commit/d7ad6a32acdd0c9540656feae9fbb1d5f5f3dbf9) - Additional export for GetCartTotals ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - When running a cart mutation and the cartId is already passed to the form we use that value instead of retrieving the current cart again. ([@paales](https://github.com/paales))
+
+- [#2540](https://github.com/graphcommerce-org/graphcommerce/pull/2540) [`36e2bac`](https://github.com/graphcommerce-org/graphcommerce/commit/36e2bacb4fe765ce1fcd24dc36736e90bb17a7dc) - Add billingAddress permission (EDITABLE | READONLY) that controls whether the end user can update their billing address in the account section and checkout. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`415f9fb`](https://github.com/graphcommerce-org/graphcommerce/commit/415f9fb50454fb20cb533235969dd9ab4ffc134b) - Allow setting the cartId in the form for useFormGqlMutationCart by setting the cartId in the form AND allow setting the cartId for a whole context by wrapping with CartIdProvider ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`4e3f3f2`](https://github.com/graphcommerce-org/graphcommerce/commit/4e3f3f2df58638ba8ffc68ee9f274cdd6c45d6d4) - Allow setting the redirect value in the AddProductsToCartForm as a form value. ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`1f37f05`](https://github.com/graphcommerce-org/graphcommerce/commit/1f37f05200e3015bf36d450bffff40c5d551ec54) - Forwarded ref to AddProductsToCartButton ([@paales](https://github.com/paales))
+
+- [#2479](https://github.com/graphcommerce-org/graphcommerce/pull/2479) [`ae5e72c`](https://github.com/graphcommerce-org/graphcommerce/commit/ae5e72ccf1c8218ace3cca1c4e52ec8d46821a27) - Solve issue where the total of the cart was zero due to discount or store credit the user couldn't proceed to the checkout. We now check for items and errors instead of the total. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2529](https://github.com/graphcommerce-org/graphcommerce/pull/2529) [`b331f4d`](https://github.com/graphcommerce-org/graphcommerce/commit/b331f4d060c1385569fbbe1592ac245832de55bc) - Remove all usages of the NoSsr component as the GraphQL layer already handles this. ([@paales](https://github.com/paales))
+
+- [#2521](https://github.com/graphcommerce-org/graphcommerce/pull/2521) [`6847259`](https://github.com/graphcommerce-org/graphcommerce/commit/6847259715b0cebcc3f7415ed06cc38814663811) - Solve typescript issue were product types were added incorrectly. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`35fdadd`](https://github.com/graphcommerce-org/graphcommerce/commit/35fdadd8896619a2c84e91e39279f5928c0c9007) - Removed deprecated fields from AddProductsToCartForm ([@paales](https://github.com/paales))
+
+- [#2485](https://github.com/graphcommerce-org/graphcommerce/pull/2485) [`6533728`](https://github.com/graphcommerce-org/graphcommerce/commit/65337280c6f4291cf4354e6ed9659f03388ca8d4) - When ordering a virtual product the checkout would still reference a Track & Trace ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`af4463d`](https://github.com/graphcommerce-org/graphcommerce/commit/af4463dcbc6903241c8804ffba2f43b2b8e1a00b) - Solve issue where if the onBeforeSubmit would return false, it would still error if submitted while the cart is locked. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`b26f573`](https://github.com/graphcommerce-org/graphcommerce/commit/b26f57307ab1d08f628183dd86e487ec9aa1e5cf) - Moved all functionality from the @graphcommerce/magento-cart-billing-address package to the @graphcommerce/magento-cart package. All occurences of @graphcommerce/magento-cart-billing-address should be removed for your codebase. ([@paales](https://github.com/paales))
+
+- [#2539](https://github.com/graphcommerce-org/graphcommerce/pull/2539) [`1a06135`](https://github.com/graphcommerce-org/graphcommerce/commit/1a061357f4ccb430dd13194f755815474e140520) - Allow awaitable async requests for onStart on checkout button ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`4cde990`](https://github.com/graphcommerce-org/graphcommerce/commit/4cde990dbeecdba8a00d0e34a1095fb14d8a0ad6) - When the cart totals are updated via a mutation, make sure to also fetch the id when the query is used so that automatically updates. ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`7ae2909`](https://github.com/graphcommerce-org/graphcommerce/commit/7ae2909d57e58f00f18acb198028c601ccd857c5) - CartTotals now accepts a readOnly prop to handle plugins showing information based on that prop ([@paales](https://github.com/paales))
+
+- [#2493](https://github.com/graphcommerce-org/graphcommerce/pull/2493) [`b6f76b6`](https://github.com/graphcommerce-org/graphcommerce/commit/b6f76b61f235d3336d8d296f1bed61c9f5daf325) - Solve issue where available_payment_methods would give an apollo client error that it couldn’t be properly merged ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.72
 
 ## 10.0.0-canary.71

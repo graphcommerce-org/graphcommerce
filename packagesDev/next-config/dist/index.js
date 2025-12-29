@@ -8,6 +8,7 @@ import { l as loadConfig, t as toEnvStr } from './loadConfig-CZYUe1jE.js';
 export { r as replaceConfigInString } from './loadConfig-CZYUe1jE.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
 import fs$1, { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
+import { resolve as resolve$2 } from 'import-meta-resolve';
 import assert from 'assert';
 import crypto from 'crypto';
 import lodash from 'lodash';
@@ -248,7 +249,7 @@ function sig() {
 
 const resolveCache = /* @__PURE__ */ new Map();
 function findPackageJson(id, root) {
-  let dir = id.startsWith("/") ? id : import.meta.resolve(id);
+  let dir = id.startsWith("/") ? id : resolve$2(id, import.meta.url);
   if (dir.startsWith("file://")) dir = new URL(dir).pathname;
   let packageJsonLocation = path.join(dir, "package.json");
   while (!fs$1.existsSync(packageJsonLocation)) {

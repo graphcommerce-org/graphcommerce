@@ -1,5 +1,115 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- [#2546](https://github.com/graphcommerce-org/graphcommerce/pull/2546) [`ed9332a`](https://github.com/graphcommerce-org/graphcommerce/commit/ed9332a7f78966d932041d9a7725641edc92b28d) - ## GraphCommerce 10 - Turbopack Support
+
+  This major release brings full Turbopack compatibility, dramatically improving development speed.
+
+  ### 🚀 Turbopack-Compatible Interceptor System
+
+  The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
+  - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
+  - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
+  - **Direct imports** - Interceptors import from `.original` files instead of embedding source
+  - **New CLI commands**:
+    - `graphcommerce codegen-interceptors` - Generate interceptor files
+    - `graphcommerce cleanup-interceptors` - Reset interceptor system, restore original files
+  - **Stable file hashing** - Deterministic interceptor generation for better caching
+
+  ### ⚙️ Treeshakable Configuration System
+
+  Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
+  - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
+  - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
+  - **Fully treeshakable** - Unused config values are eliminated from the bundle
+  - **Type-safe** - Uses `Get<GraphCommerceConfig, 'path'>` for nested property access
+  - **Separate files for nested objects** - Optimal treeshaking for complex configurations
+
+  ### 🔧 withGraphCommerce Changes
+
+  - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
+  - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
+  - **Removed** `@mui/*` alias rewrites - No longer required
+  - **Added** Turbopack loader rules for `.yaml`, `.yml`, and `.po` files
+  - **Added** `serverExternalPackages` for all `@whatwg-node/*` packages
+  - **Added** `optimizePackageImports` for better bundle optimization
+  - **Added** `images.qualities: [52, 75]` for Next.js image optimization
+
+  ### 📦 Lingui Configuration
+
+  - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
+  - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
+  - **Simplified** formatter options
+
+  ### ⚛️ React 19 & Next.js 16 Compatibility
+
+  - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
+  - Replaced deprecated `React.VFC` with `React.FC`
+  - Fixed `useRef` calls to require explicit initial values
+  - Updated `MutableRefObject` usage in `framer-scroller`
+
+  ### 📋 ESLint 9 Flat Config
+
+  - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
+  - Updated `@typescript-eslint/*` packages to v8
+  - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
+
+  ### 🔄 Apollo Client
+
+  - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
+  - Updated error handling types to accept `ApolloError | null | undefined`
+
+  ### ⚠️ Breaking Changes
+
+  - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
+  - **Interceptor files changed** - Original components now at `.original.tsx`
+  - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
+  - **ESLint config format** - Must use flat config (`eslint.config.mjs`)
+  - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
+
+  ### 🗑️ Removed
+
+  - `InterceptorPlugin` webpack plugin
+  - `configToImportMeta` utility
+  - Webpack `DefinePlugin` usage for config
+  - `@mui/*` modern alias rewrites
+  - Debug plugins (`CircularDependencyPlugin`, `DuplicatesPlugin`) ([@paales](https://github.com/paales))
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`c96dfcd`](https://github.com/graphcommerce-org/graphcommerce/commit/c96dfcdca981baca387c270ad9e2b9515cdd00cc) - Updated to Apollo Client 4 ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2565](https://github.com/graphcommerce-org/graphcommerce/pull/2565) [`ea75841`](https://github.com/graphcommerce-org/graphcommerce/commit/ea758413b1ee8b8f2584e8f4135cb582fb87445f) - Migrated to vitest ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`8b25322`](https://github.com/graphcommerce-org/graphcommerce/commit/8b253224997b59ac74d72813214dfc224f526c0a) - When a dependency is optional or has peerDependenciesMeta set to optional, make sure it doesn't crash when it is not found when calling resolveDependenciesSync ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`2c79a4c`](https://github.com/graphcommerce-org/graphcommerce/commit/2c79a4cba2779bc367104ebb13e6c0d6feb6574f) - Remove redirects for `/product/$type/[url]` routes, those haven't been used for years anymore. ([@paales](https://github.com/paales))
+
+- [#2472](https://github.com/graphcommerce-org/graphcommerce/pull/2472) [`905157b`](https://github.com/graphcommerce-org/graphcommerce/commit/905157bec2c9e1dcf51b6e6f7b6913aa9be7b609) - Solve issue with chalk compilation because we’re not migrated to esm modules. ([@paales](https://github.com/paales))
+
+- [`f6b9c0d`](https://github.com/graphcommerce-org/graphcommerce/commit/f6b9c0d2bc5f678fc6cde279f1590b30ef631f8a) - Temporarily pin prettier to 3.5.3 to fix the GraphCommerce build: https://github.com/hosseinmd/prettier-plugin-jsdoc/pull/246/files ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`30b7356`](https://github.com/graphcommerce-org/graphcommerce/commit/30b7356790efbac0f0017ef61cb1619b920100ab) - Solve issue where withGraphCommerce had a hard dependency on Magento specific configurations ([@paales](https://github.com/paales))
+
+- [`62b71d5`](https://github.com/graphcommerce-org/graphcommerce/commit/62b71d5ed1d482fdb5b76dc19ac4d55fc41fb191) - Solve issue: TypeError: InMemoryLRUCache is not a constructor ([@paales](https://github.com/paales))
+
+- [#2537](https://github.com/graphcommerce-org/graphcommerce/pull/2537) [`6492d81`](https://github.com/graphcommerce-org/graphcommerce/commit/6492d819a858ffdc01a97e6914053e9cc14c8fc5) - Reduce exported scope of config so we dont introduce a hidden dependency on Magento ([@paales](https://github.com/paales))
+
+- [`f508396`](https://github.com/graphcommerce-org/graphcommerce/commit/f50839619c75c8f7b1782c079f1c25998cb9217b) - Solve issue where optional chaining for import.meta.graphCommmerce configuration paths didn't work. ([@paales](https://github.com/paales))
+
+- [#2499](https://github.com/graphcommerce-org/graphcommerce/pull/2499) [`9cf0450`](https://github.com/graphcommerce-org/graphcommerce/commit/9cf0450a41c4c74292b96f5795c7428f9d6a930c) - Remove the 'ignored' string when loading the graphcommerce config env variable loading, as that isn't always correct ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`9825f59`](https://github.com/graphcommerce-org/graphcommerce/commit/9825f59b8626c315e6092950faceeab4311a5424) - Remove rewriteLegacyEnv as that hasn't been used for years ([@paales](https://github.com/paales))
+
+- [#2487](https://github.com/graphcommerce-org/graphcommerce/pull/2487) [`5ffa0ee`](https://github.com/graphcommerce-org/graphcommerce/commit/5ffa0ee1d620f4f1c38bc5df36cbd527bcc43cf9) - Migrated `@graphcommerce/next-config` package to `"type": "module"` ([@paales](https://github.com/paales))
+
 ## 10.0.0-canary.72
 
 ## 10.0.0-canary.71
