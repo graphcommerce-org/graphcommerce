@@ -157,7 +157,7 @@ const main = async () => {
   if (!conf.serve) conf.serve = {};
   if (!conf.serve.playgroundTitle) conf.serve.playgroundTitle = "GraphCommerce\xAE Mesh";
   conf.plugins = [
-    ...(conf.plugins ?? []),
+    ...conf.plugins ?? [],
     {
       httpDetailsExtensions: {
         if: "env.NODE_ENV === 'development'"
