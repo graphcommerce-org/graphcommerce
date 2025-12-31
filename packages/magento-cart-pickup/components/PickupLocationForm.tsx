@@ -4,6 +4,7 @@ import {
   ApolloErrorAlert,
   TextFieldElement,
   useFormCompose,
+  useWatch,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import type { ProductInfoInput } from '@graphcommerce/graphql-mesh'
@@ -77,7 +78,8 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
 
   useFormCompose({ form, step, submit, key: 'PickupLocationForm' })
 
-  const searchTerm = useDeferredValue((form.watch('searchTerm') || defaultSearchTerm) ?? '')
+  const watchedSearchTerm = useWatch({ control, name: 'searchTerm' })
+  const searchTerm = useDeferredValue((watchedSearchTerm || defaultSearchTerm) ?? '')
   const locationsQuery = useQuery(GetPickupLocationsForProductsDocument, {
     variables: {
       productInput,
@@ -92,7 +94,7 @@ export function PickupLocationForm(props: PickupLocationFormProps) {
     [locationData?.pickupLocations?.items],
   )
 
-  const selected = form.watch('pickupLocationCode')
+  const selected = useWatch({ control, name: 'pickupLocationCode' })
 
   // What to do when shippingForm is pickup but there aren't any available pickup locations?
   if (!isAvailable) return null

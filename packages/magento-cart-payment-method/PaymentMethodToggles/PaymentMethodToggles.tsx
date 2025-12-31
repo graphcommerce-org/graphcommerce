@@ -11,7 +11,13 @@ import {
   ToggleButton,
 } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { Controller, FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
+import {
+  Controller,
+  FormPersist,
+  useForm,
+  useFormCompose,
+  useWatch,
+} from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, FormControl, FormHelperText } from '@mui/material'
@@ -52,7 +58,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
     defaultValues: { code: lockState.method },
   })
 
-  const { control, handleSubmit, watch, register, setValue, formState } = form
+  const { control, handleSubmit, register, setValue, formState } = form
 
   const submitHandler = handleSubmit(() => {})
 
@@ -62,7 +68,7 @@ export function PaymentMethodToggles(props: PaymentMethodTogglesProps) {
     if (selectedMethod?.code) setValue('code', selectedMethod.code)
   }, [selectedMethod?.code, setValue])
 
-  const paymentMethod = watch('paymentMethod')
+  const paymentMethod = useWatch({ control, name: 'paymentMethod' })
   useEffect(() => {
     const [code, child] = paymentMethod?.split('___') ?? ['']
     if (code === selectedMethod?.code) return
