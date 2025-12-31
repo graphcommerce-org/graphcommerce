@@ -1,21 +1,20 @@
-import type { ApolloCache } from '@graphcommerce/graphql'
-import { setContext } from '@graphcommerce/graphql'
+import { SetContextLink } from '@graphcommerce/graphql'
 import { CustomerDocument } from '@graphcommerce/magento-customer'
 
 declare module '@apollo/client' {
   interface DefaultContext {
-    cache?: ApolloCache<unknown>
     headers?: Record<string, string>
   }
 }
 
-export const customerGroupIdLink = setContext((_, context) => {
-  if (!context.headers) context.headers = {}
+export const customerGroupIdLink = new SetContextLink((prevContext, operation) => {
+  const headers: Record<string, string> = { ...prevContext.headers }
   try {
-    const group_id = context.cache?.readQuery({ query: CustomerDocument })?.customer?.group_id
-    if (group_id) context.headers['x-magento-group-id'] = `${group_id}`
-    return context
-  } catch (error) {
-    return context
+    const group_id = operation.client.cache.readQuery({ query: CustomerDocument })?.customer
+      ?.group_id
+    if (group_id) headers['x-magento-group-id'] = `${group_id}`
+    return { headers }
+  } catch {
+    return { headers }
   }
 })

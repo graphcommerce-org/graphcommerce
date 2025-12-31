@@ -25,11 +25,6 @@ function errorIsIncluded(errorPath: readonly (string | number)[] | undefined, ke
 }
 
 const cartErrorLink = new ErrorLink(({ error, operation, forward }) => {
-  if (!globalApolloClient.current) return undefined
-
-  const client = globalApolloClient.current
-  const { cache } = client
-
   // Check if this is a GraphQL error
   if (!CombinedGraphQLErrors.is(error)) return undefined
 
@@ -66,13 +61,13 @@ const cartErrorLink = new ErrorLink(({ error, operation, forward }) => {
     if (urlParams.get('cart_id')) return forward(operation)
   }
 
-  return from(client?.mutate({ mutation: CreateEmptyCartDocument })).pipe(
+  return from(operation.client.mutate({ mutation: CreateEmptyCartDocument })).pipe(
     filter((value) => Boolean(value)),
     switchMap((cartData) => {
       const cartId = cartData.data?.createEmptyCart
       if (!cartId) return forward(operation)
 
-      writeCartId(cache, cartId)
+      writeCartId(operation.client.cache, cartId)
       operation.variables = { ...operation.variables, cartId }
 
       // retry the request, returning the new observable
@@ -84,11 +79,10 @@ const cartErrorLink = new ErrorLink(({ error, operation, forward }) => {
 const cartPermissionLink = (router: PushRouter) =>
   new ApolloLink((operation, forward) => {
     const { locale } = router
-    const { cache } = operation.getContext()
 
     if (!isProtectedCartOperation(operation.operationName ?? '')) return forward(operation)
 
-    const check = () => Boolean(cache?.readQuery({ query: CustomerTokenDocument }))
+    const check = () => Boolean(operation.client.cache.readQuery({ query: CustomerTokenDocument }))
     if (getCartEnabledForUser(locale, check)) return forward(operation)
 
     if (!getCustomerAccountCanSignIn(locale))
@@ -101,7 +95,7 @@ const cartPermissionLink = (router: PushRouter) =>
 
     return from(signInAgainPromise).pipe(
       switchMap(() => {
-        const tokenQuery = cache?.readQuery({ query: CustomerTokenDocument })
+        const tokenQuery = operation.client.cache.readQuery({ query: CustomerTokenDocument })
 
         if (tokenQuery?.customerToken?.valid) {
           // Customer is authenticated, retrying request.
