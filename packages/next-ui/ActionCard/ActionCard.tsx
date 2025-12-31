@@ -1,6 +1,6 @@
 import type { BoxProps, ButtonProps, SxProps, Theme } from '@mui/material'
 import { Box, ButtonBase } from '@mui/material'
-import React from 'react'
+import type React from 'react'
 import { extendableComponent, responsiveVal } from '../Styles'
 import { breakpointVal } from '../Styles/breakpointVal'
 import { sxx } from '../utils/sxx'
@@ -345,50 +345,52 @@ export function ActionCard<C extends React.ElementType = typeof Box>(props: Acti
             )}
           </Box>
         </Box>
-        <Box
-          className={classes.end}
-          sx={sxx(
-            {
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end',
-            },
-            slotProps.end?.sx,
-          )}
-          {...slotProps.end}
-        >
-          {(action || reset) && (
-            <Box
-              className={classes.action}
-              sx={sxx(
-                (theme) => ({ marginBottom: '5px', color: theme.vars.palette[color].main }),
-                slotProps.action?.sx,
-              )}
-              {...slotProps.action}
-            >
-              {!selected ? action : reset}
-            </Box>
-          )}
-          {price && !disabled && (
-            <Box
-              className={classes.price}
-              sx={sxx(
-                {
-                  textAlign: 'right',
-                  typography: 'body1',
-                  '&.sizeMedium': { typography: 'subtitle1' },
-                  '&.sizeLarge': { typography: 'h6' },
-                  '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
-                },
-                slotProps.price?.sx,
-              )}
-              {...slotProps.price}
-            >
-              {price}
-            </Box>
-          )}
-        </Box>
+        {(action || reset || (price && !disabled)) && (
+          <Box
+            className={classes.end}
+            sx={sxx(
+              {
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                alignItems: 'flex-end',
+              },
+              slotProps.end?.sx,
+            )}
+            {...slotProps.end}
+          >
+            {(action || reset) && (
+              <Box
+                className={classes.action}
+                sx={sxx(
+                  (theme) => ({ marginBottom: '5px', color: theme.vars.palette[color].main }),
+                  slotProps.action?.sx,
+                )}
+                {...slotProps.action}
+              >
+                {!selected ? action : reset}
+              </Box>
+            )}
+            {price && !disabled && (
+              <Box
+                className={classes.price}
+                sx={sxx(
+                  {
+                    textAlign: 'right',
+                    typography: 'body1',
+                    '&.sizeMedium': { typography: 'subtitle1' },
+                    '&.sizeLarge': { typography: 'h6' },
+                    '&.sizeResponsive': { typography: { xs: 'body1', md: 'subtitle1', lg: 'h6' } },
+                  },
+                  slotProps.price?.sx,
+                )}
+                {...slotProps.price}
+              >
+                {price}
+              </Box>
+            )}
+          </Box>
+        )}
       </Box>
       {after && (
         <Box className={classes.after} sx={sxx({}, slotProps.after?.sx)} {...slotProps.after}>
