@@ -1,13 +1,12 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
-import type { CmsPageFragment, CmsPageQuery } from '@graphcommerce/magento-cms'
+import type { CmsPageFragment } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { PageMeta, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { breadcrumbs } from '@graphcommerce/next-config/config'
 import {
   Container,
-  isTypename,
   LayoutHeader,
   LayoutTitle,
   revalidate,
@@ -71,22 +70,21 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { params, locale } = context
-  const url = params?.url?.join('/') ?? ''
-  if (!url) return { notFound: true }
+  const identifier = params?.url?.join('/') ?? ''
+  if (!identifier) return { notFound: true }
 
   const client = graphqlSharedClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
-  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
+  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { identifier } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const cmsPage = (await cmsPageQuery).data?.route
-  if (!cmsPage || !isTypename(cmsPage, ['CmsPage']))
-    return redirectOrNotFound(staticClient, conf, params, locale)
+  const cmsPage = (await cmsPageQuery).data?.cmsPage
+  if (!cmsPage) return redirectOrNotFound(staticClient, conf, params, locale)
 
   const result = {
     props: {
