@@ -1,5 +1,7 @@
 # Change Log
 
+## 10.0.1-canary.0
+
 ## 10.0.0
 
 ### Major Changes
@@ -11,6 +13,7 @@
   ### 🚀 Turbopack-Compatible Interceptor System
 
   The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
   - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
   - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
   - **Direct imports** - Interceptors import from `.original` files instead of embedding source
@@ -22,6 +25,7 @@
   ### ⚙️ Treeshakable Configuration System
 
   Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
   - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
   - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
   - **Fully treeshakable** - Unused config values are eliminated from the bundle
@@ -29,6 +33,7 @@
   - **Separate files for nested objects** - Optimal treeshaking for complex configurations
 
   ### 🔧 withGraphCommerce Changes
+
   - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
   - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
   - **Removed** `@mui/*` alias rewrites - No longer required
@@ -38,26 +43,31 @@
   - **Added** `images.qualities: [52, 75]` for Next.js image optimization
 
   ### 📦 Lingui Configuration
+
   - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
   - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
   - **Simplified** formatter options
 
   ### ⚛️ React 19 & Next.js 16 Compatibility
+
   - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
   - Replaced deprecated `React.VFC` with `React.FC`
   - Fixed `useRef` calls to require explicit initial values
   - Updated `MutableRefObject` usage in `framer-scroller`
 
   ### 📋 ESLint 9 Flat Config
+
   - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
   - Updated `@typescript-eslint/*` packages to v8
   - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
 
   ### 🔄 Apollo Client
+
   - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
   - Updated error handling types to accept `ApolloError | null | undefined`
 
   ### ⚠️ Breaking Changes
+
   - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
   - **Interceptor files changed** - Original components now at `.original.tsx`
   - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
@@ -65,6 +75,7 @@
   - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
 
   ### 🗑️ Removed
+
   - `InterceptorPlugin` webpack plugin
   - `configToImportMeta` utility
   - Webpack `DefinePlugin` usage for config
@@ -207,6 +218,7 @@
 ### Patch Changes
 
 - [#1752](https://github.com/graphcommerce-org/graphcommerce/pull/1752) [`2a6a4d9ec`](https://github.com/graphcommerce-org/graphcommerce/commit/2a6a4d9ecfa1b58a66ba9b9d00016d6feda9aa95) - Updated dependencies to latest versions, except for nextjs; Solve tons of peer dependency issues.
+
   - Updated the @mui/material package
   - Removed dependencies on react-hook-form-mui and @playwright/test
   - Upgraded dependencies including type-fest and graphql-mesh
@@ -225,6 +237,7 @@
 - [#1729](https://github.com/graphcommerce-org/graphcommerce/pull/1729) [`c37187a51`](https://github.com/graphcommerce-org/graphcommerce/commit/c37187a513670ebcf09e99eb4a762c8bdb5df7e4) - Moved Magento Cart Pickup shipping method to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
+
   - The upgrade removes `@graphcommerce/magento-cart-pickup` package from your `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back `@graphcommerce/magento-cart-pickup`, following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento). ([@paales](https://github.com/paales))
@@ -242,6 +255,7 @@
 - [#1718](https://github.com/graphcommerce-org/graphcommerce/pull/1718) [`f08bffd63`](https://github.com/graphcommerce-org/graphcommerce/commit/f08bffd63780cb626f072b25c2fd4da37543b6f7) - Moved all Payment methods to the [GraphCommerce plugin system](https://www.graphcommerce.org/docs/framework/plugins)
 
   Upgrade guide:
+
   - The upgrade removes all the payment gateway packages from the `package.json`, remove them for now.
   - Proceed to upgrade normally
   - Add back all the payment modules following the [GraphCommerce Magento docs](https://graphcommerce.org/docs/magento).
@@ -547,6 +561,7 @@
 * [#1278](https://github.com/ho-nl/m2-pwa/pull/1278) [`81ea406d5`](https://github.com/ho-nl/m2-pwa/commit/81ea406d54d6b5c662c030a7fea444abc4117a20) Thanks [@ErwinOtten](https://github.com/ErwinOtten)! - Written documentation for GraphCommerce! 👩‍🏫🧑‍🏫📚📖
 
 - [#1284](https://github.com/ho-nl/m2-pwa/pull/1284) [`5ffcb56bf`](https://github.com/ho-nl/m2-pwa/commit/5ffcb56bfcbe49ebeaf24f9341e819a145ab9a14) Thanks [@paales](https://github.com/paales)! - SvgIcon is now more extenable and flexible:
+
   - It will automatically calculate the stroke-width of the SVG based on the rendered size, allowing for a more flexible use for icons.
 
   - Make SvgIcon themable in your own Theme.
