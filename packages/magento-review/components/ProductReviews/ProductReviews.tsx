@@ -41,7 +41,7 @@ export function ProductReviews(props: ProductReviewsProps) {
 
   const [reviewPage, setPage] = useState<number>(1)
 
-  const { data: otherReviewsPage, loading } = useQuery(ProductReviewsPageDocument, {
+  const { data: otherReviewsPage } = useQuery(ProductReviewsPageDocument, {
     skip: reviewPage === 1,
     variables: {
       urlKey: url_key ?? '',
@@ -142,96 +142,95 @@ export function ProductReviews(props: ProductReviewsProps) {
       className={classes.container}
       sx={sxx((theme) => ({ marginTop: `calc(${theme.spacings.xxs} * -1)` }), sx)}
     >
-      {!loading &&
-        myReviews.items.map((review) => (
+      {myReviews.items.map((review) => (
+        <Box
+          key={review?.summary}
+          className={classes.review}
+          sx={(theme) => ({
+            display: 'grid',
+            gap: theme.spacings.sm,
+            borderBottom: `1px solid ${theme.vars.palette.divider}`,
+            padding: `${theme.spacings.md} 0`,
+            typography: 'body1',
+          })}
+        >
           <Box
-            key={review?.summary}
-            className={classes.review}
+            className={classes.title}
             sx={(theme) => ({
               display: 'grid',
-              gap: theme.spacings.sm,
-              borderBottom: `1px solid ${theme.vars.palette.divider}`,
-              padding: `${theme.spacings.md} 0`,
-              typography: 'body1',
+              gridAutoFlow: 'column',
+              justifyContent: 'start',
+              gap: theme.spacings.xs,
+              alignItems: 'center',
             })}
           >
-            <Box
-              className={classes.title}
-              sx={(theme) => ({
-                display: 'grid',
-                gridAutoFlow: 'column',
-                justifyContent: 'start',
-                gap: theme.spacings.xs,
-                alignItems: 'center',
-              })}
-            >
-              <ProductReviewChip rating={review?.average_rating} />
-              <Typography component='h3' variant='h5'>
-                {review?.summary}
-              </Typography>
-            </Box>
-            <Typography variant='body1'>{review?.text}</Typography>
+            <ProductReviewChip rating={review?.average_rating} />
+            <Typography component='h3' variant='h5'>
+              {review?.summary}
+            </Typography>
+          </Box>
+          <Typography variant='body1'>{review?.text}</Typography>
 
-            {(review?.ratings_breakdown.length ?? 0) > 1 && (
-              <Box
-                className={classes.ratingRow}
-                sx={(theme) => ({
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: theme.spacings.sm,
-                  color: theme.vars.palette.text.disabled,
-                  typography: 'body2',
-                })}
-              >
-                {review?.ratings_breakdown.map((ratingBreakdown) => (
-                  <Box
-                    key={`rating-${ratingBreakdown?.value}`}
-                    className={classes.rating}
-                    sx={(theme) => ({
-                      display: 'grid',
-                      gridAutoFlow: 'column',
-                      gridTemplateColumns: '0.4fr 0.6fr',
-                      justifyContent: 'space-between',
-                      marginRight: theme.spacings.xxs,
-                      rowGap: responsiveVal(8, 16),
-                      gap: 8,
-                      alignItems: 'center',
-                    })}
-                  >
-                    <span>{ratingBreakdown?.name}</span>
-                    <StarRatingField
-                      readOnly
-                      size='small'
-                      defaultValue={Number(ratingBreakdown?.value ?? 0)}
-                    />
-                  </Box>
-                ))}
-              </Box>
-            )}
-
+          {(review?.ratings_breakdown.length ?? 0) > 1 && (
             <Box
-              className={classes.meta}
+              className={classes.ratingRow}
               sx={(theme) => ({
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: theme.spacings.sm,
                 color: theme.vars.palette.text.disabled,
-                display: 'grid',
-                gridAutoFlow: 'column',
-                justifyContent: 'space-between',
+                typography: 'body2',
               })}
             >
-              <Box className={classes.nickname} sx={{ typography: 'body2' }}>
-                <Trans>Written by {review?.nickname}</Trans>
-              </Box>
-              <Box
-                component='time'
-                className={classes.date}
-                dateTime={review?.created_at}
-                sx={{ typography: 'body2' }}
-              >
-                <DateTimeFormat dateStyle='long' timeStyle='short' date={review?.created_at} />
-              </Box>
+              {review?.ratings_breakdown.map((ratingBreakdown) => (
+                <Box
+                  key={`rating-${ratingBreakdown?.value}`}
+                  className={classes.rating}
+                  sx={(theme) => ({
+                    display: 'grid',
+                    gridAutoFlow: 'column',
+                    gridTemplateColumns: '0.4fr 0.6fr',
+                    justifyContent: 'space-between',
+                    marginRight: theme.spacings.xxs,
+                    rowGap: responsiveVal(8, 16),
+                    gap: 8,
+                    alignItems: 'center',
+                  })}
+                >
+                  <span>{ratingBreakdown?.name}</span>
+                  <StarRatingField
+                    readOnly
+                    size='small'
+                    defaultValue={Number(ratingBreakdown?.value ?? 0)}
+                  />
+                </Box>
+              ))}
+            </Box>
+          )}
+
+          <Box
+            className={classes.meta}
+            sx={(theme) => ({
+              color: theme.vars.palette.text.disabled,
+              display: 'grid',
+              gridAutoFlow: 'column',
+              justifyContent: 'space-between',
+            })}
+          >
+            <Box className={classes.nickname} sx={{ typography: 'body2' }}>
+              <Trans>Written by {review?.nickname}</Trans>
+            </Box>
+            <Box
+              component='time'
+              className={classes.date}
+              dateTime={review?.created_at}
+              sx={{ typography: 'body2' }}
+            >
+              <DateTimeFormat dateStyle='long' timeStyle='short' date={review?.created_at} />
             </Box>
           </Box>
-        ))}
+        </Box>
+      ))}
       {actions}
     </Box>
   )
