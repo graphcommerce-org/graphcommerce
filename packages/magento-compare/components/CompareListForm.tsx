@@ -26,7 +26,7 @@ export function CompareListForm(props: CompareListFormProps) {
     defaultValues: { selected: [...Array(gridColumns).keys()] },
   })
 
-  const selectedState = form.watch('selected')
+  const selectedState = useWatch({ control: form.control, name: 'selected' })
   const selectedPrevious = useRef<number[]>(selectedState)
   const compareAbleItems = compareListData?.compareList?.items
 

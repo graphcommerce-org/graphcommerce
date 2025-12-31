@@ -2,7 +2,7 @@ import { usePageContext } from '@graphcommerce/framer-next-pages'
 import { useQuery } from '@graphcommerce/graphql'
 import { enableGuestCheckoutLogin } from '@graphcommerce/next-config/config'
 import { useUrlQuery } from '@graphcommerce/next-ui'
-import { useFormGqlQuery } from '@graphcommerce/react-hook-form'
+import { useFormGqlQuery, useWatch } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
 import type { IsEmailAvailableQuery, IsEmailAvailableQueryVariables } from './IsEmailAvailable.gql'
 import { IsEmailAvailableDocument } from './IsEmailAvailable.gql'
@@ -40,8 +40,9 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     },
     { fetchPolicy: 'cache-and-network' },
   )
-  const { formState, data, handleSubmit, setValue, trigger } = form
+  const { formState, data, handleSubmit, setValue, trigger, control } = form
   const { isSubmitSuccessful, isValid } = formState
+  const requestedMode = useWatch({ control, name: 'requestedMode' })
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -68,7 +69,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   if (token && valid) mode = 'signedin'
   else if (token && !valid) mode = 'session-expired'
   else if (isToggleMethod) {
-    mode = form.watch('requestedMode') ?? 'signin'
+    mode = requestedMode ?? 'signin'
   } else {
     // 1. Nothing is entered
     mode = 'email'

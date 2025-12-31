@@ -10,6 +10,7 @@ import {
   FormRow,
   LayoutTitle,
 } from '@graphcommerce/next-ui'
+import { useWatch } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Alert, Box, CircularProgress, Link, Typography } from '@mui/material'
@@ -43,7 +44,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
   const { firstname = '' } = customerQuery.data?.customer ?? {}
 
   const { mode, form, submit } = useAccountSignInUpForm()
-  const { formState, control, error, setError, clearErrors, watch } = form
+  const { formState, control, error, setError, clearErrors } = form
   const router = useRouter()
 
   const client = useApolloClient()
@@ -57,7 +58,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
     mode === 'signin' ||
     (mode === 'signup' && canSignUp)
 
-  const emailValue = watch('email')
+  const emailValue = useWatch({ control, name: 'email' })
 
   return (
     <FormDiv sx={sx} className={classes.root}>

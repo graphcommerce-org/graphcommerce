@@ -12,7 +12,7 @@ const isMutation = (operation: ApolloLink.Request) =>
 
 /** Apollo link that adds the Google reCAPTCHA token to the request context. */
 export const recaptchaLink = new SetContextLink(async (prevContext, operation) => {
-  const siteKey = prevContext.cache?.readQuery({ query: RecaptchaV3ConfigDocument })
+  const siteKey = operation.client.cache.readQuery({ query: RecaptchaV3ConfigDocument })
     ?.recaptchaV3Config?.website_key
 
   if (!siteKey || !globalThis.grecaptcha || !isMutation(operation)) return {}

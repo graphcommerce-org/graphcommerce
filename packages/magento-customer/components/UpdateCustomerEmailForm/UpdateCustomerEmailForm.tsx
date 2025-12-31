@@ -9,7 +9,7 @@ import {
   FormRow,
   MessageSnackbar,
 } from '@graphcommerce/next-ui'
-import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { emailPattern, useFormGqlMutation, useWatch } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError'
@@ -41,7 +41,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
     },
   )
 
-  const { handleSubmit, error, required, formState, watch, reset, control } = form
+  const { handleSubmit, error, required, formState, reset, control } = form
   const [remainingError, authenticationError] = graphqlErrorByCategory({
     category: 'graphql-authentication',
     error,
@@ -49,7 +49,7 @@ export function UpdateCustomerEmailForm(props: UpdateCustomerEmailFormProps) {
   const submit = handleSubmit(() => {
     reset()
   })
-  const watchNewEmail = watch('email')
+  const watchNewEmail = useWatch({ control, name: 'email' })
 
   return (
     <Form onSubmit={submit} noValidate>

@@ -14,6 +14,7 @@ import { errorLink } from './errorLink'
 import { measurePerformanceLink } from './measurePerformanceLink'
 import { mergeTypePolicies } from './typePolicies'
 
+/** @deprecated You can probably use operation.client instead */
 export const globalApolloClient: { current: ApolloClient | null } = {
   current: null,
 }

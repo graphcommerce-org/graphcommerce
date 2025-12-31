@@ -5,6 +5,7 @@ import {
   FormPersist,
   TextFieldElement,
   useFormCompose,
+  useWatch,
 } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
 import {
@@ -125,8 +126,8 @@ export function CustomerAddressForm(props: CustomerAddressListProps) {
     },
   })
 
-  const { handleSubmit, error, control, setValue, watch } = form
-  const formAddressId = watch('customer_address_id')
+  const { handleSubmit, error, control, setValue } = form
+  const formAddressId = useWatch({ control, name: 'customer_address_id' })
 
   useEffect(() => {
     if (mode === 'both' || mode === 'shipping') {

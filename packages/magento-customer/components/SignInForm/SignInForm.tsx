@@ -23,11 +23,9 @@ export function SignInForm(props: SignInFormProps) {
     email,
     onBeforeSubmit(variables) {
       if (!email) {
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         setError('email', { message: t`Please enter a valid email address` })
         return false
       }
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       clearErrors()
       return variables
     },

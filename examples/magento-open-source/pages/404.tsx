@@ -3,7 +3,7 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { CmsPageContent, CmsPageDocument, type CmsPageFragment } from '@graphcommerce/magento-cms'
 import { SearchLink } from '@graphcommerce/magento-search'
 import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
-import { icon404, IconSvg, isTypename, revalidate } from '@graphcommerce/next-ui'
+import { icon404, IconSvg, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
@@ -62,14 +62,14 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
   const confData = (await conf).data
-  const url = confData?.storeConfig?.cms_no_route ?? ''
-  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
-  const cmsPage = (await cmsPageQuery).data?.route
+  const identifier = confData?.storeConfig?.cms_no_route ?? ''
+  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { identifier } })
+  const cmsPage = (await cmsPageQuery).data?.cmsPage
 
   return {
     props: {
       ...(await layout).data,
-      cmsPage: cmsPage && isTypename(cmsPage, ['CmsPage']) ? cmsPage : null,
+      cmsPage: cmsPage ?? null,
       up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),
     },

@@ -22,7 +22,6 @@ const nextConfig: NextConfig = {
     qualities: [52, 75],
     remotePatterns: [{ hostname: 'configurator.reachdigital.dev' }],
   },
-  reactCompiler: true,
 }
 
 export default withGraphCommerce(withPWA(nextConfig))
