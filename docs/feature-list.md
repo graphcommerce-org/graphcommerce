@@ -13,6 +13,7 @@ metaUrl: magento-open-source-full-feature-list-with-graphcommerce
 
 - [Feature] GraphCommerce _unique_ feature
 - [Commerce] Requires Adobe Commerce
+- [Pro] Requires [GraphCommerce Pro](./gc-pro)
 
 </div>
 
@@ -86,9 +87,11 @@ Features taken from the Magento Commerce 2 Feature List
       [Enhanced]
 - [x] Blend content and commerce by adding products to content pages and rich
       content to product pages. — [Enhanced]
-- [x] Create reusable dynamic blocks targeted to customer segments. — [Commerce]
+- [x] Create reusable dynamic blocks targeted to customer segments. — [Pro]
+      `@graphcommerce/adobe-commerce-dynamic-blocks`
 - [x] Easily stage and preview content for seamless updates. — [Partial]
-- [x] Manage upcoming site changes with a timeline dashboard. - [Commerce]
+- [x] Manage upcoming site changes with a timeline dashboard. — [Pro]
+      `@graphcommerce/adobe-commerce` (staging preview)
 - [x] Organize content pages and add pagination, navigation, and menus with a
       page hierarchy tool. — [Enhanced]
 - [x] Track and restore previous versions of content pages. — [Enhanced]
@@ -110,7 +113,8 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] Decrease time to market using the multi-language Venia reference
       storefront. — [Enhanced]
 - [x] Give marketers control with Page Builder to manage content and layouts on
-      PWA Studio-powered storefronts. — [Enhanced]
+      PWA Studio-powered storefronts. — [Pro]
+      `@graphcommerce/magento-pagebuilder`
 - [x] Build PWA experiences using open standards including React, Redux, and
       Webpack. — [Enhanced]
 - [x] Boost developer productivity with real-time, guided development. —
@@ -158,6 +162,11 @@ Features taken from the Magento Commerce 2 Feature List
       automated sorting rules. — [Commerce]
 - [ ] Control which products and categories can be viewed by each customer
       group. — [Commerce]
+- [x] Hide prices for guest users with "Login for prices" messaging. — [Pro]
+      `@graphcommerce/magento-private-pricing`
+- [x] Frontend price display mode switcher (Incl./Excl. VAT). — [Pro]
+      `@graphcommerce/magento-price-view`
+      `@graphcommerce/magento-price-view-vat`
 - [x] Show side-by-side product comparisons with two or more products. —
       [Enhanced]
 - [x] Display recently viewed products. — [Enhanced]
@@ -224,8 +233,13 @@ Features taken from the Magento Commerce 2 Feature List
       checkout thank you page.
 - [x] Allow customers to save their shopping carts to complete their purchases
       later.
-- [ ] Offer gift wrapping and gift messages per order and per item. — [Todo]
-- [ ] Configure pricing and taxes for gift-wrapping options. — [Todo]
+- [x] Manage multiple shopping carts per customer. — [Pro]
+      `@graphcommerce/magento-multi-cart`
+- [x] Offer gift wrapping and gift messages per order and per item. — [Pro]
+      `@graphcommerce/adobe-commerce-gift-wrapping`
+      `@graphcommerce/magento-gift-message`
+- [x] Configure pricing and taxes for gift-wrapping options. — [Pro]
+      `@graphcommerce/adobe-commerce-gift-wrapping`
 - [x] Manage complex tax calculations and prepare signature-ready returns with
       Vertex.
 - [x] Improve order processing capacity with the option to defer stock updates
@@ -264,8 +278,8 @@ Features taken from the Magento Commerce 2 Feature List
       for split fulfillment.
 - [x] Print invoices, packing slips, and shipping labels.
 - [x] Create custom order status labels to track progress.
-- [ ] Use return management authorization (RMA) to efficiently process returns.
-      — [Commerce]
+- [x] Use return management authorization (RMA) to efficiently process returns.
+      — [Pro] `@graphcommerce/adobe-commerce-returns`
 - [x] Enable customer service representatives to create orders and customer
       accounts.
 - [x] Allow customer service to update products, prices, and coupons in
@@ -280,17 +294,18 @@ Features taken from the Magento Commerce 2 Feature List
 
 ### Customer loyalty
 
-- [ ] Offer reward points for purchases, registration, product reviews and other
-      actions. — [Commerce]
-- [ ] Configure reward point redemption rules, caps, and expiration dates. —
-      [Commerce]
-- [ ] Enable customers to save products to multiple wish lists that can be made
-      public. — [Commerce]
-- [ ] Allow customers to create gift registries and send emails to shop the
-      registry. — [Commerce]
-- [ ] Automatically update item counts and notify the registry owner as
-      purchases are made. — [Commerce]
-- [x] Allow customers to purchase physical and virtual gift cards. — [Commerce]
+- [x] Offer reward points for purchases, registration, product reviews and other
+      actions. — [Pro] `@graphcommerce/adobe-commerce-reward-points`
+- [x] Configure reward point redemption rules, caps, and expiration dates. —
+      [Pro] `@graphcommerce/adobe-commerce-reward-points`
+- [x] Enable customers to save products to multiple wish lists that can be made
+      public. — [Pro] `@graphcommerce/adobe-commerce-multi-wishlists`
+- [x] Allow customers to create gift registries and send emails to shop the
+      registry. — [Pro] `@graphcommerce/adobe-commerce-gift-registry`
+- [x] Automatically update item counts and notify the registry owner as
+      purchases are made. — [Pro] `@graphcommerce/adobe-commerce-gift-registry`
+- [x] Allow customers to purchase physical and virtual gift cards. — [Pro]
+      `@graphcommerce/adobe-commerce-gift-c`
 - [ ] Offer exclusive shopping experiences with private or flash sale sites. —
       [Commerce]
 - [ ] Streamline re-ordering by enabling shoppers to add products to the cart by
@@ -307,9 +322,10 @@ Features taken from the Magento Commerce 2 Feature List
 - [x] See order status and history.
 - [x] Re-order from the customer account.
 - [x] View recently ordered items.
-- [x] Track available store credits — [Commerce]
-- [ ] Track gift card totals — [Commerce]
-- [ ] Track reward points — [Commerce]
+- [x] Track available store credits — [Pro]
+      `@graphcommerce/adobe-commerce-store-credit`
+- [x] Track gift card totals — [Pro] `@graphcommerce/adobe-commerce-gift-c`
+- [x] Track reward points — [Pro] `@graphcommerce/adobe-commerce-reward-points`
 - [x] Manage newsletter subscriptions.
 - [x] View submitted product reviews.
 - [ ] Access downloadable/digital products. — [Todo]
@@ -461,6 +477,10 @@ Features taken from the Magento Commerce 2 Feature List
       [Feature]
 - [x] Accelerate site performance with image compression, srcset, and edge CDN
       level caching. — [Feature]
+- [x] Near-realtime SSG revalidation via webhooks from Magento/Hygraph. — [Pro]
+      `@graphcommerce/cache-notify`
+- [x] Cache GraphQL POST requests in Varnish. — [Pro]
+      `@graphcommerce/graphql-mesh-cache-varnish`
 
 ### Managed cloud
 

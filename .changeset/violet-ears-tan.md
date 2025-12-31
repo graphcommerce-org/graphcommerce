@@ -1,0 +1,5 @@
+---
+'@graphcommerce/misc': patch
+---
+
+Docs
