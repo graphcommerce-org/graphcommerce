@@ -33,6 +33,7 @@ import { redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-
 import { ProductWishlistChipDetail } from '@graphcommerce/magento-wishlist'
 import { breadcrumbs, magentoVersion } from '@graphcommerce/next-config/config'
 import {
+  Container,
   isTypename,
   LayoutHeader,
   LayoutTitle,
@@ -99,17 +100,20 @@ function ProductPage(props: Props) {
         <ProductPageMeta product={product} />
 
         {breadcrumbs && (
-          <ProductPageBreadcrumbs
-            product={product}
-            sx={(theme) => ({
-              py: `calc(${theme.spacings.xxs} / 2)`,
-              pl: theme.page.horizontal,
-              background: theme.vars.palette.background.paper,
-              [theme.breakpoints.down('md')]: {
-                '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
-              },
-            })}
-          />
+          <Container
+            maxWidth={false}
+            sx={(theme) => ({ py: `calc(${theme.spacings.xxs} / 2)`, bgcolor: 'background.paper' })}
+            breakoutRight
+          >
+            <ProductPageBreadcrumbs
+              product={product}
+              sx={(theme) => ({
+                [theme.breakpoints.down('md')]: {
+                  '& .MuiBreadcrumbs-ol': { justifyContent: 'center' },
+                },
+              })}
+            />
+          </Container>
         )}
 
         <ProductPageGallery

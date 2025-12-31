@@ -16,6 +16,25 @@ React and Next.js. It provides a best-in-class example, including components and
 utilities, to deliver a high-performance, high-quality ecommerce Progressive Web
 App (PWA).
 
+### GraphCommerce Demo's:
+
+- [GraphCommerce Demo: Magento 2.4.7 + Hygraph + Contained sidebar layout + Algolia](https://demo.graphcommerce.org/men/photography)
+  ([canary branch](https://demo-canary.graphcommerce.org/men/photography))
+- [GraphCommerce Demo: Magento 2.4.6 + Hygraph + Full width layout](https://graphcommerce.vercel.app/men/photography)
+- [GraphCommerce Demo: Magento 2.4.7 + No CMS](https://graphcommerce-os.vercel.app/)
+
+### GraphCommerce Pro
+
+GraphCommerce Pro is the paid verison of GraphCommerce, default Open Source
+license is €1000 per year, please contact us for a license. For Adobe Commerce
+its €2500 per year. Multi year bundles available.
+
+- [GraphCommerce Pro Demo: Magento 2.4.7 + ](https://graphcommerce-pro-os-git-canary-reachdigital.vercel.app/men/photography)
+- [GraphCommerce Pro Demo: Adobe Commerce 2.4.7 + Pagebuilder + Returns, Store Credits, Gift Cards, Reward Points](https://graphcommerce-pro-ac-git-canary-reachdigital.vercel.app/page/test-page)
+
+Please note that Pagebuilder is also available for Magento Open Source, just not
+available in the Open Source demo.
+
 Explore the [GraphCommerce demo](https://graphcommerce.vercel.app/) or start
 building your custom GraphCommerce ecommerce frontend.
 
