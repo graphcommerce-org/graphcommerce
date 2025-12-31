@@ -1,4 +1,3 @@
-import { globalApolloClient } from '@graphcommerce/graphql'
 import {
   ApolloLink,
   CombinedGraphQLErrors,
@@ -66,8 +65,7 @@ const addTokenHeader = new SetContextLink((prevContext, operation) => {
 
 const customerErrorLink = (router: PushRouter) =>
   new ErrorLink(({ error, operation, forward }) => {
-    const client = globalApolloClient.current
-    if (!client) return undefined
+    const { client } = operation
 
     // Check if this is a GraphQL error
     if (!CombinedGraphQLErrors.is(error)) return undefined

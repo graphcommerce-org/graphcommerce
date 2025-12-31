@@ -1,4 +1,3 @@
-import { globalApolloClient } from '@graphcommerce/graphql'
 import { ApolloLink, CombinedGraphQLErrors, ErrorLink } from '@graphcommerce/graphql/apollo'
 import { filter, from, of, switchMap } from '@graphcommerce/graphql/rxjs'
 import { CustomerTokenDocument, getCustomerAccountCanSignIn } from '@graphcommerce/magento-customer'
