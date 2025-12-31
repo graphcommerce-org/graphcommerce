@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^4.0.11",
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
@@ -41,6 +42,7 @@
     "next-sitemap": "4.2.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "rxjs": "^7.8.2",
     "sharp": "0.34.5",
     "webpack": "^5.103.0"
   },
