@@ -81,7 +81,10 @@ export function algoliaFacetsToAggregations(
   categoryList?: null | CategoryResult,
   groupId?: number,
 ): Aggregation[] {
-  if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
+  if (!storeConfig?.default_display_currency_code)
+    throw new Error(
+      `Currency is required. StoreConfig default_display_currency_code is not set. This usually means the storeConfig query failed or the store doesn't have a default currency configured.`,
+    )
   const aggregations: Aggregation[] = []
 
   if (!assertAlgoliaFacets(algoliaFacets)) throw Error('these are not facets')

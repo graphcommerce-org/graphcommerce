@@ -35,7 +35,10 @@ function mapPriceRange(
   customerGroup = 0,
   currencyHeader?: string,
 ): PriceRange {
-  if (!storeConfig?.default_display_currency_code) throw new Error('Currency is required')
+  if (!storeConfig?.default_display_currency_code)
+    throw new Error(
+      `Currency is required. StoreConfig default_display_currency_code is not set. This usually means the storeConfig query failed or the store doesn't have a default currency configured.`,
+    )
 
   const curr = currencyHeader ?? storeConfig.default_display_currency_code
 
