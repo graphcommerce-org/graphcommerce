@@ -190,8 +190,12 @@ export function StoreSwitcherFormProvider(props: StoreSwitcherFormProviderProps)
     const formStore = context.stores.find((s) => s.store_code === formValues.storeCode)
     const isDefaultDisplayCurrency =
       formValues.currency === formStore?.default_display_currency_code
+    const isCurrencyAvailable = formStore?.currency?.available_currency_codes?.includes(
+      formValues.currency,
+    )
 
-    if (isDefaultDisplayCurrency) cookie('Magento-Content-Currency', null)
+    // Clear cookie if using default currency or if the currency is not available for the target store
+    if (isDefaultDisplayCurrency || !isCurrencyAvailable) cookie('Magento-Content-Currency', null)
     else cookie('Magento-Content-Currency', formValues.currency)
 
     await onSubmit?.(formValues, event)
