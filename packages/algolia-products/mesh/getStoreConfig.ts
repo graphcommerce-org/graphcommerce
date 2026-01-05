@@ -25,7 +25,8 @@ export async function getStoreConfig(context: MeshContext): Promise<StoreConfig>
 
   // Ensure we have a store header set for the storeConfig query
   const storeCode = getStoreHeader(context) ?? storefrontConfigDefault().magentoStoreCode
-  const storeContext = { ...context, headers: { ...context.headers, store: storeCode } }
+  const contextWithHeaders = context as MeshContext & { headers?: Record<string, string> }
+  const storeContext = { ...context, headers: { ...contextWithHeaders.headers, store: storeCode } }
 
   const configCache = await context.m2.Query.storeConfig({
     context: storeContext,

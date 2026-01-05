@@ -30,6 +30,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./plugins/AddRecentlyViewedProductsTypePolicies": "./plugins/AddRecentlyViewedProductsTypePolicies.tsx",
     "./plugins/RegisterProductAsRecentlyViewed": "./plugins/RegisterProductAsRecentlyViewed.tsx"
   }
 }

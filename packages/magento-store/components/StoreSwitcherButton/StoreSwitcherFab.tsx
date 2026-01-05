@@ -17,7 +17,7 @@ export function StoreSwitcherFab(props: StoreSwitcherFabProps) {
       sx={sx}
       icon={iconLanguage}
       onClick={onClick}
-      slotProps={{ icon: { size: 'responsiveSmall' } }}
+      slotProps={{ icon: { size: 'default' } }}
       {...fabProps}
     />
   )
