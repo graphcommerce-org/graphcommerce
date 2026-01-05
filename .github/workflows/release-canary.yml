@@ -66,6 +66,7 @@ jobs:
           yarn changeset version
           yarn install
           git add .
+          git commit -m "chore(release): version packages for stable release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Pull Request
