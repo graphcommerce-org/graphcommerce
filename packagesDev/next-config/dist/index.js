@@ -4,8 +4,8 @@ import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-CZYUe1jE.js';
-export { r as replaceConfigInString } from './loadConfig-CZYUe1jE.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-DFvwanrZ.js';
+export { r as replaceConfigInString } from './loadConfig-DFvwanrZ.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
 import fs$1, { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
 import { resolve as resolve$2 } from 'import-meta-resolve';
@@ -729,7 +729,9 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
           `@see {${sourceName(name(replacePlugin))}} for source of replaced component`
         );
       } else {
-        pluginSee.push(`@see {@link file://./${targetExport}.tsx} for original source file`);
+        pluginSee.push(
+          `@see {@link file://./${targetExport}.original.tsx} for original source file`
+        );
       }
       const pluginInterceptors = componentPlugins.reverse().map((plugin) => {
         const pluginName = sourceName(name(plugin));
@@ -774,7 +776,9 @@ export const ${targetExport} = ${carry}`;
           `@see {${sourceName(name(replacePlugin))}} for source of replaced function`
         );
       } else {
-        pluginSee.push(`@see {@link file://./${targetExport}.ts} for original source file`);
+        pluginSee.push(
+          `@see {@link file://./${targetExport}.original.ts} for original source file`
+        );
       }
       const pluginInterceptors = functionPlugins.reverse().map((plugin) => {
         const pluginName = sourceName(name(plugin));
@@ -1079,7 +1083,7 @@ async function updateGitignore(managedFiles) {
   try {
     content = await fs.readFile(gitignorePath, "utf-8");
     debug("Reading existing .gitignore");
-  } catch (err) {
+  } catch {
     debug(".gitignore not found, creating new file");
     content = "";
   }
@@ -1113,6 +1117,11 @@ function getFileManagement(content) {
   if (contentStr.startsWith(MANAGED_LOCALLY)) return "local";
   if (contentStr.startsWith(MANAGED_BY_GC)) return "graphcommerce";
   return "unmanaged";
+}
+function getOriginalFilename(filePath) {
+  const ext = path.extname(filePath);
+  const base = filePath.slice(0, -ext.length);
+  return `${base}.original${ext}`;
 }
 async function copyFiles() {
   const startTime = performance.now();
@@ -1220,11 +1229,15 @@ Path: ${copyDir}`
             return;
           }
           if (management === "unmanaged") {
+            const originalPath = getOriginalFilename(targetPath);
+            await fs.rename(targetPath, originalPath);
+            const originalRelative = getOriginalFilename(file);
             console.info(
-              `Note: File ${file} has been modified. Add '${MANAGED_LOCALLY.trim()}' at the top to manage it locally.`
+              `Renamed existing file to: ${originalRelative}
+Creating managed file: ${file}`
             );
-            debug(`File ${file} doesn't have management comment, skipping`);
-            return;
+            debug(`Renamed ${file} to ${originalRelative}`);
+            targetContent = void 0;
           }
           debug(`File ${file} is managed by graphcommerce, will update if needed`);
         } catch (err) {

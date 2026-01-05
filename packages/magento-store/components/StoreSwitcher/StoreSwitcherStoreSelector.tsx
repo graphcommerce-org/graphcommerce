@@ -52,10 +52,6 @@ export function StoreSwitcherStoreSelector(props: StoreSwitcherSelectorProps) {
           ),
           value: store.store_code,
           disabled: store.disabled,
-          slotProps: {
-            title: { sx: { typography: 'subtitle1' } },
-            details: { sx: { typography: 'body1', color: 'text.secondary' } },
-          },
         }))}
         {...actionCardProps}
       />

@@ -29,7 +29,7 @@ GraphCommerce Pro is the paid verison of GraphCommerce, default Open Source
 license is €1000 per year, please contact us for a license. For Adobe Commerce
 its €2500 per year. Multi year bundles available.
 
-- [GraphCommerce Pro Demo: Magento 2.4.7 + ](https://graphcommerce-pro-os-git-canary-reachdigital.vercel.app/men/photography)
+- [GraphCommerce Pro Demo: Magento 2.4.7 + Cache Notify + Private Pricing + Multi Cart](https://graphcommerce-pro-os-git-canary-reachdigital.vercel.app/men/photography)
 - [GraphCommerce Pro Demo: Adobe Commerce 2.4.7 + Pagebuilder + Returns, Store Credits, Gift Cards, Reward Points](https://graphcommerce-pro-ac-git-canary-reachdigital.vercel.app/page/test-page)
 
 Please note that Pagebuilder is also available for Magento Open Source, just not

@@ -16,6 +16,7 @@ vi.mock('fs/promises', () => ({
     stat: vi.fn(),
     unlink: vi.fn(),
     rmdir: vi.fn(),
+    rename: vi.fn(),
   },
   readFile: vi.fn(),
   writeFile: vi.fn(),
@@ -24,6 +25,7 @@ vi.mock('fs/promises', () => ({
   stat: vi.fn(),
   unlink: vi.fn(),
   rmdir: vi.fn(),
+  rename: vi.fn(),
 }))
 
 // Mock fast-glob
@@ -425,11 +427,17 @@ describe('copyFiles', () => {
       }
       return Promise.reject(new Error(`ENOENT: no such file or directory, open '${filePath}'`))
     })
+    mockFs.rename.mockResolvedValue(undefined)
 
     await copyFiles()
 
+    // Unmanaged files should be renamed to .original and a new managed file created
+    expect(mockFs.rename).toHaveBeenCalledWith(
+      path.join(mockCwd, 'file.ts'),
+      path.join(mockCwd, 'file.original.ts'),
+    )
     expect(consoleInfo).toHaveBeenCalledWith(
-      expect.stringContaining('Note: File file.ts has been modified'),
+      expect.stringContaining('Renamed existing file to: file.original.ts'),
     )
   })
 

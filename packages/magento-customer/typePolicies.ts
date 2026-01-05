@@ -37,6 +37,12 @@ const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
 }
 
 export const customerTypePolicies: StrictTypedTypePolicies = {
+  Query: {
+    fields: {
+      // https://github.com/apollographql/apollo-client/issues/12930
+      customerToken: { merge: (existing, incoming) => incoming ?? existing },
+    },
+  },
   Mutation: { fields: { generateCustomerToken } },
 }
 

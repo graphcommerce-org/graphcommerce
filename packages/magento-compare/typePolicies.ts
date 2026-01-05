@@ -6,6 +6,8 @@ export const compareTypePolicies: StrictTypedTypePolicies = {
     fields: {
       compareList: (_, { args, toReference }) =>
         toReference({ __typename: 'CompareList', uid: (args as QuerycompareListArgs)?.uid }),
+      // https://github.com/apollographql/apollo-client/issues/12930
+      currentCompareUid: { merge: (existing, incoming) => incoming ?? existing },
     },
   },
 }

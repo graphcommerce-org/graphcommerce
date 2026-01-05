@@ -35,6 +35,8 @@ export const cartTypePolicies: StrictTypedTypePolicies = {
     fields: {
       cart: (_, { args, toReference }) =>
         toReference({ __typename: 'Cart', id: (args as QuerycartArgs)?.cart_id }),
+      // https://github.com/apollographql/apollo-client/issues/12930
+      currentCartId: { merge: (existing, incoming) => incoming ?? existing },
     },
   },
   Mutation: {

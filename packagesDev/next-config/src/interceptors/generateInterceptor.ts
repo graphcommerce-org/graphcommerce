@@ -199,7 +199,9 @@ export async function generateInterceptor(
             `@see {${sourceName(name(replacePlugin))}} for source of replaced component`,
           )
         } else {
-          pluginSee.push(`@see {@link file://./${targetExport}.tsx} for original source file`)
+          pluginSee.push(
+            `@see {@link file://./${targetExport}.original.tsx} for original source file`,
+          )
         }
 
         const pluginInterceptors = componentPlugins
@@ -259,7 +261,9 @@ export const ${targetExport} = ${carry}`
             `@see {${sourceName(name(replacePlugin))}} for source of replaced function`,
           )
         } else {
-          pluginSee.push(`@see {@link file://./${targetExport}.ts} for original source file`)
+          pluginSee.push(
+            `@see {@link file://./${targetExport}.original.ts} for original source file`,
+          )
         }
 
         const pluginInterceptors = functionPlugins

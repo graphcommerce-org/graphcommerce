@@ -57,9 +57,10 @@ export function usePrivateQuery<
   // If the user is logged in we might need to show a skeleton:
   let mask = isSsr
   if (!isSsr && context) {
+    // Show skeleton while loading, but not when there's an error
     mask = !skip
       ? !clientQuery.data && !clientQuery.previousData && !clientQuery.error
-      : !clientQuery.data
+      : !clientQuery.data && !clientQuery.error
   }
 
   // If this method is called within an PrivateQueryMask, we skip this complete functionality so we show the parent mask.

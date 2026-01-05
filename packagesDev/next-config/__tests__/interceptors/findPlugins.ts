@@ -559,6 +559,14 @@ it('finds plugins', () => {
       },
       {
         "enabled": true,
+        "sourceExport": "GraphQLProvider",
+        "sourceModule": "@graphcommerce/magento-recently-viewed-products/plugins/AddRecentlyViewedProductsTypePolicies",
+        "targetExport": "GraphQLProvider",
+        "targetModule": "@graphcommerce/graphql",
+        "type": "component",
+      },
+      {
+        "enabled": true,
         "sourceExport": "cartItemToCartItemInput",
         "sourceModule": "@graphcommerce/magento-product-configurable/plugins/Configurable_cartItemToCartItemInput",
         "targetExport": "cartItemToCartItemInput",
