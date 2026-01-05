@@ -59,25 +59,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: create branch disable pre and version
+      - name: Create release branch and PR
         shell: bash
         run: |
+          # Exit pre-release mode and version for stable
           yarn changeset pre exit
           yarn changeset version
           yarn install
+
+          # Commit the stable version changes
           git add .
           git commit -m "chore(release): version packages for stable release"
+
+          # Push to release branch (force to update if exists)
+          git push origin HEAD:changeset-release/from-canary --force
+
+          # Create or update PR using GitHub CLI
+          PR_URL=$(gh pr list --head changeset-release/from-canary --base main --json url --jq '.[0].url')
+          if [ -z "$PR_URL" ]; then
+            gh pr create \
+              --base main \
+              --head changeset-release/from-canary \
+              --title "Release ${{ steps.vars.outputs.date }}" \
+              --body "Automated release PR from canary branch"
+          else
+            echo "PR already exists: $PR_URL"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          base: main
-          branch: changeset-release/from-canary
-          title: 'Release ${{ steps.vars.outputs.date }}'
-      - name: Check outputs
-        if: ${{ steps.cpr.outputs.pull-request-number }}
-        run: |
-          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
