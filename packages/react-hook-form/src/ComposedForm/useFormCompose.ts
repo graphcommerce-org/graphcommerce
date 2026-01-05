@@ -18,8 +18,8 @@ export function useFormCompose<TFieldValues extends FieldValues = FieldValues>(
   }, [dispatch, key, step])
 
   useEffect(() => {
-    dispatch({ type: 'ASSIGN', key, form: form as MinimalUseFormReturn, submit })
-  }, [dispatch, fields, form, key, submit])
+    dispatch({ type: 'ASSIGN', key, form: form as MinimalUseFormReturn, submit, step })
+  }, [dispatch, fields, form, key, step, submit])
 
   const error = isFormGqlOperation(form) ? form.error : undefined
 
