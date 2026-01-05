@@ -1,5 +1,27 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`64d843e`](https://github.com/graphcommerce-org/graphcommerce/commit/64d843e4b98edbc2779ae75930d657dd7c7fdda2) - "No graphcommerce.config.js found in the project, using demo config" should have referenced 'graphcommerce.config.ts' ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`a16bed1`](https://github.com/graphcommerce-org/graphcommerce/commit/a16bed1b8670932e273d5ea7114bf01fda40f2f8) - Always copy the file if the original file is a core file, allowing overrides. ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.2
+
+## 10.0.1-canary.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`a16bed1`](https://github.com/graphcommerce-org/graphcommerce/commit/a16bed1b8670932e273d5ea7114bf01fda40f2f8) - Always copy the file if the original file is a core file, allowing overrides. ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.0
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`64d843e`](https://github.com/graphcommerce-org/graphcommerce/commit/64d843e4b98edbc2779ae75930d657dd7c7fdda2) - "No graphcommerce.config.js found in the project, using demo config" should have referenced 'graphcommerce.config.ts' ([@paales](https://github.com/paales))
+
 ## 10.0.0
 
 ### Major Changes

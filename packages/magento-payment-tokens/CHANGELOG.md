@@ -1,5 +1,13 @@
 # @graphcommerce/magento-payment-tokens
 
+## 10.0.1
+
+## 10.0.1-canary.2
+
+## 10.0.1-canary.1
+
+## 10.0.1-canary.0
+
 ## 10.0.0
 
 ### Major Changes

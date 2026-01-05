@@ -1,5 +1,21 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`71e2bcc`](https://github.com/graphcommerce-org/graphcommerce/commit/71e2bcc86db52b937b629f8f0a4defef107ff973) - Peer dependency issues ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.2
+
+## 10.0.1-canary.1
+
+## 10.0.1-canary.0
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`71e2bcc`](https://github.com/graphcommerce-org/graphcommerce/commit/71e2bcc86db52b937b629f8f0a4defef107ff973) - Peer dependency issues ([@paales](https://github.com/paales))
+
 ## 10.0.0
 
 ### Major Changes

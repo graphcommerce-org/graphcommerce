@@ -1,5 +1,21 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`16efe30`](https://github.com/graphcommerce-org/graphcommerce/commit/16efe30d114977d90ee26159a2f6476ef34de3d1) - Hide ActionCard-end if there is no content ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.2
+
+## 10.0.1-canary.1
+
+## 10.0.1-canary.0
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`16efe30`](https://github.com/graphcommerce-org/graphcommerce/commit/16efe30d114977d90ee26159a2f6476ef34de3d1) - Hide ActionCard-end if there is no content ([@paales](https://github.com/paales))
+
 ## 10.0.0
 
 ### Major Changes
