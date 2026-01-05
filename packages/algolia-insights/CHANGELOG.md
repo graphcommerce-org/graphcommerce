@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-personalization
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2569](https://github.com/graphcommerce-org/graphcommerce/pull/2569) [`1ba54d4`](https://github.com/graphcommerce-org/graphcommerce/commit/1ba54d4e1af20514c1ef25a2feadbbbe5497e7e0) - Properly handle the new uid stuff ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.1
 
 ## 10.0.1-canary.0

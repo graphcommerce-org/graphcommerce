@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`ddeaf5d`](https://github.com/graphcommerce-org/graphcommerce/commit/ddeaf5df2c1f3902a80738a547a703221e02170f) - Solve hydration erorr while loading reviews ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.1
 
 ## 10.0.1-canary.0

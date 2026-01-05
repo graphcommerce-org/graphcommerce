@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`0188c30`](https://github.com/graphcommerce-org/graphcommerce/commit/0188c307e44a641f31c9cbe1c2d75a04e2ad5174) - Moved the CmsPage query from the route query to the cmsPage query ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.1
 
 ## 10.0.1-canary.0

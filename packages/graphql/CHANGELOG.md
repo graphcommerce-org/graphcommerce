@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`6714cbb`](https://github.com/graphcommerce-org/graphcommerce/commit/6714cbb912ed64217cb04c4355cc2b63762e6ea1) - Deprecated globalApolloClient ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`2350c13`](https://github.com/graphcommerce-org/graphcommerce/commit/2350c13baab476fde83778e3e0b397f54c0cd7de) - Show loading skeleton when loading and there is no data, but show when there is an error so we dont get in a stuck state. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.1
 
 ### Patch Changes

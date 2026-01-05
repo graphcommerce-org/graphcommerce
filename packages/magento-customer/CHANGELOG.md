@@ -1,5 +1,17 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`78a2a8a`](https://github.com/graphcommerce-org/graphcommerce/commit/78a2a8a919346e1f9bccddf7e52682f4adb9a4e0) - Solve issue where the @client fields could not be resolved correctly. ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`dc57da4`](https://github.com/graphcommerce-org/graphcommerce/commit/dc57da4897365ddb2b779eab3ad2b3a350ed115c) - Moved from form.watch to useWatch everywhere which works even if the fields are later initialized. ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`0146abe`](https://github.com/graphcommerce-org/graphcommerce/commit/0146abe0d8362a09b48af42db12f8a0e7670ff8d) - Created a new GuestOrCustomerMask to show information based on their loggedIn state respecting the masking of private content. ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`f1b60ac`](https://github.com/graphcommerce-org/graphcommerce/commit/f1b60accf5e8fdbcba15b7567dce7ff68f37db88) - Solve issue where the cache wasn't available from the context anymore in @apollo/client@4 now uses the operation.client.cache ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.1
 
 ### Patch Changes
