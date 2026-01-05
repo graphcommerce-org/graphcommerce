@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.1-canary.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`2350c13`](https://github.com/graphcommerce-org/graphcommerce/commit/2350c13baab476fde83778e3e0b397f54c0cd7de) - Show loading skeleton when loading and there is no data, but show when there is an error so we dont get in a stuck state. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.0
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-products
 
+## 10.0.1-canary.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`591fb82`](https://github.com/graphcommerce-org/graphcommerce/commit/591fb827b2db87dd138cf05e443089355e8883d1) - Make sure the default_display_currency_code is always fetched properly for Algolia ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.0
 
 ### Patch Changes

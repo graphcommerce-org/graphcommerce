@@ -88,15 +88,22 @@
     "@graphcommerce/typescript-config-pwa": "10.0.0"
   },
   "changesets": [
+    "busy-mammals-say",
     "curly-dragons-boil",
     "easy-turtles-sink",
     "eighty-months-beam",
+    "funky-geese-sell",
+    "gold-eels-smash",
     "good-olives-tell",
     "late-suns-kneel",
     "loose-news-grin",
+    "loose-stamps-peel",
+    "lovely-ads-send",
     "slow-goats-fold",
     "some-months-follow",
     "thin-lands-dig",
+    "tiny-games-wear",
+    "two-bags-smoke",
     "upset-ears-make",
     "violet-ears-tan",
     "whole-news-drive"

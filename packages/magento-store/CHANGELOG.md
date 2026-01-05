@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.1-canary.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`d9c7545`](https://github.com/graphcommerce-org/graphcommerce/commit/d9c754570cd04da61ee3282bde465cc33395c8d9) - When switching stores unset the currency when there is no selection available for a given store. ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`6d5ff59`](https://github.com/graphcommerce-org/graphcommerce/commit/6d5ff59090b5fe37bf053a2540fcf13150331a27) - Do not send an unacceptable store currency due to a configuration error and make sure the correct currency is stored. Show a StoreSwitcherFab on mobile. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.0
 
 ## 10.0.0

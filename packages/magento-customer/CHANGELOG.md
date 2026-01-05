@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.1-canary.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`78a2a8a`](https://github.com/graphcommerce-org/graphcommerce/commit/78a2a8a919346e1f9bccddf7e52682f4adb9a4e0) - Solve issue where the @client fields could not be resolved correctly. ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`0146abe`](https://github.com/graphcommerce-org/graphcommerce/commit/0146abe0d8362a09b48af42db12f8a0e7670ff8d) - Created a new GuestOrCustomerMask to show information based on their loggedIn state respecting the masking of private content. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.0
 
 ### Patch Changes
