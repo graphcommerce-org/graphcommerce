@@ -1,5 +1,3 @@
-import { globalApolloClient } from '@graphcommerce/graphql'
-import type { ApolloCache } from '@graphcommerce/graphql/apollo'
 import {
   ApolloLink,
   CombinedGraphQLErrors,
@@ -17,7 +15,6 @@ export type PushRouter = Pick<NextRouter, 'push' | 'events' | 'locale'>
 
 declare module '@apollo/client' {
   interface DefaultContext {
-    cache?: ApolloCache
     headers?: Record<string, string>
   }
 }
@@ -51,25 +48,24 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
-const addTokenHeader = new SetContextLink((prevContext) => {
+const addTokenHeader = new SetContextLink((prevContext, operation) => {
   const headers: Record<string, string> = { ...prevContext.headers }
 
   try {
-    const query = prevContext.cache?.readQuery({ query: CustomerTokenDocument })
+    const query = operation.client.cache.readQuery({ query: CustomerTokenDocument })
 
     if (query?.customerToken?.token && query?.customerToken?.valid !== false) {
       headers.authorization = `Bearer ${query?.customerToken?.token}`
     }
     return { headers }
-  } catch (error) {
+  } catch {
     return { headers }
   }
 })
 
 const customerErrorLink = (router: PushRouter) =>
   new ErrorLink(({ error, operation, forward }) => {
-    const client = globalApolloClient.current
-    if (!client) return undefined
+    const { client } = operation
 
     // Check if this is a GraphQL error
     if (!CombinedGraphQLErrors.is(error)) return undefined

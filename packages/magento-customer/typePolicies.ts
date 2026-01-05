@@ -5,7 +5,14 @@ import { CustomerTokenDocument } from './hooks/CustomerToken.gql'
 const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
   keyArgs: () => '',
   merge(_existing, incoming, options) {
+    console.log('[generateCustomerToken] merge called', {
+      isReference: options.isReference(incoming),
+      incoming,
+    })
     if (!options.isReference(incoming)) return incoming
+
+    const token = options.readField('token', incoming) as string
+    console.log('[generateCustomerToken] Writing token to cache:', token?.substring(0, 20))
 
     options.cache.writeQuery({
       query: CustomerTokenDocument,
@@ -13,7 +20,7 @@ const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
       data: {
         customerToken: {
           __typename: 'CustomerToken',
-          token: options.readField('token', incoming) as string,
+          token,
           createdAt: new Date().toUTCString(),
           valid: true,
           xMagentoCacheId: null,
@@ -21,11 +28,21 @@ const generateCustomerToken: FieldPolicy<Mutation['generateCustomerToken']> = {
       },
     })
 
+    // Verify write
+    const verify = options.cache.readQuery({ query: CustomerTokenDocument })
+    console.log('[generateCustomerToken] Verify after write:', verify)
+
     return incoming
   },
 }
 
 export const customerTypePolicies: StrictTypedTypePolicies = {
+  Query: {
+    fields: {
+      // https://github.com/apollographql/apollo-client/issues/12930
+      customerToken: { merge: (existing, incoming) => incoming ?? existing },
+    },
+  },
   Mutation: { fields: { generateCustomerToken } },
 }
 

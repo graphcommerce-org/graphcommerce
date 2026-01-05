@@ -87,7 +87,7 @@ it('it generates an interceptor', async () => {
      * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
      * original source changes.
      *
-     * @see {@link file://./PaymentMethodContextProvider.tsx} for original source file
+     * @see {@link file://./PaymentMethodContextProvider.original.tsx} for original source file
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      * @see {PluginAddMollieMethods} for source of applied plugin
      */
@@ -188,7 +188,7 @@ it('it can apply multiple plugins to a single export', async () => {
      * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
      * original source changes.
      *
-     * @see {@link file://./PaymentMethodContextProvider.tsx} for original source file
+     * @see {@link file://./PaymentMethodContextProvider.original.tsx} for original source file
      * @see {PluginAddAdyenMethods} for source of applied plugin
      * @see {PluginAddMollieMethods} for source of applied plugin
      */
@@ -257,7 +257,7 @@ it('it handles on duplicates gracefully', async () => {
      * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
      * original source changes.
      *
-     * @see {@link file://./PaymentMethodContextProvider.tsx} for original source file
+     * @see {@link file://./PaymentMethodContextProvider.original.tsx} for original source file
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      */
@@ -434,7 +434,7 @@ it('adds debug logging to interceptors for components', async () => {
      * This file is NOT meant to be modified directly and is auto-generated if the plugins or the
      * original source changes.
      *
-     * @see {@link file://./graphqlConfig.ts} for original source file
+     * @see {@link file://./graphqlConfig.original.ts} for original source file
      * @see {pluginhygraphInitMemoryCache} for source of applied plugin
      * @see {pluginmagentoInitMemoryCache} for source of applied plugin
      */

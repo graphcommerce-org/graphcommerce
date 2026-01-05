@@ -5,6 +5,7 @@ import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-custome
 import { SearchFab, SearchField } from '@graphcommerce/magento-search'
 import {
   StoreSwitcherButton,
+  StoreSwitcherFab,
   StoreSwitcherMenuFabSecondaryItem,
 } from '@graphcommerce/magento-store'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
@@ -161,6 +162,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavActions>
 
             <MobileTopRight>
+              <StoreSwitcherFab size='responsiveMedium' />
               <SearchFab size='responsiveMedium' />
             </MobileTopRight>
           </>

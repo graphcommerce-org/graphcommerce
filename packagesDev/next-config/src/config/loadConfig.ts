@@ -19,7 +19,7 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     let confFile = result?.config
     if (!confFile) {
       if (isMainProcess)
-        console.warn('No graphcommerce.config.js found in the project, using demo config')
+        console.warn('No graphcommerce.config.ts found in the project, using demo config')
       confFile = demoConfig
     }
     confFile ||= {}

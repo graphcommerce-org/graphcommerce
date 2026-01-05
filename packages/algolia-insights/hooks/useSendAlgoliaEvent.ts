@@ -12,6 +12,9 @@ import { useEventCallback } from '@mui/material'
 import { useRef } from 'react'
 import { AlgoliaSendEventDocument } from '../graphql/AlgoliaSendEvent.gql'
 
+/** Decodes a base64 UID, stripping any query parameters that may be appended (e.g. ?store_name=...) */
+const decodeUid = (uid: string) => atob(uid.split('?')[0])
+
 const getSHA256Hash = async (input: string) => {
   const textAsBuffer = new TextEncoder().encode(input)
   const hashBuffer = await window.crypto.subtle.digest('SHA-256', textAsBuffer)
@@ -30,7 +33,7 @@ function mapSelectedFiltersToAlgoliaEvent(filters: ProductFilterParams['filters'
       const valueArray = (filter.eq ? [filter.eq] : (filter.in ?? [])) as string[]
       valueArray.forEach((value) => {
         if (key === 'category_uid') {
-          flattenedFilters.push(`categoryIds:${atob(value)}`)
+          flattenedFilters.push(`categoryIds:${decodeUid(value)}`)
         } else {
           flattenedFilters.push(`${key}:${encodeURIComponent(value)}`)
         }
@@ -87,7 +90,7 @@ const dataLayerToAlgoliaMap: {
 } = {
   // todo should we use view_item or view_item_list?
   view_item_list: (eventName, eventData, { queryID, ...common }) => {
-    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+    const objectIDs = eventData.items.map((item) => decodeUid(item.item_uid))
 
     const events: AlgoliaEventsItems_Input[] = []
 
@@ -146,7 +149,7 @@ const dataLayerToAlgoliaMap: {
   },
 
   select_item: (eventName, eventData, { queryID, ...common }) => {
-    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+    const objectIDs = eventData.items.map((item) => decodeUid(item.item_uid))
     if (queryID) saveAlgoliaIdToQuery(objectIDs, queryID, eventData.filter_params?.filters ?? {})
 
     return queryID
@@ -167,7 +170,7 @@ const dataLayerToAlgoliaMap: {
             Clicked_object_IDs_Input: {
               eventName,
               eventType: 'click',
-              objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+              objectIDs: eventData.items.map((item) => decodeUid(item.item_uid)),
               ...common,
             },
           } satisfies AlgoliaEventsItems_Input,
@@ -181,7 +184,7 @@ const dataLayerToAlgoliaMap: {
     const events: AlgoliaEventsItems_Input[] = []
 
     const mapping = getObjectIDToQuery()
-    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+    const objectIDs = eventData.items.map((item) => decodeUid(item.item_uid))
 
     const relevant = objectIDs.map((objectID) => mapping[objectID]).filter(Boolean)
     const queryID = relevant?.[0]?.queryID
@@ -209,7 +212,7 @@ const dataLayerToAlgoliaMap: {
           eventName,
           eventType: 'conversion',
           eventSubtype: 'addToCart',
-          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectIDs: eventData.items.map((item) => decodeUid(item.item_uid)),
           objectData: eventData.items.map((item) => ({
             discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
             price: { Float: Number(item.price.toFixed(14)) },
@@ -226,7 +229,7 @@ const dataLayerToAlgoliaMap: {
           eventName,
           eventType: 'conversion',
           eventSubtype: 'addToCart',
-          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectIDs: eventData.items.map((item) => decodeUid(item.item_uid)),
           objectData: eventData.items.map((item) => ({
             discount: { Float: item.discount ?? 0 },
             price: { Float: Number(item.price.toFixed(14)) },
@@ -244,11 +247,13 @@ const dataLayerToAlgoliaMap: {
 
   purchase: (eventName, eventData, common) => {
     const mapping = getObjectIDToQuery()
-    const isAfterSearch = !!eventData.items.find((item) => mapping[atob(item.item_uid)]?.queryID)
+    const isAfterSearch = !!eventData.items.find(
+      (item) => mapping[decodeUid(item.item_uid)]?.queryID,
+    )
 
     const events: AlgoliaEventsItems_Input[] = []
 
-    const objectIDs = eventData.items.map((item) => atob(item.item_uid))
+    const objectIDs = eventData.items.map((item) => decodeUid(item.item_uid))
     const relevant = objectIDs.map((objectID) => mapping[objectID]).filter(Boolean)
     const filters = [...new Set(...relevant.map((item) => item?.filters ?? []))]
 
@@ -273,12 +278,12 @@ const dataLayerToAlgoliaMap: {
           eventName,
           eventType: 'conversion',
           eventSubtype: 'purchase',
-          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectIDs: eventData.items.map((item) => decodeUid(item.item_uid)),
           objectData: eventData.items.map((item) => ({
             discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
             price: { Float: Number(item.price.toFixed(14)) },
             quantity: item.quantity,
-            queryID: mapping[atob(item.item_uid)]?.queryID,
+            queryID: mapping[decodeUid(item.item_uid)]?.queryID,
           })),
           currency: eventData.currency,
           value: { Float: Number(eventData.value.toFixed(13)) },
@@ -291,7 +296,7 @@ const dataLayerToAlgoliaMap: {
           eventName,
           eventType: 'conversion',
           eventSubtype: 'purchase',
-          objectIDs: eventData.items.map((item) => atob(item.item_uid)),
+          objectIDs: eventData.items.map((item) => decodeUid(item.item_uid)),
           objectData: eventData.items.map((item) => ({
             discount: { Float: Number(item.discount?.toFixed(14)) ?? 0 },
             price: { Float: Number(item.price.toFixed(14)) },

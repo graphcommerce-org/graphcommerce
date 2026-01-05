@@ -3,9 +3,9 @@ import type {
   TypedDocumentNode,
   WatchQueryFetchPolicy,
 } from '@graphcommerce/graphql'
-import { useQuery } from '@graphcommerce/graphql'
-import { CombinedGraphQLErrors } from '@apollo/client/errors'
+import { CombinedGraphQLErrors, useQuery } from '@graphcommerce/graphql'
 import type { useQuery as useQueryType } from '@apollo/client/react'
+import { t } from '@lingui/core/macro'
 import { GraphQLError } from 'graphql'
 import { useRouter } from 'next/router'
 import { useCartShouldLoginToContinue } from './useCartPermissions'
@@ -61,7 +61,7 @@ export function useCartQuery<
       ...query,
       error: new CombinedGraphQLErrors({
         errors: [
-          new GraphQLError('Action can not be performed by the current user', {
+          new GraphQLError(t`You must be logged in to view your cart.`, {
             extensions: { category: 'graphql-authorization' },
           }),
         ],

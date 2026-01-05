@@ -4,7 +4,7 @@ import type { CmsPageFragment } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { breadcrumbs } from '@graphcommerce/next-config/config'
-import { Container, isTypename, LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
+import { Container, LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { LayoutNavigationProps } from '../components'
@@ -45,17 +45,17 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const staticClient = graphqlSsrClient(context)
 
   const confData = (await conf).data
-  const url = confData?.storeConfig?.cms_home_page ?? 'home'
-  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { url } })
+  const identifier = confData?.storeConfig?.cms_home_page ?? 'home'
+  const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { identifier } })
   const layout = staticClient.query({
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
-  const cmsPage = (await cmsPageQuery).data?.route
+  const cmsPage = (await cmsPageQuery).data?.cmsPage
 
   const result = {
     props: {
-      cmsPage: cmsPage && isTypename(cmsPage, ['CmsPage']) ? cmsPage : null,
+      cmsPage: cmsPage ?? null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

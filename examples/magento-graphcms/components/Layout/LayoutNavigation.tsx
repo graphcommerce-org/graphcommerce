@@ -33,6 +33,7 @@ import { Logo } from './Logo'
 import { productListRenderer } from '../ProductListItems/productListRenderer'
 import {
   StoreSwitcherButton,
+  StoreSwitcherFab,
   StoreSwitcherMenuFabSecondaryItem,
 } from '@graphcommerce/magento-store'
 
@@ -157,6 +158,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </DesktopNavActions>
 
             <MobileTopRight>
+              <StoreSwitcherFab size='responsiveMedium' />
               <SearchFab size='responsiveMedium' />
             </MobileTopRight>
           </>

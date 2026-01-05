@@ -1,20 +1,24 @@
-import { iconLanguage, IconSvg, sxx } from '@graphcommerce/next-ui'
-import { Fab, type FabProps } from '@mui/material'
-import { StoreSwitcherText } from './StoreSwitcherText'
+import type { FabProps } from '@graphcommerce/next-ui'
+import { Fab, iconLanguage } from '@graphcommerce/next-ui'
 import { useShowStoreSwitcherButton } from './useStoreSwitcherButton'
 
-export function StoreSwitcherFab(props: FabProps) {
+export type StoreSwitcherFabProps = Omit<FabProps, 'icon' | 'onClick'>
+
+export function StoreSwitcherFab(props: StoreSwitcherFabProps) {
+  const { sx, ...fabProps } = props
   const { show, onClick } = useShowStoreSwitcherButton()
+
   if (!show) return null
 
   return (
     <Fab
-      variant='extended'
+      color='inherit'
+      size='medium'
+      sx={sx}
+      icon={iconLanguage}
       onClick={onClick}
-      sx={sxx({ width: 'max-content', columnGap: '3px', typography: 'body1' })}
-      {...props}
-    >
-      <IconSvg src={iconLanguage} /> <StoreSwitcherText />
-    </Fab>
+      slotProps={{ icon: { size: 'default' } }}
+      {...fabProps}
+    />
   )
 }

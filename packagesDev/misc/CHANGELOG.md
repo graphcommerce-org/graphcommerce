@@ -1,5 +1,49 @@
 # @graphcommerce/misc
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2569](https://github.com/graphcommerce-org/graphcommerce/pull/2569) [`f76edb7`](https://github.com/graphcommerce-org/graphcommerce/commit/f76edb73e7ea172a4f1596e91a76dc7b38ca35ee) - Fix issue with container sizing of breadcrumb ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`6277f34`](https://github.com/graphcommerce-org/graphcommerce/commit/6277f3417d56f3b6728787d5a4529d801b228a0c) - Solve issue where reactCompiler was enabled but the babel package wasn't installed and thus erroring. ([@paales](https://github.com/paales))
+
+- [#2576](https://github.com/graphcommerce-org/graphcommerce/pull/2576) [`4d2adec`](https://github.com/graphcommerce-org/graphcommerce/commit/4d2adecc619278f5129f41b8b844b31f17469c15) - release again ([@paales](https://github.com/paales))
+
+- [#2572](https://github.com/graphcommerce-org/graphcommerce/pull/2572) [`acd9973`](https://github.com/graphcommerce-org/graphcommerce/commit/acd997304f704ccbd50b289a62310b1bd2459edc) - Change release ([@paales](https://github.com/paales))
+
+- [#2569](https://github.com/graphcommerce-org/graphcommerce/pull/2569) [`93e4c12`](https://github.com/graphcommerce-org/graphcommerce/commit/93e4c1246967c8cdb46f7cd719a87db336b895ab) - Docs ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`71e2bcc`](https://github.com/graphcommerce-org/graphcommerce/commit/71e2bcc86db52b937b629f8f0a4defef107ff973) - Peer dependency issues ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.4
+
+### Patch Changes
+
+- [#2576](https://github.com/graphcommerce-org/graphcommerce/pull/2576) [`4d2adec`](https://github.com/graphcommerce-org/graphcommerce/commit/4d2adecc619278f5129f41b8b844b31f17469c15) - release again ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.3
+
+## 10.0.1-canary.2
+
+### Patch Changes
+
+- [#2572](https://github.com/graphcommerce-org/graphcommerce/pull/2572) [`acd9973`](https://github.com/graphcommerce-org/graphcommerce/commit/acd997304f704ccbd50b289a62310b1bd2459edc) - Change release ([@paales](https://github.com/paales))
+
+## 10.0.1-canary.1
+
+## 10.0.1-canary.0
+
+### Patch Changes
+
+- [#2569](https://github.com/graphcommerce-org/graphcommerce/pull/2569) [`f76edb7`](https://github.com/graphcommerce-org/graphcommerce/commit/f76edb73e7ea172a4f1596e91a76dc7b38ca35ee) - Fix issue with container sizing of breadcrumb ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`6277f34`](https://github.com/graphcommerce-org/graphcommerce/commit/6277f3417d56f3b6728787d5a4529d801b228a0c) - Solve issue where reactCompiler was enabled but the babel package wasn't installed and thus erroring. ([@paales](https://github.com/paales))
+
+- [#2569](https://github.com/graphcommerce-org/graphcommerce/pull/2569) [`93e4c12`](https://github.com/graphcommerce-org/graphcommerce/commit/93e4c1246967c8cdb46f7cd719a87db336b895ab) - Docs ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`71e2bcc`](https://github.com/graphcommerce-org/graphcommerce/commit/71e2bcc86db52b937b629f8f0a4defef107ff973) - Peer dependency issues ([@paales](https://github.com/paales))
+
 ## 10.0.0
 
 ### Major Changes
@@ -11,6 +55,7 @@
   ### 🚀 Turbopack-Compatible Interceptor System
 
   The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
   - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
   - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
   - **Direct imports** - Interceptors import from `.original` files instead of embedding source
@@ -22,6 +67,7 @@
   ### ⚙️ Treeshakable Configuration System
 
   Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
   - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
   - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
   - **Fully treeshakable** - Unused config values are eliminated from the bundle
@@ -29,6 +75,7 @@
   - **Separate files for nested objects** - Optimal treeshaking for complex configurations
 
   ### 🔧 withGraphCommerce Changes
+
   - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
   - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
   - **Removed** `@mui/*` alias rewrites - No longer required
@@ -38,26 +85,31 @@
   - **Added** `images.qualities: [52, 75]` for Next.js image optimization
 
   ### 📦 Lingui Configuration
+
   - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
   - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
   - **Simplified** formatter options
 
   ### ⚛️ React 19 & Next.js 16 Compatibility
+
   - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
   - Replaced deprecated `React.VFC` with `React.FC`
   - Fixed `useRef` calls to require explicit initial values
   - Updated `MutableRefObject` usage in `framer-scroller`
 
   ### 📋 ESLint 9 Flat Config
+
   - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
   - Updated `@typescript-eslint/*` packages to v8
   - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
 
   ### 🔄 Apollo Client
+
   - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
   - Updated error handling types to accept `ApolloError | null | undefined`
 
   ### ⚠️ Breaking Changes
+
   - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
   - **Interceptor files changed** - Original components now at `.original.tsx`
   - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
@@ -65,6 +117,7 @@
   - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
 
   ### 🗑️ Removed
+
   - `InterceptorPlugin` webpack plugin
   - `configToImportMeta` utility
   - Webpack `DefinePlugin` usage for config

@@ -3,7 +3,7 @@ import { ActionCardListForm } from '@graphcommerce/ecommerce-ui'
 import type { ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCard, Button, FormDiv, sxx } from '@graphcommerce/next-ui'
 import type { UseFormComposeOptions } from '@graphcommerce/react-hook-form'
-import { FormPersist, useForm, useFormCompose } from '@graphcommerce/react-hook-form'
+import { FormPersist, useForm, useFormCompose, useWatch } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -71,10 +71,10 @@ export function PaymentMethodActionCardListForm(props: PaymentMethodActionCardLi
   type FormFields = { code: string | null; paymentMethod?: string }
   const form = useForm<FormFields>({})
 
-  const { control, handleSubmit, watch, setValue } = form
+  const { control, handleSubmit, setValue } = form
   const submit = handleSubmit(() => {})
 
-  const paymentMethod = watch('paymentMethod')
+  const paymentMethod = useWatch({ control, name: 'paymentMethod' })
 
   useEffect(() => {
     if (lockState.method) setValue('code', lockState.method)
