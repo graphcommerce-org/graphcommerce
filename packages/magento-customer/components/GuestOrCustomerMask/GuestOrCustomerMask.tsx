@@ -4,8 +4,11 @@ import { Box } from '@mui/material'
 import { useCustomerSession } from '../../hooks/useCustomerSession'
 
 export type CustomerGuestMaskProps = {
+  /** Allowed to pass null */
   loggedOut: React.ReactNode
+  /** Allowed to pass null */
   loggedIn: React.ReactNode
+  /** Allowed to pass null */
   skeleton: React.ReactNode
 }
 
