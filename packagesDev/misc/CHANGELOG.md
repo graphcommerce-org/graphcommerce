@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.0.1-canary.4
+
+### Patch Changes
+
+- [#2576](https://github.com/graphcommerce-org/graphcommerce/pull/2576) [`4d2adec`](https://github.com/graphcommerce-org/graphcommerce/commit/4d2adecc619278f5129f41b8b844b31f17469c15) - release again ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.3
 
 ## 10.0.1-canary.2
