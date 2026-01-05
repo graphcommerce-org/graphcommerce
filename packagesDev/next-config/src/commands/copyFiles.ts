@@ -1,4 +1,3 @@
-/* eslint-disable no-await-in-loop */
 import fs from 'fs/promises'
 import path from 'path'
 import fg from 'fast-glob'
@@ -38,7 +37,7 @@ async function updateGitignore(managedFiles: string[]) {
   try {
     content = await fs.readFile(gitignorePath, 'utf-8')
     debug('Reading existing .gitignore')
-  } catch (err) {
+  } catch {
     debug('.gitignore not found, creating new file')
     content = ''
   }
@@ -79,6 +78,13 @@ function getFileManagement(content: Buffer | undefined): 'local' | 'graphcommerc
   return 'unmanaged'
 }
 
+/** Generates the .original filename for a given file path (e.g., file.tsx -> file.original.tsx) */
+function getOriginalFilename(filePath: string): string {
+  const ext = path.extname(filePath)
+  const base = filePath.slice(0, -ext.length)
+  return `${base}.original${ext}`
+}
+
 /**
  * The packages are @graphcommerce/* packages and have special treatment.
  *
@@ -88,7 +94,8 @@ function getFileManagement(content: Buffer | undefined): 'local' | 'graphcommerc
  *
  *    1. If the file doesn't exist: Create directories and the file with "managed by: graphcommerce"
  *    2. If the file exists and starts with "managed by: local": Skip the file
- *    3. If the file exists but doesn't have a management comment: Suggest adding "managed by: local"
+ *    3. If the file exists but doesn't have a management comment: Rename to filename.original.ext and
+ *          create the new managed file
  *    4. If the file is managed by graphcommerce: Update if content differs
  */
 export async function copyFiles() {
@@ -213,11 +220,15 @@ Found in packages:
             return
           }
           if (management === 'unmanaged') {
+            // Rename existing file to .original and create new managed file
+            const originalPath = getOriginalFilename(targetPath)
+            await fs.rename(targetPath, originalPath)
+            const originalRelative = getOriginalFilename(file)
             console.info(
-              `Note: File ${file} has been modified. Add '${MANAGED_LOCALLY.trim()}' at the top to manage it locally.`,
+              `Renamed existing file to: ${originalRelative}\nCreating managed file: ${file}`,
             )
-            debug(`File ${file} doesn't have management comment, skipping`)
-            return
+            debug(`Renamed ${file} to ${originalRelative}`)
+            targetContent = undefined // Treat as new file from here
           }
 
           debug(`File ${file} is managed by graphcommerce, will update if needed`)
