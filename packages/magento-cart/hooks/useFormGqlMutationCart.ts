@@ -1,14 +1,11 @@
-import {
-  CombinedGraphQLErrors,
-  TypedDocumentNode,
-  useApolloClient,
-  useMutation,
-} from '@graphcommerce/graphql'
+import type { TypedDocumentNode, useMutation } from '@graphcommerce/graphql'
+import { CombinedGraphQLErrors, useApolloClient } from '@graphcommerce/graphql'
 import type {
   UseFormGqlMutationReturn,
   UseFormGraphQlOptions,
 } from '@graphcommerce/react-hook-form'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
+import { t } from '@lingui/core/macro'
 import { GraphQLError, Kind } from 'graphql'
 import { useCartIdContext } from '../components/CartIdContext'
 import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
@@ -69,7 +66,7 @@ export function useFormGqlMutationCart<
       ...result,
       error: new CombinedGraphQLErrors({
         errors: [
-          new GraphQLError('Action can not be performed by the current user', {
+          new GraphQLError(t`You must be logged in to modify your cart.`, {
             extensions: { category: 'graphql-authorization' },
           }),
         ],
