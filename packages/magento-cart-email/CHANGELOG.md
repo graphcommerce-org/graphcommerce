@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`dc57da4`](https://github.com/graphcommerce-org/graphcommerce/commit/dc57da4897365ddb2b779eab3ad2b3a350ed115c) - Moved from form.watch to useWatch everywhere which works even if the fields are later initialized. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.4
 
 ## 10.0.1-canary.3

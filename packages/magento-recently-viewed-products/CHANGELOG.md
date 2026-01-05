@@ -1,5 +1,11 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`78a2a8a`](https://github.com/graphcommerce-org/graphcommerce/commit/78a2a8a919346e1f9bccddf7e52682f4adb9a4e0) - Solve issue where the @client fields could not be resolved correctly. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.4
 
 ## 10.0.1-canary.3
