@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 10.0.1-canary.2
+
 ## 10.0.1-canary.1
 
 ### Patch Changes
