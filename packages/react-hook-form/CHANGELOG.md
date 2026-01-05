@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.1-canary.3
+
+### Patch Changes
+
+- [#2574](https://github.com/graphcommerce-org/graphcommerce/pull/2574) [`100cd16`](https://github.com/graphcommerce-org/graphcommerce/commit/100cd1601ade194cc1838598411921cf119126f4) - Forward Step when using assign for the order ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.2
 
 ## 10.0.1-canary.1
