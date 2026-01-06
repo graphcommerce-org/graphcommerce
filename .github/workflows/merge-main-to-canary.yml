@@ -20,7 +20,7 @@ jobs:
           git config --local user.name "Github Actions"
       - name: Merge
         run: |
-          git fetch --unshallow
+          git fetch --unshallow || true
           git checkout canary
           git pull
           git merge main -m "Auto-merge main back to canary"
