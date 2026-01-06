@@ -3,14 +3,14 @@
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
   "private": true,
-  "version": "10.0.1",
+  "version": "10.0.2",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
-    "@graphcommerce/framer-utils": "10.0.1",
+    "@graphcommerce/framer-utils": "10.0.2",
     "@lingui/core": "5.7.0",
     "@lingui/format-po": "5.7.0",
     "@lingui/macro": "5.7.0",
@@ -32,9 +32,9 @@
     "sharp": "0.34.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "10.0.1",
-    "@graphcommerce/prettier-config-pwa": "10.0.1",
-    "@graphcommerce/typescript-config-pwa": "10.0.1",
+    "@graphcommerce/eslint-config-pwa": "10.0.2",
+    "@graphcommerce/prettier-config-pwa": "10.0.2",
+    "@graphcommerce/typescript-config-pwa": "10.0.2",
     "@lingui/cli": "5.7.0",
     "@types/node": "^20.19.27",
     "@types/react": "^19.2.7",

@@ -1,5 +1,9 @@
 # Change Log
 
+## 10.0.2
+
+## 10.0.2-canary.0
+
 ## 10.0.0
 
 ### Major Changes
@@ -11,6 +15,7 @@
   ### 🚀 Turbopack-Compatible Interceptor System
 
   The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
   - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
   - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
   - **Direct imports** - Interceptors import from `.original` files instead of embedding source
@@ -22,6 +27,7 @@
   ### ⚙️ Treeshakable Configuration System
 
   Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
   - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
   - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
   - **Fully treeshakable** - Unused config values are eliminated from the bundle
@@ -29,6 +35,7 @@
   - **Separate files for nested objects** - Optimal treeshaking for complex configurations
 
   ### 🔧 withGraphCommerce Changes
+
   - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
   - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
   - **Removed** `@mui/*` alias rewrites - No longer required
@@ -38,26 +45,31 @@
   - **Added** `images.qualities: [52, 75]` for Next.js image optimization
 
   ### 📦 Lingui Configuration
+
   - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
   - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
   - **Simplified** formatter options
 
   ### ⚛️ React 19 & Next.js 16 Compatibility
+
   - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
   - Replaced deprecated `React.VFC` with `React.FC`
   - Fixed `useRef` calls to require explicit initial values
   - Updated `MutableRefObject` usage in `framer-scroller`
 
   ### 📋 ESLint 9 Flat Config
+
   - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
   - Updated `@typescript-eslint/*` packages to v8
   - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
 
   ### 🔄 Apollo Client
+
   - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
   - Updated error handling types to accept `ApolloError | null | undefined`
 
   ### ⚠️ Breaking Changes
+
   - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
   - **Interceptor files changed** - Original components now at `.original.tsx`
   - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
@@ -65,6 +77,7 @@
   - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
 
   ### 🗑️ Removed
+
   - `InterceptorPlugin` webpack plugin
   - `configToImportMeta` utility
   - Webpack `DefinePlugin` usage for config
@@ -92,7 +105,9 @@
 ### Patch Changes
 
 - [#2380](https://github.com/graphcommerce-org/graphcommerce/pull/2380) [`3710d8b`](https://github.com/graphcommerce-org/graphcommerce/commit/3710d8bf1cceb5a991e5cfdfc15d42e462704c6d) - Solves the issue `TypeError: url?.startsWith is not a function`. The generated `.mesh/index.ts` would be generated as a requirejs module while next.js expects an esm module. In the end we properly generated the mesh correctly and now there is an `import.meta.url` instead of using `require('node:url')`. To solve this we needed to solve a chain of issues:
+
   1. The generation of the mesh is based on the version of the mesh that is imported (esm or commonjs). See [source](https://github.com/ardatan/graphql-mesh/blob/bf588d372c0078378aaa24beea2da794af7949e6/scripts/replace-import-meta-url-in-cjs.ts#L9-L10) for the lines that need to be different. This meant that we needed to change the @graphcommerce/cli package to be of type:module instead of a commonjs module.
+
   2) To properly convert the module to an esm module we've migrated the build of the cli package to use 'pkgroll' instead of tsc, because tsc is limited in what it outputs and can't really convert classic imports to esm.
   3) To load possible mesh plugins we require additional .ts files to be loaded with [tsx](https://tsx.is/). To get the tsx loader to work properly in combination with esm modules, we need at least [node 18.19.0](https://nodejs.org/en/blog/release/v18.19.0#new-nodemodule-api-register-for-module-customization-hooks-new-initialize-hook). Minimal Node version upped to 18.19.0 and add support for node 22. ([@paales](https://github.com/paales))
 
