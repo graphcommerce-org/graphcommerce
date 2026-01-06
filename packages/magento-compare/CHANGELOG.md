@@ -1,5 +1,7 @@
 # @graphcommerce/magento-compare
 
+## 10.0.1-canary.5
+
 ## 10.0.1-canary.4
 
 ## 10.0.1-canary.3

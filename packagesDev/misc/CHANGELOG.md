@@ -1,5 +1,7 @@
 # @graphcommerce/misc
 
+## 10.0.1-canary.5
+
 ## 10.0.1-canary.4
 
 ### Patch Changes
