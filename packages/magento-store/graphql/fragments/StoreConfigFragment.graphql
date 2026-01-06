@@ -17,7 +17,7 @@ fragment StoreConfigFragment on StoreConfig {
   }
 
   head_shortcut_icon
-  head_includes
+  # head_includes
   title_suffix
   title_prefix
   title_separator
