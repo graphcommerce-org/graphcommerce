@@ -1,5 +1,13 @@
 # @graphcommerce/magento-compare
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`78a2a8a`](https://github.com/graphcommerce-org/graphcommerce/commit/78a2a8a919346e1f9bccddf7e52682f4adb9a4e0) - Solve issue where the @client fields could not be resolved correctly. ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`dc57da4`](https://github.com/graphcommerce-org/graphcommerce/commit/dc57da4897365ddb2b779eab3ad2b3a350ed115c) - Moved from form.watch to useWatch everywhere which works even if the fields are later initialized. ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.5
 
 ## 10.0.1-canary.4

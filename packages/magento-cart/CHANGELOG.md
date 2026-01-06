@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`78a2a8a`](https://github.com/graphcommerce-org/graphcommerce/commit/78a2a8a919346e1f9bccddf7e52682f4adb9a4e0) - Solve issue where the @client fields could not be resolved correctly. ([@paales](https://github.com/paales))
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`f1b60ac`](https://github.com/graphcommerce-org/graphcommerce/commit/f1b60accf5e8fdbcba15b7567dce7ff68f37db88) - Solve issue where the cache wasn't available from the context anymore in @apollo/client@4 now uses the operation.client.cache ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.5
 
 ## 10.0.1-canary.4

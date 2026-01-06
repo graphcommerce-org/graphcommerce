@@ -1,5 +1,13 @@
 # @graphcommerce/algolia-products
 
+## 10.0.1
+
+### Patch Changes
+
+- [#2568](https://github.com/graphcommerce-org/graphcommerce/pull/2568) [`f1b60ac`](https://github.com/graphcommerce-org/graphcommerce/commit/f1b60accf5e8fdbcba15b7567dce7ff68f37db88) - Solve issue where the cache wasn't available from the context anymore in @apollo/client@4 now uses the operation.client.cache ([@paales](https://github.com/paales))
+
+- [#2571](https://github.com/graphcommerce-org/graphcommerce/pull/2571) [`591fb82`](https://github.com/graphcommerce-org/graphcommerce/commit/591fb827b2db87dd138cf05e443089355e8883d1) - Make sure the default_display_currency_code is always fetched properly for Algolia ([@paales](https://github.com/paales))
+
 ## 10.0.1-canary.5
 
 ## 10.0.1-canary.4
