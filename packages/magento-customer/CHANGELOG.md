@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.2
+
+### Patch Changes
+
+- [`aaa79dd`](https://github.com/graphcommerce-org/graphcommerce/commit/aaa79dd79ab39600ecf291334fac91196b9793e6) - Solve issue where the GuestOrCustomerMask would hide incorrectly ([@paales](https://github.com/paales))
+
 ## 10.0.2-canary.0
 
 ### Patch Changes

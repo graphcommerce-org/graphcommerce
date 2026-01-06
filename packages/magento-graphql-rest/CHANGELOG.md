@@ -1,5 +1,7 @@
 # @graphcommerce/magento-graphql-rest
 
+## 10.0.2
+
 ## 10.0.2-canary.0
 
 ## 10.0.0

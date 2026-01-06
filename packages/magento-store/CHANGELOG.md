@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.2
+
+### Patch Changes
+
+- [`aaa79dd`](https://github.com/graphcommerce-org/graphcommerce/commit/aaa79dd79ab39600ecf291334fac91196b9793e6) - Do not query the head_includes from the backend as that may never be rendered and might contain big content. ([@paales](https://github.com/paales))
+
 ## 10.0.2-canary.0
 
 ### Patch Changes
