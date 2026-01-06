@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.2-canary.0
+
+### Patch Changes
+
+- [`aaa79dd`](https://github.com/graphcommerce-org/graphcommerce/commit/aaa79dd79ab39600ecf291334fac91196b9793e6) - Solve issue where the GuestOrCustomerMask would hide incorrectly ([@paales](https://github.com/paales))
+
 ## 10.0.1
 
 ### Patch Changes
@@ -25,6 +31,7 @@
   ### 🚀 Turbopack-Compatible Interceptor System
 
   The entire plugin/interceptor system has been rewritten to work with Turbopack:
+
   - **No more Webpack plugins** - Removed `InterceptorPlugin` webpack plugin entirely
   - **File-based interception** - Original files are moved to `.original.tsx` and replaced with interceptor content
   - **Direct imports** - Interceptors import from `.original` files instead of embedding source
@@ -36,6 +43,7 @@
   ### ⚙️ Treeshakable Configuration System
 
   Replaced Webpack `DefinePlugin`-based `import.meta.graphCommerce` with a new generated configuration system:
+
   - **New `codegen-config-values` command** - Generates TypeScript files with precise typing
   - **Schema-driven** - Dynamically introspects Zod schemas to determine all available properties
   - **Fully treeshakable** - Unused config values are eliminated from the bundle
@@ -43,6 +51,7 @@
   - **Separate files for nested objects** - Optimal treeshaking for complex configurations
 
   ### 🔧 withGraphCommerce Changes
+
   - **Removed** `InterceptorPlugin` - No longer needed with file-based interception
   - **Removed** `DefinePlugin` for `import.meta.graphCommerce` - Replaced with generated config
   - **Removed** `@mui/*` alias rewrites - No longer required
@@ -52,26 +61,31 @@
   - **Added** `images.qualities: [52, 75]` for Next.js image optimization
 
   ### 📦 Lingui Configuration
+
   - **Renamed** `lingui.config.js` → `lingui.config.ts` with TypeScript support
   - **Updated** `@graphcommerce/lingui-next/config` to TypeScript with proper exports
   - **Simplified** formatter options
 
   ### ⚛️ React 19 & Next.js 16 Compatibility
+
   - Updated `RefObject<T>` types for React 19 (now includes `null` by default)
   - Replaced deprecated `React.VFC` with `React.FC`
   - Fixed `useRef` calls to require explicit initial values
   - Updated `MutableRefObject` usage in `framer-scroller`
 
   ### 📋 ESLint 9 Flat Config
+
   - Migrated from legacy `.eslintrc` to new flat config format (`eslint.config.mjs`)
   - Updated `@typescript-eslint/*` packages to v8
   - Fixed AST selector for `SxProps` rule (`typeParameters` → `typeArguments`)
 
   ### 🔄 Apollo Client
+
   - Fixed deprecated `name` option → `clientAwareness: { name: 'ssr' }`
   - Updated error handling types to accept `ApolloError | null | undefined`
 
   ### ⚠️ Breaking Changes
+
   - **Node.js 24.x not supported** - Restricted to `>=20 <24.0.0` due to [nodejs/undici#4290](https://github.com/nodejs/undici/issues/4290)
   - **Interceptor files changed** - Original components now at `.original.tsx`
   - **Config access changed** - Use generated config values instead of `import.meta.graphCommerce`
@@ -79,6 +93,7 @@
   - **Lingui config** - Rename `lingui.config.js` to `lingui.config.ts`
 
   ### 🗑️ Removed
+
   - `InterceptorPlugin` webpack plugin
   - `configToImportMeta` utility
   - Webpack `DefinePlugin` usage for config
@@ -144,6 +159,7 @@
 - [#2327](https://github.com/graphcommerce-org/graphcommerce/pull/2327) [`af83d81`](https://github.com/graphcommerce-org/graphcommerce/commit/af83d81656a4c1a014802fb052a94a079e9f60c1) - Add `reorderItems` mutation, add `reorder` button to order detail page. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
 
 - [#2366](https://github.com/graphcommerce-org/graphcommerce/pull/2366) [`3612c99`](https://github.com/graphcommerce-org/graphcommerce/commit/3612c994b80bb3b1bc02de10668f69a332402dc4) - Add `permissions` configuration to disable functionalities.
+
   - Added new `permissions` configuration for GraphCommerce
   - Added `permissions.cart`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`
   - Added `permissions.checkout`: `ENABLED` | `CUSTOMER_ONLY` | `DISABLED`

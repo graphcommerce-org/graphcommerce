@@ -88,27 +88,7 @@
     "@graphcommerce/typescript-config-pwa": "10.0.0"
   },
   "changesets": [
-    "busy-mammals-say",
-    "curly-dragons-boil",
-    "easy-turtles-sink",
-    "eighty-months-beam",
-    "funky-geese-sell",
-    "gold-eels-smash",
-    "good-olives-tell",
-    "late-suns-kneel",
-    "loose-news-grin",
-    "loose-stamps-peel",
-    "lovely-ads-send",
-    "open-ways-smile",
-    "rare-dogs-say",
-    "slow-goats-fold",
-    "some-months-follow",
-    "ten-taxis-deny",
-    "thin-lands-dig",
-    "tiny-games-wear",
-    "two-bags-smoke",
-    "upset-ears-make",
-    "violet-ears-tan",
-    "whole-news-drive"
+    "light-icons-kiss",
+    "two-showers-begin"
   ]
 }
