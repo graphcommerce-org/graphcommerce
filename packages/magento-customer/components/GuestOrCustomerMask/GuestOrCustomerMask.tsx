@@ -17,27 +17,18 @@ export function GuestOrCustomerMask(props: CustomerGuestMaskProps) {
   const { mask } = usePrivateQueryMask()
   const { loggedIn } = useCustomerSession()
 
+  // When not masking, we know the actual state - render directly without CSS hiding
+  if (!mask) return <>{loggedIn ? loggedInContent : loggedOutContent}</>
+
   return (
     <>
-      {mask && loggedOutContent && (
-        <Box
-          sx={{
-            display: 'contents',
-            '&:empty': { display: 'none' },
-            [cssFlag('private-query')]: { display: 'none' },
-          }}
-        >
+      {loggedOutContent && (
+        <Box sx={{ display: 'contents', [cssFlag('private-query')]: { display: 'none' } }}>
           {loggedOutContent}
         </Box>
       )}
-      <Box
-        sx={{
-          display: 'contents',
-          '&:empty': { display: 'none' },
-          [cssNotFlag('private-query')]: { display: 'none' },
-        }}
-      >
-        {mask ? skeleton : loggedIn ? loggedInContent : loggedOutContent}
+      <Box sx={{ display: 'contents', [cssNotFlag('private-query')]: { display: 'none' } }}>
+        {skeleton}
       </Box>
     </>
   )
