@@ -733,15 +733,14 @@ async function generateInterceptor(interceptor, config, oldInterceptorSource) {
           `@see {@link file://./${targetExport}.original.tsx} for original source file`
         );
       }
+      let prevPropsName = null;
       const pluginInterceptors = componentPlugins.reverse().map((plugin) => {
         const pluginName = sourceName(name(plugin));
         const interceptorName2 = `${pluginName}${interceptorSuffix}`;
         const propsName = `${pluginName}Props`;
         pluginSee.push(`@see {${pluginName}} for source of applied plugin`);
-        const result = `type ${propsName} = OmitPrev<
-  React.ComponentProps<typeof ${pluginName}>,
-  'Prev'
->
+        const propsType = prevPropsName ? `OmitPrev<React.ComponentProps<typeof ${pluginName}>, 'Prev'> & ${prevPropsName}` : `OmitPrev<React.ComponentProps<typeof ${pluginName}>, 'Prev'>`;
+        const result = `type ${propsName} = ${propsType}
 
 const ${interceptorName2} = (
   props: ${propsName},
@@ -752,6 +751,7 @@ const ${interceptorName2} = (
   />
 )`;
         carry = interceptorName2;
+        prevPropsName = propsName;
         return result;
       }).join("\n\n");
       const seeString = `/**
@@ -762,10 +762,12 @@ const ${interceptorName2} = (
  *
 ${pluginSee.map((s) => ` * ${s}`).join("\n")}
  */`;
+      const originalType = replacePlugin ? `typeof ${sourceName(name(replacePlugin))}` : `typeof ${targetExport}${originalSuffix}`;
+      const exportType = prevPropsName ? `${originalType} & React.FC<${prevPropsName}>` : originalType;
       return `${pluginInterceptors}
 
 ${seeString}
-export const ${targetExport} = ${carry}`;
+export const ${targetExport} = ${carry} as ${exportType}`;
     } else if (plugins.some((p) => p.type === "function")) {
       const functionPlugins = plugins.filter((p) => p.type === "function");
       const replacePlugin = plugins.find((p) => p.type === "replace");
