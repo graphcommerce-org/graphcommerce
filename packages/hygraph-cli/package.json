@@ -2,7 +2,7 @@
   "name": "@graphcommerce/hygraph-cli",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.0.2",
+  "version": "10.0.3-canary.0",
   "type": "module",
   "exports": {
     ".": {
@@ -25,10 +25,10 @@
   },
   "peerDependencies": {
     "@apollo/client": "*",
-    "@graphcommerce/eslint-config-pwa": "^10.0.2",
-    "@graphcommerce/next-config": "^10.0.2",
-    "@graphcommerce/prettier-config-pwa": "^10.0.2",
-    "@graphcommerce/typescript-config-pwa": "^10.0.2",
+    "@graphcommerce/eslint-config-pwa": "^10.0.3-canary.0",
+    "@graphcommerce/next-config": "^10.0.3-canary.0",
+    "@graphcommerce/prettier-config-pwa": "^10.0.3-canary.0",
+    "@graphcommerce/typescript-config-pwa": "^10.0.3-canary.0",
     "dotenv": "^16.1.4"
   },
   "devDependencies": {

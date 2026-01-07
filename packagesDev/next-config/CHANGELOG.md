@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.3-canary.0
+
+### Patch Changes
+
+- [`fdad2b7`](https://github.com/graphcommerce-org/graphcommerce/commit/fdad2b7a14a15c771077f3b836ca1f544f488cdd) - Added support in component props for Generic components. Solves an issue with creating plugins on the AddressFields component. ([@paales](https://github.com/paales))
+
+- [`fdad2b7`](https://github.com/graphcommerce-org/graphcommerce/commit/fdad2b7a14a15c771077f3b836ca1f544f488cdd) - Fixed issue where additional props on a plugin did not carry to the final component. Now we can extend the original component's props with additional props from plugins. ([@paales](https://github.com/paales))
+
 ## 10.0.2
 
 ## 10.0.2-canary.0
