@@ -204,6 +204,9 @@ export async function generateInterceptor(
           )
         }
 
+        // Track the accumulated props type name for chaining
+        let prevPropsName: string | null = null
+
         const pluginInterceptors = componentPlugins
           .reverse() // Start from the last plugin and work backwards
           .map((plugin) => {
@@ -213,10 +216,13 @@ export async function generateInterceptor(
 
             pluginSee.push(`@see {${pluginName}} for source of applied plugin`)
 
-            const result = `type ${propsName} = OmitPrev<
-  React.ComponentProps<typeof ${pluginName}>,
-  'Prev'
->
+            // For the first plugin, just use OmitPrev
+            // For subsequent plugins, intersect with the previous accumulated props
+            const propsType = prevPropsName
+              ? `OmitPrev<React.ComponentProps<typeof ${pluginName}>, 'Prev'> & ${prevPropsName}`
+              : `OmitPrev<React.ComponentProps<typeof ${pluginName}>, 'Prev'>`
+
+            const result = `type ${propsName} = ${propsType}
 
 const ${interceptorName} = (
   props: ${propsName},
@@ -227,6 +233,7 @@ const ${interceptorName} = (
   />
 )`
             carry = interceptorName
+            prevPropsName = propsName
             return result
           })
           .join('\n\n')
@@ -240,10 +247,21 @@ const ${interceptorName} = (
 ${pluginSee.map((s) => ` * ${s}`).join('\n')}
  */`
 
+        // Cast to preserve generic signatures while also including accumulated plugin props
+        const originalType = replacePlugin
+          ? `typeof ${sourceName(name(replacePlugin))}`
+          : `typeof ${targetExport}${originalSuffix}`
+
+        // If we have accumulated props from plugins, include them in the type
+        // This creates a type that has both the original's generics AND the plugin's additional props
+        const exportType = prevPropsName
+          ? `${originalType} & React.FC<${prevPropsName}>`
+          : originalType
+
         return `${pluginInterceptors}
 
 ${seeString}
-export const ${targetExport} = ${carry}`
+export const ${targetExport} = ${carry} as ${exportType}`
       } else if (plugins.some((p) => p.type === 'function')) {
         // Function plugins
         const functionPlugins = plugins.filter((p) => p.type === 'function')
