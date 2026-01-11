@@ -1,72 +1,99 @@
 'use client'
 
 import {
+  ApolloCartErrorAlert,
+  CartStartCheckout,
+  CartStartCheckoutLinkOrButton,
+  CartTotals,
+  EmptyCart,
+  useCartQuery,
+} from '@graphcommerce/magento-cart'
+import { CartPageDocument } from '@graphcommerce/magento-cart-checkout'
+import { CouponAccordion } from '@graphcommerce/magento-cart-coupon'
+import { CartCrosssellsScroller, CartItemsActionCards } from '@graphcommerce/magento-cart-items'
+import { Money } from '@graphcommerce/magento-store'
+import {
+  FullPageMessage,
   iconShoppingBag,
-  IconSvg,
+  LayoutOverlayHeader,
   LayoutTitle,
-  Overlay,
-  OverlayHeader,
   OverlayStickyBottom,
+  Stepper,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-import { Button, Container, Typography } from '@mui/material'
-import { useParams, useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import { CircularProgress, Container } from '@mui/material'
+import { LayoutOverlayRsc, productListRenderer } from '../../../../components'
 
 /**
- * Cart overlay page (intercepted route). Uses the Overlay component from @graphcommerce/next-ui for
- * consistent overlay behavior.
+ * Intercepted cart overlay. This is rendered as a parallel route when navigating to /cart from
+ * within the app. It shows the cart in an overlay while keeping the underlying page visible.
  */
 export default function CartOverlay() {
-  const router = useRouter()
-  const params = useParams<{ store: string }>()
-  const store = params.store
-  const [active, setActive] = useState(true)
-
-  const handleClose = useCallback(() => {
-    setActive(false)
-  }, [])
-
-  const handleClosed = useCallback(() => {
-    router.back()
-  }, [router])
+  const cart = useCartQuery(CartPageDocument, {
+    errorPolicy: 'all',
+    fetchPolicy: 'cache-and-network',
+  })
+  const { error, data } = cart
+  const hasError = Boolean(error)
+  const hasItems =
+    (data?.cart?.total_quantity ?? 0) > 0 &&
+    typeof data?.cart?.prices?.grand_total?.value !== 'undefined'
 
   return (
-    <Overlay
-      active={active}
-      onClosed={handleClosed}
+    <LayoutOverlayRsc
       variantMd='right'
       variantSm='bottom'
+      widthMd='900px'
       sizeMd='floating'
       sizeSm='full'
       justifyMd='start'
-      widthMd='600px'
     >
-      <OverlayHeader>
-        <LayoutTitle size='small' icon={iconShoppingBag}>
-          <Trans>Cart</Trans>
+      <LayoutOverlayHeader
+        switchPoint={0}
+        primary={<CartStartCheckoutLinkOrButton cart={data?.cart} disabled={hasError} />}
+        divider={
+          <Container maxWidth='md'>
+            <Stepper currentStep={hasItems ? 1 : 0} steps={3} />
+          </Container>
+        }
+      >
+        <LayoutTitle size='small' component='span' icon={hasItems ? iconShoppingBag : undefined}>
+          {hasItems ? (
+            <Trans>
+              Total <Money {...data?.cart?.prices?.grand_total} />
+            </Trans>
+          ) : (
+            <Trans>Cart</Trans>
+          )}
         </LayoutTitle>
-      </OverlayHeader>
+      </LayoutOverlayHeader>
 
-      <Container maxWidth='md' sx={{ py: 3 }}>
-        {/* Empty cart state */}
-        <Typography variant='body1' color='text.secondary' sx={{ textAlign: 'center', py: 8 }}>
-          <IconSvg
-            src={iconShoppingBag}
-            size='xxl'
-            sx={{ display: 'block', mx: 'auto', mb: 2, color: 'text.disabled' }}
+      {cart.loading ? (
+        <FullPageMessage icon={<CircularProgress />} title={<Trans>Loading</Trans>}>
+          <Trans>This may take a second</Trans>
+        </FullPageMessage>
+      ) : hasItems ? (
+        <>
+          <Container maxWidth='md'>
+            <CartItemsActionCards
+              cart={data?.cart}
+              sx={(theme) => ({ position: 'relative', zIndex: 1, mb: theme.spacings.md })}
+            />
+            <CouponAccordion key='couponform' />
+            <CartTotals containerMargin sx={{ typography: 'body1' }} />
+            <ApolloCartErrorAlert error={error} />
+          </Container>
+          <CartCrosssellsScroller
+            renderer={productListRenderer}
+            sx={(theme) => ({ mt: theme.spacings.md })}
           />
-          <Trans>Your cart is empty</Trans>
-        </Typography>
-      </Container>
-
-      <OverlayStickyBottom>
-        <Container maxWidth='md'>
-          <Button variant='contained' color='primary' fullWidth size='large' onClick={handleClose}>
-            <Trans>Continue Shopping</Trans>
-          </Button>
-        </Container>
-      </OverlayStickyBottom>
-    </Overlay>
+          <OverlayStickyBottom sx={{ py: 0.1 }}>
+            <CartStartCheckout cart={data?.cart} disabled={hasError} />
+          </OverlayStickyBottom>
+        </>
+      ) : (
+        <EmptyCart disableMargin>{error && <ApolloCartErrorAlert error={error} />}</EmptyCart>
+      )}
+    </LayoutOverlayRsc>
   )
 }
