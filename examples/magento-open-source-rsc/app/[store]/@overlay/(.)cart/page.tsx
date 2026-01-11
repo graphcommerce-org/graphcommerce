@@ -1,9 +1,4 @@
-import { CartContent } from '../../cart/CartContent'
+import CartPage from '../../cart/page'
 
-/**
- * Intercepted cart overlay. This is rendered as a parallel route when navigating to /cart from
- * within the app. It shows the cart in an overlay while keeping the underlying page visible.
- */
-export default function CartOverlay() {
-  return <CartContent />
-}
+/** Intercepted cart overlay. Imports the cart page directly - both routes render the same component. */
+export default CartPage
