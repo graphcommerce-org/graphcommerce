@@ -81,30 +81,26 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               {category.children.map((child) =>
                 child ? (
                   <Grid size={{ xs: 6, sm: 4, md: 3 }} key={child.uid}>
-                    <Card
-                      component={Link}
+                    <Link
                       href={`/${store}/c/${child.url_path}`}
-                      sx={{
-                        textDecoration: 'none',
-                        display: 'block',
-                        height: '100%',
-                        '&:hover': { boxShadow: 4 },
-                      }}
+                      style={{ textDecoration: 'none', display: 'block', height: '100%' }}
                     >
-                      {child.image && (
-                        <CardMedia
-                          component='img'
-                          height='140'
-                          image={child.image}
-                          alt={child.name || ''}
-                        />
-                      )}
-                      <CardContent>
-                        <Typography variant='subtitle1' component='div'>
-                          {child.name}
-                        </Typography>
-                      </CardContent>
-                    </Card>
+                      <Card sx={{ height: '100%', '&:hover': { boxShadow: 4 } }}>
+                        {child.image && (
+                          <CardMedia
+                            component='img'
+                            height='140'
+                            image={child.image}
+                            alt={child.name || ''}
+                          />
+                        )}
+                        <CardContent>
+                          <Typography variant='subtitle1' component='div'>
+                            {child.name}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </Link>
                   </Grid>
                 ) : null,
               )}

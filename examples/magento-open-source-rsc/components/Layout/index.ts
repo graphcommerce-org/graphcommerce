@@ -4,4 +4,6 @@ export * from './LayoutNavigation'
 export * from './LayoutNavigationWrapper'
 export * from './LayoutProviderRsc'
 export * from './Logo'
-export * from './magentoMenuToNavigation'
+// Note: magentoMenuToNavigation is intentionally NOT exported here
+// It's only used internally by LayoutNavigation (a 'use client' component)
+// Exporting it from this barrel would cause RSC errors due to @graphcommerce/next-ui imports
