@@ -7,7 +7,7 @@ import { CombinedGraphQLErrors, useQuery } from '@graphcommerce/graphql'
 import type { useQuery as useQueryType } from '@apollo/client/react'
 import { t } from '@lingui/core/macro'
 import { GraphQLError } from 'graphql'
-import { useRouter } from 'next/router'
+import { useSearchParams } from 'next/navigation'
 import { useCartShouldLoginToContinue } from './useCartPermissions'
 import { useCurrentCartId } from './useCurrentCartId'
 
@@ -32,10 +32,10 @@ export function useCartQuery<
   Q,
   V extends OperationVariables & { cartId: string; [index: string]: unknown },
 >(document: TypedDocumentNode<Q, V>, options?: CartQueryOptions<Q, V>) {
-  const router = useRouter()
+  const searchParams = useSearchParams()
   const { currentCartId, locked } = useCurrentCartId()
 
-  const urlCartId = router.query.cart_id
+  const urlCartId = searchParams?.get('cart_id')
   const usingUrl = typeof urlCartId === 'string'
   const cartId = usingUrl ? urlCartId : currentCartId
   const shouldLoginToContinue = useCartShouldLoginToContinue()

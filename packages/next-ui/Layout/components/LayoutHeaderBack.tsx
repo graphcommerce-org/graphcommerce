@@ -9,7 +9,7 @@ import {
 import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import type { LinkOrButtonProps } from '../../Button/LinkOrButton'
 import { LinkOrButton } from '../../Button/LinkOrButton'
 import { iconChevronLeft } from '../../icons'
@@ -22,7 +22,7 @@ export type BackProps = Omit<LinkOrButtonProps, 'onClick' | 'children'> & {
 }
 
 export function useShowBack() {
-  const path = useRouter().asPath.split('?')[0]
+  const path = usePathname()
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()
@@ -48,7 +48,7 @@ const buttonSx: SxProps<Theme> = (theme) => ({
 export function LayoutHeaderBack(props: BackProps) {
   const { disableBackNavigation = false, ...rest } = props
   const router = useRouter()
-  const path = router.asPath.split('?')[0]
+  const path = usePathname()
   const up = useUp()
   const prevUp = usePrevUp()
   const { backSteps } = usePageContext()

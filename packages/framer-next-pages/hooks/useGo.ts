@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export function useGo(delta: number) {
-  const { push } = useRouter()
+  const router = useRouter()
   return () => {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      push('/', '/')
+      router.push('/')
       return
     }
 

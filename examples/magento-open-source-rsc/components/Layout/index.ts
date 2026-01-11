@@ -1,7 +1,9 @@
 export * from './CartFabRsc'
 export * from './Footer'
 export * from './LayoutDefaultRsc'
+export * from './LayoutMinimalRsc'
 export * from './LayoutNavigation'
+export * from './LayoutOverlayRsc'
 export * from './LayoutProviderRsc'
 export * from './Logo'
 // Note: magentoMenuToNavigation is intentionally NOT exported here

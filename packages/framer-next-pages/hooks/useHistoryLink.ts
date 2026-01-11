@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { usePrevPageRouter } from './usePrevPageRouter'
 
 export type UseHistoryLink = { href: string }
@@ -9,6 +9,7 @@ export function useHistoryLink(options: UseHistoryLink) {
   const { href } = options
   const prevRouter = usePrevPageRouter()
   const router = useRouter()
+  const pathname = usePathname()
 
   const onClick = (e: ClickEvent) => {
     e.preventDefault()
