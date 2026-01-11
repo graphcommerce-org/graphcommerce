@@ -1,6 +1,5 @@
 'use client'
 
-import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import {
   MotionImageAspect,
@@ -17,8 +16,8 @@ import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
-import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import React, { useEffect, useRef, useState } from 'react'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
@@ -85,32 +84,39 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   } = props
 
   const router = useRouter()
-  const prevRoute = usePrevPageRouter()
-  // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
+  const pathname = usePathname()
 
   const route = `#${routeHash}`
-  // We're using the URL to manage the state of the gallery.
-  const zoomed = router.asPath.endsWith(route)
+  // In App Router, we use local state for zoom instead of URL hash
+  // This avoids the complexity of hash-based routing in App Router
+  const [zoomed, setZoomed] = useState(false)
   usePreventScroll(zoomed)
 
-  // cleanup if someone enters the page with #gallery
+  // Check for hash on mount (client-side only)
   useEffect(() => {
-    if (!prevRoute?.pathname && zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace(router.asPath.replace(route, ''))
+    if (typeof window !== 'undefined') {
+      setZoomed(window.location.hash === route)
     }
-  }, [prevRoute?.pathname, route, router, zoomed])
+  }, [route])
+
+  // Listen for hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      setZoomed(window.location.hash === route)
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [route])
 
   const toggle = () => {
     if (disableZoom) {
       return
     }
     if (!zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.push(route, undefined, { shallow: true })
+      window.location.hash = routeHash
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
-      router.back()
+      window.history.back()
     }
   }
 

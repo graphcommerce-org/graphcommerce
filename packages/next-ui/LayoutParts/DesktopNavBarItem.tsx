@@ -3,7 +3,7 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { LinkProps } from '@mui/material'
 import { Box, Link } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { extendableComponent } from '../Styles/extendableComponent'
 
 const { classes, selectors } = extendableComponent('DesktopNavItem', ['root', 'line'] as const)
@@ -23,7 +23,7 @@ function isLinkProps(
 }
 
 export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemButtonProps) {
-  const router = useRouter()
+  const pathname = usePathname()
 
   if (!isLinkProps(props)) {
     const { onClick, children, sx = [], active, ...linkProps } = props
@@ -46,7 +46,7 @@ export function DesktopNavItem(props: DesktopNavItemLinkProps | DesktopNavItemBu
 
   const { href, children, sx = [], active, ...linkProps } = props
   const activeValue =
-    typeof active === 'undefined' ? router.asPath.startsWith((href ?? '').toString()) : active
+    typeof active === 'undefined' ? pathname?.startsWith((href ?? '').toString()) : active
 
   return (
     <Link

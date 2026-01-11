@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Providers } from '../../components/Providers'
+import { LayoutDocument } from '../../graphql/Layout.gql'
+import { getClient } from '../../lib/apollo/client'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 
 type StoreLayoutProps = {
@@ -39,9 +41,13 @@ export async function generateMetadata({ params }: StoreLayoutProps): Promise<Me
 export default async function StoreLayout({ children, overlay, params }: StoreLayoutProps) {
   const { store } = await params
   const storefront = getStorefrontConfig(store)
+  const client = getClient(storefront)
+
+  // Fetch layout data (menu and cms blocks) server-side
+  const { data: layoutData } = await client.query({ query: LayoutDocument })
 
   return (
-    <Providers storefront={storefront}>
+    <Providers storefront={storefront} layoutData={layoutData}>
       {children}
       {overlay}
     </Providers>

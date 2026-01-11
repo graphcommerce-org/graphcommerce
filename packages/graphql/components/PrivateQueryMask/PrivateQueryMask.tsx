@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable import/no-extraneous-dependencies */
 import { cssFlag, cssNotFlag, sxx, useIsSSR } from '@graphcommerce/next-ui'
 import type { SkeletonOwnProps, SkeletonProps, SxProps, Theme } from '@mui/material'

@@ -1,3 +1,5 @@
+'use client'
+
 import { dvw, useMotionSelector, useMotionValueValue } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'

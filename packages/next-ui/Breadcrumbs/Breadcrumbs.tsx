@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'

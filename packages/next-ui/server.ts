@@ -1,10 +1,11 @@
-export * from './Document'
-export * from './PageMeta/canonicalize'
-export * from './Styles/withEmotionCache'
+import 'server-only'
+
+// Server-safe exports from @graphcommerce/next-ui
+// These utilities don't use React hooks or browser APIs
+
+export * from './utils/storefrontConfig'
 export * from './utils/cookie'
-export * from './utils/getCssFlagInitScript'
-export * from './utils/normalizeLocale'
-export * from './utils/revalidate'
 export * from './utils/robots'
 export * from './utils/sitemap'
-export * from './utils/storefrontConfig'
+export * from './utils/revalidate'
+export * from './utils/normalizeLocale'

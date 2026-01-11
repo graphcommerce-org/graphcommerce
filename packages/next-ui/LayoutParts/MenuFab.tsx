@@ -5,7 +5,7 @@ import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, MenuProps as MenuPropsType, SxProps, Theme } from '@mui/material'
 import { Box, Divider, Fab, ListItem, Menu, styled } from '@mui/material'
 import { m } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { iconClose, iconMenu } from '../icons'
 import { IconSvg } from '../IconSvg'
@@ -50,18 +50,17 @@ export function MenuFab(props: MenuFabProps) {
     MenuProps,
     ...fabProps
   } = props
-  const router = useRouter()
+  const pathname = usePathname()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   const { opacity, scale, shadowOpacity } = useFabAnimation()
   const scrollY = useScrollY()
   const scrolled = useMotionValueValue(scrollY, (y) => y > 10)
 
+  // Close menu when route changes
   useEffect(() => {
-    const clear = () => setOpenEl(null)
-    router.events.on('routeChangeStart', clear)
-    return () => router.events.off('routeChangeStart', clear)
-  }, [router.events])
+    setOpenEl(null)
+  }, [pathname])
 
   const fabIconSize = useFabSize('responsive')
 

@@ -1,3 +1,5 @@
+'use client'
+
 import type { PopperProps } from '@mui/material'
 import { ClickAwayListener, Popper } from '@mui/material'
 import { useRef } from 'react'

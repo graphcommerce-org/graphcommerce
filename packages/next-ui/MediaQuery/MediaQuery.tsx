@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import type { BoxProps, Theme } from '@mui/material'
 import { Box, useTheme } from '@mui/material'

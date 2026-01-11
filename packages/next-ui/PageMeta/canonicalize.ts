@@ -2,21 +2,27 @@
 
 import type {} from '@graphcommerce/next-config'
 import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
-import { addBasePath } from 'next/dist/client/add-base-path'
-import { addLocale } from 'next/dist/client/add-locale'
-import { getDomainLocale } from 'next/dist/client/get-domain-locale'
-import { resolveHref } from 'next/dist/client/resolve-href'
-import type { NextRouter } from 'next/dist/shared/lib/router/router'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import type { LiteralUnion } from 'type-fest'
-import { storefrontConfig } from '../utils/storefrontConfig'
+import { storefrontConfig, storefrontConfigDefault } from '../utils/storefrontConfig'
 
-type PartialNextRouter = Pick<
-  NextRouter,
-  'pathname' | 'locale' | 'locales' | 'isLocaleDomain' | 'domainLocales' | 'defaultLocale'
+export type Canonical = LiteralUnion<
+  `http://${string}` | `https://${string}` | `/${string}`,
+  string
 >
 
-export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
+type CanonicalizeOptions = {
+  pathname?: string | null
+  locale?: string
+}
+
+/**
+ * Canonicalize a URL path to a full canonical URL Works with both Pages Router and App Router
+ *
+ * In App Router, pass the pathname and locale as options In Pages Router, you can use the
+ * useCanonical hook which automatically gets these from the router
+ */
+export function canonicalize(options: CanonicalizeOptions, incoming?: Canonical) {
   let canonical = incoming
 
   if (!canonical) return canonical
@@ -31,35 +37,15 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
   }
 
   if (canonical.startsWith('/')) {
-    let [href, as = href] = resolveHref(router as NextRouter, canonical, true)
+    const conf = storefrontConfig(options.locale) ?? storefrontConfigDefault()
 
-    const curLocale = router.locale
+    let siteUrl = conf?.canonicalBaseUrl || canonicalBaseUrl
 
-    // Copied from here https://github.com/vercel/next.js/blob/213c42f446874d29d07fa2cca6e6b11fc9c3b711/packages/next/client/link.tsx#L512
-    const localeDomain = getDomainLocale(
-      as,
-      curLocale,
-      router && router.locales,
-      router.domainLocales,
-    )
+    if (conf?.domain && !conf?.canonicalBaseUrl) siteUrl = `https://${conf.domain}`
 
-    if (localeDomain) {
-      canonical = localeDomain
-    } else {
-      const conf = storefrontConfig(router.locale)
+    if (siteUrl?.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
 
-      href = addBasePath(
-        addLocale(as, curLocale, conf?.domain ? conf.locale : router.defaultLocale),
-      )
-
-      let siteUrl = conf?.canonicalBaseUrl || canonicalBaseUrl
-
-      if (conf?.domain && !conf?.canonicalBaseUrl) siteUrl = `https://${conf.domain}`
-
-      if (siteUrl.endsWith('/')) siteUrl = siteUrl.slice(0, -1)
-
-      canonical = `${siteUrl}${href}`
-    }
+    canonical = `${siteUrl}${canonical}`
   }
 
   if (!canonical.startsWith('http')) {
@@ -74,12 +60,13 @@ export function canonicalize(router: PartialNextRouter, incoming?: Canonical) {
   return canonical
 }
 
-export type Canonical = LiteralUnion<
-  `http://${string}` | `https://${string}` | `/${string}`,
-  string
->
-
+/**
+ * Hook to canonicalize a URL for the current page For App Router, extracts locale from pathname
+ */
 export function useCanonical(incoming?: Canonical) {
-  const router = useRouter()
-  return canonicalize(router, incoming)
+  const pathname = usePathname()
+  // Extract locale from pathname (first segment after /)
+  const locale = pathname?.split('/')[1]
+
+  return canonicalize({ pathname, locale }, incoming)
 }

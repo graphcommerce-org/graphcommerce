@@ -5,7 +5,7 @@ import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useTheme } from '@mui/material'
 import { m } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { iconClose, iconMenu } from '../../icons'
 import { IconSvg } from '../../IconSvg'
@@ -32,7 +32,7 @@ const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>
 
 export function NavigationFab(props: NavigationFabProps) {
   const { menuIcon, closeIcon, sx = [], ...fabProps } = props
-  const router = useRouter()
+  const pathname = usePathname()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
   const { opacity, shadowOpacity } = useFabAnimation()
@@ -41,11 +41,10 @@ export function NavigationFab(props: NavigationFabProps) {
 
   const theme = useTheme()
 
+  // Close menu when route changes (pathname change indicates navigation)
   useEffect(() => {
-    const clear = () => setOpenEl(null)
-    router.events.on('routeChangeStart', clear)
-    return () => router.events.off('routeChangeStart', clear)
-  }, [router.events])
+    setOpenEl(null)
+  }, [pathname])
 
   const fabIconSize = useFabSize('responsive')
 

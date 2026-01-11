@@ -2,7 +2,7 @@ import { Box, Card, CardContent, CardMedia, Container, Grid, Typography } from '
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { LayoutNavigation } from '../../../../components/Layout'
+import { LayoutNavigationWrapper } from '../../../../components/Layout'
 import { CategoryPageDocument } from '../../../../graphql/CategoryPage.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { getStorefrontConfig } from '../../../../lib/storefront'
@@ -55,7 +55,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <LayoutNavigation>
+    <LayoutNavigationWrapper>
       <Container maxWidth='lg' sx={{ py: 4 }}>
         {/* Category Header */}
         <Box sx={{ mb: 4 }}>
@@ -145,6 +145,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </Typography>
         </Box>
       </Container>
-    </LayoutNavigation>
+    </LayoutNavigationWrapper>
   )
 }

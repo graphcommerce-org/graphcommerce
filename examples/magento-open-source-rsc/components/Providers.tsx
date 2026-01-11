@@ -2,14 +2,27 @@
 
 import { CssAndFramerMotionProvider } from '@graphcommerce/next-ui'
 import { CssBaseline, ThemeProvider } from '@mui/material'
+import type { ReactNode } from 'react'
+import { createContext, useContext } from 'react'
+import type { LayoutQuery } from '../graphql/Layout.gql'
 import { ApolloWrapper } from '../lib/apollo/ApolloWrapper'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 import type { GraphCommerceStorefrontConfig } from '../lib/storefront'
 import { theme } from './theme'
 
+// Layout Context for passing server-fetched layout data to client components
+const LayoutContext = createContext<LayoutQuery | undefined>(undefined)
+
+export function useLayoutData() {
+  const ctx = useContext(LayoutContext)
+  // Return empty object if context is undefined (during initial render)
+  return ctx ?? {}
+}
+
 type ProvidersProps = {
-  children: React.ReactNode
+  children: ReactNode
   storefront: GraphCommerceStorefrontConfig
+  layoutData?: LayoutQuery
 }
 
 /**
@@ -19,14 +32,14 @@ type ProvidersProps = {
  * Note: StorefrontProvider is removed - storefront config should be derived from URL params using
  * useStorefrontConfig() hook or passed as props from RSC
  */
-export function Providers({ children, storefront }: ProvidersProps) {
+export function Providers({ children, storefront, layoutData }: ProvidersProps) {
   return (
     <CssAndFramerMotionProvider>
       <I18nProvider locale={storefront.linguiLocale ?? storefront.locale}>
         <ApolloWrapper storefront={storefront}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {children}
+            <LayoutContext.Provider value={layoutData}>{children}</LayoutContext.Provider>
           </ThemeProvider>
         </ApolloWrapper>
       </I18nProvider>

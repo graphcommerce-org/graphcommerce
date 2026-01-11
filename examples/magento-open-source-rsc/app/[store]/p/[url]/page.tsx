@@ -1,7 +1,7 @@
 import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { LayoutNavigation } from '../../../../components/Layout'
+import { LayoutNavigationWrapper } from '../../../../components/Layout'
 import { ProductPageDocument } from '../../../../graphql/ProductPage.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { getStorefrontConfig } from '../../../../lib/storefront'
@@ -57,7 +57,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const hasDiscount = finalPrice?.value !== regularPrice?.value
 
   return (
-    <LayoutNavigation>
+    <LayoutNavigationWrapper>
       <Container maxWidth='lg' sx={{ py: 4 }}>
         <Grid container spacing={4}>
           {/* Product Image */}
@@ -155,6 +155,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Box>
         )}
       </Container>
-    </LayoutNavigation>
+    </LayoutNavigationWrapper>
   )
 }

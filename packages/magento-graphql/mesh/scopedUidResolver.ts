@@ -1,8 +1,8 @@
 /* eslint-disable arrow-body-style */
-import { fragments, getPrivateQueryContextMesh } from '@graphcommerce/graphql'
 import { type MeshContext, type Resolvers } from '@graphcommerce/graphql-mesh'
-import { storefrontFromContext } from '@graphcommerce/magento-store'
-import { storefrontConfigDefault } from '@graphcommerce/next-ui'
+import { fragments, getPrivateQueryContextMesh } from '@graphcommerce/graphql/server'
+import { storefrontFromContext } from '@graphcommerce/magento-store/server'
+import { storefrontConfigDefault } from '@graphcommerce/next-ui/server'
 
 function scopedUid(root: { uid: string } | { id: string }, args: unknown, context: MeshContext) {
   const store = storefrontFromContext(context) ?? storefrontConfigDefault()

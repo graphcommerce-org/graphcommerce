@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import type { Breakpoint, LinkProps } from '@mui/material'
 import { Link, useForkRef } from '@mui/material'

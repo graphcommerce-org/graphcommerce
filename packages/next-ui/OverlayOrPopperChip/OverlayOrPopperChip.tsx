@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, SxProps, Theme } from '@mui/material'
 import { Badge, Chip, Typography, useEventCallback } from '@mui/material'

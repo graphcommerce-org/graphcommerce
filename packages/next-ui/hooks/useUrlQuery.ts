@@ -1,10 +1,21 @@
 'use client'
 
-import { useRouter } from 'next/router'
-import { useCallback } from 'react'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { useCallback, useMemo } from 'react'
 
 export function useUrlQuery<T extends Record<string, string | null>>(doPush?: boolean) {
-  const { query, replace, push } = useRouter()
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  // Convert searchParams to a record object
+  const query = useMemo(() => {
+    const result: Record<string, string> = {}
+    searchParams?.forEach((value, key) => {
+      result[key] = value
+    })
+    return result as T
+  }, [searchParams])
 
   const setRouterQuery = useCallback(
     (incoming: T) => {
@@ -13,14 +24,19 @@ export function useUrlQuery<T extends Record<string, string | null>>(doPush?: bo
         Object.entries({ ...current, ...incoming }).filter(([, value]) => value !== null),
       )
 
-      if (JSON.stringify(current) === JSON.stringify(newQuery)) return Promise.resolve(true)
+      if (JSON.stringify(current) === JSON.stringify(newQuery)) return
 
-      return doPush
-        ? push({ query: newQuery })
-        : replace({ query: newQuery }, undefined, { shallow: true })
+      const newSearchParams = new URLSearchParams(newQuery as Record<string, string>)
+      const newUrl = `${pathname}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ''}`
+
+      if (doPush) {
+        router.push(newUrl)
+      } else {
+        router.replace(newUrl)
+      }
     },
-    [doPush, push, replace],
+    [doPush, pathname, router],
   )
 
-  return [query as T, setRouterQuery] as const
+  return [query, setRouterQuery] as const
 }

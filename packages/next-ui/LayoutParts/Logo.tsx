@@ -10,7 +10,7 @@ import {
   generateUtilityClass,
   styled,
 } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { forwardRef } from 'react'
 import { NextLink } from '../Theme'
 
@@ -50,7 +50,7 @@ export type LogoProps = {
 
 export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
   const { href = '/', image, sx } = props
-  const router = useRouter()
+  const pathname = usePathname()
   const classes = useUtilityClasses(props)
 
   const img = (
@@ -62,7 +62,7 @@ export const Logo = forwardRef<HTMLAnchorElement, LogoProps>((props, ref) => {
     />
   )
 
-  const shouldRedirect = router.asPath.split('?')[0] !== href
+  const shouldRedirect = pathname?.split('?')[0] !== href
 
   return (
     <Box

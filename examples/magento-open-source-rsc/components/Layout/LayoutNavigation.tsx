@@ -1,69 +1,171 @@
 'use client'
 
-import { Container } from '@graphcommerce/next-ui'
+import {
+  DarkLightModeMenuSecondaryItem,
+  DesktopNavActions,
+  DesktopNavBar,
+  DesktopNavItem,
+  iconChevronDown,
+  iconCustomerService,
+  iconHeart,
+  IconSvg,
+  MenuFabSecondaryItem,
+  MobileTopRight,
+  NavigationFab,
+  NavigationOverlay,
+  NavigationProvider,
+  PlaceholderFab,
+  useMemoDeep,
+  useNavigationSelection,
+} from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-import { AppBar, Box, Link, Toolbar, Typography } from '@mui/material'
+import { Divider, Fab } from '@mui/material'
+import { useParams, usePathname } from 'next/navigation'
+import type { ReactNode } from 'react'
+import type { LayoutQuery } from '../../graphql/Layout.gql'
 import { Footer } from './Footer'
+import { LayoutDefaultRsc } from './LayoutDefaultRsc'
 import { Logo } from './Logo'
+import { magentoMenuToNavigation } from './magentoMenuToNavigation'
 
 export type LayoutNavigationProps = {
-  children: React.ReactNode
+  children: ReactNode
+  menu?: LayoutQuery['menu']
+  cmsBlocks?: LayoutQuery['cmsBlocks']
 }
 
 /**
- * Simplified Layout for App Router This version doesn't use LayoutDefault which depends on
- * framer-next-pages hooks Instead, it provides a basic header/content/footer structure
+ * Layout Navigation component for App Router Uses NavigationProvider and NavigationOverlay from
+ * next-ui Adapts the original LayoutNavigation for App Router compatibility
  */
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { children } = props
+  const { menu, children, cmsBlocks } = props
+
+  const selection = useNavigationSelection()
+  const pathname = usePathname()
+  const params = useParams<{ store: string }>()
+  const store = params.store
+
+  const isHomePage = pathname === `/${store}` || pathname === `/${store}/`
+
+  const footerBlock = cmsBlocks?.items?.find((item) => item?.identifier === 'footer_links_block')
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      {/* Header */}
-      <AppBar
-        position='sticky'
-        color='default'
-        elevation={0}
-        sx={{
-          bgcolor: 'background.paper',
-          borderBottom: 1,
-          borderColor: 'divider',
-        }}
+    <>
+      <NavigationProvider
+        selection={selection}
+        items={useMemoDeep(
+          () => [
+            { id: 'home', name: <Trans>Home</Trans>, href: `/${store}` },
+            {
+              id: 'manual-item-one',
+              href: `/${store}/${menu?.items?.[0]?.children?.[0]?.url_path ?? ''}`,
+              name: menu?.items?.[0]?.children?.[0]?.name ?? '',
+            },
+            {
+              id: 'manual-item-two',
+              href: `/${store}/${menu?.items?.[0]?.children?.[1]?.url_path ?? ''}`,
+              name: menu?.items?.[0]?.children?.[1]?.name ?? '',
+            },
+            ...magentoMenuToNavigation(menu, true, store),
+            <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
+            <MenuFabSecondaryItem
+              key='account'
+              icon={<IconSvg src={iconHeart} size='medium' />}
+              href={`/${store}/account`}
+            >
+              <Trans>Account</Trans>
+            </MenuFabSecondaryItem>,
+            <MenuFabSecondaryItem
+              key='service'
+              icon={<IconSvg src={iconCustomerService} size='medium' />}
+              href={`/${store}/service`}
+            >
+              <Trans>Customer Service</Trans>
+            </MenuFabSecondaryItem>,
+            <DarkLightModeMenuSecondaryItem key='darkmode' />,
+          ],
+          [menu, selection, store],
+        )}
       >
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Logo />
-          <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-            <Link href='/men' color='inherit' underline='hover'>
-              <Typography variant='body1'>
-                <Trans>Men</Trans>
-              </Typography>
-            </Link>
-            <Link href='/women' color='inherit' underline='hover'>
-              <Typography variant='body1'>
-                <Trans>Women</Trans>
-              </Typography>
-            </Link>
-            <Link href='/account' color='inherit' underline='hover'>
-              <Typography variant='body1'>
-                <Trans>Account</Trans>
-              </Typography>
-            </Link>
-            <Link href='/cart' color='inherit' underline='hover'>
-              <Typography variant='body1'>
-                <Trans>Cart</Trans>
-              </Typography>
-            </Link>
-          </Box>
-        </Toolbar>
-      </AppBar>
+        <NavigationOverlay
+          stretchColumns={false}
+          variantSm='left'
+          sizeSm='full'
+          justifySm='start'
+          itemWidthSm='70vw'
+          variantMd='left'
+          sizeMd='full'
+          justifyMd='start'
+          itemWidthMd='230px'
+          mouseEvent='hover'
+          itemPadding='md'
+        />
+      </NavigationProvider>
 
-      {/* Main Content */}
-      <Box component='main' sx={{ flex: 1 }}>
-        <Container>{children}</Container>
-      </Box>
+      <LayoutDefaultRsc
+        noSticky={isHomePage}
+        header={
+          <>
+            <Logo />
 
-      {/* Footer */}
-      <Footer />
-    </Box>
+            <DesktopNavBar>
+              {menu?.items?.[0]?.children?.slice(0, 2).map((item) => (
+                <DesktopNavItem key={item?.uid} href={`/${store}/${item?.url_path ?? ''}`}>
+                  {item?.name}
+                </DesktopNavItem>
+              ))}
+              <DesktopNavItem
+                onClick={() => selection.set([menu?.items?.[0]?.uid || ''])}
+                onKeyUp={(evt) => {
+                  if (evt.key === 'Enter') {
+                    selection.set([menu?.items?.[0]?.uid || ''])
+                  }
+                }}
+                tabIndex={0}
+              >
+                {menu?.items?.[0]?.name}
+                <IconSvg src={iconChevronDown} />
+              </DesktopNavItem>
+            </DesktopNavBar>
+            <DesktopNavActions>
+              {/* <SearchField formControl={{ sx: { width: '400px' } }} /> */}
+              <Fab
+                href={`/${store}/service`}
+                aria-label={t`Customer Service`}
+                size='large'
+                color='inherit'
+              >
+                <IconSvg src={iconCustomerService} size='large' />
+              </Fab>
+              <Fab
+                href={`/${store}/wishlist`}
+                aria-label={t`Wishlist`}
+                size='large'
+                color='inherit'
+              >
+                <IconSvg src={iconHeart} size='large' />
+              </Fab>
+              <Fab href={`/${store}/account`} aria-label={t`Account`} size='large' color='inherit'>
+                <IconSvg src={iconCustomerService} size='large' />
+              </Fab>
+              <PlaceholderFab />
+            </DesktopNavActions>
+
+            <MobileTopRight>{/* <SearchFab size='responsiveMedium' /> */}</MobileTopRight>
+          </>
+        }
+        footer={<Footer socialLinks={footerBlock?.content} store={store} />}
+        cartFab={
+          <Fab href={`/${store}/cart`} color='secondary' size='large' aria-label={t`Cart`}>
+            🛒
+          </Fab>
+        }
+        menuFab={<NavigationFab onClick={() => selection.set([])} />}
+      >
+        {children}
+      </LayoutDefaultRsc>
+    </>
   )
 }

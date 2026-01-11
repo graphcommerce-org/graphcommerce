@@ -1,6 +1,8 @@
+'use client'
+
 import { useQuery } from '@graphcommerce/graphql'
 import { useCookie } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/compat/router'
 import { StoreConfigDocument } from '../../graphql'
 
 export function useShowStoreSwitcherButton(options?: Record<string, never>) {

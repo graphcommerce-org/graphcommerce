@@ -13,10 +13,12 @@
   },
   "exports": {
     ".": "./index.ts",
-    "./plugins/meshMagentoStore": "./plugins/meshMagentoStore.ts",
-    "./plugins/magentoStoreGraphqlConfig": "./plugins/magentoStoreGraphqlConfig.ts",
+    "./server": "./server.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
     "./plugins/magentoCurrencyCode": "./plugins/magentoCurrencyCode.ts",
-    "./mesh/resolvers.ts": "./mesh/resolvers.ts"
+    "./plugins/magentoCurrencyCodeMesh": "./plugins/magentoCurrencyCodeMesh.ts",
+    "./plugins/magentoStoreGraphqlConfig": "./plugins/magentoStoreGraphqlConfig.ts",
+    "./plugins/meshMagentoStore": "./plugins/meshMagentoStore.ts"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^10.0.3",

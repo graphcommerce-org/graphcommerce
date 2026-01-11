@@ -1,39 +1,13 @@
-import {
-  type getPrivateQueryContextMesh as getPrivateQueryContextMeshType,
-  type getPrivateQueryContext as getPrivateQueryContextType,
-  type usePrivateQueryContext as usePrivateQueryContextType,
-} from '@graphcommerce/graphql'
-import type { PrivateContext } from '@graphcommerce/graphql-mesh'
+'use client'
+
+import { type usePrivateQueryContext as usePrivateQueryContextType } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer/hooks/useCustomerSession'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
-import { cookie, useCookie } from '@graphcommerce/next-ui'
+import { useCookie } from '@graphcommerce/next-ui/utils/cookieHooks'
 
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/graphql',
-}
-
-export const getPrivateQueryContextMesh: FunctionPlugin<typeof getPrivateQueryContextMeshType> = (
-  prev,
-  context,
-) => {
-  const currencyCode = context.headers?.['content-currency']
-
-  const res = prev(context)
-  if (!currencyCode) return res
-  return { ...res, currencyCode } satisfies PrivateContext
-}
-
-export const getPrivateQueryContext: FunctionPlugin<typeof getPrivateQueryContextType> = (
-  prev,
-  client,
-  ...args
-) => {
-  const currencyCode = cookie('Magento-Content-Currency')
-
-  const res = prev(client, ...args)
-  if (!currencyCode) return res
-  return { ...res, currencyCode } satisfies PrivateContext
 }
 
 export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContextType> = (

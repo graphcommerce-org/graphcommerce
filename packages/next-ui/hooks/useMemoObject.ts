@@ -1,3 +1,5 @@
+'use client'
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import { useRef } from 'react'

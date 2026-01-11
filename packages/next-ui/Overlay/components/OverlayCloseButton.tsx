@@ -1,3 +1,5 @@
+'use client'
+
 import { useGo, usePageContext } from '@graphcommerce/framer-next-pages'
 import { t } from '@lingui/core/macro'
 import { useState } from 'react'

@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 
 /** Always load the MessageSnackbar dynamically */

@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { IconButtonProps, SxProps, TextFieldProps, Theme } from '@mui/material'

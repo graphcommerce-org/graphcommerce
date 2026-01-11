@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import type { ChipProps, MenuProps, SxProps, Theme } from '@mui/material'
 import { Chip, Menu, menuClasses } from '@mui/material'

@@ -18,7 +18,8 @@
     "./plugins/MagentoCustomerGraphqlProvider": "./plugins/MagentoCustomerGraphqlProvider.tsx",
     "./plugins/SessionDebuggerPlugin": "./plugins/SessionDebuggerPlugin.tsx",
     "./plugins/XMagentoCacheIdGraphQLProvider": "./plugins/XMagentoCacheIdGraphQLProvider.tsx",
-    "./plugins/magentoCustomerPrivateQueryContext": "./plugins/magentoCustomerPrivateQueryContext.ts"
+    "./plugins/magentoCustomerPrivateQueryContext": "./plugins/magentoCustomerPrivateQueryContext.ts",
+    "./plugins/magentoCustomerPrivateQueryContextMesh": "./plugins/magentoCustomerPrivateQueryContextMesh.ts"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^10.0.3",

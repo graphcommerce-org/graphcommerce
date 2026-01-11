@@ -3,7 +3,7 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { ListItemButtonProps } from '@mui/material'
 import { ListItemButton, ListItemText } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { NextLink } from '../Theme'
 
 export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'> & {
@@ -17,7 +17,8 @@ export type MenuFabItemProps = Omit<ListItemButtonProps<'a'>, 'href' | 'button'>
 export function MenuFabItem(props: MenuFabItemProps) {
   const { href, children, sx = [], ...listItemProps } = props
   const hrefString = href.toString()
-  const path = useRouter().asPath.split('?')[0]
+  const pathname = usePathname()
+  const path = pathname?.split('?')[0] ?? ''
   const active = hrefString === '/' ? path === hrefString : path.startsWith(hrefString)
 
   return (

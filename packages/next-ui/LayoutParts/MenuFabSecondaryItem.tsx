@@ -3,7 +3,7 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import type { MouseEventHandler } from 'react'
 import React from 'react'
 import { extendableComponent } from '../Styles'
@@ -24,11 +24,12 @@ const { classes } = extendableComponent(compName, parts)
 export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
   const { href, children, onClick, icon, sx = [] } = props
   const router = useRouter()
+  const pathname = usePathname()
 
   const handleClick: MouseEventHandler<HTMLElement> = (e) => {
     e.preventDefault()
     onClick?.(e)
-    return router.push(href)
+    router.push(href)
   }
 
   return (
@@ -39,7 +40,7 @@ export function MenuFabSecondaryItem(props: FabMenuSecondaryItemProps) {
       className={classes.root}
       sx={sx}
       dense
-      selected={router.asPath.startsWith(href)}
+      selected={pathname?.startsWith(href)}
     >
       {icon && (
         <ListItemIcon className={classes.text} sx={{ paddingRight: '8px', minWidth: 'unset' }}>

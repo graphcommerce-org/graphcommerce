@@ -1,3 +1,5 @@
+'use client'
+
 import type { SxProps, Theme } from '@mui/material'
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
 import type { ReactNode } from 'react'

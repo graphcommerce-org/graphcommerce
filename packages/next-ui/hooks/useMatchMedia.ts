@@ -1,3 +1,5 @@
+'use client'
+
 import type { Breakpoint } from '@mui/material'
 import { useTheme } from '@mui/material'
 import { useMotionValue } from 'framer-motion'

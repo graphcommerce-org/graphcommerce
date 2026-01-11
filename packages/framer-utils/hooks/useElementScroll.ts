@@ -1,3 +1,5 @@
+'use client'
+
 import type { MotionValue } from 'framer-motion'
 import { useMotionValue, useTransform } from 'framer-motion'
 import sync from 'framesync'

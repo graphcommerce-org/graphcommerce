@@ -1,3 +1,5 @@
+'use client'
+
 import type { MotionValue } from 'framer-motion'
 import { startTransition, useState } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'

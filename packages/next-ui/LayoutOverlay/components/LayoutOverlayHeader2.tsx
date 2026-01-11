@@ -1,3 +1,5 @@
+'use client'
+
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import React, { useRef } from 'react'

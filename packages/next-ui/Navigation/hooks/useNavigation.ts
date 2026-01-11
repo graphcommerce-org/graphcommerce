@@ -1,3 +1,5 @@
+'use client'
+
 import type { MotionValue } from 'framer-motion'
 import { useMotionValue } from 'framer-motion'
 import type React from 'react'

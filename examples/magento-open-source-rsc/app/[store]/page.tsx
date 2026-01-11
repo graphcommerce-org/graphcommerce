@@ -1,7 +1,6 @@
-import { Container } from '@mui/material'
 import type { Metadata } from 'next'
 import { CmsPageContent } from '../../components/CmsPage'
-import { LayoutNavigation } from '../../components/Layout'
+import { LayoutNavigationWrapper } from '../../components/Layout/LayoutNavigationWrapper'
 import { CmsPageDocument } from '../../graphql/CmsPage.gql'
 // Import locally generated documents to avoid barrel exports that pull in client code
 import { StoreConfigDocument } from '../../graphql/StoreConfig.gql'
@@ -61,20 +60,18 @@ export default async function HomePage({ params }: HomePageProps) {
 
   if (!cmsPage) {
     return (
-      <LayoutNavigation>
-        <Container>
-          <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-            <h1>Configure CMS Home Page</h1>
-            <p>No CMS page found with identifier: {identifier}</p>
-          </div>
-        </Container>
-      </LayoutNavigation>
+      <LayoutNavigationWrapper>
+        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+          <h1>Configure CMS Home Page</h1>
+          <p>No CMS page found with identifier: {identifier}</p>
+        </div>
+      </LayoutNavigationWrapper>
     )
   }
 
   return (
-    <LayoutNavigation>
+    <LayoutNavigationWrapper>
       <CmsPageContent content={cmsPage.content} contentHeading={cmsPage.content_heading} />
-    </LayoutNavigation>
+    </LayoutNavigationWrapper>
   )
 }

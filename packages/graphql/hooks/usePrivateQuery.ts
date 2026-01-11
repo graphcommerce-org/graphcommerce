@@ -1,3 +1,5 @@
+'use client'
+
 import type { InputMaybe, PrivateContext } from '@graphcommerce/graphql-mesh'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'

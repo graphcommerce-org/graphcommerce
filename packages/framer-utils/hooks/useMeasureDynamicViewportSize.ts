@@ -1,3 +1,5 @@
+'use client'
+
 import type { MotionValue } from 'framer-motion'
 import sync from 'framesync'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
