@@ -104,6 +104,7 @@
     "@lingui/swc-plugin": "5.10.0",
     "@mui/lab": "7.0.1-beta.20",
     "@mui/material": "7.3.6",
+    "@mui/material-nextjs": "^7.3.7",
     "@mui/utils": "^7.3.6",
     "@next/env": "16.1.1",
     "@parcel/watcher": "^2.5.1",
