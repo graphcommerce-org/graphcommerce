@@ -1,3 +1,5 @@
+'use client'
+
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import type { FormControlLabelProps, SwitchProps } from '@mui/material'

@@ -2,6 +2,7 @@ import type { LinkProps } from '@mui/material'
 import { Link } from '@mui/material'
 import type { LinkProps as PageLinkProps } from 'next/link'
 import PageLink from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 import { useProductListLink } from '../../hooks/useProductListLink'
 import { useProductListParamsContext } from '../../hooks/useProductListParamsContext'
@@ -18,6 +19,7 @@ export type ProductListLinkProps = LinkProps &
 export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLinkProps>(
   (props, ref) => {
     const { setParams } = useProductListParamsContext()
+    const pathname = usePathname()
     const {
       children,
       url,
@@ -32,7 +34,11 @@ export const ProductListLink = React.forwardRef<HTMLAnchorElement, ProductListLi
     } = props
     const newParams = { filters, sort, url, currentPage, pageSize, search }
 
-    const productListLink = useProductListLink(newParams)
+    // Extract the store/locale prefix from the current pathname
+    const pathSegments = pathname.split('/')
+    const storePrefix = pathSegments[1] ? `/${pathSegments[1]}` : ''
+
+    const productListLink = `${storePrefix}${useProductListLink(newParams)}`
     const updateParams = () => setParams(newParams)
 
     // We're setting nofollow if a custom sort, pageSize, filters or search is set.

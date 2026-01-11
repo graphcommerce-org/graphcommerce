@@ -2,6 +2,7 @@ import { productListPaginationVariant } from '@graphcommerce/next-config/config'
 import { NextLink, Pagination, PaginationExtended } from '@graphcommerce/next-ui'
 import type { PaginationProps } from '@mui/material'
 import { Link } from '@mui/material'
+import { usePathname } from 'next/navigation'
 import { productListLink } from '../../hooks/useProductListLink'
 import type { ProductListParams } from '../ProductListItems/filterTypes'
 import type { ProductListPaginationFragment } from './ProductListPagination.gql'
@@ -16,6 +17,12 @@ export function ProductListPagination({
   params,
   ...paginationProps
 }: ProductPaginationProps) {
+  const pathname = usePathname()
+
+  // Extract the store/locale prefix from the current pathname (e.g., '/en' from '/en/c/women')
+  const pathSegments = pathname.split('/')
+  const storePrefix = pathSegments[1] ? `/${pathSegments[1]}` : ''
+
   if (!page_info || !page_info.total_pages || !page_info.current_page) return null
 
   if (productListPaginationVariant !== 'EXTENDED') {
@@ -28,7 +35,7 @@ export function ProductListPagination({
           return (
             <Link
               {...btnProps}
-              href={`${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
+              href={`${storePrefix}${productListLink({ ...params, currentPage: btnProps.page })}${suffix}`}
               component={NextLink}
               shallow
               color='inherit'
@@ -48,7 +55,7 @@ export function ProductListPagination({
         count={page_info?.total_pages}
         page={page_info?.current_page ?? 1}
         paginationHref={({ page }) =>
-          `${productListLink({ ...params, currentPage: page })}${page === 1 ? '' : '#products'}`
+          `${storePrefix}${productListLink({ ...params, currentPage: page })}${page === 1 ? '' : '#products'}`
         }
         {...paginationProps}
       />

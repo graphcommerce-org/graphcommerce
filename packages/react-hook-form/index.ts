@@ -1,3 +1,5 @@
+'use client'
+
 export * from 'react-hook-form'
 export { default as diff } from './src/diff'
 export * from './src/ComposedForm'

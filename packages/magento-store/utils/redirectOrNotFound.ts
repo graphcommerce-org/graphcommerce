@@ -1,10 +1,14 @@
 import type { ParsedUrlQuery } from 'querystring'
 import type { ApolloClient } from '@graphcommerce/graphql'
-import { flushMeasurePerf } from '@graphcommerce/graphql'
 import type { ProductInterfaceResolvers } from '@graphcommerce/graphql-mesh'
-import fragments from '@graphcommerce/graphql/generated/fragments.json'
+import { flushMeasurePerf, fragments } from '@graphcommerce/graphql/server'
 import { productRoute } from '@graphcommerce/next-config/config'
-import { isTypename, nonNullable, revalidate, storefrontConfig } from '@graphcommerce/next-ui'
+import {
+  isTypename,
+  nonNullable,
+  revalidate,
+  storefrontConfig,
+} from '@graphcommerce/next-ui/server'
 import type { Redirect } from 'next'
 import type { HandleRedirectQuery, StoreConfigQuery } from '../graphql'
 import { HandleRedirectDocument } from '../graphql'

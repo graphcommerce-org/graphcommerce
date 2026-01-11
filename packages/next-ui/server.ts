@@ -9,3 +9,8 @@ export * from './utils/robots'
 export * from './utils/sitemap'
 export * from './utils/revalidate'
 export * from './utils/normalizeLocale'
+
+// Server-safe utility functions
+export * from './RenderType/nonNullable'
+export * from './RenderType/filterNonNullableKeys'
+export { isTypename, filterByTypename } from './RenderType/RenderType'

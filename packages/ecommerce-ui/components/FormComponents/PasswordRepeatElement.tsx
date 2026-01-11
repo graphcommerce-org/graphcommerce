@@ -1,3 +1,5 @@
+'use client'
+
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { useWatch } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'

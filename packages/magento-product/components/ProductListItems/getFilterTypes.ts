@@ -1,8 +1,8 @@
-import type { ApolloClient, TypedDocumentNode } from '@graphcommerce/graphql'
-import { gql } from '@graphcommerce/graphql'
 import type { AttributeFrontendInputEnum, Exact } from '@graphcommerce/graphql-mesh'
+import type { ApolloClient, TypedDocumentNode } from '@graphcommerce/graphql/server'
+import { gql } from '@graphcommerce/graphql/server'
 import { magentoVersion } from '@graphcommerce/next-config/config'
-import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui'
+import { filterNonNullableKeys, nonNullable } from '@graphcommerce/next-ui/server'
 import { ProductFilterTypesDocument } from './ProductFilterTypes.gql'
 
 type FilterInputTypesQueryVariables = Exact<{ [key: string]: never }>

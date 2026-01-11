@@ -10,7 +10,7 @@ import type { Theme } from '@mui/material'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useEventCallback, useMediaQuery, useTheme } from '@mui/material'
 import { m, useTransform } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import type { BaseSyntheticEvent, MutableRefObject } from 'react'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
 import { productListLinkFromFilter } from '../../hooks/useProductListLink'
@@ -113,6 +113,7 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
   const ref = useRef<HTMLFormElement>(null)
 
   const router = useRouter()
+  const pathname = usePathname()
   const theme = useTheme()
   const isDesktop = useMatchMediaMotionValue('up', 'md')
   const scrollMarginTop = useTransform(() => (isDesktop.get() ? 0 : theme.appShell.headerHeightSm))
@@ -120,15 +121,24 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
-      const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
-      if (router.asPath === path) return false
+      const generatedPath = productListLinkFromFilter({ ...formValues, currentPage: 1 })
 
-      const isSearch = router.asPath.startsWith('/search')
-      const isFilter = (router.query.url ?? []).includes('q')
+      // Extract the store/locale prefix from the current pathname (e.g., '/en' from '/en/c/women')
+      // In App Router with [store] segment, we need to manually prepend the store
+      const pathSegments = pathname.split('/')
+      const storePrefix = pathSegments[1] ? `/${pathSegments[1]}` : ''
+
+      // Prepend store prefix to the generated path
+      const path = `${storePrefix}${generatedPath}`
+
+      if (pathname === path) return false
+
+      const isSearch = pathname.includes('/search')
+      const isFilter = pathname.includes('/q/')
 
       const next = async (shallow = false, replace: boolean = isSearch || isFilter) => {
-        const opts = { shallow, scroll: scroll.get() }
-        await (replace ? router.replace(path, path, opts) : router.push(path, path, opts))
+        const opts = { scroll: scroll.get() }
+        await (replace ? router.replace(path, opts) : router.push(path, opts))
       }
 
       if (handleSubmit) return handleSubmit(formValues, next)

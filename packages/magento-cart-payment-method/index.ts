@@ -1,3 +1,5 @@
+'use client'
+
 export * from './Api/PaymentMethod'
 export * from './hooks'
 export * from './PaymentMethodActionCardList/PaymentMethodActionCardListForm'

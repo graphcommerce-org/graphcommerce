@@ -41,6 +41,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./server": "./server.ts",
     "./components": "./components/index.ts",
     "./components/AddProductsToCart/AddProductsToCartSnackbarMessage": "./components/AddProductsToCart/AddProductsToCartSnackbarMessage.tsx",
     "./components/ProductFiltersPro": "./components/ProductFiltersPro/index.ts",

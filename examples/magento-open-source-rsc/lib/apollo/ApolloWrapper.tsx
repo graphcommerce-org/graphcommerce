@@ -2,6 +2,7 @@
 
 import { fragments, graphqlConfig, mergeTypePolicies } from '@graphcommerce/graphql'
 import { ApolloLink, HttpLink } from '@apollo/client'
+import { LocalState } from '@apollo/client/local-state'
 import {
   ApolloClient,
   ApolloNextAppProvider,
@@ -41,6 +42,8 @@ function makeClient(storefront: GraphCommerceStorefrontConfig) {
         errorPolicy: 'all',
       },
     },
+    // Enable local state for @client fields
+    localState: new LocalState({}),
   })
 }
 

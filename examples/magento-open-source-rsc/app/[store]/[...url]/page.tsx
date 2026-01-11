@@ -1,12 +1,20 @@
-import { Box, Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
+import { CmsPageDocument } from '@graphcommerce/magento-cms/server'
+import {
+  extractUrlQuery,
+  getFilterTypes,
+  parseParams,
+  ProductFiltersDocument,
+  productListApplyCategoryDefaults,
+  ProductListDocument,
+} from '@graphcommerce/magento-product/server'
+import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
+import { Container, Typography } from '@mui/material'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { CategoryPageDocument } from '../../../graphql/CategoryPage.gql'
-import { CmsPageDocument } from '../../../graphql/CmsPage.gql'
-import { StoreConfigDocument } from '../../../graphql/StoreConfig.gql'
 import { getClient } from '../../../lib/apollo/client'
 import { redirectOrNotFound } from '../../../lib/redirectOrNotFound'
 import { getStorefrontConfig } from '../../../lib/storefront'
+import { CategoryContent } from '../c/[...url]/CategoryContent'
 
 type CatchAllPageProps = {
   params: Promise<{ store: string; url: string[] }>
@@ -21,7 +29,8 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
   const storefront = getStorefrontConfig(store)
   const client = getClient(storefront)
 
-  const urlPath = url.join('/')
+  const [urlPath] = extractUrlQuery({ url })
+  if (!urlPath) return { title: 'Page Not Found' }
 
   // Try to find a category first
   const { data: categoryData } = await client.query({
@@ -59,7 +68,7 @@ export async function generateMetadata({ params }: CatchAllPageProps): Promise<M
 /**
  * Catch-all page component (RSC). This handles:
  *
- * 1. Category pages at root level (e.g., /en/women)
+ * 1. Category pages at root level (e.g., /en/women) - same as /en/c/women
  * 2. CMS pages (e.g., /en/about-us)
  * 3. 404 via redirectOrNotFound when neither matches
  *
@@ -70,104 +79,60 @@ export default async function CatchAllPage({ params }: CatchAllPageProps) {
   const storefront = getStorefrontConfig(store)
   const client = getClient(storefront)
 
-  const urlPath = url.join('/')
+  // Extract URL path and query params
+  const [urlPath, query] = extractUrlQuery({ url })
+  const storeConfigQuery = client.query({ query: StoreConfigDocument })
+
+  if (!urlPath || !query) {
+    return redirectOrNotFound(client, storeConfigQuery, { url }, store)
+  }
 
   // Try to find a category first
   const [{ data: categoryData }, { data: storeConfigData }] = await Promise.all([
     client.query({ query: CategoryPageDocument, variables: { url: urlPath } }),
-    client.query({ query: StoreConfigDocument }),
+    storeConfigQuery,
   ])
 
   const category = categoryData?.categories?.items?.[0]
 
-  // If we found a category, render the category page
-  if (category) {
+  // If we found a category, render it using the same CategoryContent as /c/ route
+  if (category?.uid) {
+    // Fetch filter types for product filtering
+    const filterTypes = await getFilterTypes(client)
+
+    // Parse product list params from URL
+    const productListParams = parseParams(urlPath, query, filterTypes)
+    if (productListParams && !productListParams.filters.category_uid?.in?.[0]) {
+      productListParams.filters.category_uid = { in: [category.uid] }
+    }
+
+    // Apply category defaults and fetch products
+    const appliedParams = productListParams
+      ? await productListApplyCategoryDefaults(productListParams, storeConfigData, category)
+      : undefined
+
+    const { data: productsData } = appliedParams
+      ? await client.query({
+          query: ProductListDocument,
+          variables: appliedParams,
+        })
+      : { data: undefined }
+
+    // Fetch filters
+    const { data: filtersData } = appliedParams
+      ? await client.query({
+          query: ProductFiltersDocument,
+          variables: appliedParams,
+        })
+      : { data: undefined }
+
     return (
-      <Container maxWidth='lg' sx={{ py: 4 }}>
-        {/* Category Header */}
-        <Box sx={{ mb: 4 }}>
-          <Typography variant='h1' component='h1' gutterBottom>
-            {category.name}
-          </Typography>
-          {category.description && (
-            <Typography
-              variant='body1'
-              color='text.secondary'
-              dangerouslySetInnerHTML={{ __html: category.description }}
-            />
-          )}
-        </Box>
-
-        {/* Subcategories */}
-        {category.children && category.children.length > 0 && (
-          <Box sx={{ mb: 4 }}>
-            <Typography variant='h2' component='h2' gutterBottom sx={{ fontSize: '1.5rem' }}>
-              Subcategories
-            </Typography>
-            <Grid container spacing={2}>
-              {category.children.map((child) =>
-                child ? (
-                  <Grid size={{ xs: 6, sm: 4, md: 3 }} key={child.uid}>
-                    <Link
-                      href={`/${store}/${child.url_path}`}
-                      style={{ textDecoration: 'none', display: 'block', height: '100%' }}
-                    >
-                      <Card sx={{ height: '100%', '&:hover': { boxShadow: 4 } }}>
-                        {child.image && (
-                          <CardMedia
-                            component='img'
-                            height='140'
-                            image={child.image}
-                            alt={child.name || ''}
-                          />
-                        )}
-                        <CardContent>
-                          <Typography variant='subtitle1' component='div'>
-                            {child.name}
-                          </Typography>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </Grid>
-                ) : null,
-              )}
-            </Grid>
-          </Box>
-        )}
-
-        {/* Breadcrumbs */}
-        {category.breadcrumbs && category.breadcrumbs.length > 0 && (
-          <Box sx={{ mb: 2 }}>
-            <Typography variant='body2' color='text.secondary'>
-              {category.breadcrumbs.map((crumb, index) =>
-                crumb ? (
-                  <span key={crumb.category_uid}>
-                    {index > 0 && ' / '}
-                    <Link
-                      href={`/${store}/${crumb.category_url_path}`}
-                      style={{ color: 'inherit' }}
-                    >
-                      {crumb.category_name}
-                    </Link>
-                  </span>
-                ) : null,
-              )}
-              {' / '}
-              {category.name}
-            </Typography>
-          </Box>
-        )}
-
-        {/* Placeholder for products */}
-        <Box sx={{ py: 4, textAlign: 'center', bgcolor: 'grey.100', borderRadius: 2 }}>
-          <Typography variant='body1' color='text.secondary'>
-            Product list will be displayed here
-          </Typography>
-          <Typography variant='body2' color='text.secondary' sx={{ mt: 1 }}>
-            Category URL: {urlPath}
-          </Typography>
-        </Box>
-      </Container>
+      <CategoryContent
+        {...categoryData}
+        {...productsData}
+        {...filtersData}
+        filterTypes={filterTypes}
+      />
     )
   }
 
@@ -195,5 +160,5 @@ export default async function CatchAllPage({ params }: CatchAllPageProps) {
   }
 
   // Neither category nor CMS page found - try redirect or 404
-  return redirectOrNotFound(client, storeConfigData?.storeConfig, url, store)
+  return redirectOrNotFound(client, storeConfigQuery, { url }, store)
 }

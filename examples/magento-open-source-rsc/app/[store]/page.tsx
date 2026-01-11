@@ -1,7 +1,7 @@
+import { CmsPageDocument } from '@graphcommerce/magento-cms/server'
+import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
 import type { Metadata } from 'next'
 import { CmsPageContent } from '../../components/CmsPage'
-import { CmsPageDocument } from '../../graphql/CmsPage.gql'
-import { StoreConfigDocument } from '../../graphql/StoreConfig.gql'
 import { getClient } from '../../lib/apollo/client'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 

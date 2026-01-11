@@ -1,5 +1,6 @@
 'use client'
 
+import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
 import {
   DarkLightModeMenuSecondaryItem,
   DesktopNavActions,
@@ -23,12 +24,11 @@ import { Trans } from '@lingui/react/macro'
 import { Divider, Fab } from '@mui/material'
 import { useParams, usePathname } from 'next/navigation'
 import type { ReactNode } from 'react'
-import type { LayoutQuery } from '../../graphql/Layout.gql'
 import { CartFabRsc } from './CartFabRsc'
 import { Footer } from './Footer'
+import type { LayoutQuery } from './Layout.gql'
 import { LayoutDefaultRsc } from './LayoutDefaultRsc'
 import { Logo } from './Logo'
-import { magentoMenuToNavigation } from './magentoMenuToNavigation'
 
 export type LayoutNavigationProps = {
   children: ReactNode
@@ -69,7 +69,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
               href: `/${store}/${menu?.items?.[0]?.children?.[1]?.url_path ?? ''}`,
               name: menu?.items?.[0]?.children?.[1]?.name ?? '',
             },
-            ...magentoMenuToNavigation(menu, true, store),
+            ...magentoMenuToNavigation(menu, true),
             <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
             <MenuFabSecondaryItem
               key='account'

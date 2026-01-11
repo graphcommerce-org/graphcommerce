@@ -1,7 +1,7 @@
+import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
 import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import type { Metadata } from 'next'
-import { ProductPageDocument } from '../../../../graphql/ProductPage.gql'
-import { StoreConfigDocument } from '../../../../graphql/StoreConfig.gql'
+import { ProductPage2Document } from '../../../../graphql/ProductPage2.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { redirectOrNotFound } from '../../../../lib/redirectOrNotFound'
 import { getStorefrontConfig } from '../../../../lib/storefront'
@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const client = getClient(storefront)
 
   const { data } = await client.query({
-    query: ProductPageDocument,
+    query: ProductPage2Document,
     variables: { urlKey: url },
   })
 
@@ -43,16 +43,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const storefront = getStorefrontConfig(store)
   const client = getClient(storefront)
 
-  const [{ data }, { data: storeConfigData }] = await Promise.all([
-    client.query({ query: ProductPageDocument, variables: { urlKey: url } }),
-    client.query({ query: StoreConfigDocument }),
+  const storeConfigQuery = client.query({ query: StoreConfigDocument })
+  const [{ data }] = await Promise.all([
+    client.query({ query: ProductPage2Document, variables: { urlKey: url } }),
+    storeConfigQuery,
   ])
 
   const product = data?.products?.items?.[0]
 
   // If no product found, try to find a redirect or return 404
   if (!product) {
-    return redirectOrNotFound(client, storeConfigData?.storeConfig, url, store)
+    return redirectOrNotFound(client, storeConfigQuery, { url }, store)
   }
 
   const price = product.price_range?.minimum_price

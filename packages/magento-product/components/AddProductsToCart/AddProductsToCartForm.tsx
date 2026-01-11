@@ -6,7 +6,7 @@ import { CrosssellsDocument, useFormGqlMutationCart } from '@graphcommerce/magen
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { useMemo, useRef } from 'react'
 import { AddProductsToCartDocument, type AddProductsToCartMutation } from './AddProductsToCart.gql'
 import {
@@ -43,6 +43,7 @@ const name = 'AddProductsToCartForm'
 export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
   const { children, redirect, onComplete, sx, snackbarProps, ...formProps } = props
   const router = useRouter()
+  const pathname = usePathname()
   const client = useApolloClient()
   const crosssellsQuery = useRef<Promise<ApolloClient.QueryResult<CrosssellsQuery>> | undefined>(
     undefined,
@@ -118,15 +119,11 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
 
         if (variables.redirect === 'added') {
           await crosssellsQuery.current
-          const method = router.pathname.startsWith('/checkout/added')
-            ? router.replace
-            : router.push
-          await method({
-            pathname: '/checkout/added',
-            query: { sku: variables.cartItems.map((i) => i.sku) },
-          })
+          const method = pathname.startsWith('/checkout/added') ? router.replace : router.push
+          const skus = variables.cartItems.map((i) => i.sku).join(',')
+          await method(`/checkout/added?sku=${skus}`)
         } else if (variables.redirect) {
-          await router.push({ pathname: variables.redirect })
+          await router.push(variables.redirect)
         }
 
         form.resetField('redirect', { defaultValue: redirect })

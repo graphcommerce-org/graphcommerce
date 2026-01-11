@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { LayoutNavigation } from '../../components/Layout/LayoutNavigation'
 import { Providers } from '../../components/Providers'
-import { LayoutDocument } from '../../graphql/Layout.gql'
 import { getClient } from '../../lib/apollo/client'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { banktransfer, cashondelivery, checkmo, free } from './methods'
 import { purchaseorder } from './PurchaseOrder'
 

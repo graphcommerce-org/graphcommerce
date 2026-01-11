@@ -3,6 +3,7 @@
 import { canonicalBaseUrl, storefront } from '@graphcommerce/next-config/config'
 import type { LinkProps as NextLinkProps } from 'next/link'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { forwardRef } from 'react'
 
 export type NextLinkPropsBase = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
@@ -24,6 +25,9 @@ const locales = storefront.map((s) => s.locale)
  *
  * Compatible with both Pages Router and App Router.
  *
+ * - In Pages Router: Uses Next.js locale handling
+ * - In App Router with [store] routing: Automatically prefixes URLs with the current store
+ *
  * ```typescript
  * const button = (
  *   <Link href='/cart' component={NextLink} prefetch={false}>
@@ -32,10 +36,17 @@ const locales = storefront.map((s) => s.locale)
  * )
  * ```
  */
+// eslint-disable-next-line react/display-name
 export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   let { href, target, relative, locale, ...rest } = props
 
   const canonical = canonicalBaseUrl
+  const pathname = usePathname()
+
+  // Extract current store from pathname (App Router with [store] routing)
+  // Pathname will be like /en/women or /en
+  const pathSegments = pathname?.split('/').filter(Boolean) ?? []
+  const currentStore = locales.includes(pathSegments[0]) ? pathSegments[0] : undefined
 
   // The href is optional in a MUI link, but required in a Next.js link
   // When the href is not a string, we pass it through directly
@@ -61,6 +72,20 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
   // Relative URL's cause more pain than they're worth
   const isHash = href.startsWith('#')
   if (!isExternal && !isHash && !href.startsWith('/') && !relative) href = `/${href}`
+
+  /**
+   * App Router with [store] routing: Prefix URLs with the current store if:
+   *
+   * - We have a current store from the URL
+   * - The href doesn't already start with a store prefix
+   * - The href is not external or a hash
+   */
+  if (currentStore && !isExternal && !isHash && href.startsWith('/')) {
+    const hrefHasStore = locales.some((l) => href.startsWith(`/${l}/`) || href === `/${l}`)
+    if (!hrefHasStore) {
+      href = `/${currentStore}${href}`
+    }
+  }
 
   return <Link href={href} {...rest} target={target} ref={ref} locale={locale} />
 })

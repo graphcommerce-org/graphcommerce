@@ -1,3 +1,5 @@
+'use client'
+
 import type { PaymentModule } from '@graphcommerce/magento-cart-payment-method'
 import { AdyenPaymentActionCard } from './components/AdyenPaymentActionCard/AdyenPaymentActionCard'
 import { AdyenPaymentHandler } from './components/AdyenPaymentHandler/AdyenPaymentHandler'

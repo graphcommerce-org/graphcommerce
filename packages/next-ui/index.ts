@@ -1,3 +1,5 @@
+'use client'
+
 export * from './ActionCard'
 export * from './Blog/BlogAuthor/BlogAuthor'
 export * from './Blog/BlogContent/BlogContent'

@@ -12,7 +12,9 @@
     }
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./server": "./server.ts",
+    "./graphql/CmsPage.gql": "./graphql/CmsPage.gql.ts"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^10.0.3",

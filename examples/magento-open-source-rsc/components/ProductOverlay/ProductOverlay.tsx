@@ -11,9 +11,9 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import type { ProductPageQuery } from '../../graphql/ProductPage.gql'
+import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 
-type Product = NonNullable<NonNullable<ProductPageQuery['products']>['items']>[0]
+type Product = NonNullable<NonNullable<ProductPage2Query['products']>['items']>[0]
 
 type ProductOverlayProps = {
   product: NonNullable<Product>

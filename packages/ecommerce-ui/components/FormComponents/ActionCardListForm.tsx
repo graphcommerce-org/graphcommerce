@@ -1,3 +1,5 @@
+'use client'
+
 import type { ActionCardListProps, ActionCardProps } from '@graphcommerce/next-ui'
 import { ActionCardList } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'

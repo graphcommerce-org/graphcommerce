@@ -1,3 +1,5 @@
+'use client'
+
 export {
   ProductListCount,
   ProductListFilters,

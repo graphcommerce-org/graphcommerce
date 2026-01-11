@@ -7,7 +7,7 @@ import { m, useTransform } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { Logo } from './Logo'
 
-export type LayoutMinimalRscProps = {
+export type LayoutMinimalProps = {
   children: ReactNode
   footer?: ReactNode
   sx?: SxProps<Theme>
@@ -19,7 +19,7 @@ const MotionBox = styled(m.div)({})
  * Minimal layout component for App Router. Used for checkout pages where we want a clean,
  * distraction-free interface with just the logo in the header.
  */
-export function LayoutMinimalRsc(props: LayoutMinimalRscProps) {
+export function LayoutMinimal(props: LayoutMinimalProps) {
   const { children, footer, sx } = props
 
   const scrollY = useScrollY()

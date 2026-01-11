@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components/SearchOverlay'
 export * from './components/SearchOverlayBodyBase'
 export * from './components/SearchOverlayCategories'

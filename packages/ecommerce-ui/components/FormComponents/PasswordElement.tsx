@@ -1,3 +1,5 @@
+'use client'
+
 import { iconEye, iconEyeCrossed, IconSvg } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import type { IconButtonProps } from '@mui/material'

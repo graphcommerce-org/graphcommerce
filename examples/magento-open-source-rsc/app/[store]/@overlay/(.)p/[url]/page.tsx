@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { ProductOverlay } from '../../../../../components/ProductOverlay'
-import { ProductPageDocument } from '../../../../../graphql/ProductPage.gql'
+import { ProductPage2Document } from '../../../../../graphql/ProductPage2.gql'
 import { getClient } from '../../../../../lib/apollo/client'
 import { getStorefrontConfig } from '../../../../../lib/storefront'
 
@@ -19,7 +19,7 @@ export default async function ProductOverlayPage({ params }: ProductOverlayPageP
   const client = getClient(storefront)
 
   const { data } = await client.query({
-    query: ProductPageDocument,
+    query: ProductPage2Document,
     variables: { urlKey: url },
   })
 

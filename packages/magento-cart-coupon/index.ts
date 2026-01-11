@@ -1,3 +1,5 @@
+'use client'
+
 export * from './Api/Coupon.gql'
 export * from './ApplyCouponForm/ApplyCouponForm'
 export * from './CouponAccordion/CouponAccordion'

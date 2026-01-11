@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components/ProductListItemDownloadable/ProductListItemDownloadable'
 export * from './components/DownloadableProductOptions'
 export * from './components/DownloadableAccountMenuItem/DownloadableAccountMenuItem'

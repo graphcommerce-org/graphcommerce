@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components/CategoryChildren/CategoryChildren'
 export * from './components/CategoryChildren/CategoryChildren.gql'
 export * from './components/CategoryChildren/CategorySiblings.gql'

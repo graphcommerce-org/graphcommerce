@@ -1,3 +1,5 @@
+'use client'
+
 export * from './Api/BillingAddress.gql'
 export * from './Api/ShippingAddress.gql'
 export * from './components/CustomerAddressForm/CustomerAddressForm'

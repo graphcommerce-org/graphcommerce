@@ -1,7 +1,7 @@
 import { useFormState, useWatch } from '@graphcommerce/ecommerce-ui'
 import type { ErrorSnackbarProps, MessageSnackbarProps } from '@graphcommerce/next-ui'
 import { nonNullable } from '@graphcommerce/next-ui'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
 import { AddProductsToCartSnackbarMessage } from './AddProductsToCartSnackbarMessage'
 import { findAddedItems } from './findAddedItems'
@@ -17,10 +17,10 @@ export type AddProductsToCartSnackbarProps = {
 export function AddProductsToCartSnackbar(props: AddProductsToCartSnackbarProps) {
   const { errorSnackbar, successSnackbar, disableSuccessSnackbar } = props
   const { error, data, control, submittedVariables } = useFormAddProductsToCart()
-  const router = useRouter()
+  const pathname = usePathname()
   let redirect = useWatch({ control, name: 'redirect' })
 
-  if (typeof redirect !== 'undefined' && redirect !== 'added' && router.pathname === redirect)
+  if (typeof redirect !== 'undefined' && redirect !== 'added' && pathname === redirect)
     redirect = undefined
 
   const formState = useFormState({ control })

@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable no-nested-ternary */
 import { iconClose, IconSvg, sxx } from '@graphcommerce/next-ui'
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'

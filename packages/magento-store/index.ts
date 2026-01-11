@@ -1,3 +1,5 @@
+'use client'
+
 export * from './components/AttributeForm'
 export * from './components/CurrencySymbol/CurrencySymbol'
 export * from './components/GlobalHead/GlobalHead'

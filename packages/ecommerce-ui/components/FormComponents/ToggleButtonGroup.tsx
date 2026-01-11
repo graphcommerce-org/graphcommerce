@@ -1,3 +1,5 @@
+'use client'
+
 import type { ControllerProps, FieldValues } from '@graphcommerce/react-hook-form'
 import { useController } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
