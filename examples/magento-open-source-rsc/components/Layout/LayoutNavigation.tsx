@@ -55,7 +55,7 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
     <>
       <NavigationProvider
         selection={selection}
-        serverRenderDepth={0}
+        serverRenderDepth={1}
         items={useMemoDeep(
           () => [
             { id: 'home', name: <Trans>Home</Trans>, href: `/${store}` },

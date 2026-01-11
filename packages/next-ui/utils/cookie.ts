@@ -1,10 +1,13 @@
 import type { SerializeOptions } from 'cookie'
 import { parse, serialize } from 'cookie'
-import { motionValue } from 'framer-motion'
 
-// We need this motionValue to be synced with the actual cookie store.
-// This is exported so the hooks file can use it
-export const cookieNotify = motionValue<number>(0)
+// Notification callback for cookie changes - set by cookieHooks.ts on the client
+let onCookieChange: (() => void) | null = null
+
+/** Register a callback to be notified when cookies change (used by useCookies hook) */
+export function registerCookieChangeCallback(callback: (() => void) | null) {
+  onCookieChange = callback
+}
 
 export function cookie(): Record<string, string | undefined>
 /** Read a cookie */
@@ -27,7 +30,7 @@ export function cookie(name?: string, value?: string | null, options?: Serialize
   if (typeof value === 'string') {
     const serialized = serialize(name, value, { path: '/', maxAge: 31536000, ...options })
     document.cookie = serialized
-    cookieNotify.set(cookieNotify.get() + 1)
+    onCookieChange?.()
     return undefined
   }
 
@@ -35,7 +38,7 @@ export function cookie(name?: string, value?: string | null, options?: Serialize
   if (value === null) {
     const serialized = serialize(name, '', { path: '/', maxAge: 0 })
     document.cookie = serialized
-    cookieNotify.set(cookieNotify.get() + 1)
+    onCookieChange?.()
     return undefined
   }
 
