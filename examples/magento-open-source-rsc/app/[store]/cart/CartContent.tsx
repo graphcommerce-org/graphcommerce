@@ -24,8 +24,8 @@ import { Trans } from '@lingui/react/macro'
 import { CircularProgress, Container } from '@mui/material'
 import { LayoutOverlayRsc, productListRenderer } from '../../../components'
 
-/** Client component for cart page with useCartQuery and cart interactions. */
-export function CartClient() {
+/** Shared cart content component used by both full page and intercepted overlay routes. */
+export function CartContent() {
   const cart = useCartQuery(CartPageDocument, {
     errorPolicy: 'all',
     fetchPolicy: 'cache-and-network',
