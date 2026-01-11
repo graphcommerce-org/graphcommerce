@@ -1,33 +1,30 @@
 'use client'
 
 import {
-  DarkLightModeMenuSecondaryItem,
   DesktopNavActions,
   DesktopNavBar,
   DesktopNavItem,
   iconChevronDown,
   iconCustomerService,
   iconHeart,
+  iconMenu,
   IconSvg,
-  MenuFabSecondaryItem,
   MobileTopRight,
-  NavigationFab,
-  NavigationOverlay,
-  NavigationProvider,
   PlaceholderFab,
-  useMemoDeep,
   useNavigationSelection,
 } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-import { Divider, Fab } from '@mui/material'
+import { Fab } from '@mui/material'
 import { useParams, usePathname } from 'next/navigation'
+import { useMemo } from 'react'
 import type { ReactNode } from 'react'
 import type { LayoutQuery } from '../../graphql/Layout.gql'
 import { Footer } from './Footer'
 import { LayoutDefaultRsc } from './LayoutDefaultRsc'
 import { Logo } from './Logo'
 import { magentoMenuToNavigation } from './magentoMenuToNavigation'
+import { NavigationDrawer } from './NavigationDrawer'
 
 export type LayoutNavigationProps = {
   children: ReactNode
@@ -36,8 +33,8 @@ export type LayoutNavigationProps = {
 }
 
 /**
- * Layout Navigation component for App Router Uses NavigationProvider and NavigationOverlay from
- * next-ui Adapts the original LayoutNavigation for App Router compatibility
+ * Layout Navigation component for App Router Uses a simplified MUI Drawer for navigation instead of
+ * the scroll-snap based overlay
  */
 export function LayoutNavigation(props: LayoutNavigationProps) {
   const { menu, children, cmsBlocks } = props
@@ -51,58 +48,28 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
 
   const footerBlock = cmsBlocks?.items?.find((item) => item?.identifier === 'footer_links_block')
 
+  // Build navigation items for the drawer
+  const navItems = useMemo(
+    () => [
+      { id: 'home', name: <Trans>Home</Trans>, href: `/${store}` },
+      {
+        id: 'manual-item-one',
+        href: `/${store}/${menu?.items?.[0]?.children?.[0]?.url_path ?? ''}`,
+        name: menu?.items?.[0]?.children?.[0]?.name ?? '',
+      },
+      {
+        id: 'manual-item-two',
+        href: `/${store}/${menu?.items?.[0]?.children?.[1]?.url_path ?? ''}`,
+        name: menu?.items?.[0]?.children?.[1]?.name ?? '',
+      },
+      ...magentoMenuToNavigation(menu, true, store),
+    ],
+    [menu, store],
+  )
+
   return (
     <>
-      <NavigationProvider
-        selection={selection}
-        items={useMemoDeep(
-          () => [
-            { id: 'home', name: <Trans>Home</Trans>, href: `/${store}` },
-            {
-              id: 'manual-item-one',
-              href: `/${store}/${menu?.items?.[0]?.children?.[0]?.url_path ?? ''}`,
-              name: menu?.items?.[0]?.children?.[0]?.name ?? '',
-            },
-            {
-              id: 'manual-item-two',
-              href: `/${store}/${menu?.items?.[0]?.children?.[1]?.url_path ?? ''}`,
-              name: menu?.items?.[0]?.children?.[1]?.name ?? '',
-            },
-            ...magentoMenuToNavigation(menu, true, store),
-            <Divider key='divider' sx={(theme) => ({ my: theme.spacings.xs })} />,
-            <MenuFabSecondaryItem
-              key='account'
-              icon={<IconSvg src={iconHeart} size='medium' />}
-              href={`/${store}/account`}
-            >
-              <Trans>Account</Trans>
-            </MenuFabSecondaryItem>,
-            <MenuFabSecondaryItem
-              key='service'
-              icon={<IconSvg src={iconCustomerService} size='medium' />}
-              href={`/${store}/service`}
-            >
-              <Trans>Customer Service</Trans>
-            </MenuFabSecondaryItem>,
-            <DarkLightModeMenuSecondaryItem key='darkmode' />,
-          ],
-          [menu, selection, store],
-        )}
-      >
-        <NavigationOverlay
-          stretchColumns={false}
-          variantSm='left'
-          sizeSm='full'
-          justifySm='start'
-          itemWidthSm='70vw'
-          variantMd='left'
-          sizeMd='full'
-          justifyMd='start'
-          itemWidthMd='230px'
-          mouseEvent='hover'
-          itemPadding='md'
-        />
-      </NavigationProvider>
+      <NavigationDrawer selection={selection} items={navItems} menu={menu} store={store} />
 
       <LayoutDefaultRsc
         noSticky={isHomePage}
@@ -162,7 +129,11 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             🛒
           </Fab>
         }
-        menuFab={<NavigationFab onClick={() => selection.set([])} />}
+        menuFab={
+          <Fab onClick={() => selection.set([])} aria-label={t`Open Menu`} size='large'>
+            <IconSvg src={iconMenu} size='large' />
+          </Fab>
+        }
       >
         {children}
       </LayoutDefaultRsc>
