@@ -1,3 +1,5 @@
+'use client'
+
 import { sxx } from '@graphcommerce/next-ui'
 import type { LinkProps } from '@mui/material'
 import { Box, Link } from '@mui/material'

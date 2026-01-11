@@ -1,8 +1,12 @@
 'use client'
 
 import { fragments, graphqlConfig, mergeTypePolicies } from '@graphcommerce/graphql'
-import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
-import { ApolloNextAppProvider } from '@apollo/experimental-nextjs-app-support'
+import { ApolloLink, HttpLink } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloNextAppProvider,
+  InMemoryCache,
+} from '@apollo/experimental-nextjs-app-support'
 import type { GraphCommerceStorefrontConfig } from '../storefront'
 
 type ApolloWrapperProps = {
@@ -21,6 +25,8 @@ function makeClient(storefront: GraphCommerceStorefrontConfig) {
     },
   })
 
+  // Use the special ApolloClient and InMemoryCache from @apollo/experimental-nextjs-app-support
+  // These are required for streaming SSR in App Router
   return new ApolloClient({
     link: ApolloLink.from([...config.links, httpLink]),
     cache: new InMemoryCache({

@@ -1,3 +1,5 @@
+'use client'
+
 import type { LinearProgressProps } from '@mui/material'
 import { LinearProgress } from '@mui/material'
 import { m, motionValue, useTransform } from 'framer-motion'

@@ -1,3 +1,5 @@
+'use client'
+
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
 import type { FabProps, SxProps, Theme } from '@mui/material'

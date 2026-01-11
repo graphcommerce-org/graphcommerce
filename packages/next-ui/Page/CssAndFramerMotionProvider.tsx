@@ -1,3 +1,5 @@
+'use client'
+
 import { GlobalStyles } from '@mui/material'
 import { LazyMotion } from 'framer-motion'
 import type { EmotionProviderProps } from '../Styles/EmotionProvider'

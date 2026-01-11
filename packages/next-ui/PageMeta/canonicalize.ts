@@ -1,3 +1,5 @@
+'use client'
+
 import type {} from '@graphcommerce/next-config'
 import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { addBasePath } from 'next/dist/client/add-base-path'

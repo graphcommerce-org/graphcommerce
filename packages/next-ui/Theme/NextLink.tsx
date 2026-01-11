@@ -1,9 +1,9 @@
-import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
+'use client'
+
+import { canonicalBaseUrl, storefront } from '@graphcommerce/next-config/config'
 import type { LinkProps as NextLinkProps } from 'next/link'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import React, { forwardRef } from 'react'
-import { useStorefrontConfig } from '../hooks/useStorefrontConfig'
 
 export type NextLinkPropsBase = Omit<NextLinkProps, 'legacyBehavior' | 'passHref' | 'as'>
 export type AnchorWithoutLinkProps = Omit<
@@ -12,12 +12,17 @@ export type AnchorWithoutLinkProps = Omit<
 >
 export type LinkProps = AnchorWithoutLinkProps & Partial<NextLinkPropsBase> & { relative?: boolean }
 
+// Get all configured locales for URL parsing
+const locales = storefront.map((s) => s.locale)
+
 /**
  * This is a wrapper around the Next.js Link component which can be used with MUI's Link component
  * or any ButtonBase derivative.
  *
  * By default you can use the props provided by the Link or Button component, but you can pass any
  * next/link specific props like `prefetch`, `replace`, `scroll`, `shallow`
+ *
+ * Compatible with both Pages Router and App Router.
  *
  * ```typescript
  * const button = (
@@ -30,8 +35,7 @@ export type LinkProps = AnchorWithoutLinkProps & Partial<NextLinkPropsBase> & { 
 export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   let { href, target, relative, locale, ...rest } = props
 
-  const router = useRouter()
-  const canonical = useStorefrontConfig().canonicalBaseUrl ?? canonicalBaseUrl
+  const canonical = canonicalBaseUrl
 
   // The href is optional in a MUI link, but required in a Next.js link
   // When the href is not a string, we pass it through directly
@@ -44,14 +48,14 @@ export const NextLink = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) =>
    * and make the URL relative without the locale. Prevents Next.js prefixing again with the current
    * locale.
    */
-  if (!locale && isFullUrl && href.startsWith(canonical)) {
+  if (!locale && isFullUrl && canonical && href.startsWith(canonical)) {
     const url = new URL(href)
-    locale = router.locales?.find((l) => url.pathname.startsWith(`/${l}/`))
+    locale = locales.find((l) => url.pathname.startsWith(`/${l}/`))
     href = locale ? url.pathname.replace(`/${locale}/`, '/') : url.pathname
     href += url.search
   }
 
-  const isExternal = isFullUrl && !href.startsWith(canonical)
+  const isExternal = isFullUrl && canonical && !href.startsWith(canonical)
   if (isExternal) target = target || '_blank'
 
   // Relative URL's cause more pain than they're worth

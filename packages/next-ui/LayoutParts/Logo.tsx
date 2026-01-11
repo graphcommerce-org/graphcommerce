@@ -1,3 +1,5 @@
+'use client'
+
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
 import { sxx } from '@graphcommerce/next-ui'

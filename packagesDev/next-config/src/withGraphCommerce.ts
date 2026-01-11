@@ -27,16 +27,39 @@ function domains(config: GraphCommerceConfig): DomainLocale[] {
   )
 }
 
+export type WithGraphCommerceOptions = {
+  /** Working directory for loading config. Defaults to process.cwd() */
+  cwd?: string
+  /**
+   * Set to false to disable i18n configuration for App Router projects. When using App Router, you
+   * should use the [store] dynamic segment instead.
+   *
+   * @default true (i18n enabled for Pages Router compatibility)
+   */
+  i18n?: boolean
+}
+
 /**
  * GraphCommerce configuration with new Turbopack-compatible interceptor system.
  *
  * ```ts
- * const { withGraphCommerce } = require('@graphcommerce/next-config')
+ * import { withGraphCommerce } from '@graphcommerce/next-config'
  *
- * module.exports = withGraphCommerce(nextConfig)
+ * // Pages Router (default)
+ * export default withGraphCommerce(nextConfig)
+ *
+ * // App Router (disable i18n, use [store] segment instead)
+ * export default withGraphCommerce(nextConfig, { i18n: false })
  * ```
  */
-export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.cwd()): NextConfig {
+export function withGraphCommerce(
+  nextConfig: NextConfig,
+  options: WithGraphCommerceOptions | string = {},
+): NextConfig {
+  // Support legacy string argument for cwd
+  const opts: WithGraphCommerceOptions = typeof options === 'string' ? { cwd: options } : options
+  const { cwd = process.cwd(), i18n: enableI18n = true } = opts
+
   graphcommerceConfig ??= loadConfig(cwd)
 
   const { storefront } = graphcommerceConfig
@@ -80,13 +103,18 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         ...(nextConfig.experimental?.optimizePackageImports ?? []),
       ],
     },
-    i18n: {
-      ...nextConfig.i18n,
-      defaultLocale:
-        storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
-      locales: storefront.map((locale) => locale.locale),
-      domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
-    },
+    // Only add i18n config for Pages Router. App Router uses [store] dynamic segment instead.
+    ...(enableI18n
+      ? {
+          i18n: {
+            ...nextConfig.i18n,
+            defaultLocale:
+              storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
+            locales: storefront.map((locale) => locale.locale),
+            domains: [...domains(graphcommerceConfig), ...(nextConfig.i18n?.domains ?? [])],
+          },
+        }
+      : {}),
     images: {
       ...nextConfig.images,
       // GraphCommerce uses quality 52 by default for optimized image delivery

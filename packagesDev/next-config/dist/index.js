@@ -1595,7 +1595,9 @@ function domains(config) {
     )
   );
 }
-function withGraphCommerce(nextConfig, cwd = process.cwd()) {
+function withGraphCommerce(nextConfig, options = {}) {
+  const opts = typeof options === "string" ? { cwd: options } : options;
+  const { cwd = process.cwd(), i18n: enableI18n = true } = opts;
   graphcommerceConfig ??= loadConfig(cwd);
   const { storefront } = graphcommerceConfig;
   const transpilePackages = [
@@ -1636,12 +1638,15 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         ...nextConfig.experimental?.optimizePackageImports ?? []
       ]
     },
-    i18n: {
-      ...nextConfig.i18n,
-      defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
-      locales: storefront.map((locale) => locale.locale),
-      domains: [...domains(graphcommerceConfig), ...nextConfig.i18n?.domains ?? []]
-    },
+    // Only add i18n config for Pages Router. App Router uses [store] dynamic segment instead.
+    ...enableI18n ? {
+      i18n: {
+        ...nextConfig.i18n,
+        defaultLocale: storefront.find((locale) => locale.defaultLocale)?.locale ?? storefront[0].locale,
+        locales: storefront.map((locale) => locale.locale),
+        domains: [...domains(graphcommerceConfig), ...nextConfig.i18n?.domains ?? []]
+      }
+    } : {},
     images: {
       ...nextConfig.images,
       // GraphCommerce uses quality 52 by default for optimized image delivery
@@ -1669,7 +1674,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
       return rewrites;
     },
     transpilePackages,
-    webpack: (config, options) => {
+    webpack: (config, options2) => {
       if (!config.module) config.module = { rules: [] };
       config.module = {
         ...config.module,
@@ -1698,7 +1703,7 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         )
       };
       if (!config.resolve) config.resolve = {};
-      return typeof nextConfig.webpack === "function" ? nextConfig.webpack(config, options) : config;
+      return typeof nextConfig.webpack === "function" ? nextConfig.webpack(config, options2) : config;
     }
   };
 }

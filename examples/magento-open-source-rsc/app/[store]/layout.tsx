@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Providers } from '../../components/Providers'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 
 type StoreLayoutProps = {
@@ -28,13 +29,12 @@ export async function generateMetadata({ params }: StoreLayoutProps): Promise<Me
 }
 
 /**
- * Store layout - minimal RSC version For now, renders children directly without client providers to
- * avoid importing packages that use next/router
+ * Store layout with client providers (MUI, Framer, Lingui, Apollo) The Providers component is a
+ * client component that wraps all context providers
  */
 export default async function StoreLayout({ children, params }: StoreLayoutProps) {
   const { store } = await params
-  // Verify the store exists (will throw notFound if invalid)
-  getStorefrontConfig(store)
+  const storefront = getStorefrontConfig(store)
 
-  return <>{children}</>
+  return <Providers storefront={storefront}>{children}</Providers>
 }

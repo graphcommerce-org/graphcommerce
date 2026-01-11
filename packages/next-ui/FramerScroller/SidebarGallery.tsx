@@ -1,3 +1,5 @@
+'use client'
+
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages/hooks/usePrevPageRouter'
 import type { MotionImageAspectProps, ScrollerButtonProps } from '@graphcommerce/framer-scroller'
 import {
