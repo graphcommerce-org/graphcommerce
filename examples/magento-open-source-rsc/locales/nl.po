@@ -1,0 +1,1135 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2021-10-11 16:14+0200\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: nl\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+msgid "Doing so will remove all your data including order history and saved shipping / billing addresses."
+msgstr "Dit zal al uw gegevens verwijderen, inclusief bestelgeschiedenis en opgeslagen verzend-/factuuradressen."
+
+#. placeholder {0}: addedItems.length
+msgid "{0, plural, one {<0>{addedItems}</0> has been added to your shopping cart} two {<1>{addedItems}</1> have been added to your shopping cart!} other {# products have been added to your shopping cart!}}"
+msgstr "{0, plural, one {<0>{addedItems}</0> is toegevoegd aan je winkelwagen} two {<1>{addedItems}</1> zijn toegevoegd aan je winkelwagen!} other {# producten zijn toegevoegd aan je winkelwagen!}}"
+
+msgid "Cart ({quantity})"
+msgstr "Winkelwagen ({quantity})"
+
+msgid "Processing your payment"
+msgstr "Uw betaling aan het verwerken"
+
+msgid "Other"
+msgstr "Overige"
+
+msgid "Credit Memo number"
+msgstr "Creditnota nummer"
+
+msgid "You can now <0>sign in again</0>."
+msgstr "U kunt nu <0>opnieuw inloggen</0>"
+
+#. placeholder {0}: maxDate.toLocaleDateString()
+msgid "Date must be before {0}"
+msgstr "Datum moet voor {0} zijn"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "Payment information"
+msgstr "Betalingsinformatie"
+
+msgid "Page {page} of {max}"
+msgstr "Pagina {page} van {max}"
+
+msgid "I understand that my account will be deleted and this can not be undone."
+msgstr "Ik begrijp dat mijn account zal worden verwijderd en dat dit niet ongedaan kan worden gemaakt."
+
+msgid "Add to cart quantity"
+msgstr "Voeg toe aan winkelwagen aantal"
+
+msgid "Credit Memo not found"
+msgstr "Creditnota niet gevonden"
+
+msgid "No worries! Enter your email address and we will send an email with instructions to reset your password."
+msgstr "Geen zorgen! Vul uw e-mailadres in en we sturen een email met instructies om het wachtwoord te resetten."
+
+msgid "We couldn't find any products."
+msgstr "We konden geen producten vinden."
+
+msgid "<0>{name}</0> has been added to your comparison!"
+msgstr "<0>{name}</0> is toegevoegd aan je vergelijking!"
+
+msgid "Orders"
+msgstr "Bestellingen"
+
+msgid "We couldn't find the page you were looking for"
+msgstr "We kunnen de pagina niet vinden waar u naar op zoek bent."
+
+msgid "Store Settings"
+msgstr "Winkelinstellingen"
+
+msgid "Newletter"
+msgstr "Nieuwsbrief"
+
+msgid "Search all products..."
+msgstr "Zoek alle producten..."
+
+msgid "Passwords don't match"
+msgstr "Wachtwoorden komen niet overeen"
+
+msgid "Empty comparelist"
+msgstr "Vergelijking leegmaken"
+
+msgid "Free"
+msgstr "Gratis"
+
+msgid "Pay with iDEAL"
+msgstr "Betaal met iDEAL"
+
+msgid "Did you mean?"
+msgstr "Bedoelde u?"
+
+msgid "Successfully changed password"
+msgstr "Wachtwoord aangepast"
+
+msgid "Successfully updated email"
+msgstr "Email succesvol bijgewerkt"
+
+msgid "Sign up for our newsletter and stay updated"
+msgstr "Abonneer u op onze nieuwsbrief en blijf op de hoogte"
+
+msgid "Try a different product"
+msgstr "Probeer een ander product"
+
+msgid "1. You are still paying in another window: Close this window and continue there."
+msgstr "1. U betaalt nog in een ander venster: Sluit dit venster en ga daar verder."
+
+msgid "More options"
+msgstr "Meer opties"
+
+msgid "Create an account"
+msgstr "Maak een account"
+
+msgid "City"
+msgstr "Plaats"
+
+msgid "Grand Total"
+msgstr "Eindtotaal"
+
+msgid "We couldn't find any results"
+msgstr "We konden geen resultaten vinden"
+
+msgid "Pay"
+msgstr "Betaal"
+
+msgid "You have been successfully subscribed to our newsletter."
+msgstr "U bent succesvol aangemeld voor onze nieuwsbrief."
+
+msgid "Newsletter"
+msgstr "Nieuwsbrief"
+
+msgid "Review"
+msgstr "Review"
+
+msgid "Sign in"
+msgstr "Inloggen"
+
+msgid "Payment failed with status: {paymentStatus}"
+msgstr "Betaling mislukt met status: {paymentStatus}"
+
+msgid "Shipping method"
+msgstr "Verzendmethode"
+
+msgid "Payment"
+msgstr "Betaling"
+
+msgid "If you’ve successfully paid your order, the order <0>will</0> come through, but there is a communication error with the website."
+msgstr "Als u uw bestelling succesvol heeft betaald, dan zal de bestelling <0>doorkomen</0>, maar er is een communicatiefout met de website."
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "I understand that my order will be canceled and this can not be undone."
+msgstr "Ik begrijp dat mijn bestelling wordt geannuleerd en dat dit niet ongedaan kan worden gemaakt."
+
+msgid "<0>{name}</0> has been added to your shopping cart!"
+msgstr "<0>{name}</0> is toegevoegd aan je winkelwagen!"
+
+msgid "Successfully saved changes"
+msgstr "Wijzigingen succesvol opgeslagen"
+
+msgid "Confirmation + Track & trace"
+msgstr "Bevestiging + Track & trace"
+
+msgid "Are you sure you want to delete your account?"
+msgstr "Weet u zeker dat u uw account wilt verwijderen?"
+
+msgid "Sign in or create an account!"
+msgstr "Log in of maak een account aan!"
+
+msgid "Personal details"
+msgstr "Persoonlijke details"
+
+msgid "Subscribed"
+msgstr "Geabonneerd"
+
+msgid "Relevance"
+msgstr "Relevantie"
+
+msgid "Breadcrumbs"
+msgstr "Broodkruimelpad"
+
+msgid "Product could not be found"
+msgstr "Product kan niet worden gevonden"
+
+msgid "Fill in your new password, confirm it and click on the save button."
+msgstr "Vul uw nieuwe wachtwoord in, bevestig het en klik op de opslaan knop."
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Discover our collection and add items to your cart!"
+msgstr "Ontdek onze collectie en voeg producten toe aan uw winkelwagen!"
+
+msgid "Follow order"
+msgstr "Volg bestelling"
+
+msgid "Ordered items"
+msgstr "Bestelde items"
+
+#. placeholder {0}: String(invoiceNumber)
+msgid "Invoice #{0}"
+msgstr "Factuur #{0}"
+
+msgid "Business"
+msgstr "Zakelijk"
+
+msgid "Whoops our bad..."
+msgstr "Oeps.."
+
+msgid "Search"
+msgstr "Zoeken"
+
+msgid "Shipping ({carrier} {shipping_method})"
+msgstr "Verzending ({carrier} {shipping_method})"
+
+msgid "Email address"
+msgstr "E-mailadres"
+
+msgid "Account"
+msgstr "Account"
+
+msgid "Compare ({compareListCount})"
+msgstr "Vergelijk ({compareListCount})"
+
+msgid "You have no addresses saved yet"
+msgstr "U heeft nog geen adressen opgeslagen"
+
+msgid "This field is required"
+msgstr "Dit veld is verplicht"
+
+msgid "Add address"
+msgstr "Adres toevoegen"
+
+msgid "The payment hasn't completed, please try again or select a different payment method."
+msgstr "De betaling is niet voltooid, probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "Contact us"
+msgstr "Contacteer ons"
+
+msgid "Compare products"
+msgstr "Vergelijk producten"
+
+msgid "Order #{orderNumber}"
+msgstr "Bestelling #{orderNumber}"
+
+msgid "You must first login before you can continue"
+msgstr "U moet eerst inloggen voordat u verder kunt gaan"
+
+msgid "Order status"
+msgstr "Bestelstatus"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "You are reviewing {name}"
+msgstr "U beoordeelt {name}"
+
+msgid "Current Password"
+msgstr "Huidige wachtwoord"
+
+msgid "Account deletion successful"
+msgstr "Account verwijdering succesvol"
+
+msgid "Confirmation"
+msgstr "Bevestiging"
+
+msgid "Complete your purchase"
+msgstr "Maak uw bestelling compleet"
+
+msgid "Subscribe"
+msgstr "Abonneren"
+
+msgid "No orders found"
+msgstr "Geen bestellingen gevonden"
+
+msgid "Payment method"
+msgstr "Betaalmethode"
+
+msgid "Did you mean: {list}"
+msgstr "Bedoelde u: {list}"
+
+msgid "Subscribe to newsletter"
+msgstr "Abonneer op de nieuwsbrief"
+
+msgid "You haven't placed any reviews yet"
+msgstr "Je hebt nog geen reviews geplaatst"
+
+msgid "Close overlay"
+msgstr "Overlay sluiten"
+
+msgid "Remove from wishlist"
+msgstr "Verwijder van verlanglijst"
+
+msgid "We couldn’t find any results for ‘{term}’"
+msgstr "We konden geen resultaten vinden voor ‘{term}’"
+
+msgid "Please provide a valid house number"
+msgstr "Vul een geldig huisnummer in"
+
+msgid "Mrs"
+msgstr "Mvr"
+
+msgid "Submit review"
+msgstr "Verstuur review"
+
+#. placeholder {0}: shippingMethod.carrier_title
+#. placeholder {1}: shippingMethod.method_title
+msgid "Shipping ({0} {1})"
+msgstr "Verzending ({0} {1})"
+
+msgid "Your cart is empty"
+msgstr "Je winkelwagen is leeg"
+
+msgid "Cancel payment and unlock cart"
+msgstr "Betaling annuleren en winkelwagen ontgrendelen"
+
+msgid "All filters"
+msgstr "Alle filters"
+
+msgid "Set your new password"
+msgstr "Stel uw nieuwe wachtwoord in"
+
+msgid "Loading your data"
+msgstr "Uw gegevens laden"
+
+msgid "Number"
+msgstr "Nummer"
+
+msgid "Log in to continue shopping"
+msgstr "Log in om verder te winkelen"
+
+msgid "Addition"
+msgstr "Toevoeging"
+
+msgid "Wishlist"
+msgstr "Verlanglijst"
+
+msgid "You can track your order status and much more!"
+msgstr "U kunt uw bestelstatus bijhouden en veel meer!"
+
+msgid "Only a few left"
+msgstr "Nog maar een paar op voorraad."
+
+msgid "You have not placed an order"
+msgstr "Je hebt nog geen bestelling geplaatst"
+
+msgid "Create Account"
+msgstr "Maak account"
+
+msgid "Discover our collection and add items to your comparelist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan je vergelijklijst!"
+
+msgid "View Product"
+msgstr "Bekijk product"
+
+msgid "What are you looking for?"
+msgstr "Wat zoekt u?"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "You have {count} downloads available."
+msgstr "U heeft {count} downloads beschikbaar."
+
+msgid "Product"
+msgstr "Product"
+
+msgid "{total_count} products"
+msgstr "{total_count} producten"
+
+msgid "Please select a value for ‘{label}’"
+msgstr "Selecteer een waarde voor {label}"
+
+msgid "Product not available in {allLabels}"
+msgstr "Product niet beschikbaar in {allLabels}"
+
+msgid "2. You don't have an open payment window: Press the button below."
+msgstr "2. U heeft geen open betalingsvenster: Druk op de onderstaande knop."
+
+msgid "This field is invalid"
+msgstr "Dit veld is ongeldig"
+
+msgid "Invoice #{invoiceNumber}"
+msgstr "Factuur #{invoiceNumber}"
+
+msgid "Zip code or city"
+msgstr "Postcode of stad"
+
+msgid "Order has successfully been canceled"
+msgstr "Bestelling is geannuleerd"
+
+msgid "Save new password"
+msgstr "Sla nieuw wachtwoord op"
+
+msgid "Products"
+msgstr "Producten"
+
+msgid "View all"
+msgstr "Bekijk alles"
+
+msgid "Categories"
+msgstr "Categorieën"
+
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Vul een adres in om een verzendmethode te kunnen selecteren"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Discount code"
+msgstr "Kortingscode"
+
+msgid "Remove Product"
+msgstr "Verwijder product"
+
+msgid "Postcode"
+msgstr "Postcode"
+
+msgid "Grand total"
+msgstr "Totaal"
+
+msgid "Reset"
+msgstr "Resetten"
+
+msgid "Please enter a valid email address"
+msgstr "Vul een geldig e-mailadres in"
+
+#. placeholder {0}: tax?.label
+#. placeholder {0}: tax?.title
+msgid "Including {0}"
+msgstr "Inclusief {0}"
+
+msgid "Authentication"
+msgstr "Authenticatie"
+
+msgid "Minimum of different classes of characters in password is {passwordMinCharacterSets}. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+msgstr "Het minimumaantal verschillende klassen van tekens in het wachtwoord is {passwordMinCharacterSets}. Klassen van tekens: Kleine letters, Hoofdletters, Cijfers, Speciale tekens."
+
+msgid "Please select a payment method"
+msgstr "Selecteer een betaalmethode a.u.b."
+
+msgid "Discover our collection and place your first order!"
+msgstr "Ontdek onze collectie en plaats uw eerste bestelling!"
+
+msgid "In comparelist"
+msgstr "In vergelijking"
+
+msgid "The payment is refused, please try again or select a different payment method."
+msgstr "De betaling is geweigerd, probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "Switch stores"
+msgstr "Winkel wisselen"
+
+msgid "Invoiced items"
+msgstr "Gefactureerde items"
+
+msgid "Results for ‘{search}’"
+msgstr "Resultaten voor ‘{search}’"
+
+msgid "Telephone"
+msgstr "Telefoon"
+
+msgid "Company name"
+msgstr "Bedrijfsnaam"
+
+msgid "Shipping addresses"
+msgstr "Verzendadressen"
+
+msgid "View comparison"
+msgstr "Bekijk vergelijking"
+
+msgid "Shipment not found"
+msgstr "Zending niet gevonden"
+
+msgid "Be the first to write a review!"
+msgstr "Wees de eerste die een review schrijft!"
+
+msgid "Create a password and tell us your name"
+msgstr "Maak een wachtwoord en vertel ons uw naam"
+
+#. placeholder {0}: product?.name
+msgid "You are reviewing {0}"
+msgstr "U reviewt {0}"
+
+msgid "Confirm new email"
+msgstr "Bevestig nieuwe email"
+
+msgid "Current email"
+msgstr "Huidige email"
+
+msgid "Recently viewed products"
+msgstr "Recent bekeken producten"
+
+msgid "Tracking"
+msgstr "Tracking"
+
+msgid "Try a different search or <0>clear current filters</0>"
+msgstr "Probeer een andere zoekopdracht of <0>verwijder huidige filters</0>"
+
+msgid "Try a different search"
+msgstr "Probeer een andere zoekopdracht"
+
+msgid "Only 1 left in stock."
+msgstr "Nog maar 1 op voorraad."
+
+msgid "Forgot password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid "Last Name"
+msgstr "Achternaam"
+
+msgid "Order"
+msgstr "Bestelling"
+
+msgid "Reset Cart and Return to home"
+msgstr "Reset winkelwagen en ga terug naar home"
+
+msgid "Street"
+msgstr "Straat"
+
+msgid "We are fetching your favorite products, one moment please!"
+msgstr "Je favoriete artikelen worden momenteel ingeladen!"
+
+msgid "Thank you for your order!"
+msgstr "Bedankt voor je bestelling!"
+
+msgid "The payment has been canceled, please try again."
+msgstr "De betaling is geannuleerd, probeer het opnieuw."
+
+msgid "Reason"
+msgstr "Reden"
+
+msgid "Your wishlist is empty"
+msgstr "Uw verlanglijst is leeg"
+
+msgid "Decrease"
+msgstr "Verminderen"
+
+msgid "No Image"
+msgstr "Geen afbeelding"
+
+msgid "Checkout summary"
+msgstr "Samenvatting"
+
+msgid "Please select a shipping method"
+msgstr "Selecteer een verzendmethode a.u.b."
+
+msgid "Subtotal"
+msgstr "Subtotaal"
+
+msgid "Invalid email address"
+msgstr "Ongeldig e-mailadres"
+
+msgid "The payment has expired, please try again."
+msgstr "De betaling is verlopen, probeer het opnieuw."
+
+#. placeholder {0}: idx + 1
+msgid "Navigate to item {0}"
+msgstr "Navigeer naar item {0}"
+
+#. placeholder {0}: params.pageSize
+msgid "{0} Per page"
+msgstr "{0} Per pagina"
+
+msgid "Invoice number"
+msgstr "Factuurnummer"
+
+msgid "Several errors occured"
+msgstr "Er zijn verschillende fouten opgetreden"
+
+msgid "Compare"
+msgstr "Vergelijk"
+
+msgid "Search..."
+msgstr "Zoeken..."
+
+msgid "Invoice not found"
+msgstr "Factuur niet gevonden"
+
+msgid "Edit address"
+msgstr "Wijzig adres"
+
+msgid "Delete account"
+msgstr "Verwijder account"
+
+msgid "Remaining"
+msgstr "Resterend"
+
+msgid "Save in address book"
+msgstr "Opslaan in adresboek"
+
+msgid "No account yet?"
+msgstr "Nog geen account?"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Return to home"
+msgstr "Terug naar home"
+
+msgid "Cart"
+msgstr "Winkelwagen"
+
+msgid "Thank you! Your review was successfully submitted for approval"
+msgstr "Bedankt! Uw review is succesvol verstuurd voor goedkeuring"
+
+msgid "Place order"
+msgstr "Plaats bestelling"
+
+msgid "{label} must be unique"
+msgstr "{label} moet uniek zijn"
+
+msgid "You have no orders yet"
+msgstr "Je hebt nog geen bestellingen"
+
+msgid "View your account"
+msgstr "Bekijk uw account"
+
+msgid "Addresses"
+msgstr "Adressen"
+
+msgid "Sign up is disabled, please contact us for more information."
+msgstr "Inschrijven is niet mogelijk, neem contact met ons op voor meer informatie."
+
+msgid "Add to Cart"
+msgstr "In winkelwagen"
+
+msgid "Refund total"
+msgstr "Totaal restitutie"
+
+msgid "Invoice details"
+msgstr "Factuurgegevens"
+
+msgid "Light Mode"
+msgstr "Lichte modus"
+
+msgid "Your address has been added"
+msgstr "Uw adres is toegevoegd"
+
+msgid "Reviews"
+msgstr "Reviews"
+
+msgid "Be the first to know about everything new!"
+msgstr "Wees de eerste die op de hoogte is van alles wat er nieuw is!"
+
+msgid "Out of stock"
+msgstr "Niet op voorraad"
+
+msgid "We’ve send a password reset link to your email address!"
+msgstr "Een wachtwoord reset link naar uw e-mailadres gestuurd"
+
+msgid "Summary"
+msgstr "Omschrijving"
+
+msgid "Confirm registration"
+msgstr "Registratie bevestigen"
+
+msgid "Forgot Password"
+msgstr "Wachtwoord vergeten"
+
+msgid "Housenumber"
+msgstr "Huisnummer"
+
+#. placeholder {0}: product.name
+msgid "<0>{0}</0> has been added to your wishlist!"
+msgstr "<0>{0}</0> is toegevoegd aan uw verlanglijst!"
+
+msgid "Shipping address"
+msgstr "Verzendadres"
+
+msgid "Shipping Note"
+msgstr "Verzendnotitie"
+
+msgid "We are sorry, this product is currently out of stock."
+msgstr "We zijn sorry, dit product is momenteel niet op voorraad."
+
+msgid "Shipment #{number}"
+msgstr "Zending #{number}"
+
+msgid "We’re processing your payment, this will take a few seconds."
+msgstr "Uw betaling wordt verwerkt, dit duurt een paar seconden"
+
+msgid "Per page"
+msgstr "Per pagina"
+
+msgid "Edit"
+msgstr "Bewerk"
+
+msgid "Create new password"
+msgstr "Maak een nieuw wachtwoord"
+
+msgid "{totalResults} result"
+msgstr "{totalResults} resultaat"
+
+msgid "Please select a shipping address"
+msgstr "Selecteer a.u.b. een verzendadres"
+
+msgid "Sort"
+msgstr "Sorteer"
+
+msgid "You have now successfully reset your password"
+msgstr "Je hebt je wachtwoord gereset"
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid "Password must have at least {minPasswordLength} characters"
+msgstr "Wachtwoord moet minimaal {minPasswordLength} tekens bevatten"
+
+msgid "Your message has been received, we will contact you as soon as we can"
+msgstr "Uw bericht is ontvangen, we nemen zo snel mogelijk contact met u op."
+
+msgid "Invalid phone number"
+msgstr "Ongeldig telefoonnummer"
+
+msgid "Sign out"
+msgstr "Uitloggen"
+
+msgid "Order summary"
+msgstr "Besteloverzicht"
+
+msgid "Discover our collection and add items to your wishlist!"
+msgstr "Ontdek onze collectie en voeg producten toe aan uw verlanglijst!"
+
+msgid "No stored payment methods found."
+msgstr "Geen opgeslagen betalingsmethoden gevonden."
+
+msgid "Forgot your password?"
+msgstr "Wachtwoord vergeten?"
+
+msgid "Billing address"
+msgstr "Factuuradres"
+
+msgid "Submit"
+msgstr "Verzenden"
+
+msgid "Next"
+msgstr "Volgende"
+
+msgid "For faster checkout"
+msgstr "Voor sneller afrekenen"
+
+#. placeholder {0}: review?.nickname
+msgid "Written by {0}"
+msgstr "Geschreven door {0}"
+
+msgid "Order date"
+msgstr "Besteldatum"
+
+msgid "Shipment details"
+msgstr "Verzendgegevens"
+
+#. placeholder {0}: String(creditMemoNumber)
+msgid "Credit Memo #{0}"
+msgstr "Creditnota #{0}"
+
+msgid "Continue searching"
+msgstr "Verder zoeken"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Discover our collection and write your first review!"
+msgstr "Ontdek onze collectie en schrijf uw eerste review!"
+
+msgid "Configure"
+msgstr "Configureer"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Fill in your e-mail to login or create an account"
+msgstr "Vul uw e-mailadres in om in te loggen of maak een account aan"
+
+msgid "Review score"
+msgstr "Review score"
+
+msgid "Stored payment methods"
+msgstr "Opgeslagen betalingsmethoden"
+
+msgid "Less options"
+msgstr "Minder opties"
+
+msgid "Emails don't match"
+msgstr "E-mailadressen komen niet overeen"
+
+msgid "Order status: {statusWithColor}"
+msgstr "Bestelstatus: {statusWithColor}"
+
+msgid "Account confirmed. You can now proceed to sign in."
+msgstr "Account bevestigd. U kunt nu doorgaan met inloggen."
+
+msgid "You can not change this address as it is your billing address. Not correct? Please contact our support to update this."
+msgstr "Je kunt dit adres niet wijzigen omdat het je factuuradres is. Niet correct? Neem contact op met onze klantenservice om dit bij te werken."
+
+msgid "Above <0/>"
+msgstr "Boven <0/>"
+
+msgid "Below <0/>"
+msgstr "Onder <0/>"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "This may take a second"
+msgstr "Dit kan een seconde duren"
+
+msgid "Your comparelist is empty"
+msgstr "Jouw vergelijking is leeg"
+
+msgid "Copyright© {year} {websiteName}"
+msgstr "Copyright© {year} {websiteName}"
+
+msgid "First Name"
+msgstr "Voornaam"
+
+msgid "Something went wrong on the server, please try again later."
+msgstr "Er is iets misgegaan op de server, probeer het later opnieuw."
+
+msgid "Credit Memo #{number}"
+msgstr "Credit Memo #{number}"
+
+msgid "More information"
+msgstr "Meer informatie"
+
+msgid "Shipping"
+msgstr "Verzending"
+
+msgid "View wishlist"
+msgstr "Bekijk verlanglijst"
+
+msgid "All {name}"
+msgstr "Alle {name}"
+
+msgid "As low as <0/>"
+msgstr "Zo laag als <0/>"
+
+msgid "Remove from comparison"
+msgstr "Uit vergelijking verwijderen"
+
+msgid "Fill in your email to confirm registration"
+msgstr "Vul je e-mailadres in om de registratie te bevestigen"
+
+msgid "{metaDescription} - Page {currentPage}"
+msgstr "{metaDescription} - Pagina {currentPage}"
+
+msgid "Order number"
+msgstr "Bestelnummer"
+
+msgid "Delete this address"
+msgstr "Verwijder dit adres"
+
+msgid "All products"
+msgstr "Alle producten"
+
+msgid "Loading your account"
+msgstr "Uw account laden"
+
+msgid "No payment information"
+msgstr "Geen betalingsinformatie"
+
+msgid "one product"
+msgstr "één product"
+
+msgid "Sort By"
+msgstr "Sorteer op"
+
+msgid "Registration successful. Please check your inbox to confirm your email address ({email})"
+msgstr "Registratie succesvol. Controleer uw inbox om uw e-mailadres te bevestigen ({email})"
+
+msgid "Date"
+msgstr "Datum"
+
+#. placeholder {0}: customer?.reviews.items.length
+msgid "Written {0} reviews"
+msgstr "{0} reviews geschreven"
+
+msgid "You have to agree in order to proceed"
+msgstr "U moet akkoord gaan met de voorwaarden om verder te gaan"
+
+msgid "Write a review"
+msgstr "Schrijf een review"
+
+msgid "Download"
+msgstr "Download"
+
+msgid "View shopping cart"
+msgstr "Bekijk winkelwagen"
+
+msgid "{count} Per page"
+msgstr "{count} Per pagina"
+
+msgid "Send password reset email"
+msgstr "Stuur een wachtwoord reset e-mail"
+
+msgid "Continue shopping"
+msgstr "Verder winkelen"
+
+msgid "Edit options"
+msgstr "Opties bewerken"
+
+msgid "Something went wrong"
+msgstr "Er is iets misgegaan"
+
+msgid "Change"
+msgstr "Wijzig"
+
+#. placeholder {0}: discount.percent_off
+msgid "Buy {quantity} for <0/> and save {0}%"
+msgstr "Koop {quantity} voor <0/> en bespaar {0}%"
+
+msgid "Total <0/>"
+msgstr "Totaal <0/>"
+
+msgid "Subscribe to our newsletter to stay informed about our new products!"
+msgstr "Schrijf u in voor onze nieuwsbrief om op de hoogte te blijven van onze nieuwe producten! "
+
+msgid "Your cart is locked."
+msgstr "Uw winkelwagen is vergrendeld."
+
+msgid "Get order"
+msgstr "Bestelling bekijken"
+
+msgid "Dark Mode"
+msgstr "Donkere modus"
+
+msgid "Clear all filters"
+msgstr "Alle filters wissen"
+
+msgid "Add to wishlist"
+msgstr "In verlanglijst"
+
+msgid "Start Checkout"
+msgstr "Afrekenen"
+
+msgid "Base price"
+msgstr "Basisprijs"
+
+msgid "VAT Number"
+msgstr "BTW-nummer"
+
+msgid "Increase"
+msgstr "Verhogen"
+
+msgid "Credit Memo details"
+msgstr "Details kredietnota"
+
+msgid "Refunded items"
+msgstr "Terugbetaalde posten"
+
+msgid "Next day delivery - Shipping free"
+msgstr "Volgende dag levering - Verzending gratis"
+
+msgid "Order before 22:00"
+msgstr "Bestel voor 22:00"
+
+msgid "The payment hasn't been completed yet, please try again."
+msgstr "De betaling is nog niet voltooid, probeer het opnieuw."
+
+msgid "Select"
+msgstr "Selecteer"
+
+msgid "Create account!"
+msgstr "Maak account!"
+
+msgid "Only {only_x_left_in_stock} left in stock."
+msgstr "Nog maar {only_x_left_in_stock} op voorraad."
+
+msgid "Prefix"
+msgstr "Voorvoegsel"
+
+msgid "New address"
+msgstr "Nieuw adres"
+
+msgid "Editing product"
+msgstr "Product bewerken"
+
+msgid "Fill in your password"
+msgstr "Vul uw wachtwoord in"
+
+msgid "It appears you are offline, please try again later."
+msgstr "Het lijkt erop dat u offline bent, probeer het later opnieuw."
+
+#. placeholder {0}: minDate.toLocaleDateString()
+msgid "Date must be after {0}"
+msgstr "Datum moet na {0} liggen"
+
+msgid "Order not found"
+msgstr "Bestelling niet gevonden"
+
+msgid "Shipment number"
+msgstr "Verzendingsnummer"
+
+msgid "Remove"
+msgstr "Verwijder"
+
+msgid "Shipment #{shipmentNumber}"
+msgstr "Zending #{shipmentNumber}"
+
+msgid "There is a maximum of ‘{maxLength}’ characters"
+msgstr "Er is een maximum van ‘{maxLength}’ karakters"
+
+msgid "Cancel order"
+msgstr "Bestelling annuleren"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Address not found"
+msgstr "Adres niet gevonden"
+
+msgid "Reorder"
+msgstr "Opnieuw bestellen"
+
+msgid "Edit billing address"
+msgstr "Wijzig factuuradres"
+
+msgid "Shipped items"
+msgstr "Verzonden items"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Region"
+msgstr "Regio"
+
+msgid "You must sign in to continue"
+msgstr "U moet zich aanmelden om verder te gaan"
+
+#. placeholder {0}: response.resultCode
+msgid "We can not process your payment, we received an unsupported status \"<0>{0}</0>\". Please try again or select a different payment method."
+msgstr "We kunnen uw betaling niet verwerken, we hebben een niet-ondersteunde status \"<0>{0}</0>\" ontvangen. Probeer het opnieuw of selecteer een andere betaalmethode."
+
+msgid "Add another product to start comparing."
+msgstr "Voeg nog een product toe om te vergelijken"
+
+msgid "Customer Service"
+msgstr "Klantenservice"
+
+msgid "Your session is expired"
+msgstr "Uw sessie is verlopen"
+
+msgid "The given email does not match the account email"
+msgstr "Het opgegeven e-mailadres komt niet overeen met het account e-mailadres"
+
+msgid "Mr"
+msgstr "Dhr"
+
+msgid "{title} - Page {currentPage}"
+msgstr "{title} - Pagina {currentPage}"
+
+msgid "{totalResults} results"
+msgstr "{totalResults} resultaten"
+
+msgid "Add to comparison"
+msgstr "Toevoegen aan vergelijking"
+
+msgid "You can only confirm you account by clicking on the link in your email."
+msgstr "U kunt uw account alleen bevestigen door op de link in uw e-mail te klikken."
+
+msgid "Skip to main content"
+msgstr "Ga naar hoofdinhoud"
+
+msgid "Invoice #{number}"
+msgstr "Factuur #{number}"
+
+msgid "Account confirmation"
+msgstr "Account bevestiging"
+
+msgid "Add new address"
+msgstr "Voeg nieuw adres toe"
+
+msgid "Back to home"
+msgstr "Terug naar home"
+
+msgid "Clear"
+msgstr "Wissen"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "Continue"
+msgstr "Doorgaan"
+
+msgid "Credit Memo #{creditMemoNumber}"
+msgstr "Credit Memo #{creditMemoNumber}"
+
+msgid "Adjustment"
+msgstr "Aanpassing"
+
+msgid "Some items in your cart contain errors, please update or remove them, then try again."
+msgstr "Sommige items in uw winkelwagen bevatten fouten, pas deze aan of verwijder ze en probeer het opnieuw."
+
+msgid "Confirm password"
+msgstr "Bevestig wachtwoord"
+
+msgid "New email"
+msgstr "Nieuwe email"
+
+msgid "Clear current filters"
+msgstr "Huidige filters wissen"
+
+msgid "Save changes"
+msgstr "Wijzigingen opslaan"
+
+msgid "Discover our collection by searching for products, categories or features."
+msgstr "Ontdek onze collectie door te zoeken naar producten, categorieën of kenmerken."
+
+msgid "Loading"
+msgstr "Laden"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Payment has not completed succesfully, please try again."
+msgstr "Betaling is niet succesvol afgerond, probeer het opnieuw."
+
+msgid "Hi {firstname}! You’re now logged in!"
+msgstr "Hallo {firstname}! U bent nu ingelogd!"
+
+msgid "no products"
+msgstr "geen producten"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Private"
+msgstr "Privé"

@@ -1,0 +1,42 @@
+generates:
+  # Generate a types file
+  node_modules/@graphcommerce/graphql/generated/types.ts:
+    schema:
+      - .mesh/schema.graphql
+    plugins:
+      - typescript-apollo-client-helpers
+      - add
+    config:
+      enumsAsTypes: true
+      content: '/* eslint-disable */'
+  # Generate a fragments.json
+  node_modules/@graphcommerce/graphql/generated/fragments.json:
+    schema:
+      - .mesh/schema.graphql
+    plugins:
+      - fragment-matcher
+  # Generate .gql.ts files for each GraphQL file
+  .:
+    schema:
+      - .mesh/schema.graphql
+    documents:
+      - 'components/**/*.graphql'
+      - 'graphql/**/*.graphql'
+    plugins:
+      - '@graphcommerce/graphql-codegen-relay-optimizer-plugin'
+      - typed-document-node
+      - typescript-operations
+      - add
+    preset: '@graphcommerce/graphql-codegen-near-operation-file'
+    presetConfig:
+      extension: .gql.ts
+      baseTypesPath: ~@graphcommerce/graphql-mesh/.mesh
+      injectables: true
+    config:
+      skipTypename: true
+      namingConvention: 'keep'
+      dedupeOperationSuffix: true
+      arrayInputCoercion: false
+      content: /* eslint-disable */
+watchConfig:
+  usePolling: false

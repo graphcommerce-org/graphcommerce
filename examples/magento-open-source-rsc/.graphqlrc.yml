@@ -1,0 +1,12 @@
+schema:
+  - .mesh/schema.graphql
+documents:
+  - components/**/*.graphql
+  - graphql/**/*.graphql
+  - node_modules/@graphcommerce/**/*.graphql
+extensions:
+  languageService:
+    useSchemaFileDefinitions: true
+  endpoints:
+    default:
+      url: http://localhost:3000/api/graphql/

@@ -1,0 +1,29 @@
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
+
+/** Docs: https://graphcommerce.org/docs/framework/config */
+const config: Partial<GraphCommerceConfig> = {
+  robotsAllow: false,
+  limitSsg: true,
+
+  magentoEndpoint: 'https://configurator.reachdigital.dev/graphql',
+  magentoVersion: 247,
+  canonicalBaseUrl: 'https://graphcommerce.vercel.app',
+  storefront: [
+    {
+      locale: 'en',
+      magentoStoreCode: 'en_US',
+      defaultLocale: true,
+      googleAnalyticsId: undefined,
+      googleRecaptchaKey: undefined,
+    },
+    {
+      locale: 'nl',
+      magentoStoreCode: 'nl_NL',
+    },
+  ],
+  recentlyViewedProducts: { enabled: true },
+  productFiltersPro: true,
+  productFiltersLayout: 'DEFAULT',
+}
+
+export default config
