@@ -2,5 +2,8 @@ query StoreConfig {
   storeConfig {
     store_code
     cms_home_page
+    cms_no_route
+    product_url_suffix
+    category_url_suffix
   }
 }

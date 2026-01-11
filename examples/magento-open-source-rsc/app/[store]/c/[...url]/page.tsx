@@ -1,9 +1,10 @@
 import { Box, Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material'
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { CategoryPageDocument } from '../../../../graphql/CategoryPage.gql'
+import { StoreConfigDocument } from '../../../../graphql/StoreConfig.gql'
 import { getClient } from '../../../../lib/apollo/client'
+import { redirectOrNotFound } from '../../../../lib/redirectOrNotFound'
 import { getStorefrontConfig } from '../../../../lib/storefront'
 
 type CategoryPageProps = {
@@ -45,15 +46,16 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const client = getClient(storefront)
 
   const urlPath = url.join('/')
-  const { data } = await client.query({
-    query: CategoryPageDocument,
-    variables: { url: urlPath },
-  })
+  const [{ data }, { data: storeConfigData }] = await Promise.all([
+    client.query({ query: CategoryPageDocument, variables: { url: urlPath } }),
+    client.query({ query: StoreConfigDocument }),
+  ])
 
   const category = data?.categories?.items?.[0]
 
+  // If no category found, try to find a redirect or return 404
   if (!category) {
-    notFound()
+    return redirectOrNotFound(client, storeConfigData?.storeConfig, url, store)
   }
 
   return (

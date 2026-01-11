@@ -1,0 +1,20 @@
+query HandleRedirect($url: String!) {
+  route(url: $url) {
+    __typename
+    redirect_code
+    relative_url
+    type
+    ... on ProductInterface {
+      uid
+      url_key
+    }
+    ... on CategoryInterface {
+      uid
+      url_key
+    }
+    ... on CmsPage {
+      url_key
+      identifier
+    }
+  }
+}

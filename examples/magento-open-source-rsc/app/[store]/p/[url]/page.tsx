@@ -1,8 +1,9 @@
 import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import { ProductPageDocument } from '../../../../graphql/ProductPage.gql'
+import { StoreConfigDocument } from '../../../../graphql/StoreConfig.gql'
 import { getClient } from '../../../../lib/apollo/client'
+import { redirectOrNotFound } from '../../../../lib/redirectOrNotFound'
 import { getStorefrontConfig } from '../../../../lib/storefront'
 
 type ProductPageProps = {
@@ -42,15 +43,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const storefront = getStorefrontConfig(store)
   const client = getClient(storefront)
 
-  const { data } = await client.query({
-    query: ProductPageDocument,
-    variables: { urlKey: url },
-  })
+  const [{ data }, { data: storeConfigData }] = await Promise.all([
+    client.query({ query: ProductPageDocument, variables: { urlKey: url } }),
+    client.query({ query: StoreConfigDocument }),
+  ])
 
   const product = data?.products?.items?.[0]
 
+  // If no product found, try to find a redirect or return 404
   if (!product) {
-    notFound()
+    return redirectOrNotFound(client, storeConfigData?.storeConfig, url, store)
   }
 
   const price = product.price_range?.minimum_price
