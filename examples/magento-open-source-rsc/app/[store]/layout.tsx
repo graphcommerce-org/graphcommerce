@@ -4,6 +4,7 @@ import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 
 type StoreLayoutProps = {
   children: React.ReactNode
+  overlay: React.ReactNode
   params: Promise<{ store: string }>
 }
 
@@ -31,10 +32,18 @@ export async function generateMetadata({ params }: StoreLayoutProps): Promise<Me
 /**
  * Store layout with client providers (MUI, Framer, Lingui, Apollo) The Providers component is a
  * client component that wraps all context providers
+ *
+ * The `overlay` slot is a parallel route for displaying overlays (modals, sheets) See:
+ * https://nextjs.org/docs/app/building-your-application/routing/parallel-routes
  */
-export default async function StoreLayout({ children, params }: StoreLayoutProps) {
+export default async function StoreLayout({ children, overlay, params }: StoreLayoutProps) {
   const { store } = await params
   const storefront = getStorefrontConfig(store)
 
-  return <Providers storefront={storefront}>{children}</Providers>
+  return (
+    <Providers storefront={storefront}>
+      {children}
+      {overlay}
+    </Providers>
+  )
 }

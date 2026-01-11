@@ -1,35 +1,8 @@
+import type { GraphCommerceStorefrontConfig } from '@graphcommerce/next-config'
+import { storefront } from '@graphcommerce/next-config/config'
 import { notFound } from 'next/navigation'
 
-/**
- * Storefront configuration type Simplified version that doesn't import from @graphcommerce packages
- * to avoid transitive next/router imports in Server Components
- */
-export type StorefrontConfig = {
-  locale: string
-  magentoStoreCode: string
-  defaultLocale?: boolean
-  linguiLocale?: string
-  canonicalBaseUrl?: string
-  googleAnalyticsId?: string
-  googleRecaptchaKey?: string
-  googleTagmanagerId?: string
-}
-
-/**
- * Hardcoded storefront configuration TODO: Replace with dynamic config import once packages are
- * RSC-compatible
- */
-const storefront: StorefrontConfig[] = [
-  {
-    locale: 'en',
-    magentoStoreCode: 'en_US',
-    defaultLocale: true,
-  },
-  {
-    locale: 'nl',
-    magentoStoreCode: 'nl_NL',
-  },
-]
+export type { GraphCommerceStorefrontConfig }
 
 /** Get all available storefronts */
 export const storefrontAll = storefront
@@ -38,12 +11,19 @@ export const storefrontAll = storefront
 export const storefrontConfigDefault = () =>
   storefront.find((l) => l.defaultLocale) ?? storefront[0]
 
+/** Get storefront config by locale - used in RSC with params.store */
+export function storefrontConfig(
+  locale: string | undefined,
+): GraphCommerceStorefrontConfig | undefined {
+  return storefront.find((l) => l.locale === locale)
+}
+
 /**
- * Get storefront config by locale (used with [store] param) In App Router, the [store] param maps
- * to the locale
+ * Get storefront config by locale - throws notFound() if not found Use this in RSC pages/layouts
+ * where you have params.store
  */
-export function getStorefrontConfig(store: string): StorefrontConfig {
-  const config = storefront.find((l) => l.locale === store)
+export function getStorefrontConfig(store: string): GraphCommerceStorefrontConfig {
+  const config = storefrontConfig(store)
   if (!config) {
     notFound()
   }

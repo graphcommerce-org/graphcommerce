@@ -1,3 +1,26 @@
 query CategoryPage($url: String!) {
-  ...CategoryQueryFragment
+  categories(filters: { url_path: { eq: $url } }) {
+    items {
+      uid
+      name
+      url_path
+      description
+      meta_title
+      meta_description
+      meta_keywords
+      image
+      breadcrumbs {
+        category_uid
+        category_name
+        category_url_path
+        category_level
+      }
+      children {
+        uid
+        name
+        url_path
+        image
+      }
+    }
+  }
 }

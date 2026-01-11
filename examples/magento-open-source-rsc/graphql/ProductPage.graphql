@@ -1,0 +1,40 @@
+query ProductPage($urlKey: String!) {
+  products(filter: { url_key: { eq: $urlKey } }) {
+    items {
+      __typename
+      uid
+      sku
+      name
+      url_key
+      meta_title
+      meta_description
+      meta_keyword
+      description {
+        html
+      }
+      short_description {
+        html
+      }
+      image {
+        url
+        label
+      }
+      small_image {
+        url
+        label
+      }
+      price_range {
+        minimum_price {
+          regular_price {
+            value
+            currency
+          }
+          final_price {
+            value
+            currency
+          }
+        }
+      }
+    }
+  }
+}
