@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { CmsPageContent } from '../../components/CmsPage'
-import { LayoutNavigationWrapper } from '../../components/Layout/LayoutNavigationWrapper'
 import { CmsPageDocument } from '../../graphql/CmsPage.gql'
-// Import locally generated documents to avoid barrel exports that pull in client code
 import { StoreConfigDocument } from '../../graphql/StoreConfig.gql'
 import { getClient } from '../../lib/apollo/client'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
@@ -40,7 +38,10 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   }
 }
 
-/** Home page component (RSC) - Fetches CMS page data server-side */
+/**
+ * Home page component (RSC) - Fetches CMS page data server-side Layout (header, footer, navigation)
+ * is handled by layout.tsx
+ */
 export default async function HomePage({ params }: HomePageProps) {
   const { store } = await params
   const storefront = getStorefrontConfig(store)
@@ -60,18 +61,12 @@ export default async function HomePage({ params }: HomePageProps) {
 
   if (!cmsPage) {
     return (
-      <LayoutNavigationWrapper>
-        <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-          <h1>Configure CMS Home Page</h1>
-          <p>No CMS page found with identifier: {identifier}</p>
-        </div>
-      </LayoutNavigationWrapper>
+      <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+        <h1>Configure CMS Home Page</h1>
+        <p>No CMS page found with identifier: {identifier}</p>
+      </div>
     )
   }
 
-  return (
-    <LayoutNavigationWrapper>
-      <CmsPageContent content={cmsPage.content} contentHeading={cmsPage.content_heading} />
-    </LayoutNavigationWrapper>
-  )
+  return <CmsPageContent content={cmsPage.content} contentHeading={cmsPage.content_heading} />
 }

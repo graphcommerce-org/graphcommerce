@@ -1,7 +1,6 @@
 import { Box, Container, Grid, Paper, Typography } from '@mui/material'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { LayoutNavigationWrapper } from '../../../../components/Layout'
 import { ProductPageDocument } from '../../../../graphql/ProductPage.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { getStorefrontConfig } from '../../../../lib/storefront'
@@ -34,7 +33,10 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   }
 }
 
-/** Product page component (RSC) - Fetches product data server-side */
+/**
+ * Product page component (RSC) - Fetches product data server-side Layout (header, footer,
+ * navigation) is handled by layout.tsx
+ */
 export default async function ProductPage({ params }: ProductPageProps) {
   const { store, url } = await params
   const storefront = getStorefrontConfig(store)
@@ -57,104 +59,102 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const hasDiscount = finalPrice?.value !== regularPrice?.value
 
   return (
-    <LayoutNavigationWrapper>
-      <Container maxWidth='lg' sx={{ py: 4 }}>
-        <Grid container spacing={4}>
-          {/* Product Image */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Paper
-              elevation={0}
-              sx={{
-                bgcolor: 'grey.100',
-                borderRadius: 2,
-                overflow: 'hidden',
-                aspectRatio: '1/1',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              {product.image?.url ? (
-                <img
-                  src={product.image.url}
-                  alt={product.image.label || product.name || ''}
-                  style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-                />
-              ) : (
-                <Typography color='text.secondary'>No image</Typography>
-              )}
-            </Paper>
-          </Grid>
-
-          {/* Product Details */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Box>
-              <Typography variant='overline' color='text.secondary'>
-                SKU: {product.sku}
-              </Typography>
-              <Typography variant='h1' component='h1' gutterBottom sx={{ fontSize: '2rem' }}>
-                {product.name}
-              </Typography>
-
-              {/* Price */}
-              <Box sx={{ mb: 3 }}>
-                {hasDiscount && regularPrice?.value && (
-                  <Typography
-                    variant='body1'
-                    color='text.secondary'
-                    sx={{ textDecoration: 'line-through' }}
-                  >
-                    {regularPrice.currency} {regularPrice.value?.toFixed(2)}
-                  </Typography>
-                )}
-                {finalPrice?.value && (
-                  <Typography variant='h4' color={hasDiscount ? 'error.main' : 'text.primary'}>
-                    {finalPrice.currency} {finalPrice.value.toFixed(2)}
-                  </Typography>
-                )}
-              </Box>
-
-              {/* Short Description */}
-              {product.short_description?.html && (
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    variant='body1'
-                    dangerouslySetInnerHTML={{ __html: product.short_description.html }}
-                  />
-                </Box>
-              )}
-
-              {/* Add to Cart placeholder */}
-              <Paper
-                sx={{
-                  p: 3,
-                  bgcolor: 'grey.50',
-                  borderRadius: 2,
-                  textAlign: 'center',
-                }}
-              >
-                <Typography variant='body2' color='text.secondary'>
-                  Add to Cart functionality will be implemented here
-                </Typography>
-              </Paper>
-            </Box>
-          </Grid>
+    <Container maxWidth='lg' sx={{ py: 4 }}>
+      <Grid container spacing={4}>
+        {/* Product Image */}
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Paper
+            elevation={0}
+            sx={{
+              bgcolor: 'grey.100',
+              borderRadius: 2,
+              overflow: 'hidden',
+              aspectRatio: '1/1',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {product.image?.url ? (
+              <img
+                src={product.image.url}
+                alt={product.image.label || product.name || ''}
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+              />
+            ) : (
+              <Typography color='text.secondary'>No image</Typography>
+            )}
+          </Paper>
         </Grid>
 
-        {/* Full Description */}
-        {product.description?.html && (
-          <Box sx={{ mt: 6 }}>
-            <Typography variant='h2' component='h2' gutterBottom sx={{ fontSize: '1.5rem' }}>
-              Description
+        {/* Product Details */}
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Box>
+            <Typography variant='overline' color='text.secondary'>
+              SKU: {product.sku}
             </Typography>
-            <Typography
-              variant='body1'
-              component='div'
-              dangerouslySetInnerHTML={{ __html: product.description.html }}
-            />
+            <Typography variant='h1' component='h1' gutterBottom sx={{ fontSize: '2rem' }}>
+              {product.name}
+            </Typography>
+
+            {/* Price */}
+            <Box sx={{ mb: 3 }}>
+              {hasDiscount && regularPrice?.value && (
+                <Typography
+                  variant='body1'
+                  color='text.secondary'
+                  sx={{ textDecoration: 'line-through' }}
+                >
+                  {regularPrice.currency} {regularPrice.value?.toFixed(2)}
+                </Typography>
+              )}
+              {finalPrice?.value && (
+                <Typography variant='h4' color={hasDiscount ? 'error.main' : 'text.primary'}>
+                  {finalPrice.currency} {finalPrice.value.toFixed(2)}
+                </Typography>
+              )}
+            </Box>
+
+            {/* Short Description */}
+            {product.short_description?.html && (
+              <Box sx={{ mb: 3 }}>
+                <Typography
+                  variant='body1'
+                  dangerouslySetInnerHTML={{ __html: product.short_description.html }}
+                />
+              </Box>
+            )}
+
+            {/* Add to Cart placeholder */}
+            <Paper
+              sx={{
+                p: 3,
+                bgcolor: 'grey.50',
+                borderRadius: 2,
+                textAlign: 'center',
+              }}
+            >
+              <Typography variant='body2' color='text.secondary'>
+                Add to Cart functionality will be implemented here
+              </Typography>
+            </Paper>
           </Box>
-        )}
-      </Container>
-    </LayoutNavigationWrapper>
+        </Grid>
+      </Grid>
+
+      {/* Full Description */}
+      {product.description?.html && (
+        <Box sx={{ mt: 6 }}>
+          <Typography variant='h2' component='h2' gutterBottom sx={{ fontSize: '1.5rem' }}>
+            Description
+          </Typography>
+          <Typography
+            variant='body1'
+            component='div'
+            dangerouslySetInnerHTML={{ __html: product.description.html }}
+          />
+        </Box>
+      )}
+    </Container>
   )
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { LayoutNavigation } from '../../components/Layout/LayoutNavigation'
 import { Providers } from '../../components/Providers'
 import { LayoutDocument } from '../../graphql/Layout.gql'
 import { getClient } from '../../lib/apollo/client'
@@ -32,8 +33,11 @@ export async function generateMetadata({ params }: StoreLayoutProps): Promise<Me
 }
 
 /**
- * Store layout with client providers (MUI, Framer, Lingui, Apollo) The Providers component is a
- * client component that wraps all context providers
+ * Store layout with:
+ *
+ * - Server-side data fetching for layout (menu, cms blocks)
+ * - Client providers (MUI, Framer, Lingui, Apollo)
+ * - LayoutNavigation renders header, footer, navigation
  *
  * The `overlay` slot is a parallel route for displaying overlays (modals, sheets) See:
  * https://nextjs.org/docs/app/building-your-application/routing/parallel-routes
@@ -47,9 +51,11 @@ export default async function StoreLayout({ children, overlay, params }: StoreLa
   const { data: layoutData } = await client.query({ query: LayoutDocument })
 
   return (
-    <Providers storefront={storefront} layoutData={layoutData}>
-      {children}
-      {overlay}
+    <Providers storefront={storefront}>
+      <LayoutNavigation menu={layoutData?.menu} cmsBlocks={layoutData?.cmsBlocks}>
+        {children}
+        {overlay}
+      </LayoutNavigation>
     </Providers>
   )
 }
