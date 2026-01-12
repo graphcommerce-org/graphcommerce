@@ -8,13 +8,23 @@ import {
   ProductListDocument,
 } from '@graphcommerce/magento-product/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
+import { revalidate as getRevalidateTime } from '@graphcommerce/next-ui/server'
 import { Container, Typography } from '@mui/material'
 import type { Metadata } from 'next'
 import { CategoryPageDocument } from '../../../graphql/CategoryPage.gql'
 import { getClient } from '../../../lib/apollo/client'
 import { redirectOrNotFound } from '../../../lib/redirectOrNotFound'
+import { serialize } from '../../../lib/serialize'
 import { getStorefrontConfig } from '../../../lib/storefront'
 import { CategoryContent } from '../c/[...url]/CategoryContent'
+
+/**
+ * Enable ISR (Incremental Static Regeneration) for this route. This matches the Pages Router
+ * behavior where /[...url] uses getStaticProps with revalidate.
+ *
+ * The /c/[...url] route remains fully dynamic (SSR) for filter queries.
+ */
+export const revalidate = getRevalidateTime()
 
 type CatchAllPageProps = {
   params: Promise<{ store: string; url: string[] }>
@@ -126,12 +136,13 @@ export default async function CatchAllPage({ params }: CatchAllPageProps) {
         })
       : { data: undefined }
 
+    // Serialize data for RSC -> Client Component boundary
     return (
       <CategoryContent
-        {...categoryData}
-        {...productsData}
-        {...filtersData}
-        filterTypes={filterTypes}
+        {...serialize(categoryData)}
+        {...serialize(productsData)}
+        {...serialize(filtersData)}
+        filterTypes={serialize(filterTypes)}
       />
     )
   }

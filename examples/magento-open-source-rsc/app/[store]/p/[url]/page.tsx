@@ -1,10 +1,17 @@
+import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
-import { Box, Container, Grid, Paper, Typography } from '@mui/material'
+import { magentoVersion } from '@graphcommerce/next-config/config'
+import { revalidate as getRevalidateTime } from '@graphcommerce/next-ui/server'
 import type { Metadata } from 'next'
 import { ProductPage2Document } from '../../../../graphql/ProductPage2.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { redirectOrNotFound } from '../../../../lib/redirectOrNotFound'
+import { serialize } from '../../../../lib/serialize'
 import { getStorefrontConfig } from '../../../../lib/storefront'
+import { ProductClient } from './ProductClient'
+
+/** Enable ISR for product pages, matching Pages Router getStaticProps + revalidate behavior */
+export const revalidate = getRevalidateTime()
 
 type ProductPageProps = {
   params: Promise<{ store: string; url: string }>
@@ -18,7 +25,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   const { data } = await client.query({
     query: ProductPage2Document,
-    variables: { urlKey: url },
+    variables: { urlKey: url, useCustomAttributes: magentoVersion >= 247 },
   })
 
   const product = data?.products?.items?.[0]
@@ -35,8 +42,10 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 /**
- * Product page component (RSC) - Fetches product data server-side Layout (header, footer,
- * navigation) is handled by layout.tsx
+ * Product page (RSC) - Fetches product data server-side and passes to ProductClient for rendering.
+ *
+ * Following the migration plan: Page is RSC that inlines getStaticProps, renders via client
+ * component.
  */
 export default async function ProductPage({ params }: ProductPageProps) {
   const { store, url } = await params
@@ -44,120 +53,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const client = getClient(storefront)
 
   const storeConfigQuery = client.query({ query: StoreConfigDocument })
-  const [{ data }] = await Promise.all([
-    client.query({ query: ProductPage2Document, variables: { urlKey: url } }),
-    storeConfigQuery,
-  ])
 
-  const product = data?.products?.items?.[0]
+  // Fetch product data with configurable options selection (same as Pages Router getStaticProps)
+  const productPageData = await client
+    .query({
+      query: ProductPage2Document,
+      variables: { urlKey: url, useCustomAttributes: magentoVersion >= 247 },
+    })
+    .then((pp) => defaultConfigurableOptionsSelection(url, client, pp.data))
+
+  const product = productPageData.products?.items?.find((p) => p?.url_key === url)
 
   // If no product found, try to find a redirect or return 404
   if (!product) {
     return redirectOrNotFound(client, storeConfigQuery, { url }, store)
   }
 
-  const price = product.price_range?.minimum_price
-  const finalPrice = price?.final_price
-  const regularPrice = price?.regular_price
-  const hasDiscount = finalPrice?.value !== regularPrice?.value
-
-  return (
-    <Container maxWidth='lg' sx={{ py: 4 }}>
-      <Grid container spacing={4}>
-        {/* Product Image */}
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Paper
-            elevation={0}
-            sx={{
-              bgcolor: 'grey.100',
-              borderRadius: 2,
-              overflow: 'hidden',
-              aspectRatio: '1/1',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            {product.image?.url ? (
-              <img
-                src={product.image.url}
-                alt={product.image.label || product.name || ''}
-                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
-              />
-            ) : (
-              <Typography color='text.secondary'>No image</Typography>
-            )}
-          </Paper>
-        </Grid>
-
-        {/* Product Details */}
-        <Grid size={{ xs: 12, md: 6 }}>
-          <Box>
-            <Typography variant='overline' color='text.secondary'>
-              SKU: {product.sku}
-            </Typography>
-            <Typography variant='h1' component='h1' gutterBottom sx={{ fontSize: '2rem' }}>
-              {product.name}
-            </Typography>
-
-            {/* Price */}
-            <Box sx={{ mb: 3 }}>
-              {hasDiscount && regularPrice?.value && (
-                <Typography
-                  variant='body1'
-                  color='text.secondary'
-                  sx={{ textDecoration: 'line-through' }}
-                >
-                  {regularPrice.currency} {regularPrice.value?.toFixed(2)}
-                </Typography>
-              )}
-              {finalPrice?.value && (
-                <Typography variant='h4' color={hasDiscount ? 'error.main' : 'text.primary'}>
-                  {finalPrice.currency} {finalPrice.value.toFixed(2)}
-                </Typography>
-              )}
-            </Box>
-
-            {/* Short Description */}
-            {product.short_description?.html && (
-              <Box sx={{ mb: 3 }}>
-                <Typography
-                  variant='body1'
-                  dangerouslySetInnerHTML={{ __html: product.short_description.html }}
-                />
-              </Box>
-            )}
-
-            {/* Add to Cart placeholder */}
-            <Paper
-              sx={{
-                p: 3,
-                bgcolor: 'grey.50',
-                borderRadius: 2,
-                textAlign: 'center',
-              }}
-            >
-              <Typography variant='body2' color='text.secondary'>
-                Add to Cart functionality will be implemented here
-              </Typography>
-            </Paper>
-          </Box>
-        </Grid>
-      </Grid>
-
-      {/* Full Description */}
-      {product.description?.html && (
-        <Box sx={{ mt: 6 }}>
-          <Typography variant='h2' component='h2' gutterBottom sx={{ fontSize: '1.5rem' }}>
-            Description
-          </Typography>
-          <Typography
-            variant='body1'
-            component='div'
-            dangerouslySetInnerHTML={{ __html: product.description.html }}
-          />
-        </Box>
-      )}
-    </Container>
-  )
+  // Pass server-fetched data to client component for rendering
+  // Serialize to plain objects for RSC -> Client Component boundary
+  return <ProductClient {...serialize(productPageData)} urlKey={url} />
 }

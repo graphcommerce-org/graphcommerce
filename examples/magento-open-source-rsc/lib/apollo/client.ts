@@ -1,3 +1,4 @@
+import { getBuiltMesh, MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import {
   ApolloClient,
   ApolloLink,
@@ -7,8 +8,7 @@ import {
   InMemoryCache,
   measurePerformanceLink,
   mergeTypePolicies,
-} from '@graphcommerce/graphql'
-import { getBuiltMesh, MeshApolloLink } from '@graphcommerce/graphql-mesh'
+} from '@graphcommerce/graphql/server'
 import { registerApolloClient } from '@apollo/experimental-nextjs-app-support'
 import type { GraphCommerceStorefrontConfig } from '../storefront'
 

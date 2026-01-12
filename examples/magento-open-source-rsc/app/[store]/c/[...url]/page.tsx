@@ -8,9 +8,11 @@ import {
 } from '@graphcommerce/magento-product/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
 import type { Metadata } from 'next'
+import { connection } from 'next/server'
 import { CategoryPageDocument } from '../../../../graphql/CategoryPage.gql'
 import { getClient } from '../../../../lib/apollo/client'
 import { redirectOrNotFound } from '../../../../lib/redirectOrNotFound'
+import { serialize } from '../../../../lib/serialize'
 import { getStorefrontConfig } from '../../../../lib/storefront'
 import { CategoryContent } from './CategoryContent'
 
@@ -48,8 +50,15 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 /**
  * Category page (RSC) - Fetches category data, products, and filters server-side. Passes data to
  * CategoryContent client component for rendering and client-side filtering.
+ *
+ * This route uses `connection()` to opt into dynamic rendering (SSR). In the Pages Router,
+ * /c/[...url] uses getServerSideProps for always-fresh data, while /[...url] uses getStaticProps
+ * with revalidate (ISR). Use /c/ URLs when you need guaranteed fresh data (e.g., filter results).
  */
 export default async function CategoryPage({ params }: CategoryPageProps) {
+  // Opt into dynamic rendering - this route should always serve fresh data
+  await connection()
+
   const { store, url } = await params
   const storefront = getStorefrontConfig(store)
   const client = getClient(storefront)
@@ -105,12 +114,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       })
     : { data: undefined }
 
+  // Serialize data for RSC -> Client Component boundary
   return (
     <CategoryContent
-      {...categoryData}
-      {...productsData}
-      {...filtersData}
-      filterTypes={filterTypes}
+      {...serialize(categoryData)}
+      {...serialize(productsData)}
+      {...serialize(filtersData)}
+      filterTypes={serialize(filterTypes)}
     />
   )
 }

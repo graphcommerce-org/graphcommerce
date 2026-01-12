@@ -12,11 +12,20 @@ export * from './utils/cachePolicy'
 // Server-side context functions (without the hooks)
 export { getPrivateQueryContextMesh, getPrivateQueryContext } from './hooks/usePrivateQueryContext'
 
-// Performance measurement (server-safe, only uses console/Map)
-export { flushMeasurePerf } from './components/GraphQLProvider/measurePerformanceLink'
+// Performance measurement (server-safe)
+export {
+  flushMeasurePerf,
+  measurePerformanceLink,
+} from './components/GraphQLProvider/measurePerformanceLink'
+
+// Error handling link (server-safe)
+export { errorLink } from './components/GraphQLProvider/errorLink'
+
+// Type policies (server-safe, just uses mergeDeep)
+export { mergeTypePolicies } from './components/GraphQLProvider/typePolicies'
 
 // Re-export server-safe Apollo utilities
 export type { TypedDocumentNode } from '@graphql-typed-document-node/core'
-export type { ApolloClient, NormalizedCacheObject } from '@apollo/client'
-export { gql } from '@apollo/client'
+export type { NormalizedCacheObject } from '@apollo/client'
+export { gql, ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client'
 export { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal'

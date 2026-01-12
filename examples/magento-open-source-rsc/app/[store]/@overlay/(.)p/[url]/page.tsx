@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { ProductOverlay } from '../../../../../components/ProductOverlay'
 import { ProductPage2Document } from '../../../../../graphql/ProductPage2.gql'
 import { getClient } from '../../../../../lib/apollo/client'
+import { serialize } from '../../../../../lib/serialize'
 import { getStorefrontConfig } from '../../../../../lib/storefront'
 
 type ProductOverlayPageProps = {
@@ -29,5 +30,6 @@ export default async function ProductOverlayPage({ params }: ProductOverlayPageP
     notFound()
   }
 
-  return <ProductOverlay product={product} store={store} />
+  // Serialize to plain object for RSC -> Client Component boundary
+  return <ProductOverlay product={serialize(product)} store={store} />
 }

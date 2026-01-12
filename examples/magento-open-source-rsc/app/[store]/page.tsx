@@ -1,9 +1,13 @@
 import { CmsPageDocument } from '@graphcommerce/magento-cms/server'
 import { StoreConfigDocument } from '@graphcommerce/magento-store/server'
+import { revalidate as getRevalidateTime } from '@graphcommerce/next-ui/server'
 import type { Metadata } from 'next'
 import { CmsPageContent } from '../../components/CmsPage'
 import { getClient } from '../../lib/apollo/client'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
+
+/** Enable ISR for home page, matching Pages Router getStaticProps + revalidate behavior */
+export const revalidate = getRevalidateTime()
 
 type HomePageProps = {
   params: Promise<{ store: string }>

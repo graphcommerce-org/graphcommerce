@@ -3,6 +3,7 @@ import { LayoutDocument } from '../../components/Layout/Layout.gql'
 import { LayoutNavigation } from '../../components/Layout/LayoutNavigation'
 import { Providers } from '../../components/Providers'
 import { getClient } from '../../lib/apollo/client'
+import { serialize } from '../../lib/serialize'
 import { generateStoreParams, getStorefrontConfig } from '../../lib/storefront'
 
 type StoreLayoutProps = {
@@ -50,9 +51,13 @@ export default async function StoreLayout({ children, overlay, params }: StoreLa
   // Fetch layout data (menu and cms blocks) server-side
   const { data: layoutData } = await client.query({ query: LayoutDocument })
 
+  // Serialize to plain objects for RSC client component boundary
+  const menu = serialize(layoutData?.menu)
+  const cmsBlocks = serialize(layoutData?.cmsBlocks)
+
   return (
     <Providers storefront={storefront}>
-      <LayoutNavigation menu={layoutData?.menu} cmsBlocks={layoutData?.cmsBlocks}>
+      <LayoutNavigation menu={menu} cmsBlocks={cmsBlocks}>
         {children}
         {overlay}
       </LayoutNavigation>
