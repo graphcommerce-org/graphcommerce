@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 10.0.4-canary.1
+
+### Patch Changes
+
+- [#2585](https://github.com/graphcommerce-org/graphcommerce/pull/2585) [`c9e862a`](https://github.com/graphcommerce-org/graphcommerce/commit/c9e862ad0b2fe4a30855df6ddfd27b7c052ac4e8) - Get redirectTo from the url params instead of the headers ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.0.4-canary.0
 
 ## 10.0.3
