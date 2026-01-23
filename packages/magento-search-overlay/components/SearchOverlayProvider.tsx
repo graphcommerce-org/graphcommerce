@@ -123,9 +123,11 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
                 const element = items.current[selectedIndex]?.current
                 element?.click()
 
-                if (!element && params.search) {
+                const targetValue = (event.target as HTMLInputElement).value
+
+                if (!element && targetValue) {
                   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-                  router.push(`/search/${encodeURIComponent(params.search)}`)
+                  router.push(`/search/${encodeURIComponent(targetValue)}`)
                 }
               } else {
                 setSelectedIndex(-1)
@@ -140,7 +142,7 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
         }
       },
     }),
-    [params, router, selectedIndex],
+    [router, selectedIndex],
   )
 
   return (
