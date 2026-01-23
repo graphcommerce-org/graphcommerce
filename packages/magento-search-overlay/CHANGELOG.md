@@ -1,5 +1,13 @@
 # @graphcommerce/magento-search-overlay
 
+## 10.0.4
+
+### Patch Changes
+
+- [#2580](https://github.com/graphcommerce-org/graphcommerce/pull/2580) [`c406bbd`](https://github.com/graphcommerce-org/graphcommerce/commit/c406bbd843af025c8315faf0831682b88dcfa6b3) - Use immediate input value for Enter navigation.
+
+  Modified SearchOverlayProvider to pull the search query directly from the event target during the Enter key event. This prevents the "partial query" bug caused by navigating with the lagging debounced state. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.0.4-canary.1
 
 ## 10.0.4-canary.0

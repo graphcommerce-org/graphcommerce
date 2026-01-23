@@ -1,5 +1,7 @@
 # Change Log
 
+## 10.0.4
+
 ## 10.0.4-canary.1
 
 ## 10.0.4-canary.0
