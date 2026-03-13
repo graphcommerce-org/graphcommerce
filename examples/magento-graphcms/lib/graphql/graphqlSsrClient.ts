@@ -63,10 +63,12 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
 
-  const shouldCheckCache = fs.existsSync('renew-all-pages-query.txt')
+  const dir = './tmp'
+
+  const shouldCheckCache = fs.existsSync(`${dir}/renew-all-pages-query.txt`)
 
   if (shouldCheckCache) {
-    const instancedAt = Number(fs.readFileSync('renew-all-pages-query.txt', 'utf8'))
+    const instancedAt = Number(fs.readFileSync(`${dir}/renew-all-pages-query.txt`, 'utf8'))
 
     if (ssrClient[locale]?.instancedAt < instancedAt) {
       delete ssrClient[locale]
