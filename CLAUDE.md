@@ -165,6 +165,14 @@ extend input GraphCommerceStorefrontConfig {
 }
 ```
 
+You can also extend existing enums from other packages:
+
+```graphql
+extend enum WebsitePermissions {
+  CUSTOMER_ONLY
+}
+```
+
 ### Environment Variables (.env)
 
 Each example directory has a `.env` file. Two types of env vars are used:
@@ -310,6 +318,76 @@ After running `yarn codegen`, `my_custom_attribute` will be available in
 
 Enable with `debug.pluginStatus: true` in config or `GC_DEBUG_PLUGIN_STATUS=1`
 in env. This logs which plugins are enabled/disabled during build.
+
+## Authentication & Cookies
+
+Customer auth tokens are stored in Apollo Client cache (persisted to
+localStorage). Since server-side code (middleware, SSR) cannot access
+localStorage, a `gc-auth=1` cookie is set on sign-in and cleared on sign-out.
+This cookie is a boolean flag only — never the actual token.
+
+**Cookie utility** (`@graphcommerce/next-ui`):
+
+```tsx
+import { cookie } from '@graphcommerce/next-ui'
+cookie('gc-auth', '1') // set
+cookie('gc-auth') // read
+cookie('gc-auth', null) // delete
+```
+
+### CSS Flags
+
+CSS flags set `data-*` attributes on `<html>` for instant visual toggling before
+JS hydrates. Stored in localStorage, restored via a blocking script in
+`_document.tsx` (`getCssFlagsInitScript()`).
+
+```tsx
+import {
+  setCssFlag,
+  removeCssFlag,
+  cssFlag,
+  cssNotFlag,
+} from '@graphcommerce/next-ui'
+
+setCssFlag('private-query', true)
+// In MUI sx: { [cssFlag('private-query')]: { display: 'none' } }
+// In MUI sx: { [cssNotFlag('private-query')]: { display: 'none' } }
+```
+
+The `private-query` flag is set on sign-in, cleared on sign-out. Used by
+`GuestOrCustomerMask` and `PrivateQueryMask` to show/hide customer-specific
+content without waiting for React hydration.
+
+### Permissions System
+
+Permissions are configured via `GraphCommercePermissions` input type in
+`Config.graphqls`. Set globally and overridable per storefront:
+
+```tsx
+import { permissions } from '@graphcommerce/next-config/config'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
+const perm =
+  useStorefrontConfig().permissions?.website ??
+  permissions?.website ??
+  'ENABLED'
+```
+
+Existing enums: `WebsitePermissions`, `CustomerAccountPermissions`,
+`CartPermissions`, `BillingAddressPermissions`. Extendable via `extend enum` in
+package `Config.graphqls` files.
+
+### GuestOrCustomerMask
+
+Component for showing different content based on auth state, with CSS-flag-based
+masking to avoid flash of wrong content:
+
+```tsx
+<GuestOrCustomerMask
+  loggedOut={<SignInMessage />}
+  skeleton={<Skeleton />}
+  loggedIn={<RealContent />}
+/>
+```
 
 ## Tech Stack
 
