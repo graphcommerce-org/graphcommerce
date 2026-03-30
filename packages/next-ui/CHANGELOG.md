@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.4-canary.2
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`ac652cc`](https://github.com/graphcommerce-org/graphcommerce/commit/ac652cc7b1358cebe9047733afccc87b5b89dae4) - Added generic proxy handling to graphcommerce that can be used for plugins. Disabledby default. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`8d1c48c`](https://github.com/graphcommerce-org/graphcommerce/commit/8d1c48cdbdcf30d4f1e55cf16a02028d19703382) - Store the css flags as a cookie, so we are able to retrieve the flags in the middleware as well. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`5957a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/5957a2b90520574a0d72c5850858464092cdf7c0) - Fix hydration erorr with SkipLink when there are query params. ([@paales](https://github.com/paales))
+
 ## 10.0.4-canary.1
 
 ## 10.0.4-canary.0

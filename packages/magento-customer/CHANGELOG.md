@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.4-canary.2
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`fa1eeae`](https://github.com/graphcommerce-org/graphcommerce/commit/fa1eeaeb10db1d465dd0f7a07d643862921c3c04) - Override signup props and update strings ([@paales](https://github.com/paales))
+
 ## 10.0.4-canary.1
 
 ## 10.0.4-canary.0
