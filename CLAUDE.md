@@ -333,25 +333,27 @@ in env. This logs which plugins are enabled/disabled during build.
 
 ## Authentication & Cookies
 
-Customer auth tokens are stored in Apollo Client cache (persisted to
-localStorage). Since server-side code (middleware, SSR) cannot access
-localStorage, a `gc-auth=1` cookie is set on sign-in and cleared on sign-out.
-This cookie is a boolean flag only — never the actual token.
+Customer auth tokens are stored in Apollo Client cache. Auth state is tracked
+via the CSS flags system: the `private-query` flag in the `gc-flags` cookie
+indicates a logged-in user. This is set automatically by `setCssFlag` on sign-in
+and cleared by `removeCssFlag` on sign-out. The cookie is readable both
+client-side and server-side (in Next.js proxy).
 
 **Cookie utility** (`@graphcommerce/next-ui`):
 
 ```tsx
 import { cookie } from '@graphcommerce/next-ui'
-cookie('gc-auth', '1') // set
-cookie('gc-auth') // read
-cookie('gc-auth', null) // delete
+cookie('name', 'value') // set
+cookie('name') // read
+cookie('name', null) // delete
 ```
 
 ### CSS Flags
 
 CSS flags set `data-*` attributes on `<html>` for instant visual toggling before
-JS hydrates. Stored in localStorage, restored via a blocking script in
-`_document.tsx` (`getCssFlagsInitScript()`).
+JS hydrates. Stored in a `gc-flags` cookie (JSON), restored via a blocking
+script in `_document.tsx` (`getCssFlagsInitScript()`) that reads
+`document.cookie`. The cookie is also readable server-side in Next.js proxy.
 
 ```tsx
 import {

@@ -32,13 +32,13 @@ yarn-error.log*
 *.tsbuildinfo
 
 # managed by: graphcommerce
-middleware.ts.example
 pages/.well-known/assetlinks.json.tsx
 pages/account/downloads.tsx
 pages/account/payment-tokens.tsx
 pages/downloadable/download/link/id/\[id\].tsx
 pages/downloadable/download/linkSample/link_id/\[id\].tsx
 pages/downloadable/download/sample/sample_id/\[id\].tsx
+pages/private.tsx
 pages/test/\[\[...url\]\].tsx
 pages/test/buttons.tsx
 pages/test/form-elements.tsx
@@ -49,4 +49,5 @@ pages/test/sheet.tsx
 pages/test/slider.tsx
 pages/test/typography.tsx
 pages/test/usebacklink/\[\[...url\]\].tsx
+proxy.ts
 # end managed by: graphcommerce
