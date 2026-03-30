@@ -27,7 +27,8 @@
     "./Intl/DateTimeFormat/toDate": "./Intl/DateTimeFormat/toDate.ts",
     "./Breadcrumbs/BreadcrumbsJsonLd": "./Breadcrumbs/BreadcrumbsJsonLd.tsx",
     "./Breadcrumbs/jsonLdBreadcrumb": "./Breadcrumbs/jsonLdBreadcrumb.tsx",
-    "./RenderType/filterNonNullableKeys": "./RenderType/filterNonNullableKeys.ts"
+    "./RenderType/filterNonNullableKeys": "./RenderType/filterNonNullableKeys.ts",
+    "./proxy": "./proxy.ts"
   },
   "dependencies": {
     "cookie": "^1.1.1",
