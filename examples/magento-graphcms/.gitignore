@@ -32,6 +32,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # managed by: graphcommerce
+middleware.ts.example
 pages/.well-known/assetlinks.json.tsx
 pages/account/downloads.tsx
 pages/account/payment-tokens.tsx

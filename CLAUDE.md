@@ -61,8 +61,20 @@ use Playwright: `yarn playwright`.
 
 ### Linting & Type Checking
 
+**Important:** For type checking, use `tsgo` (the native TypeScript compiler)
+and run it from the **example directory** (not the repo root):
+
 ```bash
-yarn tsc:lint         # TypeScript noEmit check (whole repo)
+# Type check (preferred — fast native TypeScript compiler)
+cd examples/magento-graphcms
+npx --package=@typescript/native-preview tsgo --noEmit -p .
+```
+
+Type checking must be run from an example directory because codegen only
+generates types for the specific project (`.mesh/`, `.gql.ts` files). Running
+from the repo root will fail with missing type errors.
+
+```bash
 yarn eslint:lint      # ESLint across all TS/TSX
 yarn eslint:fix       # ESLint with auto-fix
 yarn prettier:fix     # Prettier formatting
