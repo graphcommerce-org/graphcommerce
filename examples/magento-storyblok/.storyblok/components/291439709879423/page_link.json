@@ -1,0 +1,56 @@
+{
+  "name": "page_link",
+  "display_name": "Page Link",
+  "description": null,
+  "created_at": "2026-03-27T13:20:10.221Z",
+  "updated_at": "2026-04-13T09:37:20.884Z",
+  "id": 159449129885407,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "RdWpQ9D9T76lDj0FTv8swA"
+    },
+    "url": {
+      "type": "text",
+      "pos": 1,
+      "display_name": "URL",
+      "id": "23JbBfgXQ5a0_cyMljUbZg",
+      "translatable": true
+    },
+    "description": {
+      "type": "richtext",
+      "pos": 2,
+      "translatable": true,
+      "display_name": "Description",
+      "id": "mS3Hc546QoKP21_66mYPPA"
+    },
+    "asset": {
+      "type": "asset",
+      "pos": 3,
+      "display_name": "Asset",
+      "filetypes": [
+        "images",
+        "videos"
+      ],
+      "id": "nCwWHFLLQ3Wo9yES2Aiyxg"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Page Link",
+  "component_group_uuid": null,
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

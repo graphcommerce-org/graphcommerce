@@ -20,7 +20,10 @@ const nextConfig: NextConfig = {
   images: {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     qualities: [52, 75],
-    remotePatterns: [{ hostname: 'configurator.reachdigital.dev' }],
+    remotePatterns: [
+      { hostname: 'configurator.reachdigital.dev' },
+      { hostname: 'a.storyblok.com' },
+    ],
   },
 }
 

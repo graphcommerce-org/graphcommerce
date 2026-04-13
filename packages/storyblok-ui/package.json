@@ -1,0 +1,28 @@
+{
+  "name": "@graphcommerce/storyblok-ui",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "10.0.3",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "peerDependencies": {
+    "@graphcommerce/eslint-config-pwa": "^10.0.3",
+    "@graphcommerce/image": "^10.0.3",
+    "@graphcommerce/next-ui": "^10.0.3",
+    "@graphcommerce/prettier-config-pwa": "^10.0.3",
+    "@graphcommerce/typescript-config-pwa": "^10.0.3",
+    "@mui/material": "^7.0.0",
+    "@storyblok/react": "^6.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "exports": {
+    ".": "./index.ts"
+  }
+}

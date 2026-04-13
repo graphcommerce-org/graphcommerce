@@ -1,0 +1,135 @@
+{
+  "name": "page",
+  "display_name": "Page",
+  "description": null,
+  "created_at": "2026-03-27T12:25:38.958Z",
+  "updated_at": "2026-03-27T13:20:12.538Z",
+  "id": 159435730779527,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "required": true,
+      "display_name": "Title",
+      "id": "5rEbvgwtSoOyWZPoRY_ytg"
+    },
+    "url": {
+      "type": "text",
+      "pos": 1,
+      "required": true,
+      "display_name": "URL",
+      "description": "URL path for the page, e.g. 'page/home', 'blog/my-post', 'service/contact-us'",
+      "id": "oVM2yXioSPWN-Gj_XEUjZA"
+    },
+    "meta_title": {
+      "type": "text",
+      "pos": 2,
+      "translatable": true,
+      "display_name": "Meta Title",
+      "id": "SHzwzKlGQ4mkQeUaUbmw-w"
+    },
+    "meta_description": {
+      "type": "textarea",
+      "pos": 3,
+      "translatable": true,
+      "display_name": "Meta Description",
+      "id": "44IJqP8pSiCXN2WkN7rnVw"
+    },
+    "meta_robots": {
+      "type": "option",
+      "pos": 4,
+      "display_name": "Meta Robots",
+      "default_value": "INDEX_FOLLOW",
+      "source": "self",
+      "options": [
+        {
+          "name": "INDEX_FOLLOW",
+          "value": "INDEX_FOLLOW"
+        },
+        {
+          "name": "INDEX_NOFOLLOW",
+          "value": "INDEX_NOFOLLOW"
+        },
+        {
+          "name": "NOINDEX_FOLLOW",
+          "value": "NOINDEX_FOLLOW"
+        },
+        {
+          "name": "NOINDEX_NOFOLLOW",
+          "value": "NOINDEX_NOFOLLOW"
+        }
+      ],
+      "id": "KIi4y1O2StWOWkQekNao8g"
+    },
+    "author": {
+      "type": "text",
+      "pos": 5,
+      "display_name": "Author",
+      "id": "PmX9lO6nTseg7DpDSTruMw"
+    },
+    "date": {
+      "type": "datetime",
+      "pos": 6,
+      "display_name": "Date",
+      "id": "L0eYmYIHTlCWy8oGoDhLLQ"
+    },
+    "asset": {
+      "type": "asset",
+      "pos": 7,
+      "display_name": "Asset",
+      "filetypes": [
+        "images",
+        "videos"
+      ],
+      "id": "RWuFS5Z5S9S_sPnnLg-k5Q"
+    },
+    "body": {
+      "type": "bloks",
+      "pos": 8,
+      "display_name": "Content",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "row_column_one",
+        "row_column_two",
+        "row_column_three",
+        "row_hero_banner",
+        "row_special_banner",
+        "row_quote",
+        "row_links",
+        "row_button_link_list",
+        "row_service_options",
+        "row_product",
+        "row_blog_content"
+      ],
+      "id": "JSw5kfzNQuGyTfExGF_InQ"
+    },
+    "related_pages": {
+      "type": "bloks",
+      "pos": 9,
+      "display_name": "Related Pages",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "id": "Mv1AhSdlQAibcdblFxqUpg"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": true,
+  "preview_tmpl": null,
+  "is_nestable": false,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Page",
+  "component_group_uuid": null,
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

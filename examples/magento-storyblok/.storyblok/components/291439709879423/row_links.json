@@ -1,0 +1,75 @@
+{
+  "name": "row_links",
+  "display_name": "Row Links",
+  "description": null,
+  "created_at": "2026-03-27T13:20:11.866Z",
+  "updated_at": "2026-04-13T08:10:58.457Z",
+  "id": 159449136611049,
+  "schema": {
+    "variant": {
+      "type": "option",
+      "pos": 0,
+      "display_name": "Variant",
+      "source": "self",
+      "options": [
+        {
+          "name": "Logo Swiper",
+          "value": "LogoSwiper"
+        },
+        {
+          "name": "Image Label Swiper",
+          "value": "ImageLabelSwiper"
+        },
+        {
+          "name": "Inline",
+          "value": "Inline"
+        },
+        {
+          "name": "USPs",
+          "value": "Usps"
+        }
+      ],
+      "id": "N7eAPQHSR_K5_1snGBKkOg"
+    },
+    "title": {
+      "type": "text",
+      "pos": 1,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "tGjyYEgDRe603BYC0K2PbA"
+    },
+    "copy": {
+      "type": "richtext",
+      "pos": 2,
+      "translatable": true,
+      "display_name": "Copy",
+      "id": "xMXE1vYoTyufRR1wdDNe8A"
+    },
+    "page_links": {
+      "type": "bloks",
+      "pos": 3,
+      "display_name": "Page Links",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "id": "0KCngqhQTwCQMspAJffVrA"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Links",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

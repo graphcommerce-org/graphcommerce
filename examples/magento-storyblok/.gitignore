@@ -27,6 +27,9 @@ yarn-error.log*
 
 *.gql.ts
 
+# storyblok
+.storyblok/logs/
+
 # application
 .mesh
 *.tsbuildinfo

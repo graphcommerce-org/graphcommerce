@@ -36,6 +36,7 @@ import {
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
+import { StoryblokComponent, useStoryblokState } from '@storyblok/react'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
 import {
@@ -48,17 +49,23 @@ import {
 import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { fetchStory, type StoryblokStory } from '../lib/storyblok'
 
 export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
-  ProductFiltersQuery & { filterTypes?: FilterTypes; params?: ProductListParams }
+  ProductFiltersQuery & {
+    filterTypes?: FilterTypes
+    params?: ProductListParams
+    story: StoryblokStory | null
+  }
 export type CategoryRoute = { url: string[] }
 
 type GetPageStaticPaths = GetStaticPaths<CategoryRoute>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, CategoryProps, CategoryRoute>
 
 function CategoryPage(props: CategoryProps) {
-  const { categories, ...rest } = props
+  const { categories, story: initialStory, ...rest } = props
+  const story = useStoryblokState(initialStory)
   const { mask, ...productList } = useProductList({
     ...rest,
     category: categories?.items?.[0],
@@ -128,6 +135,7 @@ function CategoryPage(props: CategoryProps) {
           )}
         </>
       )}
+      {story?.content && <StoryblokComponent blok={story.content} />}
     </PrivateQueryMaskProvider>
   )
 }
@@ -204,7 +212,10 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  if (!(await category)?.uid) return redirectOrNotFound(staticClient, conf, params, locale)
+  const storyPage = fetchStory(url, context)
+
+  if (!(await category)?.uid && !(await storyPage).data)
+    return redirectOrNotFound(staticClient, conf, params, locale)
 
   if ((await products)?.error) {
     const totalPages = (await filters)?.data?.filters?.page_info?.total_pages ?? 0
@@ -230,6 +241,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await products)?.data,
       ...(await filters)?.data,
       ...(await layout).data,
+      story: (await storyPage).data?.story ?? null,
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),
