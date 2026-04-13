@@ -1,7 +1,7 @@
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { StoryblokPage } from '../components/Storyblok/Page'
-import { RowHeroBanner } from '../components/Storyblok/RowHeroBanner'
+import { RowHeroBanner } from '../components/Storyblok/RowHeroBanner/RowHeroBanner'
 import { RowLinks } from '../components/Storyblok/RowLinks/RowLinks'
 
 /**
