@@ -2,7 +2,7 @@ import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { RichText } from '@graphcommerce/storyblok-ui'
 import { Button } from '@mui/material'
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
-import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../../../.storyblok/types/291439709879423/storyblok-components'
+import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../types'
 
 export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
   return (

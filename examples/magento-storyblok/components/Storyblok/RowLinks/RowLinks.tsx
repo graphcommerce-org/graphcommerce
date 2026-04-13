@@ -1,9 +1,5 @@
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
-import type {
-  StoryblokRowLinks as RowLinksBlok,
-  StoryblokPageLink,
-} from '../../../.storyblok/types/291439709879423/storyblok-components'
-import type { StoryblokRichtext } from '../../../.storyblok/types/storyblok.d.ts'
+import type { StoryblokRowLinks as RowLinksBlok, StoryblokPageLink, StoryblokRichtext } from '../types'
 import { ImageLabelSwiper } from './variant/ImageLabelSwiper'
 import { Inline } from './variant/Inline'
 import { LogoSwiper } from './variant/LogoSwiper'

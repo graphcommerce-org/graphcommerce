@@ -20,9 +20,9 @@
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
-    "storyblok:pull": "storyblok components pull",
+    "storyblok:pull": "storyblok components pull && cp .storyblok/components/*/*.json .storyblok/components/",
     "storyblok:push": "storyblok components push",
-    "storyblok:types": "storyblok types generate",
+    "storyblok:types": "storyblok types generate && cp .storyblok/types/*/storyblok-components.d.ts .storyblok/types/components.d.ts",
     "storyblok:sync": "yarn storyblok:pull && yarn storyblok:types"
   },
   "dependencies": {
