@@ -1,5 +1,6 @@
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
 import { Asset } from '@graphcommerce/storyblok-ui'
+import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import { Link } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -8,13 +9,13 @@ export function LogoSwiper(props: RowLinksVariantProps) {
 
   return (
     <VariantLogoSwiper
-      title={title}
+      title={title ?? ''}
       maxWidth={false}
       sx={(theme) => ({ my: `calc(${theme.spacings.xxl} + ${theme.spacings.md})` })}
     >
       {page_links?.map((pageLink) => (
-        // eslint-disable-next-line no-underscore-dangle
         <Link
+          {...storyblokEditable(pageLink as unknown as SbBlokData)}
           href={pageLink.url ?? ''}
           key={pageLink._uid}
           color='inherit'

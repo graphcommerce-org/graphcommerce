@@ -1,4 +1,5 @@
 import { VariantInline } from '@graphcommerce/next-ui'
+import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import { Link } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -8,8 +9,13 @@ export function Inline(props: RowLinksVariantProps) {
   return (
     <VariantInline title={title} maxWidth={false}>
       {page_links?.map((pageLink) => (
-        // eslint-disable-next-line no-underscore-dangle
-        <Link href={pageLink.url ?? ''} key={pageLink._uid} color='inherit' underline='hover'>
+        <Link
+          {...storyblokEditable(pageLink as unknown as SbBlokData)}
+          href={pageLink.url ?? ''}
+          key={pageLink._uid}
+          color='inherit'
+          underline='hover'
+        >
           {pageLink.title}
         </Link>
       ))}
