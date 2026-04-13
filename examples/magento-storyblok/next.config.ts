@@ -25,6 +25,19 @@ const nextConfig: NextConfig = {
       { hostname: 'a.storyblok.com' },
     ],
   },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://app.storyblok.com",
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default withGraphCommerce(withPWA(nextConfig))

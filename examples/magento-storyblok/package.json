@@ -11,7 +11,7 @@
     "node": ">=20 <24.0.0"
   },
   "scripts": {
-    "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev --turbopack' -c 'magenta,cyan'",
+    "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev --turbopack --experimental-https' -c 'magenta,cyan'",
     "codegen": "graphcommerce codegen && gc-mesh build && (gc-gql-codegen 2>&1 | cat) ",
     "build": "graphcommerce codegen && gc-mesh build && (gc-gql-codegen 2>&1 | cat) && next build",
     "start": "next start",
