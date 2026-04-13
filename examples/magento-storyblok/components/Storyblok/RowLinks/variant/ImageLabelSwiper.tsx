@@ -27,23 +27,25 @@ export function ImageLabelSwiper(props: RowLinksVariantProps) {
             '& img, & video': { display: 'block' },
           })}
         >
-          {pageLink.asset && (
-            <Asset
-              asset={pageLink.asset}
-              sx={{
-                width: responsiveVal(260, 400),
-                maxWidth: responsiveVal(260, 400),
-                borderRadius: 3,
-              }}
-              sizes={responsiveVal(260, 400)}
-            />
-          )}
-          <Box sx={{ maxWidth: responsiveVal(260, 400) }}>
-            <Typography variant='h6' component='h3'>
-              {pageLink.title}
-            </Typography>
-            {pageLink.description && <RichText content={pageLink.description} />}
-          </Box>
+          <>
+            {pageLink.asset && (
+              <Asset
+                asset={pageLink.asset}
+                sx={{
+                  width: responsiveVal(260, 400),
+                  maxWidth: responsiveVal(260, 400),
+                  borderRadius: 3,
+                }}
+                sizes={responsiveVal(260, 400)}
+              />
+            )}
+            <Box sx={{ maxWidth: responsiveVal(260, 400) }}>
+              <Typography variant='h6' component='h3'>
+                {pageLink.title}
+              </Typography>
+              {pageLink.description && <RichText content={pageLink.description} />}
+            </Box>
+          </>
         </ButtonBase>
       ))}
     </VariantImageLabelSwiper>
