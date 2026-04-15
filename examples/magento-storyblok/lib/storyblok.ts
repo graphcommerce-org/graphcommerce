@@ -1,4 +1,5 @@
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
+import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
 import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
@@ -46,6 +47,16 @@ export async function fetchStory(
   } catch {
     return { data: null }
   }
+}
+
+export type GlobalConfigStory = ISbStoryData<StoryblokGlobalConfig>
+
+/** Fetch the global config story used for header/footer content. */
+export async function fetchGlobalConfig(
+  opts?: FetchStoryOpts,
+): Promise<GlobalConfigStory | null> {
+  const result = await fetchStory('config', opts)
+  return (result.data?.story as unknown as GlobalConfigStory) ?? null
 }
 
 export const getStoryblokApi = storyblokInit({

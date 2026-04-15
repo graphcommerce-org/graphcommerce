@@ -53,6 +53,7 @@ import { Reviews } from '../../components/ProductView/Reviews'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../lib/storyblok'
 
 export type Props = ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
@@ -238,6 +239,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
 
   const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
 
@@ -253,6 +255,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       urlKey,
       ...(await productPage),
+      globalConfig: (await globalConfig)?.content ?? null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
       up,

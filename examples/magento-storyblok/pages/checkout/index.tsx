@@ -40,6 +40,7 @@ import { useRouter } from 'next/router'
 import type { LayoutMinimalProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../lib/storyblok'
 
 type Props = Record<string, unknown>
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps, Props>
@@ -162,10 +163,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
 
   return {
     props: {
       ...(await layout).data,
+      globalConfig: (await globalConfig)?.content ?? null,
       up: { href: '/cart', title: t`Cart` },
       apolloState: await conf.then(() => client.cache.extract()),
     },

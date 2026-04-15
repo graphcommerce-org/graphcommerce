@@ -1,13 +1,26 @@
 import { useQuery } from '@graphcommerce/graphql'
+import { Image } from '@graphcommerce/image'
 import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-import { Button, Link } from '@mui/material'
+import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { Button, IconButton, Link } from '@mui/material'
+import { useRouter } from 'next/router'
+import type { MouseEventHandler } from 'react'
+import { useGlobalConfig } from '../Storyblok/GlobalConfigProvider'
+import type { StoryblokGlobalConfig } from '../Storyblok/types'
 
-export function Footer(props: { socialLinks?: React.ReactNode }) {
-  const { socialLinks } = props
+export type FooterProps = { globalConfig?: StoryblokGlobalConfig | null }
+
+export function Footer(props: FooterProps) {
+  const contextConfig = useGlobalConfig()
+  const globalConfig = props.globalConfig ?? contextConfig
+  const isEditor = Boolean(useRouter().query._storyblok)
+  const preventNav: MouseEventHandler | undefined = isEditor
+    ? (e) => e.preventDefault()
+    : undefined
   const cartEnabled = useCheckoutGuestEnabled()
   const config = useQuery(StoreConfigDocument).data?.storeConfig
 
@@ -16,7 +29,36 @@ export function Footer(props: { socialLinks?: React.ReactNode }) {
 
   return (
     <FooterBase
-      socialLinks={socialLinks}
+      socialLinks={globalConfig?.social_links?.map((link) => (
+        <IconButton
+          {...storyblokEditable(link as unknown as SbBlokData)}
+          key={link._uid}
+          href={link.url ?? ''}
+          onClick={preventNav}
+          color='inherit'
+          size='medium'
+          edge='start'
+        >
+          {link.asset?.filename ? (
+            <Image
+              layout='fill'
+              src={link.asset.filename}
+              width={24}
+              height={24}
+              unoptimized
+              alt={link.title ?? ''}
+              sx={(theme) => ({
+                filter: 'invert(0%)',
+                ...theme.applyStyles('dark', {
+                  filter: 'invert(100%)',
+                }),
+              })}
+            />
+          ) : (
+            link.title
+          )}
+        </IconButton>
+      ))}
       storeSwitcher={<StoreSwitcherButton />}
       customerService={
         <Button href='/service' variant='pill'>
@@ -25,16 +67,26 @@ export function Footer(props: { socialLinks?: React.ReactNode }) {
       }
       copyright={
         <>
-          <span>
-            {config?.copyright ? (
+          <span {...(globalConfig ? storyblokEditable(globalConfig as unknown as SbBlokData) : {})}>
+            {globalConfig?.copyright ? (
+              <FindAndReplace source={globalConfig.copyright} findAndReplace={[['{YYYY}', year]]} />
+            ) : config?.copyright ? (
               <FindAndReplace source={config.copyright} findAndReplace={[['{YYYY}', year]]} />
-            ) : (
-              <Trans>
-                Copyright© {year} {websiteName}
-              </Trans>
-            )}
+            ) : null}
           </span>
 
+          {globalConfig?.legal_links?.map((link) => (
+            <Link
+              {...storyblokEditable(link as unknown as SbBlokData)}
+              key={link._uid}
+              href={link.url ?? ''}
+              onClick={preventNav}
+              color='textPrimary'
+              underline='always'
+            >
+              {link.title}
+            </Link>
+          ))}
           {magentoVersion >= 247 && cartEnabled && (
             <Link href='/guest/orderstatus' color='textPrimary' underline='always'>
               <Trans>Order status</Trans>

@@ -1,6 +1,5 @@
 import { CartFab, useCartEnabled } from '@graphcommerce/magento-cart'
 import { magentoMenuToNavigation } from '@graphcommerce/magento-category'
-import { CmsBlock } from '@graphcommerce/magento-cms'
 import { CustomerFab, CustomerMenuFabItem } from '@graphcommerce/magento-customer'
 import { SearchFab, SearchField } from '@graphcommerce/magento-search'
 import {
@@ -33,26 +32,29 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { GlobalConfigProvider } from '../Storyblok/GlobalConfigProvider'
+import type { StoryblokGlobalConfig } from '../Storyblok/types'
 import { productListRenderer } from '../ProductListItems/productListRenderer'
 import { Footer } from './Footer'
 import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
 
 export type LayoutNavigationProps = LayoutQuery &
-  Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>
+  Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'> & {
+    globalConfig?: StoryblokGlobalConfig | null
+  }
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  const { menu, children, cmsBlocks, ...uiProps } = props
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { menu, children, cmsBlocks, globalConfig, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
 
   const cartEnabled = useCartEnabled()
 
-  const footerBlock = cmsBlocks?.items?.find((item) => item?.identifier === 'footer_links_block')
-
   return (
-    <>
+    <GlobalConfigProvider value={globalConfig}>
       <NavigationProvider
         selection={selection}
         items={useMemoDeep(
@@ -167,22 +169,12 @@ export function LayoutNavigation(props: LayoutNavigationProps) {
             </MobileTopRight>
           </>
         }
-        footer={
-          <Footer
-            socialLinks={
-              footerBlock ? (
-                <CmsBlock cmsBlock={footerBlock} productListRenderer={productListRenderer} />
-              ) : (
-                <div />
-              )
-            }
-          />
-        }
+        footer={<Footer />}
         cartFab={<CartFab BadgeProps={{ color: 'secondary' }} />}
         menuFab={<NavigationFab onClick={() => selection.set([])} />}
       >
         {children}
       </LayoutDefault>
-    </>
+    </GlobalConfigProvider>
   )
 }

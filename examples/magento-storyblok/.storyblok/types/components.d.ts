@@ -18,10 +18,21 @@ export interface StoryblokFooter {
   [k: string]: unknown;
 }
 
+export interface StoryblokGlobalConfig {
+  tab_footer?: unknown;
+  social_links?: StoryblokPageLink[];
+  copyright?: string;
+  legal_links?: StoryblokPageLink[];
+  component: "global_config";
+  _uid: string;
+  [k: string]: unknown;
+}
+
 export interface StoryblokGrid {
   columns?: (
     | StoryblokFeature
     | StoryblokFooter
+    | StoryblokGlobalConfig
     | StoryblokGrid
     | StoryblokPage
     | StoryblokPageLink
@@ -201,4 +212,4 @@ export interface StoryblokUsps {
   [k: string]: unknown;
 }
 
-export type ContentType = StoryblokFooter | StoryblokPage | StoryblokUsps;
+export type ContentType = StoryblokFooter | StoryblokGlobalConfig | StoryblokPage | StoryblokUsps;

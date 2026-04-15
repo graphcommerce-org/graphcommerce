@@ -16,6 +16,7 @@ import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../lib/storyblok'
 
 export type CmsPageProps = { cmsPage: CmsPageFragment }
 export type CmsRoute = { url: string[] }
@@ -82,6 +83,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
 
   const cmsPage = (await cmsPageQuery).data?.cmsPage
   if (!cmsPage) return redirectOrNotFound(staticClient, conf, params, locale)
@@ -89,6 +91,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const result = {
     props: {
       cmsPage,
+      globalConfig: (await globalConfig)?.content ?? null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

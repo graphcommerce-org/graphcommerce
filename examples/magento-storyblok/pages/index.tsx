@@ -10,9 +10,10 @@ import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
 import { RowRenderer } from '../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
-import { fetchStory, type StoryblokStory } from '../lib/storyblok'
+import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../lib/storyblok'
+import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
 
-type HomePageProps = { story: StoryblokStory | null }
+type HomePageProps = { story: StoryblokStory | null; globalConfig: StoryblokGlobalConfig | null }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, HomePageProps>
 
 function HomePage(props: HomePageProps) {
@@ -45,10 +46,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   })
 
   const storyPage = fetchStory('home', context)
+  const globalConfig = fetchGlobalConfig(context)
 
   return {
     props: {
       story: (await storyPage).data?.story ?? null,
+      globalConfig: (await globalConfig)?.content ?? null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

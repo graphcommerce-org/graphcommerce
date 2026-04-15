@@ -38,6 +38,7 @@ import { CircularProgress, Container, Dialog, Typography } from '@mui/material'
 import type { LayoutMinimalProps } from '../../components'
 import { LayoutDocument, LayoutMinimal } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../lib/storyblok'
 
 type GetPageStaticProps = GetStaticProps<LayoutMinimalProps>
 
@@ -165,10 +166,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
 
   return {
     props: {
       ...(await layout).data,
+      globalConfig: (await globalConfig)?.content ?? null,
       up: { href: '/checkout', title: t`Shipping` },
       apolloState: await conf.then(() => client.cache.extract()),
     },

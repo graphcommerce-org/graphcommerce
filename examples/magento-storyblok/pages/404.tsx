@@ -11,6 +11,7 @@ import { Box, Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../lib/storyblok'
 
 type Props = { cmsPage: CmsPageFragment | null }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props>
@@ -61,6 +62,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
   const confData = (await conf).data
   const identifier = confData?.storeConfig?.cms_no_route ?? ''
   const cmsPageQuery = staticClient.query({ query: CmsPageDocument, variables: { identifier } })
@@ -69,6 +71,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
+      globalConfig: (await globalConfig)?.content ?? null,
       cmsPage: cmsPage ?? null,
       up: { href: '/', title: t`Home` },
       apolloState: await conf.then(() => client.cache.extract()),

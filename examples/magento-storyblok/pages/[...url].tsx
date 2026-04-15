@@ -49,7 +49,7 @@ import {
 import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
-import { fetchStory, type StoryblokStory } from '../lib/storyblok'
+import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../lib/storyblok'
 
 export type CategoryProps = CategoryPageQuery &
   ProductListQuery &
@@ -213,6 +213,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     : undefined
 
   const storyPage = fetchStory(url, context)
+  const globalConfig = fetchGlobalConfig(context)
 
   if (!(await category)?.uid && !(await storyPage).data)
     return redirectOrNotFound(staticClient, conf, params, locale)
@@ -242,6 +243,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await filters)?.data,
       ...(await layout).data,
       story: (await storyPage).data?.story ?? null,
+      globalConfig: (await globalConfig)?.content ?? null,
       filterTypes: await filterTypes,
       params: productListParams,
       apolloState: await conf.then(() => client.cache.extract()),

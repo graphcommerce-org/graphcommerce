@@ -38,6 +38,7 @@ import {
   ProductListLayoutSidebar,
 } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../lib/storyblok'
 
 type SearchResultProps = MenuQueryFragment &
   ProductListQuery &
@@ -97,6 +98,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+  const globalConfig = fetchGlobalConfig(context)
 
   const productListParams = parseParams(
     search ? `search/${search}` : 'search',
@@ -135,6 +137,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
       ...(await filters)?.data,
       ...(await categories)?.data,
       ...(await layout)?.data,
+      globalConfig: (await globalConfig)?.content ?? null,
       filterTypes: await filterTypes,
       params: productListParams,
       up: { href: '/', title: t`Home` },
