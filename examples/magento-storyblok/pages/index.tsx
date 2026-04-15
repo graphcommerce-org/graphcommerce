@@ -5,9 +5,10 @@ import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
-import { StoryblokComponent, useStoryblokState } from '@storyblok/react'
+import { useStoryblokState } from '@storyblok/react'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
+import { RowRenderer } from '../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 import { fetchStory, type StoryblokStory } from '../lib/storyblok'
 
@@ -22,7 +23,7 @@ function HomePage(props: HomePageProps) {
     <>
       <PageMeta title={story?.name ?? t`Home`} />
       <LayoutHeader floatingMd hideMd={breadcrumbs} floatingSm />
-      {story?.content && <StoryblokComponent blok={story.content} />}
+      {story?.content?.body && <RowRenderer content={story.content.body} />}
     </>
   )
 }

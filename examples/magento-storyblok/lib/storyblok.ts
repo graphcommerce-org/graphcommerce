@@ -13,7 +13,7 @@ import { RowQuote } from '../components/Storyblok/RowQuote/RowQuote'
 import { RowServiceOptions } from '../components/Storyblok/RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from '../components/Storyblok/RowSpecialBanner/RowSpecialBanner'
 
-export type StoryblokStory = ISbStoryData<SbBlokData>
+export type StoryblokStory = ISbStoryData<SbBlokData & { body?: SbBlokData[] }>
 
 const isDev = process.env.NODE_ENV === 'development'
 
