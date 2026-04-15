@@ -1,6 +1,5 @@
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
-import { StoryblokPage } from '../components/Storyblok/Page'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
 import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
 import { RowColumnOne } from '../components/Storyblok/RowColumnOne/RowColumnOne'
@@ -53,7 +52,6 @@ export const getStoryblokApi = storyblokInit({
   accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
   use: [apiPlugin],
   components: {
-    page: StoryblokPage,
     row_blog_content: RowBlogContent,
     row_button_link_list: RowButtonLinkList,
     row_column_one: RowColumnOne,
