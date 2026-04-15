@@ -7,7 +7,7 @@ export function Inline(props: RowLinksVariantProps) {
   const { title, page_links } = props
 
   return (
-    <VariantInline title={title} maxWidth={false}>
+    <VariantInline title={title ?? ''} maxWidth={false}>
       {page_links?.map((pageLink) => (
         <Link
           {...storyblokEditable(pageLink as unknown as SbBlokData)}

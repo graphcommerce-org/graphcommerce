@@ -13,7 +13,7 @@ const withPWA = withSerwistInit({
 })
 
 const nextConfig: NextConfig = {
-  i18n: { localeDetection: false },
+  i18n: { localeDetection: false } as NextConfig['i18n'],
   onDemandEntries: {
     maxInactiveAge: 1000 * 60 * 10,
     pagesBufferLength: 10,

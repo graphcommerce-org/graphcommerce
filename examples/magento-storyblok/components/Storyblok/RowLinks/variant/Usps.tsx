@@ -9,7 +9,7 @@ export function Usps(props: RowLinksVariantProps) {
 
   return (
     <VariantUsps
-      title={title}
+      title={title ?? ''}
       maxWidth={false}
       sx={(theme) => ({
         '& .Scroller-root > *': {

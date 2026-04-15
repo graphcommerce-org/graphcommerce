@@ -9,7 +9,6 @@ export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
     <HeroBanner
       {...storyblokEditable(blok as unknown as SbBlokData)}
       pageLinks={blok.page_links?.map((link) => (
-        // eslint-disable-next-line no-underscore-dangle
         <Button
           key={link._uid}
           href={link.url ?? ''}

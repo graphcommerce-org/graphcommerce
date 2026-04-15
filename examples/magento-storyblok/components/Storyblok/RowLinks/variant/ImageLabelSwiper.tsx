@@ -17,7 +17,6 @@ export function ImageLabelSwiper(props: RowLinksVariantProps) {
         <ButtonBase
           {...storyblokEditable(pageLink as unknown as SbBlokData)}
           href={pageLink.url ?? ''}
-          // eslint-disable-next-line no-underscore-dangle
           key={pageLink._uid}
           sx={(theme) => ({
             display: 'flex',
