@@ -21,7 +21,7 @@
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
     "storyblok:pull": "storyblok components pull && cp .storyblok/components/*/*.json .storyblok/components/",
-    "storyblok:push": "storyblok components push",
+    "storyblok:push": "storyblok components pull && cp .storyblok/components/*.json .storyblok/components/*/ && storyblok components push --separate-files",
     "storyblok:types": "storyblok types generate && cp .storyblok/types/*/storyblok-components.d.ts .storyblok/types/components.d.ts",
     "storyblok:sync": "yarn storyblok:pull && yarn storyblok:types"
   },
