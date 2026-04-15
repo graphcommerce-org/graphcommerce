@@ -1,16 +1,18 @@
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { StoryblokPage } from '../components/Storyblok/Page'
+import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
+import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
+import { RowColumnOne } from '../components/Storyblok/RowColumnOne/RowColumnOne'
+import { RowColumnThree } from '../components/Storyblok/RowColumnThree/RowColumnThree'
+import { RowColumnTwo } from '../components/Storyblok/RowColumnTwo/RowColumnTwo'
 import { RowHeroBanner } from '../components/Storyblok/RowHeroBanner/RowHeroBanner'
 import { RowLinks } from '../components/Storyblok/RowLinks/RowLinks'
+import { RowProduct } from '../components/Storyblok/RowProduct/RowProduct'
+import { RowQuote } from '../components/Storyblok/RowQuote/RowQuote'
+import { RowServiceOptions } from '../components/Storyblok/RowServiceOptions/RowServiceOptions'
+import { RowSpecialBanner } from '../components/Storyblok/RowSpecialBanner/RowSpecialBanner'
 
-/**
- * After running `yarn storyblok:types`, replace the `SbBlokData` default with your generated
- * `ContentType` union for typed `story.content`:
- *
- * Import type { ContentType } from '../.storyblok/types/<space>/storyblok-components' export type
- * StoryblokStory = ISbStoryData<ContentType>
- */
 export type StoryblokStory = ISbStoryData<SbBlokData>
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -52,8 +54,17 @@ export const getStoryblokApi = storyblokInit({
   use: [apiPlugin],
   components: {
     page: StoryblokPage,
+    row_blog_content: RowBlogContent,
+    row_button_link_list: RowButtonLinkList,
+    row_column_one: RowColumnOne,
+    row_column_two: RowColumnTwo,
+    row_column_three: RowColumnThree,
     row_hero_banner: RowHeroBanner,
     row_links: RowLinks,
+    row_product: RowProduct,
+    row_quote: RowQuote,
+    row_service_options: RowServiceOptions,
+    row_special_banner: RowSpecialBanner,
   },
   enableFallbackComponent: true,
   customFallbackComponent: StoryblokFallback,

@@ -1,0 +1,54 @@
+import { PrivateQueryMaskProvider, usePrivateQuery } from '@graphcommerce/graphql'
+import { ProductListDocument, type ProductListItemsFragment } from '@graphcommerce/magento-product'
+import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import type { StoryblokRowProduct as RowProductBlok } from '../types'
+import { Backstory } from './variant/Backstory'
+import { Feature } from './variant/Feature'
+import { Grid } from './variant/Grid'
+import { Swipeable } from './variant/Swipeable'
+
+export type RowProductVariantProps = {
+  blok: RowProductBlok
+} & ProductListItemsFragment
+
+type VariantRenderer = Record<string, React.FC<RowProductVariantProps>>
+
+const variantRenderer: VariantRenderer = {
+  Grid,
+  Swipeable,
+  Feature,
+  Backstory,
+}
+
+export function RowProduct({ blok }: { blok: RowProductBlok }) {
+  const variant = (blok.variant as unknown as string) || 'Grid'
+  const identity = blok.identity ?? ''
+
+  const urlKeys = identity
+    .split(',')
+    .map((k) => k.trim())
+    .filter(Boolean)
+
+  const variables = { onlyItems: true, filters: { url_key: { in: urlKeys } } }
+
+  const scoped = usePrivateQuery(
+    ProductListDocument,
+    { variables, skip: !urlKeys.length },
+    { products: { items: [] } },
+  )
+
+  const Renderer = variantRenderer[variant]
+  if (!Renderer) {
+    if (process.env.NODE_ENV !== 'production')
+      return <div>RowProduct renderer for &ldquo;{variant}&rdquo; not found</div>
+    return null
+  }
+
+  return (
+    <PrivateQueryMaskProvider mask={scoped.mask}>
+      <div {...storyblokEditable(blok as unknown as SbBlokData)}>
+        <Renderer blok={blok} {...scoped.data?.products} />
+      </div>
+    </PrivateQueryMaskProvider>
+  )
+}
