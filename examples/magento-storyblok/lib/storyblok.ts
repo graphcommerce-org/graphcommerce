@@ -37,6 +37,23 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
   }
 }
 
+/** Fetch multiple stories matching a slug prefix (e.g. `service`). */
+export async function fetchStories(
+  startsWith: string,
+  opts?: FetchStoryOpts,
+): Promise<StoryblokStory[]> {
+  try {
+    const response = await getStoryblokApi().get('cdn/stories', {
+      ...sbParams(opts),
+      starts_with: startsWith,
+      per_page: 100,
+    })
+    return response.data?.stories ?? []
+  } catch {
+    return []
+  }
+}
+
 /** Fetch a single story by slug. Returns `{ data: null }` if not found. */
 export async function fetchStory(
   slug: string,

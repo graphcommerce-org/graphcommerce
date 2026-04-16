@@ -11,7 +11,7 @@ import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components
 import { LayoutDocument, LayoutOverlay } from '../../components'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
+import { fetchStories, fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
 type Props = { story: StoryblokStory | null }
 type RouteProps = { url?: string[] }
@@ -50,10 +50,19 @@ ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 
-// eslint-disable-next-line @typescript-eslint/require-await
-export const getStaticPaths: GetPageStaticPaths = async () => {
+export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-  return { paths: [], fallback: 'blocking' }
+
+  const responses = locales.map(async (locale) => {
+    const stories = await fetchStories('service/', { locale })
+    return stories.map((story) => ({
+      params: { url: story.full_slug.replace('service/', '').split('/').filter(Boolean) },
+      locale,
+    }))
+  })
+  const paths = (await Promise.all(responses)).flat(1)
+
+  return { paths, fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
