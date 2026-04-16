@@ -6,17 +6,22 @@ import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphco
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
+import { useStoryblokState } from '@storyblok/react'
 import { Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
-type Props = Record<string, unknown>
+type Props = { story: StoryblokStory | null }
 type RouteProps = { url: string[] }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function NewsletterSubscribe(props: Props) {
-  const title = t`Newsletter`
+  const { story: initialStory } = props
+  const story = useStoryblokState(initialStory)
+  const title = story?.name ?? t`Newsletter`
 
   return (
     <>
@@ -31,10 +36,14 @@ function NewsletterSubscribe(props: Props) {
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
+      {story?.content?.body && <RowRenderer content={story.content.body} />}
+
       <Container maxWidth='sm'>
-        <Typography variant='h3'>
-          <Trans>Subscribe to newsletter</Trans>
-        </Typography>
+        {story?.name && (
+          <Typography variant='h3'>
+            <Trans>Subscribe to newsletter</Trans>
+          </Typography>
+        )}
         <GuestNewsletter />
       </Container>
     </>
@@ -59,8 +68,11 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  const storyPage = fetchStory('service/newsletter', context)
+
   return {
     props: {
+      story: (await storyPage).data?.story ?? null,
       ...(await layout).data,
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),

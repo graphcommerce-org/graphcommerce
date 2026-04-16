@@ -46,24 +46,27 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
+import { useStoryblokState } from '@storyblok/react'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { Reviews } from '../../components/ProductView/Reviews'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchGlobalConfig } from '../../lib/storyblok'
+import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
 export type Props = ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string }
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string; story: StoryblokStory | null }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ProductPage(props: Props) {
-  const { defaultValues, urlKey } = props
+  const { defaultValues, urlKey, story: initialStory } = props
+  const story = useStoryblokState(initialStory)
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
@@ -154,6 +157,8 @@ function ProductPage(props: Props) {
         />
       </AddProductsToCartForm>
 
+      {story?.content?.body && <RowRenderer loadingEager={0} content={story.content.body} />}
+
       <ProductSpecs title='Specs' {...products} />
 
       <Reviews title='Reviews' {...product} />
@@ -239,6 +244,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+
+  const storyPage = fetchStory('product/global', context)
   const globalConfig = fetchGlobalConfig(context)
 
   const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))
@@ -255,6 +262,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       urlKey,
       ...(await productPage),
+      story: (await storyPage).data?.story ?? null,
       globalConfig: (await globalConfig)?.content ?? null,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),

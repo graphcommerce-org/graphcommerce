@@ -6,17 +6,22 @@ import { magentoVersion } from '@graphcommerce/next-config/config'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
+import { useStoryblokState } from '@storyblok/react'
 import { Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
-type Props = Record<string, unknown>
+type Props = { story: StoryblokStory | null }
 type RouteProps = { url: string[] }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ContactUs(props: Props) {
-  const title = t`Contact us`
+  const { story: initialStory } = props
+  const story = useStoryblokState(initialStory)
+  const title = story?.name ?? t`Contact us`
 
   return (
     <>
@@ -31,8 +36,10 @@ function ContactUs(props: Props) {
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
 
+      {story?.content?.body && <RowRenderer content={story.content.body} />}
+
       <Container maxWidth='md'>
-        <Typography variant='h3'>{title}</Typography>
+        {story?.name && <Typography variant='h3'>{t`Contact us`}</Typography>}
         <ContactForm />
       </Container>
     </>
@@ -59,8 +66,11 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   if (magentoVersion < 247) return { notFound: true }
 
+  const storyPage = fetchStory('service/contact-us', context)
+
   return {
     props: {
+      story: (await storyPage).data?.story ?? null,
       ...(await layout).data,
       up: { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),

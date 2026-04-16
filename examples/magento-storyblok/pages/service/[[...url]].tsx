@@ -5,9 +5,11 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
+import { useStoryblokState } from '@storyblok/react'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
@@ -17,7 +19,9 @@ type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ServicePage(props: Props) {
-  const title = t`Customer Service`
+  const { story: initialStory } = props
+  const story = useStoryblokState(initialStory)
+  const title = story?.name ?? t`Customer Service`
 
   return (
     <>
@@ -31,6 +35,8 @@ function ServicePage(props: Props) {
       <Container maxWidth='md'>
         <LayoutTitle>{title}</LayoutTitle>
       </Container>
+
+      {story?.content?.body && <RowRenderer content={story.content.body} />}
     </>
   )
 }

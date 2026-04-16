@@ -36,7 +36,7 @@ import {
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
-import { StoryblokComponent, useStoryblokState } from '@storyblok/react'
+import { useStoryblokState } from '@storyblok/react'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
 import {
@@ -46,6 +46,7 @@ import {
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
 } from '../components'
+import { RowRenderer } from '../components/Storyblok/RowRenderer'
 import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
@@ -135,7 +136,7 @@ function CategoryPage(props: CategoryProps) {
           )}
         </>
       )}
-      {story?.content && <StoryblokComponent blok={story.content} />}
+      {story?.content?.body && <RowRenderer content={story.content.body} />}
     </PrivateQueryMaskProvider>
   )
 }

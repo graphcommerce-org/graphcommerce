@@ -8,6 +8,7 @@ import { Box } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
@@ -35,6 +36,8 @@ function ModalPage(props: Props) {
       <Box sx={{ pt: 4 }}>
         <LayoutTitle>{title}</LayoutTitle>
       </Box>
+
+      {story.content?.body && <RowRenderer content={story.content.body} />}
     </>
   )
 }
