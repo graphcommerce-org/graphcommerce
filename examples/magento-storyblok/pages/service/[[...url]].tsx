@@ -1,16 +1,19 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
-import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
+import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
+import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
-type Props = Record<string, unknown>
-type RouteProps = { url: string[] }
+type Props = { story: StoryblokStory | null }
+type RouteProps = { url?: string[] }
+type GetPageStaticPaths = GetStaticPaths<RouteProps>
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProps>
 
 function ServicePage(props: Props) {
@@ -41,7 +44,17 @@ ServicePage.pageOptions = pageOptions
 
 export default ServicePage
 
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getStaticPaths: GetPageStaticPaths = async () => {
+  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
+  return { paths: [], fallback: 'blocking' }
+}
+
 export const getStaticProps: GetPageStaticProps = async (context) => {
+  const { params } = context
+  const slug = params?.url ? `service/${params.url.join('/')}` : 'service'
+  const isRoot = slug === 'service'
+
   const client = graphqlSharedClient(context)
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
@@ -50,9 +63,16 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  const storyPage = fetchStory(slug, context)
+
+  const story = (await storyPage).data?.story ?? null
+  if (!isRoot && !story) return { notFound: true, revalidate: revalidate() }
+
   return {
     props: {
+      story,
       ...(await layout).data,
+      up: isRoot ? null : { href: '/service', title: t`Customer Service` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),
