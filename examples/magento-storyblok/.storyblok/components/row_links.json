@@ -13,16 +13,16 @@
       "source": "self",
       "options": [
         {
-          "name": "Logo Swiper",
-          "value": "LogoSwiper"
-        },
-        {
           "name": "Image Label Swiper",
           "value": "ImageLabelSwiper"
         },
         {
           "name": "Inline",
           "value": "Inline"
+        },
+        {
+          "name": "Logo Swiper",
+          "value": "LogoSwiper"
         },
         {
           "name": "USPs",

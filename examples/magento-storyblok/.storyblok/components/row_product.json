@@ -13,10 +13,6 @@
       "source": "self",
       "options": [
         {
-          "name": "Specs",
-          "value": "Specs"
-        },
-        {
           "name": "Backstory",
           "value": "Backstory"
         },
@@ -41,12 +37,16 @@
           "value": "Reviews"
         },
         {
-          "name": "Upsells",
-          "value": "Upsells"
+          "name": "Specs",
+          "value": "Specs"
         },
         {
           "name": "Swipeable",
           "value": "Swipeable"
+        },
+        {
+          "name": "Upsells",
+          "value": "Upsells"
         }
       ],
       "id": "Qs7x929WQE2gQlimOlTQGQ"
