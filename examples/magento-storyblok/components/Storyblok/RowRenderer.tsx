@@ -1,10 +1,11 @@
 import { LazyHydrate } from '@graphcommerce/next-ui'
 import { StoryblokComponent, type SbBlokData } from '@storyblok/react'
 import { memo } from 'react'
+import type { StoryblokBlokMap } from './types'
 
-type BlokComponent = React.FC<{ blok: SbBlokData }>
-
-type BlokRenderer = Partial<Record<string, BlokComponent>>
+type BlokRenderer = {
+  [K in keyof StoryblokBlokMap]?: React.FC<{ blok: StoryblokBlokMap[K] }>
+}
 
 export type RowRendererProps = {
   content: SbBlokData[]
@@ -20,7 +21,9 @@ export type RowRendererProps = {
 export const RowRenderer = memo<RowRendererProps>(({ content, renderer, loadingEager = 2 }) => (
   <>
     {content.map((blok, index) => {
-      const Override = blok.component ? renderer?.[blok.component] : undefined
+      const Override = blok.component
+        ? renderer?.[blok.component as keyof BlokRenderer]
+        : undefined
 
       return (
         <LazyHydrate
@@ -28,7 +31,7 @@ export const RowRenderer = memo<RowRendererProps>(({ content, renderer, loadingE
           hydrated={index < loadingEager ? true : undefined}
           height={500}
         >
-          {Override ? <Override blok={blok} /> : <StoryblokComponent blok={blok} />}
+          {Override ? <Override blok={blok as never} /> : <StoryblokComponent blok={blok} />}
         </LazyHydrate>
       )
     })}

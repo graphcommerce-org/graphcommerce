@@ -47,7 +47,6 @@ import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import { useStoryblokState } from '@storyblok/react'
 import type { GetStaticPaths } from 'next'
-import type { StoryblokRowProduct } from '../../.storyblok/types/components'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
@@ -169,7 +168,7 @@ function ProductPage(props: Props) {
           renderer={{
             row_product: ({ blok }) => (
               <RowProduct
-                blok={blok as unknown as StoryblokRowProduct}
+                blok={blok}
                 {...product}
                 specsItems={products?.items}
                 aggregations={products?.aggregations}
