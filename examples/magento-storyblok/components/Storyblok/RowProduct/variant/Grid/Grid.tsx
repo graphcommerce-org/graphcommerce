@@ -1,7 +1,7 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
 import { Link } from '@mui/material'
-import { ProductListItems } from '../../../ProductListItems/ProductListItems'
-import type { RowProductVariantProps } from '../RowProduct'
+import { ProductListItems } from '../../../../ProductListItems/ProductListItems'
+import type { RowProductVariantProps } from '../../RowProduct'
 
 export function Grid(props: RowProductVariantProps) {
   const { blok, items } = props

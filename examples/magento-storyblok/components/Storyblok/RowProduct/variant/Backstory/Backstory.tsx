@@ -2,8 +2,8 @@ import { Asset, RichText } from '@graphcommerce/storyblok-ui'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import type { RowProductVariantProps } from '../RowProduct'
+import { productListRenderer } from '../../../../ProductListItems/productListRenderer'
+import type { RowProductVariantProps } from '../../RowProduct'
 
 export function Backstory(props: RowProductVariantProps) {
   const { blok, items } = props

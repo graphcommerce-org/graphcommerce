@@ -5,7 +5,7 @@ export default [
   ...graphcommerceConfig,
   {
     rules: {
-      'no-underscore-dangle': ['error', { allow: ['_uid', '_editable'] }],
+      'no-underscore-dangle': ['error', { allow: ['_uid', '_editable', '__typename'] }],
     },
   },
 ]

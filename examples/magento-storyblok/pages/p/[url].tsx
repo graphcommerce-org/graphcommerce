@@ -45,20 +45,25 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
-import type { GetStaticPaths } from 'next'
 import { useStoryblokState } from '@storyblok/react'
+import type { GetStaticPaths } from 'next'
+import type { StoryblokRowProduct } from '../../.storyblok/types/components'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
-import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { Reviews } from '../../components/ProductView/Reviews'
+import { RowProduct } from '../../components/Storyblok/RowProduct/RowProduct'
+import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
 export type Props = ProductPage2Query &
-  Pick<AddProductsToCartFormProps, 'defaultValues'> & { urlKey: string; story: StoryblokStory | null }
+  Pick<AddProductsToCartFormProps, 'defaultValues'> & {
+    urlKey: string
+    story: StoryblokStory | null
+  }
 
 type RouteProps = { url: string }
 type GetPageStaticPaths = GetStaticPaths<RouteProps>
@@ -157,7 +162,22 @@ function ProductPage(props: Props) {
         />
       </AddProductsToCartForm>
 
-      {story?.content?.body && <RowRenderer loadingEager={0} content={story.content.body} />}
+      {story?.content?.body && (
+        <RowRenderer
+          loadingEager={0}
+          content={story.content.body}
+          renderer={{
+            row_product: ({ blok }) => (
+              <RowProduct
+                blok={blok as unknown as StoryblokRowProduct}
+                {...product}
+                specsItems={products?.items}
+                aggregations={products?.aggregations}
+              />
+            ),
+          }}
+        />
+      )}
 
       <ProductSpecs title='Specs' {...products} />
 

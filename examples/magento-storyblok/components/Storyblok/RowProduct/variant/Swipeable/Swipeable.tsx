@@ -1,8 +1,8 @@
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import { RenderType, responsiveVal, SidebarSlider } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
-import { productListRenderer } from '../../../ProductListItems/productListRenderer'
-import type { RowProductVariantProps } from '../RowProduct'
+import { productListRenderer } from '../../../../ProductListItems/productListRenderer'
+import type { RowProductVariantProps } from '../../RowProduct'
 
 export function Swipeable(props: RowProductVariantProps) {
   const { blok, items } = props
