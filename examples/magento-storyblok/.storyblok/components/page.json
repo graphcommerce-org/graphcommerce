@@ -3,7 +3,7 @@
   "display_name": "Page",
   "description": null,
   "created_at": "2026-03-27T12:25:38.958Z",
-  "updated_at": "2026-03-27T13:20:12.538Z",
+  "updated_at": "2026-04-17T13:49:08.396Z",
   "id": 159435730779527,
   "schema": {
     "title": {
@@ -14,31 +14,23 @@
       "display_name": "Title",
       "id": "5rEbvgwtSoOyWZPoRY_ytg"
     },
-    "url": {
-      "type": "text",
-      "pos": 1,
-      "required": true,
-      "display_name": "URL",
-      "description": "URL path for the page, e.g. 'page/home', 'blog/my-post', 'service/contact-us'",
-      "id": "oVM2yXioSPWN-Gj_XEUjZA"
-    },
     "meta_title": {
       "type": "text",
-      "pos": 2,
+      "pos": 1,
       "translatable": true,
       "display_name": "Meta Title",
       "id": "SHzwzKlGQ4mkQeUaUbmw-w"
     },
     "meta_description": {
       "type": "textarea",
-      "pos": 3,
+      "pos": 2,
       "translatable": true,
       "display_name": "Meta Description",
       "id": "44IJqP8pSiCXN2WkN7rnVw"
     },
     "meta_robots": {
       "type": "option",
-      "pos": 4,
+      "pos": 3,
       "display_name": "Meta Robots",
       "default_value": "INDEX_FOLLOW",
       "source": "self",
@@ -64,19 +56,19 @@
     },
     "author": {
       "type": "text",
-      "pos": 5,
+      "pos": 4,
       "display_name": "Author",
       "id": "PmX9lO6nTseg7DpDSTruMw"
     },
     "date": {
       "type": "datetime",
-      "pos": 6,
+      "pos": 5,
       "display_name": "Date",
       "id": "L0eYmYIHTlCWy8oGoDhLLQ"
     },
     "asset": {
       "type": "asset",
-      "pos": 7,
+      "pos": 6,
       "display_name": "Asset",
       "filetypes": [
         "images",
@@ -86,7 +78,7 @@
     },
     "body": {
       "type": "bloks",
-      "pos": 8,
+      "pos": 7,
       "display_name": "Content",
       "restrict_type": "",
       "restrict_components": true,
@@ -107,7 +99,7 @@
     },
     "related_pages": {
       "type": "bloks",
-      "pos": 9,
+      "pos": 8,
       "display_name": "Related Pages",
       "restrict_type": "",
       "restrict_components": true,

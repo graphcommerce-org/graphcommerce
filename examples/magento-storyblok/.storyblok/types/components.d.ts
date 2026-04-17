@@ -57,7 +57,6 @@ export interface StoryblokGrid {
 
 export interface StoryblokPage {
   title: string;
-  url: string;
   meta_title?: string;
   meta_description?: string;
   meta_robots?: {
