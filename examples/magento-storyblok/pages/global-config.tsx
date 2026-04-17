@@ -3,14 +3,13 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { useStoryblokState, type ISbStoryData, type SbBlokData } from '@storyblok/react'
 import { Typography } from '@mui/material'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
 import { useSetGlobalConfig } from '../components/Storyblok/GlobalConfigProvider'
-import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 import { fetchGlobalConfig, type GlobalConfigStory } from '../lib/storyblok'
+import { useStoryblokState } from '../lib/useStoryblokState'
 
 type GlobalConfigPageProps = {
   globalConfigStory: GlobalConfigStory | null
@@ -19,8 +18,8 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, GlobalConfigPage
 
 function GlobalConfigPage(props: GlobalConfigPageProps) {
   const { globalConfigStory } = props
-  const story = useStoryblokState(globalConfigStory as ISbStoryData<SbBlokData> | null)
-  const globalConfig = story?.content as unknown as StoryblokGlobalConfig | undefined
+  const story = useStoryblokState(globalConfigStory)
+  const globalConfig = story?.content
 
   useSetGlobalConfig(globalConfig)
 

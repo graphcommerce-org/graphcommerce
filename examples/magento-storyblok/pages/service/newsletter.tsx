@@ -6,7 +6,7 @@ import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphco
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-import { useStoryblokState } from '@storyblok/react'
+import { useStoryblokState } from '../../lib/useStoryblokState'
 import { Container, Typography } from '@mui/material'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'

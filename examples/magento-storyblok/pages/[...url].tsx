@@ -36,7 +36,7 @@ import {
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
-import { useStoryblokState } from '@storyblok/react'
+import { useStoryblokState } from '../lib/useStoryblokState'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
 import {
