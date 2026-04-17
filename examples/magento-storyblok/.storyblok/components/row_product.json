@@ -3,7 +3,7 @@
   "display_name": "Row Product",
   "description": null,
   "created_at": "2026-03-27T13:20:12.372Z",
-  "updated_at": "2026-03-27T13:20:12.372Z",
+  "updated_at": "2026-04-17T13:54:46.900Z",
   "id": 159449138691820,
   "schema": {
     "variant": {
@@ -17,36 +17,12 @@
           "value": "Backstory"
         },
         {
-          "name": "Feature",
-          "value": "Feature"
-        },
-        {
-          "name": "Feature Boxed",
-          "value": "FeatureBoxed"
-        },
-        {
           "name": "Grid",
           "value": "Grid"
         },
         {
-          "name": "Related",
-          "value": "Related"
-        },
-        {
-          "name": "Reviews",
-          "value": "Reviews"
-        },
-        {
-          "name": "Specs",
-          "value": "Specs"
-        },
-        {
           "name": "Swipeable",
           "value": "Swipeable"
-        },
-        {
-          "name": "Upsells",
-          "value": "Upsells"
         }
       ],
       "id": "Qs7x929WQE2gQlimOlTQGQ"
@@ -86,13 +62,15 @@
       "type": "text",
       "pos": 5,
       "display_name": "Magento Product SKUs",
-      "description": "Comma-separated product SKUs to display (e.g. 'WJ04,WJ01,WT09')"
+      "description": "Comma-separated product SKUs to display (e.g. 'WJ04,WJ01,WT09')",
+      "id": "0x7WotYWSa-hG7pv2wKm5w"
     },
     "magento_category_id": {
       "type": "text",
       "pos": 6,
       "display_name": "Magento Category ID",
-      "description": "Magento category UID to fetch products from. Used when Product SKUs is empty."
+      "description": "Magento category UID to fetch products from. Used when Product SKUs is empty.",
+      "id": "Wei2N9DLQw-vmEUguoQkbQ"
     },
     "page_links": {
       "type": "bloks",

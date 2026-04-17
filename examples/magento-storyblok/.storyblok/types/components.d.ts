@@ -43,6 +43,7 @@ export interface StoryblokGrid {
     | StoryblokRowColumnTwo
     | StoryblokRowHeroBanner
     | StoryblokRowLinks
+    | StoryblokRowPdp
     | StoryblokRowProduct
     | StoryblokRowQuote
     | StoryblokRowServiceOptions
@@ -76,6 +77,7 @@ export interface StoryblokPage {
     | StoryblokRowButtonLinkList
     | StoryblokRowServiceOptions
     | StoryblokRowProduct
+    | StoryblokRowPdp
     | StoryblokRowBlogContent
   )[];
   related_pages?: StoryblokPageLink[];
@@ -153,6 +155,18 @@ export interface StoryblokRowLinks {
   copy?: StoryblokRichtext;
   page_links?: StoryblokPageLink[];
   component: "row_links";
+  _uid: string;
+  [k: string]: unknown;
+}
+
+export interface StoryblokRowPdp {
+  variant?: {
+    [k: string]: unknown;
+  };
+  asset?: StoryblokAsset;
+  title?: string;
+  product_copy?: StoryblokRichtext;
+  component: "row_pdp";
   _uid: string;
   [k: string]: unknown;
 }

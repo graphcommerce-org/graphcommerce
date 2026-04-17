@@ -1,7 +1,7 @@
 import { ProductSpecs } from '@graphcommerce/magento-product'
-import type { RowProductVariantProps } from '../../RowProduct'
+import type { RowPdpVariantProps } from '../../RowPdp'
 
-export function Specs(props: RowProductVariantProps) {
+export function Specs(props: RowPdpVariantProps) {
   const { blok, aggregations, specsItems } = props
 
   if (!aggregations && !specsItems) return null

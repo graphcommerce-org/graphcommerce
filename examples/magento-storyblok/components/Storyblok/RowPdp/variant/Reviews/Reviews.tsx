@@ -3,9 +3,9 @@ import { ProductReviews } from '@graphcommerce/magento-review'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { Row } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import type { RowProductVariantProps } from '../../RowProduct'
+import type { RowPdpVariantProps } from '../../RowPdp'
 
-export function Reviews(props: RowProductVariantProps) {
+export function Reviews(props: RowPdpVariantProps) {
   const { blok, reviews, url_key, review_count, sku } = props
 
   const { data, loading } = useQuery(StoreConfigDocument)

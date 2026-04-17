@@ -45,18 +45,19 @@ import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
-import { useStoryblokState } from '../../lib/useStoryblokState'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
 import { Reviews } from '../../components/ProductView/Reviews'
+import { RowPdp } from '../../components/Storyblok/RowPdp/RowPdp'
 import { RowProduct } from '../../components/Storyblok/RowProduct/RowProduct'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
 import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../../lib/storyblok'
+import { useStoryblokState } from '../../lib/useStoryblokState'
 
 export type Props = ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'> & {
@@ -166,8 +167,8 @@ function ProductPage(props: Props) {
           loadingEager={0}
           content={story.content.body}
           renderer={{
-            row_product: ({ blok }) => (
-              <RowProduct
+            row_pdp: ({ blok }) => (
+              <RowPdp
                 blok={blok}
                 {...product}
                 specsItems={products?.items}

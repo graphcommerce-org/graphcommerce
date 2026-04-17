@@ -2,9 +2,9 @@ import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import { RenderType, responsiveVal, SidebarSlider } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
 import { productListRenderer } from '../../../../ProductListItems/productListRenderer'
-import type { RowProductVariantProps } from '../../RowProduct'
+import type { RowPdpVariantProps } from '../../RowPdp'
 
-export function Upsells(props: RowProductVariantProps) {
+export function Upsells(props: RowPdpVariantProps) {
   const { blok, upsell_products } = props
 
   if (!upsell_products || upsell_products.length === 0) return null

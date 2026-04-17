@@ -10,6 +10,7 @@ import { RowColumnThree } from '../components/Storyblok/RowColumnThree/RowColumn
 import { RowColumnTwo } from '../components/Storyblok/RowColumnTwo/RowColumnTwo'
 import { RowHeroBanner } from '../components/Storyblok/RowHeroBanner/RowHeroBanner'
 import { RowLinks } from '../components/Storyblok/RowLinks/RowLinks'
+import { RowPdp } from '../components/Storyblok/RowPdp/RowPdp'
 import { RowProduct } from '../components/Storyblok/RowProduct/RowProduct'
 import { RowQuote } from '../components/Storyblok/RowQuote/RowQuote'
 import { RowServiceOptions } from '../components/Storyblok/RowServiceOptions/RowServiceOptions'
@@ -95,6 +96,7 @@ export const getStoryblokApi = storyblokInit({
     row_column_three: RowColumnThree,
     row_hero_banner: RowHeroBanner,
     row_links: RowLinks,
+    row_pdp: RowPdp,
     row_product: RowProduct,
     row_quote: RowQuote,
     row_service_options: RowServiceOptions,

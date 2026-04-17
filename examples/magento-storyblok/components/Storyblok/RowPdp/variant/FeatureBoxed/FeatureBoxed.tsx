@@ -1,20 +1,19 @@
 import { Image } from '@graphcommerce/image'
-import { ImageText, responsiveVal, useContainerSpacing } from '@graphcommerce/next-ui'
+import { ImageTextBoxed, responsiveVal } from '@graphcommerce/next-ui'
 import { Asset, RichText } from '@graphcommerce/storyblok-ui'
 import { Typography, useTheme } from '@mui/material'
-import type { RowProductVariantProps } from '../../RowProduct'
+import type { RowPdpVariantProps } from '../../RowPdp'
 
-export function Feature(props: RowProductVariantProps) {
+export function FeatureBoxed(props: RowPdpVariantProps) {
   const { blok, media_gallery } = props
   const theme = useTheme()
-  const item = media_gallery?.[2] ?? media_gallery?.[0]
-  const { size, breakpoint } = useContainerSpacing({ sizing: 'content' })
+  const item = media_gallery?.[1] ?? media_gallery?.[0]
 
   return (
-    <ImageText
+    <ImageTextBoxed
       item={
         blok.asset?.filename ? (
-          <Asset asset={blok.asset} sizes={responsiveVal(100, 600)} />
+          <Asset asset={blok.asset} sizes='50vw' />
         ) : item?.__typename === 'ProductImage' && item.url ? (
           <Image
             alt={item.label ?? 'Product Image'}
@@ -23,10 +22,7 @@ export function Feature(props: RowProductVariantProps) {
             src={item.url}
             sizes={{
               0: '100vw',
-              [theme.breakpoints.values.md]: '50vw',
-              ...(breakpoint && {
-                [theme.breakpoints.values[breakpoint]]: `calc(${size} / 2)` as const,
-              }),
+              [theme.breakpoints.values.md]: responsiveVal(100, 600),
             }}
           />
         ) : undefined
@@ -46,6 +42,6 @@ export function Feature(props: RowProductVariantProps) {
           }}
         />
       )}
-    </ImageText>
+    </ImageTextBoxed>
   )
 }
