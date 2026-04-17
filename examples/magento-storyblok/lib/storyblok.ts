@@ -1,7 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
-import { resolveStoryblokProducts } from './resolveStoryblokProducts'
-import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
 import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
@@ -15,6 +13,8 @@ import { RowProduct } from '../components/Storyblok/RowProduct/RowProduct'
 import { RowQuote } from '../components/Storyblok/RowQuote/RowQuote'
 import { RowServiceOptions } from '../components/Storyblok/RowServiceOptions/RowServiceOptions'
 import { RowSpecialBanner } from '../components/Storyblok/RowSpecialBanner/RowSpecialBanner'
+import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
+import { resolveStoryblokProducts } from './resolveStoryblokProducts'
 
 export type StoryblokStory = ISbStoryData<SbBlokData & { body?: SbBlokData[] }>
 
@@ -57,7 +57,10 @@ export async function fetchStories(
   }
 }
 
-/** Fetch a single story by slug. When `apolloClient` is provided, resolves product data for row_product bloks. */
+/**
+ * Fetch a single story by slug. When `apolloClient` is provided, resolves product data for
+ * row_product bloks.
+ */
 export async function fetchStory(
   slug: string,
   opts?: FetchStoryOpts,
@@ -78,9 +81,7 @@ export async function fetchStory(
 export type GlobalConfigStory = ISbStoryData<StoryblokGlobalConfig>
 
 /** Fetch the global config story used for header/footer content. */
-export async function fetchGlobalConfig(
-  opts?: FetchStoryOpts,
-): Promise<GlobalConfigStory | null> {
+export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalConfigStory | null> {
   const result = await fetchStory('config', opts)
   return (result.data?.story as unknown as GlobalConfigStory) ?? null
 }
