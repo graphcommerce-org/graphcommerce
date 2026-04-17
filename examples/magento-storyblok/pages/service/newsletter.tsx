@@ -68,7 +68,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const storyPage = fetchStory('service/newsletter', context)
+  const storyPage = fetchStory('service/newsletter', context, staticClient)
 
   return {
     props: {

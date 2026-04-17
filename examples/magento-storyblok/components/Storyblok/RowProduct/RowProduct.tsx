@@ -1,5 +1,6 @@
 import { PrivateQueryMaskProvider, usePrivateQuery } from '@graphcommerce/graphql'
 import { ProductListDocument, type ProductListItemsFragment } from '@graphcommerce/magento-product'
+import { filterNonNullableKeys } from '@graphcommerce/next-ui'
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import type { StoryblokRowProduct as RowProductBlok } from '../types'
 import { Backstory } from './variant/Backstory'
@@ -22,19 +23,16 @@ const variantRenderer: VariantRenderer = {
 
 export function RowProduct({ blok }: { blok: RowProductBlok }) {
   const variant = (blok.variant as unknown as string) || 'Grid'
-  const identity = blok.identity ?? ''
+  const items = (blok as unknown as { items?: ProductListItemsFragment['items'] }).items ?? []
 
-  const urlKeys = identity
-    .split(',')
-    .map((k) => k.trim())
-    .filter(Boolean)
-
-  const variables = { onlyItems: true, filters: { url_key: { in: urlKeys } } }
-
+  const skus = filterNonNullableKeys(items, ['sku']).map((item) => item.sku)
   const scoped = usePrivateQuery(
     ProductListDocument,
-    { variables, skip: !urlKeys.length },
-    { products: { items: [] } },
+    {
+      variables: { onlyItems: true, filters: { sku: { in: skus } } },
+      skip: !skus.length,
+    },
+    { products: { items } },
   )
 
   const Renderer = variantRenderer[variant]

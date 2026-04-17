@@ -213,7 +213,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       })
     : undefined
 
-  const storyPage = fetchStory(url, context)
+  const storyPage = fetchStory(url, context, staticClient)
   const globalConfig = fetchGlobalConfig(context)
 
   if (!(await category)?.uid && !(await storyPage).data)

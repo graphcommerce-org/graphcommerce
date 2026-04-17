@@ -166,6 +166,8 @@ export interface StoryblokRowProduct {
   asset?: StoryblokAsset;
   title?: string;
   product_copy?: StoryblokRichtext;
+  magento_product_skus?: string;
+  magento_category_id?: string;
   page_links?: StoryblokPageLink[];
   component: "row_product";
   _uid: string;

@@ -245,7 +245,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const storyPage = fetchStory('product/global', context)
+  const storyPage = fetchStory('product/global', context, staticClient)
   const globalConfig = fetchGlobalConfig(context)
 
   const product = productPage.then((pp) => pp.products?.items?.find((p) => p?.url_key === urlKey))

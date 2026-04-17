@@ -82,9 +82,21 @@
       "display_name": "Product Copy",
       "id": "Z6iYRhpLRUuysWLUKR-yUw"
     },
+    "magento_product_skus": {
+      "type": "text",
+      "pos": 5,
+      "display_name": "Magento Product SKUs",
+      "description": "Comma-separated product SKUs to display (e.g. 'WJ04,WJ01,WT09')"
+    },
+    "magento_category_id": {
+      "type": "text",
+      "pos": 6,
+      "display_name": "Magento Category ID",
+      "description": "Magento category UID to fetch products from. Used when Product SKUs is empty."
+    },
     "page_links": {
       "type": "bloks",
-      "pos": 5,
+      "pos": 7,
       "display_name": "Page Links",
       "restrict_type": "",
       "restrict_components": true,

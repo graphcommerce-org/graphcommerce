@@ -68,7 +68,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const storyPage = fetchStory(`modal/${urlKey}`, context)
+  const storyPage = fetchStory(`modal/${urlKey}`, context, staticClient)
 
   const story = (await storyPage).data?.story ?? null
   if (!story) return { notFound: true, revalidate: revalidate() }

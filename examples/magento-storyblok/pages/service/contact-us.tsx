@@ -66,7 +66,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   if (magentoVersion < 247) return { notFound: true }
 
-  const storyPage = fetchStory('service/contact-us', context)
+  const storyPage = fetchStory('service/contact-us', context, staticClient)
 
   return {
     props: {

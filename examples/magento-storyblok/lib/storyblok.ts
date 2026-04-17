@@ -1,4 +1,6 @@
+import type { ApolloClient } from '@graphcommerce/graphql'
 import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
+import { resolveStoryblokProducts } from './resolveStoryblokProducts'
 import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
@@ -54,13 +56,19 @@ export async function fetchStories(
   }
 }
 
-/** Fetch a single story by slug. Returns `{ data: null }` if not found. */
+/** Fetch a single story by slug. When `apolloClient` is provided, resolves product data for row_product bloks. */
 export async function fetchStory(
   slug: string,
   opts?: FetchStoryOpts,
+  apolloClient?: ApolloClient,
 ): Promise<{ data: { story: StoryblokStory } | null }> {
   try {
-    return await getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts))
+    const result = await getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts))
+    if (apolloClient && result.data?.story?.content?.body) {
+      // Mutates story body in-place, attaching product data to row_product bloks.
+      await resolveStoryblokProducts(result.data.story.content.body, apolloClient)
+    }
+    return result
   } catch {
     return { data: null }
   }

@@ -45,7 +45,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
-  const storyPage = fetchStory('home', context)
+  const storyPage = fetchStory('home', context, staticClient)
   const globalConfig = fetchGlobalConfig(context)
 
   return {
