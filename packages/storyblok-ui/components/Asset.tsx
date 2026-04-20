@@ -4,35 +4,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { memo } from 'react'
 import type { StoryblokAssetData } from '../types'
-
-const VIDEO_EXTENSIONS = new Set(['mp4', 'webm', 'ogg', 'mov', 'avi'])
-const SVG_EXTENSIONS = new Set(['svg'])
-
-function getExtension(filename: string): string {
-  const clean = filename.split('?')[0].split('#')[0]
-  const dot = clean.lastIndexOf('.')
-  return dot >= 0 ? clean.slice(dot + 1).toLowerCase() : ''
-}
-
-/**
- * Storyblok encodes image dimensions in the asset URL:
- * `//a.storyblok.com/f/{space}/{width}x{height}/{hash}/{filename}`
- */
-function parseDimensions(filename: string): { width: number; height: number } | null {
-  const match = filename.match(/\/(\d+)x(\d+)\//)
-  if (!match) return null
-  const width = Number(match[1])
-  const height = Number(match[2])
-  return width > 0 && height > 0 ? { width, height } : null
-}
-
-function isVideo(filename: string): boolean {
-  return VIDEO_EXTENSIONS.has(getExtension(filename))
-}
-
-function isSvg(filename: string): boolean {
-  return SVG_EXTENSIONS.has(getExtension(filename))
-}
+import { isSvg, isVideo, parseDimensions } from '../utils'
 
 export type AssetProps = {
   asset: StoryblokAssetData
@@ -82,8 +54,7 @@ function AssetBase(props: AssetProps) {
     )
   }
 
-  if (process.env.NODE_ENV !== 'production')
-    return <div>Unsupported asset: {asset.filename}</div>
+  if (process.env.NODE_ENV !== 'production') return <div>Unsupported asset: {asset.filename}</div>
 
   return null
 }
