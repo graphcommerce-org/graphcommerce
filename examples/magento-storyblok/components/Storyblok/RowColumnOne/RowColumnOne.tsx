@@ -1,6 +1,5 @@
 import { ColumnOne, VariantMessage } from '@graphcommerce/next-ui'
-import { RichText } from '@graphcommerce/storyblok-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowColumnOne as RowColumnOneBlok } from '../types'
 
 export function RowColumnOne({ blok }: { blok: RowColumnOneBlok }) {
@@ -8,14 +7,14 @@ export function RowColumnOne({ blok }: { blok: RowColumnOneBlok }) {
 
   if (variant === 'Message') {
     return (
-      <VariantMessage id={blok._uid} {...storyblokEditable(blok as unknown as SbBlokData)}>
+      <VariantMessage id={blok._uid} {...storyblokEditable(blok)}>
         {blok.col_one && <RichText content={blok.col_one} />}
       </VariantMessage>
     )
   }
 
   return (
-    <ColumnOne {...storyblokEditable(blok as unknown as SbBlokData)}>
+    <ColumnOne {...storyblokEditable(blok)}>
       {blok.col_one && <RichText content={blok.col_one} />}
     </ColumnOne>
   )

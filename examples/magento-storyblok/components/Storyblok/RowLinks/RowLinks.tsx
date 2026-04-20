@@ -1,5 +1,9 @@
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
-import type { StoryblokRowLinks as RowLinksBlok, StoryblokPageLink, StoryblokRichtext } from '../types'
+import { storyblokEditable } from '@graphcommerce/storyblok-ui'
+import type {
+  StoryblokRowLinks as RowLinksBlok,
+  StoryblokPageLink,
+  StoryblokRichtext,
+} from '../types'
 import { ImageLabelSwiper } from './variant/ImageLabelSwiper'
 import { Inline } from './variant/Inline'
 import { LogoSwiper } from './variant/LogoSwiper'
@@ -32,7 +36,7 @@ export function RowLinks({ blok }: { blok: RowLinksBlok }) {
   }
 
   return (
-    <div {...storyblokEditable(blok as unknown as SbBlokData)}>
+    <div {...storyblokEditable(blok)}>
       <Renderer title={blok.title} copy={blok.copy} page_links={blok.page_links} />
     </div>
   )

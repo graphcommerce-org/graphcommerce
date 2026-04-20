@@ -1,11 +1,10 @@
 import { Quote } from '@graphcommerce/next-ui'
-import { RichText } from '@graphcommerce/storyblok-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowQuote as RowQuoteBlok } from '../types'
 
 export function RowQuote({ blok }: { blok: RowQuoteBlok }) {
   return (
-    <Quote {...storyblokEditable(blok as unknown as SbBlokData)}>
+    <Quote {...storyblokEditable(blok)}>
       {blok.quote && (
         <RichText
           content={blok.quote}

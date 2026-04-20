@@ -1,7 +1,7 @@
 import { PrivateQueryMaskProvider, usePrivateQuery } from '@graphcommerce/graphql'
 import { ProductListDocument, type ProductListItemsFragment } from '@graphcommerce/magento-product'
 import { filterNonNullableKeys } from '@graphcommerce/next-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowProduct as RowProductBlok } from '../types'
 import { Backstory } from './variant/Backstory/Backstory'
 import { Grid } from './variant/Grid/Grid'
@@ -44,7 +44,7 @@ export function RowProduct({ blok, items: itemsOverride }: RowProductProps) {
 
   return (
     <PrivateQueryMaskProvider mask={scoped.mask}>
-      <div {...storyblokEditable(blok as unknown as SbBlokData)}>
+      <div {...storyblokEditable(blok)}>
         <Renderer blok={blok} {...scoped.data?.products} />
       </div>
     </PrivateQueryMaskProvider>

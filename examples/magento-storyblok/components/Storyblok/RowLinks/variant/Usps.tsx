@@ -1,6 +1,5 @@
 import { iconCheckmark, IconSvg, VariantUsps } from '@graphcommerce/next-ui'
-import { RichText } from '@graphcommerce/storyblok-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Box } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -27,7 +26,7 @@ export function Usps(props: RowLinksVariantProps) {
     >
       {page_links?.map((pageLink) => (
         <Box
-          {...storyblokEditable(pageLink as unknown as SbBlokData)}
+          {...storyblokEditable(pageLink)}
           key={pageLink._uid}
           sx={{ display: 'inline-flex', flexWrap: 'nowrap', gap: 1, alignItems: 'center' }}
         >

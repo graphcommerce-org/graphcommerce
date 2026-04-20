@@ -1,20 +1,23 @@
-import { RichText } from '@graphcommerce/storyblok-ui'
-import { IconBlock, IconBlocks, iconChat, iconEmail, iconPhone, IconSvg } from '@graphcommerce/next-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import {
+  IconBlock,
+  IconBlocks,
+  iconChat,
+  iconEmail,
+  iconPhone,
+  IconSvg,
+} from '@graphcommerce/next-ui'
+import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowServiceOptions as RowServiceOptionsBlok } from '../types'
 
 export function RowServiceOptions({ blok }: { blok: RowServiceOptionsBlok }) {
   return (
-    <IconBlocks
-      title={blok.title ?? ''}
-      {...storyblokEditable(blok as unknown as SbBlokData)}
-    >
+    <IconBlocks title={blok.title ?? ''} {...storyblokEditable(blok)}>
       {blok.service_options?.map((option) => {
         const iconTitle = (option.title ?? '').toLowerCase()
 
         return (
           <IconBlock
-            {...storyblokEditable(option as unknown as SbBlokData)}
+            {...storyblokEditable(option)}
             key={option._uid}
             href={option.url ?? ''}
             title={option.title ?? ''}

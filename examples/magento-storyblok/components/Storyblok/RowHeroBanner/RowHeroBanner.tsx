@@ -1,13 +1,12 @@
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
-import { RichText } from '@graphcommerce/storyblok-ui'
+import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Button } from '@mui/material'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../types'
 
 export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
   return (
     <HeroBanner
-      {...storyblokEditable(blok as unknown as SbBlokData)}
+      {...storyblokEditable(blok)}
       pageLinks={blok.page_links?.map((link) => (
         <Button
           key={link._uid}

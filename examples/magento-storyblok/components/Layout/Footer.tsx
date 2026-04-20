@@ -4,8 +4,8 @@ import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
+import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Trans } from '@lingui/react/macro'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import { Button, IconButton, Link } from '@mui/material'
 import { useRouter } from 'next/router'
 import type { MouseEventHandler } from 'react'
@@ -18,9 +18,7 @@ export function Footer(props: FooterProps) {
   const contextConfig = useGlobalConfig()
   const globalConfig = props.globalConfig ?? contextConfig
   const isEditor = Boolean(useRouter().query._storyblok)
-  const preventNav: MouseEventHandler | undefined = isEditor
-    ? (e) => e.preventDefault()
-    : undefined
+  const preventNav: MouseEventHandler | undefined = isEditor ? (e) => e.preventDefault() : undefined
   const cartEnabled = useCheckoutGuestEnabled()
   const config = useQuery(StoreConfigDocument).data?.storeConfig
 
@@ -31,7 +29,7 @@ export function Footer(props: FooterProps) {
     <FooterBase
       socialLinks={globalConfig?.social_links?.map((link) => (
         <IconButton
-          {...storyblokEditable(link as unknown as SbBlokData)}
+          {...storyblokEditable(link)}
           key={link._uid}
           href={link.url ?? ''}
           onClick={preventNav}
@@ -67,7 +65,7 @@ export function Footer(props: FooterProps) {
       }
       copyright={
         <>
-          <span {...(globalConfig ? storyblokEditable(globalConfig as unknown as SbBlokData) : {})}>
+          <span {...storyblokEditable(globalConfig)}>
             {globalConfig?.copyright ? (
               <FindAndReplace source={globalConfig.copyright} findAndReplace={[['{YYYY}', year]]} />
             ) : config?.copyright ? (
@@ -77,7 +75,7 @@ export function Footer(props: FooterProps) {
 
           {globalConfig?.legal_links?.map((link) => (
             <Link
-              {...storyblokEditable(link as unknown as SbBlokData)}
+              {...storyblokEditable(link)}
               key={link._uid}
               href={link.url ?? ''}
               onClick={preventNav}

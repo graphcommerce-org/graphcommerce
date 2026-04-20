@@ -1,6 +1,5 @@
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
-import { Asset, parseDimensions } from '@graphcommerce/storyblok-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { Asset, parseDimensions, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Link } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -15,7 +14,7 @@ export function LogoSwiper(props: RowLinksVariantProps) {
     >
       {page_links?.map((pageLink) => (
         <Link
-          {...storyblokEditable(pageLink as unknown as SbBlokData)}
+          {...storyblokEditable(pageLink)}
           href={pageLink.url ?? ''}
           key={pageLink._uid}
           color='inherit'

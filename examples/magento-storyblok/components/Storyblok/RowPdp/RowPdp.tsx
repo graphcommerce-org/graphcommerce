@@ -4,11 +4,11 @@ import type {
   UpsellProductsFragment,
 } from '@graphcommerce/magento-product'
 import type { ProductReviewsProps } from '@graphcommerce/magento-review'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowPdp as RowPdpBlok } from '../types'
 import { Feature } from './variant/Feature/Feature'
-import type { FeatureBoxedFragment } from './variant/FeatureBoxed/FeatureBoxed.gql'
 import { FeatureBoxed } from './variant/FeatureBoxed/FeatureBoxed'
+import type { FeatureBoxedFragment } from './variant/FeatureBoxed/FeatureBoxed.gql'
 import { Related } from './variant/Related/Related'
 import { Reviews } from './variant/Reviews/Reviews'
 import { Specs } from './variant/Specs/Specs'
@@ -48,7 +48,7 @@ export function RowPdp({ blok, ...pageProps }: { blok: RowPdpBlok } & RowPdpPage
   }
 
   return (
-    <div {...storyblokEditable(blok as unknown as SbBlokData)}>
+    <div {...storyblokEditable(blok)}>
       <Renderer blok={blok} {...pageProps} />
     </div>
   )

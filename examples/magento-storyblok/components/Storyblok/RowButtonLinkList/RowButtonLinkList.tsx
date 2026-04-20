@@ -1,5 +1,5 @@
 import { ButtonLinkList, ButtonLinkListItem } from '@graphcommerce/next-ui'
-import { storyblokEditable, type SbBlokData } from '@storyblok/react'
+import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowButtonLinkList as RowButtonLinkListBlok } from '../types'
 
 export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
@@ -10,14 +10,10 @@ export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
       title={blok.title ?? ''}
       containsBigLinks={isBig}
       component='h2'
-      {...storyblokEditable(blok as unknown as SbBlokData)}
+      {...storyblokEditable(blok)}
     >
       {blok.links?.map((link) => (
-        <ButtonLinkListItem
-          {...storyblokEditable(link as unknown as SbBlokData)}
-          key={link._uid}
-          url={`/${link.url ?? ''}`}
-        >
+        <ButtonLinkListItem {...storyblokEditable(link)} key={link._uid} url={`/${link.url ?? ''}`}>
           {link.title}
         </ButtonLinkListItem>
       ))}
