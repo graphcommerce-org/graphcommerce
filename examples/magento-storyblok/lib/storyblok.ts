@@ -51,18 +51,61 @@ function logFetchError(label: string, error: unknown) {
   console.error(`${label} failed:`, error)
 }
 
-/** Fetch multiple stories matching a slug prefix (e.g. `service`). */
+const STORIES_PER_PAGE = 100
+const MAX_PAGE_CONCURRENCY = 3
+const MAX_RETRIES = 3
+
+/**
+ * Wraps a Storyblok request and retries on 429, honoring the Retry-After header. Other errors
+ * propagate so the caller's try/catch can decide what to do.
+ */
+async function fetchWithRetry<T>(request: () => Promise<T>, attempt = 0): Promise<T> {
+  try {
+    return await request()
+  } catch (error) {
+    const status = (error as { status?: number })?.status
+    if (status !== 429 || attempt >= MAX_RETRIES) throw error
+    const headers = (error as { headers?: Record<string, string | undefined> })?.headers
+    const retryAfter = Number(headers?.['retry-after']) || 1
+    await new Promise((resolve) => {
+      setTimeout(resolve, retryAfter * 1000)
+    })
+    return fetchWithRetry(request, attempt + 1)
+  }
+}
+
+/**
+ * Fetch all stories matching a slug prefix. Pages beyond the first are fetched with bounded
+ * concurrency to avoid bursting through Storyblok's rate limit; any 429 is retried using the
+ * server's Retry-After.
+ */
 export async function fetchStories(
   startsWith: string,
   opts?: FetchStoryOpts,
 ): Promise<StoryblokStory[]> {
+  const fetchPage = (page: number) =>
+    fetchWithRetry(() =>
+      getStoryblokApi().get('cdn/stories', {
+        ...sbParams(opts),
+        starts_with: startsWith,
+        per_page: STORIES_PER_PAGE,
+        page,
+      }),
+    )
+
   try {
-    const response = await getStoryblokApi().get('cdn/stories', {
-      ...sbParams(opts),
-      starts_with: startsWith,
-      per_page: 100,
-    })
-    return response.data?.stories ?? []
+    const first = await fetchPage(1)
+    const stories: StoryblokStory[] = first.data?.stories ?? []
+    const totalPages = Math.ceil((first.total ?? stories.length) / STORIES_PER_PAGE)
+    if (totalPages <= 1) return stories
+
+    const remaining = Array.from({ length: totalPages - 1 }, (_, i) => i + 2)
+    for (let i = 0; i < remaining.length; i += MAX_PAGE_CONCURRENCY) {
+      const chunk = remaining.slice(i, i + MAX_PAGE_CONCURRENCY)
+      const results = await Promise.all(chunk.map(fetchPage))
+      for (const r of results) stories.push(...(r.data?.stories ?? []))
+    }
+    return stories
   } catch (error) {
     logFetchError(`fetchStories('${startsWith}')`, error)
     return []
