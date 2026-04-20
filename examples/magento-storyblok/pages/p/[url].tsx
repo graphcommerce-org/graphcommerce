@@ -22,9 +22,7 @@ import {
   ProductPageMeta,
   ProductPageName,
   ProductPagePriceLowest,
-  ProductScroller,
   ProductShortDescription,
-  ProductSpecs,
 } from '@graphcommerce/magento-product'
 import { defaultConfigurableOptionsSelection } from '@graphcommerce/magento-product-configurable'
 import { RecentlyViewedProducts } from '@graphcommerce/magento-recently-viewed-products'
@@ -37,7 +35,6 @@ import {
   isTypename,
   LayoutHeader,
   LayoutTitle,
-  nonNullable,
   responsiveVal,
   revalidate,
 } from '@graphcommerce/next-ui'
@@ -49,9 +46,7 @@ import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
 import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
-import { Reviews } from '../../components/ProductView/Reviews'
 import { RowPdp } from '../../components/Storyblok/RowPdp/RowPdp'
-import { RowProduct } from '../../components/Storyblok/RowProduct/RowProduct'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
@@ -175,40 +170,6 @@ function ProductPage(props: Props) {
                 aggregations={products?.aggregations}
               />
             ),
-          }}
-        />
-      )}
-
-      <ProductSpecs title='Specs' {...products} />
-
-      <Reviews title='Reviews' {...product} />
-
-      {product.related_products && product.related_products.length > 0 && (
-        <ProductScroller
-          title='Looking Similar'
-          items={product.related_products.filter(nonNullable)}
-          productListRenderer={productListRenderer}
-          sizes={responsiveVal(200, 400)}
-          itemScrollerProps={{
-            sx: (theme) => ({
-              mb: theme.spacings.xxl,
-              '& .ItemScroller-scroller': { gridAutoColumns: responsiveVal(200, 400) },
-            }),
-          }}
-        />
-      )}
-
-      {product.upsell_products && product.upsell_products.length > 0 && (
-        <ProductScroller
-          title='You may also like'
-          items={product.upsell_products.filter(nonNullable)}
-          productListRenderer={productListRenderer}
-          sizes={responsiveVal(200, 400)}
-          itemScrollerProps={{
-            sx: (theme) => ({
-              mb: theme.spacings.xxl,
-              '& .ItemScroller-scroller': { gridAutoColumns: responsiveVal(200, 400) },
-            }),
           }}
         />
       )}
