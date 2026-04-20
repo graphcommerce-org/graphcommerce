@@ -5,7 +5,10 @@ export default [
   ...graphcommerceConfig,
   {
     rules: {
-      'no-underscore-dangle': ['error', { allow: ['_uid', '_editable', '__typename'] }],
+      'no-underscore-dangle': [
+        'error',
+        { allow: ['_uid', '_editable', '_storyblok', '__typename'] },
+      ],
     },
   },
 ]
