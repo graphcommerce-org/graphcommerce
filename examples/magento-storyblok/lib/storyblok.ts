@@ -40,6 +40,17 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
   }
 }
 
+/**
+ * 404s are an expected outcome of "does this slug exist?" lookups, so they're swallowed silently.
+ * Anything else (network failure, auth, malformed response) gets logged in dev so it doesn't look
+ * indistinguishable from a missing story.
+ */
+function logFetchError(label: string, error: unknown) {
+  if (!isDev) return
+  if ((error as { status?: number })?.status === 404) return
+  console.error(`${label} failed:`, error)
+}
+
 /** Fetch multiple stories matching a slug prefix (e.g. `service`). */
 export async function fetchStories(
   startsWith: string,
@@ -52,7 +63,8 @@ export async function fetchStories(
       per_page: 100,
     })
     return response.data?.stories ?? []
-  } catch {
+  } catch (error) {
+    logFetchError(`fetchStories('${startsWith}')`, error)
     return []
   }
 }
@@ -73,7 +85,8 @@ export async function fetchStory(
       await resolveStoryblokProducts(result.data.story.content.body, apolloClient)
     }
     return result
-  } catch {
+  } catch (error) {
+    logFetchError(`fetchStory('${slug}')`, error)
     return { data: null }
   }
 }
@@ -84,9 +97,17 @@ export type GlobalConfigStory = ISbStoryData<StoryblokGlobalConfig>
 export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalConfigStory | null> {
   const result = await fetchStory('global/config', opts)
   const story = result.data?.story
-  return story?.content?.component === 'global_config'
-    ? (story as ISbStoryData<StoryblokGlobalConfig>)
-    : null
+  if (!story) return null
+  if (story.content?.component === 'global_config') {
+    return story as ISbStoryData<StoryblokGlobalConfig>
+  }
+
+  if (isDev) {
+    throw new Error(
+      `fetchGlobalConfig: expected story at 'global/config' to have content of type 'global_config' but got '${story.content?.component}'. Check the slug and the component assigned to it in Storyblok.`,
+    )
+  }
+  return null
 }
 
 export const getStoryblokApi = storyblokInit({

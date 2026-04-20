@@ -31,7 +31,15 @@ export function useStoryblokState(
     )
   }, [story, client])
 
-  return resolvedStory?.content?.component === 'page'
-    ? (resolvedStory as ISbStoryData<StoryblokPage>)
-    : null
+  if (!resolvedStory) return null
+  if (resolvedStory.content?.component === 'page') {
+    return resolvedStory as ISbStoryData<StoryblokPage>
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    throw new Error(
+      `useStoryblokState: expected story content of type 'page' but got '${resolvedStory.content?.component}' for slug '${resolvedStory.full_slug}'. Use the upstream @storyblok/react useStoryblokState for non-page content.`,
+    )
+  }
+  return null
 }
