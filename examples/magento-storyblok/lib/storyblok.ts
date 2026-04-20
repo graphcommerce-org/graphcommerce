@@ -122,7 +122,9 @@ export async function fetchStory(
   apolloClient?: ApolloClient,
 ): Promise<{ data: { story: StoryblokStory } | null }> {
   try {
-    const result = await getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts))
+    const result = await fetchWithRetry(() =>
+      getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts)),
+    )
     if (apolloClient && result.data?.story?.content?.body) {
       // Mutates story body in-place, attaching product data to row_product bloks.
       await resolveStoryblokProducts(result.data.story.content.body, apolloClient)
