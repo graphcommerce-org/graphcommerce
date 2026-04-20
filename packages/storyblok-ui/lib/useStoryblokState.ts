@@ -1,17 +1,23 @@
 import { useApolloClient } from '@graphcommerce/graphql'
-import { useStoryblokState as useStoryblokStateBase, type ISbStoryData } from '@storyblok/react'
+import {
+  useStoryblokState as useStoryblokStateBase,
+  type ISbStoryData,
+  type SbBlokData,
+} from '@storyblok/react'
 import { useEffect, useRef, useState } from 'react'
-import type { StoryblokPage } from '../components/Storyblok/types'
-import { resolveStoryblokProducts } from './resolveStoryblokProducts'
+import { resolveStoryblokProducts } from './resolveProducts'
 
 /**
- * Wraps useStoryblokState for page content and resolves product data for row_product bloks
- * client-side. This enables live product previews in the Storyblok visual editor when
- * magento_product_skus or magento_category_id fields are changed.
+ * Wraps `useStoryblokState` and resolves product data for `row_product` bloks client-side. This
+ * enables live product previews in the Storyblok visual editor when `magento_product_skus` or
+ * `magento_category_id` fields are changed.
+ *
+ * The generic `T` lets the caller narrow the returned `content` to an auto-generated Storyblok
+ * content type. The runtime check guards against feeding in a story whose content isn't a `page`.
  */
-export function useStoryblokState(
+export function useStoryblokState<T = SbBlokData>(
   initialStory: ISbStoryData | null,
-): ISbStoryData<StoryblokPage> | null {
+): ISbStoryData<T> | null {
   const story = useStoryblokStateBase(initialStory)
   const client = useApolloClient()
   const [resolvedStory, setResolvedStory] = useState(story)
@@ -33,7 +39,7 @@ export function useStoryblokState(
 
   if (!resolvedStory) return null
   if (resolvedStory.content?.component === 'page') {
-    return resolvedStory as ISbStoryData<StoryblokPage>
+    return resolvedStory as ISbStoryData<T>
   }
 
   if (process.env.NODE_ENV === 'development') {

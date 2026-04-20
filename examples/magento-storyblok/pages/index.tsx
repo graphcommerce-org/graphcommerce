@@ -4,14 +4,14 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { breadcrumbs } from '@graphcommerce/next-config/config'
 import { LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { fetchStory, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
-import { useStoryblokState } from '../lib/useStoryblokState'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
 import { RowRenderer } from '../components/Storyblok/RowRenderer'
-import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
-import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../lib/storyblok'
 import type { StoryblokGlobalConfig } from '../components/Storyblok/types'
+import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig, useStoryblokState } from '../lib/storyblok'
 
 type HomePageProps = { story: StoryblokStory | null; globalConfig: StoryblokGlobalConfig | null }
 type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, HomePageProps>

@@ -4,6 +4,7 @@ import { GuestNewsletter } from '@graphcommerce/magento-newsletter'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { fetchStory, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Container, Typography } from '@mui/material'
@@ -11,8 +12,7 @@ import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components
 import { LayoutDocument, LayoutOverlay } from '../../components'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchStory, type StoryblokStory } from '../../lib/storyblok'
-import { useStoryblokState } from '../../lib/useStoryblokState'
+import { useStoryblokState } from '../../lib/storyblok'
 
 type Props = { story: StoryblokStory | null }
 type RouteProps = { url: string[] }

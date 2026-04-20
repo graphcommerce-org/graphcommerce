@@ -3,15 +3,15 @@ import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta, revalidate } from '@graphcommerce/next-ui'
+import { fetchAllStories, fetchStory, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import { Container } from '@mui/material'
-import { useStoryblokState } from '../../lib/useStoryblokState'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components'
 import { LayoutDocument, LayoutOverlay } from '../../components'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchAllStories, fetchStory, type StoryblokStory } from '../../lib/storyblok'
+import { useStoryblokState } from '../../lib/storyblok'
 
 type Props = { story: StoryblokStory | null }
 type RouteProps = { url?: string[] }

@@ -39,6 +39,7 @@ import {
   revalidate,
 } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { fetchStory, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
@@ -51,8 +52,7 @@ import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
 import { ProductPage2Document } from '../../graphql/ProductPage2.gql'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchGlobalConfig, fetchStory, type StoryblokStory } from '../../lib/storyblok'
-import { useStoryblokState } from '../../lib/useStoryblokState'
+import { fetchGlobalConfig, useStoryblokState } from '../../lib/storyblok'
 
 export type Props = ProductPage2Query &
   Pick<AddProductsToCartFormProps, 'defaultValues'> & {

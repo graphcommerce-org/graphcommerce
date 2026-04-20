@@ -1,8 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
-import {
-  ProductListDocument,
-  type ProductListItemsFragment,
-} from '@graphcommerce/magento-product'
+import { ProductListDocument, type ProductListItemsFragment } from '@graphcommerce/magento-product'
 import type { SbBlokData } from '@storyblok/react'
 
 type RowProductBlok = SbBlokData & {
