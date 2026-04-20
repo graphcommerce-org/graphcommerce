@@ -35,6 +35,7 @@ import {
 } from '@graphcommerce/next-config/config'
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
+import { Asset } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
@@ -101,6 +102,11 @@ function CategoryPage(props: CategoryProps) {
           )}
           <CategoryHeroNav
             {...category}
+            asset={
+              story?.content?.asset?.filename && (
+                <Asset asset={story.content.asset} loading='eager' />
+              )
+            }
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>
