@@ -4,12 +4,12 @@ import { StoreConfigDocument } from '@graphcommerce/magento-store'
 import { LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { Typography } from '@mui/material'
+import { useStoryblokState } from '@storyblok/react'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation } from '../components'
 import { useSetGlobalConfig } from '../components/Storyblok/GlobalConfigProvider'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
 import { fetchGlobalConfig, type GlobalConfigStory } from '../lib/storyblok'
-import { useStoryblokState } from '../lib/useStoryblokState'
 
 type GlobalConfigPageProps = {
   globalConfigStory: GlobalConfigStory | null

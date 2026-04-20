@@ -83,7 +83,10 @@ export type GlobalConfigStory = ISbStoryData<StoryblokGlobalConfig>
 /** Fetch the global config story used for header/footer content. */
 export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalConfigStory | null> {
   const result = await fetchStory('global/config', opts)
-  return (result.data?.story as unknown as GlobalConfigStory) ?? null
+  const story = result.data?.story
+  return story?.content?.component === 'global_config'
+    ? (story as ISbStoryData<StoryblokGlobalConfig>)
+    : null
 }
 
 export const getStoryblokApi = storyblokInit({

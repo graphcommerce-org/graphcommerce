@@ -7,8 +7,10 @@ type BlokRenderer = {
   [K in keyof StoryblokBlokMap]?: React.FC<{ blok: StoryblokBlokMap[K] }>
 }
 
+type RenderableBlok = { _uid?: string; component?: string }
+
 export type RowRendererProps = {
-  content: SbBlokData[]
+  content: ReadonlyArray<RenderableBlok>
   renderer?: BlokRenderer
   loadingEager?: number
 }
@@ -21,9 +23,7 @@ export type RowRendererProps = {
 export const RowRenderer = memo<RowRendererProps>(({ content, renderer, loadingEager = 2 }) => (
   <>
     {content.map((blok, index) => {
-      const Override = blok.component
-        ? renderer?.[blok.component as keyof BlokRenderer]
-        : undefined
+      const Override = blok.component ? renderer?.[blok.component as keyof BlokRenderer] : undefined
 
       return (
         <LazyHydrate
@@ -31,7 +31,11 @@ export const RowRenderer = memo<RowRendererProps>(({ content, renderer, loadingE
           hydrated={index < loadingEager ? true : undefined}
           height={500}
         >
-          {Override ? <Override blok={blok as never} /> : <StoryblokComponent blok={blok} />}
+          {Override ? (
+            <Override blok={blok as never} />
+          ) : (
+            <StoryblokComponent blok={blok as SbBlokData} />
+          )}
         </LazyHydrate>
       )
     })}
