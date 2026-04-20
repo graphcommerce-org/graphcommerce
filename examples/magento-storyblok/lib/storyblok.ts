@@ -1,6 +1,7 @@
 import {
-  fetchGlobalConfig as fetchGlobalConfigBase,
+  fetchStory,
   useStoryblokState as useStoryblokStateBase,
+  type FetchStoryOpts,
 } from '@graphcommerce/storyblok-ui'
 import { apiPlugin, storyblokInit, type ISbStoryData } from '@storyblok/react'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
@@ -20,9 +21,20 @@ import type { StoryblokGlobalConfig, StoryblokPage } from '../components/Storybl
 
 export type GlobalConfigStory = ISbStoryData<StoryblokGlobalConfig>
 
-export const fetchGlobalConfig = (
-  opts?: Parameters<typeof fetchGlobalConfigBase>[0],
-): Promise<GlobalConfigStory | null> => fetchGlobalConfigBase<StoryblokGlobalConfig>(opts)
+export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalConfigStory | null> {
+  const result = await fetchStory('global/config', opts)
+  const story = result.data?.story
+  if (!story) return null
+  if (story.content?.component === 'global_config') {
+    return story as GlobalConfigStory
+  }
+  if (process.env.NODE_ENV === 'development') {
+    throw new Error(
+      `fetchGlobalConfig: expected story at 'global/config' to have content of type 'global_config' but got '${story.content?.component}'. Check the slug and the component assigned to it in Storyblok.`,
+    )
+  }
+  return null
+}
 
 export const useStoryblokState = (
   initialStory: ISbStoryData | null,

@@ -8,9 +8,8 @@ import {
 import { resolveStoryblokProducts } from './resolveProducts'
 
 export type StoryblokStory = ISbStoryData<SbBlokData & { body?: SbBlokData[] }>
-export type GlobalConfigStory<T = SbBlokData> = ISbStoryData<T>
 
-type FetchStoryOpts = { preview?: boolean; locale?: string; defaultLocale?: string }
+export type FetchStoryOpts = { preview?: boolean; locale?: string; defaultLocale?: string }
 export type FetchStoriesParams = ISbStoriesParams & FetchStoryOpts
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -147,26 +146,4 @@ export async function fetchStory(
     logFetchError(`fetchStory('${slug}')`, error)
     return { data: null }
   }
-}
-
-/**
- * Fetch the global config story used for header/footer content. The generic `T` lets the caller
- * narrow the returned `content` to an auto-generated Storyblok content type.
- */
-export async function fetchGlobalConfig<T = SbBlokData>(
-  opts?: FetchStoryOpts,
-): Promise<GlobalConfigStory<T> | null> {
-  const result = await fetchStory('global/config', opts)
-  const story = result.data?.story
-  if (!story) return null
-  if (story.content?.component === 'global_config') {
-    return story as ISbStoryData<T>
-  }
-
-  if (isDev) {
-    throw new Error(
-      `fetchGlobalConfig: expected story at 'global/config' to have content of type 'global_config' but got '${story.content?.component}'. Check the slug and the component assigned to it in Storyblok.`,
-    )
-  }
-  return null
 }
