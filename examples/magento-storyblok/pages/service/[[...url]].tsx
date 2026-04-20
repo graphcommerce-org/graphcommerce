@@ -11,7 +11,7 @@ import type { LayoutNavigationProps, LayoutOverlayProps } from '../../components
 import { LayoutDocument, LayoutOverlay } from '../../components'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../lib/graphql/graphqlSsrClient'
-import { fetchStories, fetchStory, type StoryblokStory } from '../../lib/storyblok'
+import { fetchAllStories, fetchStory, type StoryblokStory } from '../../lib/storyblok'
 
 type Props = { story: StoryblokStory | null }
 type RouteProps = { url?: string[] }
@@ -54,7 +54,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 
   const responses = locales.map(async (locale) => {
-    const stories = await fetchStories('service/', { locale })
+    const stories = await fetchAllStories({ starts_with: 'service/', locale })
     return stories.map((story) => ({
       params: { url: story.full_slug.replace('service/', '').split('/').filter(Boolean) },
       locale,

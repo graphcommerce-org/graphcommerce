@@ -1,5 +1,11 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
-import { apiPlugin, storyblokInit, type ISbStoryData, type SbBlokData } from '@storyblok/react'
+import {
+  apiPlugin,
+  storyblokInit,
+  type ISbStoriesParams,
+  type ISbStoryData,
+  type SbBlokData,
+} from '@storyblok/react'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
 import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
@@ -74,40 +80,64 @@ async function fetchWithRetry<T>(request: () => Promise<T>, attempt = 0): Promis
   }
 }
 
+export type FetchStoriesParams = ISbStoriesParams & FetchStoryOpts
+
+function storiesRequest(params: FetchStoriesParams, page: number, perPage: number) {
+  const { preview, locale, defaultLocale, ...storyblokParams } = params
+  return fetchWithRetry(() =>
+    getStoryblokApi().get('cdn/stories', {
+      ...sbParams({ preview, locale, defaultLocale }),
+      ...storyblokParams,
+      per_page: perPage,
+      page,
+    }),
+  )
+}
+
 /**
- * Fetch all stories matching a slug prefix. Pages beyond the first are fetched with bounded
- * concurrency to avoid bursting through Storyblok's rate limit; any 429 is retried using the
- * server's Retry-After.
+ * Fetch a single page of stories from the Storyblok CDN and expose the response meta so callers
+ * can render pagination controls. Use this for listing screens.
  */
 export async function fetchStories(
-  startsWith: string,
-  opts?: FetchStoryOpts,
-): Promise<StoryblokStory[]> {
-  const fetchPage = (page: number) =>
-    fetchWithRetry(() =>
-      getStoryblokApi().get('cdn/stories', {
-        ...sbParams(opts),
-        starts_with: startsWith,
-        per_page: STORIES_PER_PAGE,
-        page,
-      }),
-    )
-
+  params: FetchStoriesParams,
+): Promise<{ stories: StoryblokStory[]; total: number; perPage: number }> {
+  const perPage = params.per_page ?? STORIES_PER_PAGE
+  const page = params.page ?? 1
   try {
-    const first = await fetchPage(1)
+    const response = await storiesRequest(params, page, perPage)
+    return {
+      stories: response.data?.stories ?? [],
+      total: response.total ?? 0,
+      perPage,
+    }
+  } catch (error) {
+    logFetchError(`fetchStories(${JSON.stringify(params)})`, error)
+    return { stories: [], total: 0, perPage }
+  }
+}
+
+/**
+ * Fetch every story matching the given params by auto-paginating through all pages with bounded
+ * concurrency. Use this for getStaticPaths-style "give me every slug" queries where pagination
+ * controls aren't needed.
+ */
+export async function fetchAllStories(params: FetchStoriesParams): Promise<StoryblokStory[]> {
+  const perPage = params.per_page ?? STORIES_PER_PAGE
+  try {
+    const first = await storiesRequest(params, 1, perPage)
     const stories: StoryblokStory[] = first.data?.stories ?? []
-    const totalPages = Math.ceil((first.total ?? stories.length) / STORIES_PER_PAGE)
+    const totalPages = Math.ceil((first.total ?? stories.length) / perPage)
     if (totalPages <= 1) return stories
 
     const remaining = Array.from({ length: totalPages - 1 }, (_, i) => i + 2)
     for (let i = 0; i < remaining.length; i += MAX_PAGE_CONCURRENCY) {
       const chunk = remaining.slice(i, i + MAX_PAGE_CONCURRENCY)
-      const results = await Promise.all(chunk.map(fetchPage))
+      const results = await Promise.all(chunk.map((p) => storiesRequest(params, p, perPage)))
       for (const r of results) stories.push(...(r.data?.stories ?? []))
     }
     return stories
   } catch (error) {
-    logFetchError(`fetchStories('${startsWith}')`, error)
+    logFetchError(`fetchAllStories(${JSON.stringify(params)})`, error)
     return []
   }
 }
