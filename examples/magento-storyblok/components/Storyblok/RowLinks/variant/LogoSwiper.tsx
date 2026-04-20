@@ -1,5 +1,5 @@
 import { VariantLogoSwiper } from '@graphcommerce/next-ui'
-import { Asset } from '@graphcommerce/storyblok-ui'
+import { Asset, parseDimensions } from '@graphcommerce/storyblok-ui'
 import { storyblokEditable, type SbBlokData } from '@storyblok/react'
 import { Link } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
@@ -26,10 +26,25 @@ export function LogoSwiper(props: RowLinksVariantProps) {
             <Asset
               asset={pageLink.asset}
               sizes={{ 0: '120px', 960: '240px' }}
-              sx={(theme) => ({
-                filter: 'none',
-                ...theme.applyStyles('dark', { filter: 'invert(100%)' }),
-              })}
+              sx={(theme) => {
+                const dimensions = pageLink.asset?.filename
+                  ? parseDimensions(pageLink.asset.filename)
+                  : null
+
+                return {
+                  ...(dimensions && {
+                    width: () => {
+                      const widthBase = 60
+                      const scaleFactor = 0.525
+                      const imageRatio = dimensions.width / dimensions.height
+                      const w = imageRatio ** scaleFactor * widthBase
+                      return { xs: w * 0.65, sm: w * 0.8, md: w * 0.9, lg: w }
+                    },
+                  }),
+                  filter: 'none',
+                  ...theme.applyStyles('dark', { filter: 'invert(100%)' }),
+                }
+              }}
             />
           )}
         </Link>
