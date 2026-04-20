@@ -46,6 +46,7 @@ import {
   ProductListLayoutDefault,
   ProductListLayoutSidebar,
 } from '../components'
+import { RowProduct } from '../components/Storyblok/RowProduct/RowProduct'
 import { RowRenderer } from '../components/Storyblok/RowRenderer'
 import type { CategoryPageQuery } from '../graphql/CategoryPage.gql'
 import { CategoryPageDocument } from '../graphql/CategoryPage.gql'
@@ -142,7 +143,16 @@ function CategoryPage(props: CategoryProps) {
           )}
         </>
       )}
-      {story?.content?.body && <RowRenderer content={story.content.body} />}
+      {story?.content?.body && (
+        <RowRenderer
+          content={story.content.body}
+          renderer={{
+            row_product: (rowProps) => (
+              <RowProduct {...rowProps} items={products?.items?.slice(0, 8)} />
+            ),
+          }}
+        />
+      )}
     </PrivateQueryMaskProvider>
   )
 }

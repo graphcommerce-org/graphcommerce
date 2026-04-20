@@ -15,11 +15,17 @@ type VariantRenderer = Record<string, React.FC<RowProductVariantProps>>
 
 const variantRenderer: VariantRenderer = { Backstory, Grid, Swipeable }
 
-export function RowProduct({ blok }: { blok: RowProductBlok }) {
-  const variant = (blok.variant as unknown as string) || 'Grid'
-  const items = (blok as unknown as { items?: ProductListItemsFragment['items'] }).items ?? []
+type RowProductProps = {
+  blok: RowProductBlok
+  items?: ProductListItemsFragment['items']
+}
 
-  const skus = filterNonNullableKeys(items, ['sku']).map((item) => item.sku)
+export function RowProduct({ blok, items: itemsOverride }: RowProductProps) {
+  const variant = (blok.variant as unknown as string) || 'Grid'
+  const blokItems = (blok as unknown as { items?: ProductListItemsFragment['items'] }).items ?? []
+  const items = itemsOverride ?? blokItems
+
+  const skus = itemsOverride ? [] : filterNonNullableKeys(items, ['sku']).map((item) => item.sku)
   const scoped = usePrivateQuery(
     ProductListDocument,
     {
