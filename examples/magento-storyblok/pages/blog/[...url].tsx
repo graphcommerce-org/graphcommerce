@@ -1,6 +1,7 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   BlogAuthor,
@@ -12,7 +13,6 @@ import {
   LayoutHeader,
   LayoutTitle,
   PageMeta,
-  Row,
   revalidate,
 } from '@graphcommerce/next-ui'
 import {
@@ -23,9 +23,8 @@ import {
   storyblokEditable,
   type StoryblokStory,
 } from '@graphcommerce/storyblok-ui'
-import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 import { t } from '@lingui/core/macro'
-import { Container } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import { BlogList, LayoutDocument, LayoutNavigation } from '../../components'
 import type { LayoutNavigationProps } from '../../components'
@@ -74,7 +73,7 @@ function BlogPostPage(props: Props) {
           />
         </Container>
       )}
-      <Row {...storyblokEditable(content)}>
+      <Container maxWidth='md' {...storyblokEditable(content)}>
         <BlogTitle>{title}</BlogTitle>
 
         {content?.author && content?.date && (
@@ -91,7 +90,7 @@ function BlogPostPage(props: Props) {
             ))}
           </BlogTags>
         )}
-      </Row>
+      </Container>
       <BlogList stories={related} />
     </>
   )
