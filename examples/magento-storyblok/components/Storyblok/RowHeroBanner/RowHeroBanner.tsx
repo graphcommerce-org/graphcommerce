@@ -43,7 +43,7 @@ export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
               mb: theme.spacings.sm,
               ...breakpointVal('fontSize', 36, 82, theme.breakpoints.values),
             }),
-            strong: {
+            bold: {
               WebkitTextFillColor: 'transparent',
               WebkitTextStroke: '1.2px #fff',
             },

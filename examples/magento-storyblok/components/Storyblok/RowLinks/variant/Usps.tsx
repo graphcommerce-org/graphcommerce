@@ -38,7 +38,7 @@ export function Usps(props: RowLinksVariantProps) {
                 content={pageLink.description}
                 sxRenderer={{
                   paragraph: { display: 'inline' },
-                  a: { color: 'text.primary', textDecoration: 'underline' },
+                  link: { color: 'text.primary', textDecoration: 'underline' },
                 }}
               />
             )}
