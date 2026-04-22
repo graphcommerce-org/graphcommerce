@@ -11,13 +11,25 @@ export function GlobalConfigProvider(props: {
   children: React.ReactNode
 }) {
   const { value, children } = props
-  const [config, setConfig] = useState(value ?? null)
+  // `override` holds live Visual Editor updates pushed via `useSetGlobalConfig`.
+  // When unset (null), we fall back to the SSR `value` prop.
+  const [override, setOverride] = useState<StoryblokGlobalConfig | null>(null)
+  // Track the last `value` we saw so we can reset the override on navigation
+  // (when a new page provides a fresh SSR value, any stale editor override is dropped).
+  // This is React's recommended "adjust state during render" pattern — preferred over
+  // syncing via useEffect, which would cause a double render.
+  const [lastValue, setLastValue] = useState(value)
 
-  useEffect(() => setConfig(value ?? null), [value])
+  if (value !== lastValue) {
+    setLastValue(value)
+    setOverride(null)
+  }
+
+  const config = override ?? value ?? null
 
   return (
     <GlobalConfigContext.Provider value={config}>
-      <SetGlobalConfigContext.Provider value={setConfig}>
+      <SetGlobalConfigContext.Provider value={setOverride}>
         {children}
       </SetGlobalConfigContext.Provider>
     </GlobalConfigContext.Provider>
