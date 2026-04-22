@@ -11,6 +11,12 @@ import {
   Pagination,
   revalidate,
 } from '@graphcommerce/next-ui'
+import {
+  fetchStories,
+  fetchStory,
+  storyblokEditable,
+  type StoryblokStory,
+} from '@graphcommerce/storyblok-ui'
 import { Container, Link } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
@@ -18,12 +24,6 @@ import { BlogList, LayoutDocument, LayoutNavigation } from '../../../components'
 import type { LayoutNavigationProps } from '../../../components'
 import { RowRenderer } from '../../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
-import {
-  fetchStories,
-  fetchStory,
-  storyblokEditable,
-  type StoryblokStory,
-} from '@graphcommerce/storyblok-ui'
 import { useStoryblokState } from '../../../lib/storyblok'
 
 type Props = {

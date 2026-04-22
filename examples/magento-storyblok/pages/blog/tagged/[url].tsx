@@ -1,17 +1,18 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
-  Breadcrumbs,
   BlogTitle,
+  Breadcrumbs,
   LayoutHeader,
   LayoutTitle,
   PageMeta,
-  Row,
   revalidate,
+  Row,
 } from '@graphcommerce/next-ui'
-import { breadcrumbs, limitSsg } from '@graphcommerce/next-config/config'
+import { fetchAllStories, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
@@ -19,7 +20,6 @@ import type { GetStaticPaths } from 'next'
 import { BlogList, LayoutDocument, LayoutNavigation } from '../../../components'
 import type { LayoutNavigationProps } from '../../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
-import { fetchAllStories, type StoryblokStory } from '@graphcommerce/storyblok-ui'
 
 type Props = { tag: string; stories: StoryblokStory[] }
 type RouteProps = { url: string }
