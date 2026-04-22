@@ -10,6 +10,7 @@ import {
   BlogTags,
   BlogTitle,
   Breadcrumbs,
+  Container,
   LayoutHeader,
   LayoutTitle,
   PageMeta,
@@ -24,7 +25,6 @@ import {
   type StoryblokStory,
 } from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
-import { Box, Container } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import { BlogList, LayoutDocument, LayoutNavigation } from '../../components'
 import type { LayoutNavigationProps } from '../../components'
@@ -73,7 +73,11 @@ function BlogPostPage(props: Props) {
           />
         </Container>
       )}
-      <Container maxWidth='md' {...storyblokEditable(content)}>
+      <Container
+        maxWidth='md'
+        {...storyblokEditable(content)}
+        sx={(theme) => ({ marginBottom: theme.spacings.xxl })}
+      >
         <BlogTitle>{title}</BlogTitle>
 
         {content?.author && content?.date && (
