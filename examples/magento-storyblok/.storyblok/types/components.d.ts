@@ -19,10 +19,13 @@ export interface StoryblokFooter {
 }
 
 export interface StoryblokGlobalConfig {
+  tab_usps?: unknown;
   tab_footer?: unknown;
   social_links?: StoryblokPageLink[];
   copyright?: string;
   legal_links?: StoryblokPageLink[];
+  sidebar_usps?: StoryblokPageLink[];
+  content_usps?: StoryblokPageLink[];
   component: "global_config";
   _uid: string;
   [k: string]: unknown;

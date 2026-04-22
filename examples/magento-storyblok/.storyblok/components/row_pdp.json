@@ -43,7 +43,10 @@
       "type": "asset",
       "pos": 1,
       "display_name": "Asset",
-      "filetypes": ["images", "videos"],
+      "filetypes": [
+        "images",
+        "videos"
+      ],
       "id": "64-2Dg4RQbi8Z6n3USODNA"
     },
     "title": {

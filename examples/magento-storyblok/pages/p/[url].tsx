@@ -45,8 +45,9 @@ import { Trans } from '@lingui/react/macro'
 import { Typography } from '@mui/material'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../../components'
-import { LayoutDocument, LayoutNavigation, productListRenderer } from '../../components'
+import { LayoutDocument, LayoutNavigation, productListRenderer, Usps } from '../../components'
 import { AddProductsToCartView } from '../../components/ProductView/AddProductsToCartView'
+import { useGlobalConfig } from '../../components/Storyblok/GlobalConfigProvider'
 import { RowPdp } from '../../components/Storyblok/RowPdp/RowPdp'
 import { RowRenderer } from '../../components/Storyblok/RowRenderer'
 import type { ProductPage2Query } from '../../graphql/ProductPage2.gql'
@@ -67,6 +68,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, Props, RouteProp
 function ProductPage(props: Props) {
   const { defaultValues, urlKey, story: initialStory } = props
   const story = useStoryblokState(initialStory)
+  const globalConfig = useGlobalConfig()
 
   const scopedQuery = usePrivateQuery(
     ProductPage2Document,
@@ -147,12 +149,14 @@ function ProductPage(props: Props) {
             <AddProductsToCartButton fullWidth product={product} />
             <ProductWishlistChipDetail {...product} />
           </ProductPageAddToCartActionsRow>
+
+          <Usps usps={globalConfig?.sidebar_usps} size='small' />
         </ProductPageGallery>
 
         <ProductPageDescription
           product={product}
           fontSize='responsive'
-          right=''
+          right={<Usps usps={globalConfig?.content_usps} />}
           productListRenderer={productListRenderer}
         />
       </AddProductsToCartForm>

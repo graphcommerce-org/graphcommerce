@@ -3,19 +3,31 @@
   "display_name": "Global Config",
   "description": "Global content shared across all pages (header, footer)",
   "created_at": "2026-04-15T11:23:42.124Z",
-  "updated_at": "2026-04-15T11:23:42.124Z",
+  "updated_at": "2026-04-22T14:38:38.371Z",
   "id": 166144500243784,
   "schema": {
+    "tab_usps": {
+      "display_name": "USPs",
+      "keys": [
+        "sidebar_usps",
+        "content_usps"
+      ],
+      "pos": 0,
+      "type": "tab",
+      "name": "tab_usps",
+      "id": "2r_snA"
+    },
     "tab_footer": {
       "type": "tab",
-      "pos": 0,
+      "pos": 1,
       "display_name": "Footer",
       "keys": [
         "social_links",
         "copyright",
         "legal_links"
       ],
-      "id": "2r_4jes"
+      "id": "2r_4jes",
+      "name": "tab_footer"
     },
     "social_links": {
       "type": "bloks",
@@ -45,6 +57,30 @@
         "page_link"
       ],
       "id": "KeT3tDsMQ9W03SlYHjJE_w"
+    },
+    "sidebar_usps": {
+      "type": "bloks",
+      "pos": 5,
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "component_denylist": [],
+      "id": "ovhw79vmSxybKQEd7_fg0Q",
+      "description": "Used on PDPs"
+    },
+    "content_usps": {
+      "type": "bloks",
+      "pos": 6,
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "component_denylist": [],
+      "description": "Used on PDPs",
+      "id": "7weDdf20QRyNksMy2odEYQ"
     }
   },
   "image": null,
