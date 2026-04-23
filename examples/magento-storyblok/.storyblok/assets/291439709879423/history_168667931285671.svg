@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>history</title>
+    <g id="history" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <polyline id="Path" stroke="#CCCCCC" stroke-width="1.5" points="1.33333333 16 4 18.6666667 6.66666667 16"></polyline>
+        <polyline id="Path" stroke="#CCCCCC" stroke-width="1.5" points="16 9.33333333 16 16 20 20"></polyline>
+        <path d="M16,28 C22.6274169,28 28,22.6274169 28,16 C28,9.372583 22.6274169,4 16,4 C9.372583,4 4,9.372583 4,16 C4,15.9670733 4,16.4115177 4,17.3333333" id="Path" stroke="#CCCCCC" stroke-width="1.5"></path>
+    </g>
+</svg>

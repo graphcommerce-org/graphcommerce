@@ -1,0 +1,229 @@
+{
+  "name": "GraphCommerce® collaborates with Moma",
+  "parent_id": 167929327942297,
+  "group_id": "758644aa-8589-4cc5-82dc-414ed5eff300",
+  "alternates": [],
+  "created_at": "2026-04-20T12:27:15.104Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [
+    "Collaboration",
+    "News"
+  ],
+  "updated_at": "2026-04-22T13:11:22.741Z",
+  "published_at": "2026-04-22T13:11:22.723Z",
+  "id": 167929590217384,
+  "uuid": "abf89a5c-34f6-4703-800f-eee259cc7ca8",
+  "is_folder": false,
+  "content": {
+    "_uid": "cb0b311b-fa75-4f89-8828-373690b97580",
+    "body": [
+      {
+        "_uid": "dd7edd6a-5aa1-4935-99aa-1bafffcdd9a1",
+        "content": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "We are thrilled to announce the launch of our new GraphCommerce sock print collection in collaboration with MoMA, The Museum of Modern Art. As a leading institution of modern and contemporary art, MoMA is dedicated to preserving and presenting works from the world's leading artists, designers, and thinkers.",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "This collaboration combines MoMA's passion for creativity and innovation with GraphCommerce's commitment to delivering high-quality and stylish socks. The result is a collection that features bold, colorful prints inspired by the works of some of the world's most famous artists, including Pablo Picasso, Frida Kahlo, and Vincent van Gogh.",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "blockquote",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "“Everyone should have some glam and glitter, and some punk, and some 60s in their life,” – MOMA",
+                      "type": "text"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "We believe that everyone should have a little bit of glam, glitter, punk, and 60s in their life, which is why we've created a collection that incorporates elements of each of these styles. Our socks are designed to make a statement, whether you're wearing them to work or out on the town.",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Launching next week",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "The GraphCommerce and MoMA collaboration will launch this week, and we couldn't be more excited to share this new collection with the world. Whether you're an art lover, a fashionista, or just someone who appreciates the finer things in life, we're confident that you'll love our new sock print collection.",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "So why not add a little art to your everyday look and get ready to make a statement with the new GraphCommerce and MoMA sock print collection!",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "type": "image",
+                  "attrs": {
+                    "id": 167930523851889,
+                    "alt": "",
+                    "src": "https://a.storyblok.com/f/291439709879423/1920x1280/5add1a8225/sock-img.jpg",
+                    "title": "",
+                    "source": "",
+                    "copyright": "",
+                    "meta_data": {}
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "component": "row_blog_content"
+      }
+    ],
+    "date": "2023-02-02 00:00",
+    "asset": {
+      "id": 167930086280283,
+      "alt": "",
+      "name": "",
+      "focus": "",
+      "title": "",
+      "source": "",
+      "filename": "https://a.storyblok.com/f/291439709879423/2159x1440/f50c4bfd9f/img-impression-iii-concert-wassily-kandinsky.jpg",
+      "copyright": "",
+      "fieldtype": "asset",
+      "meta_data": {},
+      "is_external_url": false
+    },
+    "title": "GraphCommerce® collaborates with Moma",
+    "author": "Erwin Otten",
+    "component": "page",
+    "meta_title": "..",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ".."
+  },
+  "published": true,
+  "slug": "graphcommerce-collaborates-with-moma",
+  "path": null,
+  "full_slug": "blog/graphcommerce-collaborates-with-moma",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 167929327942297,
+    "uuid": "eca8a55a-5970-43c1-992a-b89d58753a92",
+    "name": "Blog",
+    "slug": "blog",
+    "disble_fe_editor": false
+  },
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
+    "timestamp": "1776947689"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 167929327942297,
+      "name": "Blog",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "blog",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-20T12:31:56.552Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "blog/graphcommerce-collaborates-with-moma",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": 0,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 168648223368145,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

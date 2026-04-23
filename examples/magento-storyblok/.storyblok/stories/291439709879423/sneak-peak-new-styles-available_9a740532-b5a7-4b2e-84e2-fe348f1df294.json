@@ -1,0 +1,136 @@
+{
+  "name": "Sneak peak! New styles available!",
+  "parent_id": 167929327942297,
+  "group_id": "256ad927-8409-448f-98fd-3e0a24b1e859",
+  "alternates": [],
+  "created_at": "2026-04-22T13:19:08.682Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [
+    "News"
+  ],
+  "updated_at": "2026-04-22T13:20:48.554Z",
+  "published_at": "2026-04-22T13:20:48.535Z",
+  "id": 168650132245886,
+  "uuid": "9a740532-b5a7-4b2e-84e2-fe348f1df294",
+  "is_folder": false,
+  "content": {
+    "_uid": "acc6e5e4-17be-413b-bac1-e6fc2c233c42",
+    "body": [
+      {
+        "_uid": "e1e71059-1d07-4508-b985-48418fe89d59",
+        "content": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Get ready for one of the most exciting GraphCommerce® launches ever! 20 BRAND NEW styles are headed your way very soon! Some of our favorite designs ever are included in this next bunch, and we owe a HUGE thanks to many of our fans for helping us create such awesome socks! You talked, we listened! We’re excited to get these socks out on shelves just in time for Fall’s cooler weather and the upcoming holidays!",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              }
+            }
+          ]
+        },
+        "component": "row_blog_content"
+      }
+    ],
+    "date": "2023-01-27 00:00",
+    "asset": {
+      "id": 168650434669347,
+      "alt": "",
+      "name": "",
+      "focus": "",
+      "title": "",
+      "source": "",
+      "filename": "https://a.storyblok.com/f/291439709879423/2160x1440/1dd88a473e/img-composition-frantisek-foltyn.jpg",
+      "copyright": "",
+      "fieldtype": "asset",
+      "meta_data": {},
+      "is_external_url": false
+    },
+    "title": "Sneak peak! New styles available!",
+    "author": "Erwin Otten",
+    "component": "page",
+    "meta_title": "Sneak peak! New styles available!",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": "..."
+  },
+  "published": true,
+  "slug": "sneak-peak-new-styles-available",
+  "path": null,
+  "full_slug": "blog/sneak-peak-new-styles-available",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 167929327942297,
+    "uuid": "eca8a55a-5970-43c1-992a-b89d58753a92",
+    "name": "Blog",
+    "slug": "blog",
+    "disble_fe_editor": false
+  },
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "d57f8ac69f2dd49fc2f6b700b8cfb42dfb1d1e3d",
+    "timestamp": "1776947688"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 167929327942297,
+      "name": "Blog",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "blog",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-22T13:19:40.087Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "blog/sneak-peak-new-styles-available",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -40,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 168650541023680,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

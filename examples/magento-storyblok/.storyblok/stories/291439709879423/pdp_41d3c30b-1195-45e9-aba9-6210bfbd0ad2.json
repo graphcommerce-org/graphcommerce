@@ -1,0 +1,307 @@
+{
+  "name": "PDP",
+  "parent_id": 166894755562339,
+  "group_id": "c104fd64-afb8-4938-917b-0db61a1863d9",
+  "alternates": [],
+  "created_at": "2026-04-17T08:21:18.058Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-17T14:33:31.230Z",
+  "published_at": "2026-04-17T14:33:31.215Z",
+  "id": 166807462157014,
+  "uuid": "41d3c30b-1195-45e9-aba9-6210bfbd0ad2",
+  "is_folder": false,
+  "content": {
+    "url": "product/global",
+    "_uid": "1fac5a3c-d4c5-4920-a392-274e71c4e54d",
+    "body": [
+      {
+        "_uid": "144f773c-291c-4cbb-8f59-587f709674a6",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "The perfect gift",
+        "variant": "Feature",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Surprise your loved ones",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus turpis ex, ut placerat enim vestibulum quis. Aliquam finibus accumsan eros, vitae commodo tellus molestie a. Aliquam fringilla in lectus in blandit. Quisque placerat pellentesque orci, et tincidunt nisl fringilla non.",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "b05bc1c8-16b8-46d1-98dc-1a7900216646",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Product Specifications",
+        "variant": "Specs",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "150cd208-1034-4f9a-8e9b-251695ed7662",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "About our environmental impact",
+        "variant": "FeatureBoxed",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Color to Dye for",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Every pair of our socks is a statement for a more colorful, fairer and more ecological world. How do we do it? By making our socks from organic cotton and by avoiding any toxins when dyeing the yarns. But we go beyond just our socks: even our packaging and our hangers are biodegradable.",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "852da94d-2056-4265-a28f-d76e2caf15ab",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Reviews",
+        "variant": "Reviews",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "b732fbe4-d499-4ac8-a295-c4ed5a308d64",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Looking for a better fit?",
+        "variant": "Upsells",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "9588e2c8-e0a3-4fae-83cd-443f48e67154",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "More like this",
+        "variant": "Related",
+        "component": "row_pdp",
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      }
+    ],
+    "date": "",
+    "asset": {
+      "id": null,
+      "alt": null,
+      "name": "",
+      "focus": null,
+      "title": null,
+      "source": null,
+      "filename": "",
+      "copyright": null,
+      "fieldtype": "asset",
+      "meta_data": {}
+    },
+    "title": "Product",
+    "author": "",
+    "component": "page",
+    "meta_title": "",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ""
+  },
+  "published": true,
+  "slug": "pdp",
+  "path": "/p/fuzzy-unibrow-gc-1114-sock",
+  "full_slug": "global/pdp",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 166894755562339,
+    "uuid": "3ab97c2c-f556-4b28-9bd7-fa4ba02438e4",
+    "name": "Global",
+    "slug": "global",
+    "disble_fe_editor": false
+  },
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
+    "timestamp": "1776947689"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 166894755562339,
+      "name": "Global",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "global",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-17T08:50:33.774Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "global/pdp",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -20,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 166898938372689,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}
