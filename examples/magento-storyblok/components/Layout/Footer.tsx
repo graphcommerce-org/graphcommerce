@@ -7,8 +7,6 @@ import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce
 import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Trans } from '@lingui/react/macro'
 import { Button, IconButton, Link } from '@mui/material'
-import { useRouter } from 'next/router'
-import type { MouseEventHandler } from 'react'
 import { useGlobalConfig } from '../Storyblok/GlobalConfigProvider'
 import type { StoryblokGlobalConfig } from '../Storyblok/types'
 
@@ -17,8 +15,6 @@ export type FooterProps = { globalConfig?: StoryblokGlobalConfig | null }
 export function Footer(props: FooterProps) {
   const contextConfig = useGlobalConfig()
   const globalConfig = props.globalConfig ?? contextConfig
-  const isEditor = Boolean(useRouter().query._storyblok)
-  const preventNav: MouseEventHandler | undefined = isEditor ? (e) => e.preventDefault() : undefined
   const cartEnabled = useCheckoutGuestEnabled()
   const config = useQuery(StoreConfigDocument).data?.storeConfig
 
@@ -32,7 +28,6 @@ export function Footer(props: FooterProps) {
           {...storyblokEditable(link)}
           key={link._uid}
           href={link.url ?? ''}
-          onClick={preventNav}
           color='inherit'
           size='medium'
           edge='start'
@@ -78,7 +73,6 @@ export function Footer(props: FooterProps) {
               {...storyblokEditable(link)}
               key={link._uid}
               href={link.url ?? ''}
-              onClick={preventNav}
               color='textPrimary'
               underline='always'
             >
