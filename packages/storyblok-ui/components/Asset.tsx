@@ -13,6 +13,21 @@ export type AssetProps = {
 
 const Video = styled('video')({})
 
+// Storyblok encodes image dimensions in the CDN URL (`/WxH/`), but its image
+// processor only runs for uploads made through the web UI. Assets uploaded via
+// the Management API — which is what the CLI's `assets push` (used by our
+// bootstrap script) does — never get that segment, so `parseDimensions`
+// returns null for them. next/image requires non-zero width/height or it
+// emits a 1w placeholder in srcset that some browsers pick inside the
+// Storyblok Visual Editor iframe, leaving images blank. These fallbacks
+// satisfy next/image; the rendered size is controlled by CSS (sx).
+//
+// In practice this only affects the bootstrapped demo content — assets
+// editors upload through the Storyblok UI get proper dimensions in the URL
+// and hit the `parseDimensions` path above.
+const FALLBACK_WIDTH = 500
+const FALLBACK_HEIGHT = 500
+
 function AssetBase(props: AssetProps) {
   const { asset, sx = [], ...imgProps } = props
 
@@ -25,38 +40,33 @@ function AssetBase(props: AssetProps) {
   }
 
   const dimensions = parseDimensions(asset.filename)
-  if (dimensions) {
-    return (
-      <Image
-        src={asset.filename}
-        width={dimensions.width}
-        height={dimensions.height}
-        alt={asset.alt ?? ''}
-        unoptimized={isSvg(asset.filename)}
-        {...imgProps}
-        sx={sx}
-      />
-    )
-  }
 
-  // SVGs and other assets without dimensions in the URL
   if (isSvg(asset.filename)) {
     return (
       <Image
         src={asset.filename}
-        width={0}
-        height={0}
+        width={dimensions?.width ?? 0}
+        height={dimensions?.height ?? 0}
         alt={asset.alt ?? ''}
         unoptimized
         {...imgProps}
-        sx={[{ width: '100%', height: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]}
+        sx={
+          dimensions ? sx : [{ width: '100%', height: 'auto' }, ...(Array.isArray(sx) ? sx : [sx])]
+        }
       />
     )
   }
 
-  if (process.env.NODE_ENV !== 'production') return <div>Unsupported asset: {asset.filename}</div>
-
-  return null
+  return (
+    <Image
+      src={asset.filename}
+      width={dimensions?.width ?? FALLBACK_WIDTH}
+      height={dimensions?.height ?? FALLBACK_HEIGHT}
+      alt={asset.alt ?? ''}
+      {...imgProps}
+      sx={sx}
+    />
+  )
 }
 
 export const Asset = memo(AssetBase)
