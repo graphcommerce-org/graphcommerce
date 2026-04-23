@@ -111,6 +111,10 @@ Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
 
 All storefront configuration for the project
 
+#### storyblok: [StoryblokConfig](#StoryblokConfig) (required)
+
+Settings for the Storyblok integration.
+
 #### breadcrumbs: boolean = `false`
 
 Configuration for the SidebarGallery component
@@ -526,3 +530,18 @@ SidebarGalleryConfig will contain all configuration values for the Sidebar Galle
 #### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination
+
+### StoryblokConfig
+
+Settings for the Storyblok integration.
+
+#### spaceId: string (required)
+
+Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap`
+(seeding a new space with the example content) and as the default space for pull/push commands.
+
+#### sourceSpaceId: string
+
+Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
+example space (291439709879423) which contains demo content for this template.
+Override only if you maintain your own example/template space.

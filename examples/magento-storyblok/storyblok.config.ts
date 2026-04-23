@@ -1,7 +1,10 @@
+import { loadConfig } from '@graphcommerce/next-config/loadConfig'
 import { defineConfig } from 'storyblok/config'
 
+const gcConfig = loadConfig(process.cwd())
+
 export default defineConfig({
-  space: '291439709879423',
+  space: gcConfig.storyblok.spaceId,
   region: 'eu',
   modules: {
     components: {

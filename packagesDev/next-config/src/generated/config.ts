@@ -362,6 +362,8 @@ export type GraphCommerceConfig = {
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>
+  /** Settings for the Storyblok integration. */
+  storyblok: StoryblokConfig
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>
   /** Show a message when the product is added to the wishlist. */
@@ -543,6 +545,21 @@ export type SidebarGalleryConfig = {
 /** Enumeration of all possible positions for the sidebar gallery thumbnails. */
 export type SidebarGalleryPaginationVariant = 'DOTS' | 'THUMBNAILS_BOTTOM'
 
+/** Settings for the Storyblok integration. */
+export type StoryblokConfig = {
+  /**
+   * Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce example space
+   * (291439709879423) which contains demo content for this template. Override only if you maintain
+   * your own example/template space.
+   */
+  sourceSpaceId?: InputMaybe<Scalars['String']['input']>
+  /**
+   * Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap` (seeding
+   * a new space with the example content) and as the default space for pull/push commands.
+   */
+  spaceId: Scalars['String']['input']
+}
+
 export type WebsitePermissions = 'ENABLED'
 
 type Properties<T> = Required<{
@@ -624,6 +641,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: z.lazy(() => SidebarGalleryConfigSchema().nullish()),
     storefront: z.array(z.lazy(() => GraphCommerceStorefrontConfigSchema())),
+    storyblok: z.lazy(() => StoryblokConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish(),
   })
@@ -704,5 +722,12 @@ export function RecentlyViewedProductsConfigSchema(): z.ZodObject<
 export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
   return z.object({
     paginationVariant: SidebarGalleryPaginationVariantSchema.nullish(),
+  })
+}
+
+export function StoryblokConfigSchema(): z.ZodObject<Properties<StoryblokConfig>> {
+  return z.object({
+    sourceSpaceId: z.string().nullish(),
+    spaceId: z.string().min(1),
   })
 }

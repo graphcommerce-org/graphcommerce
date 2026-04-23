@@ -5,6 +5,12 @@ const config: Partial<GraphCommerceConfig> = {
   robotsAllow: false,
   limitSsg: true,
 
+  storyblok: {
+    // Set this to your own Storyblok space ID. For new projects, run `yarn storyblok:bootstrap`
+    // to seed your space with the example content.
+    // spaceId: '',
+    // sourceSpaceId: '', // optional override; defaults to the GraphCommerce example space
+  },
   magentoEndpoint: 'https://configurator.reachdigital.dev/graphql',
   magentoVersion: 247,
   canonicalBaseUrl: 'https://graphcommerce.vercel.app',

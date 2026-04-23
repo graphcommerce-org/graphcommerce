@@ -23,7 +23,11 @@
     "storyblok:pull": "storyblok components pull && cp .storyblok/components/*/*.json .storyblok/components/",
     "storyblok:push": "storyblok components pull && cp .storyblok/components/*.json .storyblok/components/*/ && storyblok components push --separate-files",
     "storyblok:types": "storyblok types generate && cp .storyblok/types/*/storyblok-components.d.ts .storyblok/types/components.d.ts",
-    "storyblok:sync": "yarn storyblok:pull && yarn storyblok:types"
+    "storyblok:sync": "yarn storyblok:pull && yarn storyblok:types",
+    "storyblok:pull-stories": "storyblok stories pull",
+    "storyblok:pull-assets": "storyblok assets pull",
+    "storyblok:backup-content": "yarn storyblok:pull && yarn storyblok:pull-stories && yarn storyblok:pull-assets",
+    "storyblok:bootstrap": "node scripts/storyblok-bootstrap.mjs"
   },
   "dependencies": {
     "@apollo/client": "^4.0.11",
