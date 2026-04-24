@@ -10,17 +10,17 @@ export type IconBlocksProps = {
   title: string
   children: React.ReactNode
   sx?: SxProps<Theme>
-}
+} & Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'children'>
 
 const compName = 'IconBlocks'
 const parts = ['container', 'title', 'optionsWrapper', 'block', 'wrapper'] as const
 const { classes } = extendableComponent(compName, parts)
 
 export function IconBlocks(props: IconBlocksProps) {
-  const { title, children, sx = [] } = props
+  const { title, children, sx = [], ...rest } = props
 
   return (
-    <Row maxWidth='md' className={classes.container} sx={sxx({ maxWidth: 820 }, sx)}>
+    <Row maxWidth='md' className={classes.container} sx={sxx({ maxWidth: 820 }, sx)} {...rest}>
       <Box className={classes.wrapper} sx={(theme) => ({ paddingTop: `${theme.spacings.lg}` })}>
         <Box
           className={classes.title}
