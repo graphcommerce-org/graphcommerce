@@ -1,34 +1,33 @@
 {
-  "name": "Index",
-  "parent_id": 167929327942297,
-  "group_id": "d3ffe556-07a5-420c-ad97-534a863d9e9e",
+  "name": "What can cause my order to be delayed?",
+  "parent_id": 169314617677262,
+  "group_id": "94121891-9510-4c4f-9451-1d89e3e9e6b9",
   "alternates": [],
-  "created_at": "2026-04-20T12:35:01.987Z",
+  "created_at": "2026-04-24T12:09:13.759Z",
   "deleted_at": null,
   "sort_by_date": null,
   "tag_list": [],
-  "updated_at": "2026-04-24T12:35:14.944Z",
-  "published_at": "2026-04-24T12:35:14.928Z",
-  "id": 167931502567675,
-  "uuid": "5e586825-bf76-4690-8434-6345d1a8bf41",
+  "updated_at": "2026-04-24T12:35:54.728Z",
+  "published_at": "2026-04-24T12:35:54.717Z",
+  "id": 169340738651521,
+  "uuid": "1f0e6b93-5795-49f7-b028-e33e0f55e71a",
   "is_folder": false,
   "content": {
-    "_uid": "016b9bb3-d246-40db-940b-960e22292949",
+    "_uid": "8bbe3287-a76e-4a9c-b58e-2ee84e94374c",
     "body": [
       {
-        "_uid": "e2b97fca-5f1c-45a5-b31d-1bdea5fb6332",
+        "_uid": "5964d073-929e-429b-8942-600b007e9249",
         "col_one": {
           "type": "doc",
           "content": [
             {
-              "type": "heading",
+              "type": "paragraph",
               "attrs": {
-                "level": 1,
                 "textAlign": null
               },
               "content": [
                 {
-                  "text": "Blog",
+                  "text": "If the billing information you provided does not match what your bank has on file (including address and telephone number), your order may be delayed.",
                   "type": "text"
                 }
               ]
@@ -46,10 +45,16 @@
               },
               "content": [
                 {
-                  "text": "Features and perspectives",
+                  "text": "We all love sending gifts to others and ourselves as much as we love receiving them. However, if you are shipping to an address other than your billing address, your order may be delayed.",
                   "type": "text"
                 }
               ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              }
             }
           ]
         },
@@ -64,57 +69,57 @@
       "name": "",
       "focus": null,
       "title": null,
-      "filename": null,
+      "source": null,
+      "filename": "",
       "copyright": null,
       "fieldtype": "asset",
-      "meta_data": {},
-      "is_external_url": false
+      "meta_data": {}
     },
     "author": "",
     "component": "page",
-    "meta_title": "Blog",
+    "meta_title": "What can cause my order to be delayed?",
     "meta_robots": "INDEX_FOLLOW",
     "related_pages": [],
-    "meta_description": ""
+    "meta_description": "..."
   },
   "published": true,
-  "slug": "blog",
-  "path": "",
-  "full_slug": "blog/",
+  "slug": "what-can-cause-my-order-to-be-delayed",
+  "path": null,
+  "full_slug": "service/what-can-cause-my-order-to-be-delayed",
   "default_root": null,
   "disble_fe_editor": false,
   "disable_fe_editor": false,
   "parent": {
-    "id": 167929327942297,
-    "uuid": "eca8a55a-5970-43c1-992a-b89d58753a92",
-    "name": "Blog",
-    "slug": "blog",
+    "id": 169314617677262,
+    "uuid": "c4b4a580-d22d-446d-86bf-7602bc091cc8",
+    "name": "Service",
+    "slug": "service",
     "disble_fe_editor": false
   },
-  "is_startpage": true,
+  "is_startpage": false,
   "unpublished_changes": false,
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "219504c5b73393ee0437847367b962c7041df720",
-    "timestamp": "1777036864"
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
   },
   "pinned": false,
   "breadcrumbs": [
     {
-      "id": 167929327942297,
-      "name": "Blog",
+      "id": 169314617677262,
+      "name": "Service",
       "parent_id": null,
       "disble_fe_editor": false,
       "disable_fe_editor": false,
       "path": null,
-      "slug": "blog",
+      "slug": "service",
       "translated_slugs": []
     }
   ],
   "publish_at": null,
   "expire_at": null,
-  "first_published_at": "2026-04-20T12:42:44.212Z",
+  "first_published_at": "2026-04-24T12:10:44.988Z",
   "last_author": {
     "id": 159433391350340,
     "userid": "info@reachdigital.nl",
@@ -126,19 +131,19 @@
   "translated_slugs": [],
   "localized_paths": [
     {
-      "path": "blog/",
+      "path": "service/what-can-cause-my-order-to-be-delayed",
       "name": null,
       "lang": "nl",
-      "published": true
+      "published": null
     }
   ],
-  "position": -50,
+  "position": -30,
   "translated_stories": [],
   "can_not_view": false,
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 169347132981804,
+  "current_version_id": 169347296006969,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

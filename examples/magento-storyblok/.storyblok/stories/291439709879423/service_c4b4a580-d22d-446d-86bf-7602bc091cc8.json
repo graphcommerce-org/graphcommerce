@@ -1,28 +1,25 @@
 {
-  "name": "Global",
+  "name": "Service",
   "parent_id": null,
-  "group_id": "dd24ad95-8a25-4b60-9d67-f806f8ee659a",
+  "group_id": "5f9fcb51-7008-4454-a60a-1432bf98fdba",
   "alternates": [],
-  "created_at": "2026-04-17T14:16:29.924Z",
+  "created_at": "2026-04-24T10:22:56.572Z",
   "deleted_at": null,
   "sort_by_date": null,
   "tag_list": [],
-  "updated_at": "2026-04-17T14:16:29.924Z",
+  "updated_at": "2026-04-24T10:22:56.572Z",
   "published_at": null,
-  "id": 166894755562339,
-  "uuid": "3ab97c2c-f556-4b28-9bd7-fa4ba02438e4",
+  "id": 169314617677262,
+  "uuid": "c4b4a580-d22d-446d-86bf-7602bc091cc8",
   "is_folder": true,
   "content": {
-    "content_types": [
-      "page",
-      "global_config"
-    ],
+    "content_types": [],
     "lock_subfolders_content_types": false
   },
   "published": false,
-  "slug": "global",
+  "slug": "service",
   "path": null,
-  "full_slug": "global",
+  "full_slug": "service",
   "default_root": "page",
   "disble_fe_editor": false,
   "disable_fe_editor": false,
@@ -32,8 +29,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
-    "timestamp": "1777036865"
+    "token": "219504c5b73393ee0437847367b962c7041df720",
+    "timestamp": "1777036864"
   },
   "pinned": false,
   "breadcrumbs": [],
@@ -51,19 +48,19 @@
   "translated_slugs": [],
   "localized_paths": [
     {
-      "path": "global",
+      "path": "service",
       "name": null,
       "lang": "nl",
       "published": null
     }
   ],
-  "position": -30,
+  "position": -50,
   "translated_stories": [],
   "can_not_view": false,
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 166894755968790,
+  "current_version_id": 169314617807504,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

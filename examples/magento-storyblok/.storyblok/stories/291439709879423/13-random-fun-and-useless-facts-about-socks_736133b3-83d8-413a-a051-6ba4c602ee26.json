@@ -10,8 +10,8 @@
     "News",
     "Tips & tricks"
   ],
-  "updated_at": "2026-04-22T13:14:20.824Z",
-  "published_at": "2026-04-22T13:14:20.812Z",
+  "updated_at": "2026-04-24T12:35:27.686Z",
+  "published_at": "2026-04-24T12:35:27.670Z",
   "id": 168648315289604,
   "uuid": "736133b3-83d8-413a-a051-6ba4c602ee26",
   "is_folder": false,
@@ -301,7 +301,6 @@
       "meta_data": {},
       "is_external_url": false
     },
-    "title": "13 Random, Fun, and Useless Facts About Socks",
     "author": "Erwin Otten",
     "component": "page",
     "meta_title": "13 Random, Fun, and Useless Facts About Socks",
@@ -328,8 +327,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
-    "timestamp": "1776947689"
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
   },
   "pinned": false,
   "breadcrumbs": [
@@ -370,7 +369,7 @@
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 168648952887103,
+  "current_version_id": 169347185042063,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

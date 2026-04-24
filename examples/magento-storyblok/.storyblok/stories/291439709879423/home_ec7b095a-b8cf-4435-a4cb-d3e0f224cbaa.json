@@ -7,13 +7,12 @@
   "deleted_at": null,
   "sort_by_date": null,
   "tag_list": [],
-  "updated_at": "2026-04-17T15:24:31.014Z",
-  "published_at": "2026-04-17T15:24:30.912Z",
+  "updated_at": "2026-04-24T12:34:36.509Z",
+  "published_at": "2026-04-24T12:34:36.495Z",
   "id": 159435731136841,
   "uuid": "ec7b095a-b8cf-4435-a4cb-d3e0f224cbaa",
   "is_folder": false,
   "content": {
-    "url": "page/home",
     "_uid": "91489e5d-2cd9-4557-8c0f-8c7ea4deb879",
     "body": [
       {
@@ -1083,7 +1082,6 @@
       "fieldtype": "asset",
       "meta_data": {}
     },
-    "title": "Home",
     "author": "",
     "component": "page",
     "meta_title": "",
@@ -1104,8 +1102,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
-    "timestamp": "1776947689"
+    "token": "a7231897aabfa5b25fc5696f0547c0dffb8626a6",
+    "timestamp": "1777036866"
   },
   "pinned": false,
   "breadcrumbs": [],
@@ -1135,7 +1133,7 @@
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 166911459638739,
+  "current_version_id": 169346975568252,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

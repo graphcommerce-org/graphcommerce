@@ -7,13 +7,12 @@
   "deleted_at": null,
   "sort_by_date": null,
   "tag_list": [],
-  "updated_at": "2026-04-17T14:33:31.230Z",
-  "published_at": "2026-04-17T14:33:31.215Z",
+  "updated_at": "2026-04-24T12:59:57.761Z",
+  "published_at": "2026-04-24T12:59:57.741Z",
   "id": 166807462157014,
   "uuid": "41d3c30b-1195-45e9-aba9-6210bfbd0ad2",
   "is_folder": false,
   "content": {
-    "url": "product/global",
     "_uid": "1fac5a3c-d4c5-4920-a392-274e71c4e54d",
     "body": [
       {
@@ -230,7 +229,6 @@
       "fieldtype": "asset",
       "meta_data": {}
     },
-    "title": "Product",
     "author": "",
     "component": "page",
     "meta_title": "",
@@ -240,7 +238,7 @@
   },
   "published": true,
   "slug": "pdp",
-  "path": "/p/fuzzy-unibrow-gc-1114-sock",
+  "path": "p/fuzzy-unibrow-gc-1114-sock",
   "full_slug": "global/pdp",
   "default_root": null,
   "disble_fe_editor": false,
@@ -257,8 +255,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
-    "timestamp": "1776947689"
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
   },
   "pinned": false,
   "breadcrumbs": [
@@ -299,7 +297,7 @@
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 166898938372689,
+  "current_version_id": 169353206572203,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

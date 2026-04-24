@@ -10,8 +10,8 @@
     "Collaboration",
     "News"
   ],
-  "updated_at": "2026-04-22T13:11:22.741Z",
-  "published_at": "2026-04-22T13:11:22.723Z",
+  "updated_at": "2026-04-24T12:35:32.741Z",
+  "published_at": "2026-04-24T12:35:32.729Z",
   "id": 167929590217384,
   "uuid": "abf89a5c-34f6-4703-800f-eee259cc7ca8",
   "is_folder": false,
@@ -152,7 +152,6 @@
       "meta_data": {},
       "is_external_url": false
     },
-    "title": "GraphCommerce® collaborates with Moma",
     "author": "Erwin Otten",
     "component": "page",
     "meta_title": "..",
@@ -179,8 +178,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
-    "timestamp": "1776947689"
+    "token": "a7231897aabfa5b25fc5696f0547c0dffb8626a6",
+    "timestamp": "1777036866"
   },
   "pinned": false,
   "breadcrumbs": [
@@ -221,7 +220,7 @@
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 168648223368145,
+  "current_version_id": 169347205923500,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,

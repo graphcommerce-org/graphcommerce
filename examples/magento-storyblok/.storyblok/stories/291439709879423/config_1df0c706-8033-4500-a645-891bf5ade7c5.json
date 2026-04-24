@@ -7,8 +7,8 @@
   "deleted_at": null,
   "sort_by_date": null,
   "tag_list": [],
-  "updated_at": "2026-04-22T14:33:55.421Z",
-  "published_at": "2026-04-22T14:33:55.407Z",
+  "updated_at": "2026-04-24T12:59:46.350Z",
+  "published_at": "2026-04-24T12:59:46.336Z",
   "id": 166139846260389,
   "uuid": "1df0c706-8033-4500-a645-891bf5ade7c5",
   "is_folder": false,
@@ -578,7 +578,7 @@
   },
   "published": true,
   "slug": "config",
-  "path": "/global-config",
+  "path": "global-config",
   "full_slug": "global/config",
   "default_root": null,
   "disble_fe_editor": false,
@@ -595,8 +595,8 @@
   "meta_data": null,
   "imported_at": null,
   "preview_token": {
-    "token": "b96fe0362b0e436a2ca97830cd0046f27dc0d58b",
-    "timestamp": "1776947689"
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
   },
   "pinned": false,
   "breadcrumbs": [
@@ -637,7 +637,7 @@
   "is_scheduled": null,
   "scheduled_dates": null,
   "ideas": [],
-  "current_version_id": 168668509647729,
+  "current_version_id": 169353159881848,
   "variant_type": null,
   "experiment_ids": [],
   "stage": null,
