@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0-canary.3
+
+### Patch Changes
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`b59420f`](https://github.com/graphcommerce-org/graphcommerce/commit/b59420fe1e50b311ed2840af5774bb2fdbf19337) - Cast theme.typography spreads to CSSObject in MuiButton variants to satisfy MUI v7 typing ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`cb33760`](https://github.com/graphcommerce-org/graphcommerce/commit/cb337603284004033702cf4536561ee7d743a603) - Allow passing HTML attributes to UspListItem, ButtonLinkList & IconBlocks root element ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.0.4-canary.2
 
 ### Patch Changes

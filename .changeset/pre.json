@@ -85,12 +85,17 @@
     "@graphcommerce/misc": "10.0.3",
     "@graphcommerce/next-config": "10.0.3",
     "@graphcommerce/prettier-config-pwa": "10.0.3",
-    "@graphcommerce/typescript-config-pwa": "10.0.3"
+    "@graphcommerce/typescript-config-pwa": "10.0.3",
+    "@graphcommerce/magento-storyblok": "10.0.3",
+    "@graphcommerce/storyblok-ui": "10.0.3"
   },
   "changesets": [
     "calm-hotels-fly",
+    "cozy-views-remain",
     "dull-points-fly",
+    "fiery-phones-wave",
     "five-foxes-wear",
+    "fruity-emus-peel",
     "happy-jars-drum",
     "proud-squids-remain",
     "thick-mugs-accept"
