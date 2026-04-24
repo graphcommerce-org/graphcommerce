@@ -94,6 +94,14 @@ Examples:
 - https://example.com/en
 - https://example.com/en-US
 
+#### hygraphEndpoint: string (required)
+
+The Hygraph endpoint.
+
+> Read-only endpoint that allows low latency and high read-throughput content delivery.
+
+Project settings -> API Access -> High Performance Read-only Content API
+
 #### magentoEndpoint: string (required)
 
 GraphQL Magento endpoint.
@@ -110,10 +118,6 @@ Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
 #### storefront: [GraphCommerceStorefrontConfig](#GraphCommerceStorefrontConfig)[] (required)
 
 All storefront configuration for the project
-
-#### storyblok: [StoryblokConfig](#StoryblokConfig) (required)
-
-Settings for the Storyblok integration.
 
 #### breadcrumbs: boolean = `false`
 
@@ -200,6 +204,14 @@ Datalayer config
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
+
+#### demoMode: boolean = `true`
+
+Enables some demo specific code that is probably not useful for a project:
+
+- Adds the "BY GC" to the product list items.
+- Adds "dominant_color" attribute swatches to the product list items.
+- Creates a big list items in the product list.
 
 #### enableGuestCheckoutLogin: boolean
 
@@ -479,6 +491,10 @@ Locale specific google reCAPTCHA key.
 
 The Google Tagmanager ID to be used per locale.
 
+#### hygraphLocales: string[]
+
+Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
+
 #### linguiLocale: string
 
 Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions.
@@ -530,18 +546,3 @@ SidebarGalleryConfig will contain all configuration values for the Sidebar Galle
 #### paginationVariant: DOTS | THUMBNAILS_BOTTOM
 
 Variant used for the pagination
-
-### StoryblokConfig
-
-Settings for the Storyblok integration.
-
-#### spaceId: string (required)
-
-Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap`
-(seeding a new space with the example content) and as the default space for pull/push commands.
-
-#### sourceSpaceId: string
-
-Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
-example space (291439709879423) which contains demo content for this template.
-Override only if you maintain your own example/template space.

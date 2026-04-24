@@ -213,6 +213,14 @@ export type GraphCommerceConfig = {
   /** Debug configuration for GraphCommerce */
   debug?: InputMaybe<GraphCommerceDebugConfig>
   /**
+   * Enables some demo specific code that is probably not useful for a project:
+   *
+   * - Adds the "BY GC" to the product list items.
+   * - Adds "dominant_color" attribute swatches to the product list items.
+   * - Creates a big list items in the product list.
+   */
+  demoMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
    * Enable Guest Checkout Login: During customer login, GraphCommerce queries Magento to determine
    * whether the customer account already exists or not. If not, the sign-up form is shown instead.
    *
@@ -256,6 +264,14 @@ export type GraphCommerceConfig = {
    * developing new resolvers this should be set to true.
    */
   graphqlMeshEditMode?: InputMaybe<Scalars['Boolean']['input']>
+  /**
+   * The Hygraph endpoint.
+   *
+   * > Read-only endpoint that allows low latency and high read-throughput content delivery.
+   *
+   * Project settings -> API Access -> High Performance Read-only Content API
+   */
+  hygraphEndpoint: Scalars['String']['input']
   /**
    * Hygraph Management API. **Only used for migrations.**
    *
@@ -362,8 +378,6 @@ export type GraphCommerceConfig = {
   sidebarGallery?: InputMaybe<SidebarGalleryConfig>
   /** All storefront configuration for the project */
   storefront: Array<GraphCommerceStorefrontConfig>
-  /** Settings for the Storyblok integration. */
-  storyblok: StoryblokConfig
   /** Hide the wishlist functionality for guests. */
   wishlistHideForGuests?: InputMaybe<Scalars['Boolean']['input']>
   /** Show a message when the product is added to the wishlist. */
@@ -469,6 +483,11 @@ export type GraphCommerceStorefrontConfig = {
   googleRecaptchaKey?: InputMaybe<Scalars['String']['input']>
   /** The Google Tagmanager ID to be used per locale. */
   googleTagmanagerId?: InputMaybe<Scalars['String']['input']>
+  /**
+   * Add a gcms-locales header to make sure queries return in a certain language, can be an array to
+   * define fallbacks.
+   */
+  hygraphLocales?: InputMaybe<Array<Scalars['String']['input']>>
   /** Custom locale used to load the .po files. Must be a valid locale, also used for Intl functions. */
   linguiLocale?: InputMaybe<Scalars['String']['input']>
   /**
@@ -545,21 +564,6 @@ export type SidebarGalleryConfig = {
 /** Enumeration of all possible positions for the sidebar gallery thumbnails. */
 export type SidebarGalleryPaginationVariant = 'DOTS' | 'THUMBNAILS_BOTTOM'
 
-/** Settings for the Storyblok integration. */
-export type StoryblokConfig = {
-  /**
-   * Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce example space
-   * (291439709879423) which contains demo content for this template. Override only if you maintain
-   * your own example/template space.
-   */
-  sourceSpaceId?: InputMaybe<Scalars['String']['input']>
-  /**
-   * Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap` (seeding
-   * a new space with the example content) and as the default space for pull/push commands.
-   */
-  spaceId: Scalars['String']['input']
-}
-
 export type WebsitePermissions = 'ENABLED'
 
 type Properties<T> = Required<{
@@ -619,12 +623,14 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     customerXMagentoCacheIdDisable: z.boolean().nullish(),
     dataLayer: z.lazy(() => DatalayerConfigSchema().nullish()),
     debug: z.lazy(() => GraphCommerceDebugConfigSchema().nullish()),
+    demoMode: z.boolean().default(true).nullish(),
     enableGuestCheckoutLogin: z.boolean().nullish(),
     googleAnalyticsId: z.string().nullish(),
     googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
     graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    hygraphEndpoint: z.string().min(1),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
@@ -641,7 +647,6 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     robotsAllow: z.boolean().nullish(),
     sidebarGallery: z.lazy(() => SidebarGalleryConfigSchema().nullish()),
     storefront: z.array(z.lazy(() => GraphCommerceStorefrontConfigSchema())),
-    storyblok: z.lazy(() => StoryblokConfigSchema()),
     wishlistHideForGuests: z.boolean().nullish(),
     wishlistShowFeedbackMessage: z.boolean().nullish(),
   })
@@ -692,6 +697,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
     googleAnalyticsId: z.string().nullish(),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
+    hygraphLocales: z.array(z.string().min(1)).nullish(),
     linguiLocale: z.string().nullish(),
     locale: z.string().min(1),
     magentoStoreCode: z.string().min(1),
@@ -722,12 +728,5 @@ export function RecentlyViewedProductsConfigSchema(): z.ZodObject<
 export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
   return z.object({
     paginationVariant: SidebarGalleryPaginationVariantSchema.nullish(),
-  })
-}
-
-export function StoryblokConfigSchema(): z.ZodObject<Properties<StoryblokConfig>> {
-  return z.object({
-    sourceSpaceId: z.string().nullish(),
-    spaceId: z.string().min(1),
   })
 }

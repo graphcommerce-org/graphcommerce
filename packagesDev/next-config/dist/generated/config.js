@@ -62,12 +62,14 @@ export function GraphCommerceConfigSchema() {
         customerXMagentoCacheIdDisable: z.boolean().nullish(),
         dataLayer: z.lazy(()=>DatalayerConfigSchema().nullish()),
         debug: z.lazy(()=>GraphCommerceDebugConfigSchema().nullish()),
+        demoMode: z.boolean().default(true).nullish(),
         enableGuestCheckoutLogin: z.boolean().nullish(),
         googleAnalyticsId: z.string().nullish(),
         googlePlaystore: z.lazy(()=>GraphCommerceGooglePlaystoreConfigSchema().nullish()),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
         graphqlMeshEditMode: z.boolean().default(false).nullish(),
+        hygraphEndpoint: z.string().min(1),
         hygraphManagementApi: z.string().nullish(),
         hygraphProjectId: z.string().nullish(),
         hygraphWriteAccessToken: z.string().nullish(),
@@ -84,7 +86,6 @@ export function GraphCommerceConfigSchema() {
         robotsAllow: z.boolean().nullish(),
         sidebarGallery: z.lazy(()=>SidebarGalleryConfigSchema().nullish()),
         storefront: z.array(z.lazy(()=>GraphCommerceStorefrontConfigSchema())),
-        storyblok: z.lazy(()=>StoryblokConfigSchema()),
         wishlistHideForGuests: z.boolean().nullish(),
         wishlistShowFeedbackMessage: z.boolean().nullish()
     });
@@ -123,6 +124,7 @@ export function GraphCommerceStorefrontConfigSchema() {
         googleAnalyticsId: z.string().nullish(),
         googleRecaptchaKey: z.string().nullish(),
         googleTagmanagerId: z.string().nullish(),
+        hygraphLocales: z.array(z.string().min(1)).nullish(),
         linguiLocale: z.string().nullish(),
         locale: z.string().min(1),
         magentoStoreCode: z.string().min(1),
@@ -146,11 +148,5 @@ export function RecentlyViewedProductsConfigSchema() {
 export function SidebarGalleryConfigSchema() {
     return z.object({
         paginationVariant: SidebarGalleryPaginationVariantSchema.nullish()
-    });
-}
-export function StoryblokConfigSchema() {
-    return z.object({
-        sourceSpaceId: z.string().nullish(),
-        spaceId: z.string().min(1)
     });
 }
