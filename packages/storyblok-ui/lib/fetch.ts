@@ -42,8 +42,21 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
  */
 function logFetchError(label: string, error: unknown) {
   if (!isDev) return
-  if ((error as { status?: number })?.status === 404) return
-  console.error(`${label} failed:`, error)
+  const err = error as { status?: number; message?: string; response?: unknown }
+  if (err?.status === 404) return
+  console.error(`${label} failed [status=${err?.status}]:`, err?.message ?? error)
+  if (err?.response) console.error(`${label} response:`, err.response)
+  if (err?.status === 401) {
+    const api = getStoryblokApi()
+    const client = (api as unknown as { client?: { accessToken?: string; baseURL?: string } })
+      .client
+    console.error(`${label} 401 debug:`, {
+      tokenSet: Boolean(client?.accessToken),
+      tokenPrefix: client?.accessToken?.slice(0, 6),
+      tokenLength: client?.accessToken?.length,
+      baseURL: client?.baseURL,
+    })
+  }
 }
 
 /**
