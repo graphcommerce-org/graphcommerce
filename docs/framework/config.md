@@ -94,14 +94,6 @@ Examples:
 - https://example.com/en
 - https://example.com/en-US
 
-#### hygraphEndpoint: string (required)
-
-The Hygraph endpoint.
-
-> Read-only endpoint that allows low latency and high read-throughput content delivery.
-
-Project settings -> API Access -> High Performance Read-only Content API
-
 #### magentoEndpoint: string (required)
 
 GraphQL Magento endpoint.
@@ -204,14 +196,6 @@ Datalayer config
 #### debug: [GraphCommerceDebugConfig](#GraphCommerceDebugConfig)
 
 Debug configuration for GraphCommerce
-
-#### demoMode: boolean = `true`
-
-Enables some demo specific code that is probably not useful for a project:
-
-- Adds the "BY GC" to the product list items.
-- Adds "dominant_color" attribute swatches to the product list items.
-- Creates a big list items in the product list.
 
 #### enableGuestCheckoutLogin: boolean
 
@@ -490,10 +474,6 @@ Locale specific google reCAPTCHA key.
 #### googleTagmanagerId: string
 
 The Google Tagmanager ID to be used per locale.
-
-#### hygraphLocales: string[]
-
-Add a gcms-locales header to make sure queries return in a certain language, can be an array to define fallbacks.
 
 #### linguiLocale: string
 
