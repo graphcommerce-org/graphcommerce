@@ -25,6 +25,7 @@
     "storyblok:types": "storyblok types generate && cp .storyblok/types/*/storyblok-components.d.ts .storyblok/types/components.d.ts",
     "storyblok:sync": "yarn storyblok:pull && yarn storyblok:types",
     "storyblok:pull-stories": "storyblok stories pull",
+    "storyblok:push-stories": "storyblok stories push",
     "storyblok:pull-assets": "storyblok assets pull",
     "storyblok:backup-content": "yarn storyblok:pull && yarn storyblok:pull-stories && yarn storyblok:pull-assets",
     "storyblok:bootstrap": "node scripts/storyblok-bootstrap.mjs"

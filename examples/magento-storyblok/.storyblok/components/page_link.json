@@ -3,7 +3,7 @@
   "display_name": "Page Link",
   "description": null,
   "created_at": "2026-03-27T13:20:10.221Z",
-  "updated_at": "2026-04-13T09:37:20.884Z",
+  "updated_at": "2026-04-24T14:37:35.083Z",
   "id": 159449129885407,
   "schema": {
     "title": {
@@ -14,11 +14,13 @@
       "id": "RdWpQ9D9T76lDj0FTv8swA"
     },
     "url": {
-      "type": "text",
+      "type": "multilink",
       "pos": 1,
+      "translatable": true,
       "display_name": "URL",
-      "id": "23JbBfgXQ5a0_cyMljUbZg",
-      "translatable": true
+      "filetypes": [],
+      "force_link_scope": false,
+      "id": "23JbBfgXQ5a0_cyMljUbZg"
     },
     "description": {
       "type": "richtext",

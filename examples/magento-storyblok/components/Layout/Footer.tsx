@@ -4,7 +4,7 @@ import { useCheckoutGuestEnabled } from '@graphcommerce/magento-cart'
 import { StoreConfigDocument, StoreSwitcherButton } from '@graphcommerce/magento-store'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce/next-ui'
-import { storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { multilinkHref, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Trans } from '@lingui/react/macro'
 import { Button, IconButton, Link } from '@mui/material'
 import { useGlobalConfig } from '../Storyblok/GlobalConfigProvider'
@@ -27,7 +27,7 @@ export function Footer(props: FooterProps) {
         <IconButton
           {...storyblokEditable(link)}
           key={link._uid}
-          href={link.url ?? ''}
+          href={multilinkHref(link.url)}
           color='inherit'
           size='medium'
           edge='start'
@@ -72,7 +72,7 @@ export function Footer(props: FooterProps) {
             <Link
               {...storyblokEditable(link)}
               key={link._uid}
-              href={link.url ?? ''}
+              href={multilinkHref(link.url)}
               color='textPrimary'
               underline='always'
             >

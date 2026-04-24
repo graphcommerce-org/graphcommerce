@@ -1,5 +1,5 @@
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
-import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Button } from '@mui/material'
 import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../types'
 
@@ -10,7 +10,7 @@ export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
       pageLinks={blok.page_links?.map((link) => (
         <Button
           key={link._uid}
-          href={link.url ?? ''}
+          href={multilinkHref(link.url)}
           variant='outlined'
           size='large'
           color='inherit'

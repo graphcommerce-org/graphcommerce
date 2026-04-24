@@ -1,5 +1,5 @@
 import { VariantInline } from '@graphcommerce/next-ui'
-import { storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { multilinkHref, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Link } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -11,7 +11,7 @@ export function Inline(props: RowLinksVariantProps) {
       {page_links?.map((pageLink) => (
         <Link
           {...storyblokEditable(pageLink)}
-          href={pageLink.url ?? ''}
+          href={multilinkHref(pageLink.url)}
           key={pageLink._uid}
           color='inherit'
           underline='hover'

@@ -1,10 +1,11 @@
 import { ButtonLinkList, ButtonLinkListItem } from '@graphcommerce/next-ui'
-import { storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { multilinkHref, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowButtonLinkList as RowButtonLinkListBlok } from '../types'
 
 export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
   const links = blok.links ?? []
-  const isBig = links.some((link) => (link.target?.story?.name?.length ?? 0) > 30)
+  const labelOf = (link: (typeof links)[number]) => link.title || link.target?.story?.name || ''
+  const isBig = links.some((link) => labelOf(link).length > 30)
 
   return (
     <ButtonLinkList
@@ -17,9 +18,9 @@ export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
         <ButtonLinkListItem
           {...storyblokEditable(link)}
           key={link._uid}
-          url={`/${link.target?.cached_url ?? ''}`}
+          url={multilinkHref(link.target)}
         >
-          {link.target?.story?.name}
+          {labelOf(link)}
         </ButtonLinkListItem>
       ))}
     </ButtonLinkList>

@@ -1,5 +1,5 @@
 import { responsiveVal, VariantImageLabelSwiper } from '@graphcommerce/next-ui'
-import { Asset, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { Asset, multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Box, ButtonBase, Typography } from '@mui/material'
 import type { RowLinksVariantProps } from '../RowLinks'
 
@@ -15,7 +15,7 @@ export function ImageLabelSwiper(props: RowLinksVariantProps) {
       {page_links?.map((pageLink) => (
         <ButtonBase
           {...storyblokEditable(pageLink)}
-          href={pageLink.url ?? ''}
+          href={multilinkHref(pageLink.url)}
           key={pageLink._uid}
           sx={(theme) => ({
             display: 'flex',

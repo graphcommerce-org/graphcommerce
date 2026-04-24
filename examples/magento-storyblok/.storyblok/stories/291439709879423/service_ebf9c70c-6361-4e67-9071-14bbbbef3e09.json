@@ -79,7 +79,13 @@
         "component": "row_service_options",
         "service_options": [
           {
-            "url": "tel:071 744 0084",
+            "url": {
+              "id": "",
+              "url": "tel:071 744 0084",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "tel:071 744 0084"
+            },
             "_uid": "a09cbe46-55a2-4072-a992-3c1f97ec9859",
             "asset": {
               "id": null,
@@ -122,7 +128,13 @@
             }
           },
           {
-            "url": "mailto:info@reachdigital.nl",
+            "url": {
+              "id": "",
+              "url": "mailto:info@reachdigital.nl",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "mailto:info@reachdigital.nl"
+            },
             "_uid": "d125238f-c69c-4f96-8a8f-562b33808ec8",
             "asset": {
               "id": null,

@@ -1,4 +1,5 @@
 import { ContainerWithHeader } from '@graphcommerce/next-ui'
+import { multilinkHref } from '@graphcommerce/storyblok-ui'
 import { Link } from '@mui/material'
 import { ProductListItems } from '../../../../ProductListItems/ProductListItems'
 import type { RowProductVariantProps } from '../../RowProduct'
@@ -10,7 +11,12 @@ export function Grid(props: RowProductVariantProps) {
     <ContainerWithHeader
       title={blok.title ?? ''}
       rightArea={blok.page_links?.map((pageLink) => (
-        <Link color='inherit' href={pageLink.url ?? ''} key={pageLink._uid} underline='always'>
+        <Link
+          color='inherit'
+          href={multilinkHref(pageLink.url)}
+          key={pageLink._uid}
+          underline='always'
+        >
           {pageLink.title}
         </Link>
       ))}

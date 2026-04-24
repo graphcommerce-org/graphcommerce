@@ -1,5 +1,5 @@
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
-import { Asset, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { Asset, multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Link } from '@mui/material'
 import type { StoryblokRowSpecialBanner as RowSpecialBannerBlok } from '../types'
 
@@ -13,7 +13,7 @@ export function RowSpecialBanner({ blok }: { blok: RowSpecialBannerBlok }) {
         <Link
           {...storyblokEditable(link)}
           underline='always'
-          href={link.url ?? ''}
+          href={multilinkHref(link.url)}
           key={link._uid}
           color='inherit'
         >

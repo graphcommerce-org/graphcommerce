@@ -6,7 +6,7 @@ import {
   iconPhone,
   IconSvg,
 } from '@graphcommerce/next-ui'
-import { RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import { multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowServiceOptions as RowServiceOptionsBlok } from '../types'
 
 export function RowServiceOptions({ blok }: { blok: RowServiceOptionsBlok }) {
@@ -19,7 +19,7 @@ export function RowServiceOptions({ blok }: { blok: RowServiceOptionsBlok }) {
           <IconBlock
             {...storyblokEditable(option)}
             key={option._uid}
-            href={option.url ?? ''}
+            href={multilinkHref(option.url)}
             title={option.title ?? ''}
             icon={
               <>
