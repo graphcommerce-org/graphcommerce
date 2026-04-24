@@ -3,17 +3,9 @@
   "display_name": "Page",
   "description": null,
   "created_at": "2026-03-27T12:25:38.958Z",
-  "updated_at": "2026-04-17T13:49:08.396Z",
+  "updated_at": "2026-04-24T12:34:05.672Z",
   "id": 159435730779527,
   "schema": {
-    "title": {
-      "type": "text",
-      "pos": 0,
-      "translatable": true,
-      "required": true,
-      "display_name": "Title",
-      "id": "5rEbvgwtSoOyWZPoRY_ytg"
-    },
     "meta_title": {
       "type": "text",
       "pos": 1,
