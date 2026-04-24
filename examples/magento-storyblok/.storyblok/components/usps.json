@@ -6,14 +6,6 @@
   "updated_at": "2026-03-27T13:20:11.370Z",
   "id": 159449134583526,
   "schema": {
-    "identity": {
-      "type": "text",
-      "pos": 0,
-      "required": true,
-      "display_name": "Identity",
-      "description": "Unique identifier, e.g. 'sidebarusps', 'contentusps'",
-      "id": "rL_Vb2DhQcaH5KFVxLP2Bw"
-    },
     "usps_multiple": {
       "type": "bloks",
       "pos": 1,

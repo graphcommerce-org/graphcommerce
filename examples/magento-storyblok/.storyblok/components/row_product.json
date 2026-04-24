@@ -27,13 +27,6 @@
       ],
       "id": "Qs7x929WQE2gQlimOlTQGQ"
     },
-    "identity": {
-      "type": "text",
-      "pos": 1,
-      "display_name": "Identity",
-      "description": "Unique identifier used to match this row with product data, e.g. 'home-favorites'",
-      "id": "7Mj1r8w7S9uHA9K3ioTg0g"
-    },
     "asset": {
       "type": "asset",
       "pos": 2,
