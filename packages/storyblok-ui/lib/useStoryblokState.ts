@@ -18,7 +18,7 @@ import { resolveStoryblokProducts } from './resolveProducts'
 export function useStoryblokState<T = SbBlokData>(
   initialStory: ISbStoryData | null,
 ): ISbStoryData<T> | null {
-  const story = useStoryblokStateBase(initialStory)
+  const story = useStoryblokStateBase(initialStory, { resolveLinks: 'story' })
   const client = useApolloClient()
   const [resolvedStory, setResolvedStory] = useState(story)
   const prevStoryRef = useRef(story)

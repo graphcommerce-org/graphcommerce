@@ -9,7 +9,16 @@ import { resolveStoryblokProducts } from './resolveProducts'
 
 export type StoryblokStory = ISbStoryData<SbBlokData & { body?: SbBlokData[] }>
 
-export type FetchStoryOpts = { preview?: boolean; locale?: string; defaultLocale?: string }
+export type FetchStoryOpts = {
+  preview?: boolean
+  locale?: string
+  defaultLocale?: string
+  /**
+   * Storyblok component-field paths whose UUID references should be hydrated
+   * into full story objects in the response (e.g. `row_button_link_list.links`).
+   */
+  resolveRelations?: string | string[]
+}
 export type FetchStoriesParams = ISbStoriesParams & FetchStoryOpts
 
 const isDev = process.env.NODE_ENV === 'development'
@@ -28,8 +37,17 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
   const defaultLang = langPrefix(opts.defaultLocale)
   const isDefault = !lang || lang === defaultLang
 
+  const resolveRelations = Array.isArray(opts.resolveRelations)
+    ? opts.resolveRelations.join(',')
+    : opts.resolveRelations
+
   return {
     version: (opts.preview || isDev ? 'draft' : 'published') as 'draft' | 'published',
+    // Hydrate `multilink` fields with the linked story's basic info (name,
+    // slug, full_slug). Lighter than `resolve_relations` because it never
+    // includes the linked story's `content.body`.
+    resolve_links: 'story',
+    ...(resolveRelations && { resolve_relations: resolveRelations }),
     ...(isDev && { cv: Date.now() }),
     ...(!isDefault && { language: lang }),
   }

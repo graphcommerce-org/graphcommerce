@@ -3,7 +3,7 @@
   "display_name": "Row Button Link List",
   "description": null,
   "created_at": "2026-03-27T13:20:12.046Z",
-  "updated_at": "2026-03-27T13:20:12.046Z",
+  "updated_at": "2026-04-24T11:55:44.425Z",
   "id": 159449137352426,
   "schema": {
     "title": {
@@ -20,7 +20,7 @@
       "restrict_type": "",
       "restrict_components": true,
       "component_whitelist": [
-        "page_link"
+        "link_item"
       ],
       "id": "mymW0CQcSpypvrOofC-grg"
     }

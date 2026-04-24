@@ -3,7 +3,8 @@ import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import type { StoryblokRowButtonLinkList as RowButtonLinkListBlok } from '../types'
 
 export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
-  const isBig = blok.links?.some((link) => (link.title?.length ?? 0) > 30) ?? false
+  const links = blok.links ?? []
+  const isBig = links.some((link) => (link.target?.story?.name?.length ?? 0) > 30)
 
   return (
     <ButtonLinkList
@@ -12,9 +13,13 @@ export function RowButtonLinkList({ blok }: { blok: RowButtonLinkListBlok }) {
       component='h2'
       {...storyblokEditable(blok)}
     >
-      {blok.links?.map((link) => (
-        <ButtonLinkListItem {...storyblokEditable(link)} key={link._uid} url={`/${link.url ?? ''}`}>
-          {link.title}
+      {links.map((link) => (
+        <ButtonLinkListItem
+          {...storyblokEditable(link)}
+          key={link._uid}
+          url={`/${link.target?.cached_url ?? ''}`}
+        >
+          {link.target?.story?.name}
         </ButtonLinkListItem>
       ))}
     </ButtonLinkList>
