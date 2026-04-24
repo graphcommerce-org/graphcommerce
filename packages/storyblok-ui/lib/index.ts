@@ -1,4 +1,5 @@
 export * from './editable'
 export * from './fetch'
 export * from './resolveProducts'
+export * from './usePreventEditorNavigation'
 export * from './useStoryblokState'

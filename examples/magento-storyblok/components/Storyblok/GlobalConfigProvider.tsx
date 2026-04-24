@@ -1,3 +1,4 @@
+import { usePreventEditorNavigation } from '@graphcommerce/storyblok-ui'
 import { createContext, useContext, useEffect, useState } from 'react'
 import type { StoryblokGlobalConfig } from './types'
 
@@ -11,6 +12,15 @@ export function GlobalConfigProvider(props: {
   children: React.ReactNode
 }) {
   const { value, children } = props
+
+  // Stops link navigation while the page is loaded inside the Storyblok
+  // Visual Editor iframe, so clicking a blok opens the field editor instead
+  // of following the link. Called from this provider (which wraps every
+  // page via the Layout) so coverage is global — including pages like
+  // `/global-config`, `/cart`, or `/404` that render a Footer but don't
+  // load a blok-based story themselves.
+  usePreventEditorNavigation()
+
   // `override` holds live Visual Editor updates pushed via `useSetGlobalConfig`.
   // When unset (null), we fall back to the SSR `value` prop.
   const [override, setOverride] = useState<StoryblokGlobalConfig | null>(null)

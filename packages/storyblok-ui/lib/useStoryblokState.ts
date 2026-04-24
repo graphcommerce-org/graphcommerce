@@ -19,24 +19,6 @@ export function useStoryblokState<T = SbBlokData>(
   initialStory: ISbStoryData | null,
 ): ISbStoryData<T> | null {
   const story = useStoryblokStateBase(initialStory)
-
-  // Stop navigation in the Visual Editor: editors expect a click on a blok to
-  // open the field editor, not follow the link. Storyblok's own
-  // `preventClicks` bridge option is documented but broken upstream
-  // (storyblok/monoblok#82), so we attach a capture-phase listener that
-  // preventDefaults anchor clicks while the page is loaded inside the editor
-  // iframe (detected via the `_storyblok` query param Storyblok appends).
-  useEffect(() => {
-    if (typeof window === 'undefined') return undefined
-    if (!new URLSearchParams(window.location.search).has('_storyblok')) return undefined
-
-    const onClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null
-      if (target?.closest('a')) event.preventDefault()
-    }
-    document.addEventListener('click', onClick, { capture: true })
-    return () => document.removeEventListener('click', onClick, { capture: true })
-  }, [])
   const client = useApolloClient()
   const [resolvedStory, setResolvedStory] = useState(story)
   const prevStoryRef = useRef(story)
