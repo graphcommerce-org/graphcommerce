@@ -1,0 +1,68 @@
+{
+  "name": "Blog",
+  "parent_id": null,
+  "group_id": "bea64beb-323b-4a4f-a999-7888b4f711cb",
+  "alternates": [],
+  "created_at": "2026-04-20T12:26:11.071Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-20T12:26:11.071Z",
+  "published_at": null,
+  "id": 167929327942297,
+  "uuid": "eca8a55a-5970-43c1-992a-b89d58753a92",
+  "is_folder": true,
+  "content": {
+    "content_types": [],
+    "lock_subfolders_content_types": false
+  },
+  "published": false,
+  "slug": "blog",
+  "path": null,
+  "full_slug": "blog",
+  "default_root": "page",
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": null,
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "219504c5b73393ee0437847367b962c7041df720",
+    "timestamp": "1777036864"
+  },
+  "pinned": false,
+  "breadcrumbs": [],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": null,
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "blog",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -40,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 167929328014186,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

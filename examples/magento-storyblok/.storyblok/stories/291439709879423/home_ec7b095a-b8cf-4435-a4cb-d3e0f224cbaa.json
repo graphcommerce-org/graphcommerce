@@ -1,0 +1,1285 @@
+{
+  "name": "Home",
+  "parent_id": 0,
+  "group_id": "ab8617da-9d4b-4f48-93aa-3d21742d5d59",
+  "alternates": [],
+  "created_at": "2026-03-27T12:25:39.039Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-24T12:34:36.509Z",
+  "published_at": "2026-04-24T12:34:36.495Z",
+  "id": 159435731136841,
+  "uuid": "ec7b095a-b8cf-4435-a4cb-d3e0f224cbaa",
+  "is_folder": false,
+  "content": {
+    "_uid": "91489e5d-2cd9-4557-8c0f-8c7ea4deb879",
+    "body": [
+      {
+        "_uid": "c512a46c-cb26-4fed-8e05-6209cbe3b840",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "A journey through creativity",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 1,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Discover",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " beauty beyond boundaries.",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        "asset": {
+          "id": 164355657721287,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/x/8626ecde54/homepage-hero-video.mp4",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "component": "row_hero_banner",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "/men/art",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/men/art"
+            },
+            "_uid": "21e0d2ce-1556-41d2-8eda-a73f89712675",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Shop Art",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          }
+        ],
+        "copy__i18n__nl": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Rol je mouwen op",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 1,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Ontdek",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " de kunstcollectie.",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "_uid": "92e31fac-826f-4426-a80b-26a886b8261f",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "title": "Hot & New",
+        "variant": "ImageLabelSwiper",
+        "component": "row_links",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "/p/hot-kitten-gc-19-sock",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/p/hot-kitten-gc-19-sock"
+            },
+            "_uid": "7d20d501-fe9a-4cd6-bf9f-63835aa92ba3",
+            "asset": {
+              "id": 165391341233436,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/x/d4aacc4d2a/watermelon.mp4",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {
+                "alt": "",
+                "title": "",
+                "source": "",
+                "copyright": ""
+              },
+              "is_external_url": false
+            },
+            "title": "Watermelon Sugar",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Juice Up Your Look",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/men/art",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/men/art"
+            },
+            "_uid": "eb9ceafb-ecfc-44e1-8df5-667b103c5972",
+            "asset": {
+              "id": 165392005584238,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/800x1200/d93923c328/art.jpg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Art",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "The ultimate expressions of individuality",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service"
+            },
+            "_uid": "c848b7cd-b6f3-4056-9c3e-df0d9914667f",
+            "asset": {
+              "id": 165401986736069,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/x/434331495a/pexels-ron-lach-9594574.mp4",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Seamless service",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Prepare to get your socks knocked off",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/p/super-nummy-gc-74-sock",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/p/super-nummy-gc-74-sock"
+            },
+            "_uid": "354aed70-c1f1-4512-9be3-dde6df900359",
+            "asset": {
+              "id": 165401986908104,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/800x1200/2f58cb5a61/chromo.jpg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Black & White",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Celebrate the timeless beauty of monochrome fashion",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/men/70s",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/men/70s"
+            },
+            "_uid": "4ec93d7a-e3d9-47f1-91f8-c08852d98db2",
+            "asset": {
+              "id": 165401986895815,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/800x1200/42ff148d93/70s.jpg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "70's",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Tie-dye your way to groovy fashion",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/p/wearing-my-pjs-gc-226-sock",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/p/wearing-my-pjs-gc-226-sock"
+            },
+            "_uid": "0b517d93-e95b-436d-92cd-582ed719a5f3",
+            "asset": {
+              "id": 165401986854854,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/800x1200/74bb012722/special.jpg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Special occasions",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Get ready to dazzle with impeccable taste",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/women/business",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/women/business"
+            },
+            "_uid": "00ae68f6-a1e7-40ec-b18b-1cc6da814080",
+            "asset": {
+              "id": 165401986969545,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/800x1200/92e9fef97a/modest.jpg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Modest",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph",
+                  "attrs": {
+                    "textAlign": null
+                  },
+                  "content": [
+                    {
+                      "text": "Have a 'sole'-ful celebration",
+                      "type": "text",
+                      "marks": [
+                        {
+                          "type": "textStyle",
+                          "attrs": {
+                            "color": ""
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "_uid": "16a507c5-3979-426e-86cd-26a36367b3ea",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 2,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Impressionists",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " and modern ",
+                  "type": "text"
+                },
+                {
+                  "text": "masters",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "asset": {
+          "id": 166901094202372,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/1532x1678/8ef6fa232a/a-peek-into-history.jpg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "topic": "A peek into history",
+        "component": "row_special_banner",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "/men/art",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/men/art"
+            },
+            "_uid": "e1790aef-ea80-4b28-9c59-48d8c9bbc858",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "A complete collection",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "_uid": "e2da105b-dc2c-4313-91b4-d949fc18e250",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "title": "Brands",
+        "variant": "LogoSwiper",
+        "component": "row_links",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "/",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/"
+            },
+            "_uid": "522d6f36-260b-41d2-bad2-3a1f2a97e8a2",
+            "asset": {
+              "id": 166902519180433,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/209x53/cf3773fb53/moma.svg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Moma",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/"
+            },
+            "_uid": "f111f1ea-6c9b-4ff1-8eaf-21b1c739163b",
+            "asset": {
+              "id": 166902519159950,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/1000x356/874f974f07/nike.svg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Nike",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/"
+            },
+            "_uid": "15bdb3de-074f-4ebf-8945-999f5344d604",
+            "asset": {
+              "id": 166902519164047,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/296x238/2100fd6392/mcd.svg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "McDonalds",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/"
+            },
+            "_uid": "ae4cd391-7401-467a-9bc6-28cf2d89808f",
+            "asset": {
+              "id": 166902519172240,
+              "alt": "",
+              "name": "",
+              "focus": "",
+              "title": "",
+              "source": "",
+              "filename": "https://a.storyblok.com/f/291439709879423/1001x403/4b68e140fc/marvel.svg",
+              "copyright": "",
+              "fieldtype": "asset",
+              "meta_data": {},
+              "is_external_url": false
+            },
+            "title": "Marvel",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "_uid": "b980a253-e340-45b9-912d-387ff11f51cd",
+        "quote": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Whether you're looking for something stylish for a night time party with friends or something professional for a conference call in the boardroom, GraphCommerce has you covered with socks that are both comfortable and versatile. So why settle for boring and plain socks when you can upgrade your footwear game?",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "component": "row_quote"
+      },
+      {
+        "_uid": "41ff7f7a-75a2-45c7-a78b-5e4fe04bb5a1",
+        "asset": {
+          "id": 166903246589130,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/1192x1589/fa3215e60f/backstory.jpg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Home Product Backstory",
+        "variant": "Backstory",
+        "identity": "",
+        "component": "row_product",
+        "page_links": [],
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Once upon a time, in a world where art and fashion collided, there lived a small team of designers who dreamed of creating the most unique and intricate sock designs. They took inspiration from modern art and combined it with traditional patterns to create one-of-a-kind prints.",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "magento_category_id": "",
+        "magento_product_skus": "GC-40-SOCK"
+      },
+      {
+        "_uid": "86217c6b-3d16-4a21-af2a-f86ed85014eb",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "title": "Customer service",
+        "variant": "Inline",
+        "component": "row_links",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "/service/order",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/order"
+            },
+            "_uid": "c51c62dd-a795-4fde-b280-2c580fda81e6",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Order",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service/brands-and-sizes",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/brands-and-sizes"
+            },
+            "_uid": "489ea008-8373-438b-8711-c3182ae546da",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Brand/Sizes",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service/newsletter",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/newsletter"
+            },
+            "_uid": "fd35760e-e8c5-4b31-a528-c62c88253eb6",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Newsletter",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service/payment-information",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/payment-information"
+            },
+            "_uid": "6f8e9b6b-7d67-4ffa-a489-a76163ae7d66",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Payment Information",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service/returns",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/returns"
+            },
+            "_uid": "be3e4bca-3927-4752-bf3f-104c806fd5a5",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Returns",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "/service/shipping",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "/service/shipping"
+            },
+            "_uid": "6778d26e-425a-477c-a78a-bf7f964426a3",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Shipping",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "_uid": "d459f7db-bfa8-415a-ab54-bef4d1d1fd0e",
+        "copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "title": "About Us",
+        "variant": "Inline",
+        "component": "row_links",
+        "page_links": [
+          {
+            "url": {
+              "id": "",
+              "url": "#",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "#"
+            },
+            "_uid": "37c3869e-c32e-4b0c-ac3e-0fa3bab03641",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Contact",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "#",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "#"
+            },
+            "_uid": "2f8c81bb-05db-4ada-9af8-558d5ecd4080",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Careers",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "#",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "#"
+            },
+            "_uid": "18df6d87-963e-4a92-8fac-4adfd50c4aec",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "About Us",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "#",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "#"
+            },
+            "_uid": "1b0309c4-237b-45db-9da5-7cc9447ec2cd",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": "Loyalty program",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          },
+          {
+            "url": {
+              "id": "",
+              "url": "#",
+              "linktype": "url",
+              "fieldtype": "multilink",
+              "cached_url": "#"
+            },
+            "_uid": "1ba98498-ef98-4974-896c-669c37493d4d",
+            "asset": {
+              "id": null,
+              "alt": null,
+              "name": "",
+              "focus": null,
+              "title": null,
+              "source": null,
+              "filename": "",
+              "copyright": null,
+              "fieldtype": "asset",
+              "meta_data": {}
+            },
+            "title": " Corporate responsibility",
+            "component": "page_link",
+            "description": {
+              "type": "doc",
+              "content": [
+                {
+                  "type": "paragraph"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "date": "",
+    "asset": {
+      "id": null,
+      "alt": null,
+      "name": "",
+      "focus": null,
+      "title": null,
+      "source": null,
+      "filename": "",
+      "copyright": null,
+      "fieldtype": "asset",
+      "meta_data": {}
+    },
+    "author": "",
+    "component": "page",
+    "meta_title": "",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ""
+  },
+  "published": true,
+  "slug": "home",
+  "path": "/",
+  "full_slug": "home",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": null,
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "a7231897aabfa5b25fc5696f0547c0dffb8626a6",
+    "timestamp": "1777036866"
+  },
+  "pinned": false,
+  "breadcrumbs": [],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-03-30T12:46:26.993Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "home",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": 0,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 169346975568252,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

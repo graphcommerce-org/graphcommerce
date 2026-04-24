@@ -1,0 +1,175 @@
+{
+  "name": "Women",
+  "parent_id": null,
+  "group_id": "55c6a777-a887-4d1b-9ed4-2a10bf0a828f",
+  "alternates": [],
+  "created_at": "2026-03-27T13:22:48.976Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-24T12:34:46.336Z",
+  "published_at": "2026-04-24T12:34:46.325Z",
+  "id": 159449780521670,
+  "uuid": "688136b8-109e-495e-b17f-c443d767fdf1",
+  "is_folder": false,
+  "content": {
+    "_uid": "115d8117-8f0e-4db9-a923-ce7838e438e9",
+    "body": [
+      {
+        "_uid": "5b476ed4-966e-48c4-bb2d-5d7b73bca1ef",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Popular in Women",
+        "variant": "Grid",
+        "identity": "",
+        "component": "row_product",
+        "page_links": [],
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        },
+        "magento_category_id": "",
+        "magento_product_skus": ""
+      },
+      {
+        "_uid": "539f548e-248e-4159-87a0-7fdaf1bf5913",
+        "asset": {
+          "id": 167917192476403,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/1920x2880/a818d7b05f/women.jpg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Women backstory",
+        "variant": "Backstory",
+        "identity": "",
+        "component": "row_product",
+        "page_links": [],
+        "product_copy": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Hello, hello, hello, hello ⁠Good-bye, good-bye, good-bye, good-bye ⁠That's all there is ⁠And the leaves that are green turn to brown",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "magento_category_id": "",
+        "magento_product_skus": ""
+      }
+    ],
+    "date": "",
+    "asset": {
+      "id": 167876103899563,
+      "alt": "",
+      "name": "",
+      "focus": "",
+      "title": "",
+      "source": "",
+      "filename": "https://a.storyblok.com/f/291439709879423/x/b2d718e8ea/women.mp4",
+      "copyright": "",
+      "fieldtype": "asset",
+      "meta_data": {},
+      "is_external_url": false
+    },
+    "author": "",
+    "component": "page",
+    "meta_title": "",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ""
+  },
+  "published": true,
+  "slug": "women",
+  "path": null,
+  "full_slug": "women",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": null,
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "a7231897aabfa5b25fc5696f0547c0dffb8626a6",
+    "timestamp": "1777036866"
+  },
+  "pinned": false,
+  "breadcrumbs": [],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-03-30T12:56:31.094Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [
+    {
+      "id": 166877038732010,
+      "lang": "nl",
+      "slug": "dames",
+      "name": "Dames",
+      "published": null
+    }
+  ],
+  "localized_paths": [
+    {
+      "path": "dames",
+      "name": "Dames",
+      "lang": "nl",
+      "published": true
+    }
+  ],
+  "position": 0,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 169347015848349,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

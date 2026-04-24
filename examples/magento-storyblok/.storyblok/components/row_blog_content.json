@@ -1,0 +1,32 @@
+{
+  "name": "row_blog_content",
+  "display_name": "Row Blog Content",
+  "description": null,
+  "created_at": "2026-03-27T13:20:11.045Z",
+  "updated_at": "2026-03-27T13:20:11.045Z",
+  "id": 159449133260516,
+  "schema": {
+    "content": {
+      "type": "richtext",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Content",
+      "id": "q55XDL_yRquiTFVEbePaeA"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Blog Content",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}
