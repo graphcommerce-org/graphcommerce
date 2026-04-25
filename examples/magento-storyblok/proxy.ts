@@ -6,14 +6,14 @@ const DEFAULT_LOCALE = 'en'
 
 /**
  * Locale detection is disabled in next.config.ts (`localeDetection: false`) to prevent the Storyblok
- * Visual Editor from being redirected away from the default locale. This middleware re-implements the
+ * Visual Editor from being redirected away from the default locale. This proxy re-implements the
  * same behaviour for regular visitors: on the root path, parse Accept-Language and redirect to the
  * preferred locale if it differs from the default.
  *
  * For the Storyblok Visual Editor, the `_storyblok_lang` param determines which locale to show.
- * When it differs from the current URL locale, the middleware redirects to the correct locale path.
+ * When it differs from the current URL locale, the proxy redirects to the correct locale path.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (request.nextUrl.searchParams.has('_storyblok')) {
     const sbLang = request.nextUrl.searchParams.get('_storyblok_lang')
     const currentLocale = request.nextUrl.locale || DEFAULT_LOCALE
