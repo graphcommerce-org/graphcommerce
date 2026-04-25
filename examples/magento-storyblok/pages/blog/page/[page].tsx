@@ -42,7 +42,7 @@ function BlogPage(props: Props) {
   const { story: initialStory, stories, total, perPage } = props
   const story = useStoryblokState(initialStory)
   const router = useRouter()
-  const title = story?.content?.title ?? story?.name ?? ''
+  const title = story?.name ?? ''
   const totalPages = Math.ceil(total / perPage)
   const currentPage = Number(router.query.page ?? 1)
 

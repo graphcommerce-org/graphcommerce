@@ -31,7 +31,7 @@ export function BlogItem({ story }: BlogItemProps) {
           </Typography>
         )
       }
-      title={content?.title ?? story.name}
+      title={story.name}
       date={content?.date}
       url={story.full_slug}
     />

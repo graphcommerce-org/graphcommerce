@@ -41,7 +41,7 @@ function BlogPostPage(props: Props) {
   const { story: initialStory, related } = props
   const story = useStoryblokState(initialStory)
   const content = story?.content
-  const title = content?.title ?? story?.name ?? ''
+  const title = story?.name ?? ''
   const slug = story?.full_slug ?? ''
 
   return (
