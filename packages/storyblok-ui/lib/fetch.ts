@@ -46,7 +46,7 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
     // Hydrate `multilink` fields with the linked story's basic info (name,
     // slug, full_slug). Lighter than `resolve_relations` because it never
     // includes the linked story's `content.body`.
-    resolve_links: 'story',
+    resolve_links: 'story' as const,
     ...(resolveRelations && { resolve_relations: resolveRelations }),
     ...(isDev && { cv: Date.now() }),
     ...(!isDefault && { language: lang }),
