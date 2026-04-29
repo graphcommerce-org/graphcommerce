@@ -29,7 +29,11 @@ export function useStoryblokState<T = SbBlokData>(
     prevStoryRef.current = story
 
     const body = (story?.content as { body?: unknown[] } | undefined)?.body
-    if (!body) return
+    if (!body) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setResolvedStory(story)
+      return
+    }
 
     const cloned = JSON.parse(JSON.stringify(story)) as typeof story
     resolveStoryblokProducts((cloned!.content as { body: never }).body, client).then(() =>
