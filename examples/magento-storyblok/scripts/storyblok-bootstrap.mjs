@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { execSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { copyFileSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { loadConfig } from '@graphcommerce/next-config/loadConfig'
@@ -71,7 +71,24 @@ const run = (cmd) => {
   execSync(cmd, { stdio: 'inherit' })
 }
 
+// `storyblok components push --from <source>` reads from
+// `.storyblok/components/<source>/`, but that per-space subdirectory is
+// gitignored — only the root-level `.storyblok/components/*.json` files are
+// committed. Stage the committed JSONs into the expected subdirectory so the
+// CLI finds them on a fresh clone.
+function stageComponentsForSourceSpace() {
+  const componentsDir = join(process.cwd(), '.storyblok', 'components')
+  const sourceDir = join(componentsDir, SOURCE_SPACE)
+  mkdirSync(sourceDir, { recursive: true })
+  for (const entry of readdirSync(componentsDir, { withFileTypes: true })) {
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      copyFileSync(join(componentsDir, entry.name), join(sourceDir, entry.name))
+    }
+  }
+}
+
 await assertTargetIsEmpty()
+stageComponentsForSourceSpace()
 
 console.log(`Bootstrapping Storyblok space ${TARGET_SPACE} from source space ${SOURCE_SPACE}.`)
 
