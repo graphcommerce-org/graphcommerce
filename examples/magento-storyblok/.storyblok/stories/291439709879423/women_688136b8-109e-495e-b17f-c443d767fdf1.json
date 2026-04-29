@@ -31,7 +31,6 @@
         },
         "title": "Popular in Women",
         "variant": "Grid",
-        "identity": "",
         "component": "row_product",
         "page_links": [],
         "product_copy": {
@@ -62,7 +61,6 @@
         },
         "title": "Women backstory",
         "variant": "Backstory",
-        "identity": "",
         "component": "row_product",
         "page_links": [],
         "product_copy": {
