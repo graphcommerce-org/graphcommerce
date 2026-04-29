@@ -241,11 +241,23 @@ msgstr "Añadir dirección"
 msgid "The payment hasn't completed, please try again or select a different payment method."
 msgstr "El pago no se ha completado, inténtelo de nuevo o seleccione un método de pago diferente."
 
+#. js-lingui-explicit-id
+msgid "Base Price"
+msgstr "Precio base"
+
 msgid "Contact us"
 msgstr "Póngase en contacto con nosotros"
 
 msgid "Compare products"
 msgstr "Comparar productos"
+
+#. js-lingui-explicit-id
+msgid "Buy {quantity} for <0/> and save {percent}%"
+msgstr "Compre {quantity} por <0/> y ahorre {percent}%"
+
+#. js-lingui-explicit-id
+msgid "Cart"
+msgstr "Carrito"
 
 msgid "Order #{orderNumber}"
 msgstr "Pedido #{orderNumber}"
@@ -288,6 +300,10 @@ msgstr "¿Quiso decir: {list}"
 
 msgid "Subscribe to newsletter"
 msgstr "Suscribirse al boletín"
+
+#. js-lingui-explicit-id
+msgid "Edit options"
+msgstr "Editar opciones"
 
 msgid "You haven't placed any reviews yet"
 msgstr "Aún no ha escrito ningún comentario"
@@ -408,6 +424,10 @@ msgstr "Ver todos"
 msgid "Categories"
 msgstr "Categorías"
 
+#. js-lingui-explicit-id
+msgid "Next"
+msgstr "Siguiente"
+
 msgid "Please fill out an address to be able to select a shipping method"
 msgstr "Por favor, complete una dirección para poder seleccionar un método de envío"
 
@@ -452,6 +472,14 @@ msgstr "Descubra nuestra colección y realice su primera compra!"
 msgid "In comparelist"
 msgstr "En la lista de comparación"
 
+#. js-lingui-explicit-id
+msgid "Please fill out an address to be able to select a shipping method"
+msgstr "Por favor, complete una dirección para poder seleccionar un método de envío"
+
+#. js-lingui-explicit-id
+msgid "Please select a shipping method"
+msgstr "Por favor, seleccione un método de envío"
+
 msgid "The payment is refused, please try again or select a different payment method."
 msgstr "El pago se ha rechazado, inténtelo de nuevo o seleccione un método de pago diferente."
 
@@ -473,6 +501,10 @@ msgstr "Nombre de la empresa"
 msgid "Shipping addresses"
 msgstr "Dirección de Envío"
 
+#. js-lingui-explicit-id
+msgid "Remove"
+msgstr "Eliminar"
+
 msgid "View comparison"
 msgstr "Ver comparación"
 
@@ -484,6 +516,14 @@ msgstr "Sé el primero en escribir una reseña!"
 
 msgid "Create a password and tell us your name"
 msgstr "Crea una contraseña y nos cuentas tu nombre"
+
+#. js-lingui-explicit-id
+msgid "Several errors occured"
+msgstr "Se produjeron varios errores"
+
+#. js-lingui-explicit-id
+msgid "Shipping method"
+msgstr "Método de envío"
 
 #. placeholder {0}: product?.name
 msgid "You are reviewing {0}"
@@ -610,6 +650,9 @@ msgstr "Carrito"
 
 msgid "Thank you! Your review was successfully submitted for approval"
 msgstr "¡Gracias! Su comentario se ha enviado correctamente para su aprobación"
+
+msgid "Blog"
+msgstr "Blog"
 
 msgid "Place order"
 msgstr "Realizar pedido"
@@ -815,9 +858,6 @@ msgstr "Esto puede tardar un segundo"
 msgid "Your comparelist is empty"
 msgstr "Su lista de comparación está vacía"
 
-msgid "Copyright© {year} {websiteName}"
-msgstr "Copyright© {year} {websiteName}"
-
 msgid "First Name"
 msgstr "Nombre"
 
@@ -981,6 +1021,9 @@ msgstr "Nueva dirección"
 
 msgid "Editing product"
 msgstr "Editando producto"
+
+msgid "Tagged in: {tag}"
+msgstr "Etiquetado en: {tag}"
 
 msgid "Fill in your password"
 msgstr "Rellene su contraseña"
