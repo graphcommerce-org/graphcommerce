@@ -90,7 +90,9 @@
     "@graphcommerce/storyblok-ui": "10.0.3"
   },
   "changesets": [
+    "afraid-mangos-design",
     "calm-hotels-fly",
+    "cozy-insects-join",
     "cozy-views-remain",
     "dull-points-fly",
     "fiery-phones-wave",
@@ -98,6 +100,7 @@
     "fruity-emus-peel",
     "happy-jars-drum",
     "proud-squids-remain",
+    "some-kings-act",
     "thick-mugs-accept"
   ]
 }
