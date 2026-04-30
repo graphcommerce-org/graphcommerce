@@ -6,8 +6,6 @@ const config: Partial<GraphCommerceConfig> = {
   limitSsg: true,
 
   storyblok: {
-    // Set this to your own Storyblok space ID. For new projects, run `yarn storyblok:bootstrap`
-    // to seed your space with the example content.
     // spaceId: '',
     // sourceSpaceId: '', // optional override; defaults to the GraphCommerce example space
   },

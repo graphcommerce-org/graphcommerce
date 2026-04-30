@@ -1,3 +1,4 @@
+import { storyblok } from '@graphcommerce/next-config/config'
 import {
   fetchStory,
   useStoryblokState as useStoryblokStateBase,
@@ -53,7 +54,7 @@ export const useStoryblokState = (
 }
 
 export const getStoryblokApi = storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+  accessToken: storyblok.accessToken,
   use: [apiPlugin],
   components: {
     row_blog_content: RowBlogContent,
