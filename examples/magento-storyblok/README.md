@@ -33,7 +33,7 @@ start building.
 
 ### Requirements
 
-- Install and use node 16/18: `nvm install 16` or `nvm use 16`
+- Install and use node 22/24: `nvm install 22` or `nvm use 22`
 - Install yarn: `corepack enable`
 
 ## Step 1: Create a GraphCommerce app
@@ -49,7 +49,7 @@ mkdir my-project
 ```
 
 ```bash
-cp -R graphcommerce/examples/magento/. my-project && rm -rf graphcommerce && cd my-project
+cp -R graphcommerce/examples/magento-storyblok/. my-project && rm -rf graphcommerce && cd my-project
 # Copy example, delete repo, navigate to project folder
 ```
 
@@ -77,9 +77,9 @@ yarn dev
 
 ---
 
-🎉 Explore your GraphCommerce app running at http://localhost:3000
+🎉 Explore your GraphCommerce app running at https://localhost:3000
 
-(Explore the GraphQL Playground running at http://localhost:3000/api/graphql)
+(Explore the GraphQL Playground running at https://localhost:3000/api/graphql)
 
 > No success? Consult the
 > [troubleshooting guide](../../docs/framework/troubleshooting.md)

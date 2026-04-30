@@ -9,6 +9,14 @@ input StoryblokConfig {
   spaceId: String!
 
   """
+  Public preview access token for the Storyblok Content Delivery API. Found under
+  Settings → Access Tokens in the Storyblok space. Inlined into the client bundle —
+  do not use a private/management token here. Override per-environment with
+  `GC_STORYBLOK_ACCESS_TOKEN`.
+  """
+  accessToken: String!
+
+  """
   Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
   example space (291439709879423) which contains demo content for this template.
   Override only if you maintain your own example/template space.

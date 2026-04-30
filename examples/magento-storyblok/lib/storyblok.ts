@@ -1,9 +1,11 @@
+import { storyblok } from '@graphcommerce/next-config/config'
 import {
   fetchStory,
   useStoryblokState as useStoryblokStateBase,
   type FetchStoryOpts,
 } from '@graphcommerce/storyblok-ui'
 import { apiPlugin, storyblokInit, type ISbStoryData } from '@storyblok/react'
+import { useRouter } from 'next/router'
 import { StoryblokFallback } from '../components/Storyblok/Fallback'
 import { RowBlogContent } from '../components/Storyblok/RowBlogContent/RowBlogContent'
 import { RowButtonLinkList } from '../components/Storyblok/RowButtonLinkList/RowButtonLinkList'
@@ -36,12 +38,23 @@ export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalCo
   return null
 }
 
+/**
+ * The wrapped `useStoryblokState` hook subscribes to the Storyblok Visual Editor bridge for
+ * live updates and resolves `row_product` blocks client-side. Both are only useful inside the
+ * Visual Editor — Storyblok loads the page in an iframe with `_storyblok` in the query string,
+ * which is how we detect editor mode here. Outside the editor (regular visitors and soft navs
+ * between routes) `initialStory` is already fully resolved server-side in `getStaticProps`, so
+ * we pass `skip: true` to short-circuit the bridge and resolution work.
+ */
 export const useStoryblokState = (
   initialStory: ISbStoryData | null,
-): ISbStoryData<StoryblokPage> | null => useStoryblokStateBase<StoryblokPage>(initialStory)
+): ISbStoryData<StoryblokPage> | null => {
+  const isEditor = Boolean(useRouter().query._storyblok)
+  return useStoryblokStateBase<StoryblokPage>(initialStory, { skip: !isEditor })
+}
 
 export const getStoryblokApi = storyblokInit({
-  accessToken: process.env.NEXT_PUBLIC_STORYBLOK_TOKEN,
+  accessToken: storyblok.accessToken,
   use: [apiPlugin],
   components: {
     row_blog_content: RowBlogContent,
