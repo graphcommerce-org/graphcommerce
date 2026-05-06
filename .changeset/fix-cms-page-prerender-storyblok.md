@@ -3,7 +3,7 @@
 '@graphcommerce/storyblok-ui': patch
 ---
 
-Drop `@graphcommerce/magento-cms` from the Storyblok example, ship the Visual Editor proxy with `storyblok-ui`
+Drop `@graphcommerce/magento-cms` from the Storyblok example, ship locale-redirect proxy with `storyblok-ui`
 
 The Storyblok example had several leftovers from a half-completed migration off Magento CMS, all conceptually out of place in an example whose purpose is "all content lives in Storyblok":
 
@@ -16,7 +16,6 @@ This PR:
 
 - Removes `pages/page/[...url].tsx`, the dead `cmsBlocks` query and unused destructures, the Magento CMS fallback in `pages/404.tsx`, and the `@graphcommerce/magento-cms` dependency
 - Migrates `proxy.ts` → standard managed re-export
-- **Adds `@graphcommerce/storyblok-ui/plugins/StoryblokVisualEditorProxy.ts`** with `ifConfig: 'storyblok'` — every project depending on `@graphcommerce/storyblok-ui` now gets Visual Editor locale routing automatically, no manual setup
-- Adds an example-level `plugins/LocaleRedirectProxy.ts` for the (generic, opt-in) Accept-Language root redirect — reads locales from `storefront` config instead of hardcoding `['en', 'nl']`
+- **Adds `@graphcommerce/storyblok-ui/plugins/LocaleRedirectProxy.ts`** with `ifConfig: 'storyblok'` — every project depending on `@graphcommerce/storyblok-ui` now gets locale-redirect (Visual Editor `_storyblok_lang` + Accept-Language root) automatically, with locales read from `storefront` config
 
 If a project needs Magento CMS pages alongside Storyblok, it can re-add the dependency and a route — but the example should default to pure Storyblok.

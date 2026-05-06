@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server'
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/next-ui/proxy',
+  ifConfig: 'storyblok',
 }
 
 const LOCALES = storefront.map((s) => s.locale)
@@ -17,11 +18,24 @@ const DEFAULT_LOCALE = storefront.find((s) => s.defaultLocale)?.locale || LOCALE
  * re-implements the same behaviour for regular visitors: on the root path, parse Accept-Language
  * and redirect to the preferred locale if it differs from the default.
  *
- * Storyblok-specific Visual-Editor locale routing lives in
- * `@graphcommerce/storyblok-ui/plugins/StoryblokVisualEditorProxy.ts`.
+ * For the Storyblok Visual Editor, the `_storyblok_lang` param determines which locale to show.
+ * When it differs from the current URL locale, the proxy redirects to the correct locale path.
  */
 export const proxy: FunctionPlugin<typeof proxyType> = (prev, request) => {
-  if (request.nextUrl.searchParams.has('_storyblok')) return prev(request)
+  if (request.nextUrl.searchParams.has('_storyblok')) {
+    const sbLang = request.nextUrl.searchParams.get('_storyblok_lang')
+    const currentLocale = request.nextUrl.locale || DEFAULT_LOCALE
+    const targetLocale = sbLang === 'default' || !sbLang ? DEFAULT_LOCALE : sbLang
+
+    if (LOCALES.includes(targetLocale) && targetLocale !== currentLocale) {
+      const url = request.nextUrl.clone()
+      url.locale = targetLocale
+      return NextResponse.redirect(url)
+    }
+
+    return prev(request)
+  }
+
   if (request.nextUrl.pathname !== '/') return prev(request)
   if (request.cookies.has('NEXT_LOCALE')) return prev(request)
 
