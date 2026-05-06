@@ -1,19 +1,26 @@
+import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import { storefront } from '@graphcommerce/next-config/config'
+import type { proxy as proxyType } from '@graphcommerce/next-ui/proxy'
 import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
 
-const LOCALES = ['en', 'nl']
-const DEFAULT_LOCALE = 'en'
+export const config: PluginConfig = {
+  type: 'function',
+  module: '@graphcommerce/next-ui/proxy',
+}
+
+const LOCALES = storefront.map((s) => s.locale)
+const DEFAULT_LOCALE = storefront.find((s) => s.defaultLocale)?.locale || 'en'
 
 /**
- * Locale detection is disabled in next.config.ts (`localeDetection: false`) to prevent the Storyblok
- * Visual Editor from being redirected away from the default locale. This proxy re-implements the
- * same behaviour for regular visitors: on the root path, parse Accept-Language and redirect to the
- * preferred locale if it differs from the default.
+ * Locale detection is disabled in next.config.ts (`localeDetection: false`) to prevent the
+ * Storyblok Visual Editor from being redirected away from the default locale. This plugin
+ * re-implements the same behaviour for regular visitors: on the root path, parse Accept-Language
+ * and redirect to the preferred locale if it differs from the default.
  *
  * For the Storyblok Visual Editor, the `_storyblok_lang` param determines which locale to show.
  * When it differs from the current URL locale, the proxy redirects to the correct locale path.
  */
-export function proxy(request: NextRequest) {
+export const proxy: FunctionPlugin<typeof proxyType> = (prev, request) => {
   if (request.nextUrl.searchParams.has('_storyblok')) {
     const sbLang = request.nextUrl.searchParams.get('_storyblok_lang')
     const currentLocale = request.nextUrl.locale || DEFAULT_LOCALE
@@ -25,12 +32,11 @@ export function proxy(request: NextRequest) {
       return NextResponse.redirect(url)
     }
 
-    return NextResponse.next()
+    return prev(request)
   }
 
-  if (request.nextUrl.pathname !== '/') return NextResponse.next()
-
-  if (request.cookies.has('NEXT_LOCALE')) return NextResponse.next()
+  if (request.nextUrl.pathname !== '/') return prev(request)
+  if (request.cookies.has('NEXT_LOCALE')) return prev(request)
 
   const currentLocale = request.nextUrl.locale || DEFAULT_LOCALE
   const detected = parseAcceptLanguage(request.headers.get('accept-language'))
@@ -43,7 +49,7 @@ export function proxy(request: NextRequest) {
     return response
   }
 
-  return NextResponse.next()
+  return prev(request)
 }
 
 function parseAcceptLanguage(header: string | null): string | undefined {
