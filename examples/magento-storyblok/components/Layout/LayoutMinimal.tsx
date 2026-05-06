@@ -12,7 +12,7 @@ export type LayoutMinimalProps = LayoutQuery &
   }
 
 export function LayoutMinimal(props: LayoutMinimalProps) {
-  const { menu, children, cmsBlocks, globalConfig, ...uiProps } = props
+  const { menu, children, globalConfig, ...uiProps } = props
 
   return (
     <GlobalConfigProvider value={globalConfig}>

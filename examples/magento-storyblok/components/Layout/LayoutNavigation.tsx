@@ -32,9 +32,9 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Divider, Fab } from '@mui/material'
 import { useRouter } from 'next/router'
+import { productListRenderer } from '../ProductListItems/productListRenderer'
 import { GlobalConfigProvider } from '../Storyblok/GlobalConfigProvider'
 import type { StoryblokGlobalConfig } from '../Storyblok/types'
-import { productListRenderer } from '../ProductListItems/productListRenderer'
 import { Footer } from './Footer'
 import type { LayoutQuery } from './Layout.gql'
 import { Logo } from './Logo'
@@ -45,8 +45,7 @@ export type LayoutNavigationProps = LayoutQuery &
   }
 
 export function LayoutNavigation(props: LayoutNavigationProps) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { menu, children, cmsBlocks, globalConfig, ...uiProps } = props
+  const { menu, children, globalConfig, ...uiProps } = props
 
   const selection = useNavigationSelection()
   const router = useRouter()
