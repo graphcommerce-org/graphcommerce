@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.1.0-canary.5
+
+### Patch Changes
+
+- [#2608](https://github.com/graphcommerce-org/graphcommerce/pull/2608) [`5986400`](https://github.com/graphcommerce-org/graphcommerce/commit/59864002d744da106f16f99636e163209d4165be) - Fix CMS page prerender crash caused by incorrect static-paths source
+
+  `pages/page/[...url].tsx` used `getCategoryStaticPaths`, which feeds Magento **category** URLs into the `cmsPage` query. Any category URL without a matching CMS page identifier caused `getStaticProps` to return a `redirect`, which Next.js rejects during prerender — crashing `next build`.
+
+  The handler now returns `{ paths: [], fallback: 'blocking' }`. CMS pages render on first request and are ISR-cached afterwards. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.4
 
 ## 10.1.0-canary.3

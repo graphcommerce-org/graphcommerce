@@ -1,5 +1,7 @@
 # @graphcommerce/storyblok-ui
 
+## 10.1.0-canary.5
+
 ## 10.1.0-canary.4
 
 ### Patch Changes
