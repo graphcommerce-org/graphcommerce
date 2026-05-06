@@ -61,7 +61,6 @@
     "@graphcommerce/magento-cart-shipping-address": "10.1.0-canary.5",
     "@graphcommerce/magento-cart-shipping-method": "10.1.0-canary.5",
     "@graphcommerce/magento-category": "10.1.0-canary.5",
-    "@graphcommerce/magento-cms": "10.1.0-canary.5",
     "@graphcommerce/magento-compare": "10.1.0-canary.5",
     "@graphcommerce/magento-customer": "10.1.0-canary.5",
     "@graphcommerce/magento-graphql": "10.1.0-canary.5",
