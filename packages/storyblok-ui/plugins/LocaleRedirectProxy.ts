@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server'
 export const config: PluginConfig = {
   type: 'function',
   module: '@graphcommerce/next-ui/proxy',
-  ifConfig: 'storyblok',
 }
 
 const LOCALES = storefront.map((s) => s.locale)
