@@ -12,6 +12,7 @@ import {
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import type { GetStaticPropsContext } from 'next'
+import fs from 'fs'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-cache') {
@@ -53,7 +54,7 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
 }
 
 const ssrClient: {
-  [locale: string]: ApolloClient
+  [locale: string]: { instancedAt: number; client: ApolloClient }
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
@@ -62,8 +63,24 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
 
-  // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
+  const dir = './tmp'
 
-  return ssrClient[locale]
+  const shouldCheckCache = fs.existsSync(`${dir}/renew-all-pages-query.txt`)
+
+  if (shouldCheckCache) {
+    const instancedAt = Number(fs.readFileSync(`${dir}/renew-all-pages-query.txt`, 'utf8'))
+
+    if (ssrClient[locale]?.instancedAt < instancedAt) {
+      delete ssrClient[locale]
+    }
+  }
+
+  // Create a client if it doesn't exist for the locale.
+  if (!ssrClient[locale])
+    ssrClient[locale] = {
+      instancedAt: new Date().getTime(),
+      client: client(context, 'no-cache'),
+    }
+
+  return ssrClient[locale].client
 }
