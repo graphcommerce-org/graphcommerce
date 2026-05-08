@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.7
+
+### Patch Changes
+
+- [#2610](https://github.com/graphcommerce-org/graphcommerce/pull/2610) [`7b6ba3f`](https://github.com/graphcommerce-org/graphcommerce/commit/7b6ba3fc5367f0b01df302d98b6ab55cc89b051f) - Fix duplicate React key warning in `<NumberFormat>` / `<CurrencyFormat>` / `<Money>` for numbers with a thousands group separator. `Intl.NumberFormat.formatToParts()` emits multiple parts with `type: "integer"` (one per group, e.g. `1.234,56` produces two `integer` parts). Using `key={part.type}` therefore collided. Switched to an index key — parts are already wrapped in `suppressHydrationWarning`, so SSR/client divergence isn't an issue. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.6
 
 ## 10.1.0-canary.5

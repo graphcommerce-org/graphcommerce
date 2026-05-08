@@ -1,5 +1,7 @@
 # @graphcommerce/misc
 
+## 10.1.0-canary.7
+
 ## 10.1.0-canary.6
 
 ## 10.1.0-canary.5

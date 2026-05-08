@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.1.0-canary.6",
+  "version": "10.1.0-canary.7",
   "type": "module",
   "exports": {
     ".": {
@@ -63,7 +63,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "*",
-    "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.6",
+    "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.7",
     "@lingui/loader": "*",
     "@lingui/macro": "*",
     "@lingui/react": "*",
