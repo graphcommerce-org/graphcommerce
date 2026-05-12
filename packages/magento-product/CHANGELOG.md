@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.8
+
+### Patch Changes
+
+- [#2588](https://github.com/graphcommerce-org/graphcommerce/pull/2588) [`3a1c4ca`](https://github.com/graphcommerce-org/graphcommerce/commit/3a1c4caf6d22eee50df25a78180e8d1acb2343b3) - Prevent sort filter from flipping direction to DESC after using the pagination ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.1.0-canary.7
 
 ## 10.1.0-canary.6

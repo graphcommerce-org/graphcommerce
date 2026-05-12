@@ -1,5 +1,7 @@
 # Change Log
 
+## 10.1.0-canary.8
+
 ## 10.1.0-canary.7
 
 ### Patch Changes
