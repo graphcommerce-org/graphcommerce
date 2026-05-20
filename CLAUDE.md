@@ -98,18 +98,33 @@ use Playwright: `yarn playwright`.
 
 ### Linting & Type Checking
 
-**Important:** For type checking, use `tsgo` (the native TypeScript compiler)
-and run it from the **example directory** (not the repo root):
+**Important:** You can **only type check an example, never the whole repo**.
+Codegen generates types per-example (`.mesh/`, `.gql.ts`) and a private/optional
+package's fragments only land in the generated types of an example that
+activates the package. Always run `tsgo` from inside an example directory.
 
-```bash
-# Type check (preferred — fast native TypeScript compiler)
-cd examples/magento-graphcms
-npx --package=@typescript/native-preview tsgo --noEmit -p .
-```
+The full workflow for type checking — including any optional/private packages
+you want exercised — is:
 
-Type checking must be run from an example directory because codegen only
-generates types for the specific project (`.mesh/`, `.gql.ts` files). Running
-from the repo root will fail with missing type errors.
+1. **Activate the package** by adding it to `PRIVATE_ADDITIONAL_DEPENDENCIES`
+   in the example's `.env` (comma-separated, no spaces). Yarn workspaces also
+   needs the package linked, so run `yarn install` from the repo root if the
+   package is new or hasn't been installed before.
+2. **Run codegen** so the package's `.graphql` fragments are injected into the
+   example's generated `.gql.ts` files:
+   ```bash
+   cd examples/magento-graphcms
+   yarn codegen
+   ```
+3. **Run `tsgo`** from the same example directory:
+   ```bash
+   npx --package=@typescript/native-preview tsgo --noEmit -p .
+   ```
+
+Skipping steps 1–2 produces misleading "field does not exist" errors on
+injected fragments, because the example's types still reflect the previously
+activated set of packages. Running `tsgo` from the repo root fails for the same
+reason — there is no single project-wide type-check, only per-example checks.
 
 ```bash
 yarn eslint:lint      # ESLint across all TS/TSX
