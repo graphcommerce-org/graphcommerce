@@ -13,7 +13,7 @@
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.2",
     "@graphcommerce/typescript-config-pwa": "10.1.0-canary.9",
-    "@next/eslint-plugin-next": "16.1.1",
+    "@next/eslint-plugin-next": "16.2.6",
     "@typescript-eslint/eslint-plugin": "^8.50.1",
     "@typescript-eslint/parser": "^8.50.1",
     "eslint": "^9.39.2",
