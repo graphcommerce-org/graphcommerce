@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.1.0-canary.14
+
+### Patch Changes
+
+- [#2622](https://github.com/graphcommerce-org/graphcommerce/pull/2622) [`f310cfd`](https://github.com/graphcommerce-org/graphcommerce/commit/f310cfd1d344a74bc2213ae9d175e1d7c8fa936e) - Add `yarn packages:build` one-shot script and document the `packagesDev/*` rebuild workflow in `CLAUDE.md`. Also adds guidance on changeset bump-type selection (avoid `major`) and the `@graphcommerce/misc` fallback for docs-only / placeless changes. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.13
 
 ## 10.1.0-canary.12
