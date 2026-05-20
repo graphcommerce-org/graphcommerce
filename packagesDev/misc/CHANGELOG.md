@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.1.0-canary.19
+
+### Patch Changes
+
+- [#2630](https://github.com/graphcommerce-org/graphcommerce/pull/2630) [`21df051`](https://github.com/graphcommerce-org/graphcommerce/commit/21df05152e0274bff891e177c0aa6e8005e39923) - Document the Playwright e2e workflow in CLAUDE.md: where tests live (`<pkg>/test/*.playwright.ts`), how to install the browser binaries, the `URL` / `PLAYWRIGHT_LOCALES` env vars exposed by `playwright.config.ts`, and the backend assumptions tests make (GraphCommerce demo backend). Picks up the loose ends from graphcommerce-org/graphcommerce#2627 which fixed the config so `npx playwright test` actually loads. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.18
 
 ### Patch Changes
