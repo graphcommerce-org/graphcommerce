@@ -98,18 +98,33 @@ use Playwright: `yarn playwright`.
 
 ### Linting & Type Checking
 
-**Important:** For type checking, use `tsgo` (the native TypeScript compiler)
-and run it from the **example directory** (not the repo root):
+**Important:** You can **only type check an example, never the whole repo**.
+Codegen generates types per-example (`.mesh/`, `.gql.ts`) and a private/optional
+package's fragments only land in the generated types of an example that
+activates the package. Always run `tsgo` from inside an example directory.
 
-```bash
-# Type check (preferred — fast native TypeScript compiler)
-cd examples/magento-graphcms
-npx --package=@typescript/native-preview tsgo --noEmit -p .
-```
+The full workflow for type checking — including any optional/private packages
+you want exercised — is:
 
-Type checking must be run from an example directory because codegen only
-generates types for the specific project (`.mesh/`, `.gql.ts` files). Running
-from the repo root will fail with missing type errors.
+1. **Activate the package** by adding it to `PRIVATE_ADDITIONAL_DEPENDENCIES`
+   in the example's `.env` (comma-separated, no spaces). Yarn workspaces also
+   needs the package linked, so run `yarn install` from the repo root if the
+   package is new or hasn't been installed before.
+2. **Run codegen** so the package's `.graphql` fragments are injected into the
+   example's generated `.gql.ts` files:
+   ```bash
+   cd examples/magento-graphcms
+   yarn codegen
+   ```
+3. **Run `tsgo`** from the same example directory:
+   ```bash
+   npx --package=@typescript/native-preview tsgo --noEmit -p .
+   ```
+
+Skipping steps 1–2 produces misleading "field does not exist" errors on
+injected fragments, because the example's types still reflect the previously
+activated set of packages. Running `tsgo` from the repo root fails for the same
+reason — there is no single project-wide type-check, only per-example checks.
 
 ```bash
 yarn eslint:lint      # ESLint across all TS/TSX
@@ -128,6 +143,55 @@ graphcommerce codegen   # Generate config types
 gc-mesh build           # Build GraphQL Mesh (merges Magento + Hygraph schemas)
 gc-gql-codegen          # Generate TypeScript from .graphql files → .gql.ts
 ```
+
+### Cleaning Up Codegen Interceptors
+
+Codegen wraps any module that has a matching plugin with an interceptor
+(`*.tsx` rewritten to a re-export, original saved as `*.original.tsx`). When
+you change `PRIVATE_ADDITIONAL_DEPENDENCIES`, switch branches, or are about to
+commit, those wrappers should not end up in `git status`. Restore the
+originals with:
+
+```bash
+# Run from any example directory (e.g. examples/magento-graphcms)
+graphcommerce cleanup-interceptors
+```
+
+The command walks every `*.original.*` it finds and restores it back over the
+matching wrapped file. **Always run this before committing**, otherwise you
+end up with diffs to dozens of `next-ui`, `magento-cart-items`,
+`magento-customer`, etc. files that only exist because of your local
+`.env`/plugin set.
+
+### Showcasing New Features
+
+**Every feature PR must wire the feature into one of the existing example
+storefronts so it is visible and presentable on a real page.** A standalone
+demo route under `pages/test/*` is **not** a showcase — it lives outside the
+real flow, never gets walked by a reviewer, and proves nothing about the
+integration. The bar is "if I `yarn workspace @graphcommerce/magento-graphcms
+dev` and open the storefront, can I navigate to a place where this feature is
+actually used?".
+
+Concrete patterns by feature kind:
+
+- **A new UI component** — find the existing page in `examples/magento-graphcms`
+  (or `examples/magento-open-source`) where it belongs and render it there. A
+  product video player gets wired into the product page's media gallery, a new
+  account-menu element into the account layout, a new cart summary block into
+  the cart page, etc. If the showcase needs backend content (a product with a
+  YouTube video uploaded, a Magento config flipped on, a Hygraph row created),
+  call that out in the PR description so the reviewer knows what to configure
+  before previewing.
+- **A new plugin** — wire it where it would actually wrap something, and make
+  sure the storefront still renders. Activating the package via
+  `PRIVATE_ADDITIONAL_DEPENDENCIES` is enough wiring as long as the host
+  component is reachable from a real page in the example.
+- **A new GraphQL fragment / mutation** — exercise it from the page or
+  component that needs the data; don't ship the fragment alone.
+
+The PR description's "Test plan" must name the storefront URL (or click path)
+the reviewer should open to see the feature working.
 
 ### i18n
 
@@ -179,6 +243,11 @@ Document <thing>.
 
 `@graphcommerce/misc` (`packagesDev/misc/`) is intentionally empty — it has no
 consumers, so the published changelog stays clean.
+
+**Stuck release recovery hint:** when a canary publish fails after versions are
+already bumped, remove the not-yet-published changeset IDs from
+`.changeset/pre.json`'s `changesets` array and push — the next run will
+re-consume them and retry the publish.
 
 ## Architecture
 
