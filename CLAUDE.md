@@ -144,6 +144,37 @@ gc-mesh build           # Build GraphQL Mesh (merges Magento + Hygraph schemas)
 gc-gql-codegen          # Generate TypeScript from .graphql files → .gql.ts
 ```
 
+### Cleaning Up Codegen Interceptors
+
+Codegen wraps any module that has a matching plugin with an interceptor
+(`*.tsx` rewritten to a re-export, original saved as `*.original.tsx`). When
+you change `PRIVATE_ADDITIONAL_DEPENDENCIES`, switch branches, or are about to
+commit, those wrappers should not end up in `git status`. Restore the
+originals with:
+
+```bash
+# Run from any example directory (e.g. examples/magento-graphcms)
+graphcommerce cleanup-interceptors
+```
+
+The command walks every `*.original.*` it finds and restores it back over the
+matching wrapped file. **Always run this before committing**, otherwise you
+end up with diffs to dozens of `next-ui`, `magento-cart-items`,
+`magento-customer`, etc. files that only exist because of your local
+`.env`/plugin set.
+
+### Showcasing New Features
+
+**Every feature PR must include a working usage of the feature** — a new
+component without a page that renders it, or a new plugin without a place
+where the host component is rendered, is not reviewable and not validatable.
+For pure UI components, add a demo route under
+`packages/demo-magento-graphcommerce/copy/pages/test/<feature>.tsx` and link
+it from `pages/test/[[...url]].tsx`. For plugins, wire them into one of the
+example storefronts so the diff shows the integration point. The PR
+description's "Test plan" should reference the route or page that
+demonstrates the feature.
+
 ### i18n
 
 ```bash
