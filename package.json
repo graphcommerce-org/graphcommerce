@@ -34,6 +34,7 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
+    "packages:build": "concurrently 'yarn workspace @graphcommerce/next-config build' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file build' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build' 'yarn workspace @graphcommerce/hygraph-cli build' 'yarn workspace @graphcommerce/cli build' 'yarn workspace @graphcommerce/changeset-changelog build' 'yarn workspace @graphcommerce/graphql-codegen-markdown-docs build'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
     "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest run",
     "test:watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest"

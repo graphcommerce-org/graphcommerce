@@ -40,12 +40,49 @@ are activated via `PRIVATE_ADDITIONAL_DEPENDENCIES` in `.env`.
 # Start the main example storefront (runs codegen watcher + Next.js dev with Turbopack)
 yarn workspace @graphcommerce/magento-graphcms dev
 
-# Build dev tooling packages (run in parallel, needed when modifying packagesDev/*)
+# Watch + rebuild the TS-compiled framework packages in parallel
+# (`pkgroll -w` / `tsc -W` — never exits, leave running during development)
 yarn packages
+
+# One-shot build of the same set — use this before committing or
+# generating patches
+yarn packages:build
 
 # Full production build of example
 yarn workspace @graphcommerce/magento-graphcms build
 ```
+
+**After editing TS source in any of the seven framework packages that ship as
+compiled `dist/`, run `yarn packages:build` before committing.** The seven
+packages are:
+
+| Package                                                 | Path                              |
+| ------------------------------------------------------- | --------------------------------- |
+| `@graphcommerce/next-config`                            | `packagesDev/next-config`         |
+| `@graphcommerce/cli`                                    | `packages/cli`                    |
+| `@graphcommerce/hygraph-cli`                            | `packages/hygraph-cli`            |
+| `@graphcommerce/changeset-changelog`                    | `packagesDev/changeset-changelog` |
+| `@graphcommerce/graphql-codegen-near-operation-file`    | `packagesDev/`                    |
+| `@graphcommerce/graphql-codegen-relay-optimizer-plugin` | `packagesDev/`                    |
+| `@graphcommerce/graphql-codegen-markdown-docs`          | `packagesDev/`                    |
+
+These ship as compiled `dist/**/*.js`, not source — without rebuilding, the
+change is invisible to consumers (including local
+`node_modules/@graphcommerce/*` when generating `patch-package` patches). Commit
+the regenerated `dist/` alongside the source change so the patch stays in sync.
+`yarn packages` (watch mode) is fine during active development — the watchers
+hot-rebuild on save — but `yarn packages:build` is the one-shot pre-commit step.
+
+The remaining `packagesDev/*` directories (`prettier-config`, `eslint-config`,
+`typescript-config`, `browserslist-config`, `misc`) are config-only — no compile
+step, no rebuild needed.
+
+`yarn packages:build` also regenerates
+`packagesDev/next-config/dist/generated/config.js` because zod-schema codegen
+runs alongside `next-config`'s build. That diff is normally unrelated to your
+change and should be discarded with
+`git checkout -- packagesDev/next-config/dist/generated/config.js` before
+committing — only keep it when your change actually touches the config schema.
 
 ### Testing
 
@@ -97,6 +134,51 @@ gc-gql-codegen          # Generate TypeScript from .graphql files → .gql.ts
 ```bash
 yarn workspace @graphcommerce/magento-graphcms lingui   # Extract translation strings
 ```
+
+### Changesets & Versioning
+
+Every PR needs a `.changeset/<slug>.md` file — the changesets bot otherwise
+blocks the PR with `⚠️ No Changeset found`. Frontmatter lists the affected
+packages and the bump type, followed by a short description:
+
+```md
+---
+'@graphcommerce/magento-customer': minor
+'@graphcommerce/magento-store': patch
+---
+
+Short, complete-sentence description of what changed and why.
+```
+
+**Bump types — almost always `patch` or `minor`:**
+
+- `patch` — bug fixes, internal refactors with no API change, doc tweaks, dist
+  regenerations. Most PRs.
+- `minor` — additive changes: new components, new optional props, new config
+  options, new exports. Default for new features.
+- `major` — **avoid almost always.** A major release ships with downstream
+  migration cost (consumer projects rewrite code), an upgrade guide, and
+  coordinated marketing/release communication. Reserve for genuinely breaking
+  changes that can't be expressed additively, and coordinate with the
+  maintainers before opening the PR. When the change looks breaking, first ask:
+  can it be a new optional prop / new export that defaults to the old behavior?
+  If yes, that's a `minor`.
+
+**Placeless changes go in `@graphcommerce/misc`.** For docs-only PRs, repo-wide
+tooling, root-level scripts, CLAUDE.md updates, GitHub workflows — anything that
+doesn't logically bump a published package — target `@graphcommerce/misc` as
+`patch`:
+
+```md
+---
+'@graphcommerce/misc': patch
+---
+
+Document <thing>.
+```
+
+`@graphcommerce/misc` (`packagesDev/misc/`) is intentionally empty — it has no
+consumers, so the published changelog stays clean.
 
 ## Architecture
 
