@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0-canary.11
+
+### Patch Changes
+
+- [#2621](https://github.com/graphcommerce-org/graphcommerce/pull/2621) [`4eccccd`](https://github.com/graphcommerce-org/graphcommerce/commit/4eccccdad9418e713cb6959b20e9cde6ab26d9ae) - `graphcommerce cleanup-interceptors` now actually finds and restores `.original.tsx` / `.original.ts` files when run from a consumer project. Previously `findDotOriginalFiles` walked up looking for a `@graphcommerce/*` parent package; from a consumer project (where there is no such parent) `parentPath` ended up `null` and the glob expanded to literally `null/**/*.original.tsx`, so the command silently restored nothing. Now it falls back to `cwd` and `cwd/node_modules/@graphcommerce` where interceptors actually live for consumers.
+
+  Also fixes a display bug — the final `X files restored from .original` line printed an always-`0` counter (`restoredCount` was declared but never incremented; the now-removed `removedCount` was the one being incremented). Counter and message are now consistent. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.10
 
 ## 10.1.0-canary.9
