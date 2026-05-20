@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.15
+
+### Patch Changes
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.14
 
 ## 10.1.0-canary.13
