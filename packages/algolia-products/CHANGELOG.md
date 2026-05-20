@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-products
 
+## 10.1.0-canary.13
+
 ## 10.1.0-canary.12
 
 ## 10.1.0-canary.11

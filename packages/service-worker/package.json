@@ -2,7 +2,7 @@
   "name": "@graphcommerce/service-worker",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.1.0-canary.12",
+  "version": "10.1.0-canary.13",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,9 +12,9 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^10.1.0-canary.12",
-    "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.12",
-    "@graphcommerce/typescript-config-pwa": "^10.1.0-canary.12",
+    "@graphcommerce/eslint-config-pwa": "^10.1.0-canary.13",
+    "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.13",
+    "@graphcommerce/typescript-config-pwa": "^10.1.0-canary.13",
     "@serwist/next": "*",
     "next": "*",
     "serwist": "*"

@@ -91,7 +91,9 @@
   },
   "changesets": [
     "afraid-mangos-design",
+    "attribute-value-inputs-allow-clearing",
     "calm-hotels-fly",
+    "cleanup-interceptors-scan-node-modules",
     "cozy-insects-join",
     "cozy-views-remain",
     "dull-points-fly",
@@ -104,6 +106,7 @@
     "happy-jars-drum",
     "proud-squids-remain",
     "puny-hounds-stare",
+    "signup-form-fieldsets-render-props",
     "some-kings-act",
     "sunny-hoops-attend",
     "thick-mugs-accept"

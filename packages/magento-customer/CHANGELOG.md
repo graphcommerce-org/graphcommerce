@@ -1,5 +1,17 @@
 # Change Log
 
+## 10.1.0-canary.13
+
+### Minor Changes
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.12
 
 ## 10.1.0-canary.11
