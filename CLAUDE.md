@@ -93,8 +93,53 @@ yarn test packages/foo       # Run tests matching a path
 ```
 
 Tests use Vitest with
-`include: ['**/__tests__/**/*.ts', '**/*.test.ts', '**/*.test.tsx']`. E2E tests
-use Playwright: `yarn playwright`.
+`include: ['**/__tests__/**/*.ts', '**/*.test.ts', '**/*.test.tsx']`.
+
+#### Playwright (E2E)
+
+End-to-end tests live next to the package they exercise, named
+`<feature>.playwright.ts` (e.g.
+`packages/magento-product/test/youtubeEmbedInGallery.playwright.ts`,
+`packages/magento-customer/test/authentication.playwright.ts`). They're
+picked up by `playwright.config.ts` via `testMatch: ['**/*.playwright.ts']`
+and they exercise a real running example storefront — there is no jsdom,
+no mocked Apollo cache.
+
+One-time setup (only needed if you've never run Playwright on this machine
+or the browsers are stale):
+
+```bash
+npx playwright install chromium   # or `npx playwright install` for all browsers
+```
+
+Day-to-day workflow:
+
+```bash
+# Terminal A — start the storefront the test will hit
+yarn workspace @graphcommerce/magento-graphcms dev
+
+# Terminal B — run the suite (default project is chrome, headed)
+yarn playwright
+# Or a single test, headless, with a non-default port / URL:
+URL=http://localhost:3210 npx playwright test \
+  packages/magento-product/test/youtubeEmbedInGallery.playwright.ts \
+  --project=chrome --reporter=line
+```
+
+- `URL` overrides the `baseURL` for every test (`page.goto('/p/foo')`
+  resolves against `$URL/p/foo`).
+- `PLAYWRIGHT_LOCALES=nl,de` generates extra `<project>-<locale>` projects
+  that target `$URL/<locale>` — opt-in only because most tests are
+  locale-agnostic.
+- `test-results/` and `playwright-report/` are gitignored — both are local
+  artifacts that the runner regenerates on every invocation.
+
+Backend assumptions: tests run against the Magento endpoint configured in
+`examples/magento-graphcms/graphcommerce.config.ts`. They hardcode SKUs /
+URL keys that are present in the GraphCommerce demo backend
+(`configurator.reachdigital.dev`); when running against a different backend
+either override via env vars (the gallery test reads `PRODUCT_URL` and
+`EXPECTED_YOUTUBE_ID`) or skip backend-specific tests.
 
 ### Linting & Type Checking
 
