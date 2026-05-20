@@ -1,0 +1,6 @@
+fragment FixedProductTax on FixedProductTax {
+  amount {
+    ...Money
+  }
+  label
+}
