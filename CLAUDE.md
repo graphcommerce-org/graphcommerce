@@ -40,24 +40,47 @@ are activated via `PRIVATE_ADDITIONAL_DEPENDENCIES` in `.env`.
 # Start the main example storefront (runs codegen watcher + Next.js dev with Turbopack)
 yarn workspace @graphcommerce/magento-graphcms dev
 
-# Build dev tooling packages (run in parallel, needed when modifying packagesDev/*)
+# Watch + rebuild the TS-compiled framework packages in parallel
+# (`pkgroll -w` / `tsc -W` — never exits, leave running during development)
 yarn packages
+
+# One-shot build of the same set — use this before committing or
+# generating patches
+yarn packages:build
 
 # Full production build of example
 yarn workspace @graphcommerce/magento-graphcms build
 ```
 
-**After editing any TS source in `packagesDev/*` (e.g. `next-config`,
-`prettier-config`), run `yarn packages` before committing.** The dev tooling
-ships as compiled `dist/**/*.js` — without rebuilding, the published change is
-invisible to consumers (including local `node_modules/@graphcommerce/*` when
-generating `patch-package` patches). Commit the regenerated `dist/` output
-alongside the source change so the patch stays in sync.
+**After editing TS source in any of the seven framework packages that ship as
+compiled `dist/`, run `yarn packages:build` before committing.** The seven
+packages are:
 
-`yarn packages` also regenerates
+| Package                                                 | Path                              |
+| ------------------------------------------------------- | --------------------------------- |
+| `@graphcommerce/next-config`                            | `packagesDev/next-config`         |
+| `@graphcommerce/cli`                                    | `packages/cli`                    |
+| `@graphcommerce/hygraph-cli`                            | `packages/hygraph-cli`            |
+| `@graphcommerce/changeset-changelog`                    | `packagesDev/changeset-changelog` |
+| `@graphcommerce/graphql-codegen-near-operation-file`    | `packagesDev/`                    |
+| `@graphcommerce/graphql-codegen-relay-optimizer-plugin` | `packagesDev/`                    |
+| `@graphcommerce/graphql-codegen-markdown-docs`          | `packagesDev/`                    |
+
+These ship as compiled `dist/**/*.js`, not source — without rebuilding, the
+change is invisible to consumers (including local
+`node_modules/@graphcommerce/*` when generating `patch-package` patches). Commit
+the regenerated `dist/` alongside the source change so the patch stays in sync.
+`yarn packages` (watch mode) is fine during active development — the watchers
+hot-rebuild on save — but `yarn packages:build` is the one-shot pre-commit step.
+
+The remaining `packagesDev/*` directories (`prettier-config`, `eslint-config`,
+`typescript-config`, `browserslist-config`, `misc`) are config-only — no compile
+step, no rebuild needed.
+
+`yarn packages:build` also regenerates
 `packagesDev/next-config/dist/generated/config.js` because zod-schema codegen
-runs as part of the build. That diff is normally unrelated to your change and
-should be discarded with
+runs alongside `next-config`'s build. That diff is normally unrelated to your
+change and should be discarded with
 `git checkout -- packagesDev/next-config/dist/generated/config.js` before
 committing — only keep it when your change actually touches the config schema.
 
