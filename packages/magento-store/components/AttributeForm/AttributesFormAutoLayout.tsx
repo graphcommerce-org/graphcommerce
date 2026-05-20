@@ -5,6 +5,7 @@ import {
   type SectionContainerProps,
 } from '@graphcommerce/next-ui'
 import type { Control, FieldValues } from '@graphcommerce/react-hook-form'
+import { Trans } from '@lingui/react/macro'
 import { Box, type SxProps, type Theme } from '@mui/material'
 import { AttributeFormField, type AttributeFormFieldProps } from './AttributeFormField'
 import type {
@@ -54,7 +55,8 @@ export function AttributesFormAutoLayout<
       .filter(nonNullable),
   }))
 
-  if (itemsRemaining.length > 0) byFieldSet.push({ label: 'Other', attributes: itemsRemaining })
+  if (itemsRemaining.length > 0)
+    byFieldSet.push({ label: <Trans>Other</Trans>, attributes: itemsRemaining })
 
   return byFieldSet.map((fieldSet) => {
     const key = fieldSet.attributes.map((fieldName) => fieldName.gridArea).join('-')
