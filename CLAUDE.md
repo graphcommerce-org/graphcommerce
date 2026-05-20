@@ -47,6 +47,20 @@ yarn packages
 yarn workspace @graphcommerce/magento-graphcms build
 ```
 
+**After editing any TS source in `packagesDev/*` (e.g. `next-config`,
+`prettier-config`), run `yarn packages` before committing.** The dev tooling
+ships as compiled `dist/**/*.js` — without rebuilding, the published change is
+invisible to consumers (including local `node_modules/@graphcommerce/*` when
+generating `patch-package` patches). Commit the regenerated `dist/` output
+alongside the source change so the patch stays in sync.
+
+`yarn packages` also regenerates
+`packagesDev/next-config/dist/generated/config.js` because zod-schema codegen
+runs as part of the build. That diff is normally unrelated to your change and
+should be discarded with
+`git checkout -- packagesDev/next-config/dist/generated/config.js` before
+committing — only keep it when your change actually touches the config schema.
+
 ### Testing
 
 ```bash
