@@ -8,3 +8,5 @@
 This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
 
 The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended.
