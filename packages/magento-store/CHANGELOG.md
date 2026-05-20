@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0-canary.12
+
+### Patch Changes
+
+- [#2625](https://github.com/graphcommerce-org/graphcommerce/pull/2625) [`539b353`](https://github.com/graphcommerce-org/graphcommerce/commit/539b353d76a1d06b1c50b7135ecae64c116b8bbf) - `CustomAttributesField_to_AttributeValueInputs` was filtering out any falsy form value (`if (!value) return`), so empty strings and `false` booleans never made it into the resulting `AttributeValueInput[]`. That meant a consumer who picked the empty-string option of a SELECT attribute (e.g. a "-- None --" option used to undo a previous choice) couldn't actually clear the attribute — the mutation simply omitted it and Magento kept the old value.
+
+  Skip only when the value is `undefined` (the attribute was never touched). Pass empty strings and `false` booleans through to the mutation so the backend can interpret them as "clear this attribute". ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.11
 
 ## 10.1.0-canary.10

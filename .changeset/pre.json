@@ -91,6 +91,7 @@
   },
   "changesets": [
     "afraid-mangos-design",
+    "attribute-value-inputs-allow-clearing",
     "calm-hotels-fly",
     "cleanup-interceptors-scan-node-modules",
     "cozy-insects-join",
