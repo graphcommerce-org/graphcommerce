@@ -1,5 +1,11 @@
 # @graphcommerce/misc
 
+## 10.1.0-canary.18
+
+### Patch Changes
+
+- [#2629](https://github.com/graphcommerce-org/graphcommerce/pull/2629) [`ab82fcf`](https://github.com/graphcommerce-org/graphcommerce/commit/ab82fcfc39f7c92604dabb7788bb0e4fbc0e2ed9) - Clarify the type-check workflow in CLAUDE.md: type checking is per-example only, and optional/private packages must be activated via `PRIVATE_ADDITIONAL_DEPENDENCIES` and codegen must be re-run before `tsgo` sees their fragments. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.17
 
 ### Patch Changes
