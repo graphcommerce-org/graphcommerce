@@ -106,7 +106,12 @@ export function CustomAttributesField_to_AttributeValueInputs(
     const attribute_code = metadata.code
     const value = custom_attributes[metadata.code]
 
-    if (!value) return
+    // Only skip when the form field was never set. Empty strings and `false`
+    // booleans must pass through so the backend can interpret them as
+    // "clear this attribute" — otherwise the consumer has no way to undo a
+    // previously-selected value via the form (e.g. a "-- None --" SELECT
+    // option whose value is the empty string).
+    if (value === undefined) return
 
     if (
       (metadata.__typename === 'CustomerAttributeMetadata' &&
