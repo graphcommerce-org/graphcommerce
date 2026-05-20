@@ -36,7 +36,6 @@ function TestOverview() {
         <Link href='/test/slider'>Slider</Link>
         <Link href='/test/typography'>Typography</Link>
         <Link href='/test/number-inputs'>Number-inputs</Link>
-        <Link href='/test/youtube-embed'>YoutubeEmbed</Link>
       </Container>
     </Container>
   )
