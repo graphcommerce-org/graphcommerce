@@ -33,7 +33,7 @@ start building.
 
 ### Requirements
 
-- Install and use node 22/24: `nvm install 22` or `nvm use 22`
+- Install and use node 22 or 24: `nvm install 24` or `nvm use 24`
 - Install yarn: `corepack enable`
 
 ## Step 1: Create a GraphCommerce app

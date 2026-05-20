@@ -16,7 +16,7 @@
     "dev": "next dev"
   },
   "engines": {
-    "node": ">=20 <24.0.0"
+    "node": ">=22.0.0 <27.0.0"
   },
   "dependencies": {
     "@apollo/client": "^4.0.11",
