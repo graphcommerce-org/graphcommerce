@@ -135,6 +135,51 @@ gc-gql-codegen          # Generate TypeScript from .graphql files → .gql.ts
 yarn workspace @graphcommerce/magento-graphcms lingui   # Extract translation strings
 ```
 
+### Changesets & Versioning
+
+Every PR needs a `.changeset/<slug>.md` file — the changesets bot otherwise
+blocks the PR with `⚠️ No Changeset found`. Frontmatter lists the affected
+packages and the bump type, followed by a short description:
+
+```md
+---
+'@graphcommerce/magento-customer': minor
+'@graphcommerce/magento-store': patch
+---
+
+Short, complete-sentence description of what changed and why.
+```
+
+**Bump types — almost always `patch` or `minor`:**
+
+- `patch` — bug fixes, internal refactors with no API change, doc tweaks, dist
+  regenerations. Most PRs.
+- `minor` — additive changes: new components, new optional props, new config
+  options, new exports. Default for new features.
+- `major` — **avoid almost always.** A major release ships with downstream
+  migration cost (consumer projects rewrite code), an upgrade guide, and
+  coordinated marketing/release communication. Reserve for genuinely breaking
+  changes that can't be expressed additively, and coordinate with the
+  maintainers before opening the PR. When the change looks breaking, first ask:
+  can it be a new optional prop / new export that defaults to the old behavior?
+  If yes, that's a `minor`.
+
+**Placeless changes go in `@graphcommerce/misc`.** For docs-only PRs, repo-wide
+tooling, root-level scripts, CLAUDE.md updates, GitHub workflows — anything that
+doesn't logically bump a published package — target `@graphcommerce/misc` as
+`patch`:
+
+```md
+---
+'@graphcommerce/misc': patch
+---
+
+Document <thing>.
+```
+
+`@graphcommerce/misc` (`packagesDev/misc/`) is intentionally empty — it has no
+consumers, so the published changelog stays clean.
+
 ## Architecture
 
 ### Directory Layout
