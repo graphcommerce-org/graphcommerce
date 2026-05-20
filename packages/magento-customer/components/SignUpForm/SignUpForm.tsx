@@ -1,6 +1,10 @@
 import { FormPersist, PasswordRepeatElement, SwitchElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { AttributesFormAutoLayout, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  AttributesFormAutoLayout,
+  StoreConfigDocument,
+  type AttributeFormAutoLayoutProps,
+} from '@graphcommerce/magento-store'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { Button, FormActions, FormRow } from '@graphcommerce/next-ui'
 import type { UseFormClearErrors, UseFormSetError } from '@graphcommerce/react-hook-form'
@@ -11,18 +15,24 @@ import { useSignInForm } from '../../hooks/useSignInForm'
 import { ApolloCustomerErrorSnackbar } from '../ApolloCustomerError/ApolloCustomerErrorSnackbar'
 import { CustomerAttributeField } from '../CustomerForms/CustomerAttributeField'
 import { nameFieldset } from '../CustomerForms/nameFieldset'
-import { useCustomerCreateForm } from '../CustomerForms/useCustomerCreateForm'
+import {
+  useCustomerCreateForm,
+  type CreateCustomerFormValues,
+} from '../CustomerForms/useCustomerCreateForm'
 import { NameFields } from '../NameFields/NameFields'
 import { ValidatedPasswordElement } from '../ValidatedPasswordElement/ValidatedPasswordElement'
 
-type SignUpFormProps = {
+export type SignUpFormProps = Pick<
+  AttributeFormAutoLayoutProps<CreateCustomerFormValues, 'CustomerAttributeMetadata'>,
+  'fieldsets' | 'render'
+> & {
   email?: string
   setError: UseFormSetError<{ email?: string; requestedMode?: 'signin' | 'signup' }>
   clearErrors: UseFormClearErrors<{ email?: string; requestedMode?: 'signin' | 'signup' }>
 }
 
 export function SignUpForm(props: SignUpFormProps) {
-  const { email, setError, clearErrors } = props
+  const { email, setError, clearErrors, fieldsets, render } = props
 
   const storeConfig = useQuery(StoreConfigDocument)
 
@@ -109,8 +119,8 @@ export function SignUpForm(props: SignUpFormProps) {
         <AttributesFormAutoLayout
           attributes={attributes}
           control={control}
-          render={CustomerAttributeField}
-          fieldsets={[nameFieldset(attributes)]}
+          render={render ?? CustomerAttributeField}
+          fieldsets={fieldsets ?? [nameFieldset(attributes)]}
         />
       )}
 
