@@ -165,15 +165,33 @@ end up with diffs to dozens of `next-ui`, `magento-cart-items`,
 
 ### Showcasing New Features
 
-**Every feature PR must include a working usage of the feature** — a new
-component without a page that renders it, or a new plugin without a place
-where the host component is rendered, is not reviewable and not validatable.
-For pure UI components, add a demo route under
-`packages/demo-magento-graphcommerce/copy/pages/test/<feature>.tsx` and link
-it from `pages/test/[[...url]].tsx`. For plugins, wire them into one of the
-example storefronts so the diff shows the integration point. The PR
-description's "Test plan" should reference the route or page that
-demonstrates the feature.
+**Every feature PR must wire the feature into one of the existing example
+storefronts so it is visible and presentable on a real page.** A standalone
+demo route under `pages/test/*` is **not** a showcase — it lives outside the
+real flow, never gets walked by a reviewer, and proves nothing about the
+integration. The bar is "if I `yarn workspace @graphcommerce/magento-graphcms
+dev` and open the storefront, can I navigate to a place where this feature is
+actually used?".
+
+Concrete patterns by feature kind:
+
+- **A new UI component** — find the existing page in `examples/magento-graphcms`
+  (or `examples/magento-open-source`) where it belongs and render it there. A
+  product video player gets wired into the product page's media gallery, a new
+  account-menu element into the account layout, a new cart summary block into
+  the cart page, etc. If the showcase needs backend content (a product with a
+  YouTube video uploaded, a Magento config flipped on, a Hygraph row created),
+  call that out in the PR description so the reviewer knows what to configure
+  before previewing.
+- **A new plugin** — wire it where it would actually wrap something, and make
+  sure the storefront still renders. Activating the package via
+  `PRIVATE_ADDITIONAL_DEPENDENCIES` is enough wiring as long as the host
+  component is reachable from a real page in the example.
+- **A new GraphQL fragment / mutation** — exercise it from the page or
+  component that needs the data; don't ship the fragment alone.
+
+The PR description's "Test plan" must name the storefront URL (or click path)
+the reviewer should open to see the feature working.
 
 ### i18n
 
