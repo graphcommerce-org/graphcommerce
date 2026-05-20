@@ -52,9 +52,12 @@ async function findDotOriginalFiles(cwd) {
     if (p) parentPath = p;
     else break;
   }
-  return Promise.all(
-    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs.realpath(file))
-  );
+  const roots = parentPath ? [parentPath] : [cwd, `${cwd}/node_modules/@graphcommerce`];
+  const patterns = roots.flatMap((root) => [
+    `${root}/**/*.original.tsx`,
+    `${root}/**/*.original.ts`
+  ]);
+  return Promise.all((await glob(patterns, { cwd })).map((file) => fs.realpath(file)));
 }
 async function writeInterceptors(interceptors, cwd = process.cwd()) {
   const processedFiles = [];
@@ -105,13 +108,12 @@ dotenv.config({ quiet: true });
 async function cleanupInterceptors(cwd = process.cwd()) {
   console.info("\u{1F9F9} Starting interceptor cleanup...");
   let restoredCount = 0;
-  let removedCount = 0;
   const originalFiles = await findDotOriginalFiles(cwd);
   console.info(`\u{1F4C2} Found ${originalFiles.length} .original files to restore`);
   for (const originalFile of originalFiles) {
     try {
       await restoreOriginalFile(originalFile);
-      removedCount++;
+      restoredCount++;
     } catch (error) {
       console.error(`\u274C Failed to restore ${originalFile}:`, error);
     }

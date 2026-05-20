@@ -75,7 +75,8 @@ it('it generates an interceptor', async () => {
     type PluginAddMollieMethodsProps = OmitPrev<
       React.ComponentProps<typeof PluginAddMollieMethods>,
       'Prev'
-    >
+    > &
+      PluginAddBraintreeMethodsProps
 
     const PluginAddMollieMethodsInterceptor = (props: PluginAddMollieMethodsProps) => (
       <PluginAddMollieMethods {...props} Prev={PluginAddBraintreeMethodsInterceptor} />
@@ -91,7 +92,9 @@ it('it generates an interceptor', async () => {
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      * @see {PluginAddMollieMethods} for source of applied plugin
      */
-    export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor
+    export const PaymentMethodContextProvider =
+      PluginAddMollieMethodsInterceptor as typeof PaymentMethodContextProviderOriginal &
+        React.FC<PluginAddMollieMethodsProps>
     "
   `)
 })
@@ -176,7 +179,8 @@ it('it can apply multiple plugins to a single export', async () => {
     type PluginAddMollieMethodsProps = OmitPrev<
       React.ComponentProps<typeof PluginAddMollieMethods>,
       'Prev'
-    >
+    > &
+      PluginAddAdyenMethodsProps
 
     const PluginAddMollieMethodsInterceptor = (props: PluginAddMollieMethodsProps) => (
       <PluginAddMollieMethods {...props} Prev={PluginAddAdyenMethodsInterceptor} />
@@ -192,7 +196,9 @@ it('it can apply multiple plugins to a single export', async () => {
      * @see {PluginAddAdyenMethods} for source of applied plugin
      * @see {PluginAddMollieMethods} for source of applied plugin
      */
-    export const PaymentMethodContextProvider = PluginAddMollieMethodsInterceptor
+    export const PaymentMethodContextProvider =
+      PluginAddMollieMethodsInterceptor as typeof PaymentMethodContextProviderOriginal &
+        React.FC<PluginAddMollieMethodsProps>
     "
   `)
 })
@@ -245,7 +251,8 @@ it('it handles on duplicates gracefully', async () => {
     type PluginAddBraintreeMethodsProps = OmitPrev<
       React.ComponentProps<typeof PluginAddBraintreeMethods>,
       'Prev'
-    >
+    > &
+      PluginAddBraintreeMethodsProps
 
     const PluginAddBraintreeMethodsInterceptor = (props: PluginAddBraintreeMethodsProps) => (
       <PluginAddBraintreeMethods {...props} Prev={PluginAddBraintreeMethodsInterceptor} />
@@ -261,7 +268,9 @@ it('it handles on duplicates gracefully', async () => {
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      * @see {PluginAddBraintreeMethods} for source of applied plugin
      */
-    export const PaymentMethodContextProvider = PluginAddBraintreeMethodsInterceptor
+    export const PaymentMethodContextProvider =
+      PluginAddBraintreeMethodsInterceptor as typeof PaymentMethodContextProviderOriginal &
+        React.FC<PluginAddBraintreeMethodsProps>
     "
   `)
 })
@@ -636,7 +645,9 @@ export const Plugin = ConfigurableProductPageName
      * @see {ProductPageNameMyPlugin} for source of replaced component
      * @see {PluginConfigurableProductPageName} for source of applied plugin
      */
-    export const ProductPageName = PluginConfigurableProductPageNameInterceptor
+    export const ProductPageName =
+      PluginConfigurableProductPageNameInterceptor as typeof ProductPageNameMyPlugin &
+        React.FC<PluginConfigurableProductPageNameProps>
     "
   `)
 })
