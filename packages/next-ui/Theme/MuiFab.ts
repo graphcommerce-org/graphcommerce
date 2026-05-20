@@ -80,11 +80,14 @@ const sizes: FabSize[] = [
 /**
  * This defines the sizes for the added responsive variant.
  *
+ * Only applied to circular (default) Fabs — extended Fabs must keep `width: auto` and rely on their
+ * content + `min-width`, otherwise they collapse to a fixed square regardless of label.
+ *
  * To override the sizes, please do not add variant declarations direcly, but modify
  * `yourTheme.components.MuiFabExtra.sizes` instead.
  */
 export const MuiFabSizes: FabVariants = sizes.map((size) => ({
-  props: { size },
+  props: { size, variant: 'circular' },
   style: ({ theme }) => fabWidthHeight(size, theme),
 }))
 
