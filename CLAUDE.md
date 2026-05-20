@@ -244,6 +244,11 @@ Document <thing>.
 `@graphcommerce/misc` (`packagesDev/misc/`) is intentionally empty — it has no
 consumers, so the published changelog stays clean.
 
+**Stuck release recovery hint:** when a canary publish fails after versions are
+already bumped, remove the not-yet-published changeset IDs from
+`.changeset/pre.json`'s `changesets` array and push — the next run will
+re-consume them and retry the publish.
+
 ## Architecture
 
 ### Directory Layout
