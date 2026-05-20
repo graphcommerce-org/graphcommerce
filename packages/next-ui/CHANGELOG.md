@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.21
+
+### Patch Changes
+
+- [#2633](https://github.com/graphcommerce-org/graphcommerce/pull/2633) [`7554ad4`](https://github.com/graphcommerce-org/graphcommerce/commit/7554ad479cf78d790eeedd3f862c5d57403bda51) - Fix: `<Fab variant="extended">` no longer gets a fixed `width` from `MuiFabSizes`. The size-based width/height variants are now scoped to `variant: 'circular'` only, so extended Fabs can grow with their label (controlled via `min-width` instead) as MUI intends. Previously every extended Fab without an explicit `size` matched the default `large` rule and was forced to 54px wide. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.20
 
 ## 10.1.0-canary.19
