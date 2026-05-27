@@ -1,4 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
+import { storefrontConfig } from '@graphcommerce/next-ui'
 import {
   getStoryblokApi,
   type ISbStoriesParams,
@@ -18,6 +19,14 @@ export type FetchStoryOpts = {
    * into full story objects in the response (e.g. `row_button_link_list.links`).
    */
   resolveRelations?: string | string[]
+  /**
+   * Direct Storyblok language override. When set, takes precedence over the
+   * storefront-config based `storyblokLocale` and the locale-prefix fallback.
+   * Empty string means "no `language` param" — Storyblok serves its space
+   * default. Used by `useStoryblokState` to refetch in the editor's selected
+   * language.
+   */
+  language?: string
 }
 export type FetchStoriesParams = ISbStoriesParams & FetchStoryOpts
 
@@ -36,6 +45,18 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
   const lang = langPrefix(opts.locale)
   const defaultLang = langPrefix(opts.defaultLocale)
   const isDefault = !lang || lang === defaultLang
+  // Per-storefront override — lets projects map a GraphCommerce locale to a
+  // Storyblok language explicitly. Needed when the GC default locale differs
+  // from the Storyblok space's default language (e.g. GC default `nl_NL` while
+  // Storyblok stays English-default). When unset, fall back to the legacy
+  // locale-prefix heuristic.
+  const explicitLanguage = storefrontConfig(opts.locale)?.storyblokLocale
+  // Direct override has highest priority. Empty string = no `language` param
+  // (Storyblok serves its default language).
+  const language =
+    opts.language !== undefined
+      ? opts.language || undefined
+      : (explicitLanguage ?? (!isDefault ? lang : undefined))
 
   const resolveRelations = Array.isArray(opts.resolveRelations)
     ? opts.resolveRelations.join(',')
@@ -49,7 +70,7 @@ export const sbParams = (opts: FetchStoryOpts = {}) => {
     resolve_links: 'story' as const,
     ...(resolveRelations && { resolve_relations: resolveRelations }),
     ...(isDev && { cv: Date.now() }),
-    ...(!isDefault && { language: lang }),
+    ...(language && { language }),
   }
 }
 

@@ -30,3 +30,16 @@ extend input GraphCommerceConfig {
   """
   storyblok: StoryblokConfig!
 }
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Storyblok language code to request for this storefront. Maps the storefront's
+  GraphCommerce locale to a Storyblok language version. When unset, the storefront's
+  GraphCommerce locale prefix is used as the language code, unless it matches the
+  default locale (in which case no `language` param is sent and Storyblok serves
+  its space-default language). Set this when the GraphCommerce default locale
+  differs from the Storyblok default language (e.g. GraphCommerce default `nl_NL`
+  while the Storyblok space default stays English).
+  """
+  storyblokLocale: String
+}
