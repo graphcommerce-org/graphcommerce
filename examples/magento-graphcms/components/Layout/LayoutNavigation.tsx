@@ -6,8 +6,6 @@ import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlis
 import {
   DesktopNavActions,
   DesktopNavBar,
-  LayoutDefault,
-  LayoutDefaultProps,
   iconCustomerService,
   iconHeart,
   NavigationFab,
@@ -36,6 +34,7 @@ import {
   StoreSwitcherFab,
   StoreSwitcherMenuFabSecondaryItem,
 } from '@graphcommerce/magento-store'
+import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 
 export type LayoutNavigationProps = LayoutQuery &
   Omit<LayoutDefaultProps, 'footer' | 'header' | 'cartFab' | 'menuFab'>

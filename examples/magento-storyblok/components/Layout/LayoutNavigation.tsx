@@ -8,7 +8,6 @@ import {
   StoreSwitcherMenuFabSecondaryItem,
 } from '@graphcommerce/magento-store'
 import { WishlistFab, WishlistMenuFabItem } from '@graphcommerce/magento-wishlist'
-import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
 import {
   DarkLightModeMenuSecondaryItem,
   DesktopNavActions,
@@ -18,7 +17,6 @@ import {
   iconCustomerService,
   iconHeart,
   IconSvg,
-  LayoutDefault,
   MenuFabSecondaryItem,
   MobileTopRight,
   NavigationFab,
@@ -37,6 +35,7 @@ import { GlobalConfigProvider } from '../Storyblok/GlobalConfigProvider'
 import type { StoryblokGlobalConfig } from '../Storyblok/types'
 import { Footer } from './Footer'
 import type { LayoutQuery } from './Layout.gql'
+import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'
 
 export type LayoutNavigationProps = LayoutQuery &
