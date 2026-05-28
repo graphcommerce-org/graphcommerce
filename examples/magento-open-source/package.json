@@ -12,8 +12,8 @@
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev --turbopack' -c 'magenta,cyan'",
-    "codegen": "graphcommerce codegen && gc-mesh build && gc-gql-codegen",
-    "build": "graphcommerce codegen && gc-mesh build && gc-gql-codegen && next build",
+    "codegen": "graphcommerce codegen && gc-mesh build && (gc-gql-codegen 2>&1 | cat) ",
+    "build": "graphcommerce codegen && gc-mesh build && (gc-gql-codegen 2>&1 | cat) && next build",
     "start": "next start",
     "tsc:lint": "tsc --noEmit -p .",
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
