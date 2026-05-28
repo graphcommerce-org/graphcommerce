@@ -18,10 +18,10 @@ import {
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Fab } from '@mui/material'
-import { productListRenderer } from '../ProductListItems/productListRenderer'
+import { productListRenderer } from '../../ProductListItems/productListRenderer'
 import { HeaderContainer } from './HeaderContainer'
-import type { LayoutQuery } from './Layout.gql'
-import { Logo } from './Logo'
+import type { LayoutQuery } from '../Layout.gql'
+import { Logo } from '../Logo'
 
 export type HeaderProps = LayoutQuery & { selection: UseNavigationSelection }
 

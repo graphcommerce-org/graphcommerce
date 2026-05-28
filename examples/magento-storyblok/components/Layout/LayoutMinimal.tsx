@@ -1,7 +1,7 @@
 import { GlobalConfigProvider } from '../Storyblok/GlobalConfigProvider'
 import type { StoryblokGlobalConfig } from '../Storyblok/types'
 import { Footer } from './Footer'
-import { HeaderContainer } from './HeaderContainer'
+import { HeaderContainer } from './Header'
 import type { LayoutQuery } from './Layout.gql'
 import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'

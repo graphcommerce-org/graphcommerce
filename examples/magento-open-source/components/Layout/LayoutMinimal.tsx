@@ -1,7 +1,7 @@
 import { CmsBlock } from '@graphcommerce/magento-cms'
 import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
-import { HeaderContainer } from './HeaderContainer'
+import { HeaderContainer } from './Header'
 import type { LayoutQuery } from './Layout.gql'
 import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'

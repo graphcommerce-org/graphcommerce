@@ -7,8 +7,8 @@ import { DateFormat, FindAndReplace, Footer as FooterBase } from '@graphcommerce
 import { multilinkHref, storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Trans } from '@lingui/react/macro'
 import { Button, IconButton, Link } from '@mui/material'
-import { useGlobalConfig } from '../Storyblok/GlobalConfigProvider'
-import type { StoryblokGlobalConfig } from '../Storyblok/types'
+import { useGlobalConfig } from '../../Storyblok/GlobalConfigProvider'
+import type { StoryblokGlobalConfig } from '../../Storyblok/types'
 
 export type FooterProps = { globalConfig?: StoryblokGlobalConfig | null }
 

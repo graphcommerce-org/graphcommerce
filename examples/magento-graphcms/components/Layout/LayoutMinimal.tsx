@@ -1,5 +1,5 @@
 import { Footer } from './Footer'
-import { HeaderContainer } from './HeaderContainer'
+import { HeaderContainer } from './Header'
 import { LayoutQuery } from './Layout.gql'
 import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'
