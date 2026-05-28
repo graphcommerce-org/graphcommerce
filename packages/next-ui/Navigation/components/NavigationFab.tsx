@@ -17,6 +17,7 @@ const MotionDiv = styled(m.div)({})
 export type NavigationFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
+  disableScrollEffects?: boolean
   sx?: SxProps<Theme>
 } & Pick<FabProps, 'color' | 'size' | 'variant' | 'onClick'>
 
@@ -29,7 +30,7 @@ type OwnerState = {
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function NavigationFab(props: NavigationFabProps) {
-  const { menuIcon, closeIcon, sx = [], ...fabProps } = props
+  const { menuIcon, closeIcon, disableScrollEffects, sx = [], ...fabProps } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -53,12 +54,19 @@ export function NavigationFab(props: NavigationFabProps) {
     <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
-        sx={{
-          [theme.breakpoints.down('md')]: {
-            opacity: '1 !important',
-            transform: 'none !important',
-          },
-        }}
+        sx={
+          disableScrollEffects
+            ? {
+                opacity: '1 !important',
+                transform: 'none !important',
+              }
+            : {
+                [theme.breakpoints.down('md')]: {
+                  opacity: '1 !important',
+                  transform: 'none !important',
+                },
+              }
+        }
         style={{ opacity }}
       >
         <Fab
@@ -121,7 +129,7 @@ export function NavigationFab(props: NavigationFabProps) {
             [theme.breakpoints.down('md')]: { opacity: '1 !important' },
           }}
           className={classes.shadow}
-          style={{ opacity: shadowOpacity }}
+          style={disableScrollEffects ? undefined : { opacity: shadowOpacity }}
         />
       </MotionDiv>
     </Box>
