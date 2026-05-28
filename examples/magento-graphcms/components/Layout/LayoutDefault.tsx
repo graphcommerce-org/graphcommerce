@@ -75,38 +75,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
-        <Container
-          sizing='shell'
-          maxWidth={false}
-          component='header'
-          className={classes.header}
-          sx={(theme) => ({
-            zIndex: theme.zIndex.appBar - 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: theme.appShell.headerHeightSm,
-            pointerEvents: 'none',
-            '& > *': {
-              pointerEvents: 'all',
-            },
-            [theme.breakpoints.up('md')]: {
-              height: theme.appShell.headerHeightMd,
-              top: 0,
-              display: 'flex',
-              justifyContent: 'left',
-              width: '100%',
-            },
-            '&.sticky': {
-              [theme.breakpoints.down('md')]: {
-                position: 'sticky',
-                top: 0,
-              },
-            },
-          })}
-        >
-          {header}
-        </Container>
+        {header}
         {menuFab || cartFab ? (
           <Container
             sizing='shell'
