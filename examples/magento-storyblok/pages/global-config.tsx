@@ -5,12 +5,11 @@ import { LayoutHeader, PageMeta, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { storyblokEditable } from '@graphcommerce/storyblok-ui'
 import { Box, Container, Stack, Typography } from '@mui/material'
-import { useStoryblokState } from '@storyblok/react'
 import type { LayoutNavigationProps } from '../components'
 import { LayoutDocument, LayoutNavigation, Usps } from '../components'
 import { useSetGlobalConfig } from '../components/Storyblok/GlobalConfigProvider'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'
-import { fetchGlobalConfig, type GlobalConfigStory } from '../lib/storyblok'
+import { fetchGlobalConfig, useGlobalConfigState, type GlobalConfigStory } from '../lib/storyblok'
 
 type GlobalConfigPageProps = {
   globalConfigStory: GlobalConfigStory | null
@@ -19,7 +18,7 @@ type GetPageStaticProps = GetStaticProps<LayoutNavigationProps, GlobalConfigPage
 
 function GlobalConfigPage(props: GlobalConfigPageProps) {
   const { globalConfigStory } = props
-  const story = useStoryblokState(globalConfigStory)
+  const story = useGlobalConfigState(globalConfigStory)
   const globalConfig = story?.content
 
   useSetGlobalConfig(globalConfig)

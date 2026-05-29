@@ -76,7 +76,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
         preview: {
           preview: router.isPreview,
         } as PreviewConfig,
-      } as ApolloClient.DefaultOptions,
+      },
       localState: new LocalState({}),
     })
   })
