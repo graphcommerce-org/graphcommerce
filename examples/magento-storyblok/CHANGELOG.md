@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0-canary.23
+
+### Patch Changes
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`e1a7e85`](https://github.com/graphcommerce-org/graphcommerce/commit/e1a7e856669b792b5c7464a7585868b4c8107622) - Sync Storyblok content with the Visual Editor's selected language ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.22
 
 ## 10.1.0-canary.21

@@ -39,19 +39,30 @@ export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalCo
 }
 
 /**
- * The wrapped `useStoryblokState` hook subscribes to the Storyblok Visual Editor bridge for
- * live updates and resolves `row_product` blocks client-side. Both are only useful inside the
- * Visual Editor — Storyblok loads the page in an iframe with `_storyblok` in the query string,
- * which is how we detect editor mode here. Outside the editor (regular visitors and soft navs
- * between routes) `initialStory` is already fully resolved server-side in `getStaticProps`, so
- * we pass `skip: true` to short-circuit the bridge and resolution work.
+ * Reads the Storyblok Visual Editor mode and language from the page's query string. Used by the
+ * `useStoryblokState` wrappers below to decide whether to enable bridge subscription + product
+ * resolution and to refetch in the editor-selected language. Outside the editor (regular
+ * visitors and soft navs) `initialStory` is already fully resolved by `fetchStory` in
+ * `getStaticProps` so the inner hook short-circuits via `skip: true`.
  */
+export function useEditorState() {
+  const query = useRouter().query
+  const isEditor = Boolean(query._storyblok)
+  // eslint-disable-next-line no-underscore-dangle
+  const rawLang = typeof query._storyblok_lang === 'string' ? query._storyblok_lang : undefined
+  const editorLanguage = isEditor && rawLang ? (rawLang === 'default' ? '' : rawLang) : undefined
+  return { skip: !isEditor, editorLanguage }
+}
+
 export const useStoryblokState = (
   initialStory: ISbStoryData | null,
-): ISbStoryData<StoryblokPage> | null => {
-  const isEditor = Boolean(useRouter().query._storyblok)
-  return useStoryblokStateBase<StoryblokPage>(initialStory, { skip: !isEditor })
-}
+): ISbStoryData<StoryblokPage> | null =>
+  useStoryblokStateBase<StoryblokPage>(initialStory, useEditorState())
+
+export const useGlobalConfigState = (
+  initialStory: ISbStoryData | null,
+): ISbStoryData<StoryblokGlobalConfig> | null =>
+  useStoryblokStateBase<StoryblokGlobalConfig>(initialStory, useEditorState())
 
 export const getStoryblokApi = storyblokInit({
   accessToken: storyblok.accessToken,
