@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.24
+
+### Patch Changes
+
+- [#2636](https://github.com/graphcommerce-org/graphcommerce/pull/2636) [`78f9803`](https://github.com/graphcommerce-org/graphcommerce/commit/78f980311d4f8db0d99fe301c62553b4e0bce098) - Fix Turbopack panic ("Cannot find module …graphcommerce.config.cjs") when loading `graphcommerce.config.ts`. cosmiconfig's sync TypeScript loader transpiles the config to a fixed temp `.cjs` path on disk and deletes it again, which races between Next.js worker processes. The `.ts` loader now transpiles via SWC and writes to a per-process unique filename next to the source so concurrent loads never collide. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.23
 
 ## 10.1.0-canary.22

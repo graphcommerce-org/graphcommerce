@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.24
+
+### Patch Changes
+
+- [#2636](https://github.com/graphcommerce-org/graphcommerce/pull/2636) [`0af6794`](https://github.com/graphcommerce-org/graphcommerce/commit/0af679485950c934cdadc56b8b3ea8ace9de8ab9) - Fix for codegen issue where codegen would stop (without error) halfway through ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.23
 
 ### Patch Changes
