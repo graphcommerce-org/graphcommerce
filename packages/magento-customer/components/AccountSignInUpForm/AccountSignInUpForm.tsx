@@ -203,7 +203,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                         <Trans>Sign out</Trans>
                       </Button>
                     ) : (
-                      formState.isSubmitting && <CircularProgress sx={{ display: 'inline-flex' }} />
+                      formState.isSubmitting && <CircularProgress aria-hidden='true' sx={{ display: 'inline-flex' }} />
                     ),
                   readOnly: !!email,
                 }}
