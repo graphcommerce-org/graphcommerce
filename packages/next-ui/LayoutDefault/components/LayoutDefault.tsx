@@ -10,6 +10,10 @@ import { SkipLink } from '../../SkipLink/SkipLink'
 import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
 
+/**
+ * @deprecated Import `LayoutDefaultProps` from your project's
+ * `components/Layout/LayoutDefault.tsx` instead.
+ */
 export type LayoutDefaultProps = {
   className?: string
   beforeHeader?: React.ReactNode
@@ -31,6 +35,10 @@ const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof pa
   parts,
 )
 
+/**
+ * @deprecated Import `LayoutDefault` from your project's
+ * `components/Layout/LayoutDefault.tsx` instead.
+ */
 export function LayoutDefault(props: LayoutDefaultProps) {
   const {
     children,
