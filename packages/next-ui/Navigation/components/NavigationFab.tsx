@@ -18,6 +18,7 @@ export type NavigationFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
   disableScrollEffects?: boolean
+  disableElevation?: boolean
   sx?: SxProps<Theme>
 } & Pick<FabProps, 'color' | 'size' | 'variant' | 'onClick'>
 
@@ -30,7 +31,14 @@ type OwnerState = {
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function NavigationFab(props: NavigationFabProps) {
-  const { menuIcon, closeIcon, disableScrollEffects, sx = [], ...fabProps } = props
+  const {
+    menuIcon,
+    closeIcon,
+    disableScrollEffects,
+    disableElevation,
+    sx = [],
+    ...fabProps
+  } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -74,14 +82,14 @@ export function NavigationFab(props: NavigationFabProps) {
           aria-label='Open Menu'
           size='responsive'
           sx={{
-            boxShadow: 'none',
-            '&:hover, &:focus': {
               boxShadow: 'none',
+              '&:hover, &:focus': {
+                boxShadow: 'none',
+                background: theme.vars.palette.text.primary,
+              },
               background: theme.vars.palette.text.primary,
-            },
-            background: theme.vars.palette.text.primary,
             pointerEvents: 'all',
-            color: theme.vars.palette.background.paper,
+              color: theme.vars.palette.background.paper,
           }}
           className={classes.fab}
           {...fabProps}
@@ -117,20 +125,22 @@ export function NavigationFab(props: NavigationFabProps) {
             />
           )}
         </Fab>
-        <MotionDiv
-          sx={{
-            pointerEvents: 'none',
-            borderRadius: '99em',
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            boxShadow: theme.shadows[6],
-            top: 0,
-            [theme.breakpoints.down('md')]: { opacity: '1 !important' },
-          }}
-          className={classes.shadow}
-          style={disableScrollEffects ? undefined : { opacity: shadowOpacity }}
-        />
+        {!disableElevation && (
+          <MotionDiv
+            sx={{
+              pointerEvents: 'none',
+              borderRadius: '99em',
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              boxShadow: theme.shadows[6],
+              top: 0,
+              [theme.breakpoints.down('md')]: { opacity: '1 !important' },
+            }}
+            className={classes.shadow}
+            style={disableScrollEffects ? undefined : { opacity: shadowOpacity }}
+          />
+        )}
       </MotionDiv>
     </Box>
   )
