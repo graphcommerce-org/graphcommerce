@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.25
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.24
 
 ## 10.1.0-canary.23

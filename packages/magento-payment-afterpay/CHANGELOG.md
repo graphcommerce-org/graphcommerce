@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-afterpay
 
+## 10.1.0-canary.25
+
 ## 10.1.0-canary.24
 
 ## 10.1.0-canary.23

@@ -1,5 +1,17 @@
 # Change Log
 
+## 10.1.0-canary.25
+
+### Minor Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`21a676b`](https://github.com/graphcommerce-org/graphcommerce/commit/21a676bb50888278d437b88a6e49e6f3d0c4d4bb) - Changed Footer props type to allow setting footer container props ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.24
 
 ## 10.1.0-canary.23
