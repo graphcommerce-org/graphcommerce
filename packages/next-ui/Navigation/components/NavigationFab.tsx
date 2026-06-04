@@ -17,6 +17,8 @@ const MotionDiv = styled(m.div)({})
 export type NavigationFabProps = {
   menuIcon?: React.ReactNode
   closeIcon?: React.ReactNode
+  disableScrollEffects?: boolean
+  disableElevation?: boolean
   sx?: SxProps<Theme>
 } & Pick<FabProps, 'color' | 'size' | 'variant' | 'onClick'>
 
@@ -29,7 +31,14 @@ type OwnerState = {
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function NavigationFab(props: NavigationFabProps) {
-  const { menuIcon, closeIcon, sx = [], ...fabProps } = props
+  const {
+    menuIcon,
+    closeIcon,
+    disableScrollEffects,
+    disableElevation,
+    sx = [],
+    ...fabProps
+  } = props
   const router = useRouter()
   const [openEl, setOpenEl] = React.useState<null | HTMLElement>(null)
 
@@ -53,28 +62,41 @@ export function NavigationFab(props: NavigationFabProps) {
     <Box sx={sxx({ position: 'relative', width: fabIconSize, height: fabIconSize }, sx)}>
       <MotionDiv
         className={classes.wrapper}
-        sx={{
-          [theme.breakpoints.down('md')]: {
-            opacity: '1 !important',
-            transform: 'none !important',
-          },
-        }}
+        sx={
+          disableScrollEffects
+            ? {
+                opacity: '1 !important',
+                transform: 'none !important',
+              }
+            : {
+                [theme.breakpoints.down('md')]: {
+                  opacity: '1 !important',
+                  transform: 'none !important',
+                },
+              }
+        }
         style={{ opacity }}
       >
         <Fab
           color='inherit'
           aria-label='Open Menu'
           size='responsive'
-          sx={{
-            boxShadow: 'none',
-            '&:hover, &:focus': {
+          sx={sxx(
+            {
               boxShadow: 'none',
-              background: theme.vars.palette.text.primary,
+              pointerEvents: 'all',
+              '&:hover, &:focus': {
+                boxShadow: 'none',
+              },
             },
-            background: theme.vars.palette.text.primary,
-            pointerEvents: 'all',
-            color: theme.vars.palette.background.paper,
-          }}
+            !fabProps.color && {
+              '&:hover, &:focus': {
+                background: theme.vars.palette.text.primary,
+              },
+              background: theme.vars.palette.text.primary,
+              color: theme.vars.palette.background.paper,
+            },
+          )}
           className={classes.fab}
           {...fabProps}
         >
@@ -109,20 +131,22 @@ export function NavigationFab(props: NavigationFabProps) {
             />
           )}
         </Fab>
-        <MotionDiv
-          sx={{
-            pointerEvents: 'none',
-            borderRadius: '99em',
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            boxShadow: theme.shadows[6],
-            top: 0,
-            [theme.breakpoints.down('md')]: { opacity: '1 !important' },
-          }}
-          className={classes.shadow}
-          style={{ opacity: shadowOpacity }}
-        />
+        {!disableElevation && (
+          <MotionDiv
+            sx={{
+              pointerEvents: 'none',
+              borderRadius: '99em',
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              boxShadow: theme.shadows[6],
+              top: 0,
+              [theme.breakpoints.down('md')]: { opacity: '1 !important' },
+            }}
+            className={classes.shadow}
+            style={disableScrollEffects ? undefined : { opacity: shadowOpacity }}
+          />
+        )}
       </MotionDiv>
     </Box>
   )

@@ -1,19 +1,17 @@
 import { useScrollOffset } from '@graphcommerce/framer-next-pages'
 import { dvh } from '@graphcommerce/framer-utils'
-import { sxx } from '@graphcommerce/next-ui'
+import {
+  Container,
+  extendableComponent,
+  LayoutProvider,
+  SkipLink,
+  sxx,
+  useFabSize,
+} from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
 import { useScroll, useTransform } from 'framer-motion'
-import { Container } from '../../Container/Container'
-import { LayoutProvider } from '../../Layout/components/LayoutProvider'
-import { SkipLink } from '../../SkipLink/SkipLink'
-import { extendableComponent } from '../../Styles'
-import { useFabSize } from '../../Theme'
 
-/**
- * @deprecated Import `LayoutDefaultProps` from your project's
- * `components/Layout/LayoutDefault.tsx` instead.
- */
 export type LayoutDefaultProps = {
   className?: string
   beforeHeader?: React.ReactNode
@@ -35,10 +33,6 @@ const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof pa
   parts,
 )
 
-/**
- * @deprecated Import `LayoutDefault` from your project's
- * `components/Layout/LayoutDefault.tsx` instead.
- */
 export function LayoutDefault(props: LayoutDefaultProps) {
   const {
     children,
@@ -81,38 +75,7 @@ export function LayoutDefault(props: LayoutDefaultProps) {
       <SkipLink />
       <LayoutProvider scroll={scrollYOffset}>
         {beforeHeader}
-        <Container
-          sizing='shell'
-          maxWidth={false}
-          component='header'
-          className={classes.header}
-          sx={(theme) => ({
-            zIndex: theme.zIndex.appBar - 1,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: theme.appShell.headerHeightSm,
-            pointerEvents: 'none',
-            '& > *': {
-              pointerEvents: 'all',
-            },
-            [theme.breakpoints.up('md')]: {
-              height: theme.appShell.headerHeightMd,
-              top: 0,
-              display: 'flex',
-              justifyContent: 'left',
-              width: '100%',
-            },
-            '&.sticky': {
-              [theme.breakpoints.down('md')]: {
-                position: 'sticky',
-                top: 0,
-              },
-            },
-          })}
-        >
-          {header}
-        </Container>
+        {header}
         {menuFab || cartFab ? (
           <Container
             sizing='shell'
