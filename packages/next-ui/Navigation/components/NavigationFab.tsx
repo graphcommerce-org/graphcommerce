@@ -81,16 +81,22 @@ export function NavigationFab(props: NavigationFabProps) {
           color='inherit'
           aria-label='Open Menu'
           size='responsive'
-          sx={{
+          sx={sxx(
+            {
               boxShadow: 'none',
+              pointerEvents: 'all',
               '&:hover, &:focus': {
                 boxShadow: 'none',
+              },
+            },
+            !fabProps.color && {
+              '&:hover, &:focus': {
                 background: theme.vars.palette.text.primary,
               },
               background: theme.vars.palette.text.primary,
-            pointerEvents: 'all',
               color: theme.vars.palette.background.paper,
-          }}
+            },
+          )}
           className={classes.fab}
           {...fabProps}
         >
