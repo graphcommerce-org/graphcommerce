@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.26
+
+### Patch Changes
+
+- [#2638](https://github.com/graphcommerce-org/graphcommerce/pull/2638) [`bd2ee81`](https://github.com/graphcommerce-org/graphcommerce/commit/bd2ee81ff4c0e7381bb9fb7bf06c3109efa32190) - Fixed empty footer on blog pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.25
 
 ### Minor Changes
