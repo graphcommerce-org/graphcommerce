@@ -24,7 +24,7 @@ import { BlogList, LayoutDocument, LayoutNavigation } from '../../../components'
 import type { LayoutNavigationProps } from '../../../components'
 import { RowRenderer } from '../../../components/Storyblok/RowRenderer'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
-import { useStoryblokState } from '../../../lib/storyblok'
+import { fetchGlobalConfig, useStoryblokState } from '../../../lib/storyblok'
 
 type Props = {
   story: StoryblokStory | null
@@ -116,6 +116,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  const globalConfig = fetchGlobalConfig(context)
   const landingStory = fetchStory('blog', context, staticClient)
   const blogList = fetchStories({
     starts_with: 'blog/',
@@ -136,6 +137,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       total,
       perPage,
       ...(await layout).data,
+      globalConfig: (await globalConfig)?.content ?? null,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),
