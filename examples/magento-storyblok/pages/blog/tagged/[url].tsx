@@ -20,6 +20,7 @@ import type { GetStaticPaths } from 'next'
 import { BlogList, LayoutDocument, LayoutNavigation } from '../../../components'
 import type { LayoutNavigationProps } from '../../../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../../../lib/graphql/graphqlSsrClient'
+import { fetchGlobalConfig } from '../../../lib/storyblok'
 
 type Props = { tag: string; stories: StoryblokStory[] }
 type RouteProps = { url: string }
@@ -98,6 +99,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  const globalConfig = fetchGlobalConfig(context)
   const stories = await fetchAllStories({
     starts_with: 'blog/',
     excluding_slugs: 'blog/,blog/tagged/*',
@@ -113,6 +115,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       tag,
       stories,
       ...(await layout).data,
+      globalConfig: (await globalConfig)?.content ?? null,
       up: { href: '/blog', title: t`Blog` },
       apolloState: await conf.then(() => client.cache.extract()),
     },
