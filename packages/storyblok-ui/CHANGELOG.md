@@ -1,5 +1,13 @@
 # @graphcommerce/storyblok-ui
 
+## 10.1.0-canary.27
+
+### Patch Changes
+
+- [#2639](https://github.com/graphcommerce-org/graphcommerce/pull/2639) [`6eb86fd`](https://github.com/graphcommerce-org/graphcommerce/commit/6eb86fd5833adfac3cd39a99d1841a8b95520ed5) - Refresh the pinned Storyblok cache-version (`cv`) on a TTL so published content no longer stays frozen on long-lived servers.
+
+  `storyblok-js-client` pins the space `cv` per process on the first published request and never refreshes it (its `cache.clear` defaults to `'manual'`), so published edits only became visible after a process restart — on a multi-pod deployment this could mean content not updating for a long time. `fetchStory`, `fetchStories` and `fetchAllStories` now call the new `refreshStoryblokCacheVersion()` before published reads, which re-fetches `cdn/spaces/me` at most once per the new `storyblok.cacheVersionTtl` config (seconds, default 60; 0 refreshes on every read) to advance the pinned `cv`. Skipped for preview/draft and in development. The helper is exported so on-demand revalidation (e.g. a cache-notify webhook) can force an immediate refresh. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 10.1.0-canary.26
 
 ## 10.1.0-canary.25
