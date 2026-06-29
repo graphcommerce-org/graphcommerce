@@ -22,6 +22,18 @@ input StoryblokConfig {
   Override only if you maintain your own example/template space.
   """
   sourceSpaceId: String
+
+  """
+  How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`).
+
+  `storyblok-js-client` pins the `cv` per process on the first published request and never
+  refreshes it, which freezes published content until the process restarts (a real problem on
+  long-lived, multi-pod deployments). GraphCommerce re-fetches the current `cv` at most once per
+  this interval before published reads, so edits become visible again. Defaults to `60`. Set to
+  `0` to refresh on every read (always fresh, more requests); raise it to reduce requests at the
+  cost of higher staleness. Does not apply in development, where a fresh `cv` is sent per request.
+  """
+  cacheVersionTtl: Int
 }
 
 extend input GraphCommerceConfig {

@@ -36,6 +36,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/server": "^11.11.0",
     "@emotion/styled": "^11.14.1",
+    "@floating-ui/dom": "^1.7.6",
     "@graphcommerce/cli": "10.1.0-canary.26",
     "@graphcommerce/ecommerce-ui": "10.1.0-canary.26",
     "@graphcommerce/framer-next-pages": "10.1.0-canary.26",
