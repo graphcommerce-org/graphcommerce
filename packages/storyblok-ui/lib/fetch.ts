@@ -1,4 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
+import { storyblok } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import {
   getStoryblokApi,
@@ -34,6 +35,36 @@ const isDev = process.env.NODE_ENV === 'development'
 const STORIES_PER_PAGE = 100
 const MAX_PAGE_CONCURRENCY = 3
 const MAX_RETRIES = 3
+
+/**
+ * `storyblok-js-client` pins the space cache-version (`cv`) per process on the first published
+ * request and—because `cache.clear` defaults to `'manual'`—never refreshes it. Published content
+ * therefore stays frozen at the process-start `cv` until the process restarts. On long-lived
+ * servers (e.g. multi-pod Kubernetes) this means published edits never become visible.
+ *
+ * We bound the staleness by periodically re-fetching `cdn/spaces/me`, which returns the current
+ * `cv` and updates the client's pinned value, so subsequent reads hit the fresh (CDN-cached)
+ * version. Skipped in dev, where `sbParams` already sends a fresh `cv` on every request.
+ *
+ * The interval is configurable via `storyblok.cacheVersionTtl` (seconds, default 60; 0 refreshes
+ * on every read).
+ */
+const CV_REFRESH_TTL_MS = (storyblok?.cacheVersionTtl ?? 60) * 1000
+let cvRefreshedAt = 0
+
+export async function refreshStoryblokCacheVersion(force = false): Promise<void> {
+  if (isDev) return
+  const now = Date.now()
+  if (!force && now - cvRefreshedAt < CV_REFRESH_TTL_MS) return
+  // Optimistically mark refreshed so concurrent callers don't stampede cdn/spaces/me.
+  cvRefreshedAt = now
+  try {
+    await getStoryblokApi().get('cdn/spaces/me')
+  } catch {
+    // A failed refresh keeps the previous cv; reset so the next call retries.
+    cvRefreshedAt = 0
+  }
+}
 
 /** Extracts the language prefix from a locale string (e.g. `en_US` → `en`). */
 function langPrefix(locale?: string) {
@@ -139,6 +170,7 @@ export async function fetchStories(
   const perPage = params.per_page ?? STORIES_PER_PAGE
   const page = params.page ?? 1
   try {
+    if (!params.preview) await refreshStoryblokCacheVersion()
     const response = await storiesRequest(params, page, perPage)
     return {
       stories: response.data?.stories ?? [],
@@ -159,6 +191,7 @@ export async function fetchStories(
 export async function fetchAllStories(params: FetchStoriesParams): Promise<StoryblokStory[]> {
   const perPage = params.per_page ?? STORIES_PER_PAGE
   try {
+    if (!params.preview) await refreshStoryblokCacheVersion()
     const first = await storiesRequest(params, 1, perPage)
     const stories: StoryblokStory[] = first.data?.stories ?? []
     const totalPages = Math.ceil((first.total ?? stories.length) / perPage)
@@ -187,6 +220,7 @@ export async function fetchStory(
   apolloClient?: ApolloClient,
 ): Promise<{ data: { story: StoryblokStory } | null }> {
   try {
+    if (!opts?.preview) await refreshStoryblokCacheVersion()
     const result = await fetchWithRetry(() =>
       getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts)),
     )
