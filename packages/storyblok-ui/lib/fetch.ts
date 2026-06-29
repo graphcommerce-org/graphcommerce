@@ -51,18 +51,40 @@ const MAX_RETRIES = 3
  */
 const CV_REFRESH_TTL_MS = (storyblok?.cacheVersionTtl ?? 60) * 1000
 let cvRefreshedAt = 0
+let forceRefreshRequested = false
 
-export async function refreshStoryblokCacheVersion(force = false): Promise<void> {
+/**
+ * Request an immediate cache-version refresh on the next published read.
+ *
+ * Safe to call from any context — including a cache-notify webhook handler that runs before
+ * `storyblokInit` — because it only flips a flag and never touches the Storyblok client (so it
+ * never logs the "apiPlugin not loaded" warning). On a shared-process deployment (e.g. Kubernetes)
+ * the page regeneration that follows runs in the same process and picks this up, so just-published
+ * content is fetched immediately. On serverless the flag is process-local, so freshness there
+ * falls back to the TTL.
+ */
+export function requestStoryblokCacheVersionRefresh(): void {
+  forceRefreshRequested = true
+}
+
+/**
+ * Advance the pinned cache-version when forced (see {@link requestStoryblokCacheVersionRefresh}) or
+ * once the TTL has elapsed. Only called from the published-read fetch functions below, where
+ * `storyblokInit` has always run, so `getStoryblokApi()` is safe here.
+ */
+async function refreshStoryblokCacheVersion(): Promise<void> {
   if (isDev) return
   const now = Date.now()
-  if (!force && now - cvRefreshedAt < CV_REFRESH_TTL_MS) return
+  if (!forceRefreshRequested && now - cvRefreshedAt < CV_REFRESH_TTL_MS) return
   // Optimistically mark refreshed so concurrent callers don't stampede cdn/spaces/me.
+  forceRefreshRequested = false
   cvRefreshedAt = now
   try {
     await getStoryblokApi().get('cdn/spaces/me')
   } catch {
-    // A failed refresh keeps the previous cv; reset so the next call retries.
+    // A failed refresh keeps the previous cv; force a retry on the next read.
     cvRefreshedAt = 0
+    forceRefreshRequested = true
   }
 }
 
