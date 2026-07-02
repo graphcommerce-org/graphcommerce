@@ -100,6 +100,7 @@ export default OrderSuccessPage
 export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
   const client = graphqlSharedClient(context)
+  const up = { href: '/', title: t`Home` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -111,7 +112,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await layout).data,
       globalConfig: (await globalConfig)?.content ?? null,
-      up: { href: '/', title: t`Home` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

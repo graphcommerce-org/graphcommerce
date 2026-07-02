@@ -179,6 +179,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (!url || !query) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const homeUp = { href: '/', title: t`Home` }
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client)
 
@@ -249,7 +250,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category_url_path && category_name
       ? { href: `/${category_url_path}`, title: category_name }
-      : { href: '/', title: t`Home` }
+      : homeUp
 
   await waitForSiblings
   const result = {

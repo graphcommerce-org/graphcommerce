@@ -71,6 +71,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const isRoot = slug === 'service'
 
   const client = graphqlSharedClient(context)
+  const up = isRoot ? null : { href: '/service', title: t`Customer Service` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -87,7 +88,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       story,
       ...(await layout).data,
-      up: isRoot ? null : { href: '/service', title: t`Customer Service` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

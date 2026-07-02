@@ -49,6 +49,7 @@ export default RouteNotFoundPage
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
+  const up = { href: '/', title: t`Home` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -61,7 +62,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await layout).data,
       globalConfig: (await globalConfig)?.content ?? null,
-      up: { href: '/', title: t`Home` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

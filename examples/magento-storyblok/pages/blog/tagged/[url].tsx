@@ -92,6 +92,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (!tag) return { notFound: true, revalidate: revalidate() }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/blog', title: t`Blog` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -116,7 +117,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       stories,
       ...(await layout).data,
       globalConfig: (await globalConfig)?.content ?? null,
-      up: { href: '/blog', title: t`Blog` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),
