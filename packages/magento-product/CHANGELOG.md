@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.31
+
+### Patch Changes
+
+- [#2641](https://github.com/graphcommerce-org/graphcommerce/pull/2641) [`e1bcd16`](https://github.com/graphcommerce-org/graphcommerce/commit/e1bcd1636a21ed7e5f737993d4373cee074b3d07) - Fix the add-to-cart success message counting 0 when the added cart item has no `customizable_options` to match the requested entered/selected options against. `findAddedItems` now falls back to the SKU (+ configurable variant) match instead of dropping the item. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.30
 
 ## 10.1.0-canary.29

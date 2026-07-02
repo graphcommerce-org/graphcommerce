@@ -90,6 +90,7 @@
     "@graphcommerce/storyblok-ui": "10.0.3"
   },
   "changesets": [
+    "add-products-to-cart-empty-customizable-options",
     "add-youtube-embed",
     "afraid-mangos-design",
     "attribute-value-inputs-allow-clearing",
