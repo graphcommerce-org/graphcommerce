@@ -1,5 +1,11 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 10.1.0-canary.29
+
+### Patch Changes
+
+- [#2642](https://github.com/graphcommerce-org/graphcommerce/pull/2642) [`1dc4e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/1dc4e9e6fc7fc87cc1d3b101144365fe93eed359) - Fix breadcrumb "up" link title being translated in the wrong locale during static generation. The Lingui `t` macro title was evaluated inside the returned props after awaiting GraphQL queries, so a concurrent static-generation request for another locale could change the global active locale mid-flight. The `up` object is now computed synchronously before any await, capturing the correct locale for the current request. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.1.0-canary.28
 
 ## 10.1.0-canary.27

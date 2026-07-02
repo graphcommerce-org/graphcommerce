@@ -2,7 +2,7 @@
   "name": "@graphcommerce/misc",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.1.0-canary.28",
+  "version": "10.1.0-canary.29",
   "exports": {
     ".": "./index.ts"
   }
