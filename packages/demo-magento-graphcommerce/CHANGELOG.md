@@ -1,5 +1,7 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 10.1.0-canary.30
+
 ## 10.1.0-canary.29
 
 ### Patch Changes

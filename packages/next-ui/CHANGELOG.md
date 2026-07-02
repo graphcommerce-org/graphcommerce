@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.30
+
+### Patch Changes
+
+- [#2643](https://github.com/graphcommerce-org/graphcommerce/pull/2643) [`04ba9be`](https://github.com/graphcommerce-org/graphcommerce/commit/04ba9be6f050cc686133bec57f40da9f8eecb4c8) - Only render disabled pagination items as links when enabled. Disabled `PaginationItem`s no longer receive a `component`/`href`, preventing crawlers from following links to an infinite number of list pages and inflating the static page cache. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 10.1.0-canary.29
 
 ## 10.1.0-canary.28
