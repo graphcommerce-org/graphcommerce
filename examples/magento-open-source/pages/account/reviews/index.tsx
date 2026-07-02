@@ -79,12 +79,13 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/account', title: t`Account` }
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
-      up: { href: '/account', title: t`Account` },
+      up,
     },
   }
 }

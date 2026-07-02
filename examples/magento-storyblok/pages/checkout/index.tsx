@@ -156,6 +156,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/cart', title: t`Cart` }
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
@@ -169,7 +170,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       ...(await layout).data,
       globalConfig: (await globalConfig)?.content ?? null,
-      up: { href: '/cart', title: t`Cart` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

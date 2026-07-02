@@ -133,6 +133,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const slug = `blog/${params?.url?.join('/') ?? ''}`
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/blog', title: t`Blog` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -158,7 +159,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       related: (await related).stories,
       ...(await layout).data,
       globalConfig: (await globalConfig)?.content ?? null,
-      up: { href: '/blog', title: t`Blog` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),
