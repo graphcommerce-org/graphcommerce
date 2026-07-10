@@ -623,7 +623,7 @@ function parseAndFindExport(resolved, findExport, resolve) {
     if (node.type === "ExportNamedDeclaration") {
       for (const specifier of node.specifiers) {
         if (specifier.type === "ExportSpecifier") {
-          if (specifier.exported?.value === findExport) return resolved;
+          if ((specifier.exported?.value ?? specifier.orig?.value) === findExport) return resolved;
         } else if (specifier.type === "ExportDefaultSpecifier") ; else if (specifier.type === "ExportNamespaceSpecifier") ;
       }
     }

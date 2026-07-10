@@ -37,7 +37,11 @@ function parseAndFindExport(
     if (node.type === 'ExportNamedDeclaration') {
       for (const specifier of node.specifiers) {
         if (specifier.type === 'ExportSpecifier') {
-          if (specifier.exported?.value === findExport) return resolved
+          // A non-aliased re-export (`export { Image }`) carries the name in
+          // `orig`, with `exported` left null; only an aliased re-export
+          // (`export { Foo as Image }`) populates `exported`. Fall back to
+          // `orig` so components exported without an alias remain interceptable.
+          if ((specifier.exported?.value ?? specifier.orig.value) === findExport) return resolved
         } else if (specifier.type === 'ExportDefaultSpecifier') {
           // todo
         } else if (specifier.type === 'ExportNamespaceSpecifier') {
