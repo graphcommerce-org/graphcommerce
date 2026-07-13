@@ -1,5 +1,15 @@
 # @graphcommerce/ecommerce-ui
 
+## 10.1.0-canary.36
+
+### Patch Changes
+
+- [#2645](https://github.com/graphcommerce-org/graphcommerce/pull/2645) [`08636cd`](https://github.com/graphcommerce-org/graphcommerce/commit/08636cd694f64a8a4bd950d537efbf5483e56927) - Fix Preview Mode causing an infinite reload loop in production
+
+  When enabling Preview Mode in production the `secret` has to be typed (it is only pre-filled in development), which marks the field dirty and persists it to `sessionStorage` via `FormPersist`. On the next render `PreviewModeEnabled` restored that persisted `secret` with `setValue(…, { shouldDirty: true })`, which the all-fields `FormAutoSubmit` interpreted as a user change and submitted the `update` action — a `window.location` navigation to `/api/preview` that redirects back with a `307`, re-triggering the restore and reload endlessly.
+
+  `FormAutoSubmit` now watches only `previewData` (the field the toolbar actually edits), and the preview `secret` is excluded from `FormPersist` so the token is no longer stored in the browser. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.35
 
 ## 10.1.0-canary.34
