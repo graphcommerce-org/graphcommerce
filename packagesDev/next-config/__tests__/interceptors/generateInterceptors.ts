@@ -720,3 +720,27 @@ it('Can correctly find exports that are default exports', async () => {
     "export { iconChevronLeft as iconChevronLeft } from '../../plugins/MyProjectIcon'",
   )
 })
+
+it('forwards the default export of the original module', async () => {
+  const resolve = resolveDependency(projectRoot)
+  const interceptors = await generateInterceptors(
+    [
+      {
+        type: 'function',
+        targetExport: 'fetch',
+        sourceExport: 'fetch',
+        enabled: true,
+        targetModule: '@graphcommerce/graphql-mesh/customFetch',
+        sourceModule: './plugins/MyCustomFetch',
+      },
+    ],
+    resolve,
+  )
+  const result = interceptors['packages/graphql-mesh/customFetch']?.template
+
+  // `export *` does not include the default export; without an explicit forward, consumers that
+  // import the default (e.g. GraphQL Mesh resolving customFetch via `exported.default ||
+  // exported`) would receive the module namespace instead of the function.
+  expect(result).toContain("export * from './customFetch.original'")
+  expect(result).toContain("export { default } from './customFetch.original'")
+})
