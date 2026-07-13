@@ -2,8 +2,19 @@ import fetchRetry from 'fetch-retry'
 import type { RequestInitWithRetry } from 'fetch-retry'
 
 const fetcher = fetchRetry(
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, no-underscore-dangle, @typescript-eslint/no-var-requires
-  process.env.__NEXT_PROCESSED_ENV ? globalThis.fetch : require('@whatwg-node/fetch').fetch,
+  /**
+   * Always use the fetch that `@whatwg-node/fetch` exports, never `globalThis.fetch` directly. When
+   * `@whatwg-node/fetch` detects a Next.js runtime it re-exports the native fetch primitives (so
+   * inside Next this IS `globalThis.fetch`/undici, keeping SSL handshakes alive), but when that
+   * detection fails — `next dev` (turbopack) evaluates it while loading `next.config.ts` (via
+   * `@graphql-codegen/cli`), before any `__NEXT` global exists — it exports its ponyfills instead.
+   * In that case `@graphql-tools/executor-http` builds multipart upload bodies with the ponyfill
+   * `FormData`, which undici doesn't recognize and stringifies to the literal `[object Object]`
+   * (Magento: "Unable to parse the request."). The fetch implementation must therefore always come
+   * from the same family as the `FormData`/`File` classes executor-http uses.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-var-requires
+  require('@whatwg-node/fetch').fetch,
 )
 
 /**
