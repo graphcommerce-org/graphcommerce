@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.35
+
+### Patch Changes
+
+- [#2649](https://github.com/graphcommerce-org/graphcommerce/pull/2649) [`d81ac44`](https://github.com/graphcommerce-org/graphcommerce/commit/d81ac44f7749961aa518ee517b7e4699c19bb189) - Interceptors now forward the original module's default export. `export * from './X.original'` does not re-export `default` (ES semantics), so intercepting a module with a default export silently dropped it. This broke `gc-mesh build` when a plugin targeted `@graphcommerce/graphql-mesh/customFetch`: GraphQL Mesh resolves the fetch function via `exported.default || exported` and received the module namespace instead of the function, failing schema introspection with `Cannot read properties of undefined (reading '__schema')`. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.34
 
 ### Patch Changes

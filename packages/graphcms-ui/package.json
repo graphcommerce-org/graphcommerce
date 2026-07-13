@@ -2,7 +2,7 @@
   "name": "@graphcommerce/graphcms-ui",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.1.0-canary.34",
+  "version": "10.1.0-canary.35",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -12,7 +12,7 @@
     }
   },
   "peerDependencies": {
-    "@graphcommerce/hygraph-ui": "^10.1.0-canary.34"
+    "@graphcommerce/hygraph-ui": "^10.1.0-canary.35"
   },
   "exports": {
     ".": "./index.ts"
