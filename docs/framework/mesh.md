@@ -92,3 +92,35 @@ To make sure changes are picked up during development set the config value
 `graphqlMeshEditMode: true` in your graphcommerce.config.js or set the env
 variable `GC_GRAPHQL_MESH_EDIT_MODE=1`. This _will_ make the frontend
 considerably slower.
+
+## Routing Magento traffic over an internal network
+
+When the frontend runs next to Magento — e.g. both in the same Kubernetes
+cluster — the mesh's server-side Magento requests (GraphQL and REST) can be
+routed directly to an internal Service instead of hairpinning over the public
+load balancer. Set in the **runtime** environment (e.g. a Kubernetes
+ConfigMap):
+
+```
+GC_MAGENTO_ENDPOINT_SERVER=http://varnish.magento-namespace.svc.cluster.local
+```
+
+Every request whose URL starts with the origin of `GC_MAGENTO_ENDPOINT` is
+rewritten to this origin, so both the GraphQL endpoint and the REST endpoint
+are covered. `GC_MAGENTO_ENDPOINT` itself stays the public URL: it keeps
+feeding build-time schema introspection, `images.remotePatterns` and the media
+URLs Magento generates. The rewrite also sends `X-Forwarded-Proto: https`,
+which the TLS-terminating proxy would normally add — Magento needs it to keep
+generating `https://` URLs.
+
+Caveats:
+
+- Both `GC_MAGENTO_ENDPOINT_SERVER` and `GC_MAGENTO_ENDPOINT` must be present
+  in the runtime environment; the rewrite happens per request at runtime.
+- Do **not** set `GC_MAGENTO_ENDPOINT_SERVER` in the build environment: schema
+  introspection (`gc-mesh build`) and static generation run where the internal
+  endpoint is typically not reachable. Unset, the feature is a no-op.
+- Point it at the Varnish service (not the webserver directly) to keep
+  Magento's GraphQL full-page cache in the path.
+- When a NetworkPolicy guards the Magento namespace, allow ingress from the
+  frontend namespace to the Varnish pods.
