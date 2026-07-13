@@ -116,6 +116,7 @@
     "graphql-provider-terminating-link",
     "happy-jars-drum",
     "intercept-non-aliased-reexports",
+    "interceptor-forward-default-export",
     "kind-days-punch",
     "long-buttons-begin",
     "mesh-multipart-bodyparser",
