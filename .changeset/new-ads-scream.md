@@ -2,4 +2,4 @@
 '@graphcommerce/magento-payment-braintree': patch
 ---
 
-Added disableBraintreeThreeDSecure flag / minor fixes / Show Braintree errors to the customer inside checkout / Added card icon for the method
+Improve the Braintree checkout with configurable per-storefront 3D Secure, visible payment errors, reliable recovery after failed payments, and a credit card payment icon.
