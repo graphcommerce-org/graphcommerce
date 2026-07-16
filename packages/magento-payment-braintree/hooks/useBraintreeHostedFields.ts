@@ -1,4 +1,5 @@
 import { disableBraintreeThreeDSecure } from '@graphcommerce/next-config/config'
+import { useStorefrontConfig } from '@graphcommerce/next-ui'
 import type { HostedFields, ThreeDSecure } from 'braintree-web'
 import braintree from 'braintree-web'
 import { useEffect, useState } from 'react'
@@ -12,6 +13,9 @@ export function useBraintreeHostedFields() {
     [HostedFields, ThreeDSecure | undefined] | [undefined, undefined]
   >([undefined, undefined])
 
+  const isThreeDSecureDisabled =
+    useStorefrontConfig().disableBraintreeThreeDSecure ?? disableBraintreeThreeDSecure
+
   useEffect(() => {
     if (!hostedFields[0] && !teardownPromise) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -21,7 +25,7 @@ export function useBraintreeHostedFields() {
           teardownPromise = undefined
         }
 
-        const threeDSecure = disableBraintreeThreeDSecure
+        const threeDSecure = isThreeDSecureDisabled
           ? undefined
           : await braintree.threeDSecure.create({ client, version: 2 })
 

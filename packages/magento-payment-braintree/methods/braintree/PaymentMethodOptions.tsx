@@ -4,7 +4,13 @@ import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
 import { disableBraintreeThreeDSecure } from '@graphcommerce/next-config/config'
-import { ErrorSnackbar, FormRow, FullPageMessage, sxx } from '@graphcommerce/next-ui'
+import {
+  ErrorSnackbar,
+  FormRow,
+  FullPageMessage,
+  sxx,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import type { FieldValues, Path, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { FormProvider, useController, useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -131,6 +137,8 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const [hostedFields, threeDSecure] = useBraintreeHostedFields()
   const cart = useCartQuery(BillingPageDocument)
   const [lockstate, lock, unlock] = useCartLock()
+  const isThreeDSecureDisabled =
+    useStorefrontConfig().disableBraintreeThreeDSecure ?? disableBraintreeThreeDSecure
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -164,13 +172,13 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     submitWhileLocked: true,
     onBeforeSubmit: async (variables) => {
       if (!hostedFields) throw new Error('Hosted fields not available')
-      if (!threeDSecure && !disableBraintreeThreeDSecure) throw new Error('3D Secure not available')
+      if (!threeDSecure && !isThreeDSecureDisabled) throw new Error('3D Secure not available')
       if (!cart.data?.cart?.prices?.grand_total?.value) throw Error('Cart total not found')
 
       try {
         const tokenResult = await hostedFields.tokenize()
 
-        const verifyResult = disableBraintreeThreeDSecure
+        const verifyResult = isThreeDSecureDisabled
           ? undefined
           : await threeDSecure?.verifyCard({
               nonce: tokenResult.nonce,
@@ -191,7 +199,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
               mobilePhoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
             })
 
-        if (!verifyResult?.threeDSecureInfo.liabilityShifted && !disableBraintreeThreeDSecure) {
+        if (!verifyResult?.threeDSecureInfo.liabilityShifted && !isThreeDSecureDisabled) {
           throw Error('Liability not shifted')
         }
 
@@ -199,7 +207,7 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
         return {
           ...variables,
           deviceData: '',
-          nonce: disableBraintreeThreeDSecure ? tokenResult.nonce : (verifyResult?.nonce ?? ''),
+          nonce: isThreeDSecureDisabled ? tokenResult.nonce : (verifyResult?.nonce ?? ''),
           isTokenEnabler: false,
         }
       } catch (e) {
