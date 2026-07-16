@@ -1,3 +1,4 @@
+import { disableBraintreeThreeDSecure } from '@graphcommerce/next-config/config'
 import type { HostedFields, ThreeDSecure } from 'braintree-web'
 import braintree from 'braintree-web'
 import { useEffect, useState } from 'react'
@@ -8,7 +9,7 @@ let teardownPromise: Promise<void> | undefined | void
 export function useBraintreeHostedFields() {
   const braintreePromise = useBraintreeClient()
   const [hostedFields, setHostedFields] = useState<
-    [HostedFields, ThreeDSecure] | [undefined, undefined]
+    [HostedFields, ThreeDSecure | undefined] | [undefined, undefined]
   >([undefined, undefined])
 
   useEffect(() => {
@@ -20,7 +21,9 @@ export function useBraintreeHostedFields() {
           teardownPromise = undefined
         }
 
-        const threeDSecure = await braintree.threeDSecure.create({ client, version: 2 })
+        const threeDSecure = disableBraintreeThreeDSecure
+          ? undefined
+          : await braintree.threeDSecure.create({ client, version: 2 })
 
         const hosted = await braintree.hostedFields.create({
           client,
