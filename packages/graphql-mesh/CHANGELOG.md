@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.38
+
+### Minor Changes
+
+- [#2650](https://github.com/graphcommerce-org/graphcommerce/pull/2650) [`ccd01e9`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd01e9ad061783b354fd8655b5319edb26a15f1) - Route server-side Magento traffic over an internal network with the new runtime-only `GC_MAGENTO_ENDPOINT_SERVER` environment variable (e.g. `http://varnish.magento-namespace.svc.cluster.local`). When set, every mesh request whose URL starts with the origin of `GC_MAGENTO_ENDPOINT` — GraphQL and REST — is rewritten to the internal origin and gains an `X-Forwarded-Proto: https` header, so frontend↔Magento traffic inside a Kubernetes cluster no longer hairpins over the public load balancer. Unset, behavior is unchanged. See the new "Routing Magento traffic over an internal network" section in the mesh docs. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.37
 
 ## 10.1.0-canary.36
