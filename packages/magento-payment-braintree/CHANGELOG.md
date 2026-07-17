@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.37
+
+### Patch Changes
+
+- [#2651](https://github.com/graphcommerce-org/graphcommerce/pull/2651) [`0c105b2`](https://github.com/graphcommerce-org/graphcommerce/commit/0c105b23c4ad6bfaa0fb5d4e517113531d19b3ed) - Improve the Braintree checkout with configurable per-storefront 3D Secure, visible payment errors, reliable recovery after failed payments, and a credit card payment icon. ([@hsngdz](https://github.com/hsngdz))
+
 ## 10.1.0-canary.36
 
 ## 10.1.0-canary.35
