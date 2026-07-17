@@ -15,23 +15,24 @@
     ".": "./index.ts",
     "./plugins/AddBraintreeMethods": "./plugins/AddBraintreeMethods.tsx"
   },
-  "devDependencies": {
+  "dependencies": {
+    "braintree-web": "^3.134.0",
     "@types/braintree-web": "^3.96.17"
   },
-  "dependencies": {
-    "braintree-web": "^3.134.0"
-  },
   "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^10.1.0-canary.36",
     "@graphcommerce/eslint-config-pwa": "^10.1.0-canary.36",
     "@graphcommerce/graphql": "^10.1.0-canary.36",
     "@graphcommerce/image": "^10.1.0-canary.36",
     "@graphcommerce/magento-cart": "^10.1.0-canary.36",
+    "@graphcommerce/magento-cart-checkout": "^10.1.0-canary.36",
     "@graphcommerce/magento-cart-payment-method": "^10.1.0-canary.36",
     "@graphcommerce/magento-cart-shipping-address": "^10.1.0-canary.36",
     "@graphcommerce/magento-product": "^10.1.0-canary.36",
     "@graphcommerce/magento-product-configurable": "^10.1.0-canary.36",
     "@graphcommerce/magento-store": "^10.1.0-canary.36",
     "@graphcommerce/next-ui": "^10.1.0-canary.36",
+    "@graphcommerce/next-config": "^10.1.0-canary.36",
     "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.36",
     "@graphcommerce/react-hook-form": "^10.1.0-canary.36",
     "@graphcommerce/typescript-config-pwa": "^10.1.0-canary.36",
