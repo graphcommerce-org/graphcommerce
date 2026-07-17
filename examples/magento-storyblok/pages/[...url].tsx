@@ -35,7 +35,12 @@ import {
 } from '@graphcommerce/next-config/config'
 import { Container, LayoutHeader, LayoutTitle, revalidate } from '@graphcommerce/next-ui'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
-import { Asset, fetchStory, type StoryblokStory } from '@graphcommerce/storyblok-ui'
+import {
+  Asset,
+  assetWithPoster,
+  fetchStory,
+  type StoryblokStory,
+} from '@graphcommerce/storyblok-ui'
 import { t } from '@lingui/core/macro'
 import type { GetStaticPaths } from 'next'
 import type { LayoutNavigationProps } from '../components'
@@ -73,6 +78,7 @@ function CategoryPage(props: CategoryProps) {
     category: categories?.items?.[0],
   })
   const { products, params, category } = productList
+  const { asset, poster } = assetWithPoster(story?.content?.asset)
 
   const isLanding = category?.display_mode === 'PAGE'
   const isCategory = params && category && products?.items
@@ -102,11 +108,7 @@ function CategoryPage(props: CategoryProps) {
           )}
           <CategoryHeroNav
             {...category}
-            asset={
-              story?.content?.asset?.filename && (
-                <Asset asset={story.content.asset} loading='eager' />
-              )
-            }
+            asset={asset && <Asset asset={asset} poster={poster} loading='eager' />}
             title={<CategoryHeroNavTitle>{category?.name}</CategoryHeroNavTitle>}
           />
         </>

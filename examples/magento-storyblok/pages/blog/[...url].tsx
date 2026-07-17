@@ -18,6 +18,7 @@ import {
 } from '@graphcommerce/next-ui'
 import {
   Asset,
+  assetWithPoster,
   fetchAllStories,
   fetchStories,
   fetchStory,
@@ -43,6 +44,7 @@ function BlogPostPage(props: Props) {
   const content = story?.content
   const title = story?.name ?? ''
   const slug = story?.full_slug ?? ''
+  const { asset, poster } = assetWithPoster(content?.asset)
 
   return (
     <>
@@ -83,9 +85,7 @@ function BlogPostPage(props: Props) {
         {content?.author && content?.date && (
           <BlogAuthor author={content.author} date={content.date} />
         )}
-        {content?.asset?.filename && (
-          <BlogHeader asset={<Asset asset={content.asset} loading='eager' />} />
-        )}
+        {asset && <BlogHeader asset={<Asset asset={asset} poster={poster} loading='eager' />} />}
         {content?.body && <RowRenderer content={content.body} />}
         {story?.tag_list && story.tag_list.length > 0 && (
           <BlogTags>

@@ -1,6 +1,6 @@
-import { Asset, RichText } from '@graphcommerce/storyblok-ui'
 import { AddProductsToCartForm } from '@graphcommerce/magento-product'
 import { ParagraphWithSidebarSlide, RenderType } from '@graphcommerce/next-ui'
+import { Asset, assetWithPoster, RichText } from '@graphcommerce/storyblok-ui'
 import { useTheme } from '@mui/material'
 import { productListRenderer } from '../../../../ProductListItems/productListRenderer'
 import type { RowProductVariantProps } from '../../RowProduct'
@@ -9,6 +9,7 @@ export function Backstory(props: RowProductVariantProps) {
   const { blok, items } = props
   const theme = useTheme()
   const singleItem = items?.[(items.length ?? 1) - 1]
+  const { asset, poster } = assetWithPoster(blok.asset)
 
   if (!singleItem) return null
 
@@ -16,9 +17,10 @@ export function Backstory(props: RowProductVariantProps) {
     <AddProductsToCartForm>
       <ParagraphWithSidebarSlide
         background={
-          blok.asset?.filename ? (
+          asset ? (
             <Asset
-              asset={blok.asset}
+              asset={asset}
+              poster={poster}
               sizes={{ 0: '50vw', [theme.breakpoints.values.md]: '72vw' }}
             />
           ) : undefined
