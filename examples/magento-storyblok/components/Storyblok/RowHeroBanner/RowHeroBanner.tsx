@@ -1,9 +1,28 @@
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
-import { multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import type { AssetProps } from '@graphcommerce/storyblok-ui'
+import {
+  Asset,
+  assetWithPoster,
+  multilinkHref,
+  RichText,
+  storyblokEditable,
+} from '@graphcommerce/storyblok-ui'
 import { Button } from '@mui/material'
 import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../types'
 
-export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
+export type RowHeroBannerProps = {
+  blok: RowHeroBannerBlok
+  /**
+   * Only applies to an image asset — a video is never lazy-loaded. Pass
+   * `'eager'` where the banner is the LCP element, via `RowRenderer`'s
+   * `renderer`.
+   */
+  loading?: AssetProps['loading']
+}
+
+export function RowHeroBanner({ blok, loading }: RowHeroBannerProps) {
+  const { asset, poster } = assetWithPoster(blok.asset)
+
   return (
     <HeroBanner
       {...storyblokEditable(blok)}
@@ -18,7 +37,7 @@ export function RowHeroBanner({ blok }: { blok: RowHeroBannerBlok }) {
           {link.title}
         </Button>
       ))}
-      videoSrc={blok.asset?.filename ?? ''}
+      asset={asset && <Asset asset={asset} poster={poster} loading={loading} />}
       sx={(theme) => ({
         '& .HeroBanner-copy': {
           minHeight: { xs: 'min(70vh,600px)', md: 'min(70vh,1080px)' },

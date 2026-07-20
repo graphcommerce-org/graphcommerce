@@ -130,3 +130,44 @@ export function customLoader({ src }: ImageLoaderProps): string {
       '\nRead more: https://nextjs.org/docs/messages/next-image-missing-loader',
   )
 }
+
+const urlLoaders = {
+  default: defaultLoader,
+  imgix: imgixLoader,
+  cloudinary: cloudinaryLoader,
+  akamai: akamaiLoader,
+}
+
+/**
+ * Build an optimized image URL outside of a React tree, for the places that
+ * need a bare URL string rather than an `<Image>` — `<video poster>`, a CSS
+ * `background-image`, an `og:image`.
+ *
+ * Routes through the configured loader exactly like `<Image>` does, so the
+ * bytes are served and cached by your own deployment rather than fetched from
+ * the origin host by every visitor. That matters when the origin meters
+ * bandwidth.
+ *
+ * `width` is snapped up to the nearest configured size: the optimizer rejects
+ * any width outside `imageSizes`/`deviceSizes` with a 400. Format is negotiated
+ * by the optimizer on the request's `Accept` header and can't be pinned here.
+ *
+ * Returns `src` untouched under a `custom` loader, which exists only as a
+ * per-`<Image>` prop and so can't be resolved from here.
+ */
+export function imageUrl(src: string, options: { width: number; quality?: number }): string {
+  const { width, quality = 75 } = options
+  if (configLoader === 'custom') return src
+
+  const config =
+    (process.env.__NEXT_IMAGE_OPTS as unknown as ImageConfigComplete) || imageConfigDefault
+  const allSizes = [...configImageSizes, ...configDeviceSizes].sort((a, b) => a - b)
+  const snapped = allSizes.find((size) => size >= width) ?? allSizes[allSizes.length - 1]
+
+  return (urlLoaders[configLoader] ?? defaultLoader)({
+    config: { ...config, allSizes },
+    src,
+    width: snapped,
+    quality,
+  })
+}

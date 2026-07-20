@@ -1,8 +1,8 @@
 import { BlogListItem } from '@graphcommerce/next-ui'
-import { Asset } from '@graphcommerce/storyblok-ui'
+import { Asset, assetWithPoster } from '@graphcommerce/storyblok-ui'
+import type { StoryblokStory } from '@graphcommerce/storyblok-ui'
 import { Trans } from '@lingui/react/macro'
 import { Typography, useTheme } from '@mui/material'
-import type { StoryblokStory } from '@graphcommerce/storyblok-ui'
 import type { StoryblokPage } from '../Storyblok/types'
 
 export type BlogItemProps = { story: StoryblokStory }
@@ -10,14 +10,15 @@ export type BlogItemProps = { story: StoryblokStory }
 export function BlogItem({ story }: BlogItemProps) {
   const theme = useTheme()
   const content = story.content as StoryblokPage
-  const asset = content?.asset
+  const { asset, poster } = assetWithPoster(content?.asset)
 
   return (
     <BlogListItem
       asset={
-        asset?.filename ? (
+        asset ? (
           <Asset
             asset={asset}
+            poster={poster}
             sizes={{
               0: '48vw',
               [theme.breakpoints.values.md]: '30vw',

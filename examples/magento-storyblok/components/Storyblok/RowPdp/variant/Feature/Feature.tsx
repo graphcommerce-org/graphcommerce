@@ -1,6 +1,6 @@
 import { Image } from '@graphcommerce/image'
 import { ImageText, responsiveVal, useContainerSpacing } from '@graphcommerce/next-ui'
-import { Asset, RichText } from '@graphcommerce/storyblok-ui'
+import { Asset, assetWithPoster, RichText } from '@graphcommerce/storyblok-ui'
 import { Typography, useTheme } from '@mui/material'
 import type { RowPdpVariantProps } from '../../RowPdp'
 
@@ -9,12 +9,13 @@ export function Feature(props: RowPdpVariantProps) {
   const theme = useTheme()
   const item = media_gallery?.[2] ?? media_gallery?.[0]
   const { size, breakpoint } = useContainerSpacing({ sizing: 'content' })
+  const { asset, poster } = assetWithPoster(blok.asset)
 
   return (
     <ImageText
       item={
-        blok.asset?.filename ? (
-          <Asset asset={blok.asset} sizes={responsiveVal(100, 600)} />
+        asset ? (
+          <Asset asset={asset} poster={poster} sizes={responsiveVal(100, 600)} />
         ) : item?.__typename === 'ProductImage' && item.url ? (
           <Image
             alt={item.label ?? 'Product Image'}

@@ -1,5 +1,5 @@
 import type { ImageProps } from '@graphcommerce/image'
-import { Image } from '@graphcommerce/image'
+import { Image, imageUrl } from '@graphcommerce/image'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
 import { memo } from 'react'
@@ -8,10 +8,23 @@ import { isSvg, isVideo, parseDimensions } from '../utils'
 
 export type AssetProps = {
   asset: StoryblokAssetData
+  /**
+   * Still shown until the video has buffered enough to paint its first frame,
+   * and the only thing shown at all when autoplay is blocked (iOS Low Power
+   * Mode). Ignored when `asset` isn't a video.
+   */
+  poster?: StoryblokAssetData
   sx?: SxProps<Theme>
 } & Omit<ImageProps, 'src' | 'width' | 'height' | 'alt' | 'sx'>
 
 const Video = styled('video')({})
+
+// The poster only has to bridge the gap until the video paints, so it is
+// requested at a width that covers a full-bleed banner on common displays
+// rather than at the source resolution — a multi-MB still would compete with
+// the video for bandwidth and defeat its own purpose. 1200 is a default
+// `deviceSize`, so it survives `imageUrl`'s snapping unchanged.
+const POSTER_WIDTH = 1200
 
 // Storyblok encodes image dimensions in the CDN URL (`/WxH/`), but its image
 // processor only runs for uploads made through the web UI. Assets uploaded via
@@ -29,13 +42,24 @@ const FALLBACK_WIDTH = 500
 const FALLBACK_HEIGHT = 500
 
 function AssetBase(props: AssetProps) {
-  const { asset, sx = [], ...imgProps } = props
+  const { asset, poster, sx = [], ...imgProps } = props
 
   if (!asset.filename) return null
 
   if (isVideo(asset.filename)) {
     return (
-      <Video src={asset.filename} autoPlay muted loop playsInline disableRemotePlayback sx={sx} />
+      <Video
+        src={asset.filename}
+        poster={
+          poster?.filename ? imageUrl(poster.filename, { width: POSTER_WIDTH }) : undefined
+        }
+        autoPlay
+        muted
+        loop
+        playsInline
+        disableRemotePlayback
+        sx={sx}
+      />
     )
   }
 

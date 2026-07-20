@@ -1,14 +1,22 @@
 import { breakpointVal, SpecialBanner } from '@graphcommerce/next-ui'
-import { Asset, multilinkHref, RichText, storyblokEditable } from '@graphcommerce/storyblok-ui'
+import {
+  Asset,
+  assetWithPoster,
+  multilinkHref,
+  RichText,
+  storyblokEditable,
+} from '@graphcommerce/storyblok-ui'
 import { Link } from '@mui/material'
 import type { StoryblokRowSpecialBanner as RowSpecialBannerBlok } from '../types'
 
 export function RowSpecialBanner({ blok }: { blok: RowSpecialBannerBlok }) {
+  const { asset, poster } = assetWithPoster(blok.asset)
+
   return (
     <SpecialBanner
       {...storyblokEditable(blok)}
       topic={blok.topic}
-      asset={blok.asset?.filename ? <Asset asset={blok.asset} sizes='50vw' /> : undefined}
+      asset={asset ? <Asset asset={asset} poster={poster} sizes='50vw' /> : undefined}
       pageLinks={blok.page_links?.map((link) => (
         <Link
           {...storyblokEditable(link)}
