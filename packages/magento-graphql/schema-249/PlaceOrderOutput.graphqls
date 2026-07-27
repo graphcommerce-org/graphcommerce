@@ -1,0 +1,12 @@
+# Magento 2.4.9 (and MageOS 3.2.0) relaxed `PlaceOrderOutput.errors` from
+# `[PlaceOrderError]!` to `[PlaceOrderError]` and now returns `null` when the
+# order is placed successfully. The unified schema must use the nullable
+# variant, otherwise the mesh throws "Cannot return null for non-nullable field
+# PlaceOrderOutput.errors." on every successful placeOrder once the backend
+# runs 2.4.9, while a 2.4.8 backend still satisfies the relaxed contract.
+type PlaceOrderOutput {
+  """
+  An array of place order errors. Returns null on success since Magento 2.4.9.
+  """
+  errors: [PlaceOrderError]
+}
