@@ -2,5 +2,5 @@ input OrderInformationInput {
   """
   Order billing address lastname.
   """
-  lastname: String! @deprecated(reason: "Magento >= 2.4.8")
+  lastname: String!
 }

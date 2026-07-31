@@ -2,5 +2,5 @@ input OrderInformationInput {
   """
   Order billing address postcode
   """
-  postcode: String @deprecated(reason: "Magento >= 2.4.9")
+  postcode: String
 }
