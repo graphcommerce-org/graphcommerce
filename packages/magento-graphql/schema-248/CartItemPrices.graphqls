@@ -1,0 +1,14 @@
+type CartItemPrices {
+  """
+  The price discount for the unit price of the item represents the difference between its regular price and final price.
+  """
+  catalog_discount: ProductDiscount @deprecated(reason: "Magento >= 2.4.8")
+  """
+  The value of the original unit price for the item, including discounts.
+  """
+  original_item_price: Money! @deprecated(reason: "Magento >= 2.4.8")
+  """
+  The price discount multiplied by the item quantity represents the total difference between the regular price and the final price for the entire quote item.
+  """
+  row_catalog_discount: ProductDiscount @deprecated(reason: "Magento >= 2.4.8")
+}

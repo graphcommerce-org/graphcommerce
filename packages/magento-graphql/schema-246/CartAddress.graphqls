@@ -1,0 +1,39 @@
+type BillingCartAddress {
+  """
+  The unique id of the customer address.
+  """
+  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  """
+  The VAT company number for billing or shipping address.
+  """
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
+}
+
+input CartAddressInput {
+  """
+  The VAT company number for billing or shipping address.
+  """
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
+}
+
+interface CartAddressInterface {
+  """
+  The unique id of the customer address.
+  """
+  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  """
+  The VAT company number for billing or shipping address.
+  """
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
+}
+
+type ShippingCartAddress {
+  """
+  The unique id of the customer address.
+  """
+  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  """
+  The VAT company number for billing or shipping address.
+  """
+  vat_id: String @deprecated(reason: "Magento >= 2.4.6")
+}

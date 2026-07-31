@@ -1,14 +1,5 @@
 type Query {
   """
-  Retrieve EAV attributes associated to a frontend form. Use countries query provided by DirectoryGraphQl module to retrieve region_id and country_id attribute options.
-  """
-  attributesForm(
-    """
-    Form code.
-    """
-    formCode: String!
-  ): AttributesFormOutput @deprecated(reason: "Magento >= 2.4.7")
-  """
   Returns a list of attributes metadata for a given entity type.
   """
   attributesList(
@@ -21,20 +12,80 @@ type Query {
     """
     filters: AttributeFilterInput
   ): AttributesMetadataOutput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Retrieve EAV attributes associated to a frontend form. Use countries query provided by DirectoryGraphQl module to retrieve region_id and country_id attribute options.
+  """
+  attributesForm(
+    """
+    Form code.
+    """
+    formCode: String!
+  ): AttributesFormOutput! @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Retrieve EAV attributes metadata.
+  """
+  customAttributeMetadataV2(attributes: [AttributeInput!]): AttributesMetadataOutput!
+    @deprecated(reason: "Magento >= 2.4.7")
 }
 
 """
-Metadata of EAV attributes associated to form
+List of all entity types. Populated by the modules introducing EAV entities.
 """
-type AttributesFormOutput {
+enum AttributeEntityTypeEnum {
+  CATALOG_CATEGORY
+  CATALOG_PRODUCT
+  CUSTOMER
+  CUSTOMER_ADDRESS
+}
+
+"""
+An input object that specifies the filters used for attributes.
+"""
+input AttributeFilterInput {
   """
-  Errors of retrieving certain attributes metadata.
+  Whether a product or category attribute can be compared against another or not.
   """
-  errors: [AttributeMetadataError]!
+  is_comparable: Boolean
   """
-  Requested attributes metadata.
+  Whether a product or category attribute can be filtered or not.
   """
-  items: [CustomAttributeMetadataInterface]!
+  is_filterable: Boolean
+  """
+  Whether a product or category attribute can be filtered in search or not.
+  """
+  is_filterable_in_search: Boolean
+  """
+  Whether a product or category attribute can use HTML on front or not.
+  """
+  is_html_allowed_on_front: Boolean
+  """
+  Whether a product or category attribute can be searched or not.
+  """
+  is_searchable: Boolean
+  """
+  Whether a product or category attribute can be used for price rules or not.
+  """
+  is_used_for_price_rules: Boolean
+  """
+  Whether a product or category attribute is used for promo rules or not.
+  """
+  is_used_for_promo_rules: Boolean
+  """
+  Whether a product or category attribute is visible in advanced search or not.
+  """
+  is_visible_in_advanced_search: Boolean
+  """
+  Whether a product or category attribute is visible on front or not.
+  """
+  is_visible_on_front: Boolean
+  """
+  Whether a product or category attribute has WYSIWYG enabled or not.
+  """
+  is_wysiwyg_enabled: Boolean
+  """
+  Whether a product or category attribute is used in product listing or not.
+  """
+  used_in_product_listing: Boolean
 }
 
 """
@@ -51,24 +102,40 @@ type AttributesMetadataOutput {
   items: [CustomAttributeMetadataInterface]!
 }
 
-enum CatalogAttributeApplyToEnum {
-  SIMPLE
-  VIRTUAL
-  BUNDLE
-  DOWNLOADABLE
-  CONFIGURABLE
-  GROUPED
-  CATEGORY
+"""
+Attribute metadata retrieval error.
+"""
+type AttributeMetadataError {
+  """
+  Attribute metadata retrieval error message.
+  """
+  message: String!
+  """
+  Attribute metadata retrieval error type.
+  """
+  type: AttributeMetadataErrorType!
 }
 
 """
-List of all entity types. Populated by the modules introducing EAV entities.
+Attribute metadata retrieval error types.
 """
-enum AttributeEntityTypeEnum {
-  CATALOG_PRODUCT
-  CATALOG_CATEGORY
-  CUSTOMER
-  CUSTOMER_ADDRESS
+enum AttributeMetadataErrorType {
+  """
+  The requested attribute was not found.
+  """
+  ATTRIBUTE_NOT_FOUND
+  """
+  The requested entity was not found.
+  """
+  ENTITY_NOT_FOUND
+  """
+  The filter cannot be applied as it does not belong to the entity
+  """
+  FILTER_NOT_FOUND
+  """
+  Not categorized error, see the error message.
+  """
+  UNDEFINED
 }
 
 """
@@ -114,6 +181,150 @@ interface CustomAttributeMetadataInterface {
 }
 
 """
+EAV attribute frontend input types.
+"""
+enum AttributeFrontendInputEnum {
+  BOOLEAN
+  DATE
+  DATETIME
+  FILE
+  GALLERY
+  HIDDEN
+  IMAGE
+  MEDIA_IMAGE
+  MULTILINE
+  MULTISELECT
+  PRICE
+  SELECT
+  TEXT
+  TEXTAREA
+  UNDEFINED
+  WEIGHT
+}
+
+interface CustomAttributeOptionInterface {
+  """
+  Is the option value default.
+  """
+  is_default: Boolean!
+  """
+  The label assigned to the attribute option.
+  """
+  label: String!
+  """
+  The attribute option value.
+  """
+  value: String!
+}
+
+"""
+Metadata of EAV attributes associated to form
+"""
+type AttributesFormOutput {
+  """
+  Errors of retrieving certain attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Requested attributes metadata.
+  """
+  items: [CustomAttributeMetadataInterface]!
+}
+
+type BundleProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+"""
+Product custom attributes
+"""
+type ProductCustomAttributes {
+  """
+  Errors when retrieving custom attributes metadata.
+  """
+  errors: [AttributeMetadataError]!
+  """
+  Requested custom attributes
+  """
+  items: [AttributeValueInterface]!
+}
+
+interface AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+}
+
+type ConfigurableProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type DownloadableProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type GroupedProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+interface ProductInterface {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type SimpleProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type VirtualProduct {
+  """
+  Product custom attributes.
+  """
+  custom_attributesV2(filters: AttributeFilterInput): ProductCustomAttributes
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type Customer {
+  """
+  Customer's custom attributes.
+  """
+  custom_attributes(attributeCodes: [ID!]): [AttributeValueInterface]
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type CustomerAddress {
+  """
+  Custom attributes assigned to the customer address.
+  """
+  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]!
+    @deprecated(reason: "Magento >= 2.4.7")
+}
+
+"""
 Base EAV implementation of CustomAttributeMetadataInterface.
 """
 type AttributeMetadata implements CustomAttributeMetadataInterface {
@@ -153,6 +364,75 @@ type AttributeMetadata implements CustomAttributeMetadataInterface {
   Attribute options.
   """
   options: [CustomAttributeOptionInterface]!
+}
+
+"""
+Base EAV implementation of CustomAttributeOptionInterface.
+"""
+type AttributeOptionMetadata implements CustomAttributeOptionInterface {
+  """
+  Is the option value default.
+  """
+  is_default: Boolean!
+  """
+  The label assigned to the attribute option.
+  """
+  label: String!
+  """
+  The attribute option value.
+  """
+  value: String!
+}
+
+type AttributeSelectedOption implements AttributeSelectedOptionInterface {
+  """
+  The attribute selected option label.
+  """
+  label: String!
+  """
+  The attribute selected option value.
+  """
+  value: String!
+}
+
+interface AttributeSelectedOptionInterface {
+  """
+  The attribute selected option label.
+  """
+  label: String!
+  """
+  The attribute selected option value.
+  """
+  value: String!
+}
+
+type AttributeSelectedOptions implements AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+  selected_options: [AttributeSelectedOptionInterface]!
+}
+
+type AttributeValue implements AttributeValueInterface {
+  """
+  The attribute code.
+  """
+  code: ID!
+  """
+  The attribute value.
+  """
+  value: String!
+}
+
+enum CatalogAttributeApplyToEnum {
+  BUNDLE
+  CATEGORY
+  CONFIGURABLE
+  DOWNLOADABLE
+  GROUPED
+  SIMPLE
+  VIRTUAL
 }
 
 """
@@ -258,12 +538,13 @@ type CatalogAttributeMetadata implements CustomAttributeMetadataInterface {
 }
 
 """
-EAV attribute frontend input types.
+Swatch attribute metadata input types.
 """
-enum AttributeFrontendInputEnum {
+enum SwatchInputTypeEnum {
   BOOLEAN
   DATE
   DATETIME
+  DROPDOWN
   FILE
   GALLERY
   HIDDEN
@@ -275,8 +556,9 @@ enum AttributeFrontendInputEnum {
   SELECT
   TEXT
   TEXTAREA
-  WEIGHT
   UNDEFINED
+  VISUAL
+  WEIGHT
 }
 
 """
@@ -338,6 +620,32 @@ type CustomerAttributeMetadata implements CustomAttributeMetadataInterface {
 }
 
 """
+List of templates/filters applied to customer attribute input.
+"""
+enum InputFilterEnum {
+  """
+  Forces attribute input to follow the date format.
+  """
+  DATE
+  """
+  Escape HTML Entities.
+  """
+  ESCAPEHTML
+  """
+  There are no templates or filters to be applied.
+  """
+  NONE
+  """
+  Strip HTML Tags.
+  """
+  STRIPTAGS
+  """
+  Strip whitespace (or other characters) from the beginning and end of the input.
+  """
+  TRIM
+}
+
+"""
 Defines a customer attribute validation rule.
 """
 type ValidationRule {
@@ -359,92 +667,9 @@ enum ValidationRuleEnum {
   DATE_RANGE_MIN
   FILE_EXTENSIONS
   INPUT_VALIDATION
-  MAX_TEXT_LENGTH
-  MIN_TEXT_LENGTH
   MAX_FILE_SIZE
   MAX_IMAGE_HEIGHT
   MAX_IMAGE_WIDTH
-}
-
-interface CustomAttributeOptionInterface {
-  """
-  Is the option value default.
-  """
-  is_default: Boolean!
-  """
-  The label assigned to the attribute option.
-  """
-  label: String!
-  """
-  The attribute option value.
-  """
-  value: String!
-}
-
-"""
-Base EAV implementation of CustomAttributeOptionInterface.
-"""
-type AttributeOptionMetadata implements CustomAttributeOptionInterface {
-  """
-  Is the option value default.
-  """
-  is_default: Boolean!
-  """
-  The label assigned to the attribute option.
-  """
-  label: String!
-  """
-  The attribute option value.
-  """
-  value: String!
-}
-
-"""
-Swatch attribute metadata input types.
-"""
-enum SwatchInputTypeEnum {
-  BOOLEAN
-  DATE
-  DATETIME
-  DROPDOWN
-  FILE
-  GALLERY
-  HIDDEN
-  IMAGE
-  MEDIA_IMAGE
-  MULTILINE
-  MULTISELECT
-  PRICE
-  SELECT
-  TEXT
-  TEXTAREA
-  UNDEFINED
-  VISUAL
-  WEIGHT
-}
-
-"""
-List of templates/filters applied to customer attribute input.
-"""
-enum InputFilterEnum {
-  """
-  There are no templates or filters to be applied.
-  """
-  NONE
-  """
-  Forces attribute input to follow the date format.
-  """
-  DATE
-  """
-  Strip whitespace (or other characters) from the beginning and end of the input.
-  """
-  TRIM
-  """
-  Strip HTML Tags.
-  """
-  STRIPTAGS
-  """
-  Escape HTML Entities.
-  """
-  ESCAPEHTML
+  MAX_TEXT_LENGTH
+  MIN_TEXT_LENGTH
 }

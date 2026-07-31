@@ -1,0 +1,17 @@
+"""
+Input to retrieve an order based on details.
+"""
+input GuestOrderInformationInput {
+  """
+  Order billing address email.
+  """
+  email: String!
+  """
+  Order billing address lastname.
+  """
+  lastname: String!
+  """
+  Order number.
+  """
+  number: String!
+}

@@ -1,0 +1,15 @@
+type Discount {
+  """
+  The type of the entity the discount is applied to.
+  """
+  applied_to: CartDiscountType! @deprecated(reason: "Magento >= 2.4.7")
+  """
+  The coupon related to the discount.
+  """
+  coupon: AppliedCoupon @deprecated(reason: "Magento >= 2.4.7")
+}
+
+enum CartDiscountType {
+  ITEM
+  SHIPPING
+}

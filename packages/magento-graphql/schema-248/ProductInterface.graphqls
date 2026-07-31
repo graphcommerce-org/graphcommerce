@@ -1,0 +1,104 @@
+type BundleProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type ConfigurableProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type DownloadableProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type GroupedProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+interface ProductInterface {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type SimpleProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type VirtualProduct {
+  """
+  Maximum Qty Allowed in Shopping Cart
+  """
+  max_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Minimum Qty Allowed in Shopping Cart
+  """
+  min_sale_qty: Float @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Amount of available stock
+  """
+  quantity: Float @deprecated(reason: "Magento >= 2.4.8")
+}

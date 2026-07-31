@@ -1,3 +1,14 @@
+type PlaceOrderOutput {
+  """
+  An array of place order errors.
+  """
+  errors: [PlaceOrderError]! @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Full order information.
+  """
+  orderV2: CustomerOrder @deprecated(reason: "Magento >= 2.4.7")
+}
+
 """
 An error encountered while placing an order.
 """
@@ -13,25 +24,9 @@ type PlaceOrderError {
 }
 
 enum PlaceOrderErrorCodes {
-  CART_NOT_FOUND
   CART_NOT_ACTIVE
+  CART_NOT_FOUND
   GUEST_EMAIL_MISSING
   UNABLE_TO_PLACE_ORDER
   UNDEFINED
-}
-
-type PlaceOrderOutput {
-  """
-  The ID of the order.
-  """
-  order: Order
-  """
-  An array of place order errors.
-  """
-  errors: [PlaceOrderError] @deprecated(reason: "Magento >= 2.4.7")
-
-  """
-  Full order information.
-  """
-  orderV2: CustomerOrder @deprecated(reason: "Magento >= 2.4.7")
 }

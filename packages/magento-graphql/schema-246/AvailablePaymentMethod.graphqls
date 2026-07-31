@@ -1,0 +1,6 @@
+type AvailablePaymentMethod {
+  """
+  If the payment method is an online integration
+  """
+  is_deferred: Boolean! @deprecated(reason: "Magento >= 2.4.6")
+}

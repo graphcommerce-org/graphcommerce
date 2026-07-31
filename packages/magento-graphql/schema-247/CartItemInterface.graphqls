@@ -1,0 +1,41 @@
+type BundleCartItem {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
+
+interface CartItemInterface {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type ConfigurableCartItem {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type DownloadableCartItem {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type SimpleCartItem {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type VirtualCartItem {
+  """
+  True if requested quantity is less than available stock, false otherwise.
+  """
+  is_available: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+}
