@@ -1,3 +1,10 @@
+type Query {
+  """
+  Retrieve guest order details based on number, email and billing last name.
+  """
+  guestOrder(input: GuestOrderInformationInput!): CustomerOrder!
+}
+
 """
 Input to retrieve an order based on details.
 """

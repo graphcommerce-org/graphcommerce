@@ -66,10 +66,10 @@ export function GuestOrderOverviewForm() {
             <EmailElement control={control} name='input.email' required />
             <TextFieldElement
               control={control}
-              name='input.postcode'
+              name='input.lastname'
               required
-              label={<Trans>Postcode</Trans>}
-              autoComplete='postal_code'
+              label={<Trans>Last name</Trans>}
+              autoComplete='family-name'
             />
           </FormRow>
 
