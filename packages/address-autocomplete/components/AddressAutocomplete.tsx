@@ -2,27 +2,17 @@ import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { FieldPath, FieldValues, PathValue } from '@graphcommerce/ecommerce-ui'
 import type { AddressFieldsOptions } from '@graphcommerce/magento-customer'
 import { useAddressFieldsForm } from '@graphcommerce/magento-customer'
-import { googleMapsApiKey } from '@graphcommerce/next-config/config'
 import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-import {
-  Autocomplete,
-  useLoadScript,
-  type AutocompleteProps,
-  type Libraries,
-} from '@react-google-maps/api'
+import { Box, CircularProgress, ClickAwayListener } from '@mui/material'
 import type { ReactNode } from 'react'
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useCountries } from '../hooks/useCountries'
+import { usePlacesAutocomplete } from '../hooks/usePlacesAutocomplete'
 import { addressValues } from '../utils/addressValues'
 import type { FormattedAddress } from '../utils/formatAddress'
-import { formatAddress } from '../utils/formatAddress'
+import { AddressAutocompletePopper } from './AddressAutocompletePopper'
 
-const libraries: Libraries = ['places']
-const autocompleteOptions: AutocompleteProps['options'] = {
-  fields: ['address_components'],
-  types: ['address'],
-}
 const updateOptions = {
   shouldDirty: true,
   shouldTouch: true,
@@ -43,14 +33,8 @@ export function AddressAutocomplete<
   const { fallback } = options
   const form = useAddressFieldsForm<TFieldValues, TName>(options)
   const { control, getValues, name, readOnly, required, setValue } = form
-  const [autocomplete, setAutocomplete] = useState<google.maps.places.Autocomplete | null>(null)
   const pendingRegion = useRef<FormattedAddress | null>(null)
-  const addressSearchName = `places-search-${useId()}`
   const countries = useCountries()
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: googleMapsApiKey ?? '',
-    libraries,
-  })
 
   const updateValue = useCallback(
     (fieldName: TName, value: unknown) => {
@@ -80,10 +64,7 @@ export function AddressAutocomplete<
     [countries, name, updateValue],
   )
 
-  const onPlaceChanged = useCallback(() => {
-    const addressComponents = autocomplete?.getPlace().address_components
-    if (addressComponents) onAddress(formatAddress({ addressComponents }))
-  }, [autocomplete, onAddress])
+  const places = usePlacesAutocomplete({ onAddress })
 
   useEffect(() => {
     const address = pendingRegion.current
@@ -95,40 +76,59 @@ export function AddressAutocomplete<
     updateValue(name.regionId, addressValues(address, countries).regionId)
   }, [countries, getValues, name.countryCode, name.regionId, updateValue])
 
-  const showAutocomplete = Boolean(googleMapsApiKey && isLoaded && !loadError)
-
   return (
     <>
-      {showAutocomplete ? (
-        <Autocomplete
-          onLoad={setAutocomplete}
-          onPlaceChanged={onPlaceChanged}
-          onUnmount={() => setAutocomplete(null)}
-          options={autocompleteOptions}
-        >
-          <TextFieldElement
-            sx={{ width: '100%' }}
-            variant='outlined'
-            control={control}
-            required={required[name.street]}
-            name={name.street}
-            type='text'
-            label={<Trans>Street</Trans>}
-            showValid
-            inputProps={{
-              // Force disabling autocomplete on the input field, as it can cause issues with the Google Places Autocomplete
-              autoComplete: 'one-time-code',
-              name: addressSearchName,
-            }}
-            InputProps={{
-              readOnly,
-            }}
-          />
-        </Autocomplete>
+      {places.autocompleteAvailable ? (
+        <ClickAwayListener onClickAway={places.closeSuggestions}>
+          <Box sx={{ position: 'relative', width: '100%' }}>
+            <TextFieldElement
+              sx={{ width: '100%' }}
+              variant='outlined'
+              control={control}
+              required={required[name.street]}
+              name={name.street}
+              type='text'
+              label={<Trans>Street</Trans>}
+              showValid={!places.loading}
+              onChange={places.onChange}
+              onFocus={places.onFocus}
+              onKeyDown={places.onKeyDown}
+              inputRef={places.setAnchorElement}
+              inputProps={{
+                'aria-activedescendant':
+                  places.activeIndex >= 0
+                    ? `${places.listboxId}-option-${places.activeIndex}`
+                    : undefined,
+                'aria-autocomplete': 'list',
+                'aria-busy': places.loading,
+                'aria-controls': places.listboxOpen ? places.listboxId : undefined,
+                'aria-expanded': places.listboxOpen,
+                'aria-haspopup': 'listbox',
+                role: 'combobox',
+                // Force disabling browser autocomplete so it does not compete with Google suggestions.
+                autoComplete: 'one-time-code',
+                name: places.addressSearchName,
+              }}
+              InputProps={{
+                readOnly,
+                endAdornment: places.loading ? <CircularProgress size={20} /> : undefined,
+              }}
+            />
+            <AddressAutocompletePopper
+              activeIndex={places.activeIndex}
+              anchorElement={places.anchorElement}
+              listboxId={places.listboxId}
+              open={places.listboxOpen}
+              predictions={places.predictions}
+              onActiveIndexChange={places.setActiveIndex}
+              onSelect={(prediction) => void places.selectPrediction(prediction)}
+            />
+          </Box>
+        </ClickAwayListener>
       ) : (
         fallback
       )}
-      <ErrorSnackbar open={Boolean(loadError)}>
+      <ErrorSnackbar open={Boolean(places.error)}>
         <Trans>Address search is unavailable. You can enter the address manually.</Trans>
       </ErrorSnackbar>
     </>

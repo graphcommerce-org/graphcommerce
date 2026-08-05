@@ -54,8 +54,13 @@ The plugin replaces the standard `AddressStreet` field only when
 `googleMapsApiKey` is configured. It:
 
 - loads the Google Maps Places library;
+- requests predictions through the Places API (New) `AutocompleteSuggestion`
+  interface;
 - limits suggestions to addresses;
 - uses the browser's preferred language for suggestions;
+- renders an accessible suggestions list with the required Google Maps
+  attribution;
+- groups prediction and place-detail requests into autocomplete sessions;
 - maps Google address components to GraphCommerce address fields;
 - resolves the Google region to the corresponding Magento region ID;
 - preserves the standard field styling and validation behavior;
