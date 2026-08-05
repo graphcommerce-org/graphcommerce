@@ -270,7 +270,8 @@ describe('AddressAutocomplete', () => {
 
     expect(fetchFields).toHaveBeenCalledWith({ fields: ['addressComponents'] })
     expect(setValue).toHaveBeenCalledWith('street', 'Baker Street', expect.any(Object))
-    expect(setValue).toHaveBeenCalledWith('houseNumber', '221B', expect.any(Object))
+    expect(setValue).toHaveBeenCalledWith('houseNumber', '221', expect.any(Object))
+    expect(setValue).toHaveBeenCalledWith('addition', 'B', expect.any(Object))
     expect(setValue).toHaveBeenCalledWith('postcode', 'NW1 6XE', expect.any(Object))
     expect(setValue).toHaveBeenCalledWith('city', 'London', expect.any(Object))
     expect(setValue).toHaveBeenCalledWith('countryCode', 'GB', expect.any(Object))
