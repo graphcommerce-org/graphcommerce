@@ -54,14 +54,22 @@ export function formatAddress(props: FormatAddressProps): FormattedAddress {
 
   const postcode = getShort('postal_code') || getShort('postal_code_prefix')
   const postcodeSuffix = getShort('postal_code_suffix')
+  const country = getShort('country')
+  let houseNumber = getShort('street_number')
+  let addition = getShort('subpremise')
+
+  if (country === 'NL' && !addition) {
+    const houseNumberParts = houseNumber.match(/^(\d+)([a-zA-Z]+)$/)
+    if (houseNumberParts) [, houseNumber, addition] = houseNumberParts
+  }
 
   return {
     street: getLong('route'),
-    houseNumber: getShort('street_number'),
-    addition: getShort('subpremise'),
+    houseNumber,
+    addition,
     postcode: postcodeSuffix ? `${postcode}-${postcodeSuffix}` : postcode,
     city: getLong('locality') || getLong('postal_town') || getLong('sublocality_level_1'),
-    country: getShort('country'),
+    country,
     region: getLong('administrative_area_level_1'),
     regionCode: getShort('administrative_area_level_1'),
   }
