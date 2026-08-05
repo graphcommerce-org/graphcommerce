@@ -26,6 +26,8 @@ yarn codegen
 The package uses the GraphCommerce plugin system, so no component overrides are
 required.
 
+Google Maps is loaded directly with the official `@googlemaps/js-api-loader`.
+
 ## Google Maps setup
 
 Create a Google Maps API key with the Places API (New) enabled. Restrict the key
@@ -53,15 +55,23 @@ See [Config.graphqls](./Config.graphqls) for the available configuration fields.
 The plugin replaces the standard `AddressStreet` field only when
 `googleMapsApiKey` is configured. It:
 
-- loads the Google Maps Places library;
+- loads the Google Maps Places library directly with
+  `@googlemaps/js-api-loader`;
 - requests predictions through the Places API (New) `AutocompleteSuggestion`
   interface;
+- starts searching after three characters and debounces requests by 250 ms;
 - limits suggestions to addresses;
 - uses the browser's preferred language for suggestions;
-- renders an accessible suggestions list with the required Google Maps
-  attribution;
+- keeps the GraphCommerce `TextFieldElement` and renders predictions in a custom
+  Material UI popper;
+- supports mouse and keyboard selection with the required combobox attributes;
+- displays the required Google Maps attribution with the predictions;
 - groups prediction and place-detail requests into autocomplete sessions;
+- retrieves the selected address through `Place.fetchFields()`;
 - maps Google address components to GraphCommerce address fields;
+- splits a street-number suffix into the addition field when Google does not
+  provide a separate subpremise, for example `221B` becomes house number `221`
+  and addition `B`;
 - resolves the Google region to the corresponding Magento region ID;
 - preserves the standard field styling and validation behavior;
 - suppresses browser address autofill from competing with Google suggestions;
@@ -100,6 +110,12 @@ Check that:
 
 The manual street field is displayed when the key is missing or the Google Maps
 script cannot be loaded.
+
+### Google Maps attribution
+
+The suggestions popper displays Google Maps content without an accompanying
+Google Map. The `Google Maps` attribution shown with the predictions is
+therefore required and should not be removed, hidden, or translated.
 
 ### A selected region is not filled
 
