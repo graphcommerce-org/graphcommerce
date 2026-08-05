@@ -46,17 +46,36 @@ describe('formatAddress', () => {
     expect(sublocality.city).toBe('Brooklyn')
   })
 
-  it('maps a Dutch street-number suffix to the addition field', () => {
+  it.each([
+    ['94a', 'NL', '94', 'a'],
+    ['221B', 'GB', '221', 'B'],
+    ['12/1β', 'GR', '12/1', 'β'],
+  ])(
+    'maps the street-number suffix in %s to the addition field',
+    (streetNumber, country, expectedHouseNumber, expectedAddition) => {
+      const result = formatAddress({
+        addressComponents: [
+          component(streetNumber, streetNumber, ['street_number']),
+          component('Example Street', 'Example St', ['route']),
+          component(country, country, ['country']),
+        ],
+      })
+
+      expect(result.houseNumber).toBe(expectedHouseNumber)
+      expect(result.addition).toBe(expectedAddition)
+    },
+  )
+
+  it('preserves an explicit subpremise instead of splitting the street number', () => {
     const result = formatAddress({
       addressComponents: [
-        component('94a', '94a', ['street_number']),
-        component('Noordeinde', 'Noordeinde', ['route']),
-        component('Nederland', 'NL', ['country']),
+        component('221B', '221B', ['street_number']),
+        component('Flat A', 'A', ['subpremise']),
       ],
     })
 
-    expect(result.houseNumber).toBe('94')
-    expect(result.addition).toBe('a')
+    expect(result.houseNumber).toBe('221B')
+    expect(result.addition).toBe('A')
   })
 
   it('recognizes postal-code prefixes and suffixes', () => {

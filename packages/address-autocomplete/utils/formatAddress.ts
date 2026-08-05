@@ -58,8 +58,8 @@ export function formatAddress(props: FormatAddressProps): FormattedAddress {
   let houseNumber = getShort('street_number')
   let addition = getShort('subpremise')
 
-  if (country === 'NL' && !addition) {
-    const houseNumberParts = houseNumber.match(/^(\d+)([a-zA-Z]+)$/)
+  if (!addition) {
+    const houseNumberParts = houseNumber.match(/^(\d+(?:[-/]\d+)*)(\p{L}+)$/u)
     if (houseNumberParts) [, houseNumber, addition] = houseNumberParts
   }
 
