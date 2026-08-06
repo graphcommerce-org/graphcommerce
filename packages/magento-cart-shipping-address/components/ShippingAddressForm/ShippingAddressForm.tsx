@@ -16,9 +16,11 @@ import {
 import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 import {
   AddressFields,
+  applyLegacyPlaceholderTelephone,
   CompanyFields,
   CustomerDocument,
   NameFields,
+  stripLegacyPlaceholderTelephone,
   useBillingAddressPermission,
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
@@ -39,14 +41,6 @@ import { SetBillingAddressDocument } from './SetBillingAddress.gql'
 import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import type { SetShippingBillingAddressMutationVariables } from './SetShippingBillingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
-
-/**
- * GraphCommerce used to submit this placeholder whenever the telephone field was left empty: it
- * couldn't tell whether the shop required a telephone, while `CartAddressInput.telephone` is a
- * non-nullable `String!`. Addresses saved back then still carry it, so it is cleared from the form
- * instead of presented to the customer as if it were a real number.
- */
-const legacyPlaceholderTelephone = '000 - 000 0000'
 
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
@@ -119,10 +113,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
           lastname: currentAddress?.lastname ?? customerQuery?.customer?.lastname ?? '',
-          telephone:
-            currentAddress?.telephone !== legacyPlaceholderTelephone
-              ? currentAddress?.telephone
-              : '',
+          telephone: stripLegacyPlaceholderTelephone(currentAddress?.telephone),
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
           vatId: currentAddress?.vat_id ?? '',
@@ -153,7 +144,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         // nothing. Magento validates it against the same `is_required` we render the field with, so
         // a shop that requires a telephone returns a proper validation error instead of silently
         // accepting a fake number.
-        telephone: variables.telephone || '',
+        telephone: applyLegacyPlaceholderTelephone(variables.telephone),
         region: regionId ? variables.region : '',
         regionId,
         addition: variables.addition ?? '',
