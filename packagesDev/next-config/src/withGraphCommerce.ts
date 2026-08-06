@@ -102,6 +102,34 @@ export function withGraphCommerce(nextConfig: NextConfig, cwd: string = process.
         ...(nextConfig.images?.remotePatterns ?? []),
       ].filter((v) => !!v),
     },
+    redirects: async () => {
+      const redirects = (await nextConfig.redirects?.()) ?? []
+
+      // Magento builds its own frontend URLs from `base_link_url`, which on a
+      // headless setup points at the GraphCommerce storefront. Those URLs end up
+      // in transactional emails ("Sign in to your account" links every stock
+      // email template renders) and in the 302 Location of gated Magento routes,
+      // but GraphCommerce doesn't serve them, so they 404.
+      //
+      // These have to stay exact matches: redirects are evaluated *before* the
+      // filesystem routes, so a `/customer/account/:path*` catch-all would
+      // shadow the pages/customer/account/{confirm,createPassword} routes that
+      // @graphcommerce/magento-customer copies into the project.
+      redirects.push(
+        { source: '/customer/account', destination: '/account', permanent: true },
+        { source: '/customer/account/index', destination: '/account', permanent: true },
+        { source: '/customer/account/login', destination: '/account/signin', permanent: true },
+        { source: '/customer/account/create', destination: '/account/signin', permanent: true },
+        {
+          source: '/customer/account/forgotpassword',
+          destination: '/account/forgot-password',
+          permanent: true,
+        },
+        { source: '/sales/order/history', destination: '/account/orders', permanent: true },
+      )
+
+      return redirects
+    },
     rewrites: async () => {
       let rewrites = (await nextConfig.rewrites?.()) ?? []
 
