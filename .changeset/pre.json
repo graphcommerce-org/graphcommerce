@@ -87,7 +87,8 @@
     "@graphcommerce/prettier-config-pwa": "10.0.3",
     "@graphcommerce/typescript-config-pwa": "10.0.3",
     "@graphcommerce/magento-storyblok": "10.0.3",
-    "@graphcommerce/storyblok-ui": "10.0.3"
+    "@graphcommerce/storyblok-ui": "10.0.3",
+    "@graphcommerce/address-autocomplete": "10.1.0-canary.39"
   },
   "changesets": [
     "add-products-to-cart-empty-customizable-options",
@@ -121,6 +122,7 @@
     "interceptor-forward-default-export",
     "kind-days-punch",
     "long-buttons-begin",
+    "lucky-games-fix",
     "magento-server-endpoint",
     "mesh-multipart-bodyparser",
     "mesh-upload-fetch-formdata",
