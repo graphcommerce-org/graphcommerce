@@ -119,11 +119,19 @@ vi.mock('@mui/material', () => ({
   ListItemText: ({
     primary,
     secondary,
+    slotProps,
   }: {
     primary: React.ReactNode
     secondary?: React.ReactNode
+    slotProps?: {
+      primary?: { variant?: string }
+      secondary?: { variant?: string }
+    }
   }) => (
-    <span>
+    <span
+      data-primary-variant={slotProps?.primary?.variant}
+      data-secondary-variant={slotProps?.secondary?.variant}
+    >
       {primary} {secondary}
     </span>
   ),
@@ -264,6 +272,9 @@ describe('AddressAutocomplete', () => {
     })
     expect(testContainer?.textContent).toContain('221B Baker Street')
     expect(testContainer?.textContent).toContain('Google Maps')
+    const suggestionText = testContainer?.querySelector('[data-primary-variant]')
+    expect(suggestionText?.getAttribute('data-primary-variant')).toBe('body1')
+    expect(suggestionText?.getAttribute('data-secondary-variant')).toBe('body1')
 
     const option = testContainer?.querySelector<HTMLButtonElement>('button[role="option"]')
     await act(async () => option?.click())

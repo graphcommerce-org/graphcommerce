@@ -47,6 +47,10 @@ export function AddressAutocompletePopper({
               <ListItemText
                 primary={prediction.mainText?.text ?? prediction.text.text}
                 secondary={prediction.secondaryText?.text}
+                slotProps={{
+                  primary: { variant: 'body1' },
+                  secondary: { variant: 'body1' },
+                }}
               />
             </ListItemButton>
           ))}
