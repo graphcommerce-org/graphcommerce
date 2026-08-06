@@ -14,6 +14,14 @@ import { NameFields } from '../NameFields/NameFields'
 import type { UpdateCustomerAddressMutationVariables } from './UpdateCustomerAddress.gql'
 import { UpdateCustomerAddressDocument } from './UpdateCustomerAddress.gql'
 
+/**
+ * GraphCommerce used to submit this placeholder whenever the telephone field was left empty: it
+ * couldn't tell whether the shop required a telephone, while `CartAddressInput.telephone` is a
+ * non-nullable `String!`. Addresses saved back then still carry it, so it is cleared from the form
+ * instead of presented to the customer as if it were a real number.
+ */
+const legacyPlaceholderTelephone = '000 - 000 0000'
+
 export type EditAddressFormProps = {
   address?: AccountAddressFragment
   sx?: SxProps<Theme>
@@ -44,7 +52,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         postcode: address?.postcode,
         city: address?.city,
         countryCode: address?.country_code,
-        telephone: address?.telephone !== '000 - 000 0000' ? address?.telephone : '',
+        telephone: address?.telephone !== legacyPlaceholderTelephone ? address?.telephone : '',
         houseNumber: address?.street?.[1] ?? '',
         addition: address?.street?.[2] ?? '',
         region: address?.region,

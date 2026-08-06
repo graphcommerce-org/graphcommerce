@@ -18,6 +18,14 @@ import type { SxProps, Theme } from '@mui/material'
 import { GetBillingAddressDocument } from '../../graphql'
 import { useCartQuery, useFormGqlMutationCart } from '../../hooks'
 
+/**
+ * GraphCommerce used to submit this placeholder whenever the telephone field was left empty: it
+ * couldn't tell whether the shop required a telephone, while `CartAddressInput.telephone` is a
+ * non-nullable `String!`. Addresses saved back then still carry it, so it is cleared from the form
+ * instead of presented to the customer as if it were a real number.
+ */
+const legacyPlaceholderTelephone = '000 - 000 0000'
+
 export type EditBillingAddressFormProps = { sx?: SxProps<Theme> }
 
 export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
@@ -41,7 +49,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       city: address?.city,
       countryCode: address?.country.code,
       street: address?.street?.[0] ?? '',
-      telephone: address?.telephone !== '000 - 000 0000' ? address?.telephone : '',
+      telephone: address?.telephone !== legacyPlaceholderTelephone ? address?.telephone : '',
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
@@ -62,8 +70,8 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       return {
         ...variables,
         // See ShippingAddressForm: `CartAddressInput.telephone` is non-nullable, so send an empty
-        // string when Magento doesn't require a telephone instead of a fake number.
-        telephone: variables.telephone || (telephoneRequired === false ? '' : '000 - 000 0000'),
+        // string rather than a fake number and let Magento validate it.
+        telephone: variables.telephone || '',
         regionId,
       }
     },

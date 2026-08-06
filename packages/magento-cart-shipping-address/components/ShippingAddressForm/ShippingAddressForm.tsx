@@ -40,6 +40,14 @@ import { SetShippingAddressDocument } from './SetShippingAddress.gql'
 import type { SetShippingBillingAddressMutationVariables } from './SetShippingBillingAddress.gql'
 import { SetShippingBillingAddressDocument } from './SetShippingBillingAddress.gql'
 
+/**
+ * GraphCommerce used to submit this placeholder whenever the telephone field was left empty: it
+ * couldn't tell whether the shop required a telephone, while `CartAddressInput.telephone` is a
+ * non-nullable `String!`. Addresses saved back then still carry it, so it is cleared from the form
+ * instead of presented to the customer as if it were a real number.
+ */
+const legacyPlaceholderTelephone = '000 - 000 0000'
+
 export type ShippingAddressFormProps = Pick<UseFormComposeOptions, 'step'> & {
   /**
    * @deprecated This was used to make sure the form wasn't filled with a customer's address.
@@ -112,7 +120,9 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
           lastname: currentAddress?.lastname ?? customerQuery?.customer?.lastname ?? '',
           telephone:
-            currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
+            currentAddress?.telephone !== legacyPlaceholderTelephone
+              ? currentAddress?.telephone
+              : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
           vatId: currentAddress?.vat_id ?? '',
@@ -139,12 +149,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
       return {
         ...variables,
-        // `CartAddressInput.telephone` is non-nullable, so something always has to be sent. When
-        // Magento doesn't require a telephone we send an empty string rather than a fake number;
-        // when it does, the field is required and this fallback is unreachable. Only while the
-        // attribute metadata is still unknown do we keep the historic placeholder, so the mutation
-        // doesn't start failing on shops that do require a telephone.
-        telephone: variables.telephone || (telephoneRequired === false ? '' : '000 - 000 0000'),
+        // `CartAddressInput.telephone` is non-nullable, so an empty string is sent rather than
+        // nothing. Magento validates it against the same `is_required` we render the field with, so
+        // a shop that requires a telephone returns a proper validation error instead of silently
+        // accepting a fake number.
+        telephone: variables.telephone || '',
         region: regionId ? variables.region : '',
         regionId,
         addition: variables.addition ?? '',
