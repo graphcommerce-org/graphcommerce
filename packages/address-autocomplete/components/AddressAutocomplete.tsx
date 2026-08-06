@@ -6,7 +6,7 @@ import { ErrorSnackbar } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import { Box, CircularProgress, ClickAwayListener } from '@mui/material'
 import type { ReactNode } from 'react'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useCountries } from '../hooks/useCountries'
 import { usePlacesAutocomplete } from '../hooks/usePlacesAutocomplete'
 import { addressValues } from '../utils/addressValues'
@@ -33,6 +33,7 @@ export function AddressAutocomplete<
   const { fallback } = options
   const form = useAddressFieldsForm<TFieldValues, TName>(options)
   const { control, getValues, name, readOnly, required, setValue } = form
+  const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null)
   const pendingRegion = useRef<FormattedAddress | null>(null)
   const countries = useCountries()
 
@@ -80,7 +81,7 @@ export function AddressAutocomplete<
     <>
       {places.autocompleteAvailable ? (
         <ClickAwayListener onClickAway={places.closeSuggestions}>
-          <Box sx={{ position: 'relative', width: '100%' }}>
+          <Box ref={setAnchorElement} sx={{ position: 'relative', width: '100%' }}>
             <TextFieldElement
               sx={{ width: '100%' }}
               variant='outlined'
@@ -93,7 +94,6 @@ export function AddressAutocomplete<
               onChange={places.onChange}
               onFocus={places.onFocus}
               onKeyDown={places.onKeyDown}
-              inputRef={places.setAnchorElement}
               inputProps={{
                 'aria-activedescendant':
                   places.activeIndex >= 0
@@ -116,7 +116,7 @@ export function AddressAutocomplete<
             />
             <AddressAutocompletePopper
               activeIndex={places.activeIndex}
-              anchorElement={places.anchorElement}
+              anchorElement={anchorElement}
               listboxId={places.listboxId}
               open={places.listboxOpen}
               predictions={places.predictions}

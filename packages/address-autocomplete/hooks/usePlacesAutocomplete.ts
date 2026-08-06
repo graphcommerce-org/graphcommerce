@@ -26,7 +26,6 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const [activeIndex, setActiveIndex] = useState(-1)
-  const [anchorElement, setAnchorElement] = useState<HTMLInputElement | null>(null)
   const sessionToken = useRef<google.maps.places.AutocompleteSessionToken | undefined>(undefined)
   const requestNumber = useRef(0)
   const addressSearchName = `places-search-${useId()}`
@@ -174,7 +173,6 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
   return {
     activeIndex,
     addressSearchName,
-    anchorElement,
     autocompleteAvailable,
     closeSuggestions,
     error: placesError,
@@ -187,6 +185,5 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
     predictions,
     selectPrediction,
     setActiveIndex,
-    setAnchorElement,
   }
 }

@@ -3,7 +3,7 @@ import { Box, List, ListItemButton, ListItemText, Paper, Popper, Typography } fr
 
 export type AddressAutocompletePopperProps = {
   activeIndex: number
-  anchorElement: HTMLInputElement | null
+  anchorElement: HTMLElement | null
   listboxId: string
   open: boolean
   predictions: google.maps.places.PlacePrediction[]
