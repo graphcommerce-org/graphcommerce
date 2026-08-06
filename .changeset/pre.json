@@ -134,6 +134,7 @@
     "some-kings-act",
     "storyblok-asset-poster",
     "storyblok-cache-version-refresh-flag",
+    "storyblok-multilink-prefer-resolved-full-slug",
     "storyblok-refresh-cache-version",
     "sunny-hoops-attend",
     "swc-config-loader",

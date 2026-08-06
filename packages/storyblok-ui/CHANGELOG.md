@@ -1,5 +1,11 @@
 # @graphcommerce/storyblok-ui
 
+## 10.1.0-canary.40
+
+### Patch Changes
+
+- [#2661](https://github.com/graphcommerce-org/graphcommerce/pull/2661) [`c849720`](https://github.com/graphcommerce-org/graphcommerce/commit/c84972084d993a90526c1bf549d9ae75b54aebab) - Resolve `story` multilinks against the target's current slug instead of the frozen `cached_url`. `cached_url` is a snapshot taken when the _referencing_ story was last published, so renaming the target left every link to it pointing at a 404 until an editor re-published each referencing story. `multilinkHref` now prefers `story.full_slug` — populated from the `links` map the CDN resolves on every read, since `sbParams` always sends `resolve_links: 'story'` — which makes story links self-healing across renames. Other link types are unaffected. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.39
 
 ### Minor Changes
