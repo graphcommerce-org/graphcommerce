@@ -1660,6 +1660,29 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         ...nextConfig.images?.remotePatterns ?? []
       ].filter((v) => !!v)
     },
+    redirects: async () => {
+      const redirects = await nextConfig.redirects?.() ?? [];
+      // Magento builds its own frontend URLs from `base_link_url`, which on a
+      // headless setup points at the GraphCommerce storefront. Those URLs end up
+      // in transactional emails ("Sign in to your account" links every stock
+      // email template renders) and in the 302 Location of gated Magento routes,
+      // but GraphCommerce doesn't serve them, so they 404.
+      //
+      // A redirect wins over a filesystem route, so every source below must be
+      // a path GraphCommerce does *not* serve. Two Magento paths are real pages
+      // in the examples — /customer/account/confirm and
+      // /customer/account/createPassword, the ones carrying the confirmation
+      // `key` and the reset `rp_token` — so these stay exact matches. A
+      // `/customer/account/:path*` catch-all would make both unreachable.
+      redirects.push(
+        { source: "/customer/account", destination: "/account", permanent: true },
+        { source: "/customer/account/index", destination: "/account", permanent: true },
+        { source: "/customer/account/login", destination: "/account/signin", permanent: true },
+        { source: "/customer/account/create", destination: "/account/signin", permanent: true },
+        { source: "/sales/order/history", destination: "/account/orders", permanent: true }
+      );
+      return redirects;
+    },
     rewrites: async () => {
       let rewrites = await nextConfig.rewrites?.() ?? [];
       if (Array.isArray(rewrites)) {
