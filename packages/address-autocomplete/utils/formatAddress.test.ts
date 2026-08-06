@@ -66,6 +66,22 @@ describe('formatAddress', () => {
     },
   )
 
+  it('maps Antonie van Leeuwenhoekweg 38C6 to house number and addition', () => {
+    const result = formatAddress({
+      addressComponents: [
+        component('38C6', '38C6', ['street_number']),
+        component('Antonie van Leeuwenhoekweg', 'Antonie van Leeuwenhoekweg', ['route']),
+        component('Nederland', 'NL', ['country']),
+      ],
+    })
+
+    expect(result).toMatchObject({
+      street: 'Antonie van Leeuwenhoekweg',
+      houseNumber: '38',
+      addition: 'C6',
+    })
+  })
+
   it('preserves an explicit subpremise instead of splitting the street number', () => {
     const result = formatAddress({
       addressComponents: [
