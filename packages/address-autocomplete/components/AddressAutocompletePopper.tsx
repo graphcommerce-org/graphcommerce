@@ -48,8 +48,8 @@ export function AddressAutocompletePopper({
                 primary={prediction.mainText?.text ?? prediction.text.text}
                 secondary={prediction.secondaryText?.text}
                 slotProps={{
-                  primary: { variant: 'body1' },
-                  secondary: { variant: 'body1' },
+                  primary: { variant: 'body2' },
+                  secondary: { variant: 'body2' },
                 }}
               />
             </ListItemButton>
@@ -57,15 +57,7 @@ export function AddressAutocompletePopper({
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', px: 1.25, py: 0.625 }}>
             <Typography
               translate='no'
-              sx={(theme) => ({
-                color: theme.palette.mode === 'dark' ? '#fff' : '#5e5e5e',
-                fontFamily: 'Roboto, sans-serif',
-                fontSize: '0.75rem',
-                fontStyle: 'normal',
-                fontWeight: 400,
-                letterSpacing: 'normal',
-                whiteSpace: 'nowrap',
-              })}
+              sx={{ color: 'text.secondary', typography: 'caption', whiteSpace: 'nowrap' }}
             >
               Google Maps
             </Typography>

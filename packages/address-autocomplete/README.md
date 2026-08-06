@@ -83,7 +83,6 @@ The plugin replaces the standard `AddressStreet` field only when
 The main package export provides:
 
 - `AddressAutocomplete` — Google-assisted street field with a required fallback;
-- `useCountries` — loads Magento countries and regions;
 - `formatAddress` — converts Google address components to a normalized address;
 - `addressValues` — converts a normalized address to form values; and
 - `findRegionId` — matches a Google region to a Magento region ID.
@@ -109,7 +108,8 @@ Check that:
 - billing is enabled for the Google Cloud project.
 
 The manual street field is displayed when the key is missing or the Google Maps
-script cannot be loaded.
+script cannot be loaded. Loading and request errors are logged to the browser
+console without showing an error message to the customer.
 
 ### Google Maps attribution
 

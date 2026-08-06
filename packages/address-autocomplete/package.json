@@ -26,7 +26,6 @@
     "@graphcommerce/magento-customer": "^10.1.0-canary.39",
     "@graphcommerce/magento-store": "^10.1.0-canary.39",
     "@graphcommerce/next-config": "^10.1.0-canary.39",
-    "@graphcommerce/next-ui": "^10.1.0-canary.39",
     "@graphcommerce/prettier-config-pwa": "^10.1.0-canary.39",
     "@graphcommerce/typescript-config-pwa": "^10.1.0-canary.39",
     "@lingui/core": "^5",

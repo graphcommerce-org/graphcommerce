@@ -1,13 +1,13 @@
 import { TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import type { FieldPath, FieldValues, PathValue } from '@graphcommerce/ecommerce-ui'
+import { useQuery } from '@graphcommerce/graphql'
 import type { AddressFieldsOptions } from '@graphcommerce/magento-customer'
 import { useAddressFieldsForm } from '@graphcommerce/magento-customer'
-import { ErrorSnackbar } from '@graphcommerce/next-ui'
+import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Trans } from '@lingui/react/macro'
-import { Box, CircularProgress, ClickAwayListener } from '@mui/material'
+import { Box, CircularProgress, ClickAwayListener, useEventCallback } from '@mui/material'
 import type { ReactNode } from 'react'
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useCountries } from '../hooks/useCountries'
+import { useEffect, useRef, useState } from 'react'
 import { usePlacesAutocomplete } from '../hooks/usePlacesAutocomplete'
 import { addressValues } from '../utils/addressValues'
 import type { FormattedAddress } from '../utils/formatAddress'
@@ -35,35 +35,28 @@ export function AddressAutocomplete<
   const { control, getValues, name, readOnly, required, setValue } = form
   const [anchorElement, setAnchorElement] = useState<HTMLElement | null>(null)
   const pendingRegion = useRef<FormattedAddress | null>(null)
-  const countries = useCountries()
+  const countries = useQuery(CountryRegionsDocument).data?.countries
 
-  const updateValue = useCallback(
-    (fieldName: TName, value: unknown) => {
+  const onAddress = useEventCallback((address: FormattedAddress) => {
+    const values = addressValues(address, countries)
+    const updateValue = (fieldName: TName, value: unknown) => {
       setValue(fieldName, value as PathValue<TFieldValues, TName>, updateOptions)
-    },
-    [setValue],
-  )
+    }
 
-  const onAddress = useCallback(
-    (address: FormattedAddress) => {
-      const values = addressValues(address, countries)
-
-      updateValue(name.regionId, null)
-      updateValue(name.street, values.street)
-      updateValue(name.houseNumber, values.houseNumber)
-      updateValue(name.addition, values.addition)
-      updateValue(name.postcode, values.postcode)
-      updateValue(name.city, values.city)
-      updateValue(name.countryCode, values.countryCode)
-      if (countries) {
-        updateValue(name.regionId, values.regionId)
-        pendingRegion.current = null
-      } else {
-        pendingRegion.current = address
-      }
-    },
-    [countries, name, updateValue],
-  )
+    updateValue(name.regionId, null)
+    updateValue(name.street, values.street)
+    updateValue(name.houseNumber, values.houseNumber)
+    updateValue(name.addition, values.addition)
+    updateValue(name.postcode, values.postcode)
+    updateValue(name.city, values.city)
+    updateValue(name.countryCode, values.countryCode)
+    if (countries) {
+      updateValue(name.regionId, values.regionId)
+      pendingRegion.current = null
+    } else {
+      pendingRegion.current = address
+    }
+  })
 
   const places = usePlacesAutocomplete({ onAddress })
 
@@ -74,8 +67,12 @@ export function AddressAutocomplete<
     pendingRegion.current = null
     if (getValues(name.countryCode) !== address.country) return
 
-    updateValue(name.regionId, addressValues(address, countries).regionId)
-  }, [countries, getValues, name.countryCode, name.regionId, updateValue])
+    setValue(
+      name.regionId,
+      addressValues(address, countries).regionId as PathValue<TFieldValues, TName>,
+      updateOptions,
+    )
+  }, [countries, getValues, name.countryCode, name.regionId, setValue])
 
   return (
     <>
@@ -128,9 +125,6 @@ export function AddressAutocomplete<
       ) : (
         fallback
       )}
-      <ErrorSnackbar open={Boolean(places.error)}>
-        <Trans>Address search is unavailable. You can enter the address manually.</Trans>
-      </ErrorSnackbar>
     </>
   )
 }

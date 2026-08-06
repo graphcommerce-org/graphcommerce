@@ -45,6 +45,10 @@ vi.mock('@graphcommerce/ecommerce-ui', () => ({
   ),
 }))
 
+vi.mock('@graphcommerce/graphql', () => ({
+  useQuery: () => ({ data: undefined }),
+}))
+
 vi.mock('@graphcommerce/magento-customer', () => ({
   useAddressFieldsForm: () => ({
     control: {},
@@ -68,17 +72,16 @@ vi.mock('@graphcommerce/next-config/config', () => ({
   googleMapsApiKey: 'test-key',
 }))
 
+vi.mock('@graphcommerce/magento-store', () => ({
+  CountryRegionsDocument: {},
+}))
+
 vi.mock('@lingui/core/macro', () => ({
   t: (strings: TemplateStringsArray) => strings.join(''),
 }))
 
 vi.mock('@lingui/react/macro', () => ({
   Trans: ({ children }: { children: React.ReactNode }) => children,
-}))
-
-vi.mock('@graphcommerce/next-ui', () => ({
-  ErrorSnackbar: ({ children, open }: { children: React.ReactNode; open: boolean }) =>
-    open ? <div>{children}</div> : null,
 }))
 
 vi.mock('@mui/material', () => ({
@@ -139,6 +142,7 @@ vi.mock('@mui/material', () => ({
   Popper: ({ children, open }: { children: React.ReactNode; open: boolean }) =>
     open ? <div data-places-popper>{children}</div> : null,
   Typography: ({ children }: { children: React.ReactNode }) => <span>{children}</span>,
+  useEventCallback: (callback: unknown) => callback,
 }))
 
 vi.mock('@googlemaps/js-api-loader', () => ({
@@ -149,10 +153,6 @@ vi.mock('@googlemaps/js-api-loader', () => ({
 
     importLibrary = importLibrary
   },
-}))
-
-vi.mock('../hooks/useCountries', () => ({
-  useCountries: () => undefined,
 }))
 
 afterEach(() => {
@@ -192,14 +192,17 @@ function renderAutocomplete() {
 
 describe('AddressAutocomplete', () => {
   it('keeps manual street entry available when Google Maps fails', async () => {
-    importLibrary.mockRejectedValue(new Error('Maps failed'))
+    const error = new Error('Maps failed')
+    const consoleError = vi.spyOn(console, 'error').mockImplementation(() => undefined)
+    importLibrary.mockRejectedValue(error)
 
     await act(async () => renderAutocomplete())
 
     expect(testContainer?.textContent).toContain('Manual street input')
-    expect(testContainer?.textContent).toContain(
-      'Address search is unavailable. You can enter the address manually.',
-    )
+    expect(testContainer?.textContent).not.toContain('Address search is unavailable')
+    expect(consoleError).toHaveBeenCalledWith(error)
+
+    consoleError.mockRestore()
   })
 
   it('uses the standard styled street field after Google Maps loads', async () => {
@@ -207,7 +210,6 @@ describe('AddressAutocomplete', () => {
       AutocompleteSessionToken,
       AutocompleteSuggestion: { fetchAutocompleteSuggestions },
     })
-
     await act(async () => renderAutocomplete())
 
     const streetInput = testContainer?.querySelector<HTMLInputElement>('input[aria-label="Street"]')
@@ -273,8 +275,8 @@ describe('AddressAutocomplete', () => {
     expect(testContainer?.textContent).toContain('221B Baker Street')
     expect(testContainer?.textContent).toContain('Google Maps')
     const suggestionText = testContainer?.querySelector('[data-primary-variant]')
-    expect(suggestionText?.getAttribute('data-primary-variant')).toBe('body1')
-    expect(suggestionText?.getAttribute('data-secondary-variant')).toBe('body1')
+    expect(suggestionText?.getAttribute('data-primary-variant')).toBe('body2')
+    expect(suggestionText?.getAttribute('data-secondary-variant')).toBe('body2')
 
     const option = testContainer?.querySelector<HTMLButtonElement>('button[role="option"]')
     await act(async () => option?.click())

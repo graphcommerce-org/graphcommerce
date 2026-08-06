@@ -1,7 +1,8 @@
 import { googleMapsApiKey } from '@graphcommerce/next-config/config'
 import { Loader } from '@googlemaps/js-api-loader'
+import { useEventCallback } from '@mui/material'
 import type { ChangeEvent, KeyboardEvent } from 'react'
-import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { FormattedAddress } from '../utils/formatAddress'
 import { formatAddress } from '../utils/formatAddress'
 
@@ -19,7 +20,6 @@ export type UsePlacesAutocompleteOptions = {
 
 export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOptions) {
   const [placesLibrary, setPlacesLibrary] = useState<PlacesAutocompleteLibrary>()
-  const [placesError, setPlacesError] = useState<Error>()
   const [isLoaded, setIsLoaded] = useState(false)
   const [predictions, setPredictions] = useState<google.maps.places.PlacePrediction[]>([])
   const [searchValue, setSearchValue] = useState('')
@@ -42,12 +42,11 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
         if (!active) return
         setPlacesLibrary(library)
         setIsLoaded(true)
-        setPlacesError(undefined)
       })
       .catch((error: unknown) => {
         if (!active) return
         setIsLoaded(false)
-        setPlacesError(error instanceof Error ? error : new Error('Unable to load Google Places'))
+        console.error(error)
       })
 
     return () => {
@@ -85,15 +84,12 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
           setPredictions(nextPredictions)
           setActiveIndex(-1)
           setOpen(nextPredictions.length > 0)
-          setPlacesError(undefined)
         })
         .catch((error: unknown) => {
           if (currentRequest !== requestNumber.current) return
           setPredictions([])
           setOpen(false)
-          setPlacesError(
-            error instanceof Error ? error : new Error('Unable to search for addresses'),
-          )
+          console.error(error)
         })
         .finally(() => {
           if (currentRequest === requestNumber.current) setLoading(false)
@@ -103,7 +99,7 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
     return () => window.clearTimeout(timeout)
   }, [placesLibrary, searchValue])
 
-  const selectPrediction = useCallback(
+  const selectPrediction = useEventCallback(
     async (prediction: google.maps.places.PlacePrediction) => {
       requestNumber.current += 1
       setLoading(false)
@@ -117,55 +113,48 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
         if (place.addressComponents) {
           onAddress(formatAddress({ addressComponents: place.addressComponents }))
         }
-        setPlacesError(undefined)
       } catch (error) {
-        setPlacesError(
-          error instanceof Error ? error : new Error('Unable to retrieve the selected address'),
-        )
+        console.error(error)
       } finally {
         sessionToken.current = undefined
       }
     },
-    [onAddress],
   )
 
-  const closeSuggestions = useCallback(() => {
+  const closeSuggestions = useEventCallback(() => {
     setOpen(false)
     setActiveIndex(-1)
     sessionToken.current = undefined
-  }, [])
+  })
 
-  const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = useEventCallback((event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value)
-  }, [])
+  })
 
-  const onFocus = useCallback(() => {
+  const onFocus = useEventCallback(() => {
     setOpen(predictions.length > 0)
-  }, [predictions.length])
+  })
 
-  const onKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLInputElement>) => {
-      if (event.key === 'Escape' || event.key === 'Tab') {
-        closeSuggestions()
-        return
-      }
-      if (!predictions.length) return
+  const onKeyDown = useEventCallback((event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Escape' || event.key === 'Tab') {
+      closeSuggestions()
+      return
+    }
+    if (!predictions.length) return
 
-      if (event.key === 'ArrowDown') {
-        event.preventDefault()
-        setOpen(true)
-        setActiveIndex((current) => (current + 1) % predictions.length)
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault()
-        setOpen(true)
-        setActiveIndex((current) => (current <= 0 ? predictions.length - 1 : current - 1))
-      } else if (event.key === 'Enter' && open && activeIndex >= 0) {
-        event.preventDefault()
-        void selectPrediction(predictions[activeIndex])
-      }
-    },
-    [activeIndex, closeSuggestions, open, predictions, selectPrediction],
-  )
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      setOpen(true)
+      setActiveIndex((current) => (current + 1) % predictions.length)
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      setOpen(true)
+      setActiveIndex((current) => (current <= 0 ? predictions.length - 1 : current - 1))
+    } else if (event.key === 'Enter' && open && activeIndex >= 0) {
+      event.preventDefault()
+      void selectPrediction(predictions[activeIndex])
+    }
+  })
 
   const autocompleteAvailable = Boolean(googleMapsApiKey && isLoaded)
   const listboxOpen = autocompleteAvailable && open && predictions.length > 0
@@ -175,7 +164,6 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
     addressSearchName,
     autocompleteAvailable,
     closeSuggestions,
-    error: placesError,
     listboxId,
     listboxOpen,
     loading,
