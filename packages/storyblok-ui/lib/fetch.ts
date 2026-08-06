@@ -71,6 +71,15 @@ export function requestStoryblokCacheVersionRefresh(): void {
  * Advance the pinned cache-version when forced (see {@link requestStoryblokCacheVersionRefresh}) or
  * once the TTL has elapsed. Only called from the published-read fetch functions below, where
  * `storyblokInit` has always run, so `getStoryblokApi()` is safe here.
+ *
+ * The pin has to be applied by hand: `storyblok-js-client` only advances it from a response that
+ * carries a top-level `cv`, and `cdn/spaces/me` answers with `{ space: { version } }` instead — so
+ * simply issuing the request (as this function used to do) left the pin untouched and the refresh
+ * was a no-op. `space.version` is the same number a `cdn/stories` response returns as `cv`.
+ *
+ * When the version actually moved we also flush the client's response cache. That only matters for
+ * projects that opt into `apiOptions.cache` (the client defaults to no caching), but without it a
+ * cached response would outlive the content it was cached for.
  */
 async function refreshStoryblokCacheVersion(): Promise<void> {
   if (isDev) return
@@ -80,7 +89,12 @@ async function refreshStoryblokCacheVersion(): Promise<void> {
   forceRefreshRequested = false
   cvRefreshedAt = now
   try {
-    await getStoryblokApi().get('cdn/spaces/me')
+    const api = getStoryblokApi()
+    const response = await api.get('cdn/spaces/me')
+    const cv = (response?.data as { space?: { version?: number } } | undefined)?.space?.version
+    if (typeof cv !== 'number') return
+    if (api.cacheVersion() !== cv) await api.flushCache()
+    api.setCacheVersion(cv)
   } catch {
     // A failed refresh keeps the previous cv; force a retry on the next read.
     cvRefreshedAt = 0
@@ -233,6 +247,39 @@ export async function fetchAllStories(params: FetchStoriesParams): Promise<Story
 }
 
 /**
+ * Slugs Storyblok most recently answered 404 for, with the timestamp at which that answer expires.
+ *
+ * `storyblok-js-client` only caches *successful* published responses — a 404 rejects before it
+ * reaches the cache — so every speculative "is there a story at this slug?" lookup goes to the CDN
+ * again, forever. Storefronts do that a lot: a catch-all route typically probes the CMS for every
+ * category URL before falling back, and most of those never have a story. Remembering the absence
+ * for one cache-version interval collapses that to at most one request per slug per interval, and
+ * it costs nothing for slugs that do exist (those are answered from the client's own cache).
+ *
+ * Staleness is bounded and one-directional: a slug that starts existing is picked up after at most
+ * {@link CV_REFRESH_TTL_MS}, the same window in which edits to published content become visible.
+ */
+const missingStories = new Map<string, number>()
+
+/** Bounds memory on storefronts that probe a large number of distinct slugs. */
+const MAX_MISSING_ENTRIES = 2000
+
+function rememberMissingStory(key: string, now: number) {
+  for (const [entry, expiresAt] of missingStories) {
+    if (expiresAt <= now) missingStories.delete(entry)
+  }
+  // Still over the cap after dropping expired entries: evict oldest-inserted first (a Map iterates
+  // in insertion order) until we're back under it.
+  let excess = missingStories.size - MAX_MISSING_ENTRIES
+  for (const entry of missingStories.keys()) {
+    if (excess <= 0) break
+    missingStories.delete(entry)
+    excess -= 1
+  }
+  missingStories.set(key, now + CV_REFRESH_TTL_MS)
+}
+
+/**
  * Fetch a single story by slug. When `apolloClient` is provided, resolves product data for
  * row_product bloks.
  */
@@ -241,6 +288,20 @@ export async function fetchStory(
   opts?: FetchStoryOpts,
   apolloClient?: ApolloClient,
 ): Promise<{ data: { story: StoryblokStory } | null }> {
+  // Draft reads must never be answered from a stale negative cache — the Visual Editor has to see
+  // a story the moment it is created — and in dev an immediately accurate picture beats fewer
+  // requests.
+  const cacheable = !opts?.preview && !isDev
+  const key = cacheable
+    ? `${slug}|${opts?.locale ?? ''}|${opts?.language ?? ''}|${opts?.resolveRelations ?? ''}`
+    : ''
+
+  const now = Date.now()
+  if (cacheable) {
+    const expiresAt = missingStories.get(key)
+    if (expiresAt !== undefined && expiresAt > now) return { data: null }
+  }
+
   try {
     if (!opts?.preview) await refreshStoryblokCacheVersion()
     const result = await fetchWithRetry(() =>
@@ -249,9 +310,14 @@ export async function fetchStory(
     if (apolloClient && result.data?.story?.content?.body) {
       await resolveStoryblokProducts(result.data.story.content.body, apolloClient)
     }
+    if (cacheable && !result.data?.story) rememberMissingStory(key, now)
+    else if (cacheable) missingStories.delete(key)
     return result
   } catch (error) {
     logFetchError(`fetchStory('${slug}')`, error)
+    // Only a 404 proves the story is absent. Network failures, auth problems and exhausted retries
+    // must stay retryable, otherwise one blip hides an existing story for a whole interval.
+    if (cacheable && (error as { status?: number })?.status === 404) rememberMissingStory(key, now)
     return { data: null }
   }
 }
