@@ -19,12 +19,14 @@ import {
   CompanyFields,
   CustomerDocument,
   NameFields,
-  placeholderTelephone,
   useBillingAddressPermission,
   useCustomerQuery,
-  useTelephoneRequired,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  CountryRegionsDocument,
+  StoreConfigDocument,
+  useAttributesForm,
+} from '@graphcommerce/magento-store'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
@@ -58,7 +60,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
   const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
-  const telephoneRequired = useTelephoneRequired()
+
+  // Magento's address attribute metadata tells us whether a telephone is required, as configured by
+  // `customer/address/telephone_show`.
+  const addressAttributes = useAttributesForm({ formCode: 'customer_address_edit' })
+  const telephoneRequired = addressAttributes.find((a) => a.code === 'telephone')?.is_required
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -106,7 +112,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
           lastname: currentAddress?.lastname ?? customerQuery?.customer?.lastname ?? '',
           telephone:
-            currentAddress?.telephone !== placeholderTelephone ? currentAddress?.telephone : '',
+            currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
           vatId: currentAddress?.vat_id ?? '',
@@ -138,7 +144,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
         // when it does, the field is required and this fallback is unreachable. Only while the
         // attribute metadata is still unknown do we keep the historic placeholder, so the mutation
         // doesn't start failing on shops that do require a telephone.
-        telephone: variables.telephone || (telephoneRequired === false ? '' : placeholderTelephone),
+        telephone: variables.telephone || (telephoneRequired === false ? '' : '000 - 000 0000'),
         region: regionId ? variables.region : '',
         regionId,
         addition: variables.addition ?? '',

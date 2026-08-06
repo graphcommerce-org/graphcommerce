@@ -10,10 +10,8 @@ import {
   ApolloCustomerErrorAlert,
   CompanyFields,
   NameFields,
-  placeholderTelephone,
-  useTelephoneRequired,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, useAttributesForm } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -29,7 +27,11 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
-  const telephoneRequired = useTelephoneRequired()
+
+  // Magento's address attribute metadata tells us whether a telephone is required, as configured by
+  // `customer/address/telephone_show`.
+  const addressAttributes = useAttributesForm({ formCode: 'customer_address_edit' })
+  const telephoneRequired = addressAttributes.find((a) => a.code === 'telephone')?.is_required
 
   const form = useFormGqlMutationCart(SetBillingAddressDocument, {
     defaultValues: {
@@ -39,7 +41,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       city: address?.city,
       countryCode: address?.country.code,
       street: address?.street?.[0] ?? '',
-      telephone: address?.telephone !== placeholderTelephone ? address?.telephone : '',
+      telephone: address?.telephone !== '000 - 000 0000' ? address?.telephone : '',
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
@@ -61,7 +63,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         ...variables,
         // See ShippingAddressForm: `CartAddressInput.telephone` is non-nullable, so send an empty
         // string when Magento doesn't require a telephone instead of a fake number.
-        telephone: variables.telephone || (telephoneRequired === false ? '' : placeholderTelephone),
+        telephone: variables.telephone || (telephoneRequired === false ? '' : '000 - 000 0000'),
         regionId,
       }
     },

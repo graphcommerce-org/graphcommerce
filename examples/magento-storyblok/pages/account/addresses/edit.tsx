@@ -6,7 +6,8 @@ import {
   useCustomerQuery,
   WaitForCustomer,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   iconAddresses,
@@ -82,6 +83,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const up = { href: '/account/addresses', title: t`Addresses` }
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_address_edit')
 
   return {
     props: {
