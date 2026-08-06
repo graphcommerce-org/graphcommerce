@@ -247,36 +247,96 @@ export async function fetchAllStories(params: FetchStoriesParams): Promise<Story
 }
 
 /**
- * Slugs Storyblok most recently answered 404 for, with the timestamp at which that answer expires.
- *
- * `storyblok-js-client` only caches *successful* published responses — a 404 rejects before it
- * reaches the cache — so every speculative "is there a story at this slug?" lookup goes to the CDN
- * again, forever. Storefronts do that a lot: a catch-all route typically probes the CMS for every
- * category URL before falling back, and most of those never have a story. Remembering the absence
- * for one cache-version interval collapses that to at most one request per slug per interval, and
- * it costs nothing for slugs that do exist (those are answered from the client's own cache).
- *
- * Staleness is bounded and one-directional: a slug that starts existing is picked up after at most
- * {@link CV_REFRESH_TTL_MS}, the same window in which edits to published content become visible.
+ * Above this many links the slug index is not built and `fetchStory` falls back to asking the CDN
+ * per slug. `cdn/links` returns at most 1000 entries per request, so this also caps the index build
+ * at ten requests and the retained set at a few hundred kilobytes.
  */
-const missingStories = new Map<string, number>()
+const MAX_INDEXED_LINKS = 10000
+const LINKS_PER_PAGE = 1000
 
-/** Bounds memory on storefronts that probe a large number of distinct slugs. */
-const MAX_MISSING_ENTRIES = 2000
+/**
+ * The set of published slugs for one cache-version, or `null` when no index is available (the
+ * request failed, or the space is larger than {@link MAX_INDEXED_LINKS}).
+ *
+ * Memoized per cache-version rather than in the Storyblok client's response cache, because that
+ * cache is opt-in (`apiOptions.cache`) and defaults to off — without a memo here an un-cached
+ * project would fetch the index on every single `fetchStory`.
+ */
+let slugIndex: { cv: number; slugs: Promise<Set<string> | null> } | undefined
 
-function rememberMissingStory(key: string, now: number) {
-  for (const [entry, expiresAt] of missingStories) {
-    if (expiresAt <= now) missingStories.delete(entry)
+/** `foo/` and `/foo` both address the story that `cdn/links` reports under the slug `foo/`. */
+function normalizeSlug(slug: string) {
+  return slug.replace(/^\/+/, '').replace(/\/+$/, '')
+}
+
+type ISbLinkEntry = { slug?: string; is_folder?: boolean }
+
+async function fetchSlugIndex(): Promise<Set<string> | null> {
+  // Deliberately unscoped by language. `cdn/links?language=x` returns only the stories that have
+  // content in that language, but `cdn/stories/<slug>?language=x` happily falls back to the default
+  // language for the rest — so a language-scoped index would report existing pages as missing.
+  // Story *existence* is language-independent; folder-level translations are separate stories and
+  // appear in this list under their own slug.
+  const params = { version: 'published' as const, per_page: LINKS_PER_PAGE }
+  try {
+    const first = await fetchWithRetry(() => getStoryblokApi().get('cdn/links', { ...params }))
+    const total = first.total ?? 0
+    if (total > MAX_INDEXED_LINKS) return null
+
+    const pages = [first]
+    const totalPages = Math.ceil(total / LINKS_PER_PAGE)
+    const remaining = Array.from({ length: Math.max(totalPages - 1, 0) }, (_, i) => i + 2)
+    for (let i = 0; i < remaining.length; i += MAX_PAGE_CONCURRENCY) {
+      const chunk = remaining.slice(i, i + MAX_PAGE_CONCURRENCY)
+      pages.push(
+        ...(await Promise.all(
+          chunk.map((page) =>
+            fetchWithRetry(() => getStoryblokApi().get('cdn/links', { ...params, page })),
+          ),
+        )),
+      )
+    }
+
+    const slugs = new Set<string>()
+    for (const page of pages) {
+      for (const link of Object.values(page.data?.links ?? {}) as ISbLinkEntry[]) {
+        // Folders are not stories. A folder with a start page contributes that start page as its
+        // own non-folder entry (`clubkleding/`), so dropping folders here is what makes a folder
+        // *without* one correctly report as missing.
+        if (link.is_folder) continue
+        if (typeof link.slug === 'string') slugs.add(normalizeSlug(link.slug))
+      }
+    }
+    return slugs
+  } catch (error) {
+    logFetchError('fetchSlugIndex()', error)
+    return null
   }
-  // Still over the cap after dropping expired entries: evict oldest-inserted first (a Map iterates
-  // in insertion order) until we're back under it.
-  let excess = missingStories.size - MAX_MISSING_ENTRIES
-  for (const entry of missingStories.keys()) {
-    if (excess <= 0) break
-    missingStories.delete(entry)
-    excess -= 1
-  }
-  missingStories.set(key, now + CV_REFRESH_TTL_MS)
+}
+
+/**
+ * Answers "can a published story exist at this slug?" without spending a request per slug.
+ *
+ * Crawlers and vulnerability scanners walk an unbounded number of made-up URLs, and a storefront's
+ * catch-all route asks the CMS about every one of them before falling back. Remembering individual
+ * 404s does not help there — every made-up URL is a fresh slug and therefore a fresh CDN request.
+ * One `cdn/links` index per cache-version answers all of them for free instead: it lists every
+ * published slug in the space in a single lightweight response (~300 bytes per story, one request
+ * per 1000 stories) and is discarded as soon as the cache-version moves, i.e. as soon as anything
+ * is published.
+ *
+ * Returns `undefined` when no index is available, meaning "don't know — go ask the CDN".
+ */
+async function isKnownSlug(slug: string): Promise<boolean | undefined> {
+  const cv = getStoryblokApi().cacheVersion()
+  // Before the first cache-version is pinned there is nothing to key the index on, and re-fetching
+  // it per call would be worse than the problem it solves.
+  if (!cv) return undefined
+
+  if (slugIndex?.cv !== cv) slugIndex = { cv, slugs: fetchSlugIndex() }
+
+  const slugs = await slugIndex.slugs
+  return slugs ? slugs.has(normalizeSlug(slug)) : undefined
 }
 
 /**
@@ -288,36 +348,23 @@ export async function fetchStory(
   opts?: FetchStoryOpts,
   apolloClient?: ApolloClient,
 ): Promise<{ data: { story: StoryblokStory } | null }> {
-  // Draft reads must never be answered from a stale negative cache — the Visual Editor has to see
-  // a story the moment it is created — and in dev an immediately accurate picture beats fewer
-  // requests.
-  const cacheable = !opts?.preview && !isDev
-  const key = cacheable
-    ? `${slug}|${opts?.locale ?? ''}|${opts?.language ?? ''}|${opts?.resolveRelations ?? ''}`
-    : ''
-
-  const now = Date.now()
-  if (cacheable) {
-    const expiresAt = missingStories.get(key)
-    if (expiresAt !== undefined && expiresAt > now) return { data: null }
-  }
-
   try {
     if (!opts?.preview) await refreshStoryblokCacheVersion()
+
+    // Draft reads skip the index: the Visual Editor must see an unpublished story the moment it is
+    // created, and `cdn/links` only lists published ones. Development skips it too: `sbParams`
+    // sends a fresh `cv` per request there, so an index would never be reused.
+    if (!opts?.preview && !isDev && (await isKnownSlug(slug)) === false) return { data: null }
+
     const result = await fetchWithRetry(() =>
       getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts)),
     )
     if (apolloClient && result.data?.story?.content?.body) {
       await resolveStoryblokProducts(result.data.story.content.body, apolloClient)
     }
-    if (cacheable && !result.data?.story) rememberMissingStory(key, now)
-    else if (cacheable) missingStories.delete(key)
     return result
   } catch (error) {
     logFetchError(`fetchStory('${slug}')`, error)
-    // Only a 404 proves the story is absent. Network failures, auth problems and exhausted retries
-    // must stay retryable, otherwise one blip hides an existing story for a whole interval.
-    if (cacheable && (error as { status?: number })?.status === 404) rememberMissingStory(key, now)
     return { data: null }
   }
 }
