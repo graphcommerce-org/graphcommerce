@@ -6,7 +6,11 @@ import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
-import { useBillingAddressPermission } from '../../hooks'
+import {
+  placeholderTelephone,
+  useBillingAddressPermission,
+  useTelephoneRequired,
+} from '../../hooks'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
@@ -26,6 +30,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
 
   const router = useRouter()
   const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
+  const telephoneRequired = useTelephoneRequired()
 
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
@@ -39,7 +44,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         postcode: address?.postcode,
         city: address?.city,
         countryCode: address?.country_code,
-        telephone: address?.telephone,
+        telephone: address?.telephone !== placeholderTelephone ? address?.telephone : '',
         houseNumber: address?.street?.[1] ?? '',
         addition: address?.street?.[2] ?? '',
         region: address?.region,
@@ -92,7 +97,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         <FormRow>
           <TelephoneElement
             variant='outlined'
-            required={required.telephone}
+            required={required.telephone || telephoneRequired === true}
             control={control}
             name='telephone'
             disabled={formState.isSubmitting}

@@ -10,6 +10,8 @@ import {
   ApolloCustomerErrorAlert,
   CompanyFields,
   NameFields,
+  placeholderTelephone,
+  useTelephoneRequired,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
@@ -27,6 +29,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
   const address = useCartQuery(GetBillingAddressDocument)?.data?.cart?.billing_address
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
+  const telephoneRequired = useTelephoneRequired()
 
   const form = useFormGqlMutationCart(SetBillingAddressDocument, {
     defaultValues: {
@@ -36,7 +39,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       city: address?.city,
       countryCode: address?.country.code,
       street: address?.street?.[0] ?? '',
-      telephone: address?.telephone,
+      telephone: address?.telephone !== placeholderTelephone ? address?.telephone : '',
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
@@ -56,7 +59,9 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
       return {
         ...variables,
-        telephone: variables.telephone || '000 - 000 0000',
+        // See ShippingAddressForm: `CartAddressInput.telephone` is non-nullable, so send an empty
+        // string when Magento doesn't require a telephone instead of a fake number.
+        telephone: variables.telephone || (telephoneRequired === false ? '' : placeholderTelephone),
         regionId,
       }
     },
@@ -77,7 +82,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <FormRow>
           <TelephoneElement
             variant='outlined'
-            required={required.telephone}
+            required={required.telephone || telephoneRequired === true}
             control={control}
             name='telephone'
             disabled={formState.isSubmitting}

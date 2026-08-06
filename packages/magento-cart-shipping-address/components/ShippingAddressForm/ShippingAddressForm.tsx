@@ -19,8 +19,10 @@ import {
   CompanyFields,
   CustomerDocument,
   NameFields,
+  placeholderTelephone,
   useBillingAddressPermission,
   useCustomerQuery,
+  useTelephoneRequired,
 } from '@graphcommerce/magento-customer'
 import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
@@ -56,6 +58,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
   const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
+  const telephoneRequired = useTelephoneRequired()
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -103,7 +106,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
           lastname: currentAddress?.lastname ?? customerQuery?.customer?.lastname ?? '',
           telephone:
-            currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
+            currentAddress?.telephone !== placeholderTelephone ? currentAddress?.telephone : '',
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
           vatId: currentAddress?.vat_id ?? '',
@@ -130,7 +133,12 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
       return {
         ...variables,
-        telephone: variables.telephone || '000 - 000 0000',
+        // `CartAddressInput.telephone` is non-nullable, so something always has to be sent. When
+        // Magento doesn't require a telephone we send an empty string rather than a fake number;
+        // when it does, the field is required and this fallback is unreachable. Only while the
+        // attribute metadata is still unknown do we keep the historic placeholder, so the mutation
+        // doesn't start failing on shops that do require a telephone.
+        telephone: variables.telephone || (telephoneRequired === false ? '' : placeholderTelephone),
         region: regionId ? variables.region : '',
         regionId,
         addition: variables.addition ?? '',
@@ -159,7 +167,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           control={form.control}
           name='telephone'
           variant='outlined'
-          required={required.telephone}
+          required={required.telephone || telephoneRequired === true}
           showValid
         />
       </FormRow>
