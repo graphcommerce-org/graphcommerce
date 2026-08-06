@@ -24,16 +24,39 @@ input StoryblokConfig {
   sourceSpaceId: String
 
   """
-  How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`).
+  How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`) on its own.
 
   `storyblok-js-client` pins the `cv` per process on the first published request and never
   refreshes it, which freezes published content until the process restarts (a real problem on
   long-lived, multi-pod deployments). GraphCommerce re-fetches the current `cv` at most once per
-  this interval before published reads, so edits become visible again. Defaults to `60`. Set to
-  `0` to refresh on every read (always fresh, more requests); raise it to reduce requests at the
-  cost of higher staleness. Does not apply in development, where a fresh `cv` is sent per request.
+  this interval before published reads, so edits become visible again.
+
+  This is only the failsafe. With a cache-notify webhook configured, publishing pushes a renew
+  signal that every server picks up immediately (see `cacheVersionSignalDir`), so the interval only
+  has to cover the case where that signal cannot be delivered. It therefore defaults to `3600`:
+  every refresh costs one `cdn/spaces/me` request per server, so a short interval on a multi-pod
+  deployment adds up to hundreds of thousands of requests a month for nothing. Set to `0` to
+  refresh on every read (always fresh, many more requests); it is intentionally not possible to
+  disable it entirely, so a broken webhook degrades to stale rather than frozen content. Does not
+  apply in development, where a fresh `cv` is sent per request.
   """
   cacheVersionTtl: Int
+
+  """
+  Directory holding the shared `renew-all-pages-query.txt` renew signal.
+
+  A cache-notify webhook only reaches one server. To let published content become visible on all of
+  them without every server polling the Storyblok API, the server that handles the webhook writes a
+  timestamp to this directory and the others notice it on their next published read. It is the same
+  file the SSR Apollo client convention reads, so one publish invalidates both caches.
+
+  Defaults to `./tmp`, which resolves inside each container and therefore only works for a
+  single-server deployment. On a multi-replica deployment point this at a volume every replica
+  shares — on Kubernetes typically the same RWX volume the Next.js cache handler writes to, e.g.
+  `/cache/signals`. When the directory is missing or not writable nothing breaks: freshness falls
+  back to `cacheVersionTtl`.
+  """
+  cacheVersionSignalDir: String
 }
 
 extend input GraphCommerceConfig {
