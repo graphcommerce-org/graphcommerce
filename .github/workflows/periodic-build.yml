@@ -21,7 +21,7 @@ jobs:
   publish:
     strategy:
       matrix:
-        version: [20, 22]
+        version: [22, 24]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +31,7 @@ jobs:
           path: graphcommerce
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.version }}
           registry-url: 'https://registry.npmjs.org'
