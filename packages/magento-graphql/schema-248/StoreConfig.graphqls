@@ -2,26 +2,25 @@ type StoreConfig {
   """
   Configuration data from tax/display/type
   """
-  display_product_prices_in_catalog: Int! @deprecated(reason: "Magento >= 2.4.8")
+  display_product_prices_in_catalog: Int @deprecated(reason: "Magento >= 2.4.8")
   """
   Configuration data from tax/display/shipping
   """
-  display_shipping_prices: Int! @deprecated(reason: "Magento >= 2.4.8")
+  display_shipping_prices: Int @deprecated(reason: "Magento >= 2.4.8")
   """
   Configuration data from checkout/options/enable_agreements
   """
-  is_checkout_agreements_enabled: Boolean! @deprecated(reason: "Magento >= 2.4.8")
+  is_checkout_agreements_enabled: Boolean @deprecated(reason: "Magento >= 2.4.8")
   """
   Configuration data from tax/sales_display/full_summary
   """
-  orders_invoices_credit_memos_display_full_summary: Boolean!
-    @deprecated(reason: "Magento >= 2.4.8")
+  orders_invoices_credit_memos_display_full_summary: Boolean @deprecated(reason: "Magento >= 2.4.8")
   """
   Configuration data from tax/sales_display/price
   """
-  orders_invoices_credit_memos_display_price: Int! @deprecated(reason: "Magento >= 2.4.8")
+  orders_invoices_credit_memos_display_price: Int @deprecated(reason: "Magento >= 2.4.8")
   """
   Configuration data from tax/sales_display/shipping
   """
-  orders_invoices_credit_memos_display_shipping_amount: Int! @deprecated(reason: "Magento >= 2.4.8")
+  orders_invoices_credit_memos_display_shipping_amount: Int @deprecated(reason: "Magento >= 2.4.8")
 }

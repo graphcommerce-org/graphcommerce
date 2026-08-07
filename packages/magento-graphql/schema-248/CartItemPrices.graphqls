@@ -6,7 +6,7 @@ type CartItemPrices {
   """
   The value of the original unit price for the item, including discounts.
   """
-  original_item_price: Money! @deprecated(reason: "Magento >= 2.4.8")
+  original_item_price: Money @deprecated(reason: "Magento >= 2.4.8")
   """
   The price discount multiplied by the item quantity represents the total difference between the regular price and the final price for the entire quote item.
   """

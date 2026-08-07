@@ -2,19 +2,19 @@ type CustomerOrder {
   """
   List of available order actions.
   """
-  available_actions: [OrderActionType]! @deprecated(reason: "Magento >= 2.4.8")
+  available_actions: [OrderActionType] @deprecated(reason: "Magento >= 2.4.8")
   """
   Returns customer information from order.
   """
-  customer_info: OrderCustomerInfo! @deprecated(reason: "Magento >= 2.4.8")
+  customer_info: OrderCustomerInfo @deprecated(reason: "Magento >= 2.4.8")
   """
   `TRUE` if the order is virtual
   """
-  is_virtual: Boolean! @deprecated(reason: "Magento >= 2.4.8")
+  is_virtual: Boolean @deprecated(reason: "Magento >= 2.4.8")
   """
   The date the order status was last updated.
   """
-  order_status_change_date: String! @deprecated(reason: "Magento >= 2.4.8")
+  order_status_change_date: String @deprecated(reason: "Magento >= 2.4.8")
 }
 
 """

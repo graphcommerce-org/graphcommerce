@@ -2,5 +2,5 @@ type OrderTotal {
   """
   The grand total of the order, excluding taxes.
   """
-  grand_total_excl_tax: Money! @deprecated(reason: "Magento >= 2.4.9")
+  grand_total_excl_tax: Money @deprecated(reason: "Magento >= 2.4.9")
 }

@@ -2,9 +2,9 @@ type SelectedBundleOptionValue {
   """
   The original price of the value for the selected bundle product option.
   """
-  original_price: Money! @deprecated(reason: "Magento >= 2.4.8")
+  original_price: Money @deprecated(reason: "Magento >= 2.4.8")
   """
   The price of the value for the selected bundle product option.
   """
-  priceV2: Money! @deprecated(reason: "Magento >= 2.4.8")
+  priceV2: Money @deprecated(reason: "Magento >= 2.4.8")
 }

@@ -20,11 +20,11 @@ type Query {
     Form code.
     """
     formCode: String!
-  ): AttributesFormOutput! @deprecated(reason: "Magento >= 2.4.7")
+  ): AttributesFormOutput @deprecated(reason: "Magento >= 2.4.7")
   """
   Retrieve EAV attributes metadata.
   """
-  customAttributeMetadataV2(attributes: [AttributeInput!]): AttributesMetadataOutput!
+  customAttributeMetadataV2(attributes: [AttributeInput!]): AttributesMetadataOutput
     @deprecated(reason: "Magento >= 2.4.7")
 }
 
@@ -320,7 +320,7 @@ type CustomerAddress {
   """
   Custom attributes assigned to the customer address.
   """
-  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]!
+  custom_attributesV2(attributeCodes: [ID!]): [AttributeValueInterface]
     @deprecated(reason: "Magento >= 2.4.7")
 }
 

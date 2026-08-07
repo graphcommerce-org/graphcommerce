@@ -28,7 +28,7 @@ type Customer {
   """
   The customer's confirmation status.
   """
-  confirmation_status: ConfirmationStatusEnum! @deprecated(reason: "Magento >= 2.4.7")
+  confirmation_status: ConfirmationStatusEnum @deprecated(reason: "Magento >= 2.4.7")
 }
 
 """

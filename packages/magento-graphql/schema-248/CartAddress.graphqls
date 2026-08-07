@@ -20,5 +20,5 @@ type ShippingCartAddress {
   """
   Indicates whether the shipping address is same as billing address.
   """
-  same_as_billing: Boolean! @deprecated(reason: "Magento >= 2.4.8")
+  same_as_billing: Boolean @deprecated(reason: "Magento >= 2.4.8")
 }

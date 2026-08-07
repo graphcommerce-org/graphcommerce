@@ -59,7 +59,7 @@ type ReCaptchaConfigurationV3 {
   """
   Theme to be used to render reCaptcha.
   """
-  theme: String! @deprecated(reason: "Magento >= 2.4.8")
+  theme: String @deprecated(reason: "Magento >= 2.4.8")
 }
 
 enum ReCaptchaFormEnum {

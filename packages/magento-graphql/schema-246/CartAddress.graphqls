@@ -2,7 +2,7 @@ type BillingCartAddress {
   """
   The unique id of the customer address.
   """
-  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  uid: String @deprecated(reason: "Magento >= 2.4.6")
   """
   The VAT company number for billing or shipping address.
   """
@@ -20,7 +20,7 @@ interface CartAddressInterface {
   """
   The unique id of the customer address.
   """
-  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  uid: String @deprecated(reason: "Magento >= 2.4.6")
   """
   The VAT company number for billing or shipping address.
   """
@@ -31,7 +31,7 @@ type ShippingCartAddress {
   """
   The unique id of the customer address.
   """
-  uid: String! @deprecated(reason: "Magento >= 2.4.6")
+  uid: String @deprecated(reason: "Magento >= 2.4.6")
   """
   The VAT company number for billing or shipping address.
   """

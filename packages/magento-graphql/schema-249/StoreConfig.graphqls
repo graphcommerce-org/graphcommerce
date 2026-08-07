@@ -2,5 +2,5 @@ type StoreConfig {
   """
   Configuration data from checkout/cart/cart_merge_preference
   """
-  cart_merge_preference: String! @deprecated(reason: "Magento >= 2.4.9")
+  cart_merge_preference: String @deprecated(reason: "Magento >= 2.4.9")
 }

@@ -10,7 +10,7 @@ type StoreConfig {
   """
   Indicates whether the Contact Us form in enabled.
   """
-  contact_enabled: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+  contact_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
   """
   Extended Config Data - general/region/state_required
   """
@@ -50,7 +50,7 @@ type StoreConfig {
   """
   Indicates whether newsletters are enabled.
   """
-  newsletter_enabled: Boolean! @deprecated(reason: "Magento >= 2.4.7")
+  newsletter_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
   """
   Extended Config Data - general/country/optional_zip_countries
   """

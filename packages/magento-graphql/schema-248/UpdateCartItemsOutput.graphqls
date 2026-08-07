@@ -2,5 +2,5 @@ type UpdateCartItemsOutput {
   """
   Contains errors encountered while updating an item to the cart.
   """
-  errors: [CartUserInputError]! @deprecated(reason: "Magento >= 2.4.8")
+  errors: [CartUserInputError] @deprecated(reason: "Magento >= 2.4.8")
 }

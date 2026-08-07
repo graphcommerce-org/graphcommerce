@@ -7,7 +7,7 @@ type Mutation {
     An input object that defines cart ID of the shopper.
     """
     input: ClearCartInput!
-  ): ClearCartOutput! @deprecated(reason: "Magento >= 2.4.9")
+  ): ClearCartOutput @deprecated(reason: "Magento >= 2.4.9")
 }
 
 """
