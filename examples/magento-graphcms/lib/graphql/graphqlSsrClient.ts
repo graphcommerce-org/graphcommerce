@@ -63,9 +63,6 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
 
-  // `undefined` means the signal has not been read yet, which is the state of every pod right after
-  // a deploy. Creating the client without invalidating is correct there — a client made now cannot
-  // predate a publish — and `renewSignal()` schedules the read that makes the next call decisive.
   const signal = renewSignal()
   const existing = ssrClient[locale]
   if (existing && signal !== undefined && existing.instancedAt < signal) delete ssrClient[locale]

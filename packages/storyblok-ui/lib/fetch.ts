@@ -257,17 +257,10 @@ export async function fetchAllStories(params: FetchStoriesParams): Promise<Story
   }
 }
 
-/**
- * Above this many links the slug index is not built and `fetchStory` falls back to asking the CDN
- * per slug. `cdn/links` returns at most 1000 entries per request, so this also caps the index build
- * at ten requests and the retained set at a few hundred kilobytes.
- */
-const MAX_INDEXED_LINKS = 10000
 const LINKS_PER_PAGE = 1000
 
 /**
- * The set of published slugs for one cache-version, or `null` when no index is available (the
- * request failed, or the space is larger than {@link MAX_INDEXED_LINKS}).
+ * The set of published slugs for one cache-version, or `null` when the request failed.
  *
  * Memoized per cache-version rather than in the Storyblok client's response cache, because that
  * cache is opt-in (`apiOptions.cache`) and defaults to off — without a memo here an un-cached
@@ -292,8 +285,6 @@ async function fetchSlugIndex(): Promise<Set<string> | null> {
   try {
     const first = await fetchWithRetry(() => getStoryblokApi().get('cdn/links', { ...params }))
     const total = first.total ?? 0
-    if (total > MAX_INDEXED_LINKS) return null
-
     const pages = [first]
     const totalPages = Math.ceil(total / LINKS_PER_PAGE)
     const remaining = Array.from({ length: Math.max(totalPages - 1, 0) }, (_, i) => i + 2)
