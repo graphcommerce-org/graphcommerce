@@ -19,6 +19,14 @@ export type PaymentMethodContextProviderProps = {
   modules?: PaymentMethodModules
   children: React.ReactNode
   successUrl?: string
+  /**
+   * Runs when the order is placed, before navigating to the success page. This is where purchase
+   * tracking hangs (see the `google-datalayer` plugin on this component).
+   *
+   * Not to be confused with the context's `onSuccess`, which payment handlers call to *trigger*
+   * this: that one takes the success page's query parameters as its second argument, this one
+   * receives the cart being checked out.
+   */
   onSuccess?: (
     orderNumber: string,
     cart?: PaymentMethodContextFragment | null,
@@ -45,11 +53,13 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
   )
 
   const onSuccessCb: NonNullable<PaymentMethodContextType['onSuccess']> = useEventCallback(
-    async (orderNumber) => {
+    async (orderNumber, query) => {
       await onSuccess?.(orderNumber, context.data?.cart)
       await push({
         pathname: successUrl,
-        query: { order_number: orderNumber, cart_id: context.data?.cart?.id },
+        // `query` last: a payment handler that supplies its own `cart_id` knows it better than the
+        // context does, which by this point may already have lost the cart it is reading from.
+        query: { order_number: orderNumber, cart_id: context.data?.cart?.id, ...query },
       })
       clearCurrentCartId()
     },
