@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.1.0-canary.44
+
+### Patch Changes
+
+- [#2662](https://github.com/graphcommerce-org/graphcommerce/pull/2662) [`54e167f`](https://github.com/graphcommerce-org/graphcommerce/commit/54e167f13b883fbe24e954c6c093097c0815263f) - Publishing content now pushes a renew signal through the Next.js incremental cache, so every server invalidates at once instead of each polling `cdn/spaces/me` on a 60 second interval — `storyblok.cacheVersionTtl` therefore defaults to `3600` as a failsafe. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.43
 
 ## 10.1.0-canary.42

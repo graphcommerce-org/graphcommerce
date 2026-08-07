@@ -1,5 +1,13 @@
 # @graphcommerce/storyblok-ui
 
+## 10.1.0-canary.44
+
+### Patch Changes
+
+- [#2662](https://github.com/graphcommerce-org/graphcommerce/pull/2662) [`33d0940`](https://github.com/graphcommerce-org/graphcommerce/commit/33d0940db4fb9009e98515d3284bdcec720a5eb7) - Cut the number of Storyblok CDN requests a storefront makes: the pinned cache-version now actually advances, unknown slugs are answered from a cached slug index instead of one request each, and `getStoryblokStaticPaths()` no longer downloads story bodies. ([@paales](https://github.com/paales))
+
+- [#2662](https://github.com/graphcommerce-org/graphcommerce/pull/2662) [`54e167f`](https://github.com/graphcommerce-org/graphcommerce/commit/54e167f13b883fbe24e954c6c093097c0815263f) - Publishing content now pushes a renew signal through the Next.js incremental cache, so every server invalidates at once instead of each polling `cdn/spaces/me` on a 60 second interval — `storyblok.cacheVersionTtl` therefore defaults to `3600` as a failsafe. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.43
 
 ## 10.1.0-canary.42
