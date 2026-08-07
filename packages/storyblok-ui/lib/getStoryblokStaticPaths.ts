@@ -29,6 +29,10 @@ export async function getStoryblokStaticPaths(
   const stories = await fetchAllStories({
     per_page: pageSize,
     content_type: contentType,
+    // Only `full_slug` is used below. `body` is by far the largest field on a story, so leaving it
+    // out keeps this cheap — it matters most for the content sitemap, which runs in
+    // `getServerSideProps` and would otherwise re-download the whole space on every crawler hit.
+    excluding_fields: 'body',
     ...(filterQuery && { filter_query: filterQuery }),
     locale,
   })

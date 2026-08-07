@@ -1,4 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
+import { publishRenewSignal, refreshRenewSignal } from '@graphcommerce/graphql'
 import { storyblok } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import {
@@ -42,45 +43,69 @@ const MAX_RETRIES = 3
  * therefore stays frozen at the process-start `cv` until the process restarts. On long-lived
  * servers (e.g. multi-pod Kubernetes) this means published edits never become visible.
  *
- * We bound the staleness by periodically re-fetching `cdn/spaces/me`, which returns the current
- * `cv` and updates the client's pinned value, so subsequent reads hit the fresh (CDN-cached)
- * version. Skipped in dev, where `sbParams` already sends a fresh `cv` on every request.
+ * Freshness is push-based: {@link requestStoryblokCacheVersionRefresh} publishes a renew signal
+ * that every server picks up. This TTL is the failsafe for deployments where that signal cannot be
+ * shared, so it is never disabled entirely — an undelivered signal has to degrade to stale content,
+ * not to frozen content.
  *
- * The interval is configurable via `storyblok.cacheVersionTtl` (seconds, default 60; 0 refreshes
- * on every read).
+ * Configurable via `storyblok.cacheVersionTtl` (seconds; 0 refreshes on every read). The schema
+ * default is not reflected in the generated config values, hence the fallback below.
  */
-const CV_REFRESH_TTL_MS = (storyblok?.cacheVersionTtl ?? 60) * 1000
+const CV_REFRESH_TTL_MS = (storyblok?.cacheVersionTtl ?? 3600) * 1000
 let cvRefreshedAt = 0
 let forceRefreshRequested = false
 
+/** Newest renew signal this process has already acted on. */
+let appliedRenewSignal = 0
+
 /**
- * Request an immediate cache-version refresh on the next published read.
+ * Request an immediate cache-version refresh on the next published read, on every server.
  *
  * Safe to call from any context — including a cache-notify webhook handler that runs before
- * `storyblokInit` — because it only flips a flag and never touches the Storyblok client (so it
- * never logs the "apiPlugin not loaded" warning). On a shared-process deployment (e.g. Kubernetes)
- * the page regeneration that follows runs in the same process and picks this up, so just-published
- * content is fetched immediately. On serverless the flag is process-local, so freshness there
- * falls back to the TTL.
+ * `storyblokInit` — because it never touches the Storyblok client (so it never logs the "apiPlugin
+ * not loaded" warning). It flips a process-local flag for the server that handled the webhook and
+ * publishes the shared renew signal for all the others, which pick it up on their next published
+ * read.
  */
 export function requestStoryblokCacheVersionRefresh(): void {
   forceRefreshRequested = true
+  void publishRenewSignal()
 }
 
 /**
- * Advance the pinned cache-version when forced (see {@link requestStoryblokCacheVersionRefresh}) or
- * once the TTL has elapsed. Only called from the published-read fetch functions below, where
- * `storyblokInit` has always run, so `getStoryblokApi()` is safe here.
+ * Advance the pinned cache-version when forced (see {@link requestStoryblokCacheVersionRefresh}),
+ * when the shared renew signal has moved past what this process last applied, or once the TTL has
+ * elapsed. Only called from the published-read fetch functions below, where `storyblokInit` has
+ * always run, so `getStoryblokApi()` is safe here.
+ *
+ * The pin has to be applied by hand: `storyblok-js-client` only advances it from a response that
+ * carries a top-level `cv`, and `cdn/spaces/me` answers with `{ space: { version } }` instead.
+ * `space.version` is the same number a `cdn/stories` response returns as `cv`.
+ *
+ * When the version moved the client's response cache is flushed too, so a response cached under
+ * `apiOptions.cache` cannot outlive the content it was cached for.
  */
 async function refreshStoryblokCacheVersion(): Promise<void> {
   if (isDev) return
+  const signal = (await refreshRenewSignal()) ?? 0
   const now = Date.now()
-  if (!forceRefreshRequested && now - cvRefreshedAt < CV_REFRESH_TTL_MS) return
+  if (
+    !forceRefreshRequested &&
+    signal <= appliedRenewSignal &&
+    now - cvRefreshedAt < CV_REFRESH_TTL_MS
+  )
+    return
   // Optimistically mark refreshed so concurrent callers don't stampede cdn/spaces/me.
   forceRefreshRequested = false
   cvRefreshedAt = now
+  appliedRenewSignal = Math.max(appliedRenewSignal, signal)
   try {
-    await getStoryblokApi().get('cdn/spaces/me')
+    const api = getStoryblokApi()
+    const response = await api.get('cdn/spaces/me')
+    const cv = (response?.data as { space?: { version?: number } } | undefined)?.space?.version
+    if (typeof cv !== 'number') return
+    if (api.cacheVersion() !== cv) await api.flushCache()
+    api.setCacheVersion(cv)
   } catch {
     // A failed refresh keeps the previous cv; force a retry on the next read.
     cvRefreshedAt = 0
@@ -232,6 +257,90 @@ export async function fetchAllStories(params: FetchStoriesParams): Promise<Story
   }
 }
 
+const LINKS_PER_PAGE = 1000
+
+/**
+ * The set of published slugs for one cache-version, or `null` when the request failed.
+ *
+ * Memoized per cache-version rather than in the Storyblok client's response cache, because that
+ * cache is opt-in (`apiOptions.cache`) and defaults to off — without a memo here an un-cached
+ * project would fetch the index on every single `fetchStory`.
+ */
+let slugIndex: { cv: number; slugs: Promise<Set<string> | null> } | undefined
+
+/** `foo/` and `/foo` both address the story that `cdn/links` reports under the slug `foo/`. */
+function normalizeSlug(slug: string) {
+  return slug.replace(/^\/+/, '').replace(/\/+$/, '')
+}
+
+type ISbLinkEntry = { slug?: string; is_folder?: boolean }
+
+async function fetchSlugIndex(): Promise<Set<string> | null> {
+  // Deliberately unscoped by language. `cdn/links?language=x` returns only the stories that have
+  // content in that language, but `cdn/stories/<slug>?language=x` happily falls back to the default
+  // language for the rest — so a language-scoped index would report existing pages as missing.
+  // Story *existence* is language-independent; folder-level translations are separate stories and
+  // appear in this list under their own slug.
+  const params = { version: 'published' as const, per_page: LINKS_PER_PAGE }
+  try {
+    const first = await fetchWithRetry(() => getStoryblokApi().get('cdn/links', { ...params }))
+    const total = first.total ?? 0
+    const pages = [first]
+    const totalPages = Math.ceil(total / LINKS_PER_PAGE)
+    const remaining = Array.from({ length: Math.max(totalPages - 1, 0) }, (_, i) => i + 2)
+    for (let i = 0; i < remaining.length; i += MAX_PAGE_CONCURRENCY) {
+      const chunk = remaining.slice(i, i + MAX_PAGE_CONCURRENCY)
+      pages.push(
+        ...(await Promise.all(
+          chunk.map((page) =>
+            fetchWithRetry(() => getStoryblokApi().get('cdn/links', { ...params, page })),
+          ),
+        )),
+      )
+    }
+
+    const slugs = new Set<string>()
+    for (const page of pages) {
+      for (const link of Object.values(page.data?.links ?? {}) as ISbLinkEntry[]) {
+        // Folders are not stories. A folder with a start page contributes that start page as its
+        // own non-folder entry (`clubkleding/`), so dropping folders here is what makes a folder
+        // *without* one correctly report as missing.
+        if (link.is_folder) continue
+        if (typeof link.slug === 'string') slugs.add(normalizeSlug(link.slug))
+      }
+    }
+    return slugs
+  } catch (error) {
+    logFetchError('fetchSlugIndex()', error)
+    return null
+  }
+}
+
+/**
+ * Answers "can a published story exist at this slug?" without spending a request per slug.
+ *
+ * Crawlers and vulnerability scanners walk an unbounded number of made-up URLs, and a storefront's
+ * catch-all route asks the CMS about every one of them before falling back. Remembering individual
+ * 404s does not help there — every made-up URL is a fresh slug and therefore a fresh CDN request.
+ * One `cdn/links` index per cache-version answers all of them for free instead: it lists every
+ * published slug in the space in a single lightweight response (~300 bytes per story, one request
+ * per 1000 stories) and is discarded as soon as the cache-version moves, i.e. as soon as anything
+ * is published.
+ *
+ * Returns `undefined` when no index is available, meaning "don't know — go ask the CDN".
+ */
+async function isKnownSlug(slug: string): Promise<boolean | undefined> {
+  const cv = getStoryblokApi().cacheVersion()
+  // Before the first cache-version is pinned there is nothing to key the index on, and re-fetching
+  // it per call would be worse than the problem it solves.
+  if (!cv) return undefined
+
+  if (slugIndex?.cv !== cv) slugIndex = { cv, slugs: fetchSlugIndex() }
+
+  const slugs = await slugIndex.slugs
+  return slugs ? slugs.has(normalizeSlug(slug)) : undefined
+}
+
 /**
  * Fetch a single story by slug. When `apolloClient` is provided, resolves product data for
  * row_product bloks.
@@ -243,6 +352,12 @@ export async function fetchStory(
 ): Promise<{ data: { story: StoryblokStory } | null }> {
   try {
     if (!opts?.preview) await refreshStoryblokCacheVersion()
+
+    // Draft reads skip the index: the Visual Editor must see an unpublished story the moment it is
+    // created, and `cdn/links` only lists published ones. Development skips it too: `sbParams`
+    // sends a fresh `cv` per request there, so an index would never be reused.
+    if (!opts?.preview && !isDev && (await isKnownSlug(slug)) === false) return { data: null }
+
     const result = await fetchWithRetry(() =>
       getStoryblokApi().get(`cdn/stories/${slug}`, sbParams(opts)),
     )

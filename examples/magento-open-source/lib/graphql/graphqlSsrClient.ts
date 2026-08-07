@@ -8,6 +8,7 @@ import {
   InMemoryCache,
   measurePerformanceLink,
   mergeTypePolicies,
+  renewSignal,
 } from '@graphcommerce/graphql'
 import { getBuiltMesh, MeshApolloLink } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
@@ -53,7 +54,7 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
 }
 
 const ssrClient: {
-  [locale: string]: ApolloClient
+  [locale: string]: { instancedAt: number; client: ApolloClient }
 } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
@@ -61,6 +62,13 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
   i18nSsrLoader(locale)
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
-  if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
-  return ssrClient[locale]
+
+  const signal = renewSignal()
+  const existing = ssrClient[locale]
+  if (existing && signal !== undefined && existing.instancedAt < signal) delete ssrClient[locale]
+
+  if (!ssrClient[locale])
+    ssrClient[locale] = { instancedAt: Date.now(), client: client(context, 'no-cache') }
+
+  return ssrClient[locale].client
 }
