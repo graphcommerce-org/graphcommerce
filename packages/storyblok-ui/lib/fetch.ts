@@ -42,13 +42,10 @@ const MAX_RETRIES = 3
  * therefore stays frozen at the process-start `cv` until the process restarts. On long-lived
  * servers (e.g. multi-pod Kubernetes) this means published edits never become visible.
  *
- * Freshness is push-based: {@link requestStoryblokCacheVersionRefresh} (called from a cache-notify
- * webhook) publishes a renew signal that every server picks up, see {@link renewSignalPath}. This
- * TTL is only the failsafe for deployments where that signal cannot be shared — serverless, local
- * development, or a misconfigured signal directory — so it is deliberately slow: refreshing costs
- * one `cdn/spaces/me` request per server per interval, and the old 60s default meant ~450k requests
- * a month on a ten-pod deployment purely as a safety net. It is never disabled entirely, because a
- * broken webhook must degrade to "an hour stale", not to "frozen forever".
+ * Freshness is push-based: {@link requestStoryblokCacheVersionRefresh} publishes a renew signal
+ * that every server picks up. This TTL is the failsafe for deployments where that signal cannot be
+ * shared, so it is never disabled entirely — an undelivered signal has to degrade to stale content,
+ * not to frozen content.
  *
  * Configurable via `storyblok.cacheVersionTtl` (seconds, default 3600; 0 refreshes on every read).
  */
@@ -57,55 +54,35 @@ let cvRefreshedAt = 0
 let forceRefreshRequested = false
 
 /**
- * Name of the shared "content changed, drop what you cached" signal file, and the interval at which
- * a server re-reads it.
+ * The renew signal is carried through Next.js' incremental cache, so it reaches every server that
+ * shares a `cacheHandler`.
  *
- * The name is not new: it is the file the SSR Apollo client convention already looks at
- * (`examples/*\/lib/graphql/graphqlSsrClient.ts` drops its per-locale client when the timestamp in
- * this file moves past the client's own). Reusing it means one publish invalidates both caches, and
- * it keeps the contract trivial — the file holds nothing but a millisecond timestamp.
+ * Two Next.js internals are involved. `globalThis.__incrementalCache` is set per incoming request
+ * before route handling, so it is available inside the cache-notify API route and inside ISR
+ * regeneration, but *not* in middleware or the edge runtime, which construct their own instance.
+ * The entry is written as `kind: 'FETCH'` with `fetchCache: true`, the one path that stores an
+ * arbitrary key verbatim instead of running it through `normalizePagePath()`.
+ *
+ * Both are unstable API. If either changes shape the reads and writes below fail closed: freshness
+ * falls back to {@link CV_REFRESH_TTL_MS} and nothing else breaks. The call shape does drift —
+ * `revalidate` became `cacheControl` between Next 14 and 15 — so it needs re-testing per major.
+ *
+ * Deployments on Next's default `FileSystemCache` must set `cacheMaxMemorySize: 0`; its in-memory
+ * LRU sits in front of the shared layer and would answer every read from the writing process' own
+ * memory. Custom cache handlers have no such layer.
  */
-const RENEW_SIGNAL_FILE = 'renew-all-pages-query.txt'
+const RENEW_SIGNAL_KEY = 'gc:signal:storyblok-cv'
 const RENEW_SIGNAL_POLL_MS = 1000
+const RENEW_SIGNAL_REVALIDATE = 60 * 60 * 24 * 30
 
-/**
- * Absolute or working-directory-relative path of the shared renew signal.
- *
- * Defaults to the `./tmp` the SSR Apollo client convention uses. **On a multi-replica deployment
- * that default does not work**: `./tmp` resolves inside each container, so a webhook landing on one
- * pod stays invisible to the others. Point `storyblok.cacheVersionSignalDir` at a volume all
- * replicas share (on Kubernetes typically the same RWX volume the Next.js cache handler uses) to
- * make the signal actually fan out.
- *
- * Exported so a project's `graphqlSsrClient` can read the same file without hardcoding the path a
- * second time.
- */
-export function renewSignalPath(): string {
-  const dir = (storyblok?.cacheVersionSignalDir || './tmp').replace(/\/+$/, '')
-  return `${dir}/${RENEW_SIGNAL_FILE}`
+type IncrementalCacheLike = {
+  get: (key: string, ctx: unknown) => Promise<{ value?: { data?: { body?: string } } } | null>
+  set: (key: string, data: unknown, ctx: unknown) => Promise<void>
 }
 
-type NodeFsPromises = typeof import('node:fs/promises')
-let nodeFsPromise: Promise<NodeFsPromises | null> | undefined
-
-/**
- * `node:fs/promises`, or `null` wherever there is no filesystem (browser bundle, edge runtime).
- *
- * Loaded through an ignored dynamic import rather than a top-level one: this module is re-exported
- * from the package's single barrel entry point, and Next.js does not tree-shake in development, so
- * a static `node:fs` import here would break every client component that imports anything from
- * `@graphcommerce/storyblok-ui`. The `typeof window` guard only keeps the code from *running* in a
- * browser; the ignore comments are what keep the bundler from trying to resolve it in the first
- * place, and both bundlers need telling.
- */
-function nodeFs(): Promise<NodeFsPromises | null> {
-  nodeFsPromise ??=
-    typeof window === 'undefined'
-      ? import(/* webpackIgnore: true */ /* turbopackIgnore: true */ 'node:fs/promises')
-          .then((mod: NodeFsPromises & { default?: NodeFsPromises }) => mod.default ?? mod)
-          .catch(() => null)
-      : Promise.resolve(null)
-  return nodeFsPromise
+/** Undefined outside a Next.js request, in the browser bundle, and on the edge runtime. */
+function incrementalCache(): IncrementalCacheLike | undefined {
+  return (globalThis as { __incrementalCache?: IncrementalCacheLike }).__incrementalCache
 }
 
 /** Newest signal this process has read, and the newest one it has already acted on. */
@@ -113,44 +90,49 @@ let renewSignalValue = 0
 let renewSignalReadAt = 0
 let appliedRenewSignal = 0
 
-/**
- * Publish the renew signal so servers other than the one that handled the webhook learn that
- * something was published. Best-effort: without a writable shared directory the TTL failsafe is all
- * that is left, which is exactly the pre-existing behaviour.
- */
+/** The signal is a millisecond timestamp. Only its ordering matters, never its absolute value. */
 async function writeRenewSignal(): Promise<void> {
-  const fs = await nodeFs()
-  if (!fs) return
-  const file = renewSignalPath()
-  const tmp = `${file}.${process.pid}.tmp`
+  const cache = incrementalCache()
+  if (!cache) return
   try {
-    await fs.mkdir(file.slice(0, file.lastIndexOf('/')) || '.', { recursive: true })
-    await fs.writeFile(tmp, String(Date.now()))
-    // Write-then-rename: a reader polling this file must never observe a half-written number.
-    await fs.rename(tmp, file)
+    await cache.set(
+      RENEW_SIGNAL_KEY,
+      {
+        kind: 'FETCH',
+        data: { headers: {}, body: String(Date.now()), url: '', status: 200 },
+        tags: [],
+        revalidate: RENEW_SIGNAL_REVALIDATE,
+      },
+      { fetchCache: true, tags: [] },
+    )
   } catch {
-    await fs.rm(tmp, { force: true }).catch(() => {})
+    // Unsupported or unwritable cache handler; the TTL failsafe covers it.
   }
 }
 
 /**
  * Read the shared renew signal, at most once per {@link RENEW_SIGNAL_POLL_MS}. This runs before
- * every published read, so it has to stay cheap — it is a handful of bytes off a local or network
- * filesystem, never an API request.
+ * every published read, so it must never become an API request.
  */
 async function readRenewSignal(): Promise<number> {
   const now = Date.now()
   if (now - renewSignalReadAt < RENEW_SIGNAL_POLL_MS) return renewSignalValue
   renewSignalReadAt = now
 
-  const fs = await nodeFs()
-  if (!fs) return renewSignalValue
+  const cache = incrementalCache()
+  if (!cache) return renewSignalValue
   try {
-    const value = Number((await fs.readFile(renewSignalPath(), 'utf8')).trim())
+    const entry = await cache.get(RENEW_SIGNAL_KEY, {
+      kind: 'FETCH',
+      tags: [],
+      softTags: [],
+      revalidate: RENEW_SIGNAL_REVALIDATE,
+    })
+    const value = Number(entry?.value?.data?.body)
     if (Number.isFinite(value) && value > 0) renewSignalValue = value
   } catch {
-    // No signal file: nothing has been published since this deployment started, or the directory is
-    // not shared/writable. Either way the TTL covers it.
+    // Nothing published since this deployment started, or a cache handler that cannot serve this
+    // entry. Either way the TTL covers it.
   }
   return renewSignalValue
 }
@@ -161,8 +143,8 @@ async function readRenewSignal(): Promise<number> {
  * Safe to call from any context — including a cache-notify webhook handler that runs before
  * `storyblokInit` — because it never touches the Storyblok client (so it never logs the "apiPlugin
  * not loaded" warning). It flips a process-local flag for the server that handled the webhook and
- * publishes the shared renew signal for all the others; a replica picks that up on its next
- * published read and refreshes then, without ever polling the API to ask whether anything changed.
+ * publishes the shared renew signal for all the others, which pick it up on their next published
+ * read.
  */
 export function requestStoryblokCacheVersionRefresh(): void {
   forceRefreshRequested = true
@@ -176,18 +158,11 @@ export function requestStoryblokCacheVersionRefresh(): void {
  * always run, so `getStoryblokApi()` is safe here.
  *
  * The pin has to be applied by hand: `storyblok-js-client` only advances it from a response that
- * carries a top-level `cv`, and `cdn/spaces/me` answers with `{ space: { version } }` instead — so
- * simply issuing the request (as this function used to do) left the pin untouched and the refresh
- * was a no-op. `space.version` is the same number a `cdn/stories` response returns as `cv`.
+ * carries a top-level `cv`, and `cdn/spaces/me` answers with `{ space: { version } }` instead.
+ * `space.version` is the same number a `cdn/stories` response returns as `cv`.
  *
- * The real cache-version is fetched rather than derived from the signal's timestamp on purpose.
- * Storyblok answers a request carrying an unknown `cv` with a 301 to the canonical one, so a made-up
- * value would work, but it costs every replica an extra redirect round-trip on its next read and it
- * would key the slug index (see {@link isKnownSlug}) on a version that is about to be replaced.
- *
- * When the version actually moved we also flush the client's response cache. That only matters for
- * projects that opt into `apiOptions.cache` (the client defaults to no caching), but without it a
- * cached response would outlive the content it was cached for.
+ * When the version moved the client's response cache is flushed too, so a response cached under
+ * `apiOptions.cache` cannot outlive the content it was cached for.
  */
 async function refreshStoryblokCacheVersion(): Promise<void> {
   if (isDev) return
