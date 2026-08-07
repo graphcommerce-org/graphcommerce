@@ -135,6 +135,7 @@
     "redirect-magento-customer-account-urls",
     "signup-form-fieldsets-render-props",
     "some-kings-act",
+    "stable-cart-hook-identities",
     "storyblok-asset-poster",
     "storyblok-cache-version-refresh-flag",
     "storyblok-multilink-prefer-resolved-full-slug",

@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0-canary.43
+
+### Patch Changes
+
+- [#2667](https://github.com/graphcommerce-org/graphcommerce/pull/2667) [`6ee8488`](https://github.com/graphcommerce-org/graphcommerce/commit/6ee84883ece679b4fd4ed191ecd00a9ec39cc206) - Give `useClearCurrentCartId()` and `useCartLock()`'s `lock`/`unlock` a stable function identity, so consumers can list them in a `useEffect` dependency array without the effect re-running on every render.
+
+  `useClearCurrentCartId` returned a bare arrow function and `useCartLock` defined `lock`/`unlock` inline, while the neighbouring `useAssignCurrentCartId` already returned a `useCallback`. `useClearCurrentCartId` now uses `useCallback` with the Apollo `cache` as its only dependency (matching `useAssignCurrentCartId`), and `lock`/`unlock` use `useEventCallback` because they read values that legitimately change (`currentCartId`, the router query state and the Apollo client) — `useEventCallback` keeps the identity stable while always reading the latest values, so no stale closure is introduced. ([@paales](https://github.com/paales))
+
 ## 10.1.0-canary.42
 
 ## 10.1.0-canary.41
