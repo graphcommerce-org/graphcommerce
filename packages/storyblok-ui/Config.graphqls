@@ -37,13 +37,14 @@ input StoryblokConfig {
   refresh costs one `cdn/spaces/me` request per server, so it defaults to `3600`. Set to `0` to
   refresh on every read (always fresh, many more requests); it cannot be disabled entirely, so an
   undelivered signal degrades to stale rather than frozen content. Does not apply in development,
-  where a fresh `cv` is sent per request.
+  where a fresh `cv` is sent per request. The renew signal is shared with the SSR Apollo client, so
+  publishing invalidates both caches.
 
   Deployments on Next's default `FileSystemCache` need `cacheMaxMemorySize: 0` for the signal to
   cross process boundaries; its in-memory LRU otherwise answers every read locally. Custom cache
   handlers are unaffected.
   """
-  cacheVersionTtl: Int
+  cacheVersionTtl: Int = 3600
 }
 
 extend input GraphCommerceConfig {

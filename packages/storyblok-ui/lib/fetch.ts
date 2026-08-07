@@ -1,4 +1,5 @@
 import type { ApolloClient } from '@graphcommerce/graphql'
+import { publishRenewSignal, refreshRenewSignal } from '@graphcommerce/graphql'
 import { storyblok } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui'
 import {
@@ -47,95 +48,15 @@ const MAX_RETRIES = 3
  * shared, so it is never disabled entirely — an undelivered signal has to degrade to stale content,
  * not to frozen content.
  *
- * Configurable via `storyblok.cacheVersionTtl` (seconds, default 3600; 0 refreshes on every read).
+ * Configurable via `storyblok.cacheVersionTtl` (seconds; 0 refreshes on every read). The schema
+ * default is not reflected in the generated config values, hence the fallback below.
  */
 const CV_REFRESH_TTL_MS = (storyblok?.cacheVersionTtl ?? 3600) * 1000
 let cvRefreshedAt = 0
 let forceRefreshRequested = false
 
-/**
- * The renew signal is carried through Next.js' incremental cache, so it reaches every server that
- * shares a `cacheHandler`.
- *
- * Two Next.js internals are involved. `globalThis.__incrementalCache` is set per incoming request
- * before route handling, so it is available inside the cache-notify API route and inside ISR
- * regeneration, but *not* in middleware or the edge runtime, which construct their own instance.
- * The entry is written as `kind: 'FETCH'` with `fetchCache: true`, the one path that stores an
- * arbitrary key verbatim instead of running it through `normalizePagePath()`.
- *
- * Both are unstable API. If either changes shape the reads and writes below fail closed: freshness
- * falls back to {@link CV_REFRESH_TTL_MS} and nothing else breaks. The call shape does drift —
- * `revalidate` became `cacheControl` between Next 14 and 15 — so it needs re-testing per major.
- *
- * Deployments on Next's default `FileSystemCache` must set `cacheMaxMemorySize: 0`; its in-memory
- * LRU sits in front of the shared layer and would answer every read from the writing process' own
- * memory. Custom cache handlers have no such layer.
- */
-const RENEW_SIGNAL_KEY = 'gc:signal:storyblok-cv'
-const RENEW_SIGNAL_POLL_MS = 1000
-const RENEW_SIGNAL_REVALIDATE = 60 * 60 * 24 * 30
-
-type IncrementalCacheLike = {
-  get: (key: string, ctx: unknown) => Promise<{ value?: { data?: { body?: string } } } | null>
-  set: (key: string, data: unknown, ctx: unknown) => Promise<void>
-}
-
-/** Undefined outside a Next.js request, in the browser bundle, and on the edge runtime. */
-function incrementalCache(): IncrementalCacheLike | undefined {
-  return (globalThis as { __incrementalCache?: IncrementalCacheLike }).__incrementalCache
-}
-
-/** Newest signal this process has read, and the newest one it has already acted on. */
-let renewSignalValue = 0
-let renewSignalReadAt = 0
+/** Newest renew signal this process has already acted on. */
 let appliedRenewSignal = 0
-
-/** The signal is a millisecond timestamp. Only its ordering matters, never its absolute value. */
-async function writeRenewSignal(): Promise<void> {
-  const cache = incrementalCache()
-  if (!cache) return
-  try {
-    await cache.set(
-      RENEW_SIGNAL_KEY,
-      {
-        kind: 'FETCH',
-        data: { headers: {}, body: String(Date.now()), url: '', status: 200 },
-        tags: [],
-        revalidate: RENEW_SIGNAL_REVALIDATE,
-      },
-      { fetchCache: true, tags: [] },
-    )
-  } catch {
-    // Unsupported or unwritable cache handler; the TTL failsafe covers it.
-  }
-}
-
-/**
- * Read the shared renew signal, at most once per {@link RENEW_SIGNAL_POLL_MS}. This runs before
- * every published read, so it must never become an API request.
- */
-async function readRenewSignal(): Promise<number> {
-  const now = Date.now()
-  if (now - renewSignalReadAt < RENEW_SIGNAL_POLL_MS) return renewSignalValue
-  renewSignalReadAt = now
-
-  const cache = incrementalCache()
-  if (!cache) return renewSignalValue
-  try {
-    const entry = await cache.get(RENEW_SIGNAL_KEY, {
-      kind: 'FETCH',
-      tags: [],
-      softTags: [],
-      revalidate: RENEW_SIGNAL_REVALIDATE,
-    })
-    const value = Number(entry?.value?.data?.body)
-    if (Number.isFinite(value) && value > 0) renewSignalValue = value
-  } catch {
-    // Nothing published since this deployment started, or a cache handler that cannot serve this
-    // entry. Either way the TTL covers it.
-  }
-  return renewSignalValue
-}
 
 /**
  * Request an immediate cache-version refresh on the next published read, on every server.
@@ -148,7 +69,7 @@ async function readRenewSignal(): Promise<number> {
  */
 export function requestStoryblokCacheVersionRefresh(): void {
   forceRefreshRequested = true
-  void writeRenewSignal()
+  void publishRenewSignal()
 }
 
 /**
@@ -166,7 +87,7 @@ export function requestStoryblokCacheVersionRefresh(): void {
  */
 async function refreshStoryblokCacheVersion(): Promise<void> {
   if (isDev) return
-  const signal = await readRenewSignal()
+  const signal = (await refreshRenewSignal()) ?? 0
   const now = Date.now()
   if (
     !forceRefreshRequested &&

@@ -8,11 +8,11 @@ import {
   fragments,
   graphqlConfig,
   mergeTypePolicies,
+  renewSignal,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
 import type { GetStaticPropsContext } from 'next'
-import fs from 'fs'
 import { i18nSsrLoader } from '../i18n/I18nProvider'
 
 function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-cache') {
@@ -63,24 +63,15 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
 
-  const dir = './tmp'
+  // `undefined` means the signal has not been read yet, which is the state of every pod right after
+  // a deploy. Creating the client without invalidating is correct there — a client made now cannot
+  // predate a publish — and `renewSignal()` schedules the read that makes the next call decisive.
+  const signal = renewSignal()
+  const existing = ssrClient[locale]
+  if (existing && signal !== undefined && existing.instancedAt < signal) delete ssrClient[locale]
 
-  const shouldCheckCache = fs.existsSync(`${dir}/renew-all-pages-query.txt`)
-
-  if (shouldCheckCache) {
-    const instancedAt = Number(fs.readFileSync(`${dir}/renew-all-pages-query.txt`, 'utf8'))
-
-    if (ssrClient[locale]?.instancedAt < instancedAt) {
-      delete ssrClient[locale]
-    }
-  }
-
-  // Create a client if it doesn't exist for the locale.
   if (!ssrClient[locale])
-    ssrClient[locale] = {
-      instancedAt: new Date().getTime(),
-      client: client(context, 'no-cache'),
-    }
+    ssrClient[locale] = { instancedAt: Date.now(), client: client(context, 'no-cache') }
 
   return ssrClient[locale].client
 }
