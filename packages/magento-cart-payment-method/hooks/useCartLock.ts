@@ -1,6 +1,7 @@
 import { useApolloClient } from '@graphcommerce/graphql'
 import { cartLock, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { useUrlQuery } from '@graphcommerce/next-ui'
+import { useEventCallback } from '@mui/material'
 import { useEffect, useState } from 'react'
 
 export type CartLockState = {
@@ -37,7 +38,13 @@ export function useCartLock<E extends CartLockState>() {
     }
   })
 
-  const lock = (params: Omit<E, 'locked' | 'cart_id'>) => {
+  /**
+   * `lock` and `unlock` are wrapped in `useEventCallback` so they keep a stable identity across
+   * renders while still reading the latest `currentCartId`, `queryState` and `client`. This allows
+   * consumers to add them to their `useEffect` dependency arrays without re-running the effect on
+   * every render.
+   */
+  const lock = useEventCallback((params: Omit<E, 'locked' | 'cart_id'>) => {
     if (!currentCartId) return undefined
     justLocked = true
     cartLock(client.cache, true)
@@ -46,13 +53,13 @@ export function useCartLock<E extends CartLockState>() {
       cart_id: currentCartId,
       ...params,
     } as unknown as E)
-  }
+  })
 
-  const unlock = async (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
+  const unlock = useEventCallback(async (params: Omit<E, 'locked' | 'cart_id' | 'method'>) => {
     cartLock(client.cache, false)
     await setRouterQuery({ cart_id: null, locked: null, method: null, ...params } as E)
     return queryState
-  }
+  })
 
   const resulting: Omit<E, 'locked'> & { locked: boolean; justLocked: boolean } = {
     ...queryState,
