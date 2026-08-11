@@ -1,5 +1,7 @@
 # @graphcommerce/misc
 
+## 11.0.0-canary.47
+
 ## 11.0.0-canary.46
 
 ## 11.0.0-canary.45
