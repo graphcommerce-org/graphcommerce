@@ -1,3 +1,0 @@
-input ProductAttributeFilterInput {
-  category_url_path: FilterEqualTypeInput @deprecated(reason: "Magento >= 2.4.7")
-}

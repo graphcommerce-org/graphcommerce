@@ -1,0 +1,71 @@
+type CustomerOrder {
+  """
+  List of available order actions.
+  """
+  available_actions: [OrderActionType] @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Returns customer information from order.
+  """
+  customer_info: OrderCustomerInfo @deprecated(reason: "Magento >= 2.4.8")
+  """
+  `TRUE` if the order is virtual
+  """
+  is_virtual: Boolean @deprecated(reason: "Magento >= 2.4.8")
+  """
+  The date the order status was last updated.
+  """
+  order_status_change_date: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+"""
+The list of available order actions.
+"""
+enum OrderActionType {
+  CANCEL
+  REORDER
+}
+
+type OrderCustomerInfo {
+  """
+  First name of the customer
+  """
+  firstname: String!
+  """
+  Last name of the customer
+  """
+  lastname: String
+  """
+  Middle name of the customer
+  """
+  middlename: String
+  """
+  Prefix of the customer
+  """
+  prefix: String
+  """
+  Suffix of the customer
+  """
+  suffix: String
+}
+
+type CustomerOrders {
+  """
+  Date of the first order placed in the store
+  """
+  date_of_first_order: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+input CustomerOrdersFilterInput {
+  """
+  Filters by order base grand total value.
+  """
+  grand_total: FilterRangeTypeInput @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Filters by order created_at time.
+  """
+  order_date: FilterRangeTypeInput @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Filters by order status.
+  """
+  status: FilterEqualTypeInput @deprecated(reason: "Magento >= 2.4.8")
+}

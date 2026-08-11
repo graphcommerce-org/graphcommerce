@@ -1,4 +1,11 @@
-interface OrderItemInterface {
+type BundleOrderItem {
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage @deprecated(reason: "Magento >= 2.4.6")
+}
+
+type DownloadableOrderItem {
   """
   The selected gift message for the order item
   """
@@ -12,14 +19,7 @@ type OrderItem {
   gift_message: GiftMessage @deprecated(reason: "Magento >= 2.4.6")
 }
 
-type BundleOrderItem {
-  """
-  The selected gift message for the order item
-  """
-  gift_message: GiftMessage @deprecated(reason: "Magento >= 2.4.6")
-}
-
-type DownloadableOrderItem {
+interface OrderItemInterface {
   """
   The selected gift message for the order item
   """

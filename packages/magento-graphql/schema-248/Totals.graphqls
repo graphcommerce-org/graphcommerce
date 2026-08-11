@@ -1,0 +1,68 @@
+type CartItemPrices {
+  """
+  The value of the original price multiplied by the quantity of the item.
+  """
+  original_row_total: Money @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type CartPrices {
+  """
+  The total of the cart, including discounts, shipping, and other fees without tax.
+  """
+  grand_total_excluding_tax: Money @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type OrderTotal {
+  """
+  The subtotal of the order, excluding taxes.
+  """
+  subtotal_excl_tax: Money @deprecated(reason: "Magento >= 2.4.8")
+  """
+  The subtotal of the order, including taxes.
+  """
+  subtotal_incl_tax: Money @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type StoreConfig {
+  """
+  Configuration data from tax/weee/apply_vat
+  """
+  fixed_product_taxes_apply_tax_to_fpt: Boolean @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/display_email
+  """
+  fixed_product_taxes_display_prices_in_emails: Int @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/display_list
+  """
+  fixed_product_taxes_display_prices_in_product_lists: Int @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/display_sales
+  """
+  fixed_product_taxes_display_prices_in_sales_modules: Int @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/display
+  """
+  fixed_product_taxes_display_prices_on_product_view_page: Int
+    @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/enable
+  """
+  fixed_product_taxes_enable: Boolean @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/weee/include_in_subtotal
+  """
+  fixed_product_taxes_include_fpt_in_subtotal: Boolean @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/sales_display/grandtotal
+  """
+  orders_invoices_credit_memos_display_grandtotal: Boolean @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/sales_display/subtotal
+  """
+  orders_invoices_credit_memos_display_subtotal: Int @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Configuration data from tax/sales_display/zero_tax
+  """
+  orders_invoices_credit_memos_display_zero_tax: Boolean @deprecated(reason: "Magento >= 2.4.8")
+}

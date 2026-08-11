@@ -1,3 +1,10 @@
+type Query {
+  """
+  Returns details about Google reCAPTCHA V3-Invisible configuration.
+  """
+  recaptchaV3Config: ReCaptchaConfigurationV3 @deprecated(reason: "Magento >= 2.4.7")
+}
+
 """
 Contains reCAPTCHA V3-Invisible configuration details.
 """
@@ -33,21 +40,14 @@ type ReCaptchaConfigurationV3 {
 }
 
 enum ReCaptchaFormEnum {
-  PLACE_ORDER
+  BRAINTREE
   CONTACT
-  CUSTOMER_LOGIN
-  CUSTOMER_FORGOT_PASSWORD
   CUSTOMER_CREATE
   CUSTOMER_EDIT
+  CUSTOMER_FORGOT_PASSWORD
+  CUSTOMER_LOGIN
   NEWSLETTER
+  PLACE_ORDER
   PRODUCT_REVIEW
   SENDFRIEND
-  BRAINTREE
-}
-
-type Query {
-  """
-  Returns details about Google reCAPTCHA V3-Invisible configuration.
-  """
-  recaptchaV3Config: ReCaptchaConfigurationV3 @deprecated(reason: "Magento >= 2.4.7")
 }

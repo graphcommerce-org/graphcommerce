@@ -1,0 +1,6 @@
+input CustomizableOptionInput {
+  """
+  The unique ID for a `CartItemInterface` object.
+  """
+  uid: ID @deprecated(reason: "Magento >= 2.4.7")
+}

@@ -1,4 +1,10 @@
 type SelectedShippingMethod {
+  """
+  The cost of shipping using this shipping method, excluding tax.
+  """
   price_excl_tax: Money @deprecated(reason: "Magento >= 2.4.6")
+  """
+  The cost of shipping using this shipping method, including tax.
+  """
   price_incl_tax: Money @deprecated(reason: "Magento >= 2.4.6")
 }
