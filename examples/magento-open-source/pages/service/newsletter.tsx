@@ -52,6 +52,7 @@ export default NewsletterSubscribe
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
+  const up = { href: '/service', title: t`Customer Service` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const layout = staticClient.query({
@@ -62,7 +63,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/service', title: t`Customer Service` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

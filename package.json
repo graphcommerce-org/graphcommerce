@@ -14,7 +14,7 @@
     "examples/*"
   ],
   "engines": {
-    "node": ">=20 <24.0.0"
+    "node": ">=22.0.0 <27.0.0"
   },
   "scripts": {
     "prepare": "husky",
@@ -34,6 +34,7 @@
     "packages:5": "yarn workspace @graphcommerce/cli dev",
     "packages:6": "yarn workspace @graphcommerce/changeset-changelog dev",
     "packages:7": "yarn workspace @graphcommerce/graphql-codegen-markdown-docs dev",
+    "packages:build": "concurrently 'yarn workspace @graphcommerce/next-config build' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file build' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build' 'yarn workspace @graphcommerce/hygraph-cli build' 'yarn workspace @graphcommerce/cli build' 'yarn workspace @graphcommerce/changeset-changelog build' 'yarn workspace @graphcommerce/graphql-codegen-markdown-docs build'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
     "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest run",
     "test:watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest"
@@ -85,7 +86,7 @@
     "husky": "^9.1.7",
     "jest-diff": "^29.7.0",
     "knip": "^5.63.0",
-    "next": "16.1.1",
+    "next": "16.2.6",
     "prettier": "^3.7.4",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",

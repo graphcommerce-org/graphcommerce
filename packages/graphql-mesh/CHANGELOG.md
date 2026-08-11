@@ -1,5 +1,125 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2650](https://github.com/graphcommerce-org/graphcommerce/pull/2650) [`ccd01e9`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd01e9ad061783b354fd8655b5319edb26a15f1) - Route server-side Magento traffic over an internal network with the new runtime-only `GC_MAGENTO_ENDPOINT_SERVER` environment variable (e.g. `http://varnish.magento-namespace.svc.cluster.local`). When set, every mesh request whose URL starts with the origin of `GC_MAGENTO_ENDPOINT` — GraphQL and REST — is rewritten to the internal origin and gains an `X-Forwarded-Proto: https` header, so frontend↔Magento traffic inside a Kubernetes cluster no longer hairpins over the public load balancer. Unset, behavior is unchanged. See the new "Routing Magento traffic over an internal network" section in the mesh docs. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2644](https://github.com/graphcommerce-org/graphcommerce/pull/2644) [`c4ca56a`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ca56a08915d918f78339ecddcc418dfc26857d) - Fix GraphQL multipart uploads (`Upload` scalar) through the Mesh. Next.js' pages-router bodyParser decodes multipart request bodies as UTF-8 text before Yoga can parse them, silently corrupting binary upload bytes (invalid UTF-8 sequences become replacement characters and the part's mime type is lost). The `/api/graphql` route now sets `bodyParser: false` so Yoga receives the raw stream, and `createServer` throws a descriptive error when it receives a multipart request whose body was already consumed by the bodyParser. ([@paales](https://github.com/paales))
+
+- [#2648](https://github.com/graphcommerce-org/graphcommerce/pull/2648) [`24541b8`](https://github.com/graphcommerce-org/graphcommerce/commit/24541b8d3d7f5de80ebc7b9a03d439b4347eb9e6) - Fix multipart file uploads through the mesh returning "Unable to parse the request." in `next dev` (turbopack). `customFetch` used `globalThis.fetch` (undici) inside Next, while `@graphql-tools/executor-http` builds upload bodies with `FormData` from `@whatwg-node/fetch`. In `next dev`, `@whatwg-node/fetch` is evaluated while `next.config.ts` loads — before any `__NEXT` global exists — so its Next.js detection fails and it exports its ponyfills. Undici doesn't recognize the ponyfill `FormData` and stringified the request body to the literal `[object Object]`. `customFetch` now always uses the fetch exported by `@whatwg-node/fetch`, which is `globalThis.fetch` whenever the native path is active and the matching ponyfill fetch otherwise, so fetch and `FormData` always come from the same implementation family. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+### Minor Changes
+
+- [#2650](https://github.com/graphcommerce-org/graphcommerce/pull/2650) [`ccd01e9`](https://github.com/graphcommerce-org/graphcommerce/commit/ccd01e9ad061783b354fd8655b5319edb26a15f1) - Route server-side Magento traffic over an internal network with the new runtime-only `GC_MAGENTO_ENDPOINT_SERVER` environment variable (e.g. `http://varnish.magento-namespace.svc.cluster.local`). When set, every mesh request whose URL starts with the origin of `GC_MAGENTO_ENDPOINT` — GraphQL and REST — is rewritten to the internal origin and gains an `X-Forwarded-Proto: https` header, so frontend↔Magento traffic inside a Kubernetes cluster no longer hairpins over the public load balancer. Unset, behavior is unchanged. See the new "Routing Magento traffic over an internal network" section in the mesh docs. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+### Patch Changes
+
+- [#2648](https://github.com/graphcommerce-org/graphcommerce/pull/2648) [`24541b8`](https://github.com/graphcommerce-org/graphcommerce/commit/24541b8d3d7f5de80ebc7b9a03d439b4347eb9e6) - Fix multipart file uploads through the mesh returning "Unable to parse the request." in `next dev` (turbopack). `customFetch` used `globalThis.fetch` (undici) inside Next, while `@graphql-tools/executor-http` builds upload bodies with `FormData` from `@whatwg-node/fetch`. In `next dev`, `@whatwg-node/fetch` is evaluated while `next.config.ts` loads — before any `__NEXT` global exists — so its Next.js detection fails and it exports its ponyfills. Undici doesn't recognize the ponyfill `FormData` and stringified the request body to the literal `[object Object]`. `customFetch` now always uses the fetch exported by `@whatwg-node/fetch`, which is `globalThis.fetch` whenever the native path is active and the matching ponyfill fetch otherwise, so fetch and `FormData` always come from the same implementation family. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.32
+
+### Patch Changes
+
+- [#2644](https://github.com/graphcommerce-org/graphcommerce/pull/2644) [`c4ca56a`](https://github.com/graphcommerce-org/graphcommerce/commit/c4ca56a08915d918f78339ecddcc418dfc26857d) - Fix GraphQL multipart uploads (`Upload` scalar) through the Mesh. Next.js' pages-router bodyParser decodes multipart request bodies as UTF-8 text before Yoga can parse them, silently corrupting binary upload bytes (invalid UTF-8 sequences become replacement characters and the part's mime type is lost). The `/api/graphql` route now sets `bodyParser: false` so Yoga receives the raw stream, and `createServer` throws a descriptive error when it receives a multipart request whose body was already consumed by the bodyParser. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

@@ -1,0 +1,68 @@
+"""
+Settings for the Storyblok integration.
+"""
+input StoryblokConfig {
+  """
+  Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap`
+  (seeding a new space with the example content) and as the default space for pull/push commands.
+  """
+  spaceId: String!
+
+  """
+  Public preview access token for the Storyblok Content Delivery API. Found under
+  Settings → Access Tokens in the Storyblok space. Inlined into the client bundle —
+  do not use a private/management token here. Override per-environment with
+  `GC_STORYBLOK_ACCESS_TOKEN`.
+  """
+  accessToken: String!
+
+  """
+  Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
+  example space (291439709879423) which contains demo content for this template.
+  Override only if you maintain your own example/template space.
+  """
+  sourceSpaceId: String
+
+  """
+  How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`) on its own.
+
+  `storyblok-js-client` pins the `cv` per process on the first published request and never
+  refreshes it, which freezes published content until the process restarts (a real problem on
+  long-lived, multi-pod deployments). GraphCommerce re-fetches the current `cv` at most once per
+  this interval before published reads, so edits become visible again.
+
+  This is only the failsafe. With a cache-notify webhook configured, publishing pushes a renew
+  signal through the Next.js incremental cache that every server sharing a `cacheHandler` picks up,
+  so the interval only has to cover deployments where that signal cannot be delivered. Every
+  refresh costs one `cdn/spaces/me` request per server, so it defaults to `3600`. Set to `0` to
+  refresh on every read (always fresh, many more requests); it cannot be disabled entirely, so an
+  undelivered signal degrades to stale rather than frozen content. Does not apply in development,
+  where a fresh `cv` is sent per request. The renew signal is shared with the SSR Apollo client, so
+  publishing invalidates both caches.
+
+  Deployments on Next's default `FileSystemCache` need `cacheMaxMemorySize: 0` for the signal to
+  cross process boundaries; its in-memory LRU otherwise answers every read locally. Custom cache
+  handlers are unaffected.
+  """
+  cacheVersionTtl: Int = 3600
+}
+
+extend input GraphCommerceConfig {
+  """
+  Settings for the Storyblok integration.
+  """
+  storyblok: StoryblokConfig!
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Storyblok language code to request for this storefront. Maps the storefront's
+  GraphCommerce locale to a Storyblok language version. When unset, the storefront's
+  GraphCommerce locale prefix is used as the language code, unless it matches the
+  default locale (in which case no `language` param is sent and Storyblok serves
+  its space-default language). Set this when the GraphCommerce default locale
+  differs from the Storyblok default language (e.g. GraphCommerce default `nl_NL`
+  while the Storyblok space default stays English).
+  """
+  storyblokLocale: String
+}

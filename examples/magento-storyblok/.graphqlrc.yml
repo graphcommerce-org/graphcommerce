@@ -1,0 +1,17 @@
+projects:
+  Project:
+    schema:
+      - .mesh/schema.graphql
+      - node_modules/@graphcommerce/graphql/apollo-client.graphql
+      - node_modules/@graphcommerce/graphql-codegen-near-operation-file/src/directive/env.graphqls
+      - node_modules/@graphcommerce/graphql-codegen-near-operation-file/src/directive/injectable.graphqls
+    documents:
+      - ./components/**/*.graphql
+      - ./graphql/**/*.graphql
+      - node_modules/@graphcommerce/**/*.graphql
+    extensions:
+      languageService:
+        useSchemaFileDefinitions: true
+      endpoints:
+        default:
+          url: http://localhost:3000/api/graphql/

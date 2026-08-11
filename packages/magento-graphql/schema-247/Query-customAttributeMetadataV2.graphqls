@@ -1,7 +1,0 @@
-type Query {
-  """
-  Retrieve EAV attributes metadata.
-  """
-  customAttributeMetadataV2(attributes: [AttributeInput!]): AttributesMetadataOutput
-    @deprecated(reason: "Magento >= 2.4.7")
-}

@@ -48,6 +48,8 @@ export function findAddedItems(
       }
 
       const { customizable_options } = cartItem
+      // No customizable_options to match against — trust the SKU candidacy rather than drop the item.
+      if (customizable_options.length === 0) return true
       const matchEntered = filterNonNullableKeys(itemVariable.entered_options).every(
         (requestOption) =>
           customizable_options.find(

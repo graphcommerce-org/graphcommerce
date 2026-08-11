@@ -1,5 +1,155 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2652](https://github.com/graphcommerce-org/graphcommerce/pull/2652) [`cd21a97`](https://github.com/graphcommerce-org/graphcommerce/commit/cd21a97c705ced2d051351a2860780f9ba173d4b) - Let a Storyblok video asset show a poster.
+
+  A `<video>` paints nothing until it has buffered enough for its first frame, and nothing at all when autoplay is blocked (iOS Low Power Mode) — so an autoplaying video banner starts out black, and can stay black. `Asset` now takes a `poster` prop, rendered as `<video poster>`.
+
+  Storyblok's own `type: asset` has no room for a poster, so `assetWithPoster()` is added to read the convention of an asset value carrying an extra `poster` key:
+
+  ```jsonc
+  {
+    "fieldtype": "asset",
+    "id": 1,
+    "filename": "…",
+    "poster": { "filename": "…" },
+  }
+  ```
+
+  Keeping the poster beside the asset rather than nesting both under a wrapper means a custom field type storing that shape is a drop-in for a plain asset field: existing content stays valid and `value.filename` keeps working for consumers that ignore the poster. The narrowing is unavoidable — Storyblok has no JSONSchema for custom field types, so its type generator emits `unknown` for them.
+
+  ```tsx
+  const { asset, poster } = assetWithPoster(blok.asset)
+  return asset && <Asset asset={asset} poster={poster} />
+  ```
+
+  `@graphcommerce/image` gains `imageUrl(src, { width, quality })`, which builds an optimized URL outside of a React tree — for the places that need a bare URL string rather than an `<Image>`, such as `<video poster>`, a CSS `background-image` or an `og:image`. It routes through the configured loader exactly like `<Image>` does, so the bytes are served and cached by your own deployment rather than fetched from the origin host by every visitor, which matters when the origin meters bandwidth. `width` is snapped up to the nearest configured size, since the optimizer rejects any width outside `imageSizes`/`deviceSizes`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+### Minor Changes
+
+- [#2652](https://github.com/graphcommerce-org/graphcommerce/pull/2652) [`cd21a97`](https://github.com/graphcommerce-org/graphcommerce/commit/cd21a97c705ced2d051351a2860780f9ba173d4b) - Let a Storyblok video asset show a poster.
+
+  A `<video>` paints nothing until it has buffered enough for its first frame, and nothing at all when autoplay is blocked (iOS Low Power Mode) — so an autoplaying video banner starts out black, and can stay black. `Asset` now takes a `poster` prop, rendered as `<video poster>`.
+
+  Storyblok's own `type: asset` has no room for a poster, so `assetWithPoster()` is added to read the convention of an asset value carrying an extra `poster` key:
+
+  ```jsonc
+  {
+    "fieldtype": "asset",
+    "id": 1,
+    "filename": "…",
+    "poster": { "filename": "…" },
+  }
+  ```
+
+  Keeping the poster beside the asset rather than nesting both under a wrapper means a custom field type storing that shape is a drop-in for a plain asset field: existing content stays valid and `value.filename` keeps working for consumers that ignore the poster. The narrowing is unavoidable — Storyblok has no JSONSchema for custom field types, so its type generator emits `unknown` for them.
+
+  ```tsx
+  const { asset, poster } = assetWithPoster(blok.asset)
+  return asset && <Asset asset={asset} poster={poster} />
+  ```
+
+  `@graphcommerce/image` gains `imageUrl(src, { width, quality })`, which builds an optimized URL outside of a React tree — for the places that need a bare URL string rather than an `<Image>`, such as `<video poster>`, a CSS `background-image` or an `og:image`. It routes through the configured loader exactly like `<Image>` does, so the bytes are served and cached by your own deployment rather than fetched from the origin host by every visitor, which matters when the origin meters bandwidth. `width` is snapped up to the nearest configured size, since the optimizer rejects any width outside `imageSizes`/`deviceSizes`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

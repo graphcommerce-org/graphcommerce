@@ -1,5 +1,121 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2667](https://github.com/graphcommerce-org/graphcommerce/pull/2667) [`6ee8488`](https://github.com/graphcommerce-org/graphcommerce/commit/6ee84883ece679b4fd4ed191ecd00a9ec39cc206) - Give `useClearCurrentCartId()` and `useCartLock()`'s `lock`/`unlock` a stable function identity, so consumers can list them in a `useEffect` dependency array without the effect re-running on every render.
+
+  `useClearCurrentCartId` returned a bare arrow function and `useCartLock` defined `lock`/`unlock` inline, while the neighbouring `useAssignCurrentCartId` already returned a `useCallback`. `useClearCurrentCartId` now uses `useCallback` with the Apollo `cache` as its only dependency (matching `useAssignCurrentCartId`), and `lock`/`unlock` use `useEventCallback` because they read values that legitimately change (`currentCartId`, the router query state and the Apollo client) — `useEventCallback` keeps the identity stable while always reading the latest values, so no stale closure is introduced. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+### Patch Changes
+
+- [#2667](https://github.com/graphcommerce-org/graphcommerce/pull/2667) [`6ee8488`](https://github.com/graphcommerce-org/graphcommerce/commit/6ee84883ece679b4fd4ed191ecd00a9ec39cc206) - Give `useClearCurrentCartId()` and `useCartLock()`'s `lock`/`unlock` a stable function identity, so consumers can list them in a `useEffect` dependency array without the effect re-running on every render.
+
+  `useClearCurrentCartId` returned a bare arrow function and `useCartLock` defined `lock`/`unlock` inline, while the neighbouring `useAssignCurrentCartId` already returned a `useCallback`. `useClearCurrentCartId` now uses `useCallback` with the Apollo `cache` as its only dependency (matching `useAssignCurrentCartId`), and `lock`/`unlock` use `useEventCallback` because they read values that legitimately change (`currentCartId`, the router query state and the Apollo client) — `useEventCallback` keeps the identity stable while always reading the latest values, so no stale closure is introduced. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

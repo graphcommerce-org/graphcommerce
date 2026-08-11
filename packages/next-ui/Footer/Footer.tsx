@@ -1,7 +1,7 @@
 import { sxx } from '@graphcommerce/next-ui'
-import type { ContainerProps } from '@mui/material'
 import { Box } from '@mui/material'
-import React from 'react'
+import type React from 'react'
+import type { ContainerSizingProps } from '../Container/Container'
 import { Container } from '../Container/Container'
 import { LazyHydrate } from '../LazyHydrate'
 import { extendableComponent } from '../Styles'
@@ -12,7 +12,7 @@ export type FooterProps = {
   customerService?: React.ReactNode
   copyright?: React.ReactNode
   children?: React.ReactNode
-} & ContainerProps
+} & ContainerSizingProps
 
 const { classes, selectors } = extendableComponent('Footer', [
   'root',

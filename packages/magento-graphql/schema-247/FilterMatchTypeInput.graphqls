@@ -1,0 +1,11 @@
+input FilterMatchTypeInput {
+  """
+  Filter match type for fine-tuned results. Possible values FULL or PARTIAL. If match_type is not provided, returned results will default to FULL match.
+  """
+  match_type: FilterMatchTypeEnum @deprecated(reason: "Magento >= 2.4.7")
+}
+
+enum FilterMatchTypeEnum {
+  FULL
+  PARTIAL
+}

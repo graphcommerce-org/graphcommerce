@@ -1,5 +1,111 @@
 # @graphcommerce/demo-magento-graphcommerce
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2642](https://github.com/graphcommerce-org/graphcommerce/pull/2642) [`1dc4e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/1dc4e9e6fc7fc87cc1d3b101144365fe93eed359) - Fix breadcrumb "up" link title being translated in the wrong locale during static generation. The Lingui `t` macro title was evaluated inside the returned props after awaiting GraphQL queries, so a concurrent static-generation request for another locale could change the global active locale mid-flight. The `up` object is now computed synchronously before any await, capturing the correct locale for the current request. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+### Patch Changes
+
+- [#2642](https://github.com/graphcommerce-org/graphcommerce/pull/2642) [`1dc4e9e`](https://github.com/graphcommerce-org/graphcommerce/commit/1dc4e9e6fc7fc87cc1d3b101144365fe93eed359) - Fix breadcrumb "up" link title being translated in the wrong locale during static generation. The Lingui `t` macro title was evaluated inside the returned props after awaiting GraphQL queries, so a concurrent static-generation request for another locale could change the global active locale mid-flight. The `up` object is now computed synchronously before any await, capturing the correct locale for the current request. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

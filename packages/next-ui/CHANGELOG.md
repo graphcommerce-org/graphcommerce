@@ -1,5 +1,223 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2627](https://github.com/graphcommerce-org/graphcommerce/pull/2627) [`95c188f`](https://github.com/graphcommerce-org/graphcommerce/commit/95c188fcd0dc6cb4ca3edc9877d203d45fe18bb0) - Add `YoutubeEmbed` component — a lightweight lazy-loading YouTube player that defers iframe creation until the user clicks the poster. Uses preconnect on hover for fast playback start and is styled with MUI sx, so no external CSS is required. Supports playlists, no-cookie mode, custom aspect ratios and ad-network preconnect hints.
+
+  `ProductVideo` (used by `ProductPageGallery`) now delegates YouTube playback to `YoutubeEmbed`, so any product whose Magento `media_gallery` contains a YouTube video entry gets the new lazy-loading player on its product page. Vimeo and self-hosted video paths are unchanged. The Magento preview image is passed as the YoutubeEmbed `thumbnail` so the visible poster stays consistent with the rest of the gallery.
+
+  Fix `SidebarGallery` so it forwards the `Additional` and `slotProps` from each image to `MotionImageAspect`. Before this fix the gallery silently dropped both props, which meant any `Additional` overlay configured by `ProductPageGallery` (the `<ProductVideo>` overlay with its `PlayCircle` and the new `YoutubeEmbed`) never reached the DOM. That was a latent regression that made all video-gallery entries render as static images, with or without this PR's YouTube changes.
+
+  Fix `playwright.config.ts` so `npx playwright test` actually loads. The config previously imported `examples/magento-graphcms/next.config.ts`, which transitively pulled `@graphcommerce/next-config`'s ESM build into a CJS context and crashed with `ReferenceError: exports is not defined`. Replaced with an opt-in `PLAYWRIGHT_LOCALES` env var for the multi-locale projects that the next.config import was meant to drive. ([@paales](https://github.com/paales))
+
+- [#2652](https://github.com/graphcommerce-org/graphcommerce/pull/2652) [`132d1e1`](https://github.com/graphcommerce-org/graphcommerce/commit/132d1e1075b22843ed5934314c723df06ea13a6a) - `HeroBanner` gains an `asset?: React.ReactNode` prop, and `videoSrc` is deprecated.
+
+  The banner rendered a `<video>` itself, from a raw URL — so it could only ever hold a video, and left nowhere to hang a poster, the one place a poster matters most (a full-bleed autoplaying video above the fold). It now takes a node and renders it, the way its sibling `SpecialBanner` already does; positioning stays with the banner, stretching whatever is passed to fill via `& img, & video`.
+
+  ```diff
+  - <HeroBanner videoSrc={asset.filename} … />
+  + <HeroBanner asset={<Asset asset={asset} poster={poster} />} … />
+  ```
+
+  Taking a node rather than a source also keeps `next-ui` free of any CMS: the Storyblok and Hygraph examples each pass their own `<Asset>`, both of which already render images and video.
+
+  `videoSrc` still works but is deprecated: when set (and `asset` is not) it renders a bare autoplaying video, keeping the `HeroBanner-video` class. The only behavioural change on that path is that the scroll parallax is gone, along with the `framer-motion`, `useScrollY` and `clientSize` machinery it needed. Migrate to `asset` to regain images, posters, and control over how the media is rendered. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`b59420f`](https://github.com/graphcommerce-org/graphcommerce/commit/b59420fe1e50b311ed2840af5774bb2fdbf19337) - Cast theme.typography spreads to CSSObject in MuiButton variants to satisfy MUI v7 typing ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2633](https://github.com/graphcommerce-org/graphcommerce/pull/2633) [`7554ad4`](https://github.com/graphcommerce-org/graphcommerce/commit/7554ad479cf78d790eeedd3f862c5d57403bda51) - Fix: `<Fab variant="extended">` no longer gets a fixed `width` from `MuiFabSizes`. The size-based width/height variants are now scoped to `variant: 'circular'` only, so extended Fabs can grow with their label (controlled via `min-width` instead) as MUI intends. Previously every extended Fab without an explicit `size` matched the default `large` rule and was forced to 54px wide. ([@paales](https://github.com/paales))
+
+- [#2610](https://github.com/graphcommerce-org/graphcommerce/pull/2610) [`7b6ba3f`](https://github.com/graphcommerce-org/graphcommerce/commit/7b6ba3fc5367f0b01df302d98b6ab55cc89b051f) - Fix duplicate React key warning in `<NumberFormat>` / `<CurrencyFormat>` / `<Money>` for numbers with a thousands group separator. `Intl.NumberFormat.formatToParts()` emits multiple parts with `type: "integer"` (one per group, e.g. `1.234,56` produces two `integer` parts). Using `key={part.type}` therefore collided. Switched to an index key — parts are already wrapped in `suppressHydrationWarning`, so SSR/client divergence isn't an issue. ([@paales](https://github.com/paales))
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`cb33760`](https://github.com/graphcommerce-org/graphcommerce/commit/cb337603284004033702cf4536561ee7d743a603) - Allow passing HTML attributes to UspListItem, ButtonLinkList & IconBlocks root element ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`ac652cc`](https://github.com/graphcommerce-org/graphcommerce/commit/ac652cc7b1358cebe9047733afccc87b5b89dae4) - Added generic proxy handling to graphcommerce that can be used for plugins. Disabledby default. ([@paales](https://github.com/paales))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2643](https://github.com/graphcommerce-org/graphcommerce/pull/2643) [`04ba9be`](https://github.com/graphcommerce-org/graphcommerce/commit/04ba9be6f050cc686133bec57f40da9f8eecb4c8) - Only render disabled pagination items as links when enabled. Disabled `PaginationItem`s no longer receive a `component`/`href`, preventing crawlers from following links to an infinite number of list pages and inflating the static page cache. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2668](https://github.com/graphcommerce-org/graphcommerce/pull/2668) [`b822462`](https://github.com/graphcommerce-org/graphcommerce/commit/b82246240a932751bcf8fd7063f67fb8927a5cd4) - Fix two bugs in `toDate`:
+
+  - ISO datetime strings with a timezone offset (e.g. `2024-01-15T10:30:00-05:00`) were being corrupted into `Invalid Date`, because `replace(/-/g, '/')` was applied to every string instead of only to plain `YYYY-MM-DD` dates
+  - Strings in Magento's `DATETIME_SLASH_PHP_FORMAT` (`d/m/Y H:i:s`) were misparsed as `MM/DD/YYYY` by the native `Date` constructor, silently producing the wrong date or `undefined` ([@hsngdz](https://github.com/hsngdz))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`8d1c48c`](https://github.com/graphcommerce-org/graphcommerce/commit/8d1c48cdbdcf30d4f1e55cf16a02028d19703382) - Store the css flags as a cookie, so we are able to retrieve the flags in the middleware as well. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`5957a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/5957a2b90520574a0d72c5850858464092cdf7c0) - Fix hydration erorr with SkipLink when there are query params. ([@paales](https://github.com/paales))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`21a676b`](https://github.com/graphcommerce-org/graphcommerce/commit/21a676bb50888278d437b88a6e49e6f3d0c4d4bb) - Changed Footer props type to allow setting footer container props ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+### Patch Changes
+
+- [#2668](https://github.com/graphcommerce-org/graphcommerce/pull/2668) [`b822462`](https://github.com/graphcommerce-org/graphcommerce/commit/b82246240a932751bcf8fd7063f67fb8927a5cd4) - Fix two bugs in `toDate`:
+
+  - ISO datetime strings with a timezone offset (e.g. `2024-01-15T10:30:00-05:00`) were being corrupted into `Invalid Date`, because `replace(/-/g, '/')` was applied to every string instead of only to plain `YYYY-MM-DD` dates
+  - Strings in Magento's `DATETIME_SLASH_PHP_FORMAT` (`d/m/Y H:i:s`) were misparsed as `MM/DD/YYYY` by the native `Date` constructor, silently producing the wrong date or `undefined` ([@hsngdz](https://github.com/hsngdz))
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+### Minor Changes
+
+- [#2652](https://github.com/graphcommerce-org/graphcommerce/pull/2652) [`132d1e1`](https://github.com/graphcommerce-org/graphcommerce/commit/132d1e1075b22843ed5934314c723df06ea13a6a) - `HeroBanner` gains an `asset?: React.ReactNode` prop, and `videoSrc` is deprecated.
+
+  The banner rendered a `<video>` itself, from a raw URL — so it could only ever hold a video, and left nowhere to hang a poster, the one place a poster matters most (a full-bleed autoplaying video above the fold). It now takes a node and renders it, the way its sibling `SpecialBanner` already does; positioning stays with the banner, stretching whatever is passed to fill via `& img, & video`.
+
+  ```diff
+  - <HeroBanner videoSrc={asset.filename} … />
+  + <HeroBanner asset={<Asset asset={asset} poster={poster} />} … />
+  ```
+
+  Taking a node rather than a source also keeps `next-ui` free of any CMS: the Storyblok and Hygraph examples each pass their own `<Asset>`, both of which already render images and video.
+
+  `videoSrc` still works but is deprecated: when set (and `asset` is not) it renders a bare autoplaying video, keeping the `HeroBanner-video` class. The only behavioural change on that path is that the scroll parallax is gone, along with the `framer-motion`, `useScrollY` and `clientSize` machinery it needed. Migrate to `asset` to regain images, posters, and control over how the media is rendered. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+### Patch Changes
+
+- [#2643](https://github.com/graphcommerce-org/graphcommerce/pull/2643) [`04ba9be`](https://github.com/graphcommerce-org/graphcommerce/commit/04ba9be6f050cc686133bec57f40da9f8eecb4c8) - Only render disabled pagination items as links when enabled. Disabled `PaginationItem`s no longer receive a `component`/`href`, preventing crawlers from following links to an infinite number of list pages and inflating the static page cache. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+### Minor Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`21a676b`](https://github.com/graphcommerce-org/graphcommerce/commit/21a676bb50888278d437b88a6e49e6f3d0c4d4bb) - Changed Footer props type to allow setting footer container props ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+### Minor Changes
+
+- [#2627](https://github.com/graphcommerce-org/graphcommerce/pull/2627) [`95c188f`](https://github.com/graphcommerce-org/graphcommerce/commit/95c188fcd0dc6cb4ca3edc9877d203d45fe18bb0) - Add `YoutubeEmbed` component — a lightweight lazy-loading YouTube player that defers iframe creation until the user clicks the poster. Uses preconnect on hover for fast playback start and is styled with MUI sx, so no external CSS is required. Supports playlists, no-cookie mode, custom aspect ratios and ad-network preconnect hints.
+
+  `ProductVideo` (used by `ProductPageGallery`) now delegates YouTube playback to `YoutubeEmbed`, so any product whose Magento `media_gallery` contains a YouTube video entry gets the new lazy-loading player on its product page. Vimeo and self-hosted video paths are unchanged. The Magento preview image is passed as the YoutubeEmbed `thumbnail` so the visible poster stays consistent with the rest of the gallery.
+
+  Fix `SidebarGallery` so it forwards the `Additional` and `slotProps` from each image to `MotionImageAspect`. Before this fix the gallery silently dropped both props, which meant any `Additional` overlay configured by `ProductPageGallery` (the `<ProductVideo>` overlay with its `PlayCircle` and the new `YoutubeEmbed`) never reached the DOM. That was a latent regression that made all video-gallery entries render as static images, with or without this PR's YouTube changes.
+
+  Fix `playwright.config.ts` so `npx playwright test` actually loads. The config previously imported `examples/magento-graphcms/next.config.ts`, which transitively pulled `@graphcommerce/next-config`'s ESM build into a CJS context and crashed with `ReferenceError: exports is not defined`. Replaced with an opt-in `PLAYWRIGHT_LOCALES` env var for the multi-locale projects that the next.config import was meant to drive. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.21
+
+### Patch Changes
+
+- [#2633](https://github.com/graphcommerce-org/graphcommerce/pull/2633) [`7554ad4`](https://github.com/graphcommerce-org/graphcommerce/commit/7554ad479cf78d790eeedd3f862c5d57403bda51) - Fix: `<Fab variant="extended">` no longer gets a fixed `width` from `MuiFabSizes`. The size-based width/height variants are now scoped to `variant: 'circular'` only, so extended Fabs can grow with their label (controlled via `min-width` instead) as MUI intends. Previously every extended Fab without an explicit `size` matched the default `large` rule and was forced to 54px wide. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+### Patch Changes
+
+- [#2610](https://github.com/graphcommerce-org/graphcommerce/pull/2610) [`7b6ba3f`](https://github.com/graphcommerce-org/graphcommerce/commit/7b6ba3fc5367f0b01df302d98b6ab55cc89b051f) - Fix duplicate React key warning in `<NumberFormat>` / `<CurrencyFormat>` / `<Money>` for numbers with a thousands group separator. `Intl.NumberFormat.formatToParts()` emits multiple parts with `type: "integer"` (one per group, e.g. `1.234,56` produces two `integer` parts). Using `key={part.type}` therefore collided. Switched to an index key — parts are already wrapped in `suppressHydrationWarning`, so SSR/client divergence isn't an issue. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+### Patch Changes
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`b59420f`](https://github.com/graphcommerce-org/graphcommerce/commit/b59420fe1e50b311ed2840af5774bb2fdbf19337) - Cast theme.typography spreads to CSSObject in MuiButton variants to satisfy MUI v7 typing ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`cb33760`](https://github.com/graphcommerce-org/graphcommerce/commit/cb337603284004033702cf4536561ee7d743a603) - Allow passing HTML attributes to UspListItem, ButtonLinkList & IconBlocks root element ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.0.4-canary.2
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`ac652cc`](https://github.com/graphcommerce-org/graphcommerce/commit/ac652cc7b1358cebe9047733afccc87b5b89dae4) - Added generic proxy handling to graphcommerce that can be used for plugins. Disabledby default. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`8d1c48c`](https://github.com/graphcommerce-org/graphcommerce/commit/8d1c48cdbdcf30d4f1e55cf16a02028d19703382) - Store the css flags as a cookie, so we are able to retrieve the flags in the middleware as well. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`5957a2b`](https://github.com/graphcommerce-org/graphcommerce/commit/5957a2b90520574a0d72c5850858464092cdf7c0) - Fix hydration erorr with SkipLink when there are query params. ([@paales](https://github.com/paales))
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

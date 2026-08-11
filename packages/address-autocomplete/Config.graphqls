@@ -1,0 +1,6 @@
+extend input GraphCommerceConfig {
+  """
+  Google Maps API key for address autocomplete. This is required for the address autocomplete to work.
+  """
+  googleMapsApiKey: String
+}

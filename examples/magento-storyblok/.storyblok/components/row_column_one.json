@@ -1,0 +1,50 @@
+{
+  "name": "row_column_one",
+  "display_name": "Row Column One",
+  "description": null,
+  "created_at": "2026-03-27T13:20:10.369Z",
+  "updated_at": "2026-03-27T13:20:10.369Z",
+  "id": 159449130479328,
+  "schema": {
+    "variant": {
+      "type": "option",
+      "pos": 0,
+      "display_name": "Variant",
+      "default_value": "Default",
+      "source": "self",
+      "options": [
+        {
+          "name": "Default",
+          "value": "Default"
+        },
+        {
+          "name": "Message",
+          "value": "Message"
+        }
+      ],
+      "id": "Qj9cj_yMRFGkHWzpC4rlKg"
+    },
+    "col_one": {
+      "type": "richtext",
+      "pos": 1,
+      "translatable": true,
+      "display_name": "Column One",
+      "id": "PV9FACYmSRydup2yqxhv-A"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Column One",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

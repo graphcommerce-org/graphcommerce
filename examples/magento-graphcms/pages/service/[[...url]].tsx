@@ -90,6 +90,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale, params } = context
   const url = params?.url ? `service/${params?.url.join('/')}` : 'service'
   const client = graphqlSharedClient(context)
+  const up = url === 'service' ? null : { href: '/service', title: t`Customer Service` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
   const page = hygraphPageContent(staticClient, url)
@@ -100,13 +101,11 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
 
   if (!(await page).data.pages?.[0]) return redirectOrNotFound(staticClient, conf, { url }, locale)
 
-  const isRoot = url === 'service'
-
   return {
     props: {
       ...(await page).data,
       ...(await layout).data,
-      up: isRoot ? null : { href: '/service', title: t`Customer Service` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
     revalidate: revalidate(),

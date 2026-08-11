@@ -1,10 +1,19 @@
-import { RichText } from '@graphcommerce/hygraph-ui'
+import type { AssetProps } from '@graphcommerce/hygraph-ui'
+import { Asset, RichText } from '@graphcommerce/hygraph-ui'
 import { breakpointVal, HeroBanner } from '@graphcommerce/next-ui'
 import { Button } from '@mui/material'
 import { RowHeroBannerFragment } from './RowHeroBanner.gql'
 
-export function RowHeroBanner(props: RowHeroBannerFragment) {
-  const { copy, heroAsset, pageLinks } = props
+export type RowHeroBannerProps = RowHeroBannerFragment & {
+  /**
+   * Only applies to an image asset — a video is never lazy-loaded. Pass
+   * `'eager'` where the banner is the LCP element.
+   */
+  loading?: AssetProps['loading']
+}
+
+export function RowHeroBanner(props: RowHeroBannerProps) {
+  const { copy, heroAsset, pageLinks, loading } = props
 
   return (
     <HeroBanner
@@ -13,7 +22,7 @@ export function RowHeroBanner(props: RowHeroBannerFragment) {
           {title}
         </Button>
       ))}
-      videoSrc={heroAsset.url}
+      asset={heroAsset && <Asset asset={heroAsset} loading={loading} sizes='100vw' />}
       sx={(theme) => ({
         '& .HeroBanner-copy': {
           minHeight: { xs: 'min(70vh,600px)', md: 'min(70vh,1080px)' },

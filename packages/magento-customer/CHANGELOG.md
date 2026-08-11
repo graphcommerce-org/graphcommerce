@@ -1,5 +1,163 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`fa1eeae`](https://github.com/graphcommerce-org/graphcommerce/commit/fa1eeaeb10db1d465dd0f7a07d643862921c3c04) - Override signup props and update strings ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+### Patch Changes
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.16
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+### Minor Changes
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+### Minor Changes
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`fa1eeae`](https://github.com/graphcommerce-org/graphcommerce/commit/fa1eeaeb10db1d465dd0f7a07d643862921c3c04) - Override signup props and update strings ([@paales](https://github.com/paales))
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

@@ -1,0 +1,67 @@
+type Query {
+  recaptchaFormConfig(formType: ReCaptchaFormEnum!): ReCaptchaConfigOutput
+    @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type ReCaptchaConfigOutput {
+  """
+  Configuration details for reCaptcha type
+  """
+  configurations: ReCaptchaConfiguration
+  """
+  Indicates whether reCaptcha type is enabled
+  """
+  is_enabled: Boolean!
+}
+
+"""
+Contains reCAPTCHA form configuration details.
+"""
+type ReCaptchaConfiguration {
+  """
+  The position of the invisible reCAPTCHA badge on each page.
+  """
+  badge_position: String
+  """
+  A two-character code that specifies the language that is used for Google reCAPTCHA text and messaging.
+  """
+  language_code: String
+  """
+  The minimum score that identifies a user interaction as a potential risk.
+  """
+  minimum_score: Float
+  re_captcha_type: ReCaptchaTypeEmum!
+  """
+  The message that appears when reCaptcha fails.
+  """
+  technical_failure_message: String!
+  """
+  Theme to be used to render reCaptcha.
+  """
+  theme: String!
+  """
+  The message that appears to the user if validation fails.
+  """
+  validation_failure_message: String!
+  """
+  The website key generated when the Google reCAPTCHA account was registered.
+  """
+  website_key: String!
+}
+
+enum ReCaptchaTypeEmum {
+  INVISIBLE
+  RECAPTCHA
+  RECAPTCHA_V3
+}
+
+type ReCaptchaConfigurationV3 {
+  """
+  Theme to be used to render reCaptcha.
+  """
+  theme: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+enum ReCaptchaFormEnum {
+  RESEND_CONFIRMATION_EMAIL @deprecated(reason: "Magento >= 2.4.8")
+}

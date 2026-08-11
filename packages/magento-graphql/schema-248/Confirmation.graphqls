@@ -1,0 +1,11 @@
+type Mutation {
+  """
+  Resends the confirmation email to a customer.
+  """
+  resendConfirmationEmail(
+    """
+    The email address to send the confirmation email to.
+    """
+    email: String!
+  ): Boolean @deprecated(reason: "Magento >= 2.4.8")
+}

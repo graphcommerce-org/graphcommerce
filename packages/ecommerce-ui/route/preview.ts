@@ -8,9 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // const domain = req.url ? new URL(req.url) : undefined
   const referer = req.headers.referer ? new URL(req.headers.referer) : undefined
-  const redirectTo =
-    req.headers.redirectTo ??
-    (referer && req.headers.host === referer.host ? referer.pathname : '/')
+  let redirectTo =
+    req.query.redirectTo ?? (referer && req.headers.host === referer.host ? referer.pathname : '/')
+
+  if (redirectTo === '/page/home') {
+    redirectTo = '/'
+  }
 
   if (!action) {
     res.status(400).json({ message: 'No action provided' })
@@ -27,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     res.setDraftMode({ enable: true })
-    const previewData = req.query.previewDat
+    const previewData = req.query.previewData
       ? (JSON.parse(`${req.query.previewData}`) as PreviewData)
       : previewModeDefaults()
 

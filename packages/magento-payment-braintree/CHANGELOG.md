@@ -1,5 +1,111 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2651](https://github.com/graphcommerce-org/graphcommerce/pull/2651) [`0c105b2`](https://github.com/graphcommerce-org/graphcommerce/commit/0c105b23c4ad6bfaa0fb5d4e517113531d19b3ed) - Improve the Braintree checkout with configurable per-storefront 3D Secure, visible payment errors, reliable recovery after failed payments, and a credit card payment icon. ([@hsngdz](https://github.com/hsngdz))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+### Patch Changes
+
+- [#2651](https://github.com/graphcommerce-org/graphcommerce/pull/2651) [`0c105b2`](https://github.com/graphcommerce-org/graphcommerce/commit/0c105b23c4ad6bfaa0fb5d4e517113531d19b3ed) - Improve the Braintree checkout with configurable per-storefront 3D Secure, visible payment errors, reliable recovery after failed payments, and a credit card payment icon. ([@hsngdz](https://github.com/hsngdz))
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

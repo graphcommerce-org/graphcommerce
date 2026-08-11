@@ -1,0 +1,38 @@
+{
+  "name": "@graphcommerce/address-autocomplete",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "11.0.0",
+  "sideEffects": false,
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
+  },
+  "exports": {
+    ".": "./index.ts",
+    "./plugins/AddAddressAutocompleteAddressFields": "./plugins/AddAddressAutocompleteAddressFields.tsx"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@types/google.maps": "^3.59.0"
+  },
+  "peerDependencies": {
+    "@graphcommerce/ecommerce-ui": "^11.0.0",
+    "@graphcommerce/eslint-config-pwa": "^11.0.0",
+    "@graphcommerce/graphql": "^11.0.0",
+    "@graphcommerce/magento-customer": "^11.0.0",
+    "@graphcommerce/magento-store": "^11.0.0",
+    "@graphcommerce/next-config": "^11.0.0",
+    "@graphcommerce/prettier-config-pwa": "^11.0.0",
+    "@graphcommerce/typescript-config-pwa": "^11.0.0",
+    "@lingui/core": "^5",
+    "@lingui/macro": "^5",
+    "@lingui/react": "^5",
+    "@mui/material": "^7.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  }
+}

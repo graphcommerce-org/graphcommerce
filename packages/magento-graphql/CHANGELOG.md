@@ -1,5 +1,119 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`8623e57`](https://github.com/graphcommerce-org/graphcommerce/commit/8623e5755c24cd202e4eb32cc0650eaa3b40e682) - Schema defintions for 246,247 and 248 ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`5cead7c`](https://github.com/graphcommerce-org/graphcommerce/commit/5cead7c445e2497266a49fae2b8744536f54939e) - Make every field the `schema-<version>` backfills add to an existing type nullable. These folders are layered onto an older Magento backend that does not have the field, so it can never produce a value: a non-null declaration made codegen emit a required property (breaking `getStoreConfig` in `algolia-products` with "Type 'StoreConfig' is missing the following properties … and 15 more" on a 2.4.7 backend) and, worse, would nullify the whole parent object at runtime because a non-null field resolving to null propagates upward. Brand-new types keep their original nullability. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+### Patch Changes
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`8623e57`](https://github.com/graphcommerce-org/graphcommerce/commit/8623e5755c24cd202e4eb32cc0650eaa3b40e682) - Schema defintions for 246,247 and 248 ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`5cead7c`](https://github.com/graphcommerce-org/graphcommerce/commit/5cead7c445e2497266a49fae2b8744536f54939e) - Make every field the `schema-<version>` backfills add to an existing type nullable. These folders are layered onto an older Magento backend that does not have the field, so it can never produce a value: a non-null declaration made codegen emit a required property (breaking `getStoreConfig` in `algolia-products` with "Type 'StoreConfig' is missing the following properties … and 15 more" on a 2.4.7 backend) and, worse, would nullify the whole parent object at runtime because a non-null field resolving to null propagates upward. Brand-new types keep their original nullability. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

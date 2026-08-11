@@ -1,3 +1,70 @@
 type StoreConfig {
+  """
+  Extended Config Data - checkout/cart/delete_quote_after
+  """
+  cart_expires_in_days: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/cart_link/use_qty
+  """
+  cart_summary_display_quantity: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Indicates whether the Contact Us form in enabled.
+  """
   contact_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - general/region/state_required
+  """
+  countries_with_required_region: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Customer access token lifetime.
+  """
+  customer_access_token_lifetime: Float @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - general/country/default
+  """
+  default_country: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - general/region/display_all
+  """
+  display_state_if_optional: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/options/guest_checkout
+  """
+  is_guest_checkout_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/options/onepage_checkout_enabled
+  """
+  is_one_page_checkout_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/options/max_items_display_count
+  """
+  max_items_in_order_summary: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/sidebar/display
+  """
+  minicart_display: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - checkout/sidebar/count
+  """
+  minicart_max_items: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Indicates whether newsletters are enabled.
+  """
+  newsletter_enabled: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - general/country/optional_zip_countries
+  """
+  optional_zip_countries: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/full_summary
+  """
+  shopping_cart_display_full_summary: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/price
+  """
+  shopping_cart_display_price: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/shipping
+  """
+  shopping_cart_display_shipping: Int @deprecated(reason: "Magento >= 2.4.7")
 }

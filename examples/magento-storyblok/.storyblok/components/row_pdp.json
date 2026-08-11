@@ -1,0 +1,82 @@
+{
+  "name": "row_pdp",
+  "display_name": "Row PDP",
+  "description": "PDP-specific rows that use the current product's data (reviews, specs, related, upsells)",
+  "created_at": "2026-04-17T13:49:07.413Z",
+  "updated_at": "2026-04-17T13:54:46.731Z",
+  "id": 166888027812145,
+  "schema": {
+    "variant": {
+      "type": "option",
+      "pos": 0,
+      "display_name": "Variant",
+      "source": "self",
+      "options": [
+        {
+          "name": "Feature",
+          "value": "Feature"
+        },
+        {
+          "name": "Feature Boxed",
+          "value": "FeatureBoxed"
+        },
+        {
+          "name": "Related",
+          "value": "Related"
+        },
+        {
+          "name": "Reviews",
+          "value": "Reviews"
+        },
+        {
+          "name": "Specs",
+          "value": "Specs"
+        },
+        {
+          "name": "Upsells",
+          "value": "Upsells"
+        }
+      ],
+      "id": "1gaZTH2fQqS4qq0h1gsRhg"
+    },
+    "asset": {
+      "type": "asset",
+      "pos": 1,
+      "display_name": "Asset",
+      "filetypes": [
+        "images",
+        "videos"
+      ],
+      "id": "64-2Dg4RQbi8Z6n3USODNA"
+    },
+    "title": {
+      "type": "text",
+      "pos": 2,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "SZZVK6vESaOFh-FOYjqNHQ"
+    },
+    "product_copy": {
+      "type": "richtext",
+      "pos": 3,
+      "translatable": true,
+      "display_name": "Product Copy",
+      "id": "_COBBHJjTx2UlYEqoKbolA"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row PDP",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

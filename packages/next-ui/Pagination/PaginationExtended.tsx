@@ -84,8 +84,7 @@ export function PaginationExtended(props: PaginationExtendedProps) {
           renderItem ??
           ((item) => (
             <PaginationItem
-              component={NextLink}
-              href={paginationHref(item)}
+              {...(!item.disabled && { component: NextLink, href: paginationHref(item) })}
               slots={{ previous: Prev, next: Next }}
               {...item}
             />

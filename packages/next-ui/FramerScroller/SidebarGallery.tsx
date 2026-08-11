@@ -254,13 +254,11 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   <MotionImageAspect
                     // eslint-disable-next-line react/no-array-index-key
                     key={idx}
+                    {...image}
                     layout
                     layoutDependency={zoomed}
-                    src={image.src}
-                    width={image.width}
-                    height={image.height}
                     loading={idx === 0 ? 'eager' : 'lazy'}
-                    sx={{ display: 'block', objectFit: 'contain' }}
+                    sx={sxx({ display: 'block', objectFit: 'contain' }, image.sx)}
                     sizes={{
                       0: '100vw',
                       [theme.breakpoints.values.md]: zoomed ? '100vw' : '60vw',

@@ -1,0 +1,21 @@
+type StoreConfig {
+  """
+  checkout/cart/configurable_product_image: which image to use for configurable products.
+  """
+  configurable_product_image: ProductImageThumbnail @deprecated(reason: "Magento >= 2.4.8")
+  """
+  checkout/cart/grouped_product_image: which image to use for grouped products.
+  """
+  grouped_product_image: ProductImageThumbnail @deprecated(reason: "Magento >= 2.4.8")
+}
+
+enum ProductImageThumbnail {
+  """
+  Use thumbnail of product as image.
+  """
+  ITSELF
+  """
+  Use thumbnail of product's parent as image.
+  """
+  PARENT
+}

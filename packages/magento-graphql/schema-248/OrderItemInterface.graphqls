@@ -1,0 +1,6 @@
+type BundleOrderItem {
+  """
+  The SKU of parent product.
+  """
+  parent_sku: String @deprecated(reason: "Magento >= 2.4.8")
+}

@@ -19,10 +19,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: yarn
-          node-version: 20
+          node-version: 24
           cache-dependency-path: package.json
           registry-url: 'https://registry.npmjs.org'
           scope: '@graphcommerce'
+      - name: verify npm auth (fail fast on expired/invalid NPM_TOKEN)
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if ! WHOAMI=$(npm whoami --registry=https://registry.npmjs.org 2>&1); then
+            echo "::error::NPM_TOKEN is invalid, expired, or has no publish access. npm whoami output: $WHOAMI"
+            echo "::error::Generate a new token at https://www.npmjs.com/settings/<account>/tokens and update the NPM_TOKEN secret."
+            exit 1
+          fi
+          echo "Authenticated to npm as: $WHOAMI"
       - name: yarn install && yarn postinstall
         run: yarn install && yarn postinstall
       - name: set pre canary
@@ -36,8 +46,12 @@ jobs:
           git add .
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
-          git commit -m "chore(release): update prerelease versions"
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(release): update prerelease versions"
+            git push
+          else
+            echo "No version changes to commit; proceeding to publish step."
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: set version variables

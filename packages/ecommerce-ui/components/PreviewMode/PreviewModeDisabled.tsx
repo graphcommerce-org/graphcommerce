@@ -50,7 +50,7 @@ export function PreviewModeDisabled() {
           <TextFieldElement control={form.control} name='secret' label='Secret' />
         </Box>
       </MessageSnackbar>
-      <FormPersist form={form} name='PreviewModePreviewData' />
+      <FormPersist form={form} name='PreviewModePreviewData' exclude={['secret']} />
     </FormProvider>
   )
 }
