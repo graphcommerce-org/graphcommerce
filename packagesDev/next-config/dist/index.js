@@ -433,7 +433,7 @@ function extractValue(node, path, optional = false) {
   }
 }
 function extractExports(module) {
-  const exports$1 = {};
+  const exports = {};
   const errors = [];
   for (const moduleItem of module.body) {
     switch (moduleItem.type) {
@@ -447,19 +447,19 @@ function extractExports(module) {
         switch (moduleItem.declaration.type) {
           case "ClassDeclaration":
           case "FunctionDeclaration":
-            exports$1[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
+            exports[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
             break;
           case "VariableDeclaration":
             moduleItem.declaration.declarations.forEach((decl) => {
               if (isIdentifier(decl.id) && decl.init) {
-                exports$1[decl.id.value] = extractValue(decl.init, void 0, true);
+                exports[decl.id.value] = extractValue(decl.init, void 0, true);
               }
             });
             break;
         }
     }
   }
-  return [exports$1, errors];
+  return [exports, errors];
 }
 
 const pluginConfigParsed = z.object({
@@ -473,7 +473,7 @@ function nonNullable(value) {
 }
 const isObject = (input) => typeof input === "object" && input !== null && !Array.isArray(input);
 function parseStructure(ast, gcConfig, sourceModule) {
-  const [exports$1, errors] = extractExports(ast);
+  const [exports, errors] = extractExports(ast);
   if (errors.length) console.error("Plugin error for", errors.join("\n"));
   const {
     config: moduleConfig,
@@ -484,7 +484,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
     plugin,
     Plugin,
     ...rest
-  } = exports$1;
+  } = exports;
   const exportVals = Object.keys(rest);
   if (component && !moduleConfig) exportVals.push("Plugin");
   if (func && !moduleConfig) exportVals.push("plugin");
@@ -518,7 +518,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
       }
     }
     const val = {
-      targetExport: exports$1.component || exports$1.func || parsed.data.export,
+      targetExport: exports.component || exports.func || parsed.data.export,
       sourceModule,
       sourceExport: parsed.data.export,
       targetModule: parsed.data.module,
@@ -623,17 +623,17 @@ function parseAndFindExport(resolved, findExport, resolve) {
     if (node.type === "ExportNamedDeclaration") {
       for (const specifier of node.specifiers) {
         if (specifier.type === "ExportSpecifier") {
-          if ((specifier.exported?.value ?? specifier.orig?.value) === findExport) return resolved;
+          if ((specifier.exported?.value ?? specifier.orig.value) === findExport) return resolved;
         } else if (specifier.type === "ExportDefaultSpecifier") ; else if (specifier.type === "ExportNamespaceSpecifier") ;
       }
     }
   }
-  const exports$1 = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
+  const exports = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
     const probablyA = a.source.value.includes(findExport);
     const probablyB = b.source.value.includes(findExport);
     return probablyA === probablyB ? 0 : probablyA ? -1 : 1;
   });
-  for (const node of exports$1) {
+  for (const node of exports) {
     const isRelative = node.source.value.startsWith(".");
     if (isRelative) {
       const d = resolved.dependency === resolved.denormalized ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf("/")) : resolved.dependency;
@@ -695,6 +695,22 @@ const stableStringify = (obj) => {
   const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`);
   return `{${pairs.join(",")}}`;
 };
+function hasDefaultExport(source) {
+  try {
+    return parseSync(source).body.some((node) => {
+      if (node.type === "ExportDefaultDeclaration" || node.type === "ExportDefaultExpression")
+        return true;
+      if (node.type === "ExportNamedDeclaration") {
+        return node.specifiers.some(
+          (s) => s.type === "ExportSpecifier" && (s.exported ?? s.orig).value === "default"
+        );
+      }
+      return false;
+    });
+  } catch {
+    return false;
+  }
+}
 async function generateInterceptor(interceptor, config, oldInterceptorSource) {
   const hashInput = {
     dependency: interceptor.dependency,
@@ -828,7 +844,10 @@ export const ${targetExport} = ${carry}`;
 
     // Re-export everything from the original file except the intercepted exports
     export * from './${interceptor.target.split("/").pop()}.original'
-
+    ${hasDefaultExport(interceptor.source) ? `
+    // Forward the original module's default export: \`export *\` does not include it.
+    export { default } from './${interceptor.target.split("/").pop()}.original'
+` : ""}
     ${logOnce}${pluginExports}
   `;
   const formatted = await prettier.format(template, {
@@ -1490,7 +1509,7 @@ async function createConfigSectionFile(sectionName, sectionValue, targetDir, tar
   for (const key of schemaKeys) {
     completeSectionValue[key] = sectionValue[key];
   }
-  const exports$1 = Object.entries(completeSectionValue).map(([key, value]) => {
+  const exports = Object.entries(completeSectionValue).map(([key, value]) => {
     const valueStr = generateValueLiteral(value);
     const propertyPath = `'${sectionName}.${key}'`;
     const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
@@ -1501,7 +1520,7 @@ import type { Get } from 'type-fest'` ;
   const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
 ${imports}
 
-${exports$1}
+${exports}
 `;
   const formattedContent = await prettier.format(content, {
     ...prettierConf,
@@ -1662,18 +1681,6 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     },
     redirects: async () => {
       const redirects = await nextConfig.redirects?.() ?? [];
-      // Magento builds its own frontend URLs from `base_link_url`, which on a
-      // headless setup points at the GraphCommerce storefront. Those URLs end up
-      // in transactional emails ("Sign in to your account" links every stock
-      // email template renders) and in the 302 Location of gated Magento routes,
-      // but GraphCommerce doesn't serve them, so they 404.
-      //
-      // A redirect wins over a filesystem route, so every source below must be
-      // a path GraphCommerce does *not* serve. Two Magento paths are real pages
-      // in the examples — /customer/account/confirm and
-      // /customer/account/createPassword, the ones carrying the confirmation
-      // `key` and the reset `rp_token` — so these stay exact matches. A
-      // `/customer/account/:path*` catch-all would make both unreachable.
       redirects.push(
         { source: "/customer/account", destination: "/account", permanent: true },
         { source: "/customer/account/index", destination: "/account", permanent: true },

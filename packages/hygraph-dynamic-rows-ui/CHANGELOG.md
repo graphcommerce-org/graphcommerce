@@ -1,5 +1,23 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 11.0.0
+
+### Major Changes
+
+- [#2626](https://github.com/graphcommerce-org/graphcommerce/pull/2626) [`e2c9f9b`](https://github.com/graphcommerce-org/graphcommerce/commit/e2c9f9bfc762ed1c4d46f1e24babd6bd658c7343) - **Breaking change — requires Node.js 22 or newer.** This kicks off GraphCommerce 11.
+
+  Node.js 20 hit end-of-life in April 2026, so the framework no longer supports it. `engines.node` is now `>=22.0.0 <27.0.0` across the root and all example storefronts — Node 22 (Maintenance LTS) is the new minimum, Node 24 (Active LTS) is recommended, and Node 26 (current) is also accepted.
+
+  - CI: `release-canary`, `release-main` and `pr-analysis` now run on Node 24. `periodic-build` matrix changed from `[20, 22]` to `[22, 24]`, and `actions/setup-node` bumped from v3 to v4.
+  - `.gitpod.yml` bootstrap moved from `nvm install 18` to `nvm install 24`.
+  - Getting-started docs and the three example READMEs now point at Node 22/24.
+
+  See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md) for the migration steps. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

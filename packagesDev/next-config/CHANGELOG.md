@@ -1,5 +1,31 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2621](https://github.com/graphcommerce-org/graphcommerce/pull/2621) [`4eccccd`](https://github.com/graphcommerce-org/graphcommerce/commit/4eccccdad9418e713cb6959b20e9cde6ab26d9ae) - `graphcommerce cleanup-interceptors` now actually finds and restores `.original.tsx` / `.original.ts` files when run from a consumer project. Previously `findDotOriginalFiles` walked up looking for a `@graphcommerce/*` parent package; from a consumer project (where there is no such parent) `parentPath` ended up `null` and the glob expanded to literally `null/**/*.original.tsx`, so the command silently restored nothing. Now it falls back to `cwd` and `cwd/node_modules/@graphcommerce` where interceptors actually live for consumers.
+
+  Also fixes a display bug — the final `X files restored from .original` line printed an always-`0` counter (`restoredCount` was declared but never incremented; the now-removed `removedCount` was the one being incremented). Counter and message are now consistent. ([@paales](https://github.com/paales))
+
+- [#2632](https://github.com/graphcommerce-org/graphcommerce/pull/2632) [`c25106b`](https://github.com/graphcommerce-org/graphcommerce/commit/c25106bf212974bbfafafabbc650e368576f07d0) - Regenerate the `mergeEnvIntoConfig` snapshot so `yarn test` passes on canary. The test input already feeds `GC_DEMO_MODE` and `GC_STOREFRONT_<i>_HYGRAPH_LOCALES_0` into the env-schema parser, but the snapshot it was compared against still reflected the pre-`demoMode` / pre-flattened-`hygraphLocales` schema, so every CI run since those config fields were added has been failing the `test` job on every PR with a snapshot mismatch unrelated to the PR's own changes. ([@paales](https://github.com/paales))
+
+- [#2647](https://github.com/graphcommerce-org/graphcommerce/pull/2647) [`789e69c`](https://github.com/graphcommerce-org/graphcommerce/commit/789e69c87ed260ee87f62e64c1bc830c0cf7f58d) - Fix plugin interceptor resolution for components exported via a non-aliased re-export.
+
+  The interceptor scanner (`findOriginalSource`) only inspected an export specifier's `exported` field, which SWC leaves `null` for a non-aliased re-export such as `export { Image }` (the name lives in `orig`; `exported` is only populated by an aliased `export { Foo as Image }`). As a result, any component re-exported without an alias — e.g. `Image` from `@graphcommerce/image` — could not be targeted by a plugin and failed with "Plugin target not found". The scanner now falls back to `orig` when `exported` is absent. ([@paales](https://github.com/paales))
+
+- [#2649](https://github.com/graphcommerce-org/graphcommerce/pull/2649) [`d81ac44`](https://github.com/graphcommerce-org/graphcommerce/commit/d81ac44f7749961aa518ee517b7e4699c19bb189) - Interceptors now forward the original module's default export. `export * from './X.original'` does not re-export `default` (ES semantics), so intercepting a module with a default export silently dropped it. This broke `gc-mesh build` when a plugin targeted `@graphcommerce/graphql-mesh/customFetch`: GraphQL Mesh resolves the fetch function via `exported.default || exported` and received the module namespace instead of the function, failing schema introspection with `Cannot read properties of undefined (reading '__schema')`. ([@paales](https://github.com/paales))
+
+- [#2660](https://github.com/graphcommerce-org/graphcommerce/pull/2660) [`84e23e2`](https://github.com/graphcommerce-org/graphcommerce/commit/84e23e2408011fa4a6b0803843f01d96627f148f) - Redirect the Magento frontend account URLs that end up in transactional emails to their GraphCommerce equivalents.
+
+  Magento renders links from `base_link_url`, which on a headless setup points at the GraphCommerce storefront. Every stock email template contains a `customer/account/` link ("Sign in to your account"), and gated Magento routes 302 to `customer/account/login` — none of which GraphCommerce serves, so customers landed on a 404.
+
+  `withGraphCommerce` now adds permanent redirects for `/customer/account`, `/customer/account/index`, `/customer/account/login`, `/customer/account/create` and `/sales/order/history`. They are exact matches on purpose: a redirect wins over a filesystem route, and `/customer/account/confirm` and `/customer/account/createPassword` are real pages in the examples — the two that carry Magento's confirmation `key` and reset `rp_token`. A `/customer/account/:path*` catch-all would make both unreachable.
+
+  This restores the `/customer/account` redirect that was dropped as collateral in "Remove redirects for `/product/$type/[url]` routes". ([@paales](https://github.com/paales))
+
+- [#2636](https://github.com/graphcommerce-org/graphcommerce/pull/2636) [`78f9803`](https://github.com/graphcommerce-org/graphcommerce/commit/78f980311d4f8db0d99fe301c62553b4e0bce098) - Fix Turbopack panic ("Cannot find module …graphcommerce.config.cjs") when loading `graphcommerce.config.ts`. cosmiconfig's sync TypeScript loader transpiles the config to a fixed temp `.cjs` path on disk and deletes it again, which races between Next.js worker processes. The `.ts` loader now transpiles via SWC and writes to a per-process unique filename next to the source so concurrent loads never collide. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

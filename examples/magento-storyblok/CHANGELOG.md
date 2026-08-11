@@ -1,5 +1,80 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- [#2626](https://github.com/graphcommerce-org/graphcommerce/pull/2626) [`e2c9f9b`](https://github.com/graphcommerce-org/graphcommerce/commit/e2c9f9bfc762ed1c4d46f1e24babd6bd658c7343) - **Breaking change — requires Node.js 22 or newer.** This kicks off GraphCommerce 11.
+
+  Node.js 20 hit end-of-life in April 2026, so the framework no longer supports it. `engines.node` is now `>=22.0.0 <27.0.0` across the root and all example storefronts — Node 22 (Maintenance LTS) is the new minimum, Node 24 (Active LTS) is recommended, and Node 26 (current) is also accepted.
+
+  - CI: `release-canary`, `release-main` and `pr-analysis` now run on Node 24. `periodic-build` matrix changed from `[20, 22]` to `[22, 24]`, and `actions/setup-node` bumped from v3 to v4.
+  - `.gitpod.yml` bootstrap moved from `nvm install 18` to `nvm install 24`.
+  - Getting-started docs and the three example READMEs now point at Node 22/24.
+
+  See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md) for the migration steps. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2603](https://github.com/graphcommerce-org/graphcommerce/pull/2603) [`7198061`](https://github.com/graphcommerce-org/graphcommerce/commit/71980613241a240fa29ba9894872b90c3d32c2b6) - ## Storyblok example
+
+  We're shipping `examples/magento-storyblok` — a full Storyblok CMS integration alongside the existing Hygraph example, so teams can pick the headless CMS that fits their workflow.
+
+  **What's in the box**
+
+  - Visual editing: live preview, click-to-edit on every blok, and SSR with client hydration
+  - Row components out of the box: hero banners, special banners, quotes, button link lists, service options, product grids, blog content, and USPs — all editable in the Storyblok Visual Editor
+  - Global config pattern for content shared across pages (footer links, social links, USPs) with live updates in the editor
+  - Type-safe integration: generated TypeScript types for every component schema via the Storyblok CLI
+  - `@graphcommerce/storyblok-ui` helpers: rich text renderer, asset component with video/image support, multilink resolution, product block resolution, and Visual Editor utilities
+
+  **Getting started**
+
+  - `yarn storyblok:bootstrap` seeds a new Storyblok space with all demo content (components, stories, assets) so a fresh install is editable in minutes
+  - `spaceId` lives in `graphcommerce.config.cjs` alongside your other config — no separate env juggling
+  - Components, stories, and assets are committed to the repo as the source of truth
+
+  **Also includes**
+
+  - Storyblok-aware Footer, Navigation, and PDP layouts wired to the global config
+  - Blog support with tag filtering and pagination
+  - Preview URL routing so the Visual Editor opens the right page for each story type ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2606](https://github.com/graphcommerce-org/graphcommerce/pull/2606) [`d30c568`](https://github.com/graphcommerce-org/graphcommerce/commit/d30c5681e018496ce44c349f69b122d143e894d2) - Fix issue where bootstrap from seed project was failing ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2606](https://github.com/graphcommerce-org/graphcommerce/pull/2606) [`d30c568`](https://github.com/graphcommerce-org/graphcommerce/commit/d30c5681e018496ce44c349f69b122d143e894d2) - Performance improvements for Storyblok bridge ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2609](https://github.com/graphcommerce-org/graphcommerce/pull/2609) [`fe29527`](https://github.com/graphcommerce-org/graphcommerce/commit/fe295278cc159cbb375f3460a4edb5b1f902c27a) - Drop `@graphcommerce/magento-cms` from the Storyblok example, ship locale-redirect proxy with `storyblok-ui`
+
+  The Storyblok example had several leftovers from a half-completed migration off Magento CMS, all conceptually out of place in an example whose purpose is "all content lives in Storyblok":
+
+  - `pages/page/[...url].tsx` — a CMS page handler whose `getStaticPaths` called `getCategoryStaticPaths` (returns Magento **category** URLs). Feeding category URLs into the `cmsPage` query caused `getStaticProps` to return a `redirect`, which Next.js rejects during prerender — crashing `next build`.
+  - `Layout.graphql` queried `cmsBlocks(["footer_links_block"])` but the resulting prop was destructured-and-discarded in both layout components — the Footer is fully driven by Storyblok's `globalConfig`. The dead query also produced noisy GraphQL errors at build time on backends without the block.
+  - `pages/404.tsx` rendered a Magento `cms_no_route` CMS page (with a hardcoded fallback if absent).
+  - `proxy.ts` was a hand-written file with hardcoded `LOCALES = ['en', 'nl']` — broken for any other storefront combination, and not using the plugin system.
+
+  This PR:
+
+  - Removes `pages/page/[...url].tsx`, the dead `cmsBlocks` query and unused destructures, the Magento CMS fallback in `pages/404.tsx`, and the `@graphcommerce/magento-cms` dependency
+  - Migrates `proxy.ts` → standard managed re-export
+  - **Adds `@graphcommerce/storyblok-ui/plugins/LocaleRedirectProxy.ts`** with `ifConfig: 'storyblok'` — every project depending on `@graphcommerce/storyblok-ui` now gets locale-redirect (Visual Editor `_storyblok_lang` + Accept-Language root) automatically, with locales read from `storefront` config
+
+  If a project needs Magento CMS pages alongside Storyblok, it can re-add the dependency and a route — but the example should default to pure Storyblok. ([@paales](https://github.com/paales))
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`e1a7e85`](https://github.com/graphcommerce-org/graphcommerce/commit/e1a7e856669b792b5c7464a7585868b4c8107622) - Sync Storyblok content with the Visual Editor's selected language ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2638](https://github.com/graphcommerce-org/graphcommerce/pull/2638) [`bd2ee81`](https://github.com/graphcommerce-org/graphcommerce/commit/bd2ee81ff4c0e7381bb9fb7bf06c3109efa32190) - Fixed empty footer on blog pages ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
+- [#2606](https://github.com/graphcommerce-org/graphcommerce/pull/2606) [`d30c568`](https://github.com/graphcommerce-org/graphcommerce/commit/d30c5681e018496ce44c349f69b122d143e894d2) - Added Storyblok pages to content sitemap ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

@@ -1,5 +1,11 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2583](https://github.com/graphcommerce-org/graphcommerce/pull/2583) [`01bb1df`](https://github.com/graphcommerce-org/graphcommerce/commit/01bb1df9314ac4b848df7dd58f15b7db88bc5a45) - Fixed a bug in MSPPaymentHandler where successful MultiSafepay payments were prevented from redirecting to the success page due to an incorrect condition in the payment handler. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

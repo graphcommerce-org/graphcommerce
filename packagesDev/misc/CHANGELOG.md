@@ -1,5 +1,23 @@
 # @graphcommerce/misc
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2627](https://github.com/graphcommerce-org/graphcommerce/pull/2627) [`95c188f`](https://github.com/graphcommerce-org/graphcommerce/commit/95c188fcd0dc6cb4ca3edc9877d203d45fe18bb0) - Add `YoutubeEmbed` component — a lightweight lazy-loading YouTube player that defers iframe creation until the user clicks the poster. Uses preconnect on hover for fast playback start and is styled with MUI sx, so no external CSS is required. Supports playlists, no-cookie mode, custom aspect ratios and ad-network preconnect hints.
+
+  `ProductVideo` (used by `ProductPageGallery`) now delegates YouTube playback to `YoutubeEmbed`, so any product whose Magento `media_gallery` contains a YouTube video entry gets the new lazy-loading player on its product page. Vimeo and self-hosted video paths are unchanged. The Magento preview image is passed as the YoutubeEmbed `thumbnail` so the visible poster stays consistent with the rest of the gallery.
+
+  Fix `SidebarGallery` so it forwards the `Additional` and `slotProps` from each image to `MotionImageAspect`. Before this fix the gallery silently dropped both props, which meant any `Additional` overlay configured by `ProductPageGallery` (the `<ProductVideo>` overlay with its `PlayCircle` and the new `YoutubeEmbed`) never reached the DOM. That was a latent regression that made all video-gallery entries render as static images, with or without this PR's YouTube changes.
+
+  Fix `playwright.config.ts` so `npx playwright test` actually loads. The config previously imported `examples/magento-graphcms/next.config.ts`, which transitively pulled `@graphcommerce/next-config`'s ESM build into a CJS context and crashed with `ReferenceError: exports is not defined`. Replaced with an opt-in `PLAYWRIGHT_LOCALES` env var for the multi-locale projects that the next.config import was meant to drive. ([@paales](https://github.com/paales))
+
+- [#2629](https://github.com/graphcommerce-org/graphcommerce/pull/2629) [`ab82fcf`](https://github.com/graphcommerce-org/graphcommerce/commit/ab82fcfc39f7c92604dabb7788bb0e4fbc0e2ed9) - Clarify the type-check workflow in CLAUDE.md: type checking is per-example only, and optional/private packages must be activated via `PRIVATE_ADDITIONAL_DEPENDENCIES` and codegen must be re-run before `tsgo` sees their fragments. ([@paales](https://github.com/paales))
+
+- [#2622](https://github.com/graphcommerce-org/graphcommerce/pull/2622) [`f310cfd`](https://github.com/graphcommerce-org/graphcommerce/commit/f310cfd1d344a74bc2213ae9d175e1d7c8fa936e) - Add `yarn packages:build` one-shot script and document the `packagesDev/*` rebuild workflow in `CLAUDE.md`. Also adds guidance on changeset bump-type selection (avoid `major`) and the `@graphcommerce/misc` fallback for docs-only / placeless changes. ([@paales](https://github.com/paales))
+
+- [#2630](https://github.com/graphcommerce-org/graphcommerce/pull/2630) [`21df051`](https://github.com/graphcommerce-org/graphcommerce/commit/21df05152e0274bff891e177c0aa6e8005e39923) - Document the Playwright e2e workflow in CLAUDE.md: where tests live (`<pkg>/test/*.playwright.ts`), how to install the browser binaries, the `URL` / `PLAYWRIGHT_LOCALES` env vars exposed by `playwright.config.ts`, and the backend assumptions tests make (GraphCommerce demo backend). Picks up the loose ends from graphcommerce-org/graphcommerce#2627 which fixed the config so `npx playwright test` actually loads. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

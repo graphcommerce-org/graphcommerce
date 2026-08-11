@@ -1,5 +1,19 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2646](https://github.com/graphcommerce-org/graphcommerce/pull/2646) [`35707a1`](https://github.com/graphcommerce-org/graphcommerce/commit/35707a1f68a6b8c97de5d22221a7c9229961cd7a) - Add a `terminatingLink` prop to `GraphQLProvider` to override the terminating link at the tail of the Apollo link chain (by default the `HttpLink` to the Mesh backend).
+
+  Because the terminating link runs after every context-setting link (customer auth token, store, cache-id, header links), this lets you route specific operations to a different transport while still inheriting all request headers. The motivating case is file uploads: `File`/`Blob` variables must be sent as a `multipart/form-data` request (e.g. via `apollo-upload-client`'s `UploadHttpLink`), which the default `HttpLink` cannot serialize. Previously such an upload link had to be prepended via `links`, where it terminated _before_ the auth/header links could run — dropping the customer token from multipart requests, so a logged-in customer's cart mutations were rejected. Supplying the upload-aware split as `terminatingLink` keeps it at the tail, so uploads inherit the token like any other operation. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2662](https://github.com/graphcommerce-org/graphcommerce/pull/2662) [`54e167f`](https://github.com/graphcommerce-org/graphcommerce/commit/54e167f13b883fbe24e954c6c093097c0815263f) - Publishing content now pushes a renew signal through the Next.js incremental cache, so every server invalidates at once instead of each polling `cdn/spaces/me` on a 60 second interval — `storyblok.cacheVersionTtl` therefore defaults to `3600` as a failsafe. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46
