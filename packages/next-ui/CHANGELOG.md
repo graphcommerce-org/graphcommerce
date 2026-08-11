@@ -1,5 +1,14 @@
 # Change Log
 
+## 11.0.0-canary.46
+
+### Patch Changes
+
+- [#2668](https://github.com/graphcommerce-org/graphcommerce/pull/2668) [`b822462`](https://github.com/graphcommerce-org/graphcommerce/commit/b82246240a932751bcf8fd7063f67fb8927a5cd4) - Fix two bugs in `toDate`:
+
+  - ISO datetime strings with a timezone offset (e.g. `2024-01-15T10:30:00-05:00`) were being corrupted into `Invalid Date`, because `replace(/-/g, '/')` was applied to every string instead of only to plain `YYYY-MM-DD` dates
+  - Strings in Magento's `DATETIME_SLASH_PHP_FORMAT` (`d/m/Y H:i:s`) were misparsed as `MM/DD/YYYY` by the native `Date` constructor, silently producing the wrong date or `undefined` ([@hsngdz](https://github.com/hsngdz))
+
 ## 11.0.0-canary.45
 
 ## 10.1.0-canary.44

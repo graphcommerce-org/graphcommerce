@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-dynamic-rows-ui
 
+## 11.0.0-canary.46
+
 ## 11.0.0-canary.45
 
 ### Major Changes
