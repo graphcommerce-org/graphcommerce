@@ -2,7 +2,8 @@ import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
 import { EditBillingAddressForm, getCheckoutIsDisabled } from '@graphcommerce/magento-cart'
 import { getBillingAddressPermission } from '@graphcommerce/magento-customer'
-import { StoreConfigDocument } from '@graphcommerce/magento-store'
+import { preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import { LayoutOverlayHeader, LayoutTitle, PageMeta } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
@@ -62,6 +63,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     query: LayoutDocument,
     fetchPolicy: cacheFirst(staticClient),
   })
+
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_address_edit')
 
   return {
     props: {
