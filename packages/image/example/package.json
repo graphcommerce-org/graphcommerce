@@ -29,7 +29,7 @@
     "next-sitemap": "4.2.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sharp": "0.34.5"
+    "sharp": "0.35.0"
   },
   "devDependencies": {
     "@graphcommerce/eslint-config-pwa": "11.0.0-canary.47",
