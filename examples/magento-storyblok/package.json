@@ -119,7 +119,7 @@
     "@next/env": "16.2.6",
     "@parcel/watcher": "^2.5.1",
     "@serwist/next": "10.0.0-preview.14",
-    "@storyblok/react": "^6.1.1",
+    "@storyblok/react": "^7.3.1",
     "@unts/patch-package": "^8.1.1",
     "concurrently": "8.2.2",
     "cross-env": "^7.0.3",
