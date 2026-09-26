@@ -82,6 +82,11 @@ it('keeps an empty server customer query eligible for fetching', () => {
   expect(cache.readQuery({ query: local })).toEqual({
     customer: { email: 'customer@example.test' },
   })
+  cache.writeQuery({ query: remote, data: { customer: null } })
+  expect(cache.diff({ query: remote })).toMatchObject({
+    complete: true,
+    result: { customer: null },
+  })
 })
 
 it('preserves the destination session when the source cache is empty', () => {

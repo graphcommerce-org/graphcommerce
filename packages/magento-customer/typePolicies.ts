@@ -33,8 +33,9 @@ export const customerTypePolicies: StrictTypedTypePolicies = {
       customerToken: { read: (existing) => existing ?? null },
       customer: {
         read: (existing, { field }) =>
-          existing ??
-          (field?.directives?.some((d) => d.name.value === 'client') ? null : undefined),
+          existing === undefined && field?.directives?.some((d) => d.name.value === 'client')
+            ? null
+            : existing,
       },
     },
   },
