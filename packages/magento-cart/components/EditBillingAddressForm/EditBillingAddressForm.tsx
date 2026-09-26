@@ -8,10 +8,12 @@ import {
 import {
   AddressFields,
   ApolloCustomerErrorAlert,
+  applyLegacyPlaceholderTelephone,
   CompanyFields,
   NameFields,
+  stripLegacyPlaceholderTelephone,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, useAttributesForm } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormDivider, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
@@ -28,6 +30,11 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
   const goToCheckout = useHistoryGo({ href: '/checkout/payment' })
 
+  // Magento's address attribute metadata tells us whether a telephone is required, as configured by
+  // `customer/address/telephone_show`.
+  const addressAttributes = useAttributesForm({ formCode: 'customer_address_edit' })
+  const telephoneRequired = addressAttributes.find((a) => a.code === 'telephone')?.is_required
+
   const form = useFormGqlMutationCart(SetBillingAddressDocument, {
     defaultValues: {
       firstname: address?.firstname,
@@ -36,7 +43,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
       city: address?.city,
       countryCode: address?.country.code,
       street: address?.street?.[0] ?? '',
-      telephone: address?.telephone,
+      telephone: stripLegacyPlaceholderTelephone(address?.telephone),
       houseNumber: address?.street?.[1] ?? '',
       addition: address?.street?.[2] ?? '',
       company: address?.company ?? '',
@@ -56,7 +63,9 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
 
       return {
         ...variables,
-        telephone: variables.telephone || '000 - 000 0000',
+        // See ShippingAddressForm: `CartAddressInput.telephone` is non-nullable, so send an empty
+        // string rather than a fake number and let Magento validate it.
+        telephone: applyLegacyPlaceholderTelephone(variables.telephone),
         regionId,
       }
     },
@@ -77,7 +86,7 @@ export function EditBillingAddressForm(props: EditBillingAddressFormProps) {
         <FormRow>
           <TelephoneElement
             variant='outlined'
-            required={required.telephone}
+            required={required.telephone || telephoneRequired === true}
             control={control}
             name='telephone'
             disabled={formState.isSubmitting}
