@@ -20,7 +20,7 @@ export async function getAllHygraphDynamicRows(
   const pages: Promise<ApolloClient.QueryResult<AllDynamicRowsQuery>>[] = [query]
 
   const { data } = await query
-  const totalPages = Math.ceil((data?.pagesConnection.aggregate.count ?? 0) / pageSize) ?? 1
+  const totalPages = Math.ceil((data?.dynamicRowsConnection.aggregate.count ?? 0) / pageSize) ?? 1
   if (totalPages > 1) {
     for (let i = 2; i <= totalPages; i++) {
       pages.push(
