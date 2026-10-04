@@ -2,6 +2,7 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { SerializeOptions } from 'cookie'
 import { parse, serialize } from 'cookie'
 import { motionValue } from 'framer-motion'
+import { useSyncExternalStore } from 'react'
 import { useIsSSR } from '../hooks'
 
 // We need this motionValue to be synced with the actual cookie store.
@@ -67,7 +68,13 @@ export function useCookie<T extends string>(
     else cookie(name, null)
   }
 
-  const cookies = useCookies()
-  const value = (cookies[name] as T | undefined | null) ?? defaultValue
+  // Subscribe to this single cookie; the server snapshot is `null`, so hydration only causes a re-render
+  // when this specific cookie is actually set.
+  const raw = useSyncExternalStore(
+    (onChange) => cookieNotify.on('change', onChange),
+    () => (cookie(name) as T | undefined) ?? null,
+    () => null,
+  )
+  const value = raw ?? defaultValue
   return [value, update] as const
 }

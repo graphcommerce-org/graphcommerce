@@ -24,7 +24,7 @@ export default function ThemedApp(props: AppProps) {
     <CssAndFramerMotionProvider {...props}>
       <I18nProvider key={locale} locale={locale}>
         <GraphQLProvider {...props}>
-          <ThemeProvider theme={theme}>
+          <ThemeProvider theme={theme} noSsr>
             <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />

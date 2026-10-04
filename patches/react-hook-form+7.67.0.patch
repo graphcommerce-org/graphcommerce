@@ -1,0 +1,23 @@
+diff --git a/node_modules/react-hook-form/dist/index.esm.mjs b/node_modules/react-hook-form/dist/index.esm.mjs
+index 5a6118a..e2c3596 100644
+--- a/node_modules/react-hook-form/dist/index.esm.mjs
++++ b/node_modules/react-hook-form/dist/index.esm.mjs
+@@ -2771,10 +2771,14 @@ function useForm(props = {}) {
+             callback: () => updateFormState({ ...control._formState }),
+             reRenderRoot: true,
+         });
+-        updateFormState((data) => ({
+-            ...data,
+-            isReady: true,
+-        }));
++        // GraphCommerce: only re-render when a consumer subscribed to formState.isReady. An unconditional
++        // setState in this layout effect forces a synchronous re-render of every form right after mount.
++        if (control._proxyFormState.isReady) {
++            updateFormState((data) => ({
++                ...data,
++                isReady: true,
++            }));
++        }
+         control._formState.isReady = true;
+         return sub;
+     }, [control]);
