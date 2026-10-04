@@ -1,6 +1,5 @@
 import type { MotionValue } from 'framer-motion'
-import { useMotionValue, useTransform } from 'framer-motion'
-import sync from 'framesync'
+import { frame, useMotionValue, useTransform } from 'framer-motion'
 import type { RefObject } from 'react'
 import { useConstant } from './useConstant'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
@@ -45,9 +44,11 @@ export function useElementScroll(ref?: RefObject<HTMLElement | null>): ScrollMot
       if (!animating.get()) y.set(element.scrollTop)
       if (!animating.get()) x.set(element.scrollLeft)
     }
-    updater()
-
-    const updaterTimed = () => sync.read(updater)
+    // Measure in framer-motion's read step instead of synchronously in this layout effect: reading
+    // scrollWidth here forces a style recalc and layout of the whole page during the (hydration)
+    // commit. The ResizeObserver below also delivers an initial observation.
+    const updaterTimed = () => frame.read(updater)
+    updaterTimed()
     element.addEventListener('scroll', updaterTimed, { passive: true })
     const ro = new ResizeObserver(updaterTimed)
     ro.observe(element)

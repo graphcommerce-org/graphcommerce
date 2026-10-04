@@ -2,6 +2,8 @@
 '@graphcommerce/next-ui': patch
 '@graphcommerce/graphql': patch
 '@graphcommerce/magento-customer': patch
+'@graphcommerce/framer-utils': patch
+'@graphcommerce/framer-scroller': patch
 ---
 
 Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
@@ -12,3 +14,6 @@ Reduce Total Blocking Time by removing synchronous re-renders right after hydrat
 - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
 - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
 - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+- `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+- `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+- `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle.

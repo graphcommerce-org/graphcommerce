@@ -1,6 +1,5 @@
 import type { Point, Tween } from 'framer-motion'
 import { MotionConfigContext } from 'framer-motion'
-import { animate } from 'popmotion'
 import { useCallback, useContext } from 'react'
 import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'
@@ -24,6 +23,10 @@ export function useScrollTo() {
       const ref = scrollerRef.current
       const { stopAnimationOnScroll } = options
       if (!ref) return
+
+      // Loaded on demand: scrolling programmatically only happens after user interaction, so popmotion
+      // doesn't need to be part of the startup bundle.
+      const { animate } = await import('popmotion')
 
       let to: Point
       if (Array.isArray(incoming)) {
