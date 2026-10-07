@@ -126,7 +126,7 @@
     "react-hook-form": "7.67.0",
     "rxjs": "^7.8.2",
     "serwist": "10.0.0-preview.14",
-    "sharp": "0.34.5",
+    "sharp": "0.35.4",
     "ts-node": "^10.9.2",
     "webpack": "^5.103.0"
   },
