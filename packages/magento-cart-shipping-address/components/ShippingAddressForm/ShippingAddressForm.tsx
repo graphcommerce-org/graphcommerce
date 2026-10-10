@@ -16,13 +16,19 @@ import {
 import type { CartAddressFragment } from '@graphcommerce/magento-cart'
 import {
   AddressFields,
+  applyLegacyPlaceholderTelephone,
   CompanyFields,
   CustomerDocument,
   NameFields,
+  stripLegacyPlaceholderTelephone,
   useBillingAddressPermission,
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
-import { CountryRegionsDocument, StoreConfigDocument } from '@graphcommerce/magento-store'
+import {
+  CountryRegionsDocument,
+  StoreConfigDocument,
+  useAttributesForm,
+} from '@graphcommerce/magento-store'
 import { customerAddressNoteEnable } from '@graphcommerce/next-config/config'
 import { Form, FormRow } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
@@ -56,6 +62,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
   const { data: customerQuery } = useCustomerQuery(CustomerDocument)
 
   const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
+
+  // Magento's address attribute metadata tells us whether a telephone is required, as configured by
+  // `customer/address/telephone_show`.
+  const addressAttributes = useAttributesForm({ formCode: 'customer_address_edit' })
+  const telephoneRequired = addressAttributes.find((a) => a.code === 'telephone')?.is_required
 
   const shopCountry = config?.storeConfig?.locale?.split('_')?.[1].toUpperCase()
 
@@ -102,8 +113,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           // todo(paales): change to something more sustainable
           firstname: currentAddress?.firstname ?? customerQuery?.customer?.firstname ?? '',
           lastname: currentAddress?.lastname ?? customerQuery?.customer?.lastname ?? '',
-          telephone:
-            currentAddress?.telephone !== '000 - 000 0000' ? currentAddress?.telephone : '',
+          telephone: stripLegacyPlaceholderTelephone(currentAddress?.telephone),
           city: currentAddress?.city ?? '',
           company: currentAddress?.company ?? '',
           vatId: currentAddress?.vat_id ?? '',
@@ -130,7 +140,11 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
 
       return {
         ...variables,
-        telephone: variables.telephone || '000 - 000 0000',
+        // `CartAddressInput.telephone` is non-nullable, so an empty string is sent rather than
+        // nothing. Magento validates it against the same `is_required` we render the field with, so
+        // a shop that requires a telephone returns a proper validation error instead of silently
+        // accepting a fake number.
+        telephone: applyLegacyPlaceholderTelephone(variables.telephone),
         region: regionId ? variables.region : '',
         regionId,
         addition: variables.addition ?? '',
@@ -159,7 +173,7 @@ export const ShippingAddressForm = React.memo<ShippingAddressFormProps>((props) 
           control={form.control}
           name='telephone'
           variant='outlined'
-          required={required.telephone}
+          required={required.telephone || telephoneRequired === true}
           showValid
         />
       </FormRow>
