@@ -1,12 +1,32 @@
 import {
+  useApolloClient,
   type getPrivateQueryContextMesh as getPrivateQueryContextMeshType,
   type getPrivateQueryContext as getPrivateQueryContextType,
   type usePrivateQueryContext as usePrivateQueryContextType,
 } from '@graphcommerce/graphql'
 import type { PrivateContext } from '@graphcommerce/graphql-mesh'
 import type { FunctionPlugin, PluginConfig } from '@graphcommerce/next-config'
+import { useCallback, useSyncExternalStore } from 'react'
 import { CustomerTokenDocument } from '../hooks/CustomerToken.gql'
-import { useCustomerSession } from '../hooks/useCustomerSession'
+
+/**
+ * Subscribe to the derived `loggedIn` boolean only. Reading the full CustomerToken query result
+ * would re-render the calling page whenever the query object changes (e.g. loading → cached result
+ * right after hydration), even when `loggedIn` itself doesn't change.
+ */
+function useIsLoggedIn() {
+  const { cache } = useApolloClient()
+  const subscribe = useCallback(
+    (onChange: () => void) =>
+      cache.watch({ query: CustomerTokenDocument, optimistic: true, callback: () => onChange() }),
+    [cache],
+  )
+  return useSyncExternalStore(
+    subscribe,
+    () => !!cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token,
+    () => false,
+  )
+}
 
 export const config: PluginConfig = {
   type: 'function',
@@ -38,7 +58,7 @@ export const usePrivateQueryContext: FunctionPlugin<typeof usePrivateQueryContex
   prev,
   ...args
 ) => {
-  const { loggedIn } = useCustomerSession()
+  const loggedIn = useIsLoggedIn()
   const res = prev(...args)
   if (!loggedIn) return res
   return { ...res, loggedIn: true }
