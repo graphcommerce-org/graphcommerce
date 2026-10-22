@@ -24,6 +24,7 @@ it('notifies the watching queries of the revived state', async () => {
     cache: createCache(),
     link: ApolloLink.empty(),
     localState: new LocalState(),
+    defaultOptions: { preview: {} },
   })
   const config = { policies: [cartTypePolicies], migrations: [] } as Partial<ApolloClientConfig>
 
