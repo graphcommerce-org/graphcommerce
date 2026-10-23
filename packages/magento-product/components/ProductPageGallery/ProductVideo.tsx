@@ -1,5 +1,5 @@
 import type { MotionImageAspectPropsAdditional } from '@graphcommerce/framer-scroller'
-import { Fab, iconPlay, IconSvg, sxx, type FabProps } from '@graphcommerce/next-ui'
+import { Fab, iconPlay, IconSvg, sxx, YoutubeEmbed, type FabProps } from '@graphcommerce/next-ui'
 import { Avatar, Box, IconButton, styled, type SxProps, type Theme } from '@mui/material'
 import { m, type MotionProps, type MotionStyle } from 'framer-motion'
 import React, { useState } from 'react'
@@ -90,6 +90,11 @@ function getEmbedUrl(regularUrl: string, noCookie: boolean = true, muted: boolea
   return null
 }
 
+function extractYoutubeId(src: string): string | null {
+  const match = src.match(youtubeRegExp)
+  return match?.[1] ?? null
+}
+
 export function ProductVideo(props: ProductVideoProps) {
   const { video, autoplay, iframeProps, videoProps, sx, style, layout, width, height } = props
 
@@ -101,6 +106,33 @@ export function ProductVideo(props: ProductVideoProps) {
 
   const src = videoContent.video_url
   const title = videoContent.video_title || undefined
+
+  const youtubeId = extractYoutubeId(src)
+  if (youtubeId) {
+    return (
+      <YoutubeEmbed
+        id={youtubeId}
+        title={title ?? ''}
+        thumbnail={video?.url ?? undefined}
+        aspectWidth={width ?? 16}
+        aspectHeight={height ?? 9}
+        sx={sxx(
+          {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '100%',
+            height: 'auto',
+            maxWidth: '99.6%',
+            maxHeight: '100%',
+            aspectRatio: width && height ? `${width} / ${height}` : '16 / 9',
+          },
+          sx,
+        )}
+      />
+    )
+  }
 
   const baseSx: SxProps<Theme> = (theme) => ({
     display: 'block',

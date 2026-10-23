@@ -1,6 +1,10 @@
+import '@swc/core';
 import 'cosmiconfig';
+import 'node:fs';
+import 'node:module';
+import 'node:path';
 import '../generated/config.js';
-export { l as loadConfig, r as replaceConfigInString } from '../loadConfig-DFvwanrZ.js';
+export { l as loadConfig, r as replaceConfigInString } from '../loadConfig-B6AF2Z1i.js';
 import 'zod';
 import '@apollo/client/utilities/internal';
 import 'chalk';

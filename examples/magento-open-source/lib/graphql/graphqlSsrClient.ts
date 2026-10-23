@@ -36,7 +36,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },
-    } as ApolloClient.DefaultOptions,
+    },
   })
 }
 

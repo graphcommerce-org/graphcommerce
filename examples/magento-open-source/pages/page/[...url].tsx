@@ -1,6 +1,5 @@
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import { cacheFirst } from '@graphcommerce/graphql'
-import { getCategoryStaticPaths } from '@graphcommerce/magento-category'
 import type { CmsPageFragment } from '@graphcommerce/magento-cms'
 import { CmsPageContent, CmsPageDocument } from '@graphcommerce/magento-cms'
 import { PageMeta, redirectOrNotFound, StoreConfigDocument } from '@graphcommerce/magento-store'
@@ -59,13 +58,14 @@ CmsPage.pageOptions = pageOptions
 
 export default CmsPage
 
-export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
-  // Disable getStaticPaths while in development mode
-  if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
-
-  const path = (locale: string) => getCategoryStaticPaths(graphqlSsrClient({ locale }), locale)
-  const paths = (await Promise.all(locales.map(path))).flat(1)
-  return { paths, fallback: 'blocking' }
+export const getStaticPaths: GetPageStaticPaths = async () => {
+  // CMS pages don't currently expose a query that enumerates them, so
+  // prerender on first request via fallback: 'blocking' and let ISR cache
+  // the result. (Previously this used getCategoryStaticPaths, which fed
+  // category URLs into the cmsPage query — for any URL that didn't match a
+  // CMS page identifier, getStaticProps returned a redirect, which Next.js
+  // rejects during prerender and crashes the build.)
+  return { paths: [], fallback: 'blocking' }
 }
 
 export const getStaticProps: GetPageStaticProps = async (context) => {

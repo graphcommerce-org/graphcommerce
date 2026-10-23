@@ -7,7 +7,6 @@ export async function cleanupInterceptors(cwd: string = process.cwd()) {
   console.info('🧹 Starting interceptor cleanup...')
 
   let restoredCount = 0
-  let removedCount = 0
 
   const originalFiles = await findDotOriginalFiles(cwd)
   console.info(`📂 Found ${originalFiles.length} .original files to restore`)
@@ -15,7 +14,7 @@ export async function cleanupInterceptors(cwd: string = process.cwd()) {
   for (const originalFile of originalFiles) {
     try {
       await restoreOriginalFile(originalFile)
-      removedCount++
+      restoredCount++
     } catch (error) {
       console.error(`❌ Failed to restore ${originalFile}:`, error)
     }

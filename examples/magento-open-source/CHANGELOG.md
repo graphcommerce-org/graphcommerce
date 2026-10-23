@@ -1,5 +1,109 @@
 # Change Log
 
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+### Minor Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.24
+
+### Patch Changes
+
+- [#2636](https://github.com/graphcommerce-org/graphcommerce/pull/2636) [`0af6794`](https://github.com/graphcommerce-org/graphcommerce/commit/0af679485950c934cdadc56b8b3ea8ace9de8ab9) - Fix for codegen issue where codegen would stop (without error) halfway through ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.23
+
+### Patch Changes
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+### Patch Changes
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+### Patch Changes
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+### Patch Changes
+
+- [#2608](https://github.com/graphcommerce-org/graphcommerce/pull/2608) [`5986400`](https://github.com/graphcommerce-org/graphcommerce/commit/59864002d744da106f16f99636e163209d4165be) - Fix CMS page prerender crash caused by incorrect static-paths source
+
+  `pages/page/[...url].tsx` used `getCategoryStaticPaths`, which feeds Magento **category** URLs into the `cmsPage` query. Any category URL without a matching CMS page identifier caused `getStaticProps` to return a `redirect`, which Next.js rejects during prerender — crashing `next build`.
+
+  The handler now returns `{ paths: [], fallback: 'blocking' }`. CMS pages render on first request and are ISR-cached afterwards. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

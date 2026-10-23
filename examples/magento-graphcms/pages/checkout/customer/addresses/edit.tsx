@@ -95,13 +95,14 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCartDisabled(context.locale) || getCustomerAccountIsDisabled(context.locale))
     return { notFound: true }
   const client = graphqlSharedClient(context)
+  const up = { href: '/checkout', title: t`Shipping` }
   const conf = client.query({ query: StoreConfigDocument })
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/checkout', title: t`Shipping` },
+      up,
     },
   }
 }

@@ -1,12 +1,15 @@
 /* eslint-disable import/no-extraneous-dependencies */
-
-/* eslint-disable import/no-relative-packages */
 import type { PlaywrightTestConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
-import nextConfig from './examples/magento-graphcms/next.config'
 
-// nextConfig.i18n
-
+/**
+ * Per-locale projects are opt-in. Set `PLAYWRIGHT_LOCALES` to a comma-separated
+ * list (e.g. `nl,de`) to generate `<project>-<locale>` variants. Importing
+ * `next.config.ts` directly is intentionally avoided here: `next.config.ts`
+ * pulls in `@graphcommerce/next-config` (ESM) and serwist, which the
+ * Playwright Node loader compiles as CJS and crashes on with
+ * `ReferenceError: exports is not defined in ES module scope`.
+ */
 const baseProjects: PlaywrightTestConfig['projects'] = [
   {
     name: 'android',
@@ -22,36 +25,26 @@ const baseProjects: PlaywrightTestConfig['projects'] = [
   },
 ]
 
-const locales = nextConfig.i18n?.locales ?? []
-const defaultLocale = nextConfig.i18n?.defaultLocale
+const localesEnv = process.env.PLAYWRIGHT_LOCALES?.trim()
+const locales = localesEnv
+  ? localesEnv.split(',').map((l) => l.trim()).filter(Boolean)
+  : []
 
+const baseURL = process.env.URL || 'http://localhost:3000'
 const projects = [...baseProjects]
-
-if (locales.length > 0) {
-  locales.forEach((locale) => {
-    if (defaultLocale === locale) return
-
-    baseProjects.forEach((proj) => {
-      const name = `${proj.name}-${locale}`
-      projects.push({
-        name,
-        use: {
-          ...proj.use,
-          locale,
-          baseURL: `http://localhost:3000/${locale}`,
-        },
-      })
+for (const locale of locales) {
+  for (const proj of baseProjects) {
+    projects.push({
+      name: `${proj.name}-${locale}`,
+      use: { ...proj.use, locale, baseURL: `${baseURL}/${locale}` },
     })
-  })
+  }
 }
 
 const config: PlaywrightTestConfig = {
   testMatch: ['**/*.playwright.ts'],
   projects,
-  use: {
-    baseURL: process.env.URL || 'http://localhost:3000',
-  },
-
+  use: { baseURL },
   timeout: 2 * 60 * 1000,
 }
 

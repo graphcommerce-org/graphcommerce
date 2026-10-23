@@ -1,0 +1,146 @@
+{
+  "name": "Index",
+  "parent_id": 167929327942297,
+  "group_id": "d3ffe556-07a5-420c-ad97-534a863d9e9e",
+  "alternates": [],
+  "created_at": "2026-04-20T12:35:01.987Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-24T12:35:14.944Z",
+  "published_at": "2026-04-24T12:35:14.928Z",
+  "id": 167931502567675,
+  "uuid": "5e586825-bf76-4690-8434-6345d1a8bf41",
+  "is_folder": false,
+  "content": {
+    "_uid": "016b9bb3-d246-40db-940b-960e22292949",
+    "body": [
+      {
+        "_uid": "e2b97fca-5f1c-45a5-b31d-1bdea5fb6332",
+        "col_one": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "heading",
+              "attrs": {
+                "level": 1,
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Blog",
+                  "type": "text"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              }
+            },
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Features and perspectives",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        },
+        "variant": "Default",
+        "component": "row_column_one"
+      }
+    ],
+    "date": "",
+    "asset": {
+      "id": null,
+      "alt": null,
+      "name": "",
+      "focus": null,
+      "title": null,
+      "filename": null,
+      "copyright": null,
+      "fieldtype": "asset",
+      "meta_data": {},
+      "is_external_url": false
+    },
+    "author": "",
+    "component": "page",
+    "meta_title": "Blog",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ""
+  },
+  "published": true,
+  "slug": "blog",
+  "path": "",
+  "full_slug": "blog/",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 167929327942297,
+    "uuid": "eca8a55a-5970-43c1-992a-b89d58753a92",
+    "name": "Blog",
+    "slug": "blog",
+    "disble_fe_editor": false
+  },
+  "is_startpage": true,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "219504c5b73393ee0437847367b962c7041df720",
+    "timestamp": "1777036864"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 167929327942297,
+      "name": "Blog",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "blog",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-20T12:42:44.212Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "blog/",
+      "name": null,
+      "lang": "nl",
+      "published": true
+    }
+  ],
+  "position": -50,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 169347132981804,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

@@ -1,5 +1,91 @@
 # Change Log
 
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+### Minor Changes
+
+- [#2646](https://github.com/graphcommerce-org/graphcommerce/pull/2646) [`35707a1`](https://github.com/graphcommerce-org/graphcommerce/commit/35707a1f68a6b8c97de5d22221a7c9229961cd7a) - Add a `terminatingLink` prop to `GraphQLProvider` to override the terminating link at the tail of the Apollo link chain (by default the `HttpLink` to the Mesh backend).
+
+  Because the terminating link runs after every context-setting link (customer auth token, store, cache-id, header links), this lets you route specific operations to a different transport while still inheriting all request headers. The motivating case is file uploads: `File`/`Blob` variables must be sent as a `multipart/form-data` request (e.g. via `apollo-upload-client`'s `UploadHttpLink`), which the default `HttpLink` cannot serialize. Previously such an upload link had to be prepended via `links`, where it terminated _before_ the auth/header links could run — dropping the customer token from multipart requests, so a logged-in customer's cart mutations were rejected. Supplying the upload-aware split as `terminatingLink` keeps it at the tail, so uploads inherit the token like any other operation. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+### Patch Changes
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

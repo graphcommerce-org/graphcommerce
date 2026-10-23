@@ -10,6 +10,7 @@ export function SkipLink() {
 
   return (
     <Link
+      component='a'
       href='#skip-nav'
       tabIndex={0}
       onClick={setFocus}

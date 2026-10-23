@@ -4,8 +4,8 @@ import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-DFvwanrZ.js';
-export { r as replaceConfigInString } from './loadConfig-DFvwanrZ.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-B6AF2Z1i.js';
+export { r as replaceConfigInString } from './loadConfig-B6AF2Z1i.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
 import fs$1, { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
 import { resolve as resolve$2 } from 'import-meta-resolve';
@@ -20,6 +20,9 @@ import { generate } from '@graphql-codegen/cli';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
 import 'cosmiconfig';
+import 'node:fs';
+import 'node:module';
+import 'node:path';
 import '@apollo/client/utilities/internal';
 import 'chalk';
 
@@ -52,9 +55,12 @@ async function findDotOriginalFiles(cwd) {
     if (p) parentPath = p;
     else break;
   }
-  return Promise.all(
-    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs.realpath(file))
-  );
+  const roots = parentPath ? [parentPath] : [cwd, `${cwd}/node_modules/@graphcommerce`];
+  const patterns = roots.flatMap((root) => [
+    `${root}/**/*.original.tsx`,
+    `${root}/**/*.original.ts`
+  ]);
+  return Promise.all((await glob(patterns, { cwd })).map((file) => fs.realpath(file)));
 }
 async function writeInterceptors(interceptors, cwd = process.cwd()) {
   const processedFiles = [];
@@ -105,13 +111,12 @@ dotenv.config({ quiet: true });
 async function cleanupInterceptors(cwd = process.cwd()) {
   console.info("\u{1F9F9} Starting interceptor cleanup...");
   let restoredCount = 0;
-  let removedCount = 0;
   const originalFiles = await findDotOriginalFiles(cwd);
   console.info(`\u{1F4C2} Found ${originalFiles.length} .original files to restore`);
   for (const originalFile of originalFiles) {
     try {
       await restoreOriginalFile(originalFile);
-      removedCount++;
+      restoredCount++;
     } catch (error) {
       console.error(`\u274C Failed to restore ${originalFile}:`, error);
     }
@@ -618,7 +623,7 @@ function parseAndFindExport(resolved, findExport, resolve) {
     if (node.type === "ExportNamedDeclaration") {
       for (const specifier of node.specifiers) {
         if (specifier.type === "ExportSpecifier") {
-          if (specifier.exported?.value === findExport) return resolved;
+          if ((specifier.exported?.value ?? specifier.orig?.value) === findExport) return resolved;
         } else if (specifier.type === "ExportDefaultSpecifier") ; else if (specifier.type === "ExportNamespaceSpecifier") ;
       }
     }

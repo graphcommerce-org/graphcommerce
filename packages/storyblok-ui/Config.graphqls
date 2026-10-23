@@ -1,0 +1,57 @@
+"""
+Settings for the Storyblok integration.
+"""
+input StoryblokConfig {
+  """
+  Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap`
+  (seeding a new space with the example content) and as the default space for pull/push commands.
+  """
+  spaceId: String!
+
+  """
+  Public preview access token for the Storyblok Content Delivery API. Found under
+  Settings → Access Tokens in the Storyblok space. Inlined into the client bundle —
+  do not use a private/management token here. Override per-environment with
+  `GC_STORYBLOK_ACCESS_TOKEN`.
+  """
+  accessToken: String!
+
+  """
+  Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
+  example space (291439709879423) which contains demo content for this template.
+  Override only if you maintain your own example/template space.
+  """
+  sourceSpaceId: String
+
+  """
+  How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`).
+
+  `storyblok-js-client` pins the `cv` per process on the first published request and never
+  refreshes it, which freezes published content until the process restarts (a real problem on
+  long-lived, multi-pod deployments). GraphCommerce re-fetches the current `cv` at most once per
+  this interval before published reads, so edits become visible again. Defaults to `60`. Set to
+  `0` to refresh on every read (always fresh, more requests); raise it to reduce requests at the
+  cost of higher staleness. Does not apply in development, where a fresh `cv` is sent per request.
+  """
+  cacheVersionTtl: Int
+}
+
+extend input GraphCommerceConfig {
+  """
+  Settings for the Storyblok integration.
+  """
+  storyblok: StoryblokConfig!
+}
+
+extend input GraphCommerceStorefrontConfig {
+  """
+  Storyblok language code to request for this storefront. Maps the storefront's
+  GraphCommerce locale to a Storyblok language version. When unset, the storefront's
+  GraphCommerce locale prefix is used as the language code, unless it matches the
+  default locale (in which case no `language` param is sent and Storyblok serves
+  its space-default language). Set this when the GraphCommerce default locale
+  differs from the Storyblok default language (e.g. GraphCommerce default `nl_NL`
+  while the Storyblok space default stays English).
+  """
+  storyblokLocale: String
+}

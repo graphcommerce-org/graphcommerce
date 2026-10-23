@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>calendar</title>
+    <g id="calendar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <polygon id="Path" stroke="#CCCCCC" stroke-width="1.5" points="4 6.66666667 28 6.66666667 28 28 4 28"></polygon>
+        <line x1="28" y1="12" x2="4" y2="12" id="Path" stroke="#CCCCCC" stroke-width="1.5"></line>
+        <line x1="9.33333333" y1="6.66666667" x2="9.33333333" y2="4" id="Path" stroke="#CCCCCC" stroke-width="1.5"></line>
+        <line x1="22.6666667" y1="6.66666667" x2="22.6666667" y2="4" id="Path" stroke="#CCCCCC" stroke-width="1.5"></line>
+    </g>
+</svg>

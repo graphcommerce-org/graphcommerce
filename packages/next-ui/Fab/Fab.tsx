@@ -43,6 +43,7 @@ export function Fab(props: FabProps) {
       </Box>
       {loading && (
         <CircularProgress
+          aria-hidden='true'
           size={fabSize}
           color={color !== 'primary' ? 'primary' : 'inherit'}
           {...slotProps?.circularProgress}

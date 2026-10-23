@@ -200,6 +200,7 @@ export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const { locale, params } = context
   const client = graphqlSharedClient(context)
+  const homeUp = { href: '/', title: t`Home` }
   const staticClient = graphqlSsrClient(context)
 
   const urlKey = params?.url ?? '??'
@@ -226,7 +227,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const up =
     category?.url_path && category?.name
       ? { href: `/${category.url_path}`, title: category.name }
-      : { href: '/', title: t`Home` }
+      : homeUp
   const usps = staticClient.query({ query: UspsDocument, fetchPolicy: cacheFirst(staticClient) })
 
   const result = {

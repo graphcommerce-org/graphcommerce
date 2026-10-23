@@ -1,13 +1,22 @@
-import { FLAGS_STORAGE_KEY } from './getCssFlagInitScript'
+import { cookie } from './cookie'
+import { FLAGS_COOKIE_KEY } from './getCssFlagInitScript'
 
-function loadFlags() {
-  const flags = JSON.parse(localStorage.getItem(FLAGS_STORAGE_KEY) || '{}')
-  if (typeof flags !== 'object' && flags !== null) return {}
-  return flags as Record<string, true | string>
+function loadFlags(): Record<string, true | string> {
+  try {
+    const raw = cookie(FLAGS_COOKIE_KEY)
+    if (!raw) return {}
+    const flags = JSON.parse(raw)
+    if (typeof flags !== 'object' || flags === null) return {}
+    return flags as Record<string, true | string>
+  } catch {
+    return {}
+  }
 }
 
 function saveFlags(flags: Record<string, true | string>) {
-  window.localStorage?.setItem(FLAGS_STORAGE_KEY, JSON.stringify(flags))
+  const json = JSON.stringify(flags)
+  if (json === '{}') cookie(FLAGS_COOKIE_KEY, null)
+  else cookie(FLAGS_COOKIE_KEY, json)
 }
 
 export function removeCssFlag(flagName: string) {

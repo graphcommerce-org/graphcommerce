@@ -1,4 +1,8 @@
+import { transformFileSync } from '@swc/core';
 import { cosmiconfigSync } from 'cosmiconfig';
+import { writeFileSync, existsSync, rmSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { join, dirname } from 'node:path';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal';
 import chalk from 'chalk';
@@ -276,7 +280,29 @@ function replaceConfigInString(str, config) {
 }
 
 const moduleName = "graphcommerce";
-const loader = cosmiconfigSync(moduleName);
+const requireFromHere = createRequire(import.meta.url);
+let tmpCounter = 0;
+function loadTsConfig(filepath) {
+  const { code } = transformFileSync(filepath, {
+    jsc: { parser: { syntax: "typescript" }, target: "es2022" },
+    module: { type: "commonjs" }
+  });
+  const tmpFile = join(
+    dirname(filepath),
+    `.${moduleName}.tmp.${process.pid}-${tmpCounter++}.cjs`
+  );
+  try {
+    writeFileSync(tmpFile, code);
+    delete requireFromHere.cache[tmpFile];
+    const mod = requireFromHere(tmpFile);
+    return mod.default ?? mod;
+  } finally {
+    if (existsSync(tmpFile)) rmSync(tmpFile, { force: true });
+  }
+}
+const loader = cosmiconfigSync(moduleName, {
+  loaders: { ".ts": loadTsConfig }
+});
 function loadConfig(cwd) {
   const isMainProcess = !process.send;
   try {

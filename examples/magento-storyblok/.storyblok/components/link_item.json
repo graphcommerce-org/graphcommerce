@@ -1,0 +1,46 @@
+{
+  "name": "link_item",
+  "display_name": "Link Item",
+  "description": null,
+  "created_at": "2026-04-24T11:55:43.435Z",
+  "updated_at": "2026-04-24T14:37:34.911Z",
+  "id": 169337419519918,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Title",
+      "description": "When empty, the target page's title is used.",
+      "id": "linkItemTitleField00001"
+    },
+    "target": {
+      "type": "multilink",
+      "pos": 1,
+      "translatable": true,
+      "display_name": "Target",
+      "restrict_content_types": true,
+      "component_whitelist": [
+        "page"
+      ],
+      "filetypes": [],
+      "force_link_scope": false,
+      "id": "linkItemTargetField0001"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Link Item",
+  "component_group_uuid": null,
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

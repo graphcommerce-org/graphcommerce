@@ -86,6 +86,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
   const search = searchShort.length >= 3 ? searchShort : ''
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/', title: t`Home` }
   const conf = client.query({ query: StoreConfigDocument })
   const filterTypes = getFilterTypes(client, true)
 
@@ -125,7 +126,7 @@ export const getServerSideProps: GetPageStaticProps = async (context) => {
       ...(await layout)?.data,
       filterTypes: await filterTypes,
       params: productListParams,
-      up: { href: '/', title: t`Home` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

@@ -1,0 +1,3 @@
+query CategoryPage($url: String!) {
+  ...CategoryQueryFragment
+}
