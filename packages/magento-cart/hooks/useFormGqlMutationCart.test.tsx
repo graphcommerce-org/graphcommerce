@@ -38,7 +38,10 @@ async function submitCancelledForm(cartId?: string) {
     cache: new InMemoryCache(),
     link: new ApolloLink((operation) => {
       operations.push(operation.operationName ?? '')
-      return new Observable((observer) => observer.error(new Error('No network in this test')))
+      return new Observable((observer) => {
+        observer.next({ data: { createEmptyCart: 'new-cart' } })
+        observer.complete()
+      })
     }),
     defaultOptions: { preview: {} },
   })
@@ -77,8 +80,8 @@ it('passes the current cart id to onBeforeSubmit', async () => {
   expect(operations).toEqual([])
 })
 
-it('creates no cart when onBeforeSubmit cancels the submit', async () => {
+it('passes a new cart id to onBeforeSubmit when there is no cart', async () => {
   const { variables, operations } = await submitCancelledForm()
-  expect(variables?.cartId).toBeUndefined()
-  expect(operations).toEqual([])
+  expect(variables?.cartId).toBe('new-cart')
+  expect(operations).toEqual(['CreateEmptyCart'])
 })

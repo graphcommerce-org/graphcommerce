@@ -10,7 +10,6 @@ import { GraphQLError, Kind } from 'graphql'
 import { useCartIdContext } from '../components/CartIdContext'
 import { isProtectedCartOperation } from '../link/isProtectedCartOperation'
 import { CurrentCartIdDocument } from './CurrentCartId.gql'
-import { readCartId } from './useAssignCurrentCartId'
 import { useCartIdCreate } from './useCartIdCreate'
 import { useCartShouldLoginToContinue } from './useCartPermissions'
 
@@ -39,16 +38,16 @@ export function useFormGqlMutationCart<
     {
       ...options,
       onBeforeSubmit: async (incoming) => {
-        const knownCartId = cartIdFromContext ?? incoming.cartId ?? readCartId(client.cache)?.id
-        const withCartId = knownCartId ? { ...incoming, cartId: knownCartId } : incoming
+        if (shouldLoginToContinue && shouldBlockOperation) return false
+
+        const cartId = cartIdFromContext ?? incoming.cartId ?? (await cartIdCreate())
+        const withCartId = { ...incoming, cartId }
         const variables = options.onBeforeSubmit
           ? await options.onBeforeSubmit(withCartId)
           : withCartId
         if (variables === false) return false
-        if (shouldLoginToContinue && shouldBlockOperation) return false
 
         const res = client.cache.readQuery({ query: CurrentCartIdDocument })
-        const cartId = knownCartId ?? (await cartIdCreate())
 
         if (
           cartId === res?.currentCartId?.id &&
