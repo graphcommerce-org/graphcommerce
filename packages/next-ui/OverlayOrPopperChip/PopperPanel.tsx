@@ -1,6 +1,7 @@
 import type { PopperProps } from '@mui/material'
 import { ClickAwayListener, Popper } from '@mui/material'
 import { useRef } from 'react'
+import { sxx } from '../utils/sxx'
 import { PopperPanelActions } from './PopperPanelActions'
 import type { PanelProps } from './types'
 import { useHandleClickNotDrag } from './useHandleClickNotDrag'
@@ -10,7 +11,7 @@ export type PopperPanelProps = PanelProps & {
 }
 
 export function PopperPanel(props: PopperPanelProps) {
-  const { activeEl, children, ...actionsProps } = props
+  const { activeEl, children, popperProps, ...actionsProps } = props
   const ref = useRef<HTMLDivElement>(null)
   const movement = useHandleClickNotDrag(ref)
   const handleClickAway = () => {
@@ -23,21 +24,25 @@ export function PopperPanel(props: PopperPanelProps) {
   return (
     <ClickAwayListener onClickAway={handleClickAway}>
       <Popper
+        {...popperProps}
         ref={ref}
         open={Boolean(activeEl)}
         anchorEl={activeEl}
-        sx={{
-          boxShadow: 12,
-          borderRadius: 3,
-          overflow: 'hidden',
-          zIndex: 1,
-          bgcolor: 'background.paper',
-          display: 'grid',
-          gridTemplateRows: 'min-content auto min-content',
-          minWidth: 350,
-          overflowY: 'auto',
-          maxHeight: '500px',
-        }}
+        sx={sxx(
+          {
+            boxShadow: 12,
+            borderRadius: 3,
+            overflow: 'hidden',
+            zIndex: 1,
+            bgcolor: 'background.paper',
+            display: 'grid',
+            gridTemplateRows: 'min-content auto min-content',
+            minWidth: 350,
+            overflowY: 'auto',
+            maxHeight: '500px',
+          },
+          popperProps?.sx,
+        )}
         disablePortal
         modifiers={[
           { name: 'offset', options: { offset: [0, 10] } },
