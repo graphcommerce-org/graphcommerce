@@ -6,7 +6,8 @@ export async function customAttributeMetadataV2(
   input: CustomAttributeInput,
   context: MeshContext,
 ): Promise<CustomAttributeMetadataInterface | null> {
-  const cacheKey = `customAttributeMetadata-${input.entity_type}-${input.attribute_code}`
+  const { headers } = context as MeshContext & { headers?: { store?: string } }
+  const cacheKey = `customAttributeMetadata-${headers?.store ?? 'default'}-${input.entity_type}-${input.attribute_code}`
   const cached = await context.cache.get(cacheKey)
   if (cached) return cached
 
