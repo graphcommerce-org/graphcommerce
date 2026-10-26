@@ -1,8 +1,7 @@
 import { ApolloErrorSnackbar } from '@graphcommerce/ecommerce-ui'
-import { useMutation, useQuery } from '@graphcommerce/graphql'
-import { useAssignCurrentCartId, useCartQuery } from '@graphcommerce/magento-cart'
+import { useMutation } from '@graphcommerce/graphql'
+import { useAssignCurrentCartId, useCartQuery, useCurrentCartId } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
-import { CurrentCartIdDocument } from '@graphcommerce/magento-cart/hooks/CurrentCartId.gql'
 import { Button, FullPageMessage, iconShoppingBag, IconSvg } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
 import dynamic from 'next/dynamic'
@@ -20,8 +19,7 @@ export function MSPRestoreLocked() {
   const router = useRouter()
 
   const [restore, { loading, error }] = useMutation(MSPPaymentHandlerDocument)
-  const status = useQuery(CurrentCartIdDocument).data?.currentCartId
-  const { locked } = status ?? {}
+  const { locked } = useCurrentCartId()
   const cart = useCartQuery(BillingPageDocument)
   const cartId = cart.data?.cart?.id
   const isMsp = cart.data?.cart?.selected_payment_method?.code.startsWith('multisafepay_')
