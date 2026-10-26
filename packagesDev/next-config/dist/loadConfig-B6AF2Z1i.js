@@ -3,6 +3,7 @@ import { cosmiconfigSync } from 'cosmiconfig';
 import { writeFileSync, existsSync, rmSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, dirname } from 'node:path';
+import { threadId } from 'node:worker_threads';
 import { GraphCommerceConfigSchema } from './generated/config.js';
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal';
 import chalk from 'chalk';
@@ -289,7 +290,7 @@ function loadTsConfig(filepath) {
   });
   const tmpFile = join(
     dirname(filepath),
-    `.${moduleName}.tmp.${process.pid}-${tmpCounter++}.cjs`
+    `.${moduleName}.tmp.${process.pid}-${threadId}-${tmpCounter++}.cjs`
   );
   try {
     writeFileSync(tmpFile, code);

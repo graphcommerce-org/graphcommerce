@@ -4,6 +4,7 @@ import { cosmiconfigSync } from 'cosmiconfig'
 import { existsSync, rmSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
+import { threadId } from 'node:worker_threads'
 import type { GraphCommerceConfig } from '../generated/config'
 import { GraphCommerceConfigSchema } from '../generated/config'
 import { demoConfig } from './demoConfig'
@@ -19,7 +20,7 @@ let tmpCounter = 0
 // fixed `.cjs` path on disk and removes it again — that races between
 // Next.js worker processes (especially under Turbopack), producing
 // "Cannot find module" panics. We transpile via SWC and write to a
-// per-process unique filename so concurrent loads never collide. The temp
+// per-thread unique filename so concurrent loads never collide. The temp
 // file lives next to the source so relative `require()` calls in the
 // config still resolve.
 function loadTsConfig(filepath: string): Record<string, unknown> {
@@ -30,7 +31,7 @@ function loadTsConfig(filepath: string): Record<string, unknown> {
 
   const tmpFile = join(
     dirname(filepath),
-    `.${moduleName}.tmp.${process.pid}-${tmpCounter++}.cjs`,
+    `.${moduleName}.tmp.${process.pid}-${threadId}-${tmpCounter++}.cjs`,
   )
 
   try {
