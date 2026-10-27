@@ -41,7 +41,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit, setValue, trigger, control } = form
-  const { isSubmitSuccessful, isValid } = formState
+  const { isSubmitSuccessful, errors } = formState
   const requestedMode = useWatch({ control, name: 'requestedMode' })
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     // 1. Nothing is entered
     mode = 'email'
 
-    if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
+    if (isSubmitSuccessful && !errors.email) mode = hasAccount ? 'signin' : 'signup'
   }
 
   const { closeSteps = 0 } = usePageContext() ?? {}
