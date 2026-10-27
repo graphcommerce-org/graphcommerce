@@ -16,9 +16,9 @@ export function CartStartCheckout(props: PluginProps<CartStartCheckoutProps>) {
 
   const send = useRef(false)
   const sendEvent = useSendEvent()
-  const viewCart = useMemoObject(cartToViewCart({ __typename: 'Cart', ...props }))
+  const viewCart = useMemoObject(cartToViewCart({ __typename: 'Cart', ...props.cart }))
   useEffect(() => {
-    if (!send.current) {
+    if (!send.current && viewCart.items.length > 0) {
       sendEvent('view_cart', viewCart)
       send.current = true
     }
