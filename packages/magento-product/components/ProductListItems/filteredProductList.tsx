@@ -94,7 +94,7 @@ export function useRouterFilterParams(props: {
   const router = useRouter()
 
   const path = router.asPath.startsWith('/c/') ? router.asPath.slice(3) : router.asPath.slice(1)
-  const [url, query] = extractUrlQuery({ url: path.split('#')[0].split('/') })
+  const [url, query] = extractUrlQuery({ url: path.split(/[?#]/)[0].split('/') })
   if (!url || !query || !filterTypes) return { params, shallow: false }
 
   const searchParam = url.startsWith('search') ? decodeURI(url.split('/')[1] ?? '') : null
