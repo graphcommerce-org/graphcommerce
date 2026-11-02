@@ -89,15 +89,28 @@ export function SidebarGallery(props: SidebarGalleryProps) {
   // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
 
   const route = `#${routeHash}`
-  // We're using the URL to manage the state of the gallery.
-  const zoomed = router.asPath.endsWith(route)
+  // We're using the URL to manage the state of the gallery. A page that opens with #gallery has no
+  // previous page and renders without zoom, the same as the server render.
+  const zoomed = router.asPath.endsWith(route) && Boolean(prevRoute?.pathname)
   usePreventScroll(zoomed)
 
   // cleanup if someone enters the page with #gallery
   useEffect(() => {
-    if (!prevRoute?.pathname && zoomed) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      router.replace(router.asPath.replace(route, ''))
+    if (prevRoute?.pathname || !router.asPath.endsWith(route)) return undefined
+    let active = true
+    const removeHash = async () => {
+      try {
+        await router.replace(router.asPath.replace(route, ''))
+      } catch (e) {
+        // The route change of Next.js after hydration can cancel this replace.
+        if (!(e as { cancelled?: boolean }).cancelled) throw e
+        if (active) await removeHash()
+      }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    removeHash()
+    return () => {
+      active = false
     }
   }, [prevRoute?.pathname, route, router, zoomed])
 
