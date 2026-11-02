@@ -16,7 +16,7 @@ import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, Unstable_TrapFocus as TrapFocus, useTheme } from '@mui/material'
 import { m, useDomEvent, useMotionValue } from 'framer-motion'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef } from 'react'
 import { iconChevronLeft, iconChevronRight, iconFullscreen, iconFullscreenExit } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { Row } from '../Row/Row'
@@ -82,6 +82,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     afterScroller,
   } = props
 
+  const rootRef = useRef<HTMLDivElement>(null)
+  const sidebarWrapperRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const prevRoute = usePrevPageRouter()
   // const classes = useMergedClasses(useStyles({ clientHeight, aspectRatio }).classes, props.classes)
@@ -99,11 +101,35 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
   }, [prevRoute?.pathname, route, router, zoomed])
 
+  // The zoomed gallery moves up by its layout distance to the top of the page, so it fills the full
+  // screen height. offsetTop ignores transforms, so the Framer layout animation and the translate
+  // do not change the measurement. The sidebar keeps its height from before the zoom, so its content
+  // does not move while it slides out.
+  const measureZoomOffsets = useCallback(() => {
+    const root = rootRef.current
+    if (!root || !sidebarWrapperRef.current) return
+    let top = 0
+    for (let el: HTMLElement | null = root; el; el = el.offsetParent as HTMLElement | null) {
+      top += el.offsetTop
+    }
+    root.style.setProperty('--zoom-offset', `${top}px`)
+    if (!zoomed) {
+      root.style.setProperty('--sidebar-height', `${sidebarWrapperRef.current.offsetHeight}px`)
+    }
+  }, [zoomed])
+
+  useEffect(() => {
+    measureZoomOffsets()
+    window.addEventListener('resize', measureZoomOffsets)
+    return () => window.removeEventListener('resize', measureZoomOffsets)
+  }, [measureZoomOffsets])
+
   const toggle = () => {
     if (disableZoom) {
       return
     }
     if (!zoomed) {
+      measureZoomOffsets()
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(route, undefined, { shallow: true })
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -160,6 +186,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         )}
       >
         <MotionBox
+          ref={rootRef}
           layout
           layoutDependency={zoomed}
           className={classes.root}
@@ -175,9 +202,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             '&.zoomed': {
               position: 'relative',
               zIndex: theme.zIndex.modal,
-              marginTop: `calc(${theme.appShell.headerHeightSm} * -1)`,
+              translate: '0 calc(var(--zoom-offset) * -1)',
               [theme.breakpoints.up('md')]: {
-                marginTop: `calc(${theme.appShell.headerHeightMd} * -1  - ${theme.spacings.lg})`,
                 gridTemplateColumns: '1fr auto',
               },
               px: 0,
@@ -367,6 +393,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
             </MotionBox>
           </TrapFocus>
           <Box
+            ref={sidebarWrapperRef}
             className={classes.sidebarWrapper}
             sx={sxx(
               {
@@ -386,6 +413,8 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                   left: `calc(${responsiveVal(300, 500, undefined, theme.breakpoints.values.lg)} + ${
                     theme.page.horizontal
                   } * 2)`,
+                  marginTop: 'var(--zoom-offset)',
+                  height: 'var(--sidebar-height)',
                 },
               },
             )}
