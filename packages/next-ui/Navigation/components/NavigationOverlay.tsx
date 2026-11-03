@@ -127,6 +127,17 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
         onLayoutAnimationComplete: () => {
           animating.set(false)
         },
+        onKeyDown: (e) => {
+          if (e.key !== 'Tab') return
+          const tabbable = [
+            ...e.currentTarget.querySelectorAll<HTMLElement>('a[href], button:not(:disabled)'),
+          ].filter((el) => el.tabIndex >= 0 && el.offsetParent !== null)
+          const first = tabbable[0]
+          const last = tabbable[tabbable.length - 1]
+          if (document.activeElement !== (e.shiftKey ? first : last)) return
+          e.preventDefault()
+          ;(e.shiftKey ? last : first)?.focus()
+        },
       }}
       sx={sxx(
         {

@@ -64,7 +64,7 @@ export const NavigationItem = React.memo<NavigationItemProps>((props) => {
   )
 
   const tabIndex = useMotionValueValue(selection, (s) =>
-    s !== false && s.join(',').includes(parentPath) ? undefined : -1,
+    s !== false && s.join(',') === parentPath ? undefined : -1,
   )
 
   const hideItem = hidingRoot && itemPath.length === 1

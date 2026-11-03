@@ -10,7 +10,7 @@ import {
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled, useTheme, useThemeProps } from '@mui/material'
-import type { MotionProps } from 'framer-motion'
+import type { HTMLMotionProps } from 'framer-motion'
 import {
   m,
   motionValue,
@@ -56,7 +56,7 @@ export type LayoutOverlayBaseProps = {
   offsetPageY?: number
   isPresent: boolean
   safeToRemove?: (() => void) | null | undefined
-  overlayPaneProps?: MotionProps
+  overlayPaneProps?: HTMLMotionProps<'div'>
   disableInert?: boolean
 
   /* For `variantSm='left|right' */
