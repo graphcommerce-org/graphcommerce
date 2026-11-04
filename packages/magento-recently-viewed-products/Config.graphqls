@@ -16,5 +16,5 @@ extend input GraphCommerceConfig {
   """
   Settings for recently viewed products
   """
-  recentlyViewedProducts: RecentlyViewedProductsConfig
+  recentlyViewedProducts: RecentlyViewedProductsConfig @public
 }

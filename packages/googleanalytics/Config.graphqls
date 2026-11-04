@@ -4,7 +4,7 @@ extend input GraphCommerceStorefrontConfig {
 
   To disable for a specific locale, set the value to null.
   """
-  googleAnalyticsId: String
+  googleAnalyticsId: String @public
 }
 
 extend input GraphCommerceConfig {
@@ -15,5 +15,5 @@ extend input GraphCommerceConfig {
 
   To override the value for a specific locale, configure in i18n config.
   """
-  googleAnalyticsId: String
+  googleAnalyticsId: String @public
 }

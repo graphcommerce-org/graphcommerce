@@ -2,7 +2,7 @@ extend input GraphCommerceConfig {
   """
   Datalayer config
   """
-  dataLayer: DatalayerConfig
+  dataLayer: DatalayerConfig @public
 }
 
 """

@@ -28,20 +28,20 @@ extend input GraphCommerceConfig {
   """
   Configuration for the SidebarGallery component
   """
-  sidebarGallery: SidebarGalleryConfig
+  sidebarGallery: SidebarGalleryConfig @public
 
   """
   Configuration for the SidebarGallery component
   """
-  breadcrumbs: Boolean = false
+  breadcrumbs: Boolean = false @public
 
   """
   Configures the max width of the shell (header, footer, overlays, etc.)
   """
-  containerSizingShell: ContainerSizing = FULL_WIDTH
+  containerSizingShell: ContainerSizing = FULL_WIDTH @public
 
   """
   Configures the max width of the content (main content area)
   """
-  containerSizingContent: ContainerSizing = FULL_WIDTH
+  containerSizingContent: ContainerSizing = FULL_WIDTH @public
 }

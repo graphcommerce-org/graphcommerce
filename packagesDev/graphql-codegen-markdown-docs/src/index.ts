@@ -38,6 +38,7 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
           .filter(Boolean)
           .join('\n')}`,
     },
+    DirectiveDefinition: { leave: () => '' },
     Name: { leave: (node) => node.value },
     NamedType: {
       leave: (node) => possibleScalars[node.name] ?? `[${node.name}](#${node.name})`,

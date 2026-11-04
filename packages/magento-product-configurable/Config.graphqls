@@ -27,7 +27,7 @@ extend input GraphCommerceConfig {
 
   Enabling options here will allow switching of those variants.
   """
-  configurableVariantValues: MagentoConfigurableVariantValues = { url: true, content: true }
+  configurableVariantValues: MagentoConfigurableVariantValues = { url: true, content: true } @public
 
   """
   If a simple product is part of a Configurable product page, should the simple product be
@@ -41,5 +41,5 @@ extend input GraphCommerceConfig {
   If that is the case we render the configurable product page instead of the simple product page but
   the options to select the simple product are pre-selected.
   """
-  configurableVariantForSimple: Boolean = false
+  configurableVariantForSimple: Boolean = false @public
 }

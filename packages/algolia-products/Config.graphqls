@@ -48,5 +48,5 @@ extend input GraphCommerceConfig {
 
   Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
   """
-  algolia: GraphCommerceAlgoliaConfig!
+  algolia: GraphCommerceAlgoliaConfig! @public
 }

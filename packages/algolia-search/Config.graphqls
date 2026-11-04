@@ -46,29 +46,29 @@ extend input GraphCommerceStorefrontConfig {
   """
   Configure your Algolia index configurations
   """
-  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]!
+  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]! @public
 
   """
   Configure the sortable attributes
   """
-  sortOptions: [AlgoliaSortableOption!]
+  sortOptions: [AlgoliaSortableOption!] @public
 }
 
 extend input GraphCommerceConfig {
   """
   Configure your Algolia application ID.
   """
-  algoliaApplicationId: String!
+  algoliaApplicationId: String! @public
 
   """
   Configure your Algolia Search Only API Key
   """
-  algoliaSearchOnlyApiKey: String!
+  algoliaSearchOnlyApiKey: String! @public
 
   """
   Configures algolia search debounce time. This will slow down the search response.
   """
-  algoliaSearchDebounceTime: Int
+  algoliaSearchDebounceTime: Int @public
 
   """
   Configure your Algolia Hygraph index. This will create a new index for Hygraph data if it doesn't exist in Algolia.

@@ -4,12 +4,12 @@ extend input GraphCommerceConfig {
 
   This value is required even if you are configuring different values for each locale.
   """
-  googleTagmanagerId: String
+  googleTagmanagerId: String @public
 }
 
 extend input GraphCommerceStorefrontConfig {
   """
   The Google Tagmanager ID to be used per locale.
   """
-  googleTagmanagerId: String
+  googleTagmanagerId: String @public
 }

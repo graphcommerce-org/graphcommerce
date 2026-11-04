@@ -4,9 +4,7 @@ GraphCommerce 11 drops support for Node.js 20 (EOL April 2026) and aligns the
 framework with the
 [Node.js release schedule](https://nodejs.org/en/about/previous-releases). The
 minimum supported version is now Node.js 22, and Node.js 24 is recommended.
-
-There are no source-code or API breaking changes in this release — only the
-supported runtime has shifted.
+Configuration fields are server-only, unless their definition has `@public`.
 
 ## Step 1: Upgrade your local Node.js
 
@@ -75,7 +73,39 @@ Anywhere that pins a Node version, move from 20 to 22 or 24:
   Devcontainer setups that use `"lts": true` resolve to v24 automatically and
   need no change.
 
-## Step 4: Reinstall
+## Step 4: Add `@public` to configuration fields that browser code reads
+
+Codegen writes a configuration field to the browser bundle only when its
+definition has `@public`. The fields of GraphCommerce packages have `@public`
+already. In `graphql/Config.graphqls` of your project, add `@public` to each
+field that browser code reads:
+
+```diff
+ extend input GraphCommerceConfig {
+-  myFeatureEnabled: Boolean
++  myFeatureEnabled: Boolean @public
+   myApiSecret: String
+ }
+ extend input GraphCommerceStorefrontConfig {
+-  myStoreLabel: String
++  myStoreLabel: String @public
+ }
+```
+
+Turbopack stops the build for each browser import of a field without `@public`:
+
+```
+Export myApiSecret doesn't exist in target module
+The export myApiSecret was not found in module [project]/node_modules/@graphcommerce/next-config/dist/generated/configValues/browser/index.js [client] (ecmascript).
+```
+
+`useStorefrontConfig().myServerField` in browser code throws in development.
+
+Add `@public` to the field, or read the field in `getStaticProps`, an API route
+or other server code. Keep secrets, such as API keys and webhook secrets,
+without `@public`.
+
+## Step 5: Reinstall
 
 After upgrading Node:
 

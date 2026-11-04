@@ -9,6 +9,12 @@ import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
+
+// Use specific patterns instead of ** to avoid expensive directory traversal
+export const configSchemaLocations = [
+  'graphql/Config.graphqls',
+  ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`]),
+]
 const resolve = resolveDependency()
 
 dotenv.config({ quiet: true })
@@ -20,15 +26,9 @@ export async function generateConfig() {
   const targetTs = `${resolved.root}/src/generated/config.ts`
   const targetJs = `${resolved.root}/dist/generated/config.js`
 
-  // Use specific patterns instead of ** to avoid expensive directory traversal
-  const schemaLocations = [
-    'graphql/Config.graphqls',
-    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`]),
-  ]
-
   await generate({
     silent: true,
-    schema: schemaLocations,
+    schema: configSchemaLocations,
     generates: {
       [targetTs]: {
         plugins: ['typescript', 'typescript-validation-schema'],

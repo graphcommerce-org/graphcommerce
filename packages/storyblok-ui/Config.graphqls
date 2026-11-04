@@ -51,7 +51,7 @@ extend input GraphCommerceConfig {
   """
   Settings for the Storyblok integration.
   """
-  storyblok: StoryblokConfig!
+  storyblok: StoryblokConfig! @public
 }
 
 extend input GraphCommerceStorefrontConfig {
@@ -64,5 +64,5 @@ extend input GraphCommerceStorefrontConfig {
   differs from the Storyblok default language (e.g. GraphCommerce default `nl_NL`
   while the Storyblok space default stays English).
   """
-  storyblokLocale: String
+  storyblokLocale: String @public
 }
