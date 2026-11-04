@@ -134,11 +134,8 @@ Anywhere that pins a Node version, move from 20 to 22 or 24:
    storefront[].myServerField is server-only. Read it on the server or add @public to GraphCommerceStorefrontConfig.myServerField in Config.graphqls.
    ```
 
-These fields of GraphCommerce packages are server-only: `previewSecret`,
-`hygraphSecret`, `hygraphWriteAccessToken`, `hygraphManagementApi`,
-`hygraphProjectId`, `hygraphEndpoint`, `magentoEndpoint`, `graphqlMeshEditMode`,
-`limitSsg`, `robotsAllow`, `googlePlaystore`, `algoliaHygraphIndex` and all
-fields of `algolia` except `indexNamePrefix`.
+Codegen lists the server-only fields at the top of each file in
+`node_modules/@graphcommerce/next-config/dist/generated/configValues/publicOnly`.
 
 ## Step 5: Reinstall
 

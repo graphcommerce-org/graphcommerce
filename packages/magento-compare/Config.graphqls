@@ -7,7 +7,7 @@ extend input GraphCommerceConfig {
   """
   Use compare functionality
   """
-  compare: Boolean @public
+  compare: Boolean
 
   """
   By default the compare feature is denoted with a 'compare ICON' (2 arrows facing one another).

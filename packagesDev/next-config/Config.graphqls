@@ -181,7 +181,7 @@ input GraphCommerceDebugConfig {
   - The same package is included multiple times in the bundle, increasing the bundle size.
   - The Typescript types of the package are not compatible with each other, causing Typescript errors.
   """
-  webpackDuplicatesPlugin: Boolean @public
+  webpackDuplicatesPlugin: Boolean
 
   """
   Cyclic dependencies can cause memory issues and other strange bugs.
@@ -189,12 +189,12 @@ input GraphCommerceDebugConfig {
 
   When running into memory issues, it can be useful to enable this plugin.
   """
-  webpackCircularDependencyPlugin: Boolean @public
+  webpackCircularDependencyPlugin: Boolean
 
   """
   Reports which plugins are enabled or disabled.
   """
-  pluginStatus: Boolean @public
+  pluginStatus: Boolean
 }
 
 directive @public on INPUT_FIELD_DEFINITION

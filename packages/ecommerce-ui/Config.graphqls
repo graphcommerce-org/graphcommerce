@@ -11,7 +11,7 @@ input GraphCommercePermissions {
   """
   Allows the option to require login or completely disable the site.
   """
-  website: WebsitePermissions @public
+  website: WebsitePermissions
 }
 
 extend input GraphCommerceConfig {

@@ -20,7 +20,7 @@ extend input GraphCommerceConfig {
 
   This can be disabled when Varnish is running out of available memory.
   """
-  customerXMagentoCacheIdDisable: Boolean @public
+  customerXMagentoCacheIdDisable: Boolean
 }
 
 extend input GraphCommerceDebugConfig {
