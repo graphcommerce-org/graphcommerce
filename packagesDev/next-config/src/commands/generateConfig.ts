@@ -55,13 +55,21 @@ export async function generateConfig() {
 
   writeFileSync(
     targetTs,
-    await prettier.format(readFileSync(targetTs, 'utf-8'), {
-      ...prettierConf,
-      parser: 'typescript',
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
+    // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
+    // before `.default()` runs.
+    await prettier.format(
+      readFileSync(targetTs, 'utf-8').replace(
+        /\.default\(([^()]+)\)\.nullish\(\)/g,
+        '.nullish().default($1)',
       ),
-    }),
+      {
+        ...prettierConf,
+        parser: 'typescript',
+        plugins: prettierConf.plugins?.filter(
+          (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
+        ),
+      },
+    ),
   )
 
   const result = transformFileSync(targetTs, {
