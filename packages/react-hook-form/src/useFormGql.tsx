@@ -160,8 +160,7 @@ export function useFormGql<Q, V extends FieldValues>(
         console.info(
           `[useFormGql ${getOperationName(document)}] skipped submission, no dirty fields`,
         )
-        await onValid(formValues, event)
-        return
+        return onValid(formValues, event)
       }
 
       returnedError.current = null
@@ -241,7 +240,7 @@ export function useFormGql<Q, V extends FieldValues>(
         // Reset the state of the form if it is unmodified afterwards
         form.reset(formValues)
 
-      await onValid(formValues, event)
+      return onValid(formValues, event)
     }, onInvalid)
 
   return {

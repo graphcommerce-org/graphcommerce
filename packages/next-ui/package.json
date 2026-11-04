@@ -32,10 +32,10 @@
   },
   "dependencies": {
     "cookie": "^1.1.1",
-    "react-is": "^19.2.0"
+    "react-is": "^19.3.1"
   },
   "devDependencies": {
-    "@types/react-is": "^19.2.0",
+    "@types/react-is": "^19.3.0",
     "typescript": "5.9.3"
   },
   "peerDependencies": {
@@ -53,7 +53,7 @@
     "@lingui/core": "^5",
     "@lingui/macro": "^5",
     "@lingui/react": "^5",
-    "@mui/lab": "7.0.1-beta.20",
+    "@mui/lab": "7.0.1-beta.25",
     "@mui/material": "^7.0.0",
     "framer-motion": "^11.0.0",
     "next": "*",

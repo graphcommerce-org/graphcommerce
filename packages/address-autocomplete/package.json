@@ -16,8 +16,8 @@
     "./plugins/AddAddressAutocompleteAddressFields": "./plugins/AddAddressAutocompleteAddressFields.tsx"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.16.8",
-    "@types/google.maps": "^3.59.0"
+    "@googlemaps/js-api-loader": "^1.16.10",
+    "@types/google.maps": "^3.66.9"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^11.0.0-canary.56",

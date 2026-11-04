@@ -44,7 +44,7 @@ export type ProductFiltersProContext = DataProps & {
    * To get active form values use `useWatch`.
    */
   params: ProductFilterParams
-  submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
+  submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<unknown>
 }
 
 const FilterFormContext = createContext<ProductFiltersProContext | null>(null)

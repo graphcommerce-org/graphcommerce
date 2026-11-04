@@ -4,9 +4,9 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "11.0.0-canary.56",
   "dependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
-    "prettier": "^3.7.4",
-    "prettier-plugin-jsdoc": "^1.7.0"
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
+    "prettier": "^3.9.10",
+    "prettier-plugin-jsdoc": "^1.8.1"
   },
   "exports": {
     ".": "./index.js",

@@ -16,8 +16,8 @@
     "./plugins/AddBraintreeMethods": "./plugins/AddBraintreeMethods.tsx"
   },
   "dependencies": {
-    "@types/braintree-web": "^3.96.17",
-    "braintree-web": "^3.134.0"
+    "@types/braintree-web": "^3.143.2",
+    "braintree-web": "^3.147.0"
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^11.0.0-canary.56",

@@ -13,18 +13,18 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^4.0.11",
-    "@graphql-codegen/add": "6.0.0",
-    "@graphql-codegen/fragment-matcher": "6.0.0",
-    "@graphql-codegen/introspection": "5.0.0",
-    "@graphql-codegen/schema-ast": "5.0.0",
-    "@graphql-codegen/typed-document-node": "6.1.5",
-    "@graphql-codegen/typescript": "5.0.7",
+    "@apollo/client": "^4.3.6",
+    "@graphql-codegen/add": "6.0.1",
+    "@graphql-codegen/fragment-matcher": "6.0.1",
+    "@graphql-codegen/introspection": "5.0.2",
+    "@graphql-codegen/schema-ast": "5.0.2",
+    "@graphql-codegen/typed-document-node": "6.1.8",
+    "@graphql-codegen/typescript": "5.0.10",
     "@graphql-codegen/typescript-apollo-client-helpers": "3.0.1",
-    "@graphql-codegen/typescript-document-nodes": "5.0.7",
-    "@graphql-codegen/typescript-operations": "5.0.7",
+    "@graphql-codegen/typescript-document-nodes": "5.0.10",
+    "@graphql-codegen/typescript-operations": "5.1.0",
     "apollo3-cache-persist": "^0.15.0",
-    "graphql": "^16.12.0",
+    "graphql": "^16.14.2",
     "rxjs": "^7.8.2"
   },
   "peerDependencies": {
