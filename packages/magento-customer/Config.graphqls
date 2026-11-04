@@ -27,5 +27,5 @@ extend input GraphCommerceDebugConfig {
   """
   Enable debugging interface to debug sessions
   """
-  sessions: Boolean
+  sessions: Boolean @public
 }

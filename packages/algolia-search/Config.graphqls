@@ -5,11 +5,11 @@ input AlgoliaSortableOption {
   """
   The label of the index to display
   """
-  label: String!
+  label: String! @public
   """
   The name of the index to target.
   """
-  value: String!
+  value: String! @public
 }
 
 """
@@ -19,12 +19,12 @@ input AlgoliaFilterAttribute {
   """
   Stores the default aggregation uid
   """
-  aggregation: String!
+  aggregation: String! @public
 
   """
   Stores the algolia attribute that should be connected to the magento aggregation
   """
-  toAlgoliaAttribute: String!
+  toAlgoliaAttribute: String! @public
 }
 
 """
@@ -34,7 +34,7 @@ input AlgoliaSearchIndexConfig {
   """
   Configure your Algolia Search index for Magento products
   """
-  searchIndex: String!
+  searchIndex: String! @public
 
   """
   Configures Algolia filterable attributes
@@ -46,12 +46,12 @@ extend input GraphCommerceStorefrontConfig {
   """
   Configure your Algolia index configurations
   """
-  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]! @public
+  algoliaSearchIndexConfig: [AlgoliaSearchIndexConfig!]!
 
   """
   Configure the sortable attributes
   """
-  sortOptions: [AlgoliaSortableOption!] @public
+  sortOptions: [AlgoliaSortableOption!]
 }
 
 extend input GraphCommerceConfig {

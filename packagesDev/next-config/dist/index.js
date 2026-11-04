@@ -1475,15 +1475,45 @@ async function generateConfigValues() {
       if (def.kind !== Kind.INPUT_OBJECT_TYPE_DEFINITION && def.kind !== Kind.INPUT_OBJECT_TYPE_EXTENSION)
         continue;
       const typeName = def.name.value;
-      const misplaced = def.fields?.find(isPublic);
-      if (misplaced && typeName !== "GraphCommerceConfig" && typeName !== "GraphCommerceStorefrontConfig") {
-        throw Error(
-          `${location}: @public on ${typeName}.${misplaced.name.value}. Only fields of GraphCommerceConfig and GraphCommerceStorefrontConfig accept @public.`
-        );
-      }
       inputs.set(typeName, [...inputs.get(typeName) ?? [], ...def.fields ?? []]);
     }
   }
+  for (const [typeName, fields] of inputs) {
+    const misplaced = fields.find((f) => isPublic(f) && inputs.has(namedType(f.type)));
+    if (misplaced) {
+      throw Error(
+        `@public on ${typeName}.${misplaced.name.value}: add @public to the fields of ${namedType(misplaced.type)}.`
+      );
+    }
+  }
+  const hasPublic = (typeName) => (inputs.get(typeName) ?? []).some(
+    (f) => inputs.has(namedType(f.type)) ? hasPublic(namedType(f.type)) : isPublic(f)
+  );
+  const browserLiteral = (value, typeName, valuePath) => {
+    if (Array.isArray(value))
+      return `[${value.map((item) => browserLiteral(item, typeName, `${valuePath}[]`)).join(",\n")}]`;
+    if (!isSection(value)) return literal(value);
+    const properties = [];
+    const getters = [];
+    for (const field of inputs.get(typeName) ?? []) {
+      const name = field.name.value;
+      const fieldType = namedType(field.type);
+      const isInput = inputs.has(fieldType);
+      if (!(isInput ? hasPublic(fieldType) : isPublic(field))) {
+        const hint = isInput ? `the fields of ${fieldType}` : `${typeName}.${name}`;
+        getters.push(`${name}: serverOnly('${valuePath}.${name}', '${hint}')`);
+      } else if (value[name] !== void 0) {
+        const fieldValue = isInput ? browserLiteral(value[name], fieldType, `${valuePath}.${name}`) : literal(value[name]);
+        properties.push(`${JSON.stringify(name)}: ${fieldValue}`);
+      }
+    }
+    const object = `{
+${properties.join(",\n")}
+}`;
+    return getters.length ? `Object.defineProperties(${object}, {
+${getters.join(",\n")}
+})` : object;
+  };
   const writeServerModule = async (name, content) => {
     const srcFile = path.join(srcDir, `${name}.ts`);
     writeFileSync(
@@ -1503,50 +1533,33 @@ async function generateConfigValues() {
     writeFileSync(path.join(distDir, `${name}.js`), code);
   };
   const serverExports = [];
-  const browserExports = [];
+  const browserExports = [
+    `const serverOnly = (valuePath, hint) => ({
+  get() {
+    if (process.env.NODE_ENV !== 'production')
+      throw Error(\`\${valuePath} is server-only. Read it on the server or add @public to \${hint} in Config.graphqls.\`)
+  },
+})`
+  ];
   let sectionCount = 0;
   for (const field of inputs.get("GraphCommerceConfig") ?? []) {
     const key = field.name.value;
     const value = config[key];
+    const fieldType = namedType(field.type);
     if (isSection(value)) {
       sectionCount++;
-      const sectionExports = (inputs.get(namedType(field.type)) ?? []).map(
+      const sectionExports = (inputs.get(fieldType) ?? []).map(
         ({ name }) => `export const ${name.value}: Get<GraphCommerceConfig, '${key}.${name.value}'> = ${literal(value[name.value])}`
       );
       await writeServerModule(key, [header, typeImports, ...sectionExports].join("\n\n"));
       serverExports.push(`export * as ${key} from './${key}.js'`);
-      if (isPublic(field)) browserExports.push(`export * as ${key} from '../${key}.js'`);
-      continue;
-    }
-    serverExports.push(
-      `export const ${key}: Get<GraphCommerceConfig, '${key}'> = ${literal(value)}`
-    );
-    if (!isPublic(field)) continue;
-    if (namedType(field.type) !== "GraphCommerceStorefrontConfig") {
-      browserExports.push(`export const ${key} = ${literal(value)}`);
-      continue;
-    }
-    const storefrontFields = inputs.get("GraphCommerceStorefrontConfig") ?? [];
-    const getters = storefrontFields.filter((f) => !isPublic(f)).map(({ name }) => `${name.value}: serverOnly('${name.value}')`).join(",\n");
-    const entries = value.map((entry) => {
-      const publicEntry = Object.fromEntries(
-        storefrontFields.filter((f) => isPublic(f) && entry[f.name.value] !== void 0).map(({ name }) => [name.value, entry[name.value]])
+    } else {
+      serverExports.push(
+        `export const ${key}: Get<GraphCommerceConfig, '${key}'> = ${literal(value)}`
       );
-      return `Object.defineProperties(${literal(publicEntry)}, {
-${getters}
-})`;
-    });
-    browserExports.push(
-      `const serverOnly = (key) => ({
-  get() {
-    if (process.env.NODE_ENV !== 'production')
-      throw Error(\`${key}[].\${key} is server-only. Read it on the server or add @public to GraphCommerceStorefrontConfig.\${key}.\`)
-  },
-})`,
-      `export const ${key} = [
-${entries.join(",\n")}
-]`
-    );
+    }
+    if (inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))
+      browserExports.push(`export const ${key} = ${browserLiteral(value, fieldType, key)}`);
   }
   await writeServerModule("index", [header, typeImports, ...serverExports].join("\n"));
   writeFileSync(path.join(browserDir, "index.js"), [header, ...browserExports].join("\n"));

@@ -6,7 +6,7 @@ input StoryblokConfig {
   Your project's Storyblok space ID. Used as the target space for `storyblok:bootstrap`
   (seeding a new space with the example content) and as the default space for pull/push commands.
   """
-  spaceId: String!
+  spaceId: String! @public
 
   """
   Public preview access token for the Storyblok Content Delivery API. Found under
@@ -14,14 +14,14 @@ input StoryblokConfig {
   do not use a private/management token here. Override per-environment with
   `GC_STORYBLOK_ACCESS_TOKEN`.
   """
-  accessToken: String!
+  accessToken: String! @public
 
   """
   Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
   example space (291439709879423) which contains demo content for this template.
   Override only if you maintain your own example/template space.
   """
-  sourceSpaceId: String
+  sourceSpaceId: String @public
 
   """
   How often (in seconds) the server refreshes the Storyblok space cache-version (`cv`) on its own.
@@ -44,14 +44,14 @@ input StoryblokConfig {
   cross process boundaries; its in-memory LRU otherwise answers every read locally. Custom cache
   handlers are unaffected.
   """
-  cacheVersionTtl: Int = 3600
+  cacheVersionTtl: Int = 3600 @public
 }
 
 extend input GraphCommerceConfig {
   """
   Settings for the Storyblok integration.
   """
-  storyblok: StoryblokConfig! @public
+  storyblok: StoryblokConfig!
 }
 
 extend input GraphCommerceStorefrontConfig {

@@ -7,18 +7,18 @@ input MagentoConfigurableVariantValues {
 
   This only happens when the actual variant is can be accessed by the URL.
   """
-  url: Boolean
+  url: Boolean @public
 
   """
   This option enables the automatic update of product gallery images on the product page when a variant is selected,
   provided that the gallery images for the selected variant differ from the currently displayed images.
   """
-  gallery: Boolean
+  gallery: Boolean @public
 
   """
   Use the name, description, short description and meta data from the configured variant
   """
-  content: Boolean
+  content: Boolean @public
 }
 
 extend input GraphCommerceConfig {
@@ -27,7 +27,7 @@ extend input GraphCommerceConfig {
 
   Enabling options here will allow switching of those variants.
   """
-  configurableVariantValues: MagentoConfigurableVariantValues = { url: true, content: true } @public
+  configurableVariantValues: MagentoConfigurableVariantValues = { url: true, content: true }
 
   """
   If a simple product is part of a Configurable product page, should the simple product be

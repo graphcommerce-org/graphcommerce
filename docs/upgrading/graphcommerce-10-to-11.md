@@ -99,7 +99,18 @@ Export myApiSecret doesn't exist in target module
 The export myApiSecret was not found in module [project]/node_modules/@graphcommerce/next-config/dist/generated/configValues/browser/index.js [client] (ecmascript).
 ```
 
-`useStorefrontConfig().myServerField` in browser code throws in development.
+Put `@public` on fields with a scalar or enum type, also in nested inputs:
+
+```diff
+ input MyIntegrationConfig {
+-  apiUrl: String
++  apiUrl: String @public
+   apiSecret: String
+ }
+```
+
+A server-only field of an object, such as `useStorefrontConfig().myServerField`,
+throws in browser code in development.
 
 Add `@public` to the field, or read the field in `getStaticProps`, an API route
 or other server code. Keep secrets, such as API keys and webhook secrets,

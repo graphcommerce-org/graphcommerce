@@ -377,7 +377,9 @@ extend input GraphCommerceStorefrontConfig {
 A field without `@public` is server-only. The `browser` export condition of
 `@graphcommerce/next-config/config` resolves to a file with only the `@public`
 fields, so Turbopack stops the build on a browser import of a server-only field. Add `@public` only to fields that browser code
-reads, and never to secrets.
+reads, and never to secrets. Put `@public` on scalar and enum fields, also in
+nested inputs. A server-only field of an object throws in the browser in
+development.
 
 You can also extend existing enums from other packages:
 

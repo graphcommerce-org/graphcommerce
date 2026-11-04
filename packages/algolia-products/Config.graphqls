@@ -17,7 +17,7 @@ input GraphCommerceAlgoliaConfig {
   """
   Stores > Configuration > Algolia Search > Credentials and Basic Setup > Index name prefix
   """
-  indexNamePrefix: String!
+  indexNamePrefix: String! @public
 
   """
   By default the catalog will not use algolia. Set this to true to enable Algolia for the catalog.
@@ -48,5 +48,5 @@ extend input GraphCommerceConfig {
 
   Stores > Configuration > Algolia Search > Credentials and Basic Setup > Application ID
   """
-  algolia: GraphCommerceAlgoliaConfig! @public
+  algolia: GraphCommerceAlgoliaConfig!
 }

@@ -8,11 +8,11 @@ extend input GraphCommercePermissions {
   """
   Changes the availability of the add to cart buttons and the cart page to either customer only or completely disables it.
   """
-  cart: CartPermissions
+  cart: CartPermissions @public
   """
   Changes the availability of the checkout to either customer only or completely disables it.
   """
-  checkout: CartPermissions
+  checkout: CartPermissions @public
 }
 
 extend input GraphCommerceStorefrontConfig {
@@ -35,5 +35,5 @@ extend input GraphCommerceDebugConfig {
   """
   Enable debugging interface to debug sessions
   """
-  cart: Boolean
+  cart: Boolean @public
 }
