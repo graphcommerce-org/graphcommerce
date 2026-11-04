@@ -19,13 +19,15 @@ function findParentPath(directory) {
   log(`Looking for parent packages starting from: ${currentDir}`);
   while (currentDir !== path.parse(currentDir).root) {
     const packageJson = findPackageJson(currentDir);
-    if (packageJson) {
-      log(`Found package.json in: ${currentDir}`);
-      log(`Package name: ${packageJson.name}`);
-      if (packageJson.name.startsWith("@graphcommerce/")) {
+    if (packageJson?.name?.startsWith("@graphcommerce/")) {
+      log(`Found package ${packageJson.name} in: ${currentDir}`);
+      const workspaces = Array.isArray(packageJson.workspaces) ? packageJson.workspaces : packageJson.workspaces?.packages ?? [];
+      const relative = path.relative(currentDir, directory);
+      if (workspaces.some((workspace) => path.matchesGlob(relative, workspace))) {
         log(`Found parent @graphcommerce package at: ${currentDir}`);
         return currentDir;
       }
+      log(`${relative} is not a workspace of ${packageJson.name}`);
     }
     currentDir = path.dirname(currentDir);
   }
