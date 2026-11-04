@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'fs/promises'
 import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-products/scripts/base-schema-filter.mjs'
 import conf from '@graphcommerce/prettier-config-pwa'
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 

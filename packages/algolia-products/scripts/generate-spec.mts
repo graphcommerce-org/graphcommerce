@@ -1,6 +1,6 @@
 import { writeFile } from 'fs/promises'
 import conf from '@graphcommerce/prettier-config-pwa'
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import type { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 import { algoliaSchemaBaseFilter } from './base-schema-filter.mjs'

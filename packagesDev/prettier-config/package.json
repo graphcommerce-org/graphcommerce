@@ -5,7 +5,7 @@
   "version": "11.0.0-canary.56",
   "dependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "prettier": "^3.9.10",
+    "prettier": "3.5.3",
     "prettier-plugin-jsdoc": "^1.8.1"
   },
   "exports": {

@@ -29,7 +29,7 @@
     "@graphcommerce/next-config": "^11.0.0-canary.56",
     "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
-    "dotenv": "^16.1.4"
+    "dotenv": "^18"
   },
   "devDependencies": {
     "pkgroll": "^2.29.0",

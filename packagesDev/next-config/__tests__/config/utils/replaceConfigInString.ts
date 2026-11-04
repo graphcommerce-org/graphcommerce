@@ -1,4 +1,4 @@
-import yaml from 'js-yaml'
+import * as yaml from 'js-yaml'
 import { demoConfig } from '../../../src/config/demoConfig'
 import { replaceConfigInString } from '../../../src/config/utils/replaceConfigInString'
 
