@@ -17,7 +17,7 @@
     "prepack": "tsc"
   },
   "dependencies": {
-    "@ardatan/relay-compiler": "12.3.0",
+    "@ardatan/relay-compiler": "13.0.2",
     "@graphql-codegen/plugin-helpers": "6.3.0",
     "graphql": "^16.14.2"
   },
