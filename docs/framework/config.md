@@ -55,8 +55,9 @@ code that runs in the browser cannot read it.
 
 - Turbopack stops the build when browser code imports a server-only field from
   `@graphcommerce/next-config/config`.
-- A server-only field of an object, such as `useStorefrontConfig().myServerField` or
-  `algolia.searchOnlyApiKey`, throws in development and returns `undefined` in production.
+- A server-only field of a storefront, such as `useStorefrontConfig().myServerField`, throws in
+  development and returns `undefined` in production.
+- A server-only field of a section, such as `algolia.searchOnlyApiKey`, is `undefined`.
 
 Put `@public` on fields with a scalar or enum type. In the browser, a field with an input type, such
 as `debug: GraphCommerceDebugConfig`, contains only the `@public` fields of that input.

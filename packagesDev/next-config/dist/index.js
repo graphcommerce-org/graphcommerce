@@ -1464,11 +1464,11 @@ async function generateConfigValues() {
   const config = loadConfig(process.cwd());
   const srcDir = `${resolved.root}/src/generated/configValues`;
   const distDir = `${resolved.root}/dist/generated/configValues`;
-  const browserDir = `${distDir}/browser`;
+  const publicOnlyDir = `${distDir}/publicOnly`;
   rmSync(srcDir, { recursive: true, force: true });
   rmSync(distDir, { recursive: true, force: true });
   mkdirSync(srcDir, { recursive: true });
-  mkdirSync(browserDir, { recursive: true });
+  mkdirSync(publicOnlyDir, { recursive: true });
   const inputs = /* @__PURE__ */ new Map();
   for (const location of configSchemaLocations.filter((l) => existsSync(l))) {
     for (const def of parse(readFileSync(location, "utf-8")).definitions) {
@@ -1532,23 +1532,35 @@ ${getters.join(",\n")}
     });
     writeFileSync(path.join(distDir, `${name}.js`), code);
   };
-  const serverExports = [];
-  const browserExports = [
-    `const serverOnly = (valuePath, hint) => ({
+  const writePublicOnlyModule = (name, serverOnlyNames, exports) => {
+    const lines = [
+      header,
+      "// Browser build of @graphcommerce/next-config/config: only fields with @public in Config.graphqls.",
+      "// Add @public to a field to read it in the browser. Keep secrets server-only.",
+      ...serverOnlyNames.length ? [`// Server-only: ${serverOnlyNames.join(", ")}`] : []
+    ];
+    if (exports.some((e) => e.includes("serverOnly("))) {
+      lines.push(`const serverOnly = (valuePath, hint) => ({
   get() {
     if (process.env.NODE_ENV !== 'production')
       throw Error(\`\${valuePath} is server-only. Read it on the server or add @public to \${hint} in Config.graphqls.\`)
   },
-})`
-  ];
+})`);
+    }
+    writeFileSync(path.join(publicOnlyDir, `${name}.js`), [...lines, ...exports].join("\n"));
+  };
+  const serverExports = [];
+  const browserExports = [];
+  const serverOnlyKeys = [];
   let sectionCount = 0;
   for (const field of inputs.get("GraphCommerceConfig") ?? []) {
     const key = field.name.value;
     const value = config[key];
     const fieldType = namedType(field.type);
+    const sectionFields = inputs.get(fieldType) ?? [];
     if (isSection(value)) {
       sectionCount++;
-      const sectionExports = (inputs.get(fieldType) ?? []).map(
+      const sectionExports = sectionFields.map(
         ({ name }) => `export const ${name.value}: Get<GraphCommerceConfig, '${key}.${name.value}'> = ${literal(value[name.value])}`
       );
       await writeServerModule(key, [header, typeImports, ...sectionExports].join("\n\n"));
@@ -1558,11 +1570,29 @@ ${getters.join(",\n")}
         `export const ${key}: Get<GraphCommerceConfig, '${key}'> = ${literal(value)}`
       );
     }
-    if (inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))
+    if (!(inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))) {
+      serverOnlyKeys.push(key);
+    } else if (isSection(value)) {
+      const sectionServerOnly = [];
+      const sectionPublic = [];
+      for (const sectionField of sectionFields) {
+        const name = sectionField.name.value;
+        const nestedType = namedType(sectionField.type);
+        if (!(inputs.has(nestedType) ? hasPublic(nestedType) : isPublic(sectionField)))
+          sectionServerOnly.push(name);
+        else
+          sectionPublic.push(
+            `export const ${name} = ${browserLiteral(value[name], nestedType, `${key}.${name}`)}`
+          );
+      }
+      writePublicOnlyModule(key, sectionServerOnly, sectionPublic);
+      browserExports.push(`export * as ${key} from './${key}.js'`);
+    } else {
       browserExports.push(`export const ${key} = ${browserLiteral(value, fieldType, key)}`);
+    }
   }
   await writeServerModule("index", [header, typeImports, ...serverExports].join("\n"));
-  writeFileSync(path.join(browserDir, "index.js"), [header, ...browserExports].join("\n"));
+  writePublicOnlyModule("index", serverOnlyKeys, browserExports);
   console.log(`\u2705 Generated config values in ${srcDir} and ${distDir}`);
   console.log(
     `\u{1F4C1} ${sectionCount} sections, ${serverExports.length} server exports, ${browserExports.length} browser exports`

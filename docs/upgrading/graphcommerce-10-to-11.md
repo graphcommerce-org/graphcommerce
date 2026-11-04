@@ -75,46 +75,70 @@ Anywhere that pins a Node version, move from 20 to 22 or 24:
 
 ## Step 4: Add `@public` to configuration fields that browser code reads
 
-Codegen writes a configuration field to the browser bundle only when its
-definition has `@public`. The fields of GraphCommerce packages have `@public`
-already. In `graphql/Config.graphqls` of your project, add `@public` to each
-field that browser code reads:
+1. In `graphql/Config.graphqls`, add `@public` to each scalar or enum field that
+   browser code reads, also in nested inputs. Keep secrets without `@public`.
 
-```diff
- extend input GraphCommerceConfig {
--  myFeatureEnabled: Boolean
-+  myFeatureEnabled: Boolean @public
-   myApiSecret: String
- }
- extend input GraphCommerceStorefrontConfig {
--  myStoreLabel: String
-+  myStoreLabel: String @public
- }
-```
+   ```diff
+    extend input GraphCommerceConfig {
+   -  myFeatureEnabled: Boolean
+   +  myFeatureEnabled: Boolean @public
+      myApiSecret: String
+      myIntegration: MyIntegrationConfig
+    }
+    input MyIntegrationConfig {
+   -  apiUrl: String
+   +  apiUrl: String @public
+      apiSecret: String
+    }
+    extend input GraphCommerceStorefrontConfig {
+   -  myStoreLabel: String
+   +  myStoreLabel: String @public
+    }
+   ```
 
-Turbopack stops the build for each browser import of a field without `@public`:
+2. Run codegen and build:
 
-```
-Export myApiSecret doesn't exist in target module
-The export myApiSecret was not found in module [project]/node_modules/@graphcommerce/next-config/dist/generated/configValues/browser/index.js [client] (ecmascript).
-```
+   ```bash
+   yarn codegen
+   yarn build
+   ```
 
-Put `@public` on fields with a scalar or enum type, also in nested inputs:
+3. For each error like this one, add `@public` to the field, or move the read to
+   server code:
 
-```diff
- input MyIntegrationConfig {
--  apiUrl: String
-+  apiUrl: String @public
-   apiSecret: String
- }
-```
+   ```
+   Export myApiSecret doesn't exist in target module
+   The export myApiSecret was not found in module [project]/node_modules/@graphcommerce/next-config/dist/generated/configValues/publicOnly/index.js [client] (ecmascript).
+   ```
 
-A server-only field of an object, such as `useStorefrontConfig().myServerField`,
-throws in browser code in development.
+   The error names the file that imports the field. When that file is a shared
+   module, move the function that reads the field to a module that only server
+   code imports:
 
-Add `@public` to the field, or read the field in `getStaticProps`, an API route
-or other server code. Keep secrets, such as API keys and webhook secrets,
-without `@public`.
+   ```ts
+   // lib/myApi.server.ts
+   import { myApiSecret } from '@graphcommerce/next-config/config'
+
+   export const fetchFromMyApi = (path: string) =>
+     fetch(`https://api.example.com${path}`, {
+       headers: { Authorization: `Bearer ${myApiSecret}` },
+     })
+   ```
+
+4. Run `yarn dev` and open the pages that use your fields. A server-only field
+   of a section, such as `myIntegration.apiSecret`, is `undefined` in browser
+   code. A server-only field of a storefront, such as
+   `useStorefrontConfig().myServerField`, throws in browser code:
+
+   ```
+   storefront[].myServerField is server-only. Read it on the server or add @public to GraphCommerceStorefrontConfig.myServerField in Config.graphqls.
+   ```
+
+These fields of GraphCommerce packages are server-only: `previewSecret`,
+`hygraphSecret`, `hygraphWriteAccessToken`, `hygraphManagementApi`,
+`hygraphProjectId`, `hygraphEndpoint`, `magentoEndpoint`, `graphqlMeshEditMode`,
+`limitSsg`, `robotsAllow`, `googlePlaystore`, `algoliaHygraphIndex` and all
+fields of `algolia` except `indexNamePrefix`.
 
 ## Step 5: Reinstall
 

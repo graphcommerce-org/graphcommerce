@@ -32,9 +32,9 @@ const isSection = (value: unknown): value is Record<string, unknown> =>
 
 /**
  * Writes `src/generated/configValues` and `dist/generated/configValues` with all values, for the
- * server. Writes `dist/generated/configValues/browser` with only the `@public` values, for the
- * `browser` export condition. A server-only field of an object is a getter that throws in
- * development.
+ * server. Writes `dist/generated/configValues/publicOnly` with only the `@public` values, for the
+ * `browser` export condition, with a file per section for tree-shaking. A server-only field of an
+ * object in a list, such as `storefront[]`, is a getter that throws in development.
  */
 export async function generateConfigValues() {
   const resolved = resolve('@graphcommerce/next-config')
@@ -43,12 +43,12 @@ export async function generateConfigValues() {
   const config = loadConfig(process.cwd()) as Record<string, unknown>
   const srcDir = `${resolved.root}/src/generated/configValues`
   const distDir = `${resolved.root}/dist/generated/configValues`
-  const browserDir = `${distDir}/browser`
+  const publicOnlyDir = `${distDir}/publicOnly`
 
   rmSync(srcDir, { recursive: true, force: true })
   rmSync(distDir, { recursive: true, force: true })
   mkdirSync(srcDir, { recursive: true })
-  mkdirSync(browserDir, { recursive: true })
+  mkdirSync(publicOnlyDir, { recursive: true })
 
   const inputs = new Map<string, InputValueDefinitionNode[]>()
   for (const location of configSchemaLocations.filter((l) => existsSync(l))) {
@@ -123,25 +123,38 @@ export async function generateConfigValues() {
     writeFileSync(path.join(distDir, `${name}.js`), code)
   }
 
-  const serverExports: string[] = []
-  const browserExports: string[] = [
-    `const serverOnly = (valuePath, hint) => ({
+  const writePublicOnlyModule = (name: string, serverOnlyNames: string[], exports: string[]) => {
+    const lines = [
+      header,
+      '// Browser build of @graphcommerce/next-config/config: only fields with @public in Config.graphqls.',
+      '// Add @public to a field to read it in the browser. Keep secrets server-only.',
+      ...(serverOnlyNames.length ? [`// Server-only: ${serverOnlyNames.join(', ')}`] : []),
+    ]
+    if (exports.some((e) => e.includes('serverOnly('))) {
+      lines.push(`const serverOnly = (valuePath, hint) => ({
   get() {
     if (process.env.NODE_ENV !== 'production')
       throw Error(\`\${valuePath} is server-only. Read it on the server or add @public to \${hint} in Config.graphqls.\`)
   },
-})`,
-  ]
+})`)
+    }
+    writeFileSync(path.join(publicOnlyDir, `${name}.js`), [...lines, ...exports].join('\n'))
+  }
+
+  const serverExports: string[] = []
+  const browserExports: string[] = []
+  const serverOnlyKeys: string[] = []
   let sectionCount = 0
 
   for (const field of inputs.get('GraphCommerceConfig') ?? []) {
     const key = field.name.value
     const value = config[key]
     const fieldType = namedType(field.type)
+    const sectionFields = inputs.get(fieldType) ?? []
 
     if (isSection(value)) {
       sectionCount++
-      const sectionExports = (inputs.get(fieldType) ?? []).map(
+      const sectionExports = sectionFields.map(
         ({ name }) =>
           `export const ${name.value}: Get<GraphCommerceConfig, '${key}.${name.value}'> = ${literal(value[name.value])}`,
       )
@@ -153,12 +166,30 @@ export async function generateConfigValues() {
       )
     }
 
-    if (inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))
+    if (!(inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))) {
+      serverOnlyKeys.push(key)
+    } else if (isSection(value)) {
+      const sectionServerOnly: string[] = []
+      const sectionPublic: string[] = []
+      for (const sectionField of sectionFields) {
+        const name = sectionField.name.value
+        const nestedType = namedType(sectionField.type)
+        if (!(inputs.has(nestedType) ? hasPublic(nestedType) : isPublic(sectionField)))
+          sectionServerOnly.push(name)
+        else
+          sectionPublic.push(
+            `export const ${name} = ${browserLiteral(value[name], nestedType, `${key}.${name}`)}`,
+          )
+      }
+      writePublicOnlyModule(key, sectionServerOnly, sectionPublic)
+      browserExports.push(`export * as ${key} from './${key}.js'`)
+    } else {
       browserExports.push(`export const ${key} = ${browserLiteral(value, fieldType, key)}`)
+    }
   }
 
   await writeServerModule('index', [header, typeImports, ...serverExports].join('\n'))
-  writeFileSync(path.join(browserDir, 'index.js'), [header, ...browserExports].join('\n'))
+  writePublicOnlyModule('index', serverOnlyKeys, browserExports)
 
   console.log(`✅ Generated config values in ${srcDir} and ${distDir}`)
   console.log(

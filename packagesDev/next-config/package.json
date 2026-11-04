@@ -16,7 +16,7 @@
     "./config": {
       "types": "./src/generated/configValues/index.ts",
       "edge-light": "./dist/generated/configValues/index.js",
-      "browser": "./dist/generated/configValues/browser/index.js",
+      "browser": "./dist/generated/configValues/publicOnly/index.js",
       "default": "./dist/generated/configValues/index.js"
     },
     "./loadConfig": {
