@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0-canary.49
+
+### Patch Changes
+
+- [#2701](https://github.com/graphcommerce-org/graphcommerce/pull/2701) [`561f62d`](https://github.com/graphcommerce-org/graphcommerce/commit/561f62dd0072d3080dc18a01fa5fda66a96af410) - A page that opens with `#gallery`, for example after a reload of the zoomed gallery or after Back from another site, renders without zoom, the same as the server render, and removes `#gallery` without a "Cancel rendering route" error. Before, the gallery rendered zoomed in the browser and closed again, so the image moved on page load. ([@DivaniNL](https://github.com/DivaniNL))
+
+- [#2701](https://github.com/graphcommerce-org/graphcommerce/pull/2701) [`7df196c`](https://github.com/graphcommerce-org/graphcommerce/commit/7df196c9115966de4b794c55d9d21f2e1dad007c) - The zoomed SidebarGallery fills the full screen height. It moves up by its measured distance to the top of the page instead of a fixed margin based on the header height. With the fixed margin, the zoomed gallery on desktop started 11px below the top of the screen and the bottom 11px was cut off. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.48
 
 ### Minor Changes

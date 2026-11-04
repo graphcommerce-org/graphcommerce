@@ -164,6 +164,8 @@
     "schema-version-additions-nullable",
     "scroller-on-mouse-down",
     "server-customer-cache",
+    "sidebar-gallery-hash-cleanup",
+    "sidebar-gallery-zoom-full-height",
     "signup-form-fieldsets-render-props",
     "some-kings-act",
     "stable-cart-hook-identities",

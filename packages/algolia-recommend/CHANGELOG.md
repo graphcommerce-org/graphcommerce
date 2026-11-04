@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-recommend
 
+## 11.0.0-canary.49
+
 ## 11.0.0-canary.48
 
 ## 11.0.0-canary.47
