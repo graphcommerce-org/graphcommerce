@@ -5,7 +5,7 @@
   "version": "11.0.0-canary.56",
   "dependencies": {
     "@whatwg-node/fetch": "^0.10.13",
-    "fetch-retry": "^5.0.6",
+    "fetch-retry": "^6.0.0",
     "graphql": "^16.14.2",
     "long": "^5.3.2",
     "tslib": "^2.9.1",
