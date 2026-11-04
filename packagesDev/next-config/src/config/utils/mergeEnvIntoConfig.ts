@@ -1,19 +1,19 @@
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal'
 import chalk from 'chalk'
 import lodash from 'lodash'
-import type { ZodAny, ZodRawShape, ZodTypeAny } from 'zod'
+import type { core } from 'zod'
 import {
   z,
   ZodArray,
   ZodBoolean,
   ZodDefault,
-  ZodEffects,
   ZodEnum,
   ZodLazy,
   ZodNullable,
   ZodNumber,
   ZodObject,
   ZodOptional,
+  ZodPipe,
   ZodString,
 } from 'zod'
 import diff from './diff'
@@ -42,30 +42,18 @@ function isJSON(str: string | undefined): boolean {
   return true
 }
 
-export type ZodNode =
-  | ZodNullable<ZodTypeAny>
-  | ZodOptional<ZodTypeAny>
-  | ZodEffects<ZodTypeAny>
-  | ZodObject<ZodRawShape>
-  | ZodArray<ZodTypeAny>
-  | ZodLazy<ZodTypeAny>
-  | ZodString
-  | ZodNumber
-  | ZodBoolean
-  | ZodAny
-
-export function configToEnvSchema(schema: ZodNode) {
-  const envSchema: ZodRawShape = {}
+export function configToEnvSchema(schema: core.$ZodType) {
+  const envSchema: Record<string, core.$ZodType> = {}
   const envToDot: Record<string, string> = {}
 
-  function walk(incomming: ZodNode, path: string[] = []) {
+  function walk(incomming: core.$ZodType, path: string[] = []) {
     let node = incomming
 
     // Unwrap wrapper types in a loop to handle chained wrappers (e.g., ZodLazy containing ZodOptional)
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      if (node instanceof ZodEffects) {
-        node = node.innerType()
+      if (node instanceof ZodPipe) {
+        node = node.in
         continue
       }
       if (node instanceof ZodOptional) {
@@ -77,11 +65,11 @@ export function configToEnvSchema(schema: ZodNode) {
         continue
       }
       if (node instanceof ZodDefault) {
-        node = node.removeDefault()
+        node = node.unwrap()
         continue
       }
       if (node instanceof ZodLazy) {
-        node = node.schema
+        node = node.unwrap()
         continue
       }
       break
@@ -92,16 +80,12 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: 'Invalid JSON' })
+          .refine(isJSON, { error: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
 
-      const typeNode = node as unknown as ZodObject<ZodRawShape>
-
-      Object.keys(typeNode.shape).forEach((key) => {
-        walk(typeNode.shape[key], [...path, key])
-      })
+      Object.entries(node.shape).forEach(([key, value]) => walk(value, [...path, key]))
 
       return
     }
@@ -112,13 +96,13 @@ export function configToEnvSchema(schema: ZodNode) {
         envSchema[toEnvStr(path)] = z
           .string()
           .optional()
-          .refine(isJSON, { message: 'Invalid JSON' })
+          .refine(isJSON, { error: 'Invalid JSON' })
           .transform((val) => (val ? JSON.parse(val) : val))
         envToDot[toEnvStr(path)] = dotNotation(path)
       }
 
       arr.forEach((key) => {
-        walk((node as unknown as ZodArray<ZodNode>).element, [...path, String(key)])
+        walk(node.element, [...path, String(key)])
       })
 
       return
@@ -173,7 +157,7 @@ const filterEnv = (env: Record<string, string | undefined>) =>
   Object.fromEntries(Object.entries(env).filter(([key]) => key.startsWith('GC_')))
 
 export function mergeEnvIntoConfig(
-  schema: ZodNode,
+  schema: core.$ZodType,
   config: Record<string, unknown>,
   env: Record<string, string | undefined>,
 ) {
@@ -186,7 +170,7 @@ export function mergeEnvIntoConfig(
   const applyResult: ApplyResult = []
 
   if (!result.success) {
-    Object.entries(result.error.flatten().fieldErrors).forEach(([envVar, error]) => {
+    Object.entries(z.flattenError(result.error).fieldErrors).forEach(([envVar, error]) => {
       const dotVar = envToDot[envVar]
       const envValue = filteredEnv[envVar]
       applyResult.push({ envVar, envValue, dotVar, error })
