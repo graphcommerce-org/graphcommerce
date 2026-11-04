@@ -151,7 +151,7 @@
     "prettier": "3.5.3",
     "storyblok": "^4.26.0",
     "type-fest": "^5.10.0",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "resolutions": {
     "prettier": "3.5.3"

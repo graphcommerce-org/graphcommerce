@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@types/relay-compiler": "8.0.4",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.56",

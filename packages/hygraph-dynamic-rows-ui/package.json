@@ -48,7 +48,7 @@
     "@types/react-is": "^19.3.0",
     "eslint": "^9.39.5",
     "prettier": "3.5.3",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "exports": {
     ".": "./index.ts"
