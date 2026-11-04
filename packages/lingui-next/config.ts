@@ -24,7 +24,8 @@ export default function linguiNextConfig(config: LinguiConfig): LinguiConfig {
           '<rootDir>/../../packages/**/*.tsx',
           '<rootDir>/../../packages/**/*.ts',
         ],
-        exclude: ['**/node_modules/!(@graphcommerce)/**', '**/*.d.ts'],
+        // Lingui matches relative patterns only inside the working directory, `/**` also matches `../../packages`
+        exclude: ['/**/node_modules/!(@graphcommerce)/**', '/**/*.d.ts'],
       },
     ],
     sourceLocale: 'en',

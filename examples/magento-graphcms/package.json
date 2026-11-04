@@ -8,7 +8,7 @@
   "packageManager": "yarn@4.5.3",
   "type": "module",
   "engines": {
-    "node": ">=22.0.0 <27.0.0"
+    "node": ">=22.19.0 <27.0.0"
   },
   "scripts": {
     "dev": "concurrently -k -n codegen,next 'gc-gql-codegen -w' 'next dev --turbopack' -c 'magenta,cyan'",
@@ -100,12 +100,11 @@
     "@graphql-mesh/transform-type-merging": "0.104.18",
     "@graphql-mesh/types": "0.104.18",
     "@graphql-mesh/utils": "0.104.18",
-    "@lingui/conf": "5.9.5",
-    "@lingui/core": "5.9.5",
-    "@lingui/format-po": "5.9.5",
-    "@lingui/loader": "5.9.5",
-    "@lingui/macro": "5.9.5",
-    "@lingui/react": "5.9.5",
+    "@lingui/conf": "6.12.0",
+    "@lingui/core": "6.12.0",
+    "@lingui/format-po": "6.12.0",
+    "@lingui/loader": "6.12.0",
+    "@lingui/react": "6.12.0",
     "@lingui/swc-plugin": "6.7.1",
     "@mui/lab": "7.0.1-beta.25",
     "@mui/material": "7.3.11",
@@ -134,7 +133,7 @@
     "@graphcommerce/eslint-config-pwa": "11.0.0-canary.56",
     "@graphcommerce/prettier-config-pwa": "11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "11.0.0-canary.56",
-    "@lingui/cli": "5.9.5",
+    "@lingui/cli": "6.12.0",
     "@playwright/test": "1.64.1",
     "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",

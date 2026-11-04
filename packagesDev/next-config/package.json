@@ -66,7 +66,6 @@
     "@apollo/client": "*",
     "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@lingui/loader": "*",
-    "@lingui/macro": "*",
     "@lingui/react": "*",
     "dotenv": "^18",
     "next": "*",

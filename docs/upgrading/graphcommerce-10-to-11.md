@@ -15,7 +15,7 @@ Configuration fields are server-only, unless their definition has `@public`.
 | Node.js 24 (Krypton) | Active LTS since Oct 2025 — **recommended**           |
 | Node.js 26           | Current since May 2026 — supported                    |
 
-Pick whichever LTS you prefer; `>=22.0.0 <27.0.0` is the accepted range.
+Pick whichever LTS you prefer; `>=22.19.0 <27.0.0` is the accepted range.
 
 With `nvm`:
 
@@ -38,7 +38,7 @@ it from the old GC 10 value to the GC 11 range:
 ```diff
   "engines": {
 -   "node": ">=20 <24.0.0"
-+   "node": ">=22.0.0 <27.0.0"
++   "node": ">=22.19.0 <27.0.0"
   }
 ```
 
@@ -147,7 +147,25 @@ grep -rlE "from ['\"]framer-motion['\"]" --include='*.ts' --include='*.tsx' --ex
   | xargs perl -pi -e "s/from (['\"])framer-motion(['\"])/from \1motion\/react\2/g"
 ```
 
-## Step 6: Reinstall
+## Step 6: Import the Lingui macros from `@lingui/react/macro` and `@lingui/core/macro`
+
+Lingui 6 has no `@lingui/macro` package. Import `Trans`, `Plural`, `Select`,
+`SelectOrdinal` and `useLingui` from `@lingui/react/macro`, and `t`, `msg`,
+`plural`, `select` and `defineMessage` from `@lingui/core/macro`:
+
+```diff
+-import { Trans, t } from '@lingui/macro'
++import { t } from '@lingui/core/macro'
++import { Trans } from '@lingui/react/macro'
+```
+
+Find the files to change:
+
+```bash
+grep -rl "@lingui/macro" --include='*.ts' --include='*.tsx' --exclude-dir=node_modules .
+```
+
+## Step 7: Reinstall
 
 After upgrading Node:
 
