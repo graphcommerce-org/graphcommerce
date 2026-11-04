@@ -9,7 +9,7 @@ import {
   Stepper,
 } from '@graphcommerce/next-ui'
 import { Container, Divider, List, ListItemButton } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import type { LayoutMinimalProps } from '../../../components'

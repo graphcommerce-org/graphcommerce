@@ -1,8 +1,8 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
-import type { PanHandlers } from 'framer-motion'
-import { m } from 'framer-motion'
+import type { MotionNodePanHandlers } from 'motion/react'
+import { m } from 'motion/react'
 import React, { useRef } from 'react'
 
 const MotionBox = styled(m.div)({})
@@ -16,7 +16,7 @@ export type ThumbnailContainerProps = {
 export function ThumbnailContainer(props: ThumbnailContainerProps) {
   const { children, sx, layoutDependency } = props
   const containerRef = useRef<HTMLDivElement>(null)
-  const onPan: PanHandlers['onPan'] = (_, info) => {
+  const onPan: MotionNodePanHandlers['onPan'] = (_, info) => {
     containerRef.current?.scrollBy({ left: -info.delta.x })
   }
 

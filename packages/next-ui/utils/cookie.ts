@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { SerializeOptions } from 'cookie'
 import { parseCookie, stringifySetCookie } from 'cookie'
-import { motionValue } from 'framer-motion'
+import { motionValue } from 'motion/react'
 import { useSyncExternalStore } from 'react'
 import { useIsSSR } from '../hooks'
 

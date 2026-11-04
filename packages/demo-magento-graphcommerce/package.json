@@ -30,7 +30,7 @@
     "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
     "@mui/material": "^7.0.0",
-    "framer-motion": "^11.0.0",
+    "motion": "^14.0.0",
     "next": "*",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

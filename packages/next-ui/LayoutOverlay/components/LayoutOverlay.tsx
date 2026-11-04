@@ -2,7 +2,7 @@ import { useGo, usePageContext, useScrollOffset } from '@graphcommerce/framer-ne
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { useEventCallback } from '@mui/material'
-import { usePresence } from 'framer-motion'
+import { usePresence } from 'motion/react'
 import type { SetOptional } from 'type-fest'
 import type { LayoutOverlayBaseProps } from '../../Overlay/components/OverlayBase'
 import { OverlayBase } from '../../Overlay/components/OverlayBase'

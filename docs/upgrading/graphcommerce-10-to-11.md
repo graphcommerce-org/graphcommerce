@@ -137,7 +137,17 @@ Anywhere that pins a Node version, move from 20 to 22 or 24:
 Codegen lists the server-only fields at the top of each file in
 `node_modules/@graphcommerce/next-config/dist/generated/configValues/publicOnly`.
 
-## Step 5: Reinstall
+## Step 5: Import from `motion/react`
+
+GraphCommerce 11 animates with `motion`. Change the `framer-motion` imports in
+your own files:
+
+```bash
+grep -rlE "from ['\"]framer-motion['\"]" --include='*.ts' --include='*.tsx' --exclude-dir=node_modules . \
+  | xargs perl -pi -e "s/from (['\"])framer-motion(['\"])/from \1motion\/react\2/g"
+```
+
+## Step 6: Reinstall
 
 After upgrading Node:
 

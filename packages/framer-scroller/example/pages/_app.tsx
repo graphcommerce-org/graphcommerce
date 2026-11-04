@@ -1,7 +1,7 @@
 /// <reference types="@graphcommerce/next-ui/types" />
 import { responsiveVal } from '@graphcommerce/next-ui'
 import { createTheme, CssBaseline, StyledEngineProvider, ThemeProvider } from '@mui/material'
-import { domMax, LazyMotion } from 'framer-motion'
+import { domMax, LazyMotion } from 'motion/react'
 import type { AppPropsType } from 'next/dist/shared/lib/utils'
 import type { Router } from 'next/router'
 import React from 'react'

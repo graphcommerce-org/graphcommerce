@@ -1,5 +1,5 @@
-import type { MotionValue } from 'framer-motion'
-import { useMotionValue } from 'framer-motion'
+import type { MotionValue } from 'motion/react'
+import { useMotionValue } from 'motion/react'
 import type React from 'react'
 import { createContext, useContext } from 'react'
 

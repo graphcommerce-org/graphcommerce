@@ -10,7 +10,7 @@ import {
   LinkOrButton,
 } from '@graphcommerce/next-ui'
 import { Container, Link } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import type { GetStaticPathsResult, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'

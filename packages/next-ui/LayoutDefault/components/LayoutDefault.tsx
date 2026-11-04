@@ -3,7 +3,7 @@ import { dvh } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import { useScroll, useTransform } from 'framer-motion'
+import { useScroll, useTransform } from 'motion/react'
 import { Container } from '../../Container/Container'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'
 import { SkipLink } from '../../SkipLink/SkipLink'
@@ -11,8 +11,8 @@ import { extendableComponent } from '../../Styles'
 import { useFabSize } from '../../Theme'
 
 /**
- * @deprecated Import `LayoutDefaultProps` from your project's
- * `components/Layout/LayoutDefault.tsx` instead.
+ * @deprecated Import `LayoutDefaultProps` from your project's `components/Layout/LayoutDefault.tsx`
+ *   instead.
  */
 export type LayoutDefaultProps = {
   className?: string
@@ -36,8 +36,8 @@ const { withState } = extendableComponent<OwnerState, 'LayoutDefault', typeof pa
 )
 
 /**
- * @deprecated Import `LayoutDefault` from your project's
- * `components/Layout/LayoutDefault.tsx` instead.
+ * @deprecated Import `LayoutDefault` from your project's `components/Layout/LayoutDefault.tsx`
+ *   instead.
  */
 export function LayoutDefault(props: LayoutDefaultProps) {
   const {

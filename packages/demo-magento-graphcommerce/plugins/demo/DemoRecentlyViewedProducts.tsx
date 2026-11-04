@@ -14,7 +14,7 @@ import {
   SidebarSlider,
 } from '@graphcommerce/next-ui'
 import { Box, Typography } from '@mui/material'
-import { useInView } from 'framer-motion'
+import { useInView } from 'motion/react'
 import { useRef } from 'react'
 
 export const config: PluginConfig = {
