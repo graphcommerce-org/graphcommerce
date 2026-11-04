@@ -1,5 +1,17 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2695](https://github.com/graphcommerce-org/graphcommerce/pull/2695) [`3c8eeb1`](https://github.com/graphcommerce-org/graphcommerce/commit/3c8eeb1962a63969f8dfb07d5efc5c0ce1a41aa1) - `AddProductsToCartForm` keeps the `defaultValues` prop, so the product page selects the variant of the URL again. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2700](https://github.com/graphcommerce-org/graphcommerce/pull/2700) [`5a1be63`](https://github.com/graphcommerce-org/graphcommerce/commit/5a1be637b734f5e0536999ebb0fc8ddcb69d96fb) - The links of a product list leave out the query string of the request. For `/shoes?gclid=abc`, the links were `/shoes?gclid=abc/page/2`, and crawlers followed them without end. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

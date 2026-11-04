@@ -1,5 +1,11 @@
 # @graphcommerce/hygraph-cli
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2687](https://github.com/graphcommerce-org/graphcommerce/pull/2687) [`2dda175`](https://github.com/graphcommerce-org/graphcommerce/commit/2dda17515330c940670ca7ae2a952bce84959133) - The package has no root `index.ts`. That file was unused and not valid TypeScript (`export const {}`), so the extractor of Lingui stopped at it. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

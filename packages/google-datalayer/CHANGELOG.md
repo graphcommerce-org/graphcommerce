@@ -1,5 +1,13 @@
 # @graphcommerce/google-datalayer
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2691](https://github.com/graphcommerce-org/graphcommerce/pull/2691) [`23d1077`](https://github.com/graphcommerce-org/graphcommerce/commit/23d1077cc79abbd249e449590815fdf49debab33) - `useSendEvent` returns the same `sendEvent` function at each render. It returned a new function at each render, so a product page sent `view_item` once per render. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2692](https://github.com/graphcommerce-org/graphcommerce/pull/2692) [`4d88500`](https://github.com/graphcommerce-org/graphcommerce/commit/4d88500e6ea2a66ca636f0bfe0479ddd9f93acb5) - `view_cart` contains the items of the cart. The `CartStartCheckout` plugin read the items from its props instead of `props.cart`, and sent the event before the cart had loaded. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

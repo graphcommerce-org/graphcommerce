@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2696](https://github.com/graphcommerce-org/graphcommerce/pull/2696) [`af5e5cb`](https://github.com/graphcommerce-org/graphcommerce/commit/af5e5cb40c19e8d3ac78663ce38a95f9c570dda2) - The cache of `customAttributeMetadataV2` has one entry per store. The key had no store, so all stores got the labels of the store that requested the attribute first. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ### Patch Changes

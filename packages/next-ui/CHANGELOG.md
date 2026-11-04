@@ -1,5 +1,31 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2683](https://github.com/graphcommerce-org/graphcommerce/pull/2683) [`24612c2`](https://github.com/graphcommerce-org/graphcommerce/commit/24612c27c98dda60d7281fff85eb9437024a05f8) - `LazyHydrate` keeps the server-rendered HTML when its parent renders again before hydration. With a `height`, it renders its content when the browser is idle after a client-side navigation. Find-in-page finds the content below the fold in both cases. ([@paales](https://github.com/paales))
+
+- [#2698](https://github.com/graphcommerce-org/graphcommerce/pull/2698) [`1f56a16`](https://github.com/graphcommerce-org/graphcommerce/commit/1f56a160567101a996445d76ee7b06f3b0e1702b) - `PopperPanel` passes `popperProps` to the `Popper` and merges `popperProps.sx` with its own `sx`. It passed `popperProps` to `PopperPanelActions`, so the prop had no effect. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2706](https://github.com/graphcommerce-org/graphcommerce/pull/2706) [`2518b60`](https://github.com/graphcommerce-org/graphcommerce/commit/2518b60f50072683ef556c167b770efc29840de8) - RowLinks items show a visible keyboard focus outline that the scroller does not clip. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

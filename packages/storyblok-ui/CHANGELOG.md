@@ -1,5 +1,11 @@
 # @graphcommerce/storyblok-ui
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2674](https://github.com/graphcommerce-org/graphcommerce/pull/2674) [`19d6623`](https://github.com/graphcommerce-org/graphcommerce/commit/19d6623533e09a731ae27568a58394af085c745f) - Support Storyblok React 7 and its static rich text renderer. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

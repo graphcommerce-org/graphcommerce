@@ -1,5 +1,11 @@
 # @graphcommerce/google-playstore
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2677](https://github.com/graphcommerce-org/graphcommerce/pull/2677) [`bddbb24`](https://github.com/graphcommerce-org/graphcommerce/commit/bddbb24c06fc1ce20270bc39998c05f72ed776e7) - Write `sha256_cert_fingerprints` in `assetlinks.json` as an array. Google Digital Asset Links rejects the file when the field is a string, so Android does not verify the app links of the TWA. ([@wimvdputten](https://github.com/wimvdputten))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

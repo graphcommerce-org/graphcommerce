@@ -1,5 +1,11 @@
 # @graphcommerce/algolia-search
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2704](https://github.com/graphcommerce-org/graphcommerce/pull/2704) [`d55fa8b`](https://github.com/graphcommerce-org/graphcommerce/commit/d55fa8be7c3ab889a6d1889c31ef69482eaabcf7) - Return immediately after rejecting an invalid Hygraph webhook signature to prevent Algolia indexing operations from continuing. ([@hnsr](https://github.com/hnsr))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

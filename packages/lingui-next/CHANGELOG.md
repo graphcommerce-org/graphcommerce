@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2688](https://github.com/graphcommerce-org/graphcommerce/pull/2688) [`831e4fb`](https://github.com/graphcommerce-org/graphcommerce/commit/831e4fbd7127af72a54c59fd1611210ddbf793d4) - `linguiNextConfig` includes the `.ts` files of a project and excludes declaration files. Lingui 5.7 escapes the parentheses of `!(*.d).ts`, so `yarn lingui` extracted no message of a `.ts` file. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

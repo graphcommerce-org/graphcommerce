@@ -1,5 +1,24 @@
 # @graphcommerce/magento-compare
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2673](https://github.com/graphcommerce-org/graphcommerce/pull/2673) [`60b3b7e`](https://github.com/graphcommerce-org/graphcommerce/commit/60b3b7e1c5016848c621d6f0e12c8c4b87f13f1e) - Move `CurrentCartId.graphqls` from `magento-compare` to `magento-cart`, so the cart no longer needs the compare package to get its own schema.
+
+  `@graphcommerce/magento-compare` shipped `schema/CurrentCartId.graphqls`, but everything in that file belongs to the cart: `Query.currentCartId`, the `CurrentCartId` type and `RegisterCartIdInput`. `@graphcommerce/magento-cart` had no `schema/` directory at all, even though `magento-cart/hooks/CurrentCartId.graphql` queries `currentCartId @client`.
+
+  The mesh only reads `*/schema/**/*.graphqls`, so the cart only got its schema when `magento-compare` happened to be installed. Compare looks optional — all of its plugins are behind `ifConfig: 'compare'` — but removing it broke codegen, with an error pointing at a package you did not touch:
+
+  ```
+  ✖ File node_modules/@graphcommerce/magento-cart/hooks/CurrentCartId.graphql
+    caused error: Unable to find field "currentCartId" on type "Query"!
+  ```
+
+  The file now lives in `magento-cart/schema/`. `magento-compare/schema/` keeps `CurrentCompareUid.graphqls`, which really is its own. ([@alohas](https://github.com/alohas))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

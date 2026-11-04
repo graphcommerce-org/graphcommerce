@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2686](https://github.com/graphcommerce-org/graphcommerce/pull/2686) [`d40589e`](https://github.com/graphcommerce-org/graphcommerce/commit/d40589ee79bd51040845ce8894493de8ff3b1625) - `loadConfig` gives each worker thread its own temporary config file. Worker threads of one process have the same pid, so two threads that loaded the config at the same time wrote and removed the same file, and `yarn lingui` stopped responding. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

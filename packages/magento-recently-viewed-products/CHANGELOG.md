@@ -1,5 +1,11 @@
 # @graphcommerce/magento-recently-viewed-products
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

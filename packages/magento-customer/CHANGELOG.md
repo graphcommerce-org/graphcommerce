@@ -1,5 +1,31 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2689](https://github.com/graphcommerce-org/graphcommerce/pull/2689) [`8d74a4b`](https://github.com/graphcommerce-org/graphcommerce/commit/8d74a4b333eeff637dfaa1c10dc29a62961afe25) - `useAccountSignInUpForm` goes to the password step after an email submitted with Enter. React Hook Form 7.67 updates `isValid` of an `onBlur` form on blur only, so the form stayed in the email step. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2676](https://github.com/graphcommerce-org/graphcommerce/pull/2676) [`9496f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/9496f0bdcb751c5f7d774ebe961d86347a8beae8) - Cached null customer results remain complete for server queries. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2690](https://github.com/graphcommerce-org/graphcommerce/pull/2690) [`ad99107`](https://github.com/graphcommerce-org/graphcommerce/commit/ad9910732b4f0b251a7586f8d35e621c6cf0d607) - The `sendEvent` plugin reads `googleEventNames` when it sends an event. It loads before `google-datalayer` defines `googleEventNames`, so it threw a `TypeError` in development. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46
