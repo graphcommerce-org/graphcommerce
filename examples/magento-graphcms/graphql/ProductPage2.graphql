@@ -21,6 +21,7 @@ query ProductPage2(
   relatedUpsells: products(filter: { url_key: { eq: $urlKey } })
     @privateContext(context: $context) {
     items {
+      id
       uid
       ...UpsellProducts
       ...RelatedProducts
