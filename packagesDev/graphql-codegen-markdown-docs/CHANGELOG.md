@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.49
 
 ## 11.0.0-canary.48
