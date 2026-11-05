@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 11.0.0-canary.54
+
+### Patch Changes
+
+- [#2711](https://github.com/graphcommerce-org/graphcommerce/pull/2711) [`9148f28`](https://github.com/graphcommerce-org/graphcommerce/commit/9148f28b95917a99a05d663bef8658456a04c14d) - `useWishlistItems` takes `currentPage` and `pageSize` and returns `count`, the number of items in the wishlist. The wishlist button and the product page load up to 999 items. Magento returns 20 items by default, so with more than 20 items the button did not find the other products. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.53
 
 ## 11.0.0-canary.52

@@ -1,5 +1,7 @@
 # @graphcommerce/google-playstore
 
+## 11.0.0-canary.54
+
 ## 11.0.0-canary.53
 
 ## 11.0.0-canary.52
