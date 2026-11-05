@@ -1,5 +1,7 @@
 # @graphcommerce/algolia-search
 
+## 11.0.0-canary.51
+
 ## 11.0.0-canary.50
 
 ### Patch Changes
