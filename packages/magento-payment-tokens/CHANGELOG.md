@@ -1,5 +1,7 @@
 # @graphcommerce/magento-payment-tokens
 
+## 11.0.0-canary.53
+
 ## 11.0.0-canary.52
 
 ## 11.0.0-canary.51

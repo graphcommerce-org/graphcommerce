@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.53
+
+### Patch Changes
+
+- [#2710](https://github.com/graphcommerce-org/graphcommerce/pull/2710) [`59dd648`](https://github.com/graphcommerce-org/graphcommerce/commit/59dd648fadfd7e4598395dcd7fb6f6818fe10179) - `relatedUpsells` in `ProductPage2` requests the `id` of the product. `products` and `relatedUpsells` write to one cache field, and without `id` in both, the cache lost the related products and the reviews. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.52
 
 ## 11.0.0-canary.51
