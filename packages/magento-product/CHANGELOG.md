@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.51
+
+### Patch Changes
+
+- [#2709](https://github.com/graphcommerce-org/graphcommerce/pull/2709) [`9c2a218`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2a21881c446b78986865c6fec1a161824bf6f1) - `ProductFiltersPro` submits only when the filters differ from the current product list. The filter fields add empty filters to the form when they mount, so with `productFiltersLayout: 'SIDEBAR'` a direct load of `/shoes/page/2` or `/shoes?gclid=abc` went to `/shoes`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.50
 
 ### Patch Changes
