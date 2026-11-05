@@ -120,6 +120,10 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
 
   const submit = useEventCallback(
     form.handleSubmit(async (formValues) => {
+      // The filter fields add empty filters to the form when they mount.
+      if (productListLinkFromFilter(formValues) === productListLinkFromFilter(defaultValues))
+        return false
+
       const path = productListLinkFromFilter({ ...formValues, currentPage: 1 })
       if (router.asPath === path) return false
 
