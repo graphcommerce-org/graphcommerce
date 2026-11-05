@@ -87,6 +87,20 @@ export type DatalayerConfig = {
  * endpoint: '{graphCommerce.magentoEndpoint}'
  * ```
  *
+ * ## Public and server-only configuration
+ *
+ * A field with `@public` is available in the browser. A field without `@public` is server-only:
+ * code that runs in the browser cannot read it.
+ *
+ * - Turbopack stops the build when browser code imports a server-only field from
+ *   `@graphcommerce/next-config/config`.
+ * - A server-only field of a storefront, such as `useStorefrontConfig().myServerField`, throws in
+ *   development and returns `undefined` in production.
+ * - A server-only field of a section, such as `algolia.searchOnlyApiKey`, is `undefined`.
+ *
+ * Put `@public` on fields with a scalar or enum type. In the browser, a field with an input type,
+ * such as `debug: GraphCommerceDebugConfig`, contains only the `@public` fields of that input.
+ *
  * ## Environment variables to override configuration
  *
  * Configuration values can be overwriten by environment variables, with the following rules:
@@ -113,10 +127,11 @@ export type DatalayerConfig = {
  *
  * ```graphql
  * extend input GraphCommerceConfig {
- *   myConfig: String # or Boolean, or Int, or Float, make required with `!`
+ *   myConfig: String @public # or Boolean, or Int, or Float, make required with `!`
+ *   myApiSecret: String
  * }
  * extend input GraphCommerceStorefrontConfig {
- *   myField: Boolean
+ *   myField: Boolean @public
  * }
  * ```
  *
@@ -585,17 +600,17 @@ export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>
 
 export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
   return z.object({
-    breadcrumbs: z.boolean().default(false).nullish(),
+    breadcrumbs: z.boolean().nullish().default(false),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.default('ICON').nullish(),
-    configurableVariantForSimple: z.boolean().default(false).nullish(),
+    compareVariant: CompareVariantSchema.nullish().default('ICON'),
+    configurableVariantForSimple: z.boolean().nullish().default(false),
     configurableVariantValues: z.lazy(() => MagentoConfigurableVariantValuesSchema().nullish()),
-    containerSizingContent: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
-    containerSizingShell: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
-    crossSellsHideCartItems: z.boolean().default(false).nullish(),
-    crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    containerSizingContent: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
+    containerSizingShell: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
+    crossSellsHideCartItems: z.boolean().nullish().default(false),
+    crossSellsRedirectItems: z.boolean().nullish().default(false),
     customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
@@ -607,7 +622,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
-    graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    graphqlMeshEditMode: z.boolean().nullish().default(false),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
@@ -616,9 +631,9 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     magentoVersion: z.number(),
     permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.nullish().default('DEFAULT'),
     productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default('COMPACT').nullish(),
+    productListPaginationVariant: PaginationVariantSchema.nullish().default('COMPACT'),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: z.lazy(() => RecentlyViewedProductsConfigSchema().nullish()),
     robotsAllow: z.boolean().nullish(),

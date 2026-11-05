@@ -9,6 +9,12 @@ import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== '.')
+
+// Use specific patterns instead of ** to avoid expensive directory traversal
+export const configSchemaLocations = [
+  'graphql/Config.graphqls',
+  ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`]),
+]
 const resolve = resolveDependency()
 
 dotenv.config({ quiet: true })
@@ -20,15 +26,9 @@ export async function generateConfig() {
   const targetTs = `${resolved.root}/src/generated/config.ts`
   const targetJs = `${resolved.root}/dist/generated/config.js`
 
-  // Use specific patterns instead of ** to avoid expensive directory traversal
-  const schemaLocations = [
-    'graphql/Config.graphqls',
-    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`]),
-  ]
-
   await generate({
     silent: true,
-    schema: schemaLocations,
+    schema: configSchemaLocations,
     generates: {
       [targetTs]: {
         plugins: ['typescript', 'typescript-validation-schema'],
@@ -55,13 +55,21 @@ export async function generateConfig() {
 
   writeFileSync(
     targetTs,
-    await prettier.format(readFileSync(targetTs, 'utf-8'), {
-      ...prettierConf,
-      parser: 'typescript',
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
+    // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
+    // before `.default()` runs.
+    await prettier.format(
+      readFileSync(targetTs, 'utf-8').replace(
+        /\.default\(([^()]+)\)\.nullish\(\)/g,
+        '.nullish().default($1)',
       ),
-    }),
+      {
+        ...prettierConf,
+        parser: 'typescript',
+        plugins: prettierConf.plugins?.filter(
+          (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
+        ),
+      },
+    ),
   )
 
   const result = transformFileSync(targetTs, {

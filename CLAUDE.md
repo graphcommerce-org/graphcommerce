@@ -366,12 +366,20 @@ Extend the config schema by creating a `graphql/Config.graphqls` file:
 
 ```graphql
 extend input GraphCommerceConfig {
-  myConfig: String
+  myConfig: String @public
+  myApiSecret: String
 }
 extend input GraphCommerceStorefrontConfig {
-  myField: Boolean
+  myField: Boolean @public
 }
 ```
+
+A field without `@public` is server-only. The `browser` export condition of
+`@graphcommerce/next-config/config` resolves to a file with only the `@public`
+fields, so Turbopack stops the build on a browser import of a server-only field. Add `@public` only to fields that browser code
+reads, and never to secrets. Put `@public` on scalar and enum fields, also in
+nested inputs. In the browser, a server-only field of a storefront throws in
+development, and a server-only field of a section is `undefined`.
 
 You can also extend existing enums from other packages:
 

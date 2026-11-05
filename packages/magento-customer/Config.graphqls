@@ -8,12 +8,12 @@ extend input GraphCommerceConfig {
 
   `Stores -> Configuration -> Sales -> Checkout -> Checkout Options -> Enable Guest Checkout Login`
   """
-  enableGuestCheckoutLogin: Boolean
+  enableGuestCheckoutLogin: Boolean @public
 
   """
   Enable customer account deletion through the account section
   """
-  customerDeleteEnabled: Boolean
+  customerDeleteEnabled: Boolean @public
 
   """
   X-Magento-Cache-Id allows Varnish to cache requests that are made in the browser while users are logged in. For example the products query can now be cached for logged in users.
@@ -27,5 +27,5 @@ extend input GraphCommerceDebugConfig {
   """
   Enable debugging interface to debug sessions
   """
-  sessions: Boolean
+  sessions: Boolean @public
 }

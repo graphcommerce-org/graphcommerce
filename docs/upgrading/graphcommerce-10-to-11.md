@@ -4,9 +4,7 @@ GraphCommerce 11 drops support for Node.js 20 (EOL April 2026) and aligns the
 framework with the
 [Node.js release schedule](https://nodejs.org/en/about/previous-releases). The
 minimum supported version is now Node.js 22, and Node.js 24 is recommended.
-
-There are no source-code or API breaking changes in this release — only the
-supported runtime has shifted.
+Configuration fields are server-only, unless their definition has `@public`.
 
 ## Step 1: Upgrade your local Node.js
 
@@ -75,7 +73,71 @@ Anywhere that pins a Node version, move from 20 to 22 or 24:
   Devcontainer setups that use `"lts": true` resolve to v24 automatically and
   need no change.
 
-## Step 4: Reinstall
+## Step 4: Add `@public` to configuration fields that browser code reads
+
+1. In `graphql/Config.graphqls`, add `@public` to each scalar or enum field that
+   browser code reads, also in nested inputs. Keep secrets without `@public`.
+
+   ```diff
+    extend input GraphCommerceConfig {
+   -  myFeatureEnabled: Boolean
+   +  myFeatureEnabled: Boolean @public
+      myApiSecret: String
+      myIntegration: MyIntegrationConfig
+    }
+    input MyIntegrationConfig {
+   -  apiUrl: String
+   +  apiUrl: String @public
+      apiSecret: String
+    }
+    extend input GraphCommerceStorefrontConfig {
+   -  myStoreLabel: String
+   +  myStoreLabel: String @public
+    }
+   ```
+
+2. Run codegen and build:
+
+   ```bash
+   yarn codegen
+   yarn build
+   ```
+
+3. For each error like this one, add `@public` to the field, or move the read to
+   server code:
+
+   ```
+   Export myApiSecret doesn't exist in target module
+   The export myApiSecret was not found in module [project]/node_modules/@graphcommerce/next-config/dist/generated/configValues/publicOnly/index.js [client] (ecmascript).
+   ```
+
+   The error names the file that imports the field. When that file is a shared
+   module, move the function that reads the field to a module that only server
+   code imports:
+
+   ```ts
+   // lib/myApi.server.ts
+   import { myApiSecret } from '@graphcommerce/next-config/config'
+
+   export const fetchFromMyApi = (path: string) =>
+     fetch(`https://api.example.com${path}`, {
+       headers: { Authorization: `Bearer ${myApiSecret}` },
+     })
+   ```
+
+4. Run `yarn dev` and open the pages that use your fields. A server-only field
+   of a section, such as `myIntegration.apiSecret`, is `undefined` in browser
+   code. A server-only field of a storefront, such as
+   `useStorefrontConfig().myServerField`, throws in browser code:
+
+   ```
+   storefront[].myServerField is server-only. Read it on the server or add @public to GraphCommerceStorefrontConfig.myServerField in Config.graphqls.
+   ```
+
+Codegen lists the server-only fields at the top of each file in
+`node_modules/@graphcommerce/next-config/dist/generated/configValues/publicOnly`.
+
+## Step 5: Reinstall
 
 After upgrading Node:
 
