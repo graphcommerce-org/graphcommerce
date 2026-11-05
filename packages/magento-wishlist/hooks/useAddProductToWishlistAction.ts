@@ -33,7 +33,7 @@ export function useAddProductToWishlistAction(
 
   const add = useAddProductsToWishlist()
   const remove = useRemoveProductsFromWishlist()
-  const wishlist = useWishlistItems()
+  const wishlist = useWishlistItems(1, 999)
   const { loggedIn } = useCustomerSession()
   const [showSuccess, setShowSuccess] = useState<boolean>(false)
 

@@ -1,0 +1,11 @@
+fragment WishlistPagination on Wishlist {
+  __typename
+  id
+  items_count
+  items_v2(currentPage: $currentPage, pageSize: $pageSize) {
+    __typename
+    items {
+      ...WishlistItem
+    }
+  }
+}
