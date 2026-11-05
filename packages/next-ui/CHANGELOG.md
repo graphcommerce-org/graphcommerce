@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.52
+
+### Patch Changes
+
+- [#2705](https://github.com/graphcommerce-org/graphcommerce/pull/2705) [`eb1f246`](https://github.com/graphcommerce-org/graphcommerce/commit/eb1f2461a54a11ac3950afa1651cb5aea7abb066) - BlogListItem is one tab stop: the title link covers the full card, so keyboard and screen reader users do not get the same link two times. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.51
 
 ## 11.0.0-canary.50
