@@ -152,6 +152,7 @@
     "msp-order-number",
     "msp-restore-locked-import",
     "msp-restore-locked-recaptcha",
+    "navigation-focus-scroll-position",
     "new-ads-scream",
     "next-16-2-6",
     "notify-queries-after-cache-restore",

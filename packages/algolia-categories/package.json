@@ -2,7 +2,7 @@
   "name": "@graphcommerce/algolia-categories",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "11.0.0-canary.54",
+  "version": "11.0.0-canary.55",
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",
   "eslintConfig": {
@@ -22,15 +22,15 @@
     "generate": "tsx scripts/generate-spec.mts"
   },
   "peerDependencies": {
-    "@graphcommerce/algolia-products": "^11.0.0-canary.54",
-    "@graphcommerce/google-datalayer": "^11.0.0-canary.54",
-    "@graphcommerce/graphql": "^11.0.0-canary.54",
-    "@graphcommerce/graphql-mesh": "^11.0.0-canary.54",
-    "@graphcommerce/magento-customer": "^11.0.0-canary.54",
-    "@graphcommerce/magento-product": "^11.0.0-canary.54",
-    "@graphcommerce/magento-search": "^11.0.0-canary.54",
-    "@graphcommerce/next-config": "^11.0.0-canary.54",
-    "@graphcommerce/next-ui": "^11.0.0-canary.54",
+    "@graphcommerce/algolia-products": "^11.0.0-canary.55",
+    "@graphcommerce/google-datalayer": "^11.0.0-canary.55",
+    "@graphcommerce/graphql": "^11.0.0-canary.55",
+    "@graphcommerce/graphql-mesh": "^11.0.0-canary.55",
+    "@graphcommerce/magento-customer": "^11.0.0-canary.55",
+    "@graphcommerce/magento-product": "^11.0.0-canary.55",
+    "@graphcommerce/magento-search": "^11.0.0-canary.55",
+    "@graphcommerce/next-config": "^11.0.0-canary.55",
+    "@graphcommerce/next-ui": "^11.0.0-canary.55",
     "react": "^19.2.0"
   },
   "devDependencies": {

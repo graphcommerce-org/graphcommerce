@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.55
+
+### Patch Changes
+
+- [#2714](https://github.com/graphcommerce-org/graphcommerce/pull/2714) [`bdbf083`](https://github.com/graphcommerce-org/graphcommerce/commit/bdbf0831891f1074412bf25e8d13e9f1b176538a) - `NavigationOverlay` focuses its close button without a scroll, so the backdrop fades in when the menu opens. A scrolling `focus()` put the overlay in its open position before `OverlayBase` started the animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.54
 
 ## 11.0.0-canary.53
