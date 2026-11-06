@@ -3,7 +3,7 @@ import type {
   FilterRangeTypeInput,
   SortEnum,
 } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import { useRouter } from 'next/router'
 import type { ProductListParams } from './filterTypes'

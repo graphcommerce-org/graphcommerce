@@ -73,7 +73,7 @@ the regenerated `dist/` alongside the source change so the patch stays in sync.
 `yarn packages` (watch mode) is fine during active development — the watchers
 hot-rebuild on save — but `yarn packages:build` is the one-shot pre-commit step.
 
-The remaining `packagesDev/*` directories (`prettier-config`, `eslint-config`,
+The remaining `packagesDev/*` directories (`oxfmt-config`, `oxlint-config`,
 `typescript-config`, `browserslist-config`, `misc`) are config-only — no compile
 step, no rebuild needed.
 
@@ -172,9 +172,10 @@ activated set of packages. Running `tsgo` from the repo root fails for the same
 reason — there is no single project-wide type-check, only per-example checks.
 
 ```bash
-yarn eslint:lint      # ESLint across all TS/TSX
-yarn eslint:fix       # ESLint with auto-fix
-yarn prettier:fix     # Prettier formatting
+yarn lint            # Oxlint with type-aware rules
+yarn lint:fix         # Oxlint with auto-fix
+yarn format           # oxfmt formatting
+yarn format:check     # Check the formatting without writing
 ```
 
 ### Code Generation
@@ -302,7 +303,7 @@ re-consume them and retry the publish.
   Magento integrations (cart, checkout, product, search, payment), Hygraph/CMS,
   analytics, Algolia search
 - **`packagesDev/`** — Build tooling: `next-config` (the framework's core build
-  system), codegen plugins, ESLint/Prettier/TypeScript configs, CLI
+  system), codegen plugins, Oxlint/oxfmt/TypeScript configs, CLI
 - **`examples/`** — Full storefronts: `magento-graphcms` (primary),
   `magento-open-source`
 - **`docs/`** — Documentation site

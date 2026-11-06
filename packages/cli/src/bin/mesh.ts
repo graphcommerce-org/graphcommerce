@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import { promises as fs } from 'fs'
 import path from 'path'
 import { exit } from 'process'

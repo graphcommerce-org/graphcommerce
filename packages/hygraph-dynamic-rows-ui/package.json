@@ -5,13 +5,6 @@
   "version": "11.0.0-canary.56",
   "sideEffects": false,
   "type": "module",
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "scripts": {
     "dev": "next dev"
   },
@@ -39,14 +32,10 @@
     "webpack": "^5.112.2"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "11.0.0-canary.56",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-is": "^19.3.0",
-    "eslint": "^9.39.5",
-    "prettier": "3.5.3",
     "typescript": "6.0.3"
   },
   "exports": {

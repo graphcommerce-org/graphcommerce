@@ -15,10 +15,8 @@ development experience.
 
 Required extensions
 
-- [ESLint ↗](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) -
-  Linter tool for identifying and reporting on patterns in JavaScript
-- [Prettier ↗](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) -
-  Opinionated code formatter
+- [Oxc ↗](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode) -
+  Shows the Oxlint problems and formats with oxfmt
 - [GraphQL ↗](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) -
   Adds syntax highlighting, validation, hover information and autocompletion for
   graphql files

@@ -165,7 +165,32 @@ Find the files to change:
 grep -rl "@lingui/macro" --include='*.ts' --include='*.tsx' --exclude-dir=node_modules .
 ```
 
-## Step 7: Reinstall
+## Step 7: Lint with Oxlint and format with oxfmt
+
+[`@graphcommerce/oxlint-config-pwa`](../../packagesDev/oxlint-config/README.md)
+replaces `@graphcommerce/eslint-config-pwa`, and
+[`@graphcommerce/oxfmt-config-pwa`](../../packagesDev/oxfmt-config/README.md)
+replaces `@graphcommerce/prettier-config-pwa`.
+
+1. Give the `eslint-disable` comments of the rules that moved to the
+   GraphCommerce plugin the new names:
+
+   ```bash
+   grep -rlE "eslint-disable.*(import/no-extraneous-dependencies|import/no-relative-packages|no-restricted-syntax)" --include='*.ts' --include='*.tsx' --exclude-dir=node_modules . \
+     | xargs perl -pi -e 's#(eslint-disable.*?)\bimport/(no-extraneous-dependencies|no-relative-packages)#$1graphcommerce/$2#g; s#(eslint-disable.*?)(?<![/\w-])no-restricted-syntax#$1graphcommerce/no-restricted-syntax#g'
+   ```
+
+2. Format and lint the project:
+
+   ```bash
+   yarn format
+   yarn lint
+   ```
+
+3. In VS Code, replace the ESLint and Prettier extensions with the
+   [Oxc extension](https://marketplace.visualstudio.com/items?itemName=oxc.oxc-vscode).
+
+## Step 8: Reinstall
 
 After upgrading Node:
 

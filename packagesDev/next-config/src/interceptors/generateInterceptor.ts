@@ -1,5 +1,5 @@
-import prettierConf from '@graphcommerce/prettier-config-pwa'
-import prettier from 'prettier'
+import oxfmtConfig from '@graphcommerce/oxfmt-config-pwa'
+import { format } from 'oxfmt'
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependencyReturn } from '../utils/resolveDependency'
 import { parseSync } from './swc'
@@ -378,10 +378,8 @@ export const ${targetExport} = ${carry}`
     ${logOnce}${pluginExports}
   `
 
-  const formatted = await prettier.format(template, {
-    ...prettierConf,
-    parser: 'typescript',
-  })
+  const { code, errors } = await format('interceptor.tsx', template, oxfmtConfig)
+  if (errors.length) throw Error(`Could not format the interceptor ${interceptor.target}: ${errors[0].message}`)
 
-  return { ...interceptor, template: formatted }
+  return { ...interceptor, template: code }
 }

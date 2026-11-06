@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'

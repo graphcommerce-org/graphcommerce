@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { AddProductsToCartSnackbarMessage } from '@graphcommerce/magento-product/components/AddProductsToCart/AddProductsToCartSnackbarMessage'
 import { iconChevronRight, IconSvg, LinkOrButton, nonNullable } from '@graphcommerce/next-ui'

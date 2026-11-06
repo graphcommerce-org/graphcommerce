@@ -1,9 +1,9 @@
 import { readFileSync, writeFileSync } from 'fs'
-import prettierConf from '@graphcommerce/prettier-config-pwa'
+import oxfmtConfig from '@graphcommerce/oxfmt-config-pwa'
 import { generate } from '@graphql-codegen/cli'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
 import { findParentPath } from '../utils/findParentPath'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import { resolveDependency } from '../utils/resolveDependency'
@@ -60,16 +60,9 @@ export async function generateConfig() {
     .replace(/\):\s*z\.Zod(?:Object|Type)<\s*(?:Properties<)?\w+>?\s*>\s*\{/g, ') {')
     .replace(/type Properties<T> = \{[^}]*\};?\n/, '')
 
-  writeFileSync(
-    targetTs,
-    await prettier.format(schemaTs, {
-      ...prettierConf,
-      parser: 'typescript',
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
-      ),
-    }),
-  )
+  const { code, errors } = await format(targetTs, schemaTs, { ...oxfmtConfig, sortImports: false })
+  if (errors.length) throw Error(`Could not format ${targetTs}: ${errors[0].message}`)
+  writeFileSync(targetTs, code)
 
   const result = transformFileSync(targetTs, {
     module: { type: 'nodenext' },

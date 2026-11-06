@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import fs from 'fs/promises'
 import path from 'path'
 import type { GraphCommerceDebugConfig } from '../generated/config'

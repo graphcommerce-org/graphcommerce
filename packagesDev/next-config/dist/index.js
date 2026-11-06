@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import fs from 'fs/promises';
-import path from 'path';
 import { glob, sync } from 'glob';
+import path from 'path';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
 import { l as loadConfig, t as toEnvStr } from './loadConfig-CGJPuSxu.js';
@@ -13,8 +13,8 @@ import assert from 'assert';
 import crypto from 'crypto';
 import lodash from 'lodash';
 import { z } from 'zod';
-import prettierConf from '@graphcommerce/prettier-config-pwa';
-import prettier from 'prettier';
+import oxfmtConfig from '@graphcommerce/oxfmt-config-pwa';
+import { format } from 'oxfmt';
 import fg from 'fast-glob';
 import { generate } from '@graphql-codegen/cli';
 import { parse, Kind } from 'graphql';
@@ -851,11 +851,10 @@ export const ${targetExport} = ${carry}`;
 ` : ""}
     ${logOnce}${pluginExports}
   `;
-  const formatted = await prettier.format(template, {
-    ...prettierConf,
-    parser: "typescript"
-  });
-  return { ...interceptor, template: formatted };
+  const { code, errors } = await format("interceptor.tsx", template, oxfmtConfig);
+  if (errors.length)
+    throw Error(`Could not format the interceptor ${interceptor.target}: ${errors[0].message}`);
+  return { ...interceptor, template: code };
 }
 
 async function generateInterceptors(plugins, resolve, config, force) {
@@ -1432,16 +1431,9 @@ async function generateConfig() {
     }
   });
   const schemaTs = readFileSync(targetTs, "utf-8").replace(/\.default\(([^()]+)\)\.nullish\(\)/g, ".nullish().default($1)").replace(/\):\s*z\.Zod(?:Object|Type)<\s*(?:Properties<)?\w+>?\s*>\s*\{/g, ") {").replace(/type Properties<T> = \{[^}]*\};?\n/, "");
-  writeFileSync(
-    targetTs,
-    await prettier.format(schemaTs, {
-      ...prettierConf,
-      parser: "typescript",
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-      )
-    })
-  );
+  const { code, errors } = await format(targetTs, schemaTs, { ...oxfmtConfig, sortImports: false });
+  if (errors.length) throw Error(`Could not format ${targetTs}: ${errors[0].message}`);
+  writeFileSync(targetTs, code);
   const result = transformFileSync(targetTs, {
     module: { type: "nodenext" },
     env: { targets: { node: "20" } }
@@ -1516,16 +1508,12 @@ ${getters.join(",\n")}
   };
   const writeServerModule = async (name, content) => {
     const srcFile = path.join(srcDir, `${name}.ts`);
-    writeFileSync(
-      srcFile,
-      await prettier.format(content, {
-        ...prettierConf,
-        parser: "typescript",
-        plugins: prettierConf.plugins?.filter(
-          (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-        )
-      })
-    );
+    const { code: formatted, errors } = await format(srcFile, content, {
+      ...oxfmtConfig,
+      sortImports: false
+    });
+    if (errors.length) throw Error(`Could not format ${srcFile}: ${errors[0].message}`);
+    writeFileSync(srcFile, formatted);
     const { code } = transformFileSync(srcFile, {
       module: { type: "nodenext" },
       env: { targets: { node: "20" } }

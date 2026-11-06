@@ -7,8 +7,7 @@ tasks:
     command: cd /workspace/graphcommerce/examples/magento-graphcms && npm run dev
 vscode:
   extensions:
-    - dbaeumer.vscode-eslint
-    - esbenp.prettier-vscode
+    - oxc.oxc-vscode
     - GraphQL.vscode-graphql
     - mikestead.DotENV
     - mrorz.language-gettext

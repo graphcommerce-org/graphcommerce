@@ -4,13 +4,6 @@
   "repository": "github:graphcommerce-org/graphcommerce",
   "version": "11.0.0-canary.56",
   "sideEffects": false,
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "exports": {
     ".": "./index.ts",
     "./components/CartAdded/useCrosssellItems": "./components/CartAdded/useCrosssellItems.ts",
@@ -21,7 +14,6 @@
   },
   "peerDependencies": {
     "@graphcommerce/ecommerce-ui": "^11.0.0-canary.56",
-    "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/framer-next-pages": "^11.0.0-canary.56",
     "@graphcommerce/framer-scroller": "^11.0.0-canary.56",
     "@graphcommerce/framer-utils": "^11.0.0-canary.56",
@@ -31,7 +23,6 @@
     "@graphcommerce/magento-graphql": "^11.0.0-canary.56",
     "@graphcommerce/magento-store": "^11.0.0-canary.56",
     "@graphcommerce/next-ui": "^11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/react-hook-form": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
     "@lingui/core": "^6",

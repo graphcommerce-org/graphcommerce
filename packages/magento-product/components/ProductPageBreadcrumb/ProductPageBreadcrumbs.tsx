@@ -1,6 +1,6 @@
 import { usePrevPageRouter } from '@graphcommerce/framer-next-pages'
 // The magento-product MAY NOT depend on magento-category else plugin loading order breaks.
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { categoryToBreadcrumbs } from '@graphcommerce/magento-category/components/CategoryBreadcrumb/categoryToBreadcrumbs'
 import { Breadcrumbs } from '@graphcommerce/next-ui'
 import { BreadcrumbsJsonLd } from '@graphcommerce/next-ui/Breadcrumbs/BreadcrumbsJsonLd'

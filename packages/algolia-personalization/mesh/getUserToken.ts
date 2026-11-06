@@ -1,5 +1,5 @@
 import type { MeshContext } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { parseCookie } from 'cookie'
 
 const ALGOLIA_USER_TOKEN_COOKIE_NAME = '_algolia_userToken'

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import type { Page } from '@playwright/test'
 import { expect } from '@playwright/test'

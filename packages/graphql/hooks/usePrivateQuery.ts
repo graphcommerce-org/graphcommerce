@@ -1,5 +1,5 @@
 import type { InputMaybe, PrivateContext } from '@graphcommerce/graphql-mesh'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
 import type { MaybeMasked, TypedDocumentNode, useQuery } from '../apollo'

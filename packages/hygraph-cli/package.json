@@ -25,9 +25,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "*",
-    "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/next-config": "^11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
     "dotenv": "^18"
   },
@@ -35,15 +33,5 @@
     "pkgroll": "^2.29.0",
     "typescript": "6.0.3"
   },
-  "sideEffects": false,
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslint": {
-    "extends": "@graphcommerce/eslint-config-pwa"
-  },
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  }
+  "sideEffects": false
 }

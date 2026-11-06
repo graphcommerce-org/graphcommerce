@@ -1,6 +1,6 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import {
   createGetStaticProps,
   CustomerTokensPage,

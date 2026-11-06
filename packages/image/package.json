@@ -10,17 +10,8 @@
   "exports": {
     ".": "./index.ts"
   },
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/framer-utils": "^11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
     "@mui/material": "^7.0.0",
     "next": "*",

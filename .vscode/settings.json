@@ -1,8 +1,8 @@
 {
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": { "source.fixAll.eslint": "never" },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": { "source.fixAll.oxc": "never" },
   "editor.snippetSuggestions": "none",
   "emmet.showExpandedAbbreviation": "never",
   "editor.wordBasedSuggestions": "off",
@@ -23,10 +23,10 @@
     "**/*.interceptor.ts": true
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "oxc.oxc-vscode"
   },
   "testing.openTesting": "neverOpen",
   "jest.enable": false,

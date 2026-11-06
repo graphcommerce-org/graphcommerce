@@ -3,9 +3,5 @@
   "homepage": "https://www.graphcommerce.org/docs",
   "repository": "github:graphcommerce-org/graphcommerce/docs",
   "version": "11.0.0-canary.56",
-  "sideEffects": true,
-  "peerDependencies": {
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56"
-  },
-  "prettier": "@graphcommerce/prettier-config-pwa"
+  "sideEffects": true
 }

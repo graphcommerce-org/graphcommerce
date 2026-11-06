@@ -1,8 +1,8 @@
 import { writeFile } from 'fs/promises'
-import conf from '@graphcommerce/prettier-config-pwa'
+import conf from '@graphcommerce/oxfmt-config-pwa'
 import * as yaml from 'js-yaml'
 import type { OpenAPIV3 } from 'openapi-types'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
 import { algoliaSchemaBaseFilter } from './base-schema-filter.mjs'
 
 const response = await fetch(
@@ -62,8 +62,5 @@ const newSchema: OpenAPIV3.Document = {
 
 await writeFile(
   './algolia-spec.yaml',
-  await prettier.format(yaml.dump(newSchema), {
-    parser: 'yaml',
-    ...conf,
-  }),
+  (await format('spec.yaml', yaml.dump(newSchema), conf)).code,
 )

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import type { Page } from '@playwright/test'
 import { CartAgreementsDocument } from '../components/CartAgreementsForm/CartAgreements.gql'

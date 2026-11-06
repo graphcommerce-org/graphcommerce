@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { isAsyncIterable } from '@envelop/core'
 import type { MeshPlugin, MeshPluginOptions } from '@graphql-mesh/types'
 import type { MeshContext } from '../.mesh'

@@ -1,6 +1,6 @@
 import type { MeshContext } from '@graphcommerce/graphql-mesh'
 import { magentoVersion } from '@graphcommerce/next-config/config'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { filterNonNullableKeys } from '@graphcommerce/next-ui/RenderType/filterNonNullableKeys'
 import { getIndexName } from './getIndexName'
 

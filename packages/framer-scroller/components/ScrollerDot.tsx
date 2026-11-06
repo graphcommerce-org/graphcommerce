@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { t } from '@lingui/core/macro'
 import type { FabProps } from '@mui/material'

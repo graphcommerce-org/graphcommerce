@@ -1,0 +1,16 @@
+{
+  "name": "@graphcommerce/oxfmt-config-pwa",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "11.0.0-canary.56",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs",
+    "./classic": "./classic.mjs"
+  },
+  "dependencies": {
+    "oxfmt": "^0.76.0"
+  },
+  "sideEffects": false
+}

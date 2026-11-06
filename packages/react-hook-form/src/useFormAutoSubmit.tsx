@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unused-prop-types */
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { cloneDeep } from '@apollo/client/utilities/internal'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type {

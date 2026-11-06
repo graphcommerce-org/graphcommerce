@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import type { Page } from '@playwright/test'
 
 export const selectPaymentMethod = async (page: Page, method: string) => {
