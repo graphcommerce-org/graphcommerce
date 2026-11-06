@@ -1,6 +1,3 @@
-
-
-
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { googleTagmanagerId } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'

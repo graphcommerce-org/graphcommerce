@@ -3,8 +3,7 @@
   'info':
     {
       'title': 'Insights API',
-      'description':
-        "The Insights API lets you collect events related to your search and discovery experience.\nEvents represent user interactions with your app or website.\nThey unlock powerful features, such as recommendations, personalization, smarter search results,\nand analytics that help you optimize your user experience.\n\n## Client libraries\n\nUse Algolia's API clients, libraries, and integrations to collect events from your UI and send them to the Insights API.\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem/)\n\n## Base URLs\n\nThe base URLs for making requests to the Insights API are:\n\n- `https://insights.us.algolia.io`\n- `https://insights.de.algolia.io`\n- `https//insights.algolia.io` (routes requests to the closest of the above servers, based on your geographical location)\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nResponse bodies are JSON objects.\nDeleting a user token returns an empty response body with rate-limiting information as headers.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\nThe Insights API doesn't validate if the event parameters such as `indexName`, `objectIDs`, or `userToken`,\ncorrespond to anything in the Search API. It justs checks if they're formatted correctly.\nCheck the [Events](https://dashboard.algolia.com/events/health) health section,\nwhether your events can be used for Algolia features such as Analytics, or Dynamic Re-Ranking.\n\n## Version\n\nThe current version of the Insights API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
+      'description': "The Insights API lets you collect events related to your search and discovery experience.\nEvents represent user interactions with your app or website.\nThey unlock powerful features, such as recommendations, personalization, smarter search results,\nand analytics that help you optimize your user experience.\n\n## Client libraries\n\nUse Algolia's API clients, libraries, and integrations to collect events from your UI and send them to the Insights API.\nSee: [Algolia's ecosystem](https://www.algolia.com/doc/guides/getting-started/how-algolia-works/in-depth/ecosystem/)\n\n## Base URLs\n\nThe base URLs for making requests to the Insights API are:\n\n- `https://insights.us.algolia.io`\n- `https://insights.de.algolia.io`\n- `https//insights.algolia.io` (routes requests to the closest of the above servers, based on your geographical location)\n\n**All requests must use HTTPS.**\n\n## Authentication\n\nTo authenticate your API requests, add these headers:\n\n- `x-algolia-application-id`. Your Algolia application ID.\n- `x-algolia-api-key`. An API key with the necessary permissions to make the request.\n  The required access control list (ACL) to make a request is listed in each endpoint's reference.\n\nYou can find your application ID and API key in the [Algolia dashboard](https://dashboard.algolia.com/account).\n\n## Request format\n\nRequest bodies must be JSON objects.\n\n## Response status and errors\n\nResponse bodies are JSON objects.\nDeleting a user token returns an empty response body with rate-limiting information as headers.\n\nSuccessful responses return a `2xx` status. Client errors return a `4xx` status. Server errors are indicated by a `5xx` status.\nError responses have a `message` property with more information.\n\nThe Insights API doesn't validate if the event parameters such as `indexName`, `objectIDs`, or `userToken`,\ncorrespond to anything in the Search API. It justs checks if they're formatted correctly.\nCheck the [Events](https://dashboard.algolia.com/events/health) health section,\nwhether your events can be used for Algolia features such as Analytics, or Dynamic Re-Ranking.\n\n## Version\n\nThe current version of the Insights API is version 1, as indicated by the `/1/` in each endpoint's URL.\n",
       'version': '1.0.0',
     },
   'paths':
@@ -16,8 +15,7 @@
               'tags': ['insights'],
               'operationId': 'pushEvents',
               'summary': 'Send events',
-              'description':
-                "Sends a list of events to the Insights API.\n\nYou can include up to 1,000 events in a single request,\nbut the request body must be smaller than 2&nbsp;MB.\n",
+              'description': "Sends a list of events to the Insights API.\n\nYou can include up to 1,000 events in a single request,\nbut the request body must be smaller than 2&nbsp;MB.\n",
               'requestBody':
                 {
                   'required': true,
@@ -36,8 +34,7 @@
                                   'events':
                                     {
                                       'type': 'array',
-                                      'description':
-                                        "Click and conversion events.\n\n**All** events must be valid, otherwise the API returns an error.\n",
+                                      'description': "Click and conversion events.\n\n**All** events must be valid, otherwise the API returns an error.\n",
                                       'minItems': 1,
                                       'maxItems': 1000,
                                       'items': { '$ref': '#/components/schemas/EventsItems' },
@@ -633,8 +630,7 @@
               'type': 'apiKey',
               'in': 'header',
               'name': 'x-algolia-api-key',
-              'description':
-                "Your Algolia API key with the necessary permissions to make the request.\nPermissions are controlled through access control lists (ACL) and access restrictions.\nThe required ACL to make a request is listed in each endpoint's reference.\n",
+              'description': "Your Algolia API key with the necessary permissions to make the request.\nPermissions are controlled through access control lists (ACL) and access restrictions.\nThe required ACL to make a request is listed in each endpoint's reference.\n",
             },
         },
       'parameters':
@@ -672,8 +668,7 @@
               'minLength': 1,
               'maxLength': 64,
               'pattern': "[\\x20-\\x7E]{1,64}",
-              'description':
-                "Event name, up to 64 ASCII characters.\n\nConsider naming events consistently—for example, by adopting Segment's\n[object-action](https://segment.com/academy/collecting-data/naming-conventions-for-clean-data/#the-object-action-framework)\nframework.\n",
+              'description': "Event name, up to 64 ASCII characters.\n\nConsider naming events consistently—for example, by adopting Segment's\n[object-action](https://segment.com/academy/collecting-data/naming-conventions-for-clean-data/#the-object-action-framework)\nframework.\n",
             },
           'ClickEvent': { 'type': 'string', 'enum': ['click'] },
           'index':
@@ -698,8 +693,7 @@
               'minimum': 1,
               'minItems': 1,
               'maxItems': 20,
-              'description':
-                "Position of the clicked item the search results.\n\nYou must provide 1 `position` for each `objectID`.\n",
+              'description': "Position of the clicked item the search results.\n\nYou must provide 1 `position` for each `objectID`.\n",
               'example': [1, 2, 5],
             },
           'queryID':
@@ -708,8 +702,7 @@
               'pattern': '[0-9a-f]{32}',
               'minLength': 32,
               'maxLength': 32,
-              'description':
-                "Unique identifier for a search query.\n\nThe query ID is required for events related to search or browse requests.\nIf you add `clickAnalytics: true` as a search request parameter, the query ID is included in the API response.\n",
+              'description': "Unique identifier for a search query.\n\nThe query ID is required for events related to search or browse requests.\nIf you add `clickAnalytics: true` as a search request parameter, the query ID is included in the API response.\n",
               'example': '3e48cd0616e466948dd85abf5c3fbbe2',
             },
           'userToken':
@@ -718,8 +711,7 @@
               'minLength': 1,
               'maxLength': 129,
               'pattern': '[a-zA-Z0-9_=/+-]{1,129}',
-              'description':
-                "Anonymous or pseudonymous user identifier.\n\nDon't use personally identifiable information in user tokens.\nFor more information, see [User token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken/).\n",
+              'description': "Anonymous or pseudonymous user identifier.\n\nDon't use personally identifiable information in user tokens.\nFor more information, see [User token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken/).\n",
               'example': 'test-user-1',
             },
           'authenticatedUserToken':
@@ -728,24 +720,21 @@
               'minLength': 1,
               'maxLength': 129,
               'pattern': '[a-zA-Z0-9_=/+-]{1,129}',
-              'description':
-                "Identifier for authenticated users.\n\nWhen the user signs in, you can get an identifier from your system and send it as `authenticatedUserToken`.\nThis lets you keep using the `userToken` from before the user signed in, while providing a reliable way to identify users across sessions.\nDon't use personally identifiable information in user tokens.\nFor more information, see [User token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken/).\n",
+              'description': "Identifier for authenticated users.\n\nWhen the user signs in, you can get an identifier from your system and send it as `authenticatedUserToken`.\nThis lets you keep using the `userToken` from before the user signed in, while providing a reliable way to identify users across sessions.\nDon't use personally identifiable information in user tokens.\nFor more information, see [User token](https://www.algolia.com/doc/guides/sending-events/concepts/usertoken/).\n",
               'example': 'c6a52c02-d0c7-4b53-8ce3-2b8fd202f3f9',
             },
           'timestamp':
             {
               'type': 'integer',
               'format': 'int64',
-              'description':
-                "Timestamp of the event, measured in milliseconds since the Unix epoch.\nBy default, the Insights API uses the time it receives an event as its timestamp.\n",
+              'description': "Timestamp of the event, measured in milliseconds since the Unix epoch.\nBy default, the Insights API uses the time it receives an event as its timestamp.\n",
               'example': 1687193127,
             },
           'ClickedObjectIDsAfterSearch':
             {
               'type': 'object',
               'title': 'Clicked object IDs after search',
-              'description':
-                "Click event after an Algolia request.\n\nUse this event to track when users click items in the search results.\nIf you're building your category pages with Algolia,\nyou'll also use this event.\n",
+              'description': "Click event after an Algolia request.\n\nUse this event to track when users click items in the search results.\nIf you're building your category pages with Algolia,\nyou'll also use this event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -794,8 +783,7 @@
               'type': 'integer',
               'format': 'int32',
               'example': 2,
-              'description':
-                "Quantity of a product that has been purchased or added to the cart.\nThe total purchase value is the sum of `quantity` multiplied with the `price` for each purchased item.\n",
+              'description': "Quantity of a product that has been purchased or added to the cart.\nThe total purchase value is the sum of `quantity` multiplied with the `price` for each purchased item.\n",
             },
           'discount':
             {
@@ -829,8 +817,7 @@
           'objectDataAfterSearchList':
             {
               'type': 'array',
-              'description':
-                "Extra information about the records involved in a purchase or add-to-cart events.\n\nIf provided, it must be the same length as `objectIDs`.\n",
+              'description': "Extra information about the records involved in a purchase or add-to-cart events.\n\nIf provided, it must be the same length as `objectIDs`.\n",
               'items': { '$ref': '#/components/schemas/objectDataAfterSearch' },
               'minItems': 1,
               'maxItems': 20,
@@ -848,8 +835,7 @@
             {
               'type': 'object',
               'title': 'Added to cart object IDs after search',
-              'description':
-                "Use this event to track when users add items to their shopping cart after a previous Algolia request.\nIf you're building your category pages with Algolia, you'll also use this event.\n",
+              'description': "Use this event to track when users add items to their shopping cart after a previous Algolia request.\nIf you're building your category pages with Algolia, you'll also use this event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -884,8 +870,7 @@
             {
               'type': 'object',
               'title': 'Purchased object IDs after search',
-              'description':
-                "Use this event to track when users make a purchase after a previous Algolia request.\nIf you're building your category pages with Algolia, you'll also use this event.\n",
+              'description': "Use this event to track when users make a purchase after a previous Algolia request.\nIf you're building your category pages with Algolia, you'll also use this event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -918,8 +903,7 @@
             {
               'type': 'object',
               'title': 'Converted object IDs after search',
-              'description':
-                "Use this event to track when users convert after a previous Algolia request.\nFor example, a user clicks on an item in the search results to view the product detail page.\nThen, the user adds the item to their shopping cart.\n\nIf you're building your category pages with Algolia,\nyou'll also use this event.\n",
+              'description': "Use this event to track when users convert after a previous Algolia request.\nFor example, a user clicks on an item in the search results to view the product detail page.\nThen, the user adds the item to their shopping cart.\n\nIf you're building your category pages with Algolia,\nyou'll also use this event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -940,8 +924,7 @@
             {
               'type': 'object',
               'title': 'Clicked object IDs',
-              'description':
-                "Use this event to track when users click items unrelated to a previous Algolia request.\nFor example, if you don't use Algolia to build your category pages, use this event.\n\nTo track click events related to Algolia requests, use the \"Clicked object IDs after search\" event.\n",
+              'description': "Use this event to track when users click items unrelated to a previous Algolia request.\nFor example, if you don't use Algolia to build your category pages, use this event.\n\nTo track click events related to Algolia requests, use the \"Clicked object IDs after search\" event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -971,8 +954,7 @@
           'objectDataList':
             {
               'type': 'array',
-              'description':
-                "Extra information about the records involved in a purchase or add-to-cart event.\n\nIf specified, it must have the same length as `objectIDs`.\n",
+              'description': "Extra information about the records involved in a purchase or add-to-cart event.\n\nIf specified, it must have the same length as `objectIDs`.\n",
               'items': { '$ref': '#/components/schemas/objectData' },
               'minItems': 1,
               'maxItems': 20,
@@ -981,8 +963,7 @@
             {
               'type': 'object',
               'title': 'Purchased object IDs',
-              'description':
-                "Use this event to track when users make a purchase unrelated to a previous Algolia request. For example, if you don't use Algolia to build your category pages, use this event.\n\nTo track purchase events related to Algolia requests, use the \"Purchased object IDs after search\" event.\n",
+              'description': "Use this event to track when users make a purchase unrelated to a previous Algolia request. For example, if you don't use Algolia to build your category pages, use this event.\n\nTo track purchase events related to Algolia requests, use the \"Purchased object IDs after search\" event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -1007,8 +988,7 @@
             {
               'type': 'object',
               'title': 'Added to cart object IDs',
-              'description':
-                "Use this event to track when users add items to their shopping cart unrelated to a previous Algolia request. For example, if you don't use Algolia to build your category pages, use this event.\n\nTo track add-to-cart events related to Algolia requests, use the \"Added to cart object IDs after search\" event.\n",
+              'description': "Use this event to track when users add items to their shopping cart unrelated to a previous Algolia request. For example, if you don't use Algolia to build your category pages, use this event.\n\nTo track add-to-cart events related to Algolia requests, use the \"Added to cart object IDs after search\" event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -1033,8 +1013,7 @@
             {
               'type': 'object',
               'title': 'Converted object IDs',
-              'description':
-                "Use this event to track when users convert on items unrelated to a previous Algolia request.\nFor example, if you don't use Algolia to build your category pages, use this event.\n\nTo track conversion events related to Algolia requests, use the \"Converted object IDs after search\" event.\n",
+              'description': "Use this event to track when users convert on items unrelated to a previous Algolia request.\nFor example, if you don't use Algolia to build your category pages, use this event.\n\nTo track conversion events related to Algolia requests, use the \"Converted object IDs after search\" event.\n",
               'additionalProperties': false,
               'properties':
                 {
@@ -1053,8 +1032,7 @@
           'filters':
             {
               'type': 'array',
-              'description':
-                "Applied facet filters.\n\nFacet filters are `facet:value` pairs.\nFacet values must be URL-encoded, such as, `discount:10%25`.\n",
+              'description': "Applied facet filters.\n\nFacet filters are `facet:value` pairs.\nFacet values must be URL-encoded, such as, `discount:10%25`.\n",
               'items': { 'type': 'string' },
               'minItems': 1,
               'maxItems': 20,
@@ -1124,8 +1102,7 @@
             {
               'type': 'object',
               'title': 'Viewed filters',
-              'description':
-                "Use this method to capture active filters.\nFor example, when browsing a category page,\nusers see content filtered on that specific category.\n",
+              'description': "Use this method to capture active filters.\nFor example, when browsing a category page,\nusers see content filtered on that specific category.\n",
               'additionalProperties': false,
               'properties':
                 {

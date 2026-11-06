@@ -132,8 +132,7 @@ export function YoutubeEmbed(props: YoutubeEmbedProps) {
               right: 0,
               left: 0,
               height: '60px',
-              background:
-                'linear-gradient(180deg, rgba(0,0,0,0.247) 0%, rgba(0,0,0,0) 100%)',
+              background: 'linear-gradient(180deg, rgba(0,0,0,0.247) 0%, rgba(0,0,0,0) 100%)',
               pointerEvents: 'none',
             },
           },

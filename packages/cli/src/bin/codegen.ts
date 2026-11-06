@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-import fs from 'fs/promises'
-import path from 'path'
 import { packageRoots, resolveDependenciesSync } from '@graphcommerce/next-config'
 import { cliError, loadCodegenConfig, runCli } from '@graphql-codegen/cli'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import dotenv from 'dotenv'
+import fs from 'fs/promises'
+import path from 'path'
 import { rimraf } from 'rimraf'
 import yaml from 'yaml'
 

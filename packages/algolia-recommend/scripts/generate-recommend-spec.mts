@@ -1,6 +1,6 @@
-import { readFile, writeFile } from 'fs/promises'
 import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-products/scripts/base-schema-filter.mjs'
 import conf from '@graphcommerce/oxfmt-config-pwa'
+import { readFile, writeFile } from 'fs/promises'
 import * as yaml from 'js-yaml'
 import { OpenAPIV3 } from 'openapi-types'
 import { format } from 'oxfmt'

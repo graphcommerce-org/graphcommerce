@@ -1,5 +1,5 @@
-import { writeFile } from 'fs/promises'
 import conf from '@graphcommerce/oxfmt-config-pwa'
+import { writeFile } from 'fs/promises'
 import * as yaml from 'js-yaml'
 import type { OpenAPIV3 } from 'openapi-types'
 import { format } from 'oxfmt'
@@ -60,7 +60,4 @@ const newSchema: OpenAPIV3.Document = {
   },
 }
 
-await writeFile(
-  './algolia-spec.yaml',
-  (await format('spec.yaml', yaml.dump(newSchema), conf)).code,
-)
+await writeFile('./algolia-spec.yaml', (await format('spec.yaml', yaml.dump(newSchema), conf)).code)

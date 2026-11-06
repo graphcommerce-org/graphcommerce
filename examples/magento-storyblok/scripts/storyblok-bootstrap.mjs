@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+import { loadConfig } from '@graphcommerce/next-config/loadConfig'
 import { execSync } from 'node:child_process'
 import { copyFileSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
-import { loadConfig } from '@graphcommerce/next-config/loadConfig'
 
 const DEFAULT_SOURCE_SPACE = '291439709879423'
 const REGION_HOSTS = {
@@ -43,10 +43,9 @@ async function assertTargetIsEmpty() {
   const region = creds[credsKey]?.region ?? 'eu'
   const host = REGION_HOSTS[region] ?? REGION_HOSTS.eu
 
-  const res = await fetch(
-    `https://${host}/v1/spaces/${TARGET_SPACE}/stories?per_page=2`,
-    { headers: { Authorization: token } },
-  )
+  const res = await fetch(`https://${host}/v1/spaces/${TARGET_SPACE}/stories?per_page=2`, {
+    headers: { Authorization: token },
+  })
   if (!res.ok) {
     console.error(`Failed to check target space: ${res.status} ${await res.text()}`)
     process.exit(1)
@@ -54,8 +53,7 @@ async function assertTargetIsEmpty() {
   const { stories = [] } = await res.json()
 
   // Fresh spaces contain a single auto-generated "Home" story at slug "home".
-  const isFreshSpace =
-    stories.length === 0 || (stories.length === 1 && stories[0].slug === 'home')
+  const isFreshSpace = stories.length === 0 || (stories.length === 1 && stories[0].slug === 'home')
   if (!isFreshSpace) {
     console.error(
       `Target space ${TARGET_SPACE} already contains content (${stories.length}+ stories). ` +

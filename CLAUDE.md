@@ -100,13 +100,13 @@ Tests use Vitest with
 End-to-end tests live next to the package they exercise, named
 `<feature>.playwright.ts` (e.g.
 `packages/magento-product/test/youtubeEmbedInGallery.playwright.ts`,
-`packages/magento-customer/test/authentication.playwright.ts`). They're
-picked up by `playwright.config.ts` via `testMatch: ['**/*.playwright.ts']`
-and they exercise a real running example storefront — there is no jsdom,
-no mocked Apollo cache.
+`packages/magento-customer/test/authentication.playwright.ts`). They're picked
+up by `playwright.config.ts` via `testMatch: ['**/*.playwright.ts']` and they
+exercise a real running example storefront — there is no jsdom, no mocked Apollo
+cache.
 
-One-time setup (only needed if you've never run Playwright on this machine
-or the browsers are stale):
+One-time setup (only needed if you've never run Playwright on this machine or
+the browsers are stale):
 
 ```bash
 npx playwright install chromium   # or `npx playwright install` for all browsers
@@ -126,17 +126,16 @@ URL=http://localhost:3210 npx playwright test \
   --project=chrome --reporter=line
 ```
 
-- `URL` overrides the `baseURL` for every test (`page.goto('/p/foo')`
-  resolves against `$URL/p/foo`).
-- `PLAYWRIGHT_LOCALES=nl,de` generates extra `<project>-<locale>` projects
-  that target `$URL/<locale>` — opt-in only because most tests are
-  locale-agnostic.
+- `URL` overrides the `baseURL` for every test (`page.goto('/p/foo')` resolves
+  against `$URL/p/foo`).
+- `PLAYWRIGHT_LOCALES=nl,de` generates extra `<project>-<locale>` projects that
+  target `$URL/<locale>` — opt-in only because most tests are locale-agnostic.
 - `test-results/` and `playwright-report/` are gitignored — both are local
   artifacts that the runner regenerates on every invocation.
 
 Backend assumptions: tests run against the Magento endpoint configured in
-`examples/magento-graphcms/graphcommerce.config.ts`. They hardcode SKUs /
-URL keys that are present in the GraphCommerce demo backend
+`examples/magento-graphcms/graphcommerce.config.ts`. They hardcode SKUs / URL
+keys that are present in the GraphCommerce demo backend
 (`configurator.reachdigital.dev`); when running against a different backend
 either override via env vars (the gallery test reads `PRODUCT_URL` and
 `EXPECTED_YOUTUBE_ID`) or skip backend-specific tests.
@@ -151,10 +150,10 @@ activates the package. Always run `tsgo` from inside an example directory.
 The full workflow for type checking — including any optional/private packages
 you want exercised — is:
 
-1. **Activate the package** by adding it to `PRIVATE_ADDITIONAL_DEPENDENCIES`
-   in the example's `.env` (comma-separated, no spaces). Yarn workspaces also
-   needs the package linked, so run `yarn install` from the repo root if the
-   package is new or hasn't been installed before.
+1. **Activate the package** by adding it to `PRIVATE_ADDITIONAL_DEPENDENCIES` in
+   the example's `.env` (comma-separated, no spaces). Yarn workspaces also needs
+   the package linked, so run `yarn install` from the repo root if the package
+   is new or hasn't been installed before.
 2. **Run codegen** so the package's `.graphql` fragments are injected into the
    example's generated `.gql.ts` files:
    ```bash
@@ -166,10 +165,10 @@ you want exercised — is:
    npx --package=@typescript/native-preview tsgo --noEmit -p .
    ```
 
-Skipping steps 1–2 produces misleading "field does not exist" errors on
-injected fragments, because the example's types still reflect the previously
-activated set of packages. Running `tsgo` from the repo root fails for the same
-reason — there is no single project-wide type-check, only per-example checks.
+Skipping steps 1–2 produces misleading "field does not exist" errors on injected
+fragments, because the example's types still reflect the previously activated
+set of packages. Running `tsgo` from the repo root fails for the same reason —
+there is no single project-wide type-check, only per-example checks.
 
 ```bash
 yarn lint            # Oxlint with type-aware rules
@@ -192,11 +191,10 @@ gc-gql-codegen          # Generate TypeScript from .graphql files → .gql.ts
 
 ### Cleaning Up Codegen Interceptors
 
-Codegen wraps any module that has a matching plugin with an interceptor
-(`*.tsx` rewritten to a re-export, original saved as `*.original.tsx`). When
-you change `PRIVATE_ADDITIONAL_DEPENDENCIES`, switch branches, or are about to
-commit, those wrappers should not end up in `git status`. Restore the
-originals with:
+Codegen wraps any module that has a matching plugin with an interceptor (`*.tsx`
+rewritten to a re-export, original saved as `*.original.tsx`). When you change
+`PRIVATE_ADDITIONAL_DEPENDENCIES`, switch branches, or are about to commit,
+those wrappers should not end up in `git status`. Restore the originals with:
 
 ```bash
 # Run from any example directory (e.g. examples/magento-graphcms)
@@ -204,20 +202,18 @@ graphcommerce cleanup-interceptors
 ```
 
 The command walks every `*.original.*` it finds and restores it back over the
-matching wrapped file. **Always run this before committing**, otherwise you
-end up with diffs to dozens of `next-ui`, `magento-cart-items`,
-`magento-customer`, etc. files that only exist because of your local
-`.env`/plugin set.
+matching wrapped file. **Always run this before committing**, otherwise you end
+up with diffs to dozens of `next-ui`, `magento-cart-items`, `magento-customer`,
+etc. files that only exist because of your local `.env`/plugin set.
 
 ### Showcasing New Features
 
 **Every feature PR must wire the feature into one of the existing example
-storefronts so it is visible and presentable on a real page.** A standalone
-demo route under `pages/test/*` is **not** a showcase — it lives outside the
-real flow, never gets walked by a reviewer, and proves nothing about the
-integration. The bar is "if I `yarn workspace @graphcommerce/magento-graphcms
-dev` and open the storefront, can I navigate to a place where this feature is
-actually used?".
+storefronts so it is visible and presentable on a real page.** A standalone demo
+route under `pages/test/*` is **not** a showcase — it lives outside the real
+flow, never gets walked by a reviewer, and proves nothing about the integration.
+The bar is "if I `yarn workspace @graphcommerce/magento-graphcms dev` and open
+the storefront, can I navigate to a place where this feature is actually used?".
 
 Concrete patterns by feature kind:
 
@@ -233,8 +229,8 @@ Concrete patterns by feature kind:
   sure the storefront still renders. Activating the package via
   `PRIVATE_ADDITIONAL_DEPENDENCIES` is enough wiring as long as the host
   component is reachable from a real page in the example.
-- **A new GraphQL fragment / mutation** — exercise it from the page or
-  component that needs the data; don't ship the fragment alone.
+- **A new GraphQL fragment / mutation** — exercise it from the page or component
+  that needs the data; don't ship the fragment alone.
 
 The PR description's "Test plan" must name the storefront URL (or click path)
 the reviewer should open to see the feature working.
@@ -377,10 +373,11 @@ extend input GraphCommerceStorefrontConfig {
 
 A field without `@public` is server-only. The `browser` export condition of
 `@graphcommerce/next-config/config` resolves to a file with only the `@public`
-fields, so Turbopack stops the build on a browser import of a server-only field. Add `@public` only to fields that browser code
-reads, and never to secrets. Put `@public` on scalar and enum fields, also in
-nested inputs. In the browser, a server-only field of a storefront throws in
-development, and a server-only field of a section is `undefined`.
+fields, so Turbopack stops the build on a browser import of a server-only field.
+Add `@public` only to fields that browser code reads, and never to secrets. Put
+`@public` on scalar and enum fields, also in nested inputs. In the browser, a
+server-only field of a storefront throws in development, and a server-only field
+of a section is `undefined`.
 
 You can also extend existing enums from other packages:
 

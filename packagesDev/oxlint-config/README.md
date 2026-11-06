@@ -11,6 +11,6 @@ export { default } from '@graphcommerce/oxlint-config-pwa'
 oxlint --type-aware
 ```
 
-[`plugin.mjs`](./plugin.mjs) adds the `graphcommerce/no-extraneous-dependencies`,
-`graphcommerce/no-relative-packages` and `graphcommerce/no-restricted-syntax`
-rules.
+[`plugin.mjs`](./plugin.mjs) adds the
+`graphcommerce/no-extraneous-dependencies`, `graphcommerce/no-relative-packages`
+and `graphcommerce/no-restricted-syntax` rules.

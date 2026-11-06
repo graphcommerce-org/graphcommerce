@@ -1,6 +1,6 @@
 import fs from 'fs/promises'
-import path from 'path'
 import { sync as globSync } from 'glob'
+import path from 'path'
 import { packageRoots } from '../utils'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 import type { PluginConfig } from './generateInterceptor'

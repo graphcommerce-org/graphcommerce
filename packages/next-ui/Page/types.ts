@@ -1,9 +1,9 @@
-import type { ParsedUrlQuery } from 'querystring'
 import type { UpPage } from '@graphcommerce/framer-next-pages'
 import type {
   GetServerSideProps as GetServerSidePropsNext,
   GetStaticProps as GetStaticPropsNext,
 } from 'next'
+import type { ParsedUrlQuery } from 'querystring'
 
 type AnyObj = Record<string, unknown>
 

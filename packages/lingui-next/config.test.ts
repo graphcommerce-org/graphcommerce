@@ -1,8 +1,8 @@
+import { getCatalogs } from '@lingui/cli/api'
+import { makeConfig } from '@lingui/conf'
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { basename, join } from 'node:path'
-import { getCatalogs } from '@lingui/cli/api'
-import { makeConfig } from '@lingui/conf'
 import linguiNextConfig from './config'
 
 it('extracts the messages of .ts and .tsx files, without declaration files', async () => {

@@ -4,7 +4,6 @@
 
 /* eslint-disable no-param-reassign */
 
-
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled, useForkRef } from '@mui/material'

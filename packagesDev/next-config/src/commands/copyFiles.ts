@@ -1,6 +1,6 @@
+import fg from 'fast-glob'
 import fs from 'fs/promises'
 import path from 'path'
-import fg from 'fast-glob'
 import { resolveDependenciesSync } from '../utils/resolveDependenciesSync'
 
 // Add debug logging helper
@@ -95,7 +95,7 @@ function getOriginalFilename(filePath: string): string {
  *    1. If the file doesn't exist: Create directories and the file with "managed by: graphcommerce"
  *    2. If the file exists and starts with "managed by: local": Skip the file
  *    3. If the file exists but doesn't have a management comment: Rename to filename.original.ext and
- *          create the new managed file
+ *       create the new managed file
  *    4. If the file is managed by graphcommerce: Update if content differs
  */
 export async function copyFiles() {

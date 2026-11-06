@@ -379,7 +379,8 @@ export const ${targetExport} = ${carry}`
   `
 
   const { code, errors } = await format('interceptor.tsx', template, oxfmtConfig)
-  if (errors.length) throw Error(`Could not format the interceptor ${interceptor.target}: ${errors[0].message}`)
+  if (errors.length)
+    throw Error(`Could not format the interceptor ${interceptor.target}: ${errors[0].message}`)
 
   return { ...interceptor, template: code }
 }

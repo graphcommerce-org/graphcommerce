@@ -1,9 +1,9 @@
 #!/usr/bin/env node
+import { findParentPath } from '@graphcommerce/next-config'
 import { spawn } from 'child_process'
 import type { ChildProcess } from 'child_process'
-import path from 'path'
-import { findParentPath } from '@graphcommerce/next-config'
 import { detect } from 'detect-package-manager'
+import path from 'path'
 
 const debug = process.env.DEBUG === '1'
 // eslint-disable-next-line no-console

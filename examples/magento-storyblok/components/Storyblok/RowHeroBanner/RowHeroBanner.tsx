@@ -13,9 +13,8 @@ import type { StoryblokRowHeroBanner as RowHeroBannerBlok } from '../types'
 export type RowHeroBannerProps = {
   blok: RowHeroBannerBlok
   /**
-   * Only applies to an image asset — a video is never lazy-loaded. Pass
-   * `'eager'` where the banner is the LCP element, via `RowRenderer`'s
-   * `renderer`.
+   * Only applies to an image asset — a video is never lazy-loaded. Pass `'eager'` where the banner
+   * is the LCP element, via `RowRenderer`'s `renderer`.
    */
   loading?: AssetProps['loading']
 }

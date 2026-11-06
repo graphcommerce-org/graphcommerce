@@ -1,7 +1,7 @@
 import { createReadStream, createWriteStream } from 'fs'
-import { createInterface } from 'readline'
-import path from 'path'
 import { EOL } from 'os'
+import path from 'path'
+import { createInterface } from 'readline'
 
 const createEvent = (trace, ph, cat) => ({
   name: trace.name,
@@ -31,9 +31,7 @@ const getPackageName = (filename) => {
   return match && match[1]
 }
 
-/**
- * Create, reports spans recursively with its inner child spans.
- */
+/** Create, reports spans recursively with its inner child spans. */
 const reportSpanRecursively = (stream, trace, parentSpan) => {
   // build-* span contains tags with path to the modules, trying to clean up if possible
   const isBuildModule = trace.name.startsWith('build-module-')
@@ -58,16 +56,8 @@ const reportSpanRecursively = (stream, trace, parentSpan) => {
   }
 
   /**
-   * interface TraceEvent {
-   *  traceId: string;
-   *  parentId: number;
-   *  name: string;
-   *  id: number;
-   *  startTime: number;
-   *  timestamp: number;
-   *  duration: number;
-   *  tags: Record<string, any>
-   * }
+   * Interface TraceEvent { traceId: string; parentId: number; name: string; id: number; startTime:
+   * number; timestamp: number; duration: number; tags: Record<string, any> }
    */
   stream.write(JSON.stringify(createEvent(trace, 'B')))
   stream.write(',')
@@ -90,9 +80,7 @@ const reportSpanRecursively = (stream, trace, parentSpan) => {
   stream.write(',')
 }
 
-/**
- * Read generated trace from file system, augment & sent it to the remote tracer.
- */
+/** Read generated trace from file system, augment & sent it to the remote tracer. */
 const collectTraces = async (filePath, outFilePath, metadata) => {
   const readLineInterface = createInterface({
     input: createReadStream(filePath),
@@ -143,9 +131,7 @@ const collectTraces = async (filePath, outFilePath, metadata) => {
   writeStream.write(`${EOL}]`)
 }
 
-/**
- * Naively validate, collect necessary args.
- */
+/** Naively validate, collect necessary args. */
 const validateArgs = async () => {
   // Collect necessary default metadata. Script should pass cli args as in order of
   // - trace file to read

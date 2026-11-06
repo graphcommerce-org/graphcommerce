@@ -10,27 +10,28 @@ interface ForwardHeaderConfig {
 /**
  * @public
  *
- * Configure in your meshrc.yaml:
+ *   Configure in your meshrc.yaml:
  *
- * ```yaml
- * plugins:
- *   - '@graphcommerce/graphql-mesh/plugin/forward-headers':
- *     forwardHeaders:
- *       - X-Magento-Cache-Id
- * ```
+ *   ```yaml
+ *   plugins:
+ *     - '@graphcommerce/graphql-mesh/plugin/forward-headers':
+ *   forwardHeaders:
+ *     - X-Magento-Cache-Id
+ *   ```
  *
- * On your GraphQL response, you will have a new `forwardedHeaders` field in the `extensions` object (always lower case).
+ *   On your GraphQL response, you will have a new `forwardedHeaders` field in the `extensions`
+ *   object (always lower case).
  *
- * ```json
- * {
- *   "data": {},
- *   "extensions": {
- *     "forwardedHeaders": {
- *       "x-magento-cache-id": "homeHash"
+ *   ```json
+ *   {
+ *     "data": {},
+ *     "extensions": {
+ *       "forwardedHeaders": {
+ *         "x-magento-cache-id": "homeHash"
+ *       }
  *     }
  *   }
- * }
- * ```
+ *   ```
  */
 export default function useForwardHeadersPlugin(
   config: MeshPluginOptions<ForwardHeaderConfig>,

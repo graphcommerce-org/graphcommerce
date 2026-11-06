@@ -1,4 +1,3 @@
-import { join } from 'path'
 import addPlugin from '@graphql-codegen/add'
 import type { CodegenPlugin, Types } from '@graphql-codegen/plugin-helpers'
 import type {
@@ -8,6 +7,7 @@ import type {
 } from '@graphql-codegen/visitor-plugin-common'
 import type { FragmentDefinitionNode } from 'graphql'
 import { buildASTSchema, visit } from 'graphql'
+import { join } from 'path'
 import { envDirective } from './directive/env'
 import { injectableDirective } from './directive/injectable'
 import type { DocumentImportResolverOptions } from './resolve-document-imports'

@@ -144,18 +144,18 @@ export type RichTextProps = {
   content: StoryblokRichtextData
   renderers?: Partial<Renderers>
   /**
-   * Per-element theming. Keys are Storyblok node/mark types (e.g. `paragraph`, `h1`,
-   * `link`, `bold`). Merges with the built-in defaults.
+   * Per-element theming. Keys are Storyblok node/mark types (e.g. `paragraph`, `h1`, `link`,
+   * `bold`). Merges with the built-in defaults.
    *
    * @example
-   * ```tsx
-   * <RichText
-   *   content={blok.copy}
-   *   sxRenderer={{
-   *     paragraph: (theme) => ({ columnGap: theme.spacings.md }),
-   *   }}
-   * />
-   * ```
+   *   ;```tsx
+   *   ;<RichText
+   *     content={blok.copy}
+   *     sxRenderer={{
+   *       paragraph: (theme) => ({ columnGap: theme.spacings.md }),
+   *     }}
+   *   />
+   *   ```
    */
   sxRenderer?: SxRenderer
   /** When true, preserves the first/last element's outer margins. Defaults to false (stripped). */

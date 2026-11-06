@@ -1,5 +1,3 @@
-
-import { resolve } from 'path'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import { isUsingTypes } from '@graphql-codegen/plugin-helpers'
 import type {
@@ -15,6 +13,7 @@ import {
 import type { Source } from '@graphql-tools/utils'
 import type { DocumentNode, FragmentDefinitionNode, GraphQLSchema } from 'graphql'
 import { visit } from 'graphql'
+import { resolve } from 'path'
 import buildFragmentResolver, { buildFragmentRegistry } from './fragment-resolver'
 import { extractExternalFragmentsInUse } from './utils'
 

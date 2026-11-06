@@ -10,7 +10,6 @@ import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 
-
 export type NameFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   form: UseFormReturn<TFieldValues>
   names?: {

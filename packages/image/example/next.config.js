@@ -1,4 +1,3 @@
-
 const withGraphCommerce = require('@graphcommerce/next-config').withYarn1Workspaces()
 
 /** @type {import('next').NextConfig} */

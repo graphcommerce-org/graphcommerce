@@ -24,15 +24,15 @@ CSS background images are common assets you would place in the /public
 directory. It's a good practice to limit these to .svg images.
 
 If you need to use a .jpg file as part of the design, place them in the /public
-directory but render them with the `'@graphcommerce/image'` [Image component]().
-This will benefit performance, due to the component's features such as
-CDN-caching, srcset, and viewport loading.
+directory but render them with the `'@graphcommerce/image'`
+[Image component](<>). This will benefit performance, due to the component's
+features such as CDN-caching, srcset, and viewport loading.
 
 ## Images
 
 Images that are part of a page or component's content (for example, product
 images), should always be rendered with the `'@graphcommerce/image'`
-[Image component](). This will benefit performance, due to the component's
+[Image component](<>). This will benefit performance, due to the component's
 features such as CDN-caching, srcset, and viewport loading.
 
 ## Next steps

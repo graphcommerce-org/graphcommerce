@@ -1,12 +1,12 @@
-/* eslint-disable no-console */
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
-import path from 'path'
 import oxfmtConfig from '@graphcommerce/oxfmt-config-pwa'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
+/* eslint-disable no-console */
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
 import type { InputValueDefinitionNode, TypeNode } from 'graphql'
 import { Kind, parse } from 'graphql'
 import { format } from 'oxfmt'
+import path from 'path'
 import { loadConfig } from '../config/loadConfig'
 import { resolveDependency } from '../utils/resolveDependency'
 import { configSchemaLocations } from './generateConfig'
@@ -106,7 +106,10 @@ export async function generateConfigValues() {
 
   const writeServerModule = async (name: string, content: string) => {
     const srcFile = path.join(srcDir, `${name}.ts`)
-    const { code: formatted, errors } = await format(srcFile, content, { ...oxfmtConfig, sortImports: false })
+    const { code: formatted, errors } = await format(srcFile, content, {
+      ...oxfmtConfig,
+      sortImports: false,
+    })
     if (errors.length) throw Error(`Could not format ${srcFile}: ${errors[0].message}`)
     writeFileSync(srcFile, formatted)
     const { code } = transformFileSync(srcFile, {

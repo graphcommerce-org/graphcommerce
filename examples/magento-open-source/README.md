@@ -5,9 +5,8 @@
 <div align="center">
 
 📚 [Docs](https://graphcommerce.org/docs) | 🗣
-[Slack](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ)
-| 📝
-[Release notes](https://github.com/graphcommerce-org/graphcommerce/releases)
+[Slack](https://join.slack.com/t/graphcommerce/shared_invite/zt-11rmgq1ad-F~0daNtKcSvtcC4eQRzjeQ) |
+📝 [Release notes](https://github.com/graphcommerce-org/graphcommerce/releases)
 
 </div>
 

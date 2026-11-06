@@ -1,7 +1,7 @@
+import fg from 'fast-glob'
 // Import after mocks are defined
 import fs from 'fs/promises'
 import path from 'path'
-import fg from 'fast-glob'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import { copyFiles } from '../../src/commands/copyFiles'
 import { resolveDependenciesSync } from '../../src/utils/resolveDependenciesSync'

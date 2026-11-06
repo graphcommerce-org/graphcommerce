@@ -5,20 +5,22 @@ type FilterQuery = Record<string, Record<string, string>>
 
 export type GetStoryblokStaticPathsOptions = {
   /**
-   * Storyblok component name to filter by. Defaults to `'page'` so the result
-   * mirrors how the storefront routes content stories.
+   * Storyblok component name to filter by. Defaults to `'page'` so the result mirrors how the
+   * storefront routes content stories.
    */
   contentType?: string
-  /** Storyblok filter_query — see https://www.storyblok.com/docs/api/content-delivery/v2#filter-queries */
+  /**
+   * Storyblok filter_query — see
+   * https://www.storyblok.com/docs/api/content-delivery/v2#filter-queries
+   */
   filterQuery?: FilterQuery
   /** Override the page size of the underlying CDN request. */
   pageSize?: number
 }
 
 /**
- * Fetch all Storyblok stories matching the given filters and return them as
- * Next.js static paths. Used by sitemap and `getStaticPaths` for content
- * routes.
+ * Fetch all Storyblok stories matching the given filters and return them as Next.js static paths.
+ * Used by sitemap and `getStaticPaths` for content routes.
  */
 export async function getStoryblokStaticPaths(
   locale: string,

@@ -10,17 +10,16 @@ import { resolveStoryblokProducts } from './resolveProducts'
 
 export type UseStoryblokStateOptions = {
   /**
-   * Skip the bridge subscription and client-side product resolution. Pass
-   * `true` outside the Storyblok Visual Editor — `initialStory` is already
-   * fully resolved by `fetchStory` in `getStaticProps`.
+   * Skip the bridge subscription and client-side product resolution. Pass `true` outside the
+   * Storyblok Visual Editor — `initialStory` is already fully resolved by `fetchStory` in
+   * `getStaticProps`.
    */
   skip?: boolean
   /**
-   * Storyblok language code the Visual Editor is currently showing. When
-   * different from `initialStory`'s language, the hook refetches the story
-   * in this language on mount so the editor preview matches the editor's
-   * sidebar selection regardless of which GraphCommerce storefront the page
-   * renders in. Empty string means "Storyblok-default language".
+   * Storyblok language code the Visual Editor is currently showing. When different from
+   * `initialStory`'s language, the hook refetches the story in this language on mount so the editor
+   * preview matches the editor's sidebar selection regardless of which GraphCommerce storefront the
+   * page renders in. Empty string means "Storyblok-default language".
    */
   editorLanguage?: string
 }
@@ -63,15 +62,13 @@ export function useStoryblokState<T = SbBlokData>(
         : initialStory.full_slug
 
     let cancelled = false
-    fetchStory(baseSlug, { preview: true, language: editorLanguage }, client).then(
-      (result) => {
-        if (cancelled) return
-        const fetched = result.data?.story
-        if (!fetched) return
-        prevStoryRef.current = fetched
-        setResolvedStory(fetched as typeof story)
-      },
-    )
+    fetchStory(baseSlug, { preview: true, language: editorLanguage }, client).then((result) => {
+      if (cancelled) return
+      const fetched = result.data?.story
+      if (!fetched) return
+      prevStoryRef.current = fetched
+      setResolvedStory(fetched as typeof story)
+    })
     return () => {
       cancelled = true
     }

@@ -35,17 +35,15 @@ export function CartItemsActionCards(props: CartProps) {
 
   return (
     <ActionCardLayout layout={layout} {...remainingProps}>
-      {cart.items
-        ?.filter(nonNullable)
-        .map((item) => (
-          <CartItemActionCard
-            key={item.uid}
-            cartItem={item}
-            layout={layout}
-            variant={variant}
-            {...itemProps}
-          />
-        ))}
+      {cart.items?.filter(nonNullable).map((item) => (
+        <CartItemActionCard
+          key={item.uid}
+          cartItem={item}
+          layout={layout}
+          variant={variant}
+          {...itemProps}
+        />
+      ))}
       {children}
     </ActionCardLayout>
   )

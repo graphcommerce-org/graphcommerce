@@ -5,7 +5,7 @@ export type HeaderContainerProps = ContainerSizingProps
 
 export function HeaderContainer(props: HeaderContainerProps) {
   const { children, sx, ...containerProps } = props
-  
+
   return (
     <Container
       sizing='shell'

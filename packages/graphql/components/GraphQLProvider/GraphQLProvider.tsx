@@ -22,18 +22,19 @@ export type GraphQLProviderProps = AppProps &
   Omit<ApolloClientConfigInput, 'storefront'> & {
     children: React.ReactNode
     /**
-     * Overrides the terminating link at the tail of the Apollo link chain (by default the `HttpLink`
-     * connection to the Mesh backend). Because it sits *after* every context-setting link (customer
-     * auth token, store, cache-id, header links), use it to route specific operations to a different
-     * transport while still inheriting all request headers.
+     * Overrides the terminating link at the tail of the Apollo link chain (by default the
+     * `HttpLink` connection to the Mesh backend). Because it sits _after_ every context-setting
+     * link (customer auth token, store, cache-id, header links), use it to route specific
+     * operations to a different transport while still inheriting all request headers.
      *
      * The motivating case is file uploads: `File`/`Blob` variables must be sent as a
      * `multipart/form-data` request (e.g. via `apollo-upload-client`'s `UploadHttpLink`), which the
-     * default `HttpLink` cannot serialize. Providing the upload-aware split here keeps it at the tail
-     * of the chain, so uploads still pick up the customer token instead of going out unauthenticated.
+     * default `HttpLink` cannot serialize. Providing the upload-aware split here keeps it at the
+     * tail of the chain, so uploads still pick up the customer token instead of going out
+     * unauthenticated.
      *
      * @example
-     *   ```tsx
+     *   ;```tsx
      *   const terminatingLink = ApolloLink.split(hasUploadFiles, uploadHttpLink, httpLink)
      *   <GraphQLProvider {...props} terminatingLink={terminatingLink} />
      *   ```
