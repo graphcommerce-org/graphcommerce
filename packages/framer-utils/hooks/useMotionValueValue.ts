@@ -1,4 +1,4 @@
-import type { MotionValue } from 'framer-motion'
+import type { MotionValue } from 'motion/react'
 import { startTransition, useState } from 'react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 

@@ -7,7 +7,7 @@ import {
   useLayoutState,
 } from '@graphcommerce/next-ui/LayoutOverlay/test/LayoutOverlayDemo'
 import { Box, capitalize, Container, ListItemButton, Typography } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import { useState } from 'react'
 
 type Size = 'Sm' | 'Md'

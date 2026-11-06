@@ -1,6 +1,6 @@
 import { useConstant, useElementScroll } from '@graphcommerce/framer-utils'
-import type { MotionValue, Point } from 'framer-motion'
-import { motionValue, useDomEvent, useMotionValue } from 'framer-motion'
+import type { MotionValue, Point } from 'motion/react'
+import { motionValue, useDomEvent, useMotionValue } from 'motion/react'
 import type { PlaybackControls } from 'popmotion'
 import React, { useCallback, useEffect, useMemo, useRef } from 'react'
 import { scrollerContext } from '../context/scrollerContext'

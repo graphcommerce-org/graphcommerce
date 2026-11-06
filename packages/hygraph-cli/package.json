@@ -16,11 +16,11 @@
     "prepack": "pkgroll --clean-dist"
   },
   "dependencies": {
-    "@hygraph/management-sdk": "1.5.2",
+    "@hygraph/management-sdk": "1.6.1",
     "@types/prompts": "^2.4.9",
     "@whatwg-node/fetch": "^0.10.13",
-    "graphql": "^16.12.0",
-    "graphql-tag": "^2.12.6",
+    "graphql": "^16.14.2",
+    "graphql-tag": "^2.12.7",
     "prompts": "^2.4.2"
   },
   "peerDependencies": {
@@ -29,11 +29,11 @@
     "@graphcommerce/next-config": "^11.0.0-canary.56",
     "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56",
-    "dotenv": "^16.1.4"
+    "dotenv": "^18"
   },
   "devDependencies": {
-    "pkgroll": "^2.21.4",
-    "typescript": "5.9.3"
+    "pkgroll": "^2.29.0",
+    "typescript": "6.0.3"
   },
   "sideEffects": false,
   "prettier": "@graphcommerce/prettier-config-pwa",

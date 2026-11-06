@@ -33,8 +33,7 @@ export async function generateConfig() {
       [targetTs]: {
         plugins: ['typescript', 'typescript-validation-schema'],
         config: {
-          // enumsAsTypes: true,
-          schema: 'zod',
+          schema: 'zodv4',
           notAllowEmptyString: true,
           strictScalars: true,
           enumsAsTypes: true,
@@ -53,23 +52,23 @@ export async function generateConfig() {
     },
   })
 
+  // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
+  // before `.default()` runs. The zodv4 return types `z.ZodObject<Properties<T>>` make each
+  // optional key required in the inferred output.
+  const schemaTs = readFileSync(targetTs, 'utf-8')
+    .replace(/\.default\(([^()]+)\)\.nullish\(\)/g, '.nullish().default($1)')
+    .replace(/\):\s*z\.Zod(?:Object|Type)<\s*(?:Properties<)?\w+>?\s*>\s*\{/g, ') {')
+    .replace(/type Properties<T> = \{[^}]*\};?\n/, '')
+
   writeFileSync(
     targetTs,
-    // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
-    // before `.default()` runs.
-    await prettier.format(
-      readFileSync(targetTs, 'utf-8').replace(
-        /\.default\(([^()]+)\)\.nullish\(\)/g,
-        '.nullish().default($1)',
+    await prettier.format(schemaTs, {
+      ...prettierConf,
+      parser: 'typescript',
+      plugins: prettierConf.plugins?.filter(
+        (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
       ),
-      {
-        ...prettierConf,
-        parser: 'typescript',
-        plugins: prettierConf.plugins?.filter(
-          (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
-        ),
-      },
-    ),
+    }),
   )
 
   const result = transformFileSync(targetTs, {

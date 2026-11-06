@@ -10,7 +10,7 @@ import {
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled, useTheme, useThemeProps } from '@mui/material'
-import type { MotionProps } from 'framer-motion'
+import type { MotionProps } from 'motion/react'
 import {
   m,
   motionValue,
@@ -18,7 +18,7 @@ import {
   useMotionValue,
   useMotionValueEvent,
   useTransform,
-} from 'framer-motion'
+} from 'motion/react'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useMatchMedia } from '../../hooks/useMatchMedia'
 import { LayoutProvider } from '../../Layout/components/LayoutProvider'

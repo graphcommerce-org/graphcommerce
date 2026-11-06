@@ -1,5 +1,5 @@
-import type { Point, Tween } from 'framer-motion'
-import { MotionConfigContext } from 'framer-motion'
+import type { Point, Tween } from 'motion/react'
+import { MotionConfigContext } from 'motion/react'
 import { useCallback, useContext } from 'react'
 import { distanceAnimationDuration } from '../utils/distanceAnimationDuration'
 import { useScrollerContext } from './useScrollerContext'

@@ -9,7 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import React, { useEffect, useRef, useState } from 'react'
 
 const MotionDiv = styled(m.div)({})

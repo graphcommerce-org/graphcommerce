@@ -2,7 +2,7 @@ import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
 import { sxx } from '@graphcommerce/next-ui'
 import { Box, type BoxProps } from '@mui/material'
-import { m, type MotionProps } from 'framer-motion'
+import { m, type MotionProps } from 'motion/react'
 import { forwardRef } from 'react'
 
 export type MotionImageAspectPropsAdditional = MotionProps

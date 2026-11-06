@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { SerializeOptions } from 'cookie'
-import { parse, serialize } from 'cookie'
-import { motionValue } from 'framer-motion'
+import { parseCookie, stringifySetCookie } from 'cookie'
+import { motionValue } from 'motion/react'
 import { useSyncExternalStore } from 'react'
 import { useIsSSR } from '../hooks'
 
@@ -20,14 +20,14 @@ export function cookie(name?: string, value?: string | null, options?: Serialize
   if (typeof window === 'undefined') return undefined
 
   // Read all cookies
-  if (typeof name === 'undefined') return parse(document.cookie)
+  if (typeof name === 'undefined') return parseCookie(document.cookie)
 
   // Read a cookie
-  if (typeof value === 'undefined') return parse(document.cookie)[name]
+  if (typeof value === 'undefined') return parseCookie(document.cookie)[name]
 
   // Set a cookie
   if (typeof value === 'string') {
-    const serialized = serialize(name, value, { path: '/', maxAge: 31536000, ...options })
+    const serialized = stringifySetCookie({ name, value, path: '/', maxAge: 31536000, ...options })
     document.cookie = serialized
     cookieNotify.set(cookieNotify.get() + 1)
     return undefined
@@ -35,7 +35,7 @@ export function cookie(name?: string, value?: string | null, options?: Serialize
 
   // Delete a cookie
   if (value === null) {
-    const serialized = serialize(name, '', { path: '/', maxAge: 0 })
+    const serialized = stringifySetCookie({ name, value: '', path: '/', maxAge: 0 })
     document.cookie = serialized
     cookieNotify.set(cookieNotify.get() + 1)
     return undefined

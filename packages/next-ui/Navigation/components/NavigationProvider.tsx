@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-import { MotionConfig, useMotionValue } from 'framer-motion'
+import { MotionConfig, useMotionValue } from 'motion/react'
 import React, { useMemo } from 'react'
 import { isElement } from 'react-is'
 import { LazyHydrate } from '../../LazyHydrate'

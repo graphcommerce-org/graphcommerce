@@ -1,4 +1,4 @@
-import { useMotionValue } from 'framer-motion'
+import { useMotionValue } from 'motion/react'
 import type React from 'react'
 import { useEffect } from 'react'
 

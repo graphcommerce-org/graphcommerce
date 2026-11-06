@@ -2,8 +2,8 @@ import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, styled } from '@mui/material'
-import type { LayoutProps } from 'framer-motion'
-import { m } from 'framer-motion'
+import type { MotionNodeLayoutOptions } from 'motion/react'
+import { m } from 'motion/react'
 import React, { useRef } from 'react'
 import { Container } from '../../Container/Container'
 import { extendableComponent } from '../../Styles'
@@ -20,10 +20,10 @@ export type LayoutHeaderContentProps = FloatingProps & {
   switchPoint?: number
   sx?: SxProps<Theme>
   sxBg?: SxProps<Theme>
-  layout?: LayoutProps['layout']
+  layout?: MotionNodeLayoutOptions['layout']
   size?: 'small' | 'responsive'
   bgColor?: 'paper' | 'default'
-} & Pick<LayoutProps, 'layout' | 'layoutDependency'>
+} & Pick<MotionNodeLayoutOptions, 'layout' | 'layoutDependency'>
 
 type OwnerState = {
   floatingSm: boolean

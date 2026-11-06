@@ -1,7 +1,7 @@
 import type { MotionImageAspectPropsAdditional } from '@graphcommerce/framer-scroller'
 import { Fab, iconPlay, IconSvg, sxx, YoutubeEmbed, type FabProps } from '@graphcommerce/next-ui'
 import { Avatar, Box, IconButton, styled, type SxProps, type Theme } from '@mui/material'
-import { m, type MotionProps, type MotionStyle } from 'framer-motion'
+import { m, type MotionProps, type MotionStyle } from 'motion/react'
 import React, { useState } from 'react'
 import type { ProductVideoFragment } from './ProductVideo.gql'
 

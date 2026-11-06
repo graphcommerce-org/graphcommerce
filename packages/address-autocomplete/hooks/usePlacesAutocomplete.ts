@@ -1,5 +1,5 @@
 import { googleMapsApiKey } from '@graphcommerce/next-config/config'
-import { Loader } from '@googlemaps/js-api-loader'
+import { importLibrary, setOptions } from '@googlemaps/js-api-loader'
 import { useEventCallback } from '@mui/material'
 import type { ChangeEvent, KeyboardEvent } from 'react'
 import { useEffect, useId, useRef, useState } from 'react'
@@ -8,6 +8,7 @@ import { formatAddress } from '../utils/formatAddress'
 
 const addressPrimaryTypes = ['street_address', 'premise', 'subpremise', 'route']
 const requestDelay = 250
+let mapsOptionsSet = false
 
 type PlacesAutocompleteLibrary = Pick<
   google.maps.PlacesLibrary,
@@ -35,9 +36,11 @@ export function usePlacesAutocomplete({ onAddress }: UsePlacesAutocompleteOption
     if (!googleMapsApiKey) return undefined
 
     let active = true
-    const loader = new Loader({ apiKey: googleMapsApiKey, version: 'weekly' })
-    void loader
-      .importLibrary('places')
+    if (!mapsOptionsSet) {
+      setOptions({ key: googleMapsApiKey, v: 'weekly' })
+      mapsOptionsSet = true
+    }
+    void importLibrary('places')
       .then((library) => {
         if (!active) return
         setPlacesLibrary(library)

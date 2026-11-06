@@ -10,7 +10,7 @@ import {
 import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useTheme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import React from 'react'
 import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'
 import { useCartQuery } from '../../hooks/useCartQuery'

@@ -1,5 +1,5 @@
 import { dvh } from '@graphcommerce/framer-utils'
-import { m, useIsPresent } from 'framer-motion'
+import { m, useIsPresent } from 'motion/react'
 import React from 'react'
 import type { PageItem } from '../types'
 

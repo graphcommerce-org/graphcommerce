@@ -1,6 +1,6 @@
 import { ScrollerProvider } from '@graphcommerce/framer-scroller'
 import { Portal } from '@mui/material'
-import { AnimatePresence, usePresence } from 'framer-motion'
+import { AnimatePresence, usePresence } from 'motion/react'
 import type { SetOptional } from 'type-fest'
 import { variantsToScrollSnapType } from '../utils/variantsToScrollSnapType'
 import type { LayoutOverlayBaseProps } from './OverlayBase'

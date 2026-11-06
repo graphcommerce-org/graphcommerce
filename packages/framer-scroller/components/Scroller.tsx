@@ -1,7 +1,7 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import { forwardRef } from 'react'
 import type { ScrollableProps } from '../hooks/useScroller'
 import { useScroller } from '../hooks/useScroller'

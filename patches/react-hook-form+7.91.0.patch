@@ -1,9 +1,9 @@
 diff --git a/node_modules/react-hook-form/dist/index.esm.mjs b/node_modules/react-hook-form/dist/index.esm.mjs
-index 5a6118a..e2c3596 100644
+index 1c5ee72..11dbe52 100644
 --- a/node_modules/react-hook-form/dist/index.esm.mjs
 +++ b/node_modules/react-hook-form/dist/index.esm.mjs
-@@ -2771,10 +2771,14 @@ function useForm(props = {}) {
-             callback: () => updateFormState({ ...control._formState }),
+@@ -3918,10 +3918,14 @@ function useForm(props = {}) {
+             }),
              reRenderRoot: true,
          });
 -        updateFormState((data) => ({
@@ -19,5 +19,5 @@ index 5a6118a..e2c3596 100644
 +            }));
 +        }
          control._formState.isReady = true;
-         return sub;
-     }, [control]);
+         control._subjects.state.next({ isReady: true });
+         return () => {

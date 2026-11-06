@@ -1,6 +1,6 @@
 import { useScrollY } from '@graphcommerce/next-ui'
 import { useTheme } from '@mui/material'
-import { useMotionValueEvent } from 'framer-motion'
+import { useMotionValueEvent } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 export function useStickyHeaderOnScroll() {

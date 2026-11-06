@@ -10,7 +10,7 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Badge, Box, Button, styled } from '@mui/material'
 import type { ButtonProps, SxProps, Theme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import React from 'react'
 import { useCompareSummary } from '../hooks'
 

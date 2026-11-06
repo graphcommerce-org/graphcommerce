@@ -4,10 +4,10 @@ import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-S8JJz4LU.js';
-export { r as replaceConfigInString } from './loadConfig-S8JJz4LU.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-CGJPuSxu.js';
+export { r as replaceConfigInString } from './loadConfig-CGJPuSxu.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
-import fs$1, { writeFileSync, readFileSync, rmSync, mkdirSync, existsSync } from 'fs';
+import fs$1, { readFileSync, writeFileSync, rmSync, mkdirSync, existsSync } from 'fs';
 import { resolve as resolve$2 } from 'import-meta-resolve';
 import assert from 'assert';
 import crypto from 'crypto';
@@ -504,7 +504,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
     const parsed = pluginConfigParsed.safeParse(config);
     if (!parsed.success) {
       if (errors.length)
-        console.error(parsed.error.errors.map((e) => `${e.path} ${e.message}`).join("\n"));
+        console.error(parsed.error.issues.map((e) => `${e.path} ${e.message}`).join("\n"));
       return void 0;
     }
     let enabled = true;
@@ -1413,8 +1413,7 @@ async function generateConfig() {
       [targetTs]: {
         plugins: ["typescript", "typescript-validation-schema"],
         config: {
-          // enumsAsTypes: true,
-          schema: "zod",
+          schema: "zodv4",
           notAllowEmptyString: true,
           strictScalars: true,
           enumsAsTypes: true,
@@ -1432,23 +1431,16 @@ async function generateConfig() {
       }
     }
   });
+  const schemaTs = readFileSync(targetTs, "utf-8").replace(/\.default\(([^()]+)\)\.nullish\(\)/g, ".nullish().default($1)").replace(/\):\s*z\.Zod(?:Object|Type)<\s*(?:Properties<)?\w+>?\s*>\s*\{/g, ") {").replace(/type Properties<T> = \{[^}]*\};?\n/, "");
   writeFileSync(
     targetTs,
-    // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
-    // before `.default()` runs.
-    await prettier.format(
-      readFileSync(targetTs, "utf-8").replace(
-        /\.default\(([^()]+)\)\.nullish\(\)/g,
-        ".nullish().default($1)"
-      ),
-      {
-        ...prettierConf,
-        parser: "typescript",
-        plugins: prettierConf.plugins?.filter(
-          (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-        )
-      }
-    )
+    await prettier.format(schemaTs, {
+      ...prettierConf,
+      parser: "typescript",
+      plugins: prettierConf.plugins?.filter(
+        (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+      )
+    })
   );
   const result = transformFileSync(targetTs, {
     module: { type: "nodenext" },

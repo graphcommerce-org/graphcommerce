@@ -1,5 +1,5 @@
-import type { MotionValue } from 'framer-motion'
-import { frame } from 'framer-motion'
+import type { MotionValue } from 'motion/react'
+import { frame } from 'motion/react'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export type UseClientSizeReturn = { x: MotionValue<string>; y: MotionValue<string> }
