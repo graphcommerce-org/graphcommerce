@@ -87,7 +87,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     animating.set(true)
 
     if (activeAndNotClosing) {
-      a11yFocusRef.current?.focus()
+      // A scrolling focus() puts the overlay in its open position before OverlayBase animates it
+      a11yFocusRef.current?.focus({ preventScroll: true })
     }
   }, [activeAndNotClosing, animating])
 
