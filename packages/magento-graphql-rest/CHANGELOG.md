@@ -1,5 +1,7 @@
 # @graphcommerce/magento-graphql-rest
 
+## 11.0.0-canary.56
+
 ## 11.0.0-canary.55
 
 ## 11.0.0-canary.54
