@@ -7,7 +7,8 @@ import {
   AccountDashboardAddressesDocument,
   getCustomerAccountIsDisabled,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import {
   GetStaticProps,
   iconAddresses,
@@ -97,6 +98,8 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
   const up = { href: '/checkout', title: t`Shipping` }
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_address_edit')
 
   return {
     props: {
