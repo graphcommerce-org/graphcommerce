@@ -27,7 +27,6 @@ let localPaymentPromise: Promise<LocalPayment> | undefined
 function getLocalPaymentPromise(braintreePromise: ReturnType<typeof useBraintreeClient>) {
   if (!localPaymentPromise) {
     localPaymentPromise = new Promise((resolve, reject) => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
         try {
           const client = await braintreePromise

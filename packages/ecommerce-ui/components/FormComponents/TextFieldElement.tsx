@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { InputCheckmark } from '@graphcommerce/next-ui'
 import type { FieldValues } from '@graphcommerce/react-hook-form'
 import { emailPattern, useController } from '@graphcommerce/react-hook-form'

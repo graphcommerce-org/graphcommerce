@@ -1,7 +1,6 @@
 import type { PrecacheEntry, SerwistGlobalConfig } from '@graphcommerce/service-worker'
 import { runtimeCaching, Serwist } from '@graphcommerce/service-worker'
 
-// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 declare const self: SerwistGlobalConfig & {
   __SW_MANIFEST: (PrecacheEntry | string)[] | undefined
 }

@@ -98,7 +98,6 @@ export function LazyHydrate(props: LazyHydrateProps) {
   return (
     <Box
       ref={rootRef}
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={keepServerHtml}
       suppressHydrationWarning
       {...elementProps}

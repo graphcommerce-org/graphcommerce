@@ -13,10 +13,8 @@ type MeshHTTPHandler<TServerContext = Record<string, unknown>> = ServerAdapter<
 >
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
   var buildMesh: Promise<MeshInstance> | undefined
 
-  // eslint-disable-next-line vars-on-top, no-var
   var builtMeshHandler: MeshHTTPHandler | undefined
 }
 

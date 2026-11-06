@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useStorefrontConfig } from '@graphcommerce/next-ui/hooks/useStorefrontConfig'
 import { ApolloClient, ApolloLink, HttpLink, InMemoryCache } from '@apollo/client'
 import type { NormalizedCacheObject } from '@apollo/client'
@@ -104,7 +103,6 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
   })
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     createCacheReviver(client, createCache, config.current, state)
   }, [client, createCache, state])
 

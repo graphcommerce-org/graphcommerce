@@ -190,7 +190,6 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     loadFallback()
 
     return () => {
@@ -241,7 +240,6 @@ and pass it as a param in <FramerNextPages fallbackRoute='/[...url]' /> in your 
             <pageContext.Provider
               key={sharedKey}
               // We're actually rerendering here but since the actual page renderer is memoized we can safely do this
-              // eslint-disable-next-line react/jsx-no-constructed-context-values
               value={{ depth, active, direction, closeSteps, backSteps, routerKey, overlayGroup }}
             >
               <Page active={active} routerKey={routerKey}>

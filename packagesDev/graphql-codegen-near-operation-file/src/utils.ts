@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import { join } from 'path'
 import type { DocumentNode, FragmentDefinitionNode, FragmentSpreadNode } from 'graphql'
 import { visit } from 'graphql'

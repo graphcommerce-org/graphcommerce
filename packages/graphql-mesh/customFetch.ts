@@ -15,7 +15,6 @@ const fetcher = fetchRetry<typeof globalThis.fetch>(
    * (Magento: "Unable to parse the request."). The fetch implementation must therefore always come
    * from the same family as the `FormData`/`File` classes executor-http uses.
    */
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-var-requires
   require('@whatwg-node/fetch').fetch,
 )
 

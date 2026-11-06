@@ -220,7 +220,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
         disableSnap()
         scroller.scrollLeft = scroll.x.getPrevious() ?? 0
         scroller.scrollTop = scroll.y.getPrevious() ?? 0
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         scrollTo(openClosePositions().open, { stopAnimationOnScroll: false })
       }
     }
@@ -317,7 +316,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
       position.set(OverlayPosition.OPENED)
       enableSnap()
     } else if (!scroll.animating.get()) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       scrollTo(openClosePositions().open, { stopAnimationOnScroll: false }).then(() =>
         position.set(OverlayPosition.OPENED),
       )
@@ -351,7 +349,6 @@ export function OverlayBase(incomingProps: LayoutOverlayBaseProps) {
     }
 
     if (disableAnimation) doAfter()
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     else scrollTo(openClosePositions().closed, { stopAnimationOnScroll: false }).then(doAfter)
   }, [disableAnimation, isPresent, openClosePositions, safeToRemove, scrollTo, scrollerRef])
 

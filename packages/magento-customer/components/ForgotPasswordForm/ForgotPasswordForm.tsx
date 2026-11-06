@@ -3,7 +3,6 @@ import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { emailPattern, useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Alert } from '@mui/material'
 import { ApolloCustomerErrorAlert } from '../ApolloCustomerError/ApolloCustomerErrorAlert'

@@ -1,7 +1,6 @@
 import { useMutation } from '@graphcommerce/graphql'
 import { sxx } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { SxProps, Theme } from '@mui/material'
 import { Badge, Box, Button, Checkbox } from '@mui/material'
 import { useState } from 'react'

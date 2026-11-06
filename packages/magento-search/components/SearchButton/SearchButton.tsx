@@ -6,7 +6,6 @@ import {
   sxx,
 } from '@graphcommerce/next-ui'
 import { Trans } from '@lingui/react/macro'
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { TextFieldProps } from '@mui/material'
 import { TextField } from '@mui/material'
 

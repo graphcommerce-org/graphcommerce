@@ -65,7 +65,6 @@ export function loadConfig(cwd: string): GraphCommerceConfig {
     confFile ||= {}
 
     const schema = GraphCommerceConfigSchema()
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const [mergedConfig, applyResult] = mergeEnvIntoConfig(schema, confFile, process.env)
 
     if (applyResult.length > 0 && isMainProcess) console.log(formatAppliedEnv(applyResult))

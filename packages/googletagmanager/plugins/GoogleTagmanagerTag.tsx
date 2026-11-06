@@ -1,10 +1,6 @@
-/* eslint-disable react/no-danger */
 
-/* eslint-disable @next/next/next-script-for-ga */
 
-/* eslint-disable @next/next/no-document-import-in-page */
 
-/* eslint-disable @next/next/no-before-interactive-script-outside-document */
 import type { PluginConfig, PluginProps } from '@graphcommerce/next-config'
 import { googleTagmanagerId } from '@graphcommerce/next-config/config'
 import { storefrontConfig } from '@graphcommerce/next-ui/server'

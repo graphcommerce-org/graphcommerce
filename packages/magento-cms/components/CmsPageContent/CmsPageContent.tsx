@@ -11,7 +11,6 @@ export function CmsPageContent(props: CmsPageContentProps) {
   const { cmsPage, productListRenderer } = props
   return (
     <Container maxWidth='md'>
-      {/* eslint-disable-next-line react/no-danger */}
       {cmsPage.content && <div dangerouslySetInnerHTML={{ __html: cmsPage.content }} />}
     </Container>
   )

@@ -99,7 +99,6 @@ async function main() {
 }
 
 main().catch((e) => {
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   cleanup()
   cliError(e)
 })

@@ -3,7 +3,6 @@ import type {
   QuerycategoryListArgs,
 } from '@graphcommerce/graphql-mesh'
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function getCategoryResultsInput(
   args: QuerycategoryListArgs,
 ): Promise<Queryalgolia_searchSingleIndexArgs['input']> {

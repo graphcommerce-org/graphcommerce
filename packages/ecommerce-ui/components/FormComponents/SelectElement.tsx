@@ -26,7 +26,6 @@ function SelectElementBase(props: SelectElementProps): React.ReactNode {
 
   return (
     <TextFieldElement {...props} select>
-      {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
       {isNativeSelect && <option />}
       {options.map((item) => (
         <ChildComponent key={item.id} value={item.id}>

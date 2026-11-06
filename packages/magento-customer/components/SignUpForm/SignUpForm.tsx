@@ -42,11 +42,9 @@ export function SignUpForm(props: SignUpFormProps) {
     {
       onBeforeSubmit: (values) => {
         if (!email) {
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
           setError('email', { message: t`Please enter a valid email address` })
           return false
         }
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         clearErrors()
 
         values.input.email = email

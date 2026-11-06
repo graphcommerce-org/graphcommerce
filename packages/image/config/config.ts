@@ -100,7 +100,6 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
         process.env.NEXT_RUNTIME !== 'edge'
       ) {
         // We use dynamic require because this should only error in development
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         import('next/dist/shared/lib/match-remote-pattern').then(({ hasRemoteMatch }) => {
           if (!hasRemoteMatch(config.domains, config.remotePatterns, parsedSrc)) {
             throw new Error(

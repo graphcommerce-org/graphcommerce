@@ -23,7 +23,6 @@ export function PickupLocationActionCard(props: ActionCardItemRenderProps<Locati
         <>
           <div>{`${street}, ${postcode} ${city}`}</div>
           {cardProps.selected && description && (
-            // eslint-disable-next-line react/no-danger
             <Box
               dangerouslySetInnerHTML={{ __html: description }}
               sx={(theme) => ({

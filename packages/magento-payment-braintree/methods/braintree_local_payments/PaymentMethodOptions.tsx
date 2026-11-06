@@ -120,7 +120,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
           code,
         }
       } catch (e) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         if (isBraintreeError(e)) unlock({ payment_id: null })
         throw e
       }

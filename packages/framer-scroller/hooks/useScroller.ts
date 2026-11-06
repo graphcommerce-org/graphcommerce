@@ -119,7 +119,6 @@ export function useScroller<
     if (!isPanning) return
 
     setPanning(false)
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     snapToVelocity(info)
   }
 

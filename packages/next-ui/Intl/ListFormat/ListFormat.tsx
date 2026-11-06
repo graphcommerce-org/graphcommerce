@@ -19,7 +19,6 @@ function ListFormatMultiple(props: {
   return (
     <>
       {parts.map((part, index) => (
-        // eslint-disable-next-line react/no-array-index-key
         <React.Fragment key={index}>
           {part.type === 'literal' ? part.value : childArray[part.value]}
         </React.Fragment>

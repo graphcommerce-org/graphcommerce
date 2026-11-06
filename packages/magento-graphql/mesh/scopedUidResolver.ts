@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import { fragments, getPrivateQueryContextMesh } from '@graphcommerce/graphql'
 import { type MeshContext, type Resolvers } from '@graphcommerce/graphql-mesh'
 import { storefrontFromContext } from '@graphcommerce/magento-store'

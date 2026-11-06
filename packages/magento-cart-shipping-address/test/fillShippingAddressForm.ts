@@ -1,4 +1,3 @@
-/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import type { Page } from '@playwright/test'
 
 export async function fillShippingAddressForm(page: Page) {

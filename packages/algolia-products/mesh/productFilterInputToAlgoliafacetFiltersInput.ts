@@ -82,7 +82,6 @@ export async function productFilterInputToAlgoliaNumericFiltersInput(
   for (const [key, value] of Object.entries(filters)) {
     if (isFilterTypeRange(value)) {
       if (key === 'price') {
-        // eslint-disable-next-line no-await-in-loop
         const currencyCode = (await storeConfig)?.default_display_currency_code
         filterArray.push(
           { numericFilters_Input: { String: `${key}.${currencyCode}.default >= ${value.from}` } },

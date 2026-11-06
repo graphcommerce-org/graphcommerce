@@ -15,7 +15,7 @@ export type UseFormGqlMutationReturn<
 export function isFormGqlOperation<
   V extends FieldValues,
   Q extends Record<string, unknown> = Record<string, unknown>,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-redundant-type-constituents
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 >(form: any): form is UseFormGqlMutationReturn<Q, V> {
   return (form as UseFormGqlMutationReturn<Q, V>)[UseFormGqlSymbol] === true
 }

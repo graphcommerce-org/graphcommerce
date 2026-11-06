@@ -5,7 +5,6 @@ export function useGo(delta: number) {
   return () => {
     if (delta >= 0) {
       console.error(`Called .go(${delta}), only negative numbers are allowed. Redirecting to home`)
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push('/', '/')
       return
     }

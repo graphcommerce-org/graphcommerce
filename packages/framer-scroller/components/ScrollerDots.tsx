@@ -46,7 +46,6 @@ export const ScrollerDots = m.create(
         )}
       >
         {itemsArr.map((item, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
           <ScrollerDot key={idx} {...item} idx={idx} />
         ))}
       </Box>

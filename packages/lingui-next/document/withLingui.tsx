@@ -32,7 +32,6 @@ export function withLingui(
               type='application/json'
               id='lingui'
               lang={locale}
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: JSON.stringify(messages) }}
             />
           ),

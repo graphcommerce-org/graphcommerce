@@ -45,7 +45,6 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   const requestedMode = useWatch({ control, name: 'requestedMode' })
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     ;(async () => {
       if (!cachedEmail && queryState.email) {
         await setRouterQuery({ email: null })

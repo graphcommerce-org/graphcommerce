@@ -1,4 +1,3 @@
-/* eslint-disable arrow-body-style */
 import { useAlgoliaIndexName, useAlgoliaQuery } from '@graphcommerce/algolia-products'
 import type { GoogleEventTypes, sendEvent } from '@graphcommerce/google-datalayer'
 import { useApolloClient } from '@graphcommerce/graphql'

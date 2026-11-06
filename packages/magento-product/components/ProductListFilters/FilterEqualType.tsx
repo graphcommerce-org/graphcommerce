@@ -68,7 +68,6 @@ export function FilterEqualType(props: FilterEqualTypeProps) {
     delete linkParams.filters[attribute_code]
     delete linkParams.currentPage
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     replaceRoute(linkParams)
   }
 

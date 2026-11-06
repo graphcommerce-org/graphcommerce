@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
-/* eslint-disable import/no-cycle */
 import { resolve } from 'path'
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import { isUsingTypes } from '@graphql-codegen/plugin-helpers'

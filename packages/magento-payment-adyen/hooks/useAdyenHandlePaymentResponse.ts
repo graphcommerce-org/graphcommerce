@@ -103,11 +103,9 @@ export function useAdyenHandlePaymentResponse() {
       case ResultCodeEnum.Refused:
       case ResultCodeEnum.Pending:
       case ResultCodeEnum.Error:
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         unlock()
         break
       case ResultCodeEnum.Authorised:
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         onSuccess(orderNumber)
         break
       default:

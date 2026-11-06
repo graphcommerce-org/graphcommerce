@@ -7,7 +7,6 @@ export type ProductPageAddToCartRowProps = {
   sx?: SxProps<Theme>
   children: React.ReactNode
   after?: React.ReactNode
-  // eslint-disable-next-line react/no-unused-prop-types
   product: UseAddProductsToCartActionFragment
 }
 

@@ -67,7 +67,6 @@ export default function ButtonsPage() {
         <LayoutTitle variant='h1'>Buttons</LayoutTitle>
 
         {Object.entries(propVariants).map(([propVariant, props]) => (
-          // eslint-disable-next-line react/no-array-index-key
           <React.Fragment key={propVariant}>
             <Typography variant='h2' sx={{ mt: 8 }}>
               {propVariant}

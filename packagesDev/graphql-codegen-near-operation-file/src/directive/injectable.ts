@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import type { DocumentNode, FragmentDefinitionNode, FragmentSpreadNode } from 'graphql'
 import { Kind, visit } from 'graphql'

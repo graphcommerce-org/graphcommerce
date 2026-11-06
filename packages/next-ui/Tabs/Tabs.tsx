@@ -71,7 +71,6 @@ export function Tabs(props: TabsProps) {
           {showSeparators && startContent && separatorElement}
 
           {React.Children.map(children, (child, index) => (
-            // eslint-disable-next-line react/no-array-index-key
             <React.Fragment key={index}>
               {showSeparators && index > 0 && separatorElement}
               {child}

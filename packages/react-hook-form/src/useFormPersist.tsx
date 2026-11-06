@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-prop-types */
 import { useEffect } from 'react'
 import type { Control, FieldPath, FieldValues, PathValue, UseFormSetValue } from 'react-hook-form'
 import { useFormState, useWatch } from 'react-hook-form'

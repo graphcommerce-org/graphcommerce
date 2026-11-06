@@ -52,7 +52,6 @@ export function AdyenPaymentHandler() {
       return handleResponse(orderNumber, paymentStatus)
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     call()
   }, [
     redirectResult,

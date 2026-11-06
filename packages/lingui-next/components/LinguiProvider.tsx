@@ -31,7 +31,6 @@ export function LinguiProvider(props: LinguiProviderProps) {
         i18n.load(localeOnly, messages)
         i18n.activate(localeOnly)
       } else {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         ;(async () => {
           try {
             const { messages } = await loader(localeOnly)

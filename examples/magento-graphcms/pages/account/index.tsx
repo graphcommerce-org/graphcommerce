@@ -124,7 +124,6 @@ function AccountIndexPage() {
             />
 
             <SignOutForm
-              // eslint-disable-next-line react/no-unstable-nested-components
               button={({ formState }) => (
                 <AccountMenuItem
                   iconSrc={iconShutdown}

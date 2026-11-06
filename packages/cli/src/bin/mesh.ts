@@ -1,4 +1,3 @@
-/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import { promises as fs } from 'fs'
 import path from 'path'
 import { exit } from 'process'
@@ -183,7 +182,6 @@ process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
 main().catch((e) => {
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   cleanup()
   if (e instanceof Error) {
     handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))

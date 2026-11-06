@@ -1,6 +1,5 @@
 /* eslint-disable graphcommerce/no-extraneous-dependencies */
 
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/test/apolloClient.fixture'
 import { PaymentMethodPlaceOrderNoopDocument } from '@graphcommerce/magento-cart-payment-method/PaymentMethodPlaceOrderNoop/PaymentMethodPlaceOrderNoop.gql'
 import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'

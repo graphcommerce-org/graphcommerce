@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { PasswordElement, TextFieldElement } from '@graphcommerce/ecommerce-ui'
 import { graphqlErrorByCategory } from '@graphcommerce/magento-graphql'
 import {

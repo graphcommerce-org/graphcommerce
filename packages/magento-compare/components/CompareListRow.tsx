@@ -60,7 +60,6 @@ export function CompareListRow(props: CompareRowProps) {
         <Box sx={sxx(compareListStyles, (theme) => ({ mb: theme.spacings.lg }))}>
           {compareAbleItems?.map((item, idx) => (
             <Box
-              // eslint-disable-next-line react/no-array-index-key
               key={idx}
               sx={{
                 '& > p:first-of-type': { marginTop: 0 },

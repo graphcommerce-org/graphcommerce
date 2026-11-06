@@ -1,4 +1,3 @@
-// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import type { ProductItemsGridProps } from '@graphcommerce/magento-product'
 import type { IfConfig, PluginProps } from '@graphcommerce/next-config'
 import { Index } from 'react-instantsearch-hooks-web'

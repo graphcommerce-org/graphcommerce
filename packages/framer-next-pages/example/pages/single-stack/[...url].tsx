@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { LayoutOverlayProps, LayoutOverlayVariant } from '@graphcommerce/next-ui'
 import { LayoutHeader, LayoutOverlay, LayoutTitle } from '@graphcommerce/next-ui'

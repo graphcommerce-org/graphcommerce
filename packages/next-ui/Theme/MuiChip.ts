@@ -12,7 +12,6 @@ declare module '@mui/material/Chip' {
 
 type ChipVariants = NonNullable<ComponentsVariants<Theme>['MuiChip']>
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MuiChip: ChipVariants = [
   {
     props: {},

@@ -26,7 +26,6 @@ export function ApolloErrorAlert(props: ApolloErrorAlertProps) {
     <Box key='alerts'>
       <Box sx={sx} className={classes.root}>
         {graphQLErrors.map((e, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <Box key={index}>
             <div className={classes.alert}>
               <Alert

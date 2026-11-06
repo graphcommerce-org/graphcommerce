@@ -1,8 +1,6 @@
 import createEmotionServer from '@emotion/server/create-instance'
 import type { AppType } from 'next/app'
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import type NextDocument from 'next/document'
-// eslint-disable-next-line @next/next/no-document-import-in-page
 import type { DocumentContext } from 'next/document'
 import { createEmotionCache } from './createEmotionCache'
 import type { EmotionProviderProps } from './EmotionProvider'

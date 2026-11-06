@@ -34,7 +34,6 @@ export function PayPalPaymentHandler(props: PaymentHandlerProps) {
   })
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     if (locked && !justLocked && method === code && !PayerID) unlock({ token: null, PayerID: null })
   }, [PayerID, code, justLocked, locked, method, unlock])
 
@@ -50,7 +49,6 @@ export function PayPalPaymentHandler(props: PaymentHandlerProps) {
         assertOrderPlaced(result)
         const orderNumber = result.data?.placeOrder?.order?.order_number
         if (orderNumber) {
-          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           onSuccess(orderNumber)
         }
       } catch (e) {
@@ -58,7 +56,6 @@ export function PayPalPaymentHandler(props: PaymentHandlerProps) {
       }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchData()
   }, [PayerID, called, cartId, onSuccess, placeOrder, push, token, unlock])
 

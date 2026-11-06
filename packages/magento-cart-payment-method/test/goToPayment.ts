@@ -1,4 +1,3 @@
-/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import type { ApolloClient, NormalizedCacheObject } from '@graphcommerce/graphql'
 import { fillShippingAddressForm } from '@graphcommerce/magento-cart-shipping-address/test/fillShippingAddressForm'
 import { fillCartAgreementsForm } from '@graphcommerce/magento-cart/test/fillCartAgreementsForm'

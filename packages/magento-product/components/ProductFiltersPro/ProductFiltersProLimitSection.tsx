@@ -10,7 +10,6 @@ import { useProductFiltersPro } from './ProductFiltersPro'
 
 export type ProductFiltersProLimitSectionProps = { sx?: SxProps<Theme> }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ProductFiltersProLimitSection(props: ProductFiltersProLimitSectionProps) {
   const { sx } = props
   const { form } = useProductFiltersPro()

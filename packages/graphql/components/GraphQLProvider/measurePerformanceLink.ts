@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { map } from '@graphcommerce/graphql/rxjs'
 import { canonicalBaseUrl } from '@graphcommerce/next-config/config'
 import { ApolloLink } from '@apollo/client'

@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-restricted-imports */
 
 /* eslint-disable prefer-const */
 
 /* eslint-disable no-param-reassign */
 
-/* eslint-disable @next/next/no-img-element */
 
-/* eslint-disable jsx-a11y/alt-text */
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled, useForkRef } from '@mui/material'
@@ -28,7 +25,7 @@ import {
 } from '../config/config'
 
 if (typeof window === 'undefined') {
-  // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-explicit-any, @typescript-eslint/no-extra-semi
+  // eslint-disable-next-line no-underscore-dangle, @typescript-eslint/no-explicit-any
   ;(global as any).__NEXT_IMAGE_IMPORTED = true
 }
 
@@ -104,7 +101,6 @@ function getWidths(
     // Find all the "vw" percent sizes used in the sizes prop
     const viewportWidthRe = /(^|\s)(1?\d?\d)vw/g
     const percentSizes: number[] = []
-    // eslint-disable-next-line no-cond-assign
     for (let match: string[] | null; (match = viewportWidthRe.exec(sizes)); match) {
       percentSizes.push(parseInt(match?.[2], 10))
     }
@@ -164,7 +160,6 @@ export function generateSrcSet(props: GenImgAttrsData): string {
     width,
     quality = 52,
     sizes,
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     loader = defaultImageLoader,
     scale,
     config = defaultConfig,

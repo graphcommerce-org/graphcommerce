@@ -79,7 +79,6 @@ export function DownloadsPage() {
                 </Typography>
 
                 {downloads.map((item, index) => (
-                  // eslint-disable-next-line react/no-array-index-key
                   <React.Fragment key={index}>
                     <Box>
                       <Link href={`/account/orders/view?orderNumber=${item.order_increment_id}`}>

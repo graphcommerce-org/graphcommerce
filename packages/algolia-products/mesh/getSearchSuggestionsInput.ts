@@ -5,7 +5,6 @@ export function isSuggestionsEnabled() {
   return Boolean(algolia.suggestionsSuffix)
 }
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function getSearchSuggestionsInput(
   search: string,
   context: MeshContext,

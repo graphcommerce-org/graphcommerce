@@ -1,4 +1,3 @@
-/* eslint-disable react/forbid-foreign-prop-types */
 import type { ButtonTypeMap, ButtonProps as MuiButtonProps } from '@mui/material'
 import { Button } from '@mui/material'
 

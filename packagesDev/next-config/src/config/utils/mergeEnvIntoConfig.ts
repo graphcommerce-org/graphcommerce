@@ -50,7 +50,6 @@ export function configToEnvSchema(schema: core.$ZodType) {
     let node = incomming
 
     // Unwrap wrapper types in a loop to handle chained wrappers (e.g., ZodLazy containing ZodOptional)
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       if (node instanceof ZodPipe) {
         node = node.in

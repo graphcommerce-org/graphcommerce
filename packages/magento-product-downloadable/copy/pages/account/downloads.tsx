@@ -1,7 +1,5 @@
-// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import type { PageOptions } from '@graphcommerce/framer-next-pages'
 import type { DownloadsPageProps } from '@graphcommerce/magento-product-downloadable'
-// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { createGetStaticProps, DownloadsPage } from '@graphcommerce/magento-product-downloadable'
 import type { GetStaticProps, LayoutOverlayProps } from '@graphcommerce/next-ui'
 import { LayoutOverlay } from '@graphcommerce/next-ui'

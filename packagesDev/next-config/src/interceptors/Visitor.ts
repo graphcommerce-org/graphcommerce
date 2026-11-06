@@ -182,8 +182,6 @@ import type {
 } from '@swc/types'
 
 /* eslint-disable no-param-reassign */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable consistent-return */
 
 /**
  * @deprecated JavaScript API is deprecated. Please use Wasm plugin instead.

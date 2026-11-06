@@ -111,7 +111,6 @@ function RenderChildren(
     <>
       {childNodes.map((node, key) => (
         <RenderNode
-          // eslint-disable-next-line react/no-array-index-key
           key={key}
           node={node}
           renderers={renderers}

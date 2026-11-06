@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { waitForGraphQlResponse } from '@graphcommerce/graphql/__playwright__/apolloClient.fixture'
 import type { SignUpMutation } from '@graphcommerce/magento-customer/components'
 import { SignUpDocument } from '@graphcommerce/magento-customer/components'
