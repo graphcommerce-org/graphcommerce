@@ -41,5 +41,6 @@
 '@graphcommerce/magento-wishlist': major
 '@graphcommerce/mollie-magento-payment': major
 '@graphcommerce/next-ui': major
+---
 
 **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too.
