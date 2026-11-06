@@ -1,0 +1,735 @@
+{
+  "name": "Config",
+  "parent_id": 166894755562339,
+  "group_id": "f429f476-6d1d-4a49-94cf-b7797662c656",
+  "alternates": [],
+  "created_at": "2026-04-15T11:04:45.895Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-24T12:59:46.350Z",
+  "published_at": "2026-04-24T12:59:46.336Z",
+  "id": 166139846260389,
+  "uuid": "1df0c706-8033-4500-a645-891bf5ade7c5",
+  "is_folder": false,
+  "content": {
+    "_uid": "23b1b663-b014-4188-9eed-d4686477019c",
+    "component": "global_config",
+    "copyright": "© GraphCommerce",
+    "legal_links": [
+      {
+        "url": {
+          "id": "",
+          "url": "/terms-and-conditions",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/terms-and-conditions"
+        },
+        "_uid": "e047ea37-6c9e-406e-99d6-d50738cfd83e",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Terms and conditions",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/credits",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/credits"
+        },
+        "_uid": "1503f8ad-afda-4593-a693-06e8e79255bf",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Credits",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/newsletter",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/newsletter"
+        },
+        "_uid": "d4353112-6920-4646-8cae-774dacdeea66",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Subscribe",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/service/how-can-i-remove-my-account",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/service/how-can-i-remove-my-account"
+        },
+        "_uid": "883a69c9-6f3b-4b0d-acf3-155fd6280e58",
+        "asset": {
+          "id": null,
+          "alt": null,
+          "name": "",
+          "focus": null,
+          "title": null,
+          "source": null,
+          "filename": "",
+          "copyright": null,
+          "fieldtype": "asset",
+          "meta_data": {}
+        },
+        "title": "Remove account",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      }
+    ],
+    "content_usps": [
+      {
+        "url": {
+          "id": "",
+          "url": "/faq/shipping",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/faq/shipping"
+        },
+        "_uid": "4b2fd961-1f69-4966-b0d8-3277a1c7890f",
+        "asset": {
+          "id": 168667931920555,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/32x32/3e8945853f/box-alt2.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Free shipping",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Free shipping",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/faq/returns",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/faq/returns"
+        },
+        "_uid": "a1182813-e7e5-42ec-9b64-f2c7ea3930d9",
+        "asset": {
+          "id": 168667931285671,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/32x32/f95b58e1b1/history.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "30 days return policy",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "30 days return policy",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/faq/shipping",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/faq/shipping"
+        },
+        "_uid": "16c01509-2157-44b9-9bd2-ef3bd0e9c483",
+        "asset": {
+          "id": 168667931322537,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/32x32/ef296d40a4/calendar.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Unlimited Next Day Delivery",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Unlimited Next Day Delivery",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/faq/index",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/faq/index"
+        },
+        "_uid": "a1be9d10-3536-4ff1-92ab-52dcd9e1385d",
+        "asset": {
+          "id": 168667931306152,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/32x32/c7bd733b0f/moon.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Late night delivery",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Late night delivery",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "sidebar_usps": [
+      {
+        "url": {
+          "id": "",
+          "url": "#",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "#"
+        },
+        "_uid": "eb5f75db-49b4-4f8f-a78d-ee6621feea17",
+        "asset": {
+          "id": 168667931338922,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/17x12/301c668b95/icon_usp_check.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Free returns within 30 days",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Free",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " returns within ",
+                  "type": "text"
+                },
+                {
+                  "text": "30",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " days",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "#",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "#"
+        },
+        "_uid": "987e9e43-cdd2-438c-8d32-c24e16289ab6",
+        "asset": {
+          "id": 168667931338922,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/17x12/301c668b95/icon_usp_check.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Dispatched from and sold by GraphCommerce",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Dispatched from and sold by ",
+                  "type": "text"
+                },
+                {
+                  "text": "GraphCommerce",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "#",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "#"
+        },
+        "_uid": "fed645db-4acc-4c45-be7a-a5fbe22583af",
+        "asset": {
+          "id": 168667931338922,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/17x12/301c668b95/icon_usp_check.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "We ship over 15 thousand products around the world",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "We ship over ",
+                  "type": "text"
+                },
+                {
+                  "text": "15 thousand",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                },
+                {
+                  "text": " products around ",
+                  "type": "text"
+                },
+                {
+                  "text": "the world",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "bold"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "social_links": [
+      {
+        "url": {
+          "id": "",
+          "url": "/test",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/test"
+        },
+        "_uid": "17bd26ac-1cc6-4867-b4d0-7c96d8de3d5f",
+        "asset": {
+          "id": 166151364457168,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/24x24/c305653f3f/facebook.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Test",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "test",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/test-2",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/test-2"
+        },
+        "_uid": "436d5cf5-9be0-4be6-80be-c25cda402a0a",
+        "asset": {
+          "id": 166151364453071,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/24x24/6ee17f05da/linkedin.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Test 2",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "bla",
+                  "type": "text"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/test-3",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/test-3"
+        },
+        "_uid": "c6a9255f-9263-4575-a5e5-a2167d8a6d08",
+        "asset": {
+          "id": 166151708812102,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/24x24/7302061d46/twitter.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Test 3",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      },
+      {
+        "url": {
+          "id": "",
+          "url": "/instagram",
+          "linktype": "url",
+          "fieldtype": "multilink",
+          "cached_url": "/instagram"
+        },
+        "_uid": "b68221a5-9d85-4bb7-8b1f-ee6b00c333ea",
+        "asset": {
+          "id": 166151708820295,
+          "alt": "",
+          "name": "",
+          "focus": "",
+          "title": "",
+          "source": "",
+          "filename": "https://a.storyblok.com/f/291439709879423/24x24/8b0fbd16e5/instagram.svg",
+          "copyright": "",
+          "fieldtype": "asset",
+          "meta_data": {},
+          "is_external_url": false
+        },
+        "title": "Test 4",
+        "component": "page_link",
+        "description": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "published": true,
+  "slug": "config",
+  "path": "global-config",
+  "full_slug": "global/config",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 166894755562339,
+    "uuid": "3ab97c2c-f556-4b28-9bd7-fa4ba02438e4",
+    "name": "Global",
+    "slug": "global",
+    "disble_fe_editor": false
+  },
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 166894755562339,
+      "name": "Global",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "global",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-15T11:44:42.622Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "global/config",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -10,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 169353159881848,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

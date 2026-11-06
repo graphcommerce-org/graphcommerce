@@ -1,0 +1,30 @@
+type Customer {
+  """
+  An array containing the customer's shipping and billing addresses.
+  """
+  addressesV2(
+    """
+    Specifies which page of results to return. The default value is 1.
+    """
+    currentPage: Int = 1
+    """
+    Specifies the maximum number of results to return at once. The default value is 5.
+    """
+    pageSize: Int = 5
+  ): CustomerAddresses @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type CustomerAddresses {
+  """
+  An array containing the customer's shipping and billing addresses.
+  """
+  items: [CustomerAddress]
+  """
+  Contains pagination metadata.
+  """
+  page_info: SearchResultPageInfo
+  """
+  The total count of customer addresses.
+  """
+  total_count: Int
+}

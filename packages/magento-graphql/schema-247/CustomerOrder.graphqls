@@ -1,3 +1,14 @@
 type CustomerOrder {
-  applied_coupons: [AppliedCoupon]
+  """
+  Coupons applied to the order.
+  """
+  applied_coupons: [AppliedCoupon] @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Order customer email.
+  """
+  email: String @deprecated(reason: "Magento >= 2.4.7")
+  """
+  The token that can be used to retrieve the order using order query.
+  """
+  token: String @deprecated(reason: "Magento >= 2.4.7")
 }

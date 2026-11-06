@@ -1,0 +1,20 @@
+interface MediaGalleryInterface {
+  """
+  Array of image types. It can have the following values: image, small_image, thumbnail.
+  """
+  types: [String] @deprecated(reason: "Magento >= 2.4.9")
+}
+
+type ProductImage {
+  """
+  Array of image types. It can have the following values: image, small_image, thumbnail.
+  """
+  types: [String] @deprecated(reason: "Magento >= 2.4.9")
+}
+
+type ProductVideo {
+  """
+  Array of image types. It can have the following values: image, small_image, thumbnail.
+  """
+  types: [String] @deprecated(reason: "Magento >= 2.4.9")
+}

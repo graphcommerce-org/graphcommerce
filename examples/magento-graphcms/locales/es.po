@@ -485,8 +485,8 @@ msgstr "Envío no encontrado"
 msgid "Be the first to write a review!"
 msgstr "Sé el primero en escribir una reseña!"
 
-msgid "Create a password and tell us your name"
-msgstr "Crea una contraseña y nos cuentas tu nombre"
+msgid "Enter your details to create your account"
+msgstr "Introduce tus datos para crear tu cuenta"
 
 #. placeholder {0}: product?.name
 msgid "You are reviewing {0}"

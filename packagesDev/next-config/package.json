@@ -2,7 +2,7 @@
   "name": "@graphcommerce/next-config",
   "homepage": "https://www.graphcommerce.org/",
   "repository": "github:graphcommerce-org/graphcommerce",
-  "version": "10.0.3",
+  "version": "11.0.0",
   "type": "module",
   "exports": {
     ".": {
@@ -15,6 +15,8 @@
     },
     "./config": {
       "types": "./src/generated/configValues/index.ts",
+      "edge-light": "./dist/generated/configValues/index.js",
+      "browser": "./dist/generated/configValues/publicOnly/index.js",
       "default": "./dist/generated/configValues/index.js"
     },
     "./loadConfig": {
@@ -63,7 +65,7 @@
   },
   "peerDependencies": {
     "@apollo/client": "*",
-    "@graphcommerce/prettier-config-pwa": "^10.0.3",
+    "@graphcommerce/prettier-config-pwa": "^11.0.0",
     "@lingui/loader": "*",
     "@lingui/macro": "*",
     "@lingui/react": "*",

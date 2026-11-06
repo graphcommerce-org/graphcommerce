@@ -1,7 +1,27 @@
 import { GlobalStyles } from '@mui/material'
+import type { FeatureBundle } from 'framer-motion'
 import { LazyMotion } from 'framer-motion'
+import { startTransition, useEffect, useState } from 'react'
 import type { EmotionProviderProps } from '../Styles/EmotionProvider'
 import { EmotionProvider } from '../Styles/EmotionProvider'
+
+// Until the features are loaded `m` components render as plain elements.
+const noFeatures = {} as FeatureBundle
+
+/**
+ * Loads framer-motion's features after hydration and applies them in a transition, so the resulting
+ * re-render of all `m` components is time-sliced instead of one blocking task, and the features
+ * stay out of the startup bundle.
+ */
+function useFramerFeatures() {
+  const [features, setFeatures] = useState<FeatureBundle>(noFeatures)
+  useEffect(() => {
+    import('./framerFeatures')
+      .then((m) => startTransition(() => setFeatures(m.default)))
+      .catch(console.error)
+  }, [])
+  return features
+}
 
 export type CssAndFramerMotionProviderProps = EmotionProviderProps
 
@@ -16,7 +36,7 @@ export function CssAndFramerMotionProvider(props: CssAndFramerMotionProviderProp
   const { children, emotionCache } = props
   return (
     <EmotionProvider emotionCache={emotionCache}>
-      <LazyMotion features={async () => (await import('./framerFeatures')).default} strict>
+      <LazyMotion features={useFramerFeatures()} strict>
         {children}
         <GlobalStyles
           styles={{

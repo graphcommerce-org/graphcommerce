@@ -1,4 +1,4 @@
-export const FLAGS_STORAGE_KEY = 'gc-flags'
+export const FLAGS_COOKIE_KEY = 'gc-flags'
 
 export function getCssFlagsInitScript() {
   return (
@@ -9,7 +9,9 @@ export function getCssFlagsInitScript() {
       dangerouslySetInnerHTML={{
         __html: `(function() {
 try {
-  const flags = JSON.parse(localStorage.getItem('${FLAGS_STORAGE_KEY}') || '{}')
+  var m = document.cookie.match(/(^|; )${FLAGS_COOKIE_KEY}=([^;]*)/)
+  if (!m) return
+  var flags = JSON.parse(decodeURIComponent(m[2]))
   Object.entries(flags).forEach(([key, val]) => {
     document.documentElement.setAttribute('data-' +key, typeof val === 'boolean' ? '' : val)
   })

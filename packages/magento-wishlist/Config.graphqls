@@ -2,10 +2,10 @@ extend input GraphCommerceConfig {
   """
   Hide the wishlist functionality for guests.
   """
-  wishlistHideForGuests: Boolean
+  wishlistHideForGuests: Boolean @public
 
   """
   Show a message when the product is added to the wishlist.
   """
-  wishlistShowFeedbackMessage: Boolean
+  wishlistShowFeedbackMessage: Boolean @public
 }

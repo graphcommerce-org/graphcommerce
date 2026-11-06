@@ -4,6 +4,7 @@ import {
   useCustomerSession,
   useGuestQuery,
 } from '@graphcommerce/magento-customer'
+import { wishlistHideForGuests } from '@graphcommerce/next-config/config'
 import { nonNullable } from '@graphcommerce/next-ui'
 import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
 import { useWishlistEnabled } from '../useWishlistEnabled/useWishlistEnabled'
@@ -19,24 +20,31 @@ export type UseWishlistItemsGuestReturn = {
   enabled: boolean
   loggedIn: false
   items: WishlistItemFragment[]
+  count?: number | null
 } & useQuery.Result<UseWishlistGuestQuery, UseWishlistGuestQueryVariables>
 
 export type UseWishlistItemsCustomerReturn = {
   enabled: boolean
   loggedIn: true
   items: WishlistItemFragment[]
+  count?: number | null
 } & useQuery.Result<UseWishlistCustomerQuery, UseWishlistCustomerQueryVariables>
 
 export type UseWishlistItemsReturn = UseWishlistItemsGuestReturn | UseWishlistItemsCustomerReturn
 
-export function useWishlistItems(): UseWishlistItemsReturn {
+export function useWishlistItems(currentPage = 1, pageSize = 20): UseWishlistItemsReturn {
   const { loggedIn } = useCustomerSession()
   const enabled = useWishlistEnabled()
 
   /** Get customer wishlist from session */
-  const wishlistCustomer = useCustomerQuery(UseWishlistCustomerDocument, { skip: !enabled })
+  const wishlistCustomer = useCustomerQuery(UseWishlistCustomerDocument, {
+    variables: { currentPage, pageSize },
+    skip: !enabled,
+  })
   /** Get guest wishlist items from cache */
-  const wishlistGuest = useGuestQuery(UseWishlistGuestDocument, { skip: !enabled })
+  const wishlistGuest = useGuestQuery(UseWishlistGuestDocument, {
+    skip: !enabled || !!wishlistHideForGuests,
+  })
 
   if (loggedIn) {
     const items = (
@@ -44,7 +52,10 @@ export function useWishlistItems(): UseWishlistItemsReturn {
         ?.items ?? []
     ).filter(nonNullable)
 
-    return { ...wishlistCustomer, enabled, loggedIn: true, items }
+    const count = (wishlistCustomer.data ?? wishlistCustomer.previousData)?.customer?.wishlists?.[0]
+      ?.items_count
+
+    return { ...wishlistCustomer, enabled, loggedIn: true, items, count }
   }
 
   const items = (

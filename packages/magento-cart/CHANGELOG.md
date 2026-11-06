@@ -1,5 +1,207 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2663](https://github.com/graphcommerce-org/graphcommerce/pull/2663) [`8d0f4a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8d0f4a0a6539d8003fa21e1bc09822f55aa4dedb) - Address forms now honor Magento's `customer/address/telephone_show` configuration instead of silently submitting a `000 - 000 0000` placeholder telephone.
+
+  `CartAddressInput.telephone` is a non-nullable `String!`, so the address forms always had to send a value; because the mutation variable is declared as an optional `String`, `required.telephone` resolved to `false` and the field rendered as optional, after which `onBeforeSubmit` substituted the placeholder. Every checkout that skipped the field therefore stored a fake phone number on the order.
+
+  Magento does expose whether a telephone is required — `attributesForm(formCode: "customer_address_edit")` returns `is_required` per address attribute and reflects `customer/address/telephone_show`. `ShippingAddressForm`, `EditBillingAddressForm` and `EditAddressForm` now read that metadata through the existing `useAttributesForm` hook and mark the field required accordingly. The placeholder is gone: an empty telephone is submitted as an empty string, which Magento validates against the very same `is_required` (`Magento\Customer\Model\Address\Validator\General::checkOptionalFields`).
+
+  This is a deliberate behavior change. Where a customer who bypassed the client-side validation previously got a successful order carrying a fake phone number, a shop that requires a telephone now gets a proper `"telephone" is required. Enter and try again.` validation error. Addresses that still carry the old placeholder are cleared when they are loaded into a form, so the customer fills in a real number instead of being shown zeroes.
+
+  `attributesForm` only exists since Magento 2.4.7, so all of this is version-gated in `stripLegacyPlaceholderTelephone()` / `applyLegacyPlaceholderTelephone()` (`@graphcommerce/magento-customer`): below 2.4.7 the placeholder is still submitted and no longer stripped, exactly as before.
+
+  Pages that render these forms should preload the metadata in `getStaticProps` with `await preloadAttributesForm(client, 'customer_address_edit')`, the same way the account pages already preload `customer_account_create` / `customer_account_edit`. The examples do this for the checkout and address pages, which also closes the window where a customer could submit before the metadata resolved. ([@paales](https://github.com/paales))
+
+- [#2685](https://github.com/graphcommerce-org/graphcommerce/pull/2685) [`2ab007e`](https://github.com/graphcommerce-org/graphcommerce/commit/2ab007eee8c49295ee922b7860ec7c3b2ddfee36) - The `onBeforeSubmit` of a `useFormGqlMutationCart` form receives the cart id, so the Mollie return URL contains the cart id of the order. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2673](https://github.com/graphcommerce-org/graphcommerce/pull/2673) [`60b3b7e`](https://github.com/graphcommerce-org/graphcommerce/commit/60b3b7e1c5016848c621d6f0e12c8c4b87f13f1e) - Move `CurrentCartId.graphqls` from `magento-compare` to `magento-cart`, so the cart no longer needs the compare package to get its own schema.
+
+  `@graphcommerce/magento-compare` shipped `schema/CurrentCartId.graphqls`, but everything in that file belongs to the cart: `Query.currentCartId`, the `CurrentCartId` type and `RegisterCartIdInput`. `@graphcommerce/magento-cart` had no `schema/` directory at all, even though `magento-cart/hooks/CurrentCartId.graphql` queries `currentCartId @client`.
+
+  The mesh only reads `*/schema/**/*.graphqls`, so the cart only got its schema when `magento-compare` happened to be installed. Compare looks optional — all of its plugins are behind `ifConfig: 'compare'` — but removing it broke codegen, with an error pointing at a package you did not touch:
+
+  ```
+  ✖ File node_modules/@graphcommerce/magento-cart/hooks/CurrentCartId.graphql
+    caused error: Unable to find field "currentCartId" on type "Query"!
+  ```
+
+  The file now lives in `magento-cart/schema/`. `magento-compare/schema/` keeps `CurrentCompareUid.graphqls`, which really is its own. ([@alohas](https://github.com/alohas))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+- [#2667](https://github.com/graphcommerce-org/graphcommerce/pull/2667) [`6ee8488`](https://github.com/graphcommerce-org/graphcommerce/commit/6ee84883ece679b4fd4ed191ecd00a9ec39cc206) - Give `useClearCurrentCartId()` and `useCartLock()`'s `lock`/`unlock` a stable function identity, so consumers can list them in a `useEffect` dependency array without the effect re-running on every render.
+
+  `useClearCurrentCartId` returned a bare arrow function and `useCartLock` defined `lock`/`unlock` inline, while the neighbouring `useAssignCurrentCartId` already returned a `useCallback`. `useClearCurrentCartId` now uses `useCallback` with the Apollo `cache` as its only dependency (matching `useAssignCurrentCartId`), and `lock`/`unlock` use `useEventCallback` because they read values that legitimately change (`currentCartId`, the router query state and the Apollo client) — `useEventCallback` keeps the identity stable while always reading the latest values, so no stale closure is introduced. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+### Patch Changes
+
+- [#2663](https://github.com/graphcommerce-org/graphcommerce/pull/2663) [`8d0f4a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8d0f4a0a6539d8003fa21e1bc09822f55aa4dedb) - Address forms now honor Magento's `customer/address/telephone_show` configuration instead of silently submitting a `000 - 000 0000` placeholder telephone.
+
+  `CartAddressInput.telephone` is a non-nullable `String!`, so the address forms always had to send a value; because the mutation variable is declared as an optional `String`, `required.telephone` resolved to `false` and the field rendered as optional, after which `onBeforeSubmit` substituted the placeholder. Every checkout that skipped the field therefore stored a fake phone number on the order.
+
+  Magento does expose whether a telephone is required — `attributesForm(formCode: "customer_address_edit")` returns `is_required` per address attribute and reflects `customer/address/telephone_show`. `ShippingAddressForm`, `EditBillingAddressForm` and `EditAddressForm` now read that metadata through the existing `useAttributesForm` hook and mark the field required accordingly. The placeholder is gone: an empty telephone is submitted as an empty string, which Magento validates against the very same `is_required` (`Magento\Customer\Model\Address\Validator\General::checkOptionalFields`).
+
+  This is a deliberate behavior change. Where a customer who bypassed the client-side validation previously got a successful order carrying a fake phone number, a shop that requires a telephone now gets a proper `"telephone" is required. Enter and try again.` validation error. Addresses that still carry the old placeholder are cleared when they are loaded into a form, so the customer fills in a real number instead of being shown zeroes.
+
+  `attributesForm` only exists since Magento 2.4.7, so all of this is version-gated in `stripLegacyPlaceholderTelephone()` / `applyLegacyPlaceholderTelephone()` (`@graphcommerce/magento-customer`): below 2.4.7 the placeholder is still submitted and no longer stripped, exactly as before.
+
+  Pages that render these forms should preload the metadata in `getStaticProps` with `await preloadAttributesForm(client, 'customer_address_edit')`, the same way the account pages already preload `customer_account_create` / `customer_account_edit`. The examples do this for the checkout and address pages, which also closes the window where a customer could submit before the metadata resolved. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2685](https://github.com/graphcommerce-org/graphcommerce/pull/2685) [`2ab007e`](https://github.com/graphcommerce-org/graphcommerce/commit/2ab007eee8c49295ee922b7860ec7c3b2ddfee36) - The `onBeforeSubmit` of a `useFormGqlMutationCart` form receives the cart id, so the Mollie return URL contains the cart id of the order. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2673](https://github.com/graphcommerce-org/graphcommerce/pull/2673) [`60b3b7e`](https://github.com/graphcommerce-org/graphcommerce/commit/60b3b7e1c5016848c621d6f0e12c8c4b87f13f1e) - Move `CurrentCartId.graphqls` from `magento-compare` to `magento-cart`, so the cart no longer needs the compare package to get its own schema.
+
+  `@graphcommerce/magento-compare` shipped `schema/CurrentCartId.graphqls`, but everything in that file belongs to the cart: `Query.currentCartId`, the `CurrentCartId` type and `RegisterCartIdInput`. `@graphcommerce/magento-cart` had no `schema/` directory at all, even though `magento-cart/hooks/CurrentCartId.graphql` queries `currentCartId @client`.
+
+  The mesh only reads `*/schema/**/*.graphqls`, so the cart only got its schema when `magento-compare` happened to be installed. Compare looks optional — all of its plugins are behind `ifConfig: 'compare'` — but removing it broke codegen, with an error pointing at a package you did not touch:
+
+  ```
+  ✖ File node_modules/@graphcommerce/magento-cart/hooks/CurrentCartId.graphql
+    caused error: Unable to find field "currentCartId" on type "Query"!
+  ```
+
+  The file now lives in `magento-cart/schema/`. `magento-compare/schema/` keeps `CurrentCompareUid.graphqls`, which really is its own. ([@alohas](https://github.com/alohas))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+### Patch Changes
+
+- [#2667](https://github.com/graphcommerce-org/graphcommerce/pull/2667) [`6ee8488`](https://github.com/graphcommerce-org/graphcommerce/commit/6ee84883ece679b4fd4ed191ecd00a9ec39cc206) - Give `useClearCurrentCartId()` and `useCartLock()`'s `lock`/`unlock` a stable function identity, so consumers can list them in a `useEffect` dependency array without the effect re-running on every render.
+
+  `useClearCurrentCartId` returned a bare arrow function and `useCartLock` defined `lock`/`unlock` inline, while the neighbouring `useAssignCurrentCartId` already returned a `useCallback`. `useClearCurrentCartId` now uses `useCallback` with the Apollo `cache` as its only dependency (matching `useAssignCurrentCartId`), and `lock`/`unlock` use `useEventCallback` because they read values that legitimately change (`currentCartId`, the router query state and the Apollo client) — `useEventCallback` keeps the identity stable while always reading the latest values, so no stale closure is introduced. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+### Patch Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`9f5e765`](https://github.com/graphcommerce-org/graphcommerce/commit/9f5e76575e3932f8fcd8689d8ef42e4c44b923d1) - Added disableScrollEffects prop to CartFab & NavigationFab for easier customization of the header ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

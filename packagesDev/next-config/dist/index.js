@@ -4,10 +4,10 @@ import path from 'path';
 import { glob, sync } from 'glob';
 import { findParentPath } from './utils/findParentPath.js';
 import { spawn } from 'child_process';
-import { l as loadConfig, t as toEnvStr } from './loadConfig-DFvwanrZ.js';
-export { r as replaceConfigInString } from './loadConfig-DFvwanrZ.js';
+import { l as loadConfig, t as toEnvStr } from './loadConfig-S8JJz4LU.js';
+export { r as replaceConfigInString } from './loadConfig-S8JJz4LU.js';
 import { parseFileSync, parseSync as parseSync$1, transformFileSync } from '@swc/core';
-import fs$1, { writeFileSync, readFileSync, existsSync, rmSync, mkdirSync } from 'fs';
+import fs$1, { writeFileSync, readFileSync, rmSync, mkdirSync, existsSync } from 'fs';
 import { resolve as resolve$2 } from 'import-meta-resolve';
 import assert from 'assert';
 import crypto from 'crypto';
@@ -17,9 +17,13 @@ import prettierConf from '@graphcommerce/prettier-config-pwa';
 import prettier from 'prettier';
 import fg from 'fast-glob';
 import { generate } from '@graphql-codegen/cli';
-import { GraphCommerceConfigSchema } from './generated/config.js';
-export { GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
+import { parse, Kind } from 'graphql';
+export { GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceStorefrontConfigSchema } from './generated/config.js';
 import 'cosmiconfig';
+import 'node:fs';
+import 'node:module';
+import 'node:path';
+import 'node:worker_threads';
 import '@apollo/client/utilities/internal';
 import 'chalk';
 
@@ -52,9 +56,12 @@ async function findDotOriginalFiles(cwd) {
     if (p) parentPath = p;
     else break;
   }
-  return Promise.all(
-    (await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })).map((file) => fs.realpath(file))
-  );
+  const roots = parentPath ? [parentPath] : [cwd, `${cwd}/node_modules/@graphcommerce`];
+  const patterns = roots.flatMap((root) => [
+    `${root}/**/*.original.tsx`,
+    `${root}/**/*.original.ts`
+  ]);
+  return Promise.all((await glob(patterns, { cwd })).map((file) => fs.realpath(file)));
 }
 async function writeInterceptors(interceptors, cwd = process.cwd()) {
   const processedFiles = [];
@@ -105,13 +112,12 @@ dotenv.config({ quiet: true });
 async function cleanupInterceptors(cwd = process.cwd()) {
   console.info("\u{1F9F9} Starting interceptor cleanup...");
   let restoredCount = 0;
-  let removedCount = 0;
   const originalFiles = await findDotOriginalFiles(cwd);
   console.info(`\u{1F4C2} Found ${originalFiles.length} .original files to restore`);
   for (const originalFile of originalFiles) {
     try {
       await restoreOriginalFile(originalFile);
-      removedCount++;
+      restoredCount++;
     } catch (error) {
       console.error(`\u274C Failed to restore ${originalFile}:`, error);
     }
@@ -362,7 +368,7 @@ function isRegExpLiteral(node) {
 function isTemplateLiteral(node) {
   return node.type === "TemplateLiteral";
 }
-const RUNTIME_VALUE = Symbol("RUNTIME_VALUE");
+const RUNTIME_VALUE = /* @__PURE__ */ Symbol("RUNTIME_VALUE");
 function extractValue(node, path, optional = false) {
   if (isNullLiteral(node)) {
     return null;
@@ -428,7 +434,7 @@ function extractValue(node, path, optional = false) {
   }
 }
 function extractExports(module) {
-  const exports$1 = {};
+  const exports = {};
   const errors = [];
   for (const moduleItem of module.body) {
     switch (moduleItem.type) {
@@ -442,19 +448,19 @@ function extractExports(module) {
         switch (moduleItem.declaration.type) {
           case "ClassDeclaration":
           case "FunctionDeclaration":
-            exports$1[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
+            exports[moduleItem.declaration.identifier.value] = RUNTIME_VALUE;
             break;
           case "VariableDeclaration":
             moduleItem.declaration.declarations.forEach((decl) => {
               if (isIdentifier(decl.id) && decl.init) {
-                exports$1[decl.id.value] = extractValue(decl.init, void 0, true);
+                exports[decl.id.value] = extractValue(decl.init, void 0, true);
               }
             });
             break;
         }
     }
   }
-  return [exports$1, errors];
+  return [exports, errors];
 }
 
 const pluginConfigParsed = z.object({
@@ -468,7 +474,7 @@ function nonNullable(value) {
 }
 const isObject = (input) => typeof input === "object" && input !== null && !Array.isArray(input);
 function parseStructure(ast, gcConfig, sourceModule) {
-  const [exports$1, errors] = extractExports(ast);
+  const [exports, errors] = extractExports(ast);
   if (errors.length) console.error("Plugin error for", errors.join("\n"));
   const {
     config: moduleConfig,
@@ -479,7 +485,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
     plugin,
     Plugin,
     ...rest
-  } = exports$1;
+  } = exports;
   const exportVals = Object.keys(rest);
   if (component && !moduleConfig) exportVals.push("Plugin");
   if (func && !moduleConfig) exportVals.push("plugin");
@@ -513,7 +519,7 @@ function parseStructure(ast, gcConfig, sourceModule) {
       }
     }
     const val = {
-      targetExport: exports$1.component || exports$1.func || parsed.data.export,
+      targetExport: exports.component || exports.func || parsed.data.export,
       sourceModule,
       sourceExport: parsed.data.export,
       targetModule: parsed.data.module,
@@ -618,17 +624,17 @@ function parseAndFindExport(resolved, findExport, resolve) {
     if (node.type === "ExportNamedDeclaration") {
       for (const specifier of node.specifiers) {
         if (specifier.type === "ExportSpecifier") {
-          if (specifier.exported?.value === findExport) return resolved;
+          if ((specifier.exported?.value ?? specifier.orig.value) === findExport) return resolved;
         } else if (specifier.type === "ExportDefaultSpecifier") ; else if (specifier.type === "ExportNamespaceSpecifier") ;
       }
     }
   }
-  const exports$1 = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
+  const exports = ast.body.filter((node) => node.type === "ExportAllDeclaration").sort((a, b) => {
     const probablyA = a.source.value.includes(findExport);
     const probablyB = b.source.value.includes(findExport);
     return probablyA === probablyB ? 0 : probablyA ? -1 : 1;
   });
-  for (const node of exports$1) {
+  for (const node of exports) {
     const isRelative = node.source.value.startsWith(".");
     if (isRelative) {
       const d = resolved.dependency === resolved.denormalized ? resolved.dependency.substring(0, resolved.dependency.lastIndexOf("/")) : resolved.dependency;
@@ -690,6 +696,22 @@ const stableStringify = (obj) => {
   const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`);
   return `{${pairs.join(",")}}`;
 };
+function hasDefaultExport(source) {
+  try {
+    return parseSync(source).body.some((node) => {
+      if (node.type === "ExportDefaultDeclaration" || node.type === "ExportDefaultExpression")
+        return true;
+      if (node.type === "ExportNamedDeclaration") {
+        return node.specifiers.some(
+          (s) => s.type === "ExportSpecifier" && (s.exported ?? s.orig).value === "default"
+        );
+      }
+      return false;
+    });
+  } catch {
+    return false;
+  }
+}
 async function generateInterceptor(interceptor, config, oldInterceptorSource) {
   const hashInput = {
     dependency: interceptor.dependency,
@@ -823,7 +845,10 @@ export const ${targetExport} = ${carry}`;
 
     // Re-export everything from the original file except the intercepted exports
     export * from './${interceptor.target.split("/").pop()}.original'
-
+    ${hasDefaultExport(interceptor.source) ? `
+    // Forward the original module's default export: \`export *\` does not include it.
+    export { default } from './${interceptor.target.split("/").pop()}.original'
+` : ""}
     ${logOnce}${pluginExports}
   `;
   const formatted = await prettier.format(template, {
@@ -1370,6 +1395,10 @@ async function exportConfig() {
 }
 
 const packages = [...resolveDependenciesSync().values()].filter((p) => p !== ".");
+const configSchemaLocations = [
+  "graphql/Config.graphqls",
+  ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`])
+];
 const resolve$1 = resolveDependency();
 dotenv.config({ quiet: true });
 async function generateConfig() {
@@ -1377,13 +1406,9 @@ async function generateConfig() {
   if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
   const targetTs = `${resolved.root}/src/generated/config.ts`;
   const targetJs = `${resolved.root}/dist/generated/config.js`;
-  const schemaLocations = [
-    "graphql/Config.graphqls",
-    ...packages.flatMap((p) => [`${p}/Config.graphqls`, `${p}/graphql/Config.graphqls`])
-  ];
   await generate({
     silent: true,
-    schema: schemaLocations,
+    schema: configSchemaLocations,
     generates: {
       [targetTs]: {
         plugins: ["typescript", "typescript-validation-schema"],
@@ -1409,13 +1434,21 @@ async function generateConfig() {
   });
   writeFileSync(
     targetTs,
-    await prettier.format(readFileSync(targetTs, "utf-8"), {
-      ...prettierConf,
-      parser: "typescript",
-      plugins: prettierConf.plugins?.filter(
-        (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-      )
-    })
+    // typescript-validation-schema writes `.default(x).nullish()`: `.nullish()` returns undefined
+    // before `.default()` runs.
+    await prettier.format(
+      readFileSync(targetTs, "utf-8").replace(
+        /\.default\(([^()]+)\)\.nullish\(\)/g,
+        ".nullish().default($1)"
+      ),
+      {
+        ...prettierConf,
+        parser: "typescript",
+        plugins: prettierConf.plugins?.filter(
+          (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+        )
+      }
+    )
   );
   const result = transformFileSync(targetTs, {
     module: { type: "nodenext" },
@@ -1426,155 +1459,152 @@ async function generateConfig() {
 
 dotenv.config({ quiet: true });
 const resolve = resolveDependency();
-function toFileName(key) {
-  return key;
-}
-function generateValueLiteral(value) {
-  if (value === null) return "null";
-  if (value === void 0) return "undefined";
-  if (typeof value === "string") return JSON.stringify(value);
-  if (typeof value === "boolean" || typeof value === "number") return String(value);
-  if (Array.isArray(value) || typeof value === "object" && value !== null) {
-    return JSON.stringify(value, null, 2);
-  }
-  return JSON.stringify(value);
-}
-function shouldCreateFile(value) {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-function getSectionSchemaKeys(configKey) {
-  try {
-    const mainSchema = GraphCommerceConfigSchema();
-    const sectionSchema = mainSchema.shape[configKey];
-    if (!sectionSchema) return [];
-    let unwrappedSchema = sectionSchema;
-    while (true) {
-      if (!unwrappedSchema || typeof unwrappedSchema !== "object") break;
-      if (!("_def" in unwrappedSchema)) break;
-      const def = unwrappedSchema._def;
-      const typeName = def?.typeName;
-      if (typeName === "ZodLazy" && def.getter) {
-        unwrappedSchema = def.getter();
-        continue;
-      }
-      if (def.innerType) {
-        unwrappedSchema = def.innerType;
-        continue;
-      }
-      if (typeName === "ZodObject" && def.shape) {
-        const shape = typeof def.shape === "function" ? def.shape() : def.shape;
-        return Object.keys(shape || {});
-      }
-      break;
-    }
-    if (unwrappedSchema && "shape" in unwrappedSchema) {
-      const shape = typeof unwrappedSchema.shape === "function" ? unwrappedSchema.shape() : unwrappedSchema.shape;
-      return Object.keys(shape || {});
-    }
-  } catch {
-  }
-  return [];
-}
-async function createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey) {
-  const fileName = `${toFileName(sectionName)}.ts`;
-  const filePath = path.join(targetDir, fileName);
-  const distFileName = `${toFileName(sectionName)}.js`;
-  const distFilePath = path.join(targetDistDir, distFileName);
-  const schemaKeys = getSectionSchemaKeys(configKey);
-  const completeSectionValue = {};
-  for (const key of schemaKeys) {
-    completeSectionValue[key] = sectionValue[key];
-  }
-  const exports$1 = Object.entries(completeSectionValue).map(([key, value]) => {
-    const valueStr = generateValueLiteral(value);
-    const propertyPath = `'${sectionName}.${key}'`;
-    const typeAnnotation = `: Get<GraphCommerceConfig, ${propertyPath}>`;
-    return `export const ${key}${typeAnnotation} = ${valueStr}`;
-  }).join("\n\n");
-  const imports = `import type { GraphCommerceConfig } from '../config'
-import type { Get } from 'type-fest'` ;
-  const content = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
-${imports}
-
-${exports$1}
-`;
-  const formattedContent = await prettier.format(content, {
-    ...prettierConf,
-    parser: "typescript",
-    plugins: prettierConf.plugins?.filter(
-      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-    )
-  });
-  writeFileSync(filePath, formattedContent);
-  const result = transformFileSync(filePath, {
-    module: { type: "nodenext" },
-    env: { targets: { node: "18" } }
-  });
-  writeFileSync(distFilePath, result.code);
-}
+const header = `// Auto-generated by 'yarn graphcommerce codegen-config-values'`;
+const typeImports = `import type { GraphCommerceConfig } from '../config'
+import type { Get } from 'type-fest'`;
+const literal = (value) => value === void 0 ? "undefined" : JSON.stringify(value, null, 2);
+const namedType = (type) => type.kind === Kind.NAMED_TYPE ? type.name.value : namedType(type.type);
+const isPublic = (field) => Boolean(field.directives?.some((directive) => directive.name.value === "public"));
+const isSection = (value) => typeof value === "object" && value !== null && !Array.isArray(value);
 async function generateConfigValues() {
   const resolved = resolve("@graphcommerce/next-config");
   if (!resolved) throw Error("Could not resolve @graphcommerce/next-config");
   const config = loadConfig(process.cwd());
-  const targetDir = `${resolved.root}/src/generated/configValues`;
-  const targetDistDir = `${resolved.root}/dist/generated/configValues`;
-  if (existsSync(targetDir)) {
-    rmSync(targetDir, { recursive: true, force: true });
-  }
-  if (existsSync(targetDistDir)) {
-    rmSync(targetDistDir, { recursive: true, force: true });
-  }
-  mkdirSync(targetDir, { recursive: true });
-  mkdirSync(targetDistDir, { recursive: true });
-  const schema = GraphCommerceConfigSchema();
-  const schemaKeys = Object.keys(schema.shape);
-  const completeConfig = {};
-  for (const key of schemaKeys) {
-    completeConfig[key] = config[key];
-  }
-  const configEntries = Object.entries(completeConfig);
-  const nestedObjects = [];
-  const rootExports = [];
-  for (const [key, value] of configEntries) {
-    if (shouldCreateFile(value)) {
-      nestedObjects.push([key, value, key]);
-      rootExports.push(`export * as ${key} from './${toFileName(key)}'`);
-    } else {
-      const valueStr = generateValueLiteral(value);
-      const typeAnnotation = `: Get<GraphCommerceConfig, '${key}'>`;
-      rootExports.push(`export const ${key}${typeAnnotation} = ${valueStr}`);
+  const srcDir = `${resolved.root}/src/generated/configValues`;
+  const distDir = `${resolved.root}/dist/generated/configValues`;
+  const publicOnlyDir = `${distDir}/publicOnly`;
+  rmSync(srcDir, { recursive: true, force: true });
+  rmSync(distDir, { recursive: true, force: true });
+  mkdirSync(srcDir, { recursive: true });
+  mkdirSync(publicOnlyDir, { recursive: true });
+  const inputs = /* @__PURE__ */ new Map();
+  for (const location of configSchemaLocations.filter((l) => existsSync(l))) {
+    for (const def of parse(readFileSync(location, "utf-8")).definitions) {
+      if (def.kind !== Kind.INPUT_OBJECT_TYPE_DEFINITION && def.kind !== Kind.INPUT_OBJECT_TYPE_EXTENSION)
+        continue;
+      const typeName = def.name.value;
+      inputs.set(typeName, [...inputs.get(typeName) ?? [], ...def.fields ?? []]);
     }
   }
-  await Promise.all(
-    nestedObjects.map(
-      ([sectionName, sectionValue, configKey]) => createConfigSectionFile(sectionName, sectionValue, targetDir, targetDistDir, configKey)
-    )
+  for (const [typeName, fields] of inputs) {
+    const misplaced = fields.find((f) => isPublic(f) && inputs.has(namedType(f.type)));
+    if (misplaced) {
+      throw Error(
+        `@public on ${typeName}.${misplaced.name.value}: add @public to the fields of ${namedType(misplaced.type)}.`
+      );
+    }
+  }
+  const hasPublic = (typeName) => (inputs.get(typeName) ?? []).some(
+    (f) => inputs.has(namedType(f.type)) ? hasPublic(namedType(f.type)) : isPublic(f)
   );
-  const rootImports = `import type { GraphCommerceConfig } from '../config'
-import type { Get } from 'type-fest'` ;
-  const indexContent = `// Auto-generated by 'yarn graphcommerce codegen-config-values'
-${rootImports}
-
-${rootExports.join("\n")}
-`;
-  const formattedIndexContent = await prettier.format(indexContent, {
-    ...prettierConf,
-    parser: "typescript",
-    plugins: prettierConf.plugins?.filter(
-      (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
-    )
-  });
-  const indexPath = path.join(targetDir, "index.ts");
-  const distIndexPath = path.join(targetDistDir, "index.js");
-  writeFileSync(indexPath, formattedIndexContent);
-  const indexResult = transformFileSync(indexPath, {
-    module: { type: "nodenext" },
-    env: { targets: { node: "20" } }
-  });
-  writeFileSync(distIndexPath, indexResult.code);
-  console.log(`\u2705 Generated config values in ${targetDir} and ${targetDistDir}`);
-  console.log(`\u{1F4C1} Created ${nestedObjects.length} nested object files + index.ts/.js`);
-  console.log(`\u{1F4DD} Root exports: ${configEntries.length - nestedObjects.length}`);
+  const browserLiteral = (value, typeName, valuePath) => {
+    if (Array.isArray(value))
+      return `[${value.map((item) => browserLiteral(item, typeName, `${valuePath}[]`)).join(",\n")}]`;
+    if (!isSection(value)) return literal(value);
+    const properties = [];
+    const getters = [];
+    for (const field of inputs.get(typeName) ?? []) {
+      const name = field.name.value;
+      const fieldType = namedType(field.type);
+      const isInput = inputs.has(fieldType);
+      if (!(isInput ? hasPublic(fieldType) : isPublic(field))) {
+        const hint = isInput ? `the fields of ${fieldType}` : `${typeName}.${name}`;
+        getters.push(`${name}: serverOnly('${valuePath}.${name}', '${hint}')`);
+      } else if (value[name] !== void 0) {
+        const fieldValue = isInput ? browserLiteral(value[name], fieldType, `${valuePath}.${name}`) : literal(value[name]);
+        properties.push(`${JSON.stringify(name)}: ${fieldValue}`);
+      }
+    }
+    const object = `{
+${properties.join(",\n")}
+}`;
+    return getters.length ? `Object.defineProperties(${object}, {
+${getters.join(",\n")}
+})` : object;
+  };
+  const writeServerModule = async (name, content) => {
+    const srcFile = path.join(srcDir, `${name}.ts`);
+    writeFileSync(
+      srcFile,
+      await prettier.format(content, {
+        ...prettierConf,
+        parser: "typescript",
+        plugins: prettierConf.plugins?.filter(
+          (p) => typeof p === "string" && !p.includes("prettier-plugin-sort-imports")
+        )
+      })
+    );
+    const { code } = transformFileSync(srcFile, {
+      module: { type: "nodenext" },
+      env: { targets: { node: "20" } }
+    });
+    writeFileSync(path.join(distDir, `${name}.js`), code);
+  };
+  const writePublicOnlyModule = (name, serverOnlyNames, exports) => {
+    const lines = [
+      header,
+      "// Browser build of @graphcommerce/next-config/config: only fields with @public in Config.graphqls.",
+      "// Add @public to a field to read it in the browser. Keep secrets server-only.",
+      ...serverOnlyNames.length ? [`// Server-only: ${serverOnlyNames.join(", ")}`] : []
+    ];
+    if (exports.some((e) => e.includes("serverOnly("))) {
+      lines.push(`const serverOnly = (valuePath, hint) => ({
+  get() {
+    if (process.env.NODE_ENV !== 'production')
+      throw Error(\`\${valuePath} is server-only. Read it on the server or add @public to \${hint} in Config.graphqls.\`)
+  },
+})`);
+    }
+    writeFileSync(path.join(publicOnlyDir, `${name}.js`), [...lines, ...exports].join("\n"));
+  };
+  const serverExports = [];
+  const browserExports = [];
+  const serverOnlyKeys = [];
+  let sectionCount = 0;
+  for (const field of inputs.get("GraphCommerceConfig") ?? []) {
+    const key = field.name.value;
+    const value = config[key];
+    const fieldType = namedType(field.type);
+    const sectionFields = inputs.get(fieldType) ?? [];
+    if (isSection(value)) {
+      sectionCount++;
+      const sectionExports = sectionFields.map(
+        ({ name }) => `export const ${name.value}: Get<GraphCommerceConfig, '${key}.${name.value}'> = ${literal(value[name.value])}`
+      );
+      await writeServerModule(key, [header, typeImports, ...sectionExports].join("\n\n"));
+      serverExports.push(`export * as ${key} from './${key}.js'`);
+    } else {
+      serverExports.push(
+        `export const ${key}: Get<GraphCommerceConfig, '${key}'> = ${literal(value)}`
+      );
+    }
+    if (!(inputs.has(fieldType) ? hasPublic(fieldType) : isPublic(field))) {
+      serverOnlyKeys.push(key);
+    } else if (isSection(value)) {
+      const sectionServerOnly = [];
+      const sectionPublic = [];
+      for (const sectionField of sectionFields) {
+        const name = sectionField.name.value;
+        const nestedType = namedType(sectionField.type);
+        if (!(inputs.has(nestedType) ? hasPublic(nestedType) : isPublic(sectionField)))
+          sectionServerOnly.push(name);
+        else
+          sectionPublic.push(
+            `export const ${name} = ${browserLiteral(value[name], nestedType, `${key}.${name}`)}`
+          );
+      }
+      writePublicOnlyModule(key, sectionServerOnly, sectionPublic);
+      browserExports.push(`export * as ${key} from './${key}.js'`);
+    } else {
+      browserExports.push(`export const ${key} = ${browserLiteral(value, fieldType, key)}`);
+    }
+  }
+  await writeServerModule("index", [header, typeImports, ...serverExports].join("\n"));
+  writePublicOnlyModule("index", serverOnlyKeys, browserExports);
+  console.log(`\u2705 Generated config values in ${srcDir} and ${distDir}`);
+  console.log(
+    `\u{1F4C1} ${sectionCount} sections, ${serverExports.length} server exports, ${browserExports.length} browser exports`
+  );
 }
 
 let graphcommerceConfig;
@@ -1655,6 +1685,17 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
         ...nextConfig.images?.remotePatterns ?? []
       ].filter((v) => !!v)
     },
+    redirects: async () => {
+      const redirects = await nextConfig.redirects?.() ?? [];
+      redirects.push(
+        { source: "/customer/account", destination: "/account", permanent: true },
+        { source: "/customer/account/index", destination: "/account", permanent: true },
+        { source: "/customer/account/login", destination: "/account/signin", permanent: true },
+        { source: "/customer/account/create", destination: "/account/signin", permanent: true },
+        { source: "/sales/order/history", destination: "/account/orders", permanent: true }
+      );
+      return redirects;
+    },
     rewrites: async () => {
       let rewrites = await nextConfig.rewrites?.() ?? [];
       if (Array.isArray(rewrites)) {
@@ -1703,4 +1744,4 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
   };
 }
 
-export { GraphCommerceConfigSchema, PackagesSort, TopologicalSort, cleanupInterceptors, codegen, codegenInterceptors, copyFiles, exportConfig, findParentPath, g, generateConfig, generateConfigValues, loadConfig, packageRoots, resolveDependenciesSync, resolveDependency, sig, sortDependencies, withGraphCommerce };
+export { PackagesSort, TopologicalSort, cleanupInterceptors, codegen, codegenInterceptors, configSchemaLocations, copyFiles, exportConfig, findParentPath, g, generateConfig, generateConfigValues, loadConfig, packageRoots, resolveDependenciesSync, resolveDependency, sig, sortDependencies, withGraphCommerce };

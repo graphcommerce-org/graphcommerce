@@ -53,3 +53,7 @@ build
 !.yarn/sdks
 !.yarn/versions
 yarn.lock
+
+# playwright
+test-results
+playwright-report

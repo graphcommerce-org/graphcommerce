@@ -1,0 +1,45 @@
+type Mutation {
+  """
+  Delete the billing or shipping address of a customer.
+  """
+  deleteCustomerAddressV2(
+    """
+    The unique ID of the customer address to be deleted.
+    """
+    uid: ID!
+  ): Boolean @deprecated(reason: "Magento >= 2.4.9")
+  """
+  Update the billing or shipping address of a customer or guest.
+  """
+  updateCustomerAddressV2(
+    """
+    An input object that contains changes to the customer address.
+    """
+    input: CustomerAddressInput
+    """
+    The unique ID of the customer address.
+    """
+    uid: ID!
+  ): CustomerAddress @deprecated(reason: "Magento >= 2.4.9")
+}
+
+input BillingAddressInput {
+  """
+  The unique ID from the customer's address book that uniquely identifies the address to be used for billing.
+  """
+  customer_address_uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}
+
+type CustomerAddress {
+  """
+  The unique ID for a `CustomerAddress` object.
+  """
+  uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}
+
+input ShippingAddressInput {
+  """
+  The unique ID from the customer's address book that uniquely identifies the address to be used for shipping.
+  """
+  customer_address_uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}

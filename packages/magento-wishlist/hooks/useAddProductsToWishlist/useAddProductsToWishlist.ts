@@ -2,7 +2,7 @@ import { useApolloClient } from '@graphcommerce/graphql'
 import { useCustomerSession } from '@graphcommerce/magento-customer'
 import { useEventCallback } from '@mui/material'
 import type { WishlistItemFragment } from '../../queries/WishlistItem.gql'
-import { UseWishlistGuestDocument } from '../useWishlistitems'
+import { UseWishlistCustomerDocument, UseWishlistGuestDocument } from '../useWishlistitems'
 import type { AddProductToWishlistMutationVariables } from './AddProductToWishlist.gql'
 import { AddProductToWishlistDocument } from './AddProductToWishlist.gql'
 
@@ -25,6 +25,8 @@ export function useAddProductsToWishlist() {
       await client.mutate({
         mutation: AddProductToWishlistDocument,
         variables: { input },
+        refetchQueries: [UseWishlistCustomerDocument],
+        awaitRefetchQueries: true,
       })
       return
     }

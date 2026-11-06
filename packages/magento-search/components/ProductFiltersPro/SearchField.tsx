@@ -1,4 +1,5 @@
 import { iconSearch, IconSvg, showPageLoadIndicator, sxx } from '@graphcommerce/next-ui'
+import { t } from '@lingui/core/macro'
 import type { FabProps } from '@mui/material'
 import { Fab } from '@mui/material'
 import dynamic from 'next/dynamic'
@@ -52,6 +53,7 @@ export function SearchField(props: SearchFieldProps) {
         }}
         color='inherit'
         size='large'
+        aria-label={t`Search`}
         {...fab}
         sx={sxx(
           visible ? { display: { xs: 'none' } } : { display: { xs: 'inline-flex' } },

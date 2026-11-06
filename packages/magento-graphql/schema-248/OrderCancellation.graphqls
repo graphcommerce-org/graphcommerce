@@ -1,0 +1,61 @@
+type Mutation {
+  """
+  Cancel the specified guest customer order.
+  """
+  confirmCancelOrder(input: ConfirmCancelOrderInput!): CancelOrderOutput
+    @deprecated(reason: "Magento >= 2.4.8")
+  """
+  Request to cancel specified guest order.
+  """
+  requestGuestOrderCancel(input: GuestOrderCancelInput!): CancelOrderOutput
+    @deprecated(reason: "Magento >= 2.4.8")
+}
+
+input ConfirmCancelOrderInput {
+  """
+  Confirmation Key to cancel the order.
+  """
+  confirmation_key: String!
+  """
+  The unique ID of an `Order` type.
+  """
+  order_id: ID!
+}
+
+"""
+Input to retrieve a guest order based on token.
+"""
+input GuestOrderCancelInput {
+  """
+  Cancellation reason.
+  """
+  reason: String!
+  """
+  Order token.
+  """
+  token: String!
+}
+
+type CancelOrderOutput {
+  errorV2: CancelOrderError @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type CancelOrderError {
+  """
+  An error code that is specific to cancel order.
+  """
+  code: CancelOrderErrorCode!
+  """
+  A localized error message.
+  """
+  message: String!
+}
+
+enum CancelOrderErrorCode {
+  INVALID_ORDER_STATUS
+  ORDER_CANCELLATION_DISABLED
+  ORDER_NOT_FOUND
+  PARTIAL_ORDER_ITEM_SHIPPED
+  UNAUTHORISED
+  UNDEFINED
+}

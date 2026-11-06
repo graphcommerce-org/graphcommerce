@@ -1,0 +1,24 @@
+type BundleProduct {
+  """
+  The price details of the main product
+  """
+  price_details: PriceDetails @deprecated(reason: "Magento >= 2.4.7")
+}
+
+"""
+Can be used to retrieve the main price details in case of bundle product
+"""
+type PriceDetails {
+  """
+  The percentage of discount applied to the main product price
+  """
+  discount_percentage: Float
+  """
+  The final price after applying the discount to the main product
+  """
+  main_final_price: Float
+  """
+  The regular price of the main product
+  """
+  main_price: Float
+}

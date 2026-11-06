@@ -1,5 +1,257 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2689](https://github.com/graphcommerce-org/graphcommerce/pull/2689) [`8d74a4b`](https://github.com/graphcommerce-org/graphcommerce/commit/8d74a4b333eeff637dfaa1c10dc29a62961afe25) - `useAccountSignInUpForm` goes to the password step after an email submitted with Enter. React Hook Form 7.67 updates `isValid` of an `onBlur` form on blur only, so the form stayed in the email step. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2663](https://github.com/graphcommerce-org/graphcommerce/pull/2663) [`8d0f4a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8d0f4a0a6539d8003fa21e1bc09822f55aa4dedb) - Address forms now honor Magento's `customer/address/telephone_show` configuration instead of silently submitting a `000 - 000 0000` placeholder telephone.
+
+  `CartAddressInput.telephone` is a non-nullable `String!`, so the address forms always had to send a value; because the mutation variable is declared as an optional `String`, `required.telephone` resolved to `false` and the field rendered as optional, after which `onBeforeSubmit` substituted the placeholder. Every checkout that skipped the field therefore stored a fake phone number on the order.
+
+  Magento does expose whether a telephone is required — `attributesForm(formCode: "customer_address_edit")` returns `is_required` per address attribute and reflects `customer/address/telephone_show`. `ShippingAddressForm`, `EditBillingAddressForm` and `EditAddressForm` now read that metadata through the existing `useAttributesForm` hook and mark the field required accordingly. The placeholder is gone: an empty telephone is submitted as an empty string, which Magento validates against the very same `is_required` (`Magento\Customer\Model\Address\Validator\General::checkOptionalFields`).
+
+  This is a deliberate behavior change. Where a customer who bypassed the client-side validation previously got a successful order carrying a fake phone number, a shop that requires a telephone now gets a proper `"telephone" is required. Enter and try again.` validation error. Addresses that still carry the old placeholder are cleared when they are loaded into a form, so the customer fills in a real number instead of being shown zeroes.
+
+  `attributesForm` only exists since Magento 2.4.7, so all of this is version-gated in `stripLegacyPlaceholderTelephone()` / `applyLegacyPlaceholderTelephone()` (`@graphcommerce/magento-customer`): below 2.4.7 the placeholder is still submitted and no longer stripped, exactly as before.
+
+  Pages that render these forms should preload the metadata in `getStaticProps` with `await preloadAttributesForm(client, 'customer_address_edit')`, the same way the account pages already preload `customer_account_create` / `customer_account_edit`. The examples do this for the checkout and address pages, which also closes the window where a customer could submit before the metadata resolved. ([@paales](https://github.com/paales))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`fa1eeae`](https://github.com/graphcommerce-org/graphcommerce/commit/fa1eeaeb10db1d465dd0f7a07d643862921c3c04) - Override signup props and update strings ([@paales](https://github.com/paales))
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+- [#2676](https://github.com/graphcommerce-org/graphcommerce/pull/2676) [`9496f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/9496f0bdcb751c5f7d774ebe961d86347a8beae8) - Cached null customer results remain complete for server queries. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+### Patch Changes
+
+- [#2663](https://github.com/graphcommerce-org/graphcommerce/pull/2663) [`8d0f4a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8d0f4a0a6539d8003fa21e1bc09822f55aa4dedb) - Address forms now honor Magento's `customer/address/telephone_show` configuration instead of silently submitting a `000 - 000 0000` placeholder telephone.
+
+  `CartAddressInput.telephone` is a non-nullable `String!`, so the address forms always had to send a value; because the mutation variable is declared as an optional `String`, `required.telephone` resolved to `false` and the field rendered as optional, after which `onBeforeSubmit` substituted the placeholder. Every checkout that skipped the field therefore stored a fake phone number on the order.
+
+  Magento does expose whether a telephone is required — `attributesForm(formCode: "customer_address_edit")` returns `is_required` per address attribute and reflects `customer/address/telephone_show`. `ShippingAddressForm`, `EditBillingAddressForm` and `EditAddressForm` now read that metadata through the existing `useAttributesForm` hook and mark the field required accordingly. The placeholder is gone: an empty telephone is submitted as an empty string, which Magento validates against the very same `is_required` (`Magento\Customer\Model\Address\Validator\General::checkOptionalFields`).
+
+  This is a deliberate behavior change. Where a customer who bypassed the client-side validation previously got a successful order carrying a fake phone number, a shop that requires a telephone now gets a proper `"telephone" is required. Enter and try again.` validation error. Addresses that still carry the old placeholder are cleared when they are loaded into a form, so the customer fills in a real number instead of being shown zeroes.
+
+  `attributesForm` only exists since Magento 2.4.7, so all of this is version-gated in `stripLegacyPlaceholderTelephone()` / `applyLegacyPlaceholderTelephone()` (`@graphcommerce/magento-customer`): below 2.4.7 the placeholder is still submitted and no longer stripped, exactly as before.
+
+  Pages that render these forms should preload the metadata in `getStaticProps` with `await preloadAttributesForm(client, 'customer_address_edit')`, the same way the account pages already preload `customer_account_create` / `customer_account_edit`. The examples do this for the checkout and address pages, which also closes the window where a customer could submit before the metadata resolved. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2689](https://github.com/graphcommerce-org/graphcommerce/pull/2689) [`8d74a4b`](https://github.com/graphcommerce-org/graphcommerce/commit/8d74a4b333eeff637dfaa1c10dc29a62961afe25) - `useAccountSignInUpForm` goes to the password step after an email submitted with Enter. React Hook Form 7.67 updates `isValid` of an `onBlur` form on blur only, so the form stayed in the email step. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2676](https://github.com/graphcommerce-org/graphcommerce/pull/2676) [`9496f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/9496f0bdcb751c5f7d774ebe961d86347a8beae8) - Cached null customer results remain complete for server queries. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.47
+
+### Patch Changes
+
+- [#2659](https://github.com/graphcommerce-org/graphcommerce/pull/2659) [`e7fe659`](https://github.com/graphcommerce-org/graphcommerce/commit/e7fe65994325510863afb526e8b2caaeba5e66f1) - Support the Magento 2.4.9 guest-order lookup, which renamed the `guestOrder` argument type `OrderInformationInput` → `GuestOrderInformationInput` and swapped the `postcode` lookup field for `lastname`. The `GuestOrder` query and the guest order form now use the new type/field, and `schema-249` re-declares `guestOrder(input: GuestOrderInformationInput!)` so operations keep validating on older backends via the mesh version shim. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.16
+
+### Minor Changes
+
+- [#2624](https://github.com/graphcommerce-org/graphcommerce/pull/2624) [`cbad1fd`](https://github.com/graphcommerce-org/graphcommerce/commit/cbad1fd6e7463620b097d29dea7730c965444aeb) - `CustomerUpdateForm` now accepts `useFormGqlOptions` and `mutationOptions` props that get forwarded to its underlying `useCustomerUpdateForm` hook. Lets consumers attach an `onComplete` (e.g. to close an overlay and navigate back on a successful save), an `onBeforeSubmit` (to amend or veto the variables), or any other option already supported by `useFormGqlMutation`/`useMutation` — without having to drop down and rebuild the form from scratch.
+
+  Defaults preserve existing behaviour, so the change is backwards compatible. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+### Minor Changes
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+### Minor Changes
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+### Patch Changes
+
+- [#2598](https://github.com/graphcommerce-org/graphcommerce/pull/2598) [`fa1eeae`](https://github.com/graphcommerce-org/graphcommerce/commit/fa1eeaeb10db1d465dd0f7a07d643862921c3c04) - Override signup props and update strings ([@paales](https://github.com/paales))
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

@@ -1,0 +1,6 @@
+input OrderInformationInput {
+  """
+  Order billing address postcode
+  """
+  postcode: String
+}

@@ -1,0 +1,43 @@
+{
+  "name": "row_service_options",
+  "display_name": "Row Service Options",
+  "description": null,
+  "created_at": "2026-03-27T13:20:12.209Z",
+  "updated_at": "2026-03-27T13:20:12.209Z",
+  "id": 159449138028267,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "VRjJhAubSE60kbGJlfyh6A"
+    },
+    "service_options": {
+      "type": "bloks",
+      "pos": 1,
+      "display_name": "Service Options",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "id": "NBsd3uaQQeafuPaZtQ0EjA"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Service Options",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

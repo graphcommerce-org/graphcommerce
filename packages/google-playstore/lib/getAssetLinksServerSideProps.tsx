@@ -7,9 +7,9 @@ export const getAssetLinksServerSideProps: GetServerSideProps = async (context) 
   context.res.setHeader('Content-Type', 'application/json')
 
   const package_name = googlePlaystore?.packageName
-  const sha256_cert_fingerprints = googlePlaystore?.sha256CertificateFingerprint
+  const fingerprint = googlePlaystore?.sha256CertificateFingerprint
 
-  if (!package_name || !sha256_cert_fingerprints) return { notFound: true }
+  if (!package_name || !fingerprint) return { notFound: true }
 
   context.res.setHeader('Cache-Control', 'max-age=604800, public')
   // https://developer.android.com/training/app-links/verify-android-applinks#web-assoc
@@ -17,7 +17,11 @@ export const getAssetLinksServerSideProps: GetServerSideProps = async (context) 
     JSON.stringify([
       {
         relation: ['delegate_permission/common.handle_all_urls'],
-        target: { namespace: 'android_app', package_name, sha256_cert_fingerprints },
+        target: {
+          namespace: 'android_app',
+          package_name,
+          sha256_cert_fingerprints: [fingerprint],
+        },
       },
     ]),
   )

@@ -1,0 +1,56 @@
+type Mutation {
+  """
+  Remove all items from the specified cart.
+  """
+  clearCart(
+    """
+    An input object that defines cart ID of the shopper.
+    """
+    input: ClearCartInput!
+  ): ClearCartOutput @deprecated(reason: "Magento >= 2.4.9")
+}
+
+"""
+Assigns a specific `cart_id` to the empty cart.
+"""
+input ClearCartInput {
+  """
+  The unique ID of a `Cart` object.
+  """
+  uid: ID!
+}
+
+"""
+Output of the request to clear the customer cart.
+"""
+type ClearCartOutput {
+  """
+  The cart after clear cart items.
+  """
+  cart: Cart
+  """
+  An array of errors encountered while clearing the cart item
+  """
+  errors: [ClearCartError]
+}
+
+"""
+Contains details about errors encountered when a customer clear cart.
+"""
+type ClearCartError {
+  """
+  A localized error message
+  """
+  message: String!
+  """
+  A cart-specific error type.
+  """
+  type: ClearCartErrorType!
+}
+
+enum ClearCartErrorType {
+  INACTIVE
+  NOT_FOUND
+  UNAUTHORISED
+  UNDEFINED
+}

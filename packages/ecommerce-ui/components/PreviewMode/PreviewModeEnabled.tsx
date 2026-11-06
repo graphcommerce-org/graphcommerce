@@ -91,8 +91,13 @@ export function PreviewModeEnabled() {
           <PreviewModeToolbar />
         </Box>
       </MessageSnackbar>
-      <FormPersist form={form} name='PreviewModePreviewData' />
-      <FormAutoSubmit control={form.control} submit={submit} />
+      {/* Exclude `secret` from persistence: it is only relevant to the `enable` action and storing
+          the preview token in the browser is a needless secret leak. */}
+      <FormPersist form={form} name='PreviewModePreviewData' exclude={['secret']} />
+      {/* Only auto-submit on `previewData` edits. Watching every field made the restore of a
+          persisted `secret` (via `setValue(shouldDirty)`) look like a user change, which fired the
+          `update` submit → 307 redirect → reload → restore → … infinite loop in production. */}
+      <FormAutoSubmit control={form.control} name={['previewData']} submit={submit} />
     </FormProvider>
   )
 }

@@ -1,0 +1,32 @@
+{
+  "name": "row_quote",
+  "display_name": "Row Quote",
+  "description": null,
+  "created_at": "2026-03-27T13:20:10.881Z",
+  "updated_at": "2026-03-27T13:20:10.881Z",
+  "id": 159449132588771,
+  "schema": {
+    "quote": {
+      "type": "richtext",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Quote",
+      "id": "bPm8cPN3TwqXB-o5sUCSVA"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Quote",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

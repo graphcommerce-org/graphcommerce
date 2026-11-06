@@ -38,6 +38,7 @@ export function PageLoadIndicator() {
 
   return (
     <MLinearProgress
+      aria-hidden='true'
       style={{ opacity }}
       sx={{
         position: 'fixed',

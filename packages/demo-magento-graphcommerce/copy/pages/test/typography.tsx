@@ -198,6 +198,7 @@ export default TypographyOverview
 
 export const getStaticProps: GetPageStaticProps = async (context) => {
   const client = graphqlSharedClient(context)
+  const up = { href: '/', title: t`Home` }
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
@@ -209,7 +210,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/', title: t`Home` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

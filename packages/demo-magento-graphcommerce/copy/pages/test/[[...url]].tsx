@@ -65,6 +65,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   const url = (params?.url ?? ['index']).join('/') ?? ''
 
   const client = graphqlSharedClient(context)
+  const up = url !== 'index' ? { href: '/', title: t`Home` } : null
   const staticClient = graphqlSsrClient(context)
 
   const conf = client.query({ query: StoreConfigDocument })
@@ -76,7 +77,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   return {
     props: {
       url,
-      up: url !== 'index' ? { href: '/', title: t`Home` } : null,
+      up,
       ...(await layout).data,
       apolloState: await conf.then(() => client.cache.extract()),
     },

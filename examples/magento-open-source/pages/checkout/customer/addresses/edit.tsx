@@ -7,7 +7,8 @@ import {
   getCustomerAccountIsDisabled,
   useCustomerQuery,
 } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FullPageMessage,
@@ -96,13 +97,16 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCartDisabled(context.locale) || getCustomerAccountIsDisabled(context.locale))
     return { notFound: true }
   const client = graphqlSharedClient(context)
+  const up = { href: '/checkout', title: t`Shipping` }
   const conf = client.query({ query: StoreConfigDocument })
+
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_address_edit')
 
   return {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/checkout', title: t`Shipping` },
+      up,
     },
   }
 }

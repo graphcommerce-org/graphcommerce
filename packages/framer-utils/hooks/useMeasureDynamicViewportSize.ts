@@ -1,5 +1,5 @@
 import type { MotionValue } from 'framer-motion'
-import sync from 'framesync'
+import { frame } from 'framer-motion'
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect'
 
 export type UseClientSizeReturn = { x: MotionValue<string>; y: MotionValue<string> }
@@ -32,7 +32,7 @@ export function useMeasureDynamicViewportSize() {
       document.body.style.setProperty('--client-size-x', `${global.window?.innerWidth ?? 0}px`)
       document.body.style.setProperty('--client-size-y', `${global.window?.innerHeight ?? 0}px`)
     }
-    const recalcSynced = () => sync.read(recalc)
+    const recalcSynced = () => frame.read(recalc)
 
     window.addEventListener('resize', recalcSynced)
 

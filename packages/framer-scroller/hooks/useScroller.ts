@@ -93,6 +93,7 @@ export function useScroller<
       if (event.target.querySelector(':scope > input, :scope > textarea')) return
     }
     event.preventDefault()
+    divProps.onMouseDown?.(event as never)
   }
 
   const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {

@@ -9,7 +9,7 @@ query AllDynamicRows($first: Int = 100, $skip: Int) {
     }
   }
 
-  pagesConnection {
+  dynamicRowsConnection {
     aggregate {
       count
     }

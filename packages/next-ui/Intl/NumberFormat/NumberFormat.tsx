@@ -17,8 +17,9 @@ export const NumberFormat = forwardRef<HTMLSpanElement, NumberFormatProps>((prop
 
   return (
     <Box component='span' className='NumberFormat' suppressHydrationWarning ref={ref} sx={sx}>
-      {formatter.formatToParts(value).map((part) => (
-        <span className={part.type} key={part.type} suppressHydrationWarning>
+      {formatter.formatToParts(value).map((part, i) => (
+        // eslint-disable-next-line react/no-array-index-key
+        <span className={part.type} key={i} suppressHydrationWarning>
           {part.value}
         </span>
       ))}

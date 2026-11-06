@@ -12,7 +12,7 @@ extend input GraphCommerceConfig {
 
   Values: 245, 246, 247 for Magento 2.4.5, 2.4.6, 2.4.7 respectively.
   """
-  magentoVersion: Int!
+  magentoVersion: Int! @public
 }
 
 extend input GraphCommerceStorefrontConfig {
@@ -26,5 +26,5 @@ extend input GraphCommerceStorefrontConfig {
   - en-us
   - b2b-us
   """
-  magentoStoreCode: String!
+  magentoStoreCode: String! @public
 }

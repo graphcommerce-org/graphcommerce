@@ -1,0 +1,45 @@
+diff --git a/node_modules/next/dist/client/index.js b/node_modules/next/dist/client/index.js
+index 8ff0db5..f23b6fe 100644
+--- a/node_modules/next/dist/client/index.js
++++ b/node_modules/next/dist/client/index.js
+@@ -396,8 +396,12 @@ function renderReactElement(domEl, fn) {
+     const reactEl = fn(shouldHydrate ? markHydrateComplete : markRenderComplete);
+     if (!reactRoot) {
+         // Unlike with createRoot, you don't need a separate root.render() call here
+-        reactRoot = _client.default.hydrateRoot(domEl, reactEl, {
+-            onRecoverableError: _onrecoverableerror.onRecoverableError
++        // GraphCommerce: hydrate in a transition (as the App Router does), so React time-slices hydration
++        // instead of hydrating the whole page in one blocking task.
++        _react.default.startTransition(()=>{
++            reactRoot = _client.default.hydrateRoot(domEl, reactEl, {
++                onRecoverableError: _onrecoverableerror.onRecoverableError
++            });
+         });
+         // TODO: Remove shouldHydrate variable when React 18 is stable as it can depend on `reactRoot` existing
+         shouldHydrate = false;
+diff --git a/node_modules/next/dist/client/route-loader.js b/node_modules/next/dist/client/route-loader.js
+index 5bdbaa8..d78dd6f 100644
+--- a/node_modules/next/dist/client/route-loader.js
++++ b/node_modules/next/dist/client/route-loader.js
+@@ -224,7 +224,7 @@ function createRouteLoader(assetPrefix) {
+         },
+         onEntrypoint (route, execute) {
+             ;
+-            (execute ? Promise.resolve().then(()=>execute()).then((exports1)=>({
++            (execute ? /* GraphCommerce: yield to the main thread so each entrypoint (_app, page) is instantiated in its own task instead of all module initialisation piling up in one long task */ new Promise((resolve)=>globalThis.scheduler && typeof globalThis.scheduler.yield === 'function' ? globalThis.scheduler.yield().then(resolve) : setTimeout(resolve, 0)).then(()=>execute()).then((exports1)=>({
+                     component: exports1 && exports1.default || exports1,
+                     exports: exports1
+                 }), (err)=>({
+diff --git a/node_modules/next/dist/esm/client/route-loader.js b/node_modules/next/dist/esm/client/route-loader.js
+index 89693af..19a1326 100644
+--- a/node_modules/next/dist/esm/client/route-loader.js
++++ b/node_modules/next/dist/esm/client/route-loader.js
+@@ -200,7 +200,7 @@ export function createRouteLoader(assetPrefix) {
+         },
+         onEntrypoint (route, execute) {
+             ;
+-            (execute ? Promise.resolve().then(()=>execute()).then((exports)=>({
++            (execute ? /* GraphCommerce: yield to the main thread so each entrypoint (_app, page) is instantiated in its own task instead of all module initialisation piling up in one long task */ new Promise((resolve)=>globalThis.scheduler && typeof globalThis.scheduler.yield === 'function' ? globalThis.scheduler.yield().then(resolve) : setTimeout(resolve, 0)).then(()=>execute()).then((exports)=>({
+                     component: exports && exports.default || exports,
+                     exports: exports
+                 }), (err)=>({

@@ -52,7 +52,7 @@ export function AddProductsToCartForm(props: AddProductsToCartFormProps) {
     AddProductsToCartDocument,
     {
       ...formProps,
-      defaultValues: { redirect },
+      defaultValues: { ...formProps.defaultValues, redirect },
       // We're stripping out incomplete entered options.
       onBeforeSubmit: async (variables) => {
         const variables2 = (await formProps.onBeforeSubmit?.(variables)) ?? variables

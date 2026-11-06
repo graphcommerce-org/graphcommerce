@@ -1,3 +1,5 @@
+/// <reference path="./apolloTypeOverrides.d.ts" />
+
 export * from './apollo'
 export * from './components/GraphQLProvider'
 export { default as fragments } from './generated/fragments.json'
@@ -5,6 +7,7 @@ export * from './generated/types'
 export * from './config'
 export * from './utils/getPreviewData'
 export * from './utils/cachePolicy'
+export * from './utils/renewSignal'
 export * from './components/PrivateQueryMask/PrivateQueryMask'
 export * from './hooks/usePrivateQueryContext'
 export * from './hooks/usePrivateQuery'

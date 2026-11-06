@@ -3,7 +3,14 @@ import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-car
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
 import { useCartLock } from '@graphcommerce/magento-cart-payment-method'
-import { ErrorSnackbar, FormRow, FullPageMessage, sxx } from '@graphcommerce/next-ui'
+import { disableBraintreeThreeDSecure } from '@graphcommerce/next-config/config'
+import {
+  ErrorSnackbar,
+  FormRow,
+  FullPageMessage,
+  sxx,
+  useStorefrontConfig,
+} from '@graphcommerce/next-ui'
 import type { FieldValues, Path, UseControllerProps } from '@graphcommerce/react-hook-form'
 import { FormProvider, useController, useFormCompose } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
@@ -18,8 +25,8 @@ import React, { useEffect, useState } from 'react'
 import type {
   BraintreePaymentMethodOptionsMutation,
   BraintreePaymentMethodOptionsMutationVariables,
-} from '../../BraintreePaymentMethodOptions.gql'
-import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
+} from '../../graphql/BraintreePaymentMethodOptions.gql'
+import { BraintreePaymentMethodOptionsDocument } from '../../graphql/BraintreePaymentMethodOptions.gql'
 import { useBraintreeHostedFields } from '../../hooks/useBraintreeHostedFields'
 import { isBraintreeError } from '../../utils/isBraintreeError'
 
@@ -130,6 +137,8 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
   const [hostedFields, threeDSecure] = useBraintreeHostedFields()
   const cart = useCartQuery(BillingPageDocument)
   const [lockstate, lock, unlock] = useCartLock()
+  const isThreeDSecureDisabled =
+    useStorefrontConfig().disableBraintreeThreeDSecure ?? disableBraintreeThreeDSecure
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -160,39 +169,47 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     }
   >(BraintreePaymentMethodOptionsDocument, {
     defaultValues: { code },
+    submitWhileLocked: true,
     onBeforeSubmit: async (variables) => {
       if (!hostedFields) throw new Error('Hosted fields not available')
-      if (!threeDSecure) throw new Error('3D Secure not available')
+      if (!threeDSecure && !isThreeDSecureDisabled) throw new Error('3D Secure not available')
       if (!cart.data?.cart?.prices?.grand_total?.value) throw Error('Cart total not found')
 
       try {
         const tokenResult = await hostedFields.tokenize()
 
-        const verifyResult = await threeDSecure.verifyCard({
-          nonce: tokenResult.nonce,
-          amount: String(cart.data.cart.prices.grand_total.value),
-          bin: tokenResult.details.bin,
-          collectDeviceData: true,
-          billingAddress: {
-            givenName: cart.data.cart.billing_address?.firstname,
-            surname: cart.data.cart.billing_address?.lastname,
-            countryCodeAlpha2: cart.data.cart.billing_address?.country?.code,
-            streetAddress: cart.data.cart.billing_address?.street?.join(' '),
-            postalCode: cart.data.cart.billing_address?.postcode ?? undefined,
-            phoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
-            region: cart.data.cart.billing_address?.region?.code ?? undefined,
-            locality: cart.data.cart.billing_address?.city,
-          },
-          email: cart.data.cart.email ?? undefined,
-          mobilePhoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
-        })
+        const verifyResult = isThreeDSecureDisabled
+          ? undefined
+          : await threeDSecure?.verifyCard({
+              nonce: tokenResult.nonce,
+              amount: String(cart.data.cart.prices.grand_total.value),
+              bin: tokenResult.details.bin,
+              collectDeviceData: true,
+              billingAddress: {
+                givenName: cart.data.cart.billing_address?.firstname,
+                surname: cart.data.cart.billing_address?.lastname,
+                countryCodeAlpha2: cart.data.cart.billing_address?.country?.code,
+                streetAddress: cart.data.cart.billing_address?.street?.join(' '),
+                postalCode: cart.data.cart.billing_address?.postcode ?? undefined,
+                phoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
+                region: cart.data.cart.billing_address?.region?.code ?? undefined,
+                locality: cart.data.cart.billing_address?.city,
+              },
+              email: cart.data.cart.email ?? undefined,
+              mobilePhoneNumber: cart.data.cart.billing_address?.telephone ?? undefined,
+            })
 
-        if (!verifyResult.threeDSecureInfo.liabilityShifted) {
+        if (!verifyResult?.threeDSecureInfo.liabilityShifted && !isThreeDSecureDisabled) {
           throw Error('Liability not shifted')
         }
 
         await lock({ method: code })
-        return { ...variables, deviceData: '', nonce: verifyResult.nonce, isTokenEnabler: false }
+        return {
+          ...variables,
+          deviceData: '',
+          nonce: isThreeDSecureDisabled ? tokenResult.nonce : (verifyResult?.nonce ?? ''),
+          isTokenEnabler: false,
+        }
       } catch (e) {
         if (isBraintreeError(e)) {
           switch (e.code) {
