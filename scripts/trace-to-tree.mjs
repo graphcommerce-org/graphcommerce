@@ -1,5 +1,5 @@
-import fs from 'fs'
 import eventStream from 'event-stream'
+import fs from 'fs'
 import { bold, blue, cyan, green, magenta, red, yellow } from 'next/dist/lib/picocolors.js'
 
 const file = fs.createReadStream(process.argv[2])

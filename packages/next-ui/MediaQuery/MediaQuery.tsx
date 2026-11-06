@@ -97,7 +97,6 @@ function MediaQueryBase(props: MediaQueryProps) {
 
   return (
     <Box
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: '' }}
       suppressHydrationWarning
       {...elementProps}

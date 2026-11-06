@@ -12,7 +12,6 @@ export function JsonLd<T extends { '@type': string }>(props: {
       <script
         key={keyVal ?? 'jsonld'}
         type='application/ld+json'
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(item, safeJsonLdReplacer) }}
       />
     </Head>

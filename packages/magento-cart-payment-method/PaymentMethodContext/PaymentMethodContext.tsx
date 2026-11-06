@@ -71,7 +71,7 @@ export function PaymentMethodContextProvider(props: PaymentMethodContextProvider
 
   // Expand the payment methods
   useEffect(() => {
-    if (!cartContext) return // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    if (!cartContext) return
     ;(async () => {
       const promises = availableMethods.map(async (method) =>
         method

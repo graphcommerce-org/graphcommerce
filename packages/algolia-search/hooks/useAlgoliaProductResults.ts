@@ -11,7 +11,6 @@ function hitsToProduct(
   productUrlSuffix?: string | null,
 ) {
   const mapHits = items.map((item) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     const currentCurrency = (currency ?? Object.keys(item.price)[0]) as CurrencyEnum
     const price = item.price[currentCurrency]
     const productUrlSplit = item.url.split('/')

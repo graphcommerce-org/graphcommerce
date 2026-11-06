@@ -1,14 +1,13 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 import type { PlaywrightTestConfig } from '@playwright/test'
 import { devices } from '@playwright/test'
 
 /**
- * Per-locale projects are opt-in. Set `PLAYWRIGHT_LOCALES` to a comma-separated
- * list (e.g. `nl,de`) to generate `<project>-<locale>` variants. Importing
- * `next.config.ts` directly is intentionally avoided here: `next.config.ts`
- * pulls in `@graphcommerce/next-config` (ESM) and serwist, which the
- * Playwright Node loader compiles as CJS and crashes on with
- * `ReferenceError: exports is not defined in ES module scope`.
+ * Per-locale projects are opt-in. Set `PLAYWRIGHT_LOCALES` to a comma-separated list (e.g. `nl,de`)
+ * to generate `<project>-<locale>` variants. Importing `next.config.ts` directly is intentionally
+ * avoided here: `next.config.ts` pulls in `@graphcommerce/next-config` (ESM) and serwist, which the
+ * Playwright Node loader compiles as CJS and crashes on with `ReferenceError: exports is not
+ * defined in ES module scope`.
  */
 const baseProjects: PlaywrightTestConfig['projects'] = [
   {
@@ -27,7 +26,10 @@ const baseProjects: PlaywrightTestConfig['projects'] = [
 
 const localesEnv = process.env.PLAYWRIGHT_LOCALES?.trim()
 const locales = localesEnv
-  ? localesEnv.split(',').map((l) => l.trim()).filter(Boolean)
+  ? localesEnv
+      .split(',')
+      .map((l) => l.trim())
+      .filter(Boolean)
   : []
 
 const baseURL = process.env.URL || 'http://localhost:3000'

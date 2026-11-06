@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import { sxx } from '@graphcommerce/next-ui'
 import { Box, ListItemButton, styled, useEventCallback } from '@mui/material'
@@ -21,7 +20,6 @@ type OwnerState = {
   first?: boolean
   last?: boolean
   // It is actually used.
-  // eslint-disable-next-line react/no-unused-prop-types
   column: number
 }
 

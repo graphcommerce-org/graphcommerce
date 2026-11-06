@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { MeshContext, PrivateContext } from '@graphcommerce/graphql-mesh'
 import type { ApolloClient } from '@apollo/client'
 

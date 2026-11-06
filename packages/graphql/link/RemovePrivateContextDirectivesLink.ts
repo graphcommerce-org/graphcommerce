@@ -31,7 +31,6 @@ function removeArgumentsFromDocument(
 }
 
 export class RemovePrivateContextDirectivesLink extends ApolloLink {
-  // eslint-disable-next-line class-methods-use-this
   request(operation: ApolloLinkType.Operation, forward?: ApolloLinkType.ForwardFunction) {
     if (!forward) throw new Error('This is not a terminal link!')
 

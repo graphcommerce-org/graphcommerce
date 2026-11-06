@@ -25,7 +25,6 @@ export function MSPPaymentHandler(props: PaymentHandlerProps) {
   useEffect(() => {
     if (!shouldRestore) return
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     restore({ variables: { cartId } }).then(({ data }) => {
       if (!data?.getPaymentMeta) return undefined
 
@@ -39,7 +38,6 @@ export function MSPPaymentHandler(props: PaymentHandlerProps) {
   useEffect(() => {
     if (!shouldRedirect || !order_number) return
 
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     onSuccess(order_number)
   }, [cartId, onSuccess, order_number, shouldRedirect])
 

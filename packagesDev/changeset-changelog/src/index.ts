@@ -1,5 +1,5 @@
 import type githubDefault from '@changesets/changelog-github'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { getInfo, getInfoFromPullRequest } from '@changesets/get-github-info'
 
 const changelogFunctions: typeof githubDefault = {

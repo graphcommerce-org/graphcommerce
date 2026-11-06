@@ -1,4 +1,3 @@
-import type { ParsedUrlQuery } from 'querystring'
 import { usePrevPageRouter, type PageOptions } from '@graphcommerce/framer-next-pages'
 import type { StoreSwitcherListQuery } from '@graphcommerce/magento-store'
 import {
@@ -25,6 +24,7 @@ import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 import { Container } from '@mui/material'
 import { useRouter } from 'next/router'
+import type { ParsedUrlQuery } from 'querystring'
 import type { LayoutOverlayProps } from '../components'
 import { LayoutDocument, LayoutOverlay } from '../components'
 import { graphqlSharedClient, graphqlSsrClient } from '../lib/graphql/graphqlSsrClient'

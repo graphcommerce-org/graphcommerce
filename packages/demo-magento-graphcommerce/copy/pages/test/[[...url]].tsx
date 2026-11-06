@@ -47,7 +47,6 @@ TestOverview.pageOptions = {
 
 export default TestOverview
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 

@@ -5,13 +5,10 @@ export type AddressFieldsOptions<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = {
-  // eslint-disable-next-line react/no-unused-prop-types
   form: UseFormReturn<TFieldValues>
 
-  // eslint-disable-next-line react/no-unused-prop-types
   readOnly?: boolean
 
-  // eslint-disable-next-line react/no-unused-prop-types
   name?: {
     street?: TName
     houseNumber?: TName

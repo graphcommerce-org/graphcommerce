@@ -1,7 +1,7 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
 import type { ImageProps } from '@graphcommerce/image'
 import { Image } from '@graphcommerce/image'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { styled, useTheme } from '@mui/material'
 import { m, motionValue, useTransform } from 'motion/react'

@@ -16,6 +16,7 @@ it('It resolves and sorts dependencies beginning with the root example package a
       "@graphcommerce/mollie-magento-payment" => "packages/mollie-magento-payment",
       "@graphcommerce/magento-payment-braintree" => "packages/magento-payment-braintree",
       "@graphcommerce/magento-cart-pickup" => "packages/magento-cart-pickup",
+      "@graphcommerce/oxlint-config-pwa" => "packagesDev/oxlint-config",
       "@graphcommerce/service-worker" => "packages/service-worker",
       "@graphcommerce/magento-wishlist" => "packages/magento-wishlist",
       "@graphcommerce/magento-review" => "packages/magento-review",
@@ -68,9 +69,8 @@ it('It resolves and sorts dependencies beginning with the root example package a
       "@graphcommerce/cli" => "packages/cli",
       "@graphcommerce/hygraph-cli" => "packages/hygraph-cli",
       "@graphcommerce/next-config" => "packagesDev/next-config",
+      "@graphcommerce/oxfmt-config-pwa" => "packagesDev/oxfmt-config",
       "@graphcommerce/graphql-mesh" => "packages/graphql-mesh",
-      "@graphcommerce/prettier-config-pwa" => "packagesDev/prettier-config",
-      "@graphcommerce/eslint-config-pwa" => "packagesDev/eslint-config",
       "@graphcommerce/typescript-config-pwa" => "packagesDev/typescript-config",
     }
   `,

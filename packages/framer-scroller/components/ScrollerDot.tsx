@@ -1,5 +1,5 @@
 import { useMotionValueValue } from '@graphcommerce/framer-utils'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import { t } from '@lingui/core/macro'
 import type { FabProps } from '@mui/material'
@@ -29,13 +29,11 @@ export function ScrollerDot(props: ScrollerDotProps) {
 
   return (
     <Fab
-      // eslint-disable-next-line react/no-array-index-key
       color='inherit'
       size='small'
       {...fabProps}
       onClick={() => {
         const positions = getScrollSnapPositions()
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         scrollTo({ x: positions.x[idx] ?? 0, y: positions.y[idx] ?? 0 })
       }}
       className={classes.dot}

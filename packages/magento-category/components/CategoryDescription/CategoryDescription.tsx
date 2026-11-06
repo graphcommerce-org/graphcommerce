@@ -35,7 +35,6 @@ export function CategoryDescription(props: CategoryDescriptionProps) {
   const classes = withState({ textAlignSm, textAlignMd })
 
   return description ? (
-    // eslint-disable-next-line react/no-danger
     <Box
       {...divProps}
       className={classes.root}

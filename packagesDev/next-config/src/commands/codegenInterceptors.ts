@@ -8,7 +8,6 @@ import { resolveDependency } from '../utils/resolveDependency'
 
 dotenv.config({ quiet: true })
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function codegenInterceptors() {
   const conf = loadConfig(process.cwd())
 

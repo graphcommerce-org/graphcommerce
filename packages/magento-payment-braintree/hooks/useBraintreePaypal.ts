@@ -11,7 +11,6 @@ export function useBraintreePaypal() {
 
   useEffect(() => {
     if (!paypalCheckout && !teardownPromise) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       braintreePromise.then(async (client) => {
         if (teardownPromise) {
           await teardownPromise

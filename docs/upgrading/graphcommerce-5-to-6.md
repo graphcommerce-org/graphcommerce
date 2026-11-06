@@ -56,8 +56,8 @@ wrap a Material-UI Link component; With GraphCommerce 6 we've integrated Next.js
 13's new Link behavior, see [links documentation](../framework/links.md).
 
 ```tsx
-import PageLink from 'next/link'
 import { Link } from '@mui/material'
+import PageLink from 'next/link'
 
 function MyComponent() {
   return (
@@ -81,8 +81,8 @@ function MyComponent() {
 ### Upgrading a Link that uses next/link props
 
 ```tsx
-import PageLink from 'next/link'
 import { Link } from '@mui/material'
+import PageLink from 'next/link'
 
 function MyComponent() {
   return (

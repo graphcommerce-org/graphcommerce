@@ -57,7 +57,6 @@ export function findPlugins(config: GraphCommerceConfig, cwd: string = process.c
       const logStr = p
         .filter((c) => debug || c.enabled)
         .map((c) => {
-          // eslint-disable-next-line no-nested-ternary
           const ifConfigStr = c.ifConfig
             ? Array.isArray(c.ifConfig)
               ? `${c.ifConfig[0]}=${c.ifConfig[1]}`

@@ -19,7 +19,11 @@
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit --generateTrace tsctrace --incremental false && npx @typescript/analyze-trace tsctrace",
     "lingui": "cross-env NODE_ENV=development lingui extract --clean",
     "postinstall": "is-monorepo '[pkgrun] postinstall' '[pkgrun] patch-package'",
-    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'"
+    "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@apollo/client": "^4.3.6",
@@ -130,8 +134,8 @@
     "webpack": "^5.112.2"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "11.0.0-canary.56",
+    "@graphcommerce/oxfmt-config-pwa": "11.0.0-canary.56",
+    "@graphcommerce/oxlint-config-pwa": "11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "11.0.0-canary.56",
     "@lingui/cli": "6.12.0",
     "@playwright/test": "1.64.1",
@@ -139,17 +143,11 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-is": "^19.3.0",
-    "eslint": "^9.39.5",
-    "prettier": "3.5.3",
     "type-fest": "^5.10.0",
     "typescript": "6.0.3"
   },
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
-  ],
-  "resolutions": {
-    "prettier": "3.5.3"
-  },
-  "prettier": "@graphcommerce/prettier-config-pwa/classic.js"
+  ]
 }

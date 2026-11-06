@@ -9,13 +9,6 @@
     "build": "next build",
     "start": "next start"
   },
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
@@ -45,8 +38,8 @@
     "sharp": "0.35.5"
   },
   "devDependencies": {
-    "@graphcommerce/eslint-config-pwa": "11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "11.0.0-canary.56",
+    "@graphcommerce/oxfmt-config-pwa": "11.0.0-canary.56",
+    "@graphcommerce/oxlint-config-pwa": "11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "11.0.0-canary.56",
     "@lingui/cli": "6.12.0",
     "@playwright/test": "1.64.1",
@@ -54,8 +47,6 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@types/react-is": "^19.3.0",
-    "eslint": "^9.39.5",
-    "prettier": "^3.9.10",
     "type-fest": "^5.10.0",
     "typescript": "6.0.3"
   },

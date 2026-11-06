@@ -31,7 +31,6 @@ export function useScrollTo() {
       let to: Point
       if (Array.isArray(incoming)) {
         const { x, y } = getScrollSnapPositions()
-        // eslint-disable-next-line no-param-reassign
         to = { x: x[incoming[0]] ?? 0, y: y[incoming[1]] ?? 0 }
       } else {
         to = incoming

@@ -44,7 +44,6 @@ export function ResetPasswordForm(props: ResetPasswordFormProps) {
   }, [emailFromUrl, setValue])
 
   if (formState.isSubmitSuccessful && data && !error) {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     router.replace(`${window.location.href.split('?')[0]}?success=1`)
   }
 

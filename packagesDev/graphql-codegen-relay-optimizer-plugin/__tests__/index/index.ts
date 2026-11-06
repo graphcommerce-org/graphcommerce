@@ -25,7 +25,6 @@ expect.extend({
 })
 
 declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface Assertion<T> {
     toBeSimilarStringTo(expected: string): void
   }

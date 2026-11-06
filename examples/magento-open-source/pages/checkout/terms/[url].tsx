@@ -34,7 +34,6 @@ function TermsPage(props: Props) {
 
       <Container maxWidth='md'>
         <Typography component='div' variant='body1'>
-          {/* eslint-disable-next-line react/no-danger */}
           <div dangerouslySetInnerHTML={{ __html: agreement?.content ?? '' }} />
         </Typography>
       </Container>
@@ -51,7 +50,6 @@ TermsPage.pageOptions = pageOptions
 
 export default TermsPage
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async ({ locales = [] }) => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
 

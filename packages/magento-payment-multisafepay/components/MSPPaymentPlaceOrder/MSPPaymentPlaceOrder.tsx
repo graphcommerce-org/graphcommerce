@@ -39,7 +39,6 @@ export function MSPPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
       }
 
       if (url?.error || !url?.payment_url) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         restoreCart({ variables: { cartId: variables.cartId } }).then(({ data }) => {
           data?.getPaymentMeta && billingPage.refetch({ cartId: data.getPaymentMeta })
         })

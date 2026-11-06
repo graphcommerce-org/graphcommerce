@@ -1,0 +1,16 @@
+{
+  "name": "@graphcommerce/oxlint-config-pwa",
+  "homepage": "https://www.graphcommerce.org/",
+  "repository": "github:graphcommerce-org/graphcommerce",
+  "version": "11.0.0-canary.56",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "dependencies": {
+    "oxlint": "^1.92.0",
+    "oxlint-tsgolint": "^7.0.2006"
+  },
+  "sideEffects": false
+}

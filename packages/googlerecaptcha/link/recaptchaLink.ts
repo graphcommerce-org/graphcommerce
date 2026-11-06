@@ -25,7 +25,6 @@ export const recaptchaLink = new SetContextLink(async (prevContext, operation) =
   let failure = 0
   while (failure < 5) {
     try {
-      // eslint-disable-next-line no-await-in-loop
       token = await globalThis.grecaptcha.execute(siteKey, { action: 'submit' })
       break
     } catch {

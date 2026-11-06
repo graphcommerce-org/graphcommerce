@@ -1,7 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import { promises as fs } from 'fs'
-import path from 'path'
-import { exit } from 'process'
 import type { meshConfig as meshConfigBase } from '@graphcommerce/graphql-mesh/meshConfig'
 import {
   loadConfig,
@@ -15,6 +11,9 @@ import { DEFAULT_CLI_PARAMS, graphqlMesh } from '@graphql-mesh/cli'
 import type { Logger, YamlConfig } from '@graphql-mesh/types'
 import { DefaultLogger, fileURLToPath } from '@graphql-mesh/utils'
 import dotenv from 'dotenv'
+import { promises as fs } from 'fs'
+import path from 'path'
+import { exit } from 'process'
 import 'tsx/cjs'
 import 'tsx/esm'
 import type { Entries, OmitIndexSignature } from 'type-fest'
@@ -183,7 +182,6 @@ process.on('SIGINT', cleanup)
 process.on('SIGTERM', cleanup)
 
 main().catch((e) => {
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   cleanup()
   if (e instanceof Error) {
     handleFatalError(e, new DefaultLogger(DEFAULT_CLI_PARAMS.initialLoggerPrefix))

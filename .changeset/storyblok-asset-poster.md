@@ -10,7 +10,12 @@ A `<video>` paints nothing until it has buffered enough for its first frame, and
 Storyblok's own `type: asset` has no room for a poster, so `assetWithPoster()` is added to read the convention of an asset value carrying an extra `poster` key:
 
 ```jsonc
-{ "fieldtype": "asset", "id": 1, "filename": "…", "poster": { "filename": "…" } }
+{
+  "fieldtype": "asset",
+  "id": 1,
+  "filename": "…",
+  "poster": { "filename": "…" },
+}
 ```
 
 Keeping the poster beside the asset rather than nesting both under a wrapper means a custom field type storing that shape is a drop-in for a plain asset field: existing content stays valid and `value.filename` keeps working for consumers that ignore the poster. The narrowing is unavoidable — Storyblok has no JSONSchema for custom field types, so its type generator emits `unknown` for them.

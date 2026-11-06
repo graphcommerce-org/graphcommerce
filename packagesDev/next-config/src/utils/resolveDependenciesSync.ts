@@ -1,6 +1,6 @@
 import fs from 'fs'
-import path from 'path'
 import { resolve as resolveModule } from 'import-meta-resolve'
+import path from 'path'
 import type { PackageJson } from 'type-fest'
 import { PackagesSort } from './PackagesSort'
 import { sig } from './sig'

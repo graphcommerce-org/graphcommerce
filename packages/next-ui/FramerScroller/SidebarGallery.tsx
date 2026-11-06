@@ -107,7 +107,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
         if (active) await removeHash()
       }
     }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     removeHash()
     return () => {
       active = false
@@ -143,7 +142,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
     }
     if (!zoomed) {
       measureZoomOffsets()
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       router.push(route, undefined, { shallow: true })
       window.scrollTo({ top: 0, behavior: 'smooth' })
     } else {
@@ -291,7 +289,6 @@ export function SidebarGallery(props: SidebarGalleryProps) {
               >
                 {images.map((image, idx) => (
                   <MotionImageAspect
-                    // eslint-disable-next-line react/no-array-index-key
                     key={idx}
                     {...image}
                     layout

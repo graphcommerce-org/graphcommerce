@@ -56,8 +56,13 @@ File structure of GraphCommerce
 
 ### Formatting and Linting
 
-GraphCommerce uses ESLint for linting and Prettier for code formatting. Install
-the [recommended VS Code extensions](../docs/framework/vscode.md)
+GraphCommerce lints with Oxlint and formats with oxfmt. Install the
+[recommended VS Code extensions](../docs/framework/vscode.md).
+
+```bash
+yarn lint
+yarn format
+```
 
 <!--
 ### Contributor License Agreement
@@ -94,10 +99,10 @@ need to sign the CLA once.
 ### Merge checklist for your pull request
 
 - Code must pass the CI checks.
-- Code must be formatted with prettier
+- `yarn format:check` must not report changed files
 - Changeset is available
-- Eslint must not report any errors in the changed files
-- Eslint should not give any warnings in the changed files
+- `yarn lint` must not report errors in the changed files
+- `yarn lint` should not report warnings in the changed files
 - Bundle size should not increase significantly
 - Lingui translations must be
   [generated](https://www.graphcommerce.org/docs/framework/translations#generating-translation-files-with-all-translations)

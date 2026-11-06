@@ -39,7 +39,6 @@ export function EmptyCompareListButton(props: EmptyCompareListButtonProps) {
       onClick={() => {
         go()
 
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         deleteCompareList()
       }}
     >

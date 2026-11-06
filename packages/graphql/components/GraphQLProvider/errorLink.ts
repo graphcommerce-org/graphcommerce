@@ -12,7 +12,6 @@ export const errorLink = new ErrorLink(({ error, operation }) => {
     console.error(`[Graphql error]: ${error}`)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   ;(async () => {
     const graphql = await import('graphql')
 

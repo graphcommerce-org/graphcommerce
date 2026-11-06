@@ -68,7 +68,6 @@ export const prefetchProductList = debounce(
     // Remove all requests that are before the current request
     const index = productListQueries.indexOf(both)
     if (index > -1) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       productListQueries.splice(0, index + 1)
     }
 

@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { resolveDependenciesSync } from '@graphcommerce/next-config'
 import type { KnipConfig } from 'knip'
 

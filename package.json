@@ -18,9 +18,6 @@
   },
   "scripts": {
     "prepare": "husky",
-    "eslint:lint": "eslint '**/{*.ts,*.tsx}'",
-    "eslint:fix": "eslint --fix '**/{*.ts,*.tsx}'",
-    "prettier:fix": "prettier --ignore-path .gitignore --write '**/*.{ts,tsx,css,html,json}'",
     "tsc:lint": "tsc --noEmit -p .",
     "tsc:perf": "NODE_OPTIONS=--max_old_space_size=10000 tsc --noEmit -p examples/magento-graphcms --generateTrace tsctrace --incremental false",
     "playwright": "npx playwright test --headed --project=chrome",
@@ -37,16 +34,13 @@
     "packages:build": "concurrently 'yarn workspace @graphcommerce/next-config build' 'yarn workspace @graphcommerce/graphql-codegen-near-operation-file build' 'yarn workspace @graphcommerce/graphql-codegen-relay-optimizer-plugin build' 'yarn workspace @graphcommerce/hygraph-cli build' 'yarn workspace @graphcommerce/cli build' 'yarn workspace @graphcommerce/changeset-changelog build' 'yarn workspace @graphcommerce/graphql-codegen-markdown-docs build'",
     "create-patch": "patch-package --exclude 'package.json$|gql.ts$|interceptor.tsx$|interceptor.ts$|generated/*'",
     "test": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest run",
-    "test:watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest"
+    "test:watch": "PRIVATE_ADDITIONAL_DEPENDENCIES=\"@graphcommerce/magento-cart-pickup,@graphcommerce/magento-payment-braintree,@graphcommerce/mollie-magento-payment,@graphcommerce/magento-payment-paypal,@graphcommerce/algolia-categories,@graphcommerce/algolia-products,@graphcommerce/algolia-personalization,@graphcommerce/algolia-recommend\" vitest",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "sideEffects": false,
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "dependencies": {
     "@changesets/cli": "2.31.1",
     "@unts/patch-package": "^8.1.2",
@@ -59,11 +53,11 @@
   "devDependencies": {
     "@apollo/client": "^4.3.6",
     "@graphcommerce/cli": "workspace:^",
-    "@graphcommerce/eslint-config-pwa": "workspace:^",
     "@graphcommerce/graphql-mesh": "workspace:^",
     "@graphcommerce/hygraph-cli": "workspace:^",
     "@graphcommerce/next-config": "workspace:^",
-    "@graphcommerce/prettier-config-pwa": "workspace:^",
+    "@graphcommerce/oxfmt-config-pwa": "workspace:^",
+    "@graphcommerce/oxlint-config-pwa": "workspace:^",
     "@graphcommerce/typescript-config-pwa": "workspace:^",
     "@graphql-mesh/cli": "0.100.21",
     "@graphql-mesh/runtime": "0.106.19",
@@ -79,14 +73,12 @@
     "@vitejs/plugin-react": "^6.2.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "dotenv": "18.0.9",
-    "eslint": "^9.39.5",
     "event-stream": "^4.0.1",
     "graphql": "^16.14.2",
     "husky": "^9.1.7",
     "jest-diff": "^30.5.2",
     "knip": "^6.44.1",
     "next": "16.4.5",
-    "prettier": "3.5.3",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "rxjs": "^7.8.2",
@@ -99,7 +91,6 @@
   },
   "resolutions": {
     "@changesets/assemble-release-plan": "5.2.4",
-    "@changesets/config": "2.3.1",
-    "prettier": "3.5.3"
+    "@changesets/config": "2.3.1"
   }
 }

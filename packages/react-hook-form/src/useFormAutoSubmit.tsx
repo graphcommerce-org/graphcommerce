@@ -1,8 +1,7 @@
-/* eslint-disable react/no-unused-prop-types */
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { useMemoObject } from '@graphcommerce/next-ui/hooks/useMemoObject'
 import { cloneDeep } from '@apollo/client/utilities/internal'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { debounce } from '@mui/material'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type {
@@ -92,7 +91,6 @@ export function useFormAutoSubmit<
 
   useEffect(() => {
     if (!disabled && canSubmit && (force || shouldSubmit)) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       submitDebounced()
       return () => submitDebounced.clear()
     }
@@ -106,14 +104,12 @@ export type FormAutoSubmitProps<TFieldValues extends FieldValues = FieldValues> 
   /** Autosubmit only when these field names update */
 
   /** SubmitHandler */
-  // eslint-disable-next-line react/no-unused-prop-types
   submit: ReturnType<UseFormHandleSubmit<TFieldValues>>
 
   /**
    * When a current submission is already in flight, should we wait for it to finish before
    * submitting again?
    */
-  // eslint-disable-next-line react/no-unused-prop-types
   parallel?: boolean
 
   noValidate?: boolean
@@ -179,7 +175,6 @@ function useAutoSubmitBase<TFieldValues extends FieldValues = FieldValues>(
   const canSubmit = valid && allowed
 
   if (canSubmit && values !== oldValues.current) {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     submitDebounced()
   }
 }

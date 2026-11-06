@@ -1,12 +1,12 @@
-/* eslint-disable no-console */
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
-import path from 'path'
-import prettierConf from '@graphcommerce/prettier-config-pwa'
+import oxfmtConfig from '@graphcommerce/oxfmt-config-pwa'
 import { transformFileSync } from '@swc/core'
 import dotenv from 'dotenv'
+/* eslint-disable no-console */
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'fs'
 import type { InputValueDefinitionNode, TypeNode } from 'graphql'
 import { Kind, parse } from 'graphql'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
+import path from 'path'
 import { loadConfig } from '../config/loadConfig'
 import { resolveDependency } from '../utils/resolveDependency'
 import { configSchemaLocations } from './generateConfig'
@@ -106,16 +106,12 @@ export async function generateConfigValues() {
 
   const writeServerModule = async (name: string, content: string) => {
     const srcFile = path.join(srcDir, `${name}.ts`)
-    writeFileSync(
-      srcFile,
-      await prettier.format(content, {
-        ...prettierConf,
-        parser: 'typescript',
-        plugins: prettierConf.plugins?.filter(
-          (p) => typeof p === 'string' && !p.includes('prettier-plugin-sort-imports'),
-        ),
-      }),
-    )
+    const { code: formatted, errors } = await format(srcFile, content, {
+      ...oxfmtConfig,
+      sortImports: false,
+    })
+    if (errors.length) throw Error(`Could not format ${srcFile}: ${errors[0].message}`)
+    writeFileSync(srcFile, formatted)
     const { code } = transformFileSync(srcFile, {
       module: { type: 'nodenext' },
       env: { targets: { node: '20' } },

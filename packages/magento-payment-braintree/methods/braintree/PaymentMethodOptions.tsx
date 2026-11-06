@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import { useCartQuery, useFormGqlMutationCart } from '@graphcommerce/magento-cart'
 import { BillingPageDocument } from '@graphcommerce/magento-cart-checkout'
 import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-method'
@@ -141,7 +140,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
     useStorefrontConfig().disableBraintreeThreeDSecure ?? disableBraintreeThreeDSecure
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     if (!lockstate.justLocked && lockstate.locked) unlock({})
   }, [lockstate.justLocked, lockstate.locked, unlock])
 

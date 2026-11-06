@@ -1,8 +1,8 @@
-import { format } from 'path'
 import { useQuery } from '@graphcommerce/graphql'
 import type { CurrencyFormatProps } from '@graphcommerce/next-ui'
 import { CurrencyFormat, NumberFormat } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
+import { format } from 'path'
 import type { MoneyFragment } from '../../graphql'
 import { StoreConfigDocument } from '../../graphql'
 

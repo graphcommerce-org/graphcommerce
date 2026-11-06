@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import CompilerContext from '@ardatan/relay-compiler/lib/core/CompilerContext'
 import { print as relayPrint } from '@ardatan/relay-compiler/lib/core/IRPrinter'
 import { transform as relayParserTransform } from '@ardatan/relay-compiler/lib/core/RelayParser'
@@ -28,7 +27,6 @@ function isFragment(documentFile: Types.DocumentFile) {
 export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
   schema: GraphQLSchema,
   documents: Types.DocumentFile[],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _config: RelayOptimizerPluginConfig,
 ) => {
   const isFrag = documents.every((d) => isFragment(d))
@@ -50,7 +48,6 @@ export const plugin: PluginFunction<RelayOptimizerPluginConfig> = (
     [] as DefinitionNode[],
   )
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const relayDocuments = relayParserTransform(adjustedSchema, documentAsts as any)
 
   const fragmentCompilerContext = new CompilerContext(adjustedSchema).addAll(relayDocuments)

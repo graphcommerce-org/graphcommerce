@@ -126,7 +126,6 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
                 const targetValue = (event.target as HTMLInputElement).value
 
                 if (!element && targetValue) {
-                  // eslint-disable-next-line @typescript-eslint/no-floating-promises
                   router.push(`/search/${encodeURIComponent(targetValue)}`)
                 }
               } else {
@@ -153,7 +152,6 @@ export function SearchOverlayProvider(props: SearchOverlayProviderProps) {
           filterTypes={{}}
           autoSubmitMd
           handleSubmit={(formValues) =>
-            // eslint-disable-next-line @typescript-eslint/require-await
             handleSubmit(formValues, async () => {
               setParams(toProductListParams(formValues))
             })

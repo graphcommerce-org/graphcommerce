@@ -7,9 +7,8 @@ export const mergeTypePolicies = (policies: StrictTypedTypePolicies[]): StrictTy
 const generateIdentifyer = (s: string) =>
   Math.abs(
     s.split('').reduce((a, b) => {
-      // eslint-disable-next-line no-param-reassign, no-bitwise
+      // eslint-disable-next-line no-param-reassign
       a = (a << 5) - a + b.charCodeAt(0)
-      // eslint-disable-next-line no-bitwise
       return a & a
     }, 0),
   ).toString()

@@ -54,7 +54,6 @@ function RouteNotFoundPage() {
           <Trans>Or follow these links to get you back on track!</Trans>
           <Box sx={{ mb: 8 }}>
             {links.map((link, index) => (
-              // eslint-disable-next-line react/no-array-index-key
               <React.Fragment key={index}>
                 {index > 0 && <Separator />}
                 {link}

@@ -31,7 +31,6 @@ export function PayPalPaymentPlaceOrder(props: PaymentPlaceOrderProps) {
 
       await lock({ token, method: code, PayerID: null })
       // We are going to redirect, but we're not waiting, because we need to complete the submission to release the buttons
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       push(start)
     },
   })

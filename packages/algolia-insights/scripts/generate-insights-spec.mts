@@ -1,8 +1,8 @@
+import conf from '@graphcommerce/oxfmt-config-pwa'
 import { readFile, writeFile } from 'fs/promises'
-import conf from '@graphcommerce/prettier-config-pwa'
 import * as yaml from 'js-yaml'
 import { OpenAPIV3 } from 'openapi-types'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/insights.yml',
@@ -65,8 +65,5 @@ const newSchema: OpenAPIV3.Document = {
 
 await writeFile(
   './algolia-insights-spec.yaml',
-  await prettier.format(JSON.stringify(newSchema), {
-    parser: 'json',
-    ...conf,
-  }),
+  (await format('spec.json', JSON.stringify(newSchema), conf)).code,
 )

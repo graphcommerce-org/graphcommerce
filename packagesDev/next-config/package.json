@@ -58,28 +58,18 @@
     "js-yaml": "^5.5.0",
     "js-yaml-loader": "^1.2.2",
     "lodash": "^4.18.1",
+    "oxfmt": "^0.76.0",
     "react": "^19.3.1",
     "typescript": "6.0.3",
     "zod": "^4.6.7"
   },
   "peerDependencies": {
     "@apollo/client": "*",
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
+    "@graphcommerce/oxfmt-config-pwa": "^11.0.0-canary.56",
     "@lingui/loader": "*",
     "@lingui/react": "*",
     "dotenv": "^18",
-    "next": "*",
-    "prettier": "^3"
-  },
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslint": {
-    "extends": "@graphcommerce/eslint-config-pwa"
-  },
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
+    "next": "*"
   },
   "devDependencies": {
     "pkgroll": "^2.29.0"

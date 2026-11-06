@@ -52,7 +52,7 @@ export type AnyFilterType =
 export function isFilterTypeEqual(filter?: unknown): filter is FilterEqualTypeInput {
   return Boolean(
     filter &&
-      ('in' in (filter as FilterEqualTypeInput) || 'eq' in (filter as FilterEqualTypeInput)),
+    ('in' in (filter as FilterEqualTypeInput) || 'eq' in (filter as FilterEqualTypeInput)),
   )
 }
 
@@ -63,7 +63,7 @@ export function isFilterTypeMatch(filter: AnyFilterType): filter is FilterMatchT
 export function isFilterTypeRange(filter: AnyFilterType): filter is FilterRangeTypeInput {
   return Boolean(
     filter &&
-      ('from' in (filter as FilterRangeTypeInput) || 'to' in (filter as FilterRangeTypeInput)),
+    ('from' in (filter as FilterRangeTypeInput) || 'to' in (filter as FilterRangeTypeInput)),
   )
 }
 

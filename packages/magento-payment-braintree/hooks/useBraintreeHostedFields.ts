@@ -18,7 +18,6 @@ export function useBraintreeHostedFields() {
 
   useEffect(() => {
     if (!hostedFields[0] && !teardownPromise) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       braintreePromise.then(async (client) => {
         if (teardownPromise) {
           await teardownPromise

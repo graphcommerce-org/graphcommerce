@@ -7,7 +7,6 @@ import type { MarkdownDocsPluginConfig } from './config'
 /** Converts input type to markdown document. */
 export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPluginOutput> = (
   schema: GraphQLSchema,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _documents: Types.DocumentFile[],
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   config: MarkdownDocsPluginConfig,
@@ -74,7 +73,6 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
         ...node,
         // Move required fields to the top.
         fields: [...(node.fields ?? [])].sort((a, b) =>
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
           a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
         ),
       }),

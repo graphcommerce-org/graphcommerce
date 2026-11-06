@@ -5,13 +5,6 @@
   "version": "11.0.0-canary.56",
   "sideEffects": false,
   "main": "index.ts",
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "exports": {
     ".": "./index.ts",
     "./plugins/meshConfigM2Rest": "./plugins/meshConfigM2Rest.ts",
@@ -29,6 +22,7 @@
     "graphql": "^16.0.0"
   },
   "devDependencies": {
+    "@graphcommerce/oxfmt-config-pwa": "^11.0.0-canary.56",
     "graphql": "^16.14.2",
     "tsx": "^4.23.15"
   }

@@ -50,7 +50,6 @@ export function ProductPageDescription(props: ProductPageDescriptionProps) {
           product.description && (
             <Box
               className={classes.description}
-              // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html: product.description.html }}
               sx={sxx(
                 {

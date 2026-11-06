@@ -1,5 +1,5 @@
-import path from 'path'
 import type { ExportAllDeclaration } from '@swc/core'
+import path from 'path'
 import type { ResolveDependency, ResolveDependencyReturn } from '../utils/resolveDependency'
 import type { PluginConfig } from './generateInterceptor'
 import { parseSync } from './swc'
@@ -59,7 +59,6 @@ function parseAndFindExport(
     .sort((a, b) => {
       const probablyA = a.source.value.includes(findExport)
       const probablyB = b.source.value.includes(findExport)
-      // eslint-disable-next-line no-nested-ternary
       return probablyA === probablyB ? 0 : probablyA ? -1 : 1
     })
 
@@ -74,7 +73,6 @@ function parseAndFindExport(
       const newPath = path.join(d, node.source.value)
 
       const resolveResult = resolve(newPath, { includeSources: true })
-      // eslint-disable-next-line no-continue
       if (!resolveResult) continue
 
       const newResolved = parseAndFindExport(resolveResult, findExport, resolve)

@@ -32,7 +32,6 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
   const { called, error, data } = handleResult
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises, @typescript-eslint/no-extra-semi
     ;(async () => {
       if (!isActive) return
       if (lockState.locked && lockState.justLocked) return
@@ -55,11 +54,9 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
       if (result.error || !paymentStatus) return
 
       if (successStatusses.includes(paymentStatus)) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         onSuccess(lockState.order_number ?? '')
       } else if (returnedCartId) {
         assignCartId(returnedCartId)
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         router.replace('/checkout/payment')
       }
     })()
@@ -88,7 +85,6 @@ export function MolliePaymentHandler({ code }: PaymentHandlerProps) {
             size='large'
             onClick={() => {
               clear()
-              // eslint-disable-next-line @typescript-eslint/no-floating-promises
               router.push('/')
             }}
           >

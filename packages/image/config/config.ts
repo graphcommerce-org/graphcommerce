@@ -100,7 +100,6 @@ export function defaultLoader({ config, src, width, quality }: ImageLoaderPropsW
         process.env.NEXT_RUNTIME !== 'edge'
       ) {
         // We use dynamic require because this should only error in development
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         import('next/dist/shared/lib/match-remote-pattern').then(({ hasRemoteMatch }) => {
           if (!hasRemoteMatch(config.domains, config.remotePatterns, parsedSrc)) {
             throw new Error(
@@ -139,21 +138,19 @@ const urlLoaders = {
 }
 
 /**
- * Build an optimized image URL outside of a React tree, for the places that
- * need a bare URL string rather than an `<Image>` — `<video poster>`, a CSS
- * `background-image`, an `og:image`.
+ * Build an optimized image URL outside of a React tree, for the places that need a bare URL string
+ * rather than an `<Image>` — `<video poster>`, a CSS `background-image`, an `og:image`.
  *
- * Routes through the configured loader exactly like `<Image>` does, so the
- * bytes are served and cached by your own deployment rather than fetched from
- * the origin host by every visitor. That matters when the origin meters
- * bandwidth.
+ * Routes through the configured loader exactly like `<Image>` does, so the bytes are served and
+ * cached by your own deployment rather than fetched from the origin host by every visitor. That
+ * matters when the origin meters bandwidth.
  *
- * `width` is snapped up to the nearest configured size: the optimizer rejects
- * any width outside `imageSizes`/`deviceSizes` with a 400. Format is negotiated
- * by the optimizer on the request's `Accept` header and can't be pinned here.
+ * `width` is snapped up to the nearest configured size: the optimizer rejects any width outside
+ * `imageSizes`/`deviceSizes` with a 400. Format is negotiated by the optimizer on the request's
+ * `Accept` header and can't be pinned here.
  *
- * Returns `src` untouched under a `custom` loader, which exists only as a
- * per-`<Image>` prop and so can't be resolved from here.
+ * Returns `src` untouched under a `custom` loader, which exists only as a per-`<Image>` prop and so
+ * can't be resolved from here.
  */
 export function imageUrl(src: string, options: { width: number; quality?: number }): string {
   const { width, quality = 75 } = options

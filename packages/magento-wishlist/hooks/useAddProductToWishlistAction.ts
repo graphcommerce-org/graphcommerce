@@ -70,7 +70,6 @@ export function useAddProductToWishlistAction(
     if (!product?.sku) throw Error('product is required')
 
     if (current?.id) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       remove([current.id])
       return
     }
@@ -80,7 +79,6 @@ export function useAddProductToWishlistAction(
       product.configurable_options?.length === selectedOptions.length
 
     if (loggedIn) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       add([
         {
           sku: product.sku,
@@ -108,7 +106,6 @@ export function useAddProductToWishlistAction(
       const typePart = product.__typename.slice(0, -'Product'.length)
       const __typename = `${typePart}WishlistItem` as WishlistItemFragment['__typename']
 
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       add([
         {
           __typename,

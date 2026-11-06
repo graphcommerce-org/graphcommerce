@@ -3,7 +3,6 @@ import { useLocale } from '../hooks/useLocale'
 export type TimeAgoProps = {
   date: Date
   /** @deprecated No longer used */
-  // eslint-disable-next-line react/no-unused-prop-types
   locale?: string
 }
 

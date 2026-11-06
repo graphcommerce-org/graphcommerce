@@ -41,9 +41,9 @@ export async function fetchGlobalConfig(opts?: FetchStoryOpts): Promise<GlobalCo
 /**
  * Reads the Storyblok Visual Editor mode and language from the page's query string. Used by the
  * `useStoryblokState` wrappers below to decide whether to enable bridge subscription + product
- * resolution and to refetch in the editor-selected language. Outside the editor (regular
- * visitors and soft navs) `initialStory` is already fully resolved by `fetchStory` in
- * `getStaticProps` so the inner hook short-circuits via `skip: true`.
+ * resolution and to refetch in the editor-selected language. Outside the editor (regular visitors
+ * and soft navs) `initialStory` is already fully resolved by `fetchStory` in `getStaticProps` so
+ * the inner hook short-circuits via `skip: true`.
  */
 export function useEditorState() {
   const query = useRouter().query

@@ -49,7 +49,6 @@ ModalPage.pageOptions = {
 
 export default ModalPage
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticPaths: GetPageStaticPaths = async () => {
   if (process.env.NODE_ENV === 'development') return { paths: [], fallback: 'blocking' }
   return { paths: [], fallback: 'blocking' }

@@ -3,7 +3,6 @@ export default function App({ Component, pageProps }) {
     <>
       <style
         // We're setting the global this way so that they are applied with JS disabled in development mode.
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: `
           body {

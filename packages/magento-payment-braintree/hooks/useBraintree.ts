@@ -34,7 +34,6 @@ let clientPromise: Promise<Client> | undefined
 function getClientPromise(apolloClient: ApolloClient) {
   if (!clientPromise) {
     clientPromise = new Promise((resolve, reject) => {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       ;(async () => {
         const res = await apolloClient.mutate({ mutation: UseBraintreeDocument })
 

@@ -1,5 +1,5 @@
 import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import type { SxProps, Theme } from '@mui/material'
 import type { HTMLMotionProps, MotionNodePanHandlers, PanInfo } from 'motion/react'
@@ -119,7 +119,6 @@ export function useScroller<
     if (!isPanning) return
 
     setPanning(false)
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     snapToVelocity(info)
   }
 

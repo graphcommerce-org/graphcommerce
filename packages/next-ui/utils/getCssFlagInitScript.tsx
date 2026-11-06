@@ -5,7 +5,6 @@ export function getCssFlagsInitScript() {
     <script
       id='init-gc-flags'
       key='mui-color-scheme-init'
-      // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
         __html: `(function() {
 try {

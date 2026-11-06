@@ -1,6 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable graphcommerce/no-extraneous-dependencies */
 
-/* eslint-disable no-empty-pattern */
 import type { Page } from '@playwright/test'
 import { test as base } from '@playwright/test'
 import type { ApolloLink, TypedDocumentNode } from '../apollo'

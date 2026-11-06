@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import type { Types } from '@graphql-codegen/plugin-helpers'
 import type {
   FragmentImport,
@@ -83,7 +82,6 @@ export function buildFragmentRegistry<T>(
 
   const duplicateFragmentNames: string[] = []
   const registry = documents.reduce<FragmentRegistry>((prev: FragmentRegistry, documentRecord) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const fragments: FragmentDefinitionNode[] = documentRecord.document!.definitions.filter(
       (d) => d.kind === Kind.FRAGMENT_DEFINITION,
     )
@@ -99,7 +97,6 @@ export function buildFragmentRegistry<T>(
         }
 
         const possibleTypes = getPossibleTypes(schemaObject, schemaType)
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         const filePath = generateFilePath(documentRecord.location!)
         const imports = getFragmentImports(
           possibleTypes.map((t) => t.name),

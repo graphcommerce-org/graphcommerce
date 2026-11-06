@@ -20,7 +20,6 @@ function findTelephone(data: Partial<CustomerQuery>): string | undefined {
   let telephone = ''
 
   for (const address of customer.addresses ?? []) {
-    // eslint-disable-next-line no-continue
     if (!address?.telephone) continue
 
     if (!telephone && address?.telephone) {

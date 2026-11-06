@@ -43,7 +43,9 @@ export const defaultRenderers: Renderers = {
   },
   blok: ({ body, sx }) => (
     <Box sx={sx}>
-      {body?.map((item) => <StoryblokComponent key={String(item._uid)} blok={item} />)}
+      {body?.map((item) => (
+        <StoryblokComponent key={String(item._uid)} blok={item} />
+      ))}
     </Box>
   ),
   table: (props) => <Box component='table' {...props} />,

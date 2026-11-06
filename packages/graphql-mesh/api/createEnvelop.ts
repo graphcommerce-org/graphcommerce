@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createBuiltMeshHTTPHandler } from './globalThisMesh'
 
-// eslint-disable-next-line @typescript-eslint/require-await
 export const createServer = async (endpoint: string) => {
   if (endpoint !== '/api/graphql')
     throw Error('Moving the GraphQL Endpoint is not supported at the moment')

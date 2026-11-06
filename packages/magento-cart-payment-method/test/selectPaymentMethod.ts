@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import type { Page } from '@playwright/test'
 
 export const selectPaymentMethod = async (page: Page, method: string) => {

@@ -9,9 +9,9 @@ import { isSvg, isVideo, parseDimensions } from '../utils'
 export type AssetProps = {
   asset: StoryblokAssetData
   /**
-   * Still shown until the video has buffered enough to paint its first frame,
-   * and the only thing shown at all when autoplay is blocked (iOS Low Power
-   * Mode). Ignored when `asset` isn't a video.
+   * Still shown until the video has buffered enough to paint its first frame, and the only thing
+   * shown at all when autoplay is blocked (iOS Low Power Mode). Ignored when `asset` isn't a
+   * video.
    */
   poster?: StoryblokAssetData
   sx?: SxProps<Theme>
@@ -50,9 +50,7 @@ function AssetBase(props: AssetProps) {
     return (
       <Video
         src={asset.filename}
-        poster={
-          poster?.filename ? imageUrl(poster.filename, { width: POSTER_WIDTH }) : undefined
-        }
+        poster={poster?.filename ? imageUrl(poster.filename, { width: POSTER_WIDTH }) : undefined}
         autoPlay
         muted
         loop

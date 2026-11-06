@@ -2,7 +2,6 @@
 import crypto from 'crypto'
 
 declare global {
-  // eslint-disable-next-line vars-on-top, no-var
   var gcl: string[] | undefined
 }
 

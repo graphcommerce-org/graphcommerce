@@ -19,7 +19,6 @@ const { classes } = extendableComponent('RefinementRangeChip', [
 
 export function RefinementRangeChip(props: RefinementRangeChipProps) {
   const { attribute, title } = props
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { range, refine } = useRange({
     attribute,
     precision: 2,

@@ -17,13 +17,6 @@
     "build": "tsc",
     "prepack": "tsc"
   },
-  "prettier": "@graphcommerce/prettier-config-pwa",
-  "eslintConfig": {
-    "extends": "@graphcommerce/eslint-config-pwa",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
-  },
   "dependencies": {
     "@graphql-codegen/add": "6.0.1",
     "@graphql-codegen/plugin-helpers": "6.3.0",
@@ -34,8 +27,6 @@
     "parse-filepath": "^1.0.2"
   },
   "peerDependencies": {
-    "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.56",
-    "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.56",
     "@graphcommerce/typescript-config-pwa": "^11.0.0-canary.56"
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { selectPaymentMethod } from '@graphcommerce/magento-cart-payment-method/test'
 import { goToPayment } from '@graphcommerce/magento-cart-payment-method/test/goToPayment'
 import { addConfigurableProductToCart } from '@graphcommerce/magento-product-configurable/test/addConfigurableProductToCart'

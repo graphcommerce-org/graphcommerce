@@ -10,8 +10,6 @@ import { assertFormGqlOperation } from '@graphcommerce/react-hook-form'
 import { t } from '@lingui/core/macro'
 import { Trans } from '@lingui/react/macro'
 
-// eslint-disable-next-line @typescript-eslint/no-restricted-imports
-
 export type NameFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   form: UseFormReturn<TFieldValues>
   names?: {

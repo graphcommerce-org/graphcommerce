@@ -21,7 +21,6 @@ export function PaymentMethodOptions(props: PaymentOptionsProps) {
 
   useEffect(() => {
     if (lockState.locked && !lockState.justLocked) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       unlock({ payment_id: null })
     }
   }, [lockState.justLocked, lockState.locked, unlock])

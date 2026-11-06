@@ -23,7 +23,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
   const { params } = useProductListParamsContext()
   const replaceRoute = useProductListLinkReplace({ scroll: false })
 
-  // eslint-disable-next-line no-case-declarations
   const marks: { [index: number]: { value: number; label?: React.ReactNode } } = {}
   const paramValues = params.filters[attribute_code]
 
@@ -42,7 +41,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
       Math.max(curMax, prevMax),
     ]) ?? [0, 0]
 
-  // eslint-disable-next-line no-case-declarations
   const max = (maxish / (options?.length ?? 2 - 1)) * (options?.length ?? 1)
   marks[max] = { value: max, label: max }
 
@@ -68,7 +66,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
     delete linkParams.filters[attribute_code]
 
     setValue([min, max])
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     replaceRoute(linkParams)
   }
 
@@ -139,7 +136,6 @@ export function FilterRangeType(props: FilterRangeTypeProps) {
           }}
           onChangeCommitted={(e, newValue) => {
             if (newValue[0] > min || newValue[1] < max) {
-              // eslint-disable-next-line @typescript-eslint/no-floating-promises
               replaceRoute({ ...priceFilterUrl })
             } else {
               resetFilter()

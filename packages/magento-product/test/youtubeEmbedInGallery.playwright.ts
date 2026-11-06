@@ -1,15 +1,13 @@
 import { expect, test } from '@playwright/test'
 
 /**
- * Validates that a product whose `media_gallery` contains a YouTube video
- * renders the lazy-loading `YoutubeEmbed` component in the product gallery,
- * shows the Magento preview image as the poster, and swaps in the YouTube
- * iframe on click.
+ * Validates that a product whose `media_gallery` contains a YouTube video renders the lazy-loading
+ * `YoutubeEmbed` component in the product gallery, shows the Magento preview image as the poster,
+ * and swaps in the YouTube iframe on click.
  *
- * Backend prerequisite: the configured Magento backend must have a product
- * at the URL below with at least one `ProductVideo` entry pointing at a
- * YouTube URL. Override with `PRODUCT_URL` and `EXPECTED_YOUTUBE_ID` env
- * vars when running against a different backend.
+ * Backend prerequisite: the configured Magento backend must have a product at the URL below with at
+ * least one `ProductVideo` entry pointing at a YouTube URL. Override with `PRODUCT_URL` and
+ * `EXPECTED_YOUTUBE_ID` env vars when running against a different backend.
  */
 const PRODUCT_URL = process.env.PRODUCT_URL ?? '/p/spooky-girl-gc-1-sock'
 const EXPECTED_YOUTUBE_ID = process.env.EXPECTED_YOUTUBE_ID ?? 'u_pe6qAhz5U'
@@ -45,9 +43,9 @@ test.describe('YoutubeEmbed in product media gallery', () => {
 
     // Hovering preconnects to youtube-nocookie.com so the iframe load is fast.
     await youtubeEmbed.hover()
-    await expect(
-      page.locator('link[rel="preconnect"][href*="youtube"]'),
-    ).toHaveCount(1, { timeout: 5_000 })
+    await expect(page.locator('link[rel="preconnect"][href*="youtube"]')).toHaveCount(1, {
+      timeout: 5_000,
+    })
 
     // Click swaps the poster for the actual YouTube iframe with autoplay=1.
     await youtubeEmbed.click()

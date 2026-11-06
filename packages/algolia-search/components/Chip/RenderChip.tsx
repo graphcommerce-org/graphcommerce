@@ -9,9 +9,7 @@ import type { SortChipProps } from './SortChip/SortChip'
 import { SortChip } from './SortChip/SortChip'
 
 interface RenderChipProps
-  extends RefinementFilterChipProps,
-    RefinementRangeChipProps,
-    SortChipProps {
+  extends RefinementFilterChipProps, RefinementRangeChipProps, SortChipProps {
   __typename: string
 }
 

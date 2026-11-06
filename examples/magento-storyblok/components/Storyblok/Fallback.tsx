@@ -1,5 +1,5 @@
-import type { SbBlokData } from '@storyblok/react'
 import { Box, Typography } from '@mui/material'
+import type { SbBlokData } from '@storyblok/react'
 
 export function StoryblokFallback({ blok }: { blok: SbBlokData }) {
   if (process.env.NODE_ENV === 'production') return null

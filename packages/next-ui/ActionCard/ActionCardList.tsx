@@ -133,7 +133,6 @@ export const ActionCardList = React.forwardRef<HTMLDivElement, ActionCardListPro
 
     // Make sure the selected values is in the list of all possible values
     const value = childActionCards.find(
-      // eslint-disable-next-line react/destructuring-assignment
       (child) => child.props.value === props.value && child.props.disabled !== true,
     )?.props.value
 

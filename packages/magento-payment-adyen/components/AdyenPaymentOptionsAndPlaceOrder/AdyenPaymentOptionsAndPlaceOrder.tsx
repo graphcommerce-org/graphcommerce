@@ -98,7 +98,6 @@ export function HppOptions(props: PaymentOptionsProps) {
             label={conf?.name}
             required
           >
-            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <option value='' />
             {conf.issuers.map((issuer) => {
               if (!issuer?.id || !issuer.name) return null

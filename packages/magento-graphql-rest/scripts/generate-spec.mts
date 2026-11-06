@@ -1,7 +1,7 @@
+import conf from '@graphcommerce/oxfmt-config-pwa'
 import { readFile, writeFile } from 'fs/promises'
-import conf from '@graphcommerce/prettier-config-pwa'
 import { OpenAPIV3 } from 'openapi-types'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
 
 function isRef(value: any): value is OpenAPIV3.ReferenceObject {
   return typeof value === 'object' && '$ref' in value
@@ -66,8 +66,5 @@ const newSchema: OpenAPIV3.Document = {
 
 await writeFile(
   './m2-filtered-spec.json',
-  await prettier.format(JSON.stringify(newSchema), {
-    parser: 'json',
-    ...conf,
-  }),
+  (await format('spec.json', JSON.stringify(newSchema), conf)).code,
 )

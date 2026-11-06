@@ -70,7 +70,6 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
 
     const invalidKeys: string[] = []
     for (const [, { form, key }] of formEntries) {
-      // eslint-disable-next-line no-await-in-loop
       const result = await form?.trigger()
       if (result === false) invalidKeys.push(key)
     }
@@ -112,7 +111,6 @@ export function ComposedSubmit(props: ComposedSubmitProps) {
         try {
           // eslint-disable-next-line no-console
           console.log(`[ComposedForm] Submitting ${key}`)
-          // eslint-disable-next-line no-await-in-loop
           await submit?.()
         } catch (e) {
           if (process.env.NODE_ENV !== 'production') {

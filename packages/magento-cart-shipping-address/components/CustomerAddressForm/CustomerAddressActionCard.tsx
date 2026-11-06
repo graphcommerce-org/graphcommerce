@@ -73,7 +73,6 @@ export function CustomerAddressActionCard(props: CustomerAddressActionCardProps)
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            // eslint-disable-next-line @typescript-eslint/no-floating-promises
             push(`/checkout/customer/addresses/edit?addressId=${id}`)
           }}
         >

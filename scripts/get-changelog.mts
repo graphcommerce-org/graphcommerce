@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import fs from 'fs'
-import path from 'path'
 import { getPackages } from '@manypkg/get-packages'
+import fs from 'fs'
 import { Link, ListItem, Paragraph, PhrasingContent, Root } from 'mdast'
 import { toString } from 'mdast-util-to-string'
+import path from 'path'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import remarkStringify from 'remark-stringify'

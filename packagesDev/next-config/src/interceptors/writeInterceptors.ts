@@ -1,7 +1,7 @@
 import { stat } from 'fs'
 import fs from 'fs/promises'
-import path from 'path'
 import { glob } from 'glob'
+import path from 'path'
 import { findParentPath } from '../utils/findParentPath'
 import type { GenerateInterceptorsReturn } from './generateInterceptors'
 

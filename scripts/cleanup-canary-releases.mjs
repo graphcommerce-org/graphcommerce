@@ -1,9 +1,11 @@
 /**
  * Cleanup script for CHANGELOG.md files that:
+ *
  * 1. Removes canary releases (e.g., 8.0.1-canary.1) when their base version (8.0.1) has been released
  * 2. Removes empty changelog sections that don't contain any changes
  *
  * Usage:
+ *
  * - Run from the project root: `node scripts/cleanup-canary-releases.mjs`
  * - The script will recursively find all CHANGELOG.md files (skipping node_modules)
  * - It will only modify files that need changes

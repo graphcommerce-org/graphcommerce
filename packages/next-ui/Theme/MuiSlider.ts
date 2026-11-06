@@ -7,7 +7,6 @@ declare module '@mui/material/Slider' {
 }
 type SliderVariants = NonNullable<ComponentsVariants<Theme>['MuiSlider']>
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const MuiSlider: SliderVariants = [
   {
     props: {},

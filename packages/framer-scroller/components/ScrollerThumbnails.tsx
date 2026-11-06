@@ -19,7 +19,6 @@ export function ScrollerThumbnails(props: ThumbnailsProps) {
       <ThumbnailContainer layoutDependency={layoutDependency} sx={sx}>
         {images.map((item, i) => (
           <ScrollerThumbnail
-            // eslint-disable-next-line react/no-array-index-key
             key={`${i}-image`}
             idx={i}
             image={item}

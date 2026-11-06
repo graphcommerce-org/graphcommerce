@@ -77,7 +77,6 @@ export function CustomerReview(props: CustomerReviewProps) {
       </Box>
       <Box className={classes.stars} sx={{ gridArea: 'stars', margin: '-6px 0 -6px -6px' }}>
         {[...new Array(totalStars)].map((_, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <IconSvg key={index} src={index < totalFilledStars ? filledStar : outlinedStar} />
         ))}
       </Box>

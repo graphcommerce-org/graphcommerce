@@ -7,9 +7,9 @@ import { Row } from '../Row'
 export type HeroBannerProps = ContainerProps & {
   pageLinks: React.ReactNode
   /**
-   * Rendered full-bleed behind the copy. Takes a node rather than a source, so
-   * the banner is agnostic about what fills it — an image, a video, a CMS
-   * component. See `SpecialBanner`, which takes its asset the same way.
+   * Rendered full-bleed behind the copy. Takes a node rather than a source, so the banner is
+   * agnostic about what fills it — an image, a video, a CMS component. See `SpecialBanner`, which
+   * takes its asset the same way.
    */
   asset?: React.ReactNode
   /**

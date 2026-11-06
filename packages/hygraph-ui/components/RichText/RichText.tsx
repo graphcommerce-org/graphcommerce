@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import React from 'react'
@@ -45,7 +44,6 @@ function LineBreakToBr(props: { text: string }) {
     if (index < textA.length - 1) textArray.push(<br />)
   })
 
-  // eslint-disable-next-line react/no-array-index-key
   return textArray.map((val, idx) => <React.Fragment key={idx}>{val}</React.Fragment>)
 }
 
@@ -88,7 +86,6 @@ function RenderNode(node: ElementOrTextNode & AdditionalProps) {
     return <RenderText {...node} />
   }
   if (isElementNode(node)) {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     return <RenderElement {...node} />
   }
 
@@ -112,7 +109,6 @@ export function RenderChildren({
           {...node}
           {...props}
           // Since we don't know any unique identifiers of the element and since this doesn't rerender often this is fine.
-          // eslint-disable-next-line react/no-array-index-key
           key={key}
           first={noMargin && key === 0}
           last={noMargin && key === childNodes.length - 1}

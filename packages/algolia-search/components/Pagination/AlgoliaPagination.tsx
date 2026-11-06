@@ -8,7 +8,6 @@ export function AlgoliaPagination({
   params,
   ...paginationProps
 }: ProductPaginationProps) {
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { nbPages, refine, currentRefinement } = usePagination()
 
   const handlePagination = (destinationPage: number) => {

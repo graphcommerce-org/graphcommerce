@@ -1,9 +1,9 @@
-import { readFile, writeFile } from 'fs/promises'
 import { algoliaSchemaBaseFilter } from '@graphcommerce/algolia-products/scripts/base-schema-filter.mjs'
-import conf from '@graphcommerce/prettier-config-pwa'
+import conf from '@graphcommerce/oxfmt-config-pwa'
+import { readFile, writeFile } from 'fs/promises'
 import * as yaml from 'js-yaml'
 import { OpenAPIV3 } from 'openapi-types'
-import prettier from 'prettier'
+import { format } from 'oxfmt'
 
 const response = await fetch(
   'https://raw.githubusercontent.com/algolia/api-clients-automation/main/specs/bundled/recommend.yml',
@@ -124,8 +124,5 @@ const newSchema: OpenAPIV3.Document = {
 
 await writeFile(
   './algolia-recommend-spec.yaml',
-  await prettier.format(yaml.dump(newSchema), {
-    parser: 'yaml',
-    ...conf,
-  }),
+  (await format('spec.yaml', yaml.dump(newSchema), conf)).code,
 )

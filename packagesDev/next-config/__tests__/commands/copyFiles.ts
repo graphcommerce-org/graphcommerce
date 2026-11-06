@@ -1,7 +1,7 @@
+import fg from 'fast-glob'
 // Import after mocks are defined
 import fs from 'fs/promises'
 import path from 'path'
-import fg from 'fast-glob'
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import { copyFiles } from '../../src/commands/copyFiles'
 import { resolveDependenciesSync } from '../../src/utils/resolveDependenciesSync'
@@ -50,7 +50,6 @@ global.performance = { now: mockPerformanceNow } as unknown as typeof performanc
 
 // Mock process.cwd
 const mockCwd = '/mock/cwd'
-// eslint-disable-next-line @typescript-eslint/unbound-method
 const originalCwd = process.cwd
 beforeAll(() => {
   process.cwd = vi.fn().mockReturnValue(mockCwd)

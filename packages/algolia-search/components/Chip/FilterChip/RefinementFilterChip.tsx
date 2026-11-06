@@ -25,7 +25,6 @@ export interface RefinementFilterChipProps
 
 export function RefinementFilterChip(props: RefinementFilterChipProps) {
   const { title, sx, attribute, transformItems } = props
-  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { items, refine } = useRefinementList({
     attribute,
   })

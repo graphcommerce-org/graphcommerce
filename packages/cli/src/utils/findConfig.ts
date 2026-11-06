@@ -1,8 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import path from 'path'
 import type { ConfigProcessOptions } from '@graphql-mesh/config'
 import { defaultImportFn, DefaultLogger, loadYaml } from '@graphql-mesh/utils'
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig'
+import path from 'path'
 
 function customLoader(
   ext: 'json' | 'yaml' | 'js',
@@ -11,7 +10,6 @@ function customLoader(
 ) {
   const logger = new DefaultLogger(initialLoggerPrefix).child('config')
 
-  // eslint-disable-next-line consistent-return
   function loader(filepath: string, content: string) {
     if (process.env) {
       // eslint-disable-next-line no-param-reassign

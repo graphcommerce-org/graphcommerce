@@ -9,7 +9,7 @@
  *
  * Two Next.js internals are involved. `globalThis.__incrementalCache` is set per incoming request
  * before route handling, so it is available inside an API route and inside ISR regeneration, but
- * *not* in middleware or the edge runtime, which construct their own instance. The entry is written
+ * _not_ in middleware or the edge runtime, which construct their own instance. The entry is written
  * as `kind: 'FETCH'` with `fetchCache: true`, the one path that stores an arbitrary key verbatim
  * instead of running it through `normalizePagePath()`.
  *
@@ -106,10 +106,10 @@ export async function refreshRenewSignal(): Promise<number | undefined> {
 /**
  * Last known signal value, or `undefined` when it has not been read yet.
  *
- * For callers that cannot await one: `graphqlSsrClient()` is synchronous and called as
- * `const client = graphqlSsrClient(context)` throughout `getStaticProps`, so making the read
- * awaited would mean making every consumer async. It gets the value from the previous refresh and
- * schedules the next one, bounding staleness at one poll interval plus one call.
+ * For callers that cannot await one: `graphqlSsrClient()` is synchronous and called as `const
+ * client = graphqlSsrClient(context)` throughout `getStaticProps`, so making the read awaited would
+ * mean making every consumer async. It gets the value from the previous refresh and schedules the
+ * next one, bounding staleness at one poll interval plus one call.
  *
  * `undefined` must not be read as "nothing published" — on a fresh pod, which is every pod right
  * after a deploy, that would silently skip the first invalidation. Callers treat it as unknown and

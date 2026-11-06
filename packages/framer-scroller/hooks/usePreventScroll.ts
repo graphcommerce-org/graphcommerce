@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils'
 import { useEffect, useId } from 'react'
 

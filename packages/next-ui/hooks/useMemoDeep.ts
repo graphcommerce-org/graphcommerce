@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line graphcommerce/no-extraneous-dependencies
 import { equal } from '@wry/equality'
 import type { DependencyList } from 'react'
 import { useMemo, useRef } from 'react'

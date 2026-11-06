@@ -86,7 +86,7 @@ export function ChipMenu(props: ChipMenuProps) {
                 margin: '0 auto',
               },
             },
-          }), // eslint-disable-next-line no-nested-ternary
+          }),
           ...(menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : []),
           menuProps?.sx ? (Array.isArray(menuProps.sx) ? menuProps.sx : [menuProps.sx]) : [],
         )}

@@ -17,16 +17,15 @@ export type FetchStoryOpts = {
   locale?: string
   defaultLocale?: string
   /**
-   * Storyblok component-field paths whose UUID references should be hydrated
-   * into full story objects in the response (e.g. `row_button_link_list.links`).
+   * Storyblok component-field paths whose UUID references should be hydrated into full story
+   * objects in the response (e.g. `row_button_link_list.links`).
    */
   resolveRelations?: string | string[]
   /**
-   * Direct Storyblok language override. When set, takes precedence over the
-   * storefront-config based `storyblokLocale` and the locale-prefix fallback.
-   * Empty string means "no `language` param" — Storyblok serves its space
-   * default. Used by `useStoryblokState` to refetch in the editor's selected
-   * language.
+   * Direct Storyblok language override. When set, takes precedence over the storefront-config based
+   * `storyblokLocale` and the locale-prefix fallback. Empty string means "no `language` param" —
+   * Storyblok serves its space default. Used by `useStoryblokState` to refetch in the editor's
+   * selected language.
    */
   language?: string
 }
@@ -43,8 +42,8 @@ const MAX_RETRIES = 3
  * therefore stays frozen at the process-start `cv` until the process restarts. On long-lived
  * servers (e.g. multi-pod Kubernetes) this means published edits never become visible.
  *
- * Freshness is push-based: {@link requestStoryblokCacheVersionRefresh} publishes a renew signal
- * that every server picks up. This TTL is the failsafe for deployments where that signal cannot be
+ * Freshness is push-based: {@link requestStoryblokCacheVersionRefresh} publishes a renew signal that
+ * every server picks up. This TTL is the failsafe for deployments where that signal cannot be
  * shared, so it is never disabled entirely — an undelivered signal has to degrade to stale content,
  * not to frozen content.
  *

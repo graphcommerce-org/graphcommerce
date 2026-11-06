@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import type { Identifier } from '@swc/core'
 import { Visitor } from './Visitor'
 
