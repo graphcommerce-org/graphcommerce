@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

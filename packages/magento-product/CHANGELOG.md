@@ -1,5 +1,33 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2627](https://github.com/graphcommerce-org/graphcommerce/pull/2627) [`95c188f`](https://github.com/graphcommerce-org/graphcommerce/commit/95c188fcd0dc6cb4ca3edc9877d203d45fe18bb0) - Add `YoutubeEmbed` component — a lightweight lazy-loading YouTube player that defers iframe creation until the user clicks the poster. Uses preconnect on hover for fast playback start and is styled with MUI sx, so no external CSS is required. Supports playlists, no-cookie mode, custom aspect ratios and ad-network preconnect hints.
+
+  `ProductVideo` (used by `ProductPageGallery`) now delegates YouTube playback to `YoutubeEmbed`, so any product whose Magento `media_gallery` contains a YouTube video entry gets the new lazy-loading player on its product page. Vimeo and self-hosted video paths are unchanged. The Magento preview image is passed as the YoutubeEmbed `thumbnail` so the visible poster stays consistent with the rest of the gallery.
+
+  Fix `SidebarGallery` so it forwards the `Additional` and `slotProps` from each image to `MotionImageAspect`. Before this fix the gallery silently dropped both props, which meant any `Additional` overlay configured by `ProductPageGallery` (the `<ProductVideo>` overlay with its `PlayCircle` and the new `YoutubeEmbed`) never reached the DOM. That was a latent regression that made all video-gallery entries render as static images, with or without this PR's YouTube changes.
+
+  Fix `playwright.config.ts` so `npx playwright test` actually loads. The config previously imported `examples/magento-graphcms/next.config.ts`, which transitively pulled `@graphcommerce/next-config`'s ESM build into a CJS context and crashed with `ReferenceError: exports is not defined`. Replaced with an opt-in `PLAYWRIGHT_LOCALES` env var for the multi-locale projects that the next.config import was meant to drive. ([@paales](https://github.com/paales))
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2641](https://github.com/graphcommerce-org/graphcommerce/pull/2641) [`e1bcd16`](https://github.com/graphcommerce-org/graphcommerce/commit/e1bcd1636a21ed7e5f737993d4373cee074b3d07) - Fix the add-to-cart success message counting 0 when the added cart item has no `customizable_options` to match the requested entered/selected options against. `findAddedItems` now falls back to the SKU (+ configurable variant) match instead of dropping the item. ([@paales](https://github.com/paales))
+
+- [#2695](https://github.com/graphcommerce-org/graphcommerce/pull/2695) [`3c8eeb1`](https://github.com/graphcommerce-org/graphcommerce/commit/3c8eeb1962a63969f8dfb07d5efc5c0ce1a41aa1) - `AddProductsToCartForm` keeps the `defaultValues` prop, so the product page selects the variant of the URL again. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2709](https://github.com/graphcommerce-org/graphcommerce/pull/2709) [`9c2a218`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2a21881c446b78986865c6fec1a161824bf6f1) - `ProductFiltersPro` submits only when the filters differ from the current product list. The filter fields add empty filters to the form when they mount, so with `productFiltersLayout: 'SIDEBAR'` a direct load of `/shoes/page/2` or `/shoes?gclid=abc` went to `/shoes`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2700](https://github.com/graphcommerce-org/graphcommerce/pull/2700) [`5a1be63`](https://github.com/graphcommerce-org/graphcommerce/commit/5a1be637b734f5e0536999ebb0fc8ddcb69d96fb) - The links of a product list leave out the query string of the request. For `/shoes?gclid=abc`, the links were `/shoes?gclid=abc/page/2`, and crawlers followed them without end. ([@DivaniNL](https://github.com/DivaniNL))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+- [#2588](https://github.com/graphcommerce-org/graphcommerce/pull/2588) [`3a1c4ca`](https://github.com/graphcommerce-org/graphcommerce/commit/3a1c4caf6d22eee50df25a78180e8d1acb2343b3) - Prevent sort filter from flipping direction to DESC after using the pagination ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

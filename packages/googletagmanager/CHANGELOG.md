@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2690](https://github.com/graphcommerce-org/graphcommerce/pull/2690) [`ad99107`](https://github.com/graphcommerce-org/graphcommerce/commit/ad9910732b4f0b251a7586f8d35e621c6cf0d607) - The `sendEvent` plugin reads `googleEventNames` when it sends an event. It loads before `google-datalayer` defines `googleEventNames`, so it threw a `TypeError` in development. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

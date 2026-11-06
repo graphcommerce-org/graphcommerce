@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2651](https://github.com/graphcommerce-org/graphcommerce/pull/2651) [`0c105b2`](https://github.com/graphcommerce-org/graphcommerce/commit/0c105b23c4ad6bfaa0fb5d4e517113531d19b3ed) - Improve the Braintree checkout with configurable per-storefront 3D Secure, visible payment errors, reliable recovery after failed payments, and a credit card payment icon. ([@hsngdz](https://github.com/hsngdz))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

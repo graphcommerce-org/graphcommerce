@@ -1,5 +1,15 @@
 # @graphcommerce/google-datalayer
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+- [#2691](https://github.com/graphcommerce-org/graphcommerce/pull/2691) [`23d1077`](https://github.com/graphcommerce-org/graphcommerce/commit/23d1077cc79abbd249e449590815fdf49debab33) - `useSendEvent` returns the same `sendEvent` function at each render. It returned a new function at each render, so a product page sent `view_item` once per render. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2692](https://github.com/graphcommerce-org/graphcommerce/pull/2692) [`4d88500`](https://github.com/graphcommerce-org/graphcommerce/commit/4d88500e6ea2a66ca636f0bfe0479ddd9f93acb5) - `view_cart` contains the items of the cart. The `CartStartCheckout` plugin read the items from its props instead of `props.cart`, and sent the event before the cart had loaded. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

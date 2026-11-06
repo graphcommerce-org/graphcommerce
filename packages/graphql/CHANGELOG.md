@@ -1,5 +1,33 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- [#2646](https://github.com/graphcommerce-org/graphcommerce/pull/2646) [`35707a1`](https://github.com/graphcommerce-org/graphcommerce/commit/35707a1f68a6b8c97de5d22221a7c9229961cd7a) - Add a `terminatingLink` prop to `GraphQLProvider` to override the terminating link at the tail of the Apollo link chain (by default the `HttpLink` to the Mesh backend).
+
+  Because the terminating link runs after every context-setting link (customer auth token, store, cache-id, header links), this lets you route specific operations to a different transport while still inheriting all request headers. The motivating case is file uploads: `File`/`Blob` variables must be sent as a `multipart/form-data` request (e.g. via `apollo-upload-client`'s `UploadHttpLink`), which the default `HttpLink` cannot serialize. Previously such an upload link had to be prepended via `links`, where it terminated _before_ the auth/header links could run — dropping the customer token from multipart requests, so a logged-in customer's cart mutations were rejected. Supplying the upload-aware split as `terminatingLink` keeps it at the tail, so uploads inherit the token like any other operation. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2684](https://github.com/graphcommerce-org/graphcommerce/pull/2684) [`f856e98`](https://github.com/graphcommerce-org/graphcommerce/commit/f856e9866db4676fc2f37cdf3ee0105aaad4d4b4) - Queries that watch the cache receive the state that `createCacheReviver` restores from localStorage, so a full page load of the cart or the checkout shows the cart. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2662](https://github.com/graphcommerce-org/graphcommerce/pull/2662) [`54e167f`](https://github.com/graphcommerce-org/graphcommerce/commit/54e167f13b883fbe24e954c6c093097c0815263f) - Publishing content now pushes a renew signal through the Next.js incremental cache, so every server invalidates at once instead of each polling `cdn/spaces/me` on a 60 second interval — `storyblok.cacheVersionTtl` therefore defaults to `3600` as a failsafe. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

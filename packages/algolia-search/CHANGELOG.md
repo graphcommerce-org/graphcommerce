@@ -1,5 +1,13 @@
 # @graphcommerce/algolia-search
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2704](https://github.com/graphcommerce-org/graphcommerce/pull/2704) [`d55fa8b`](https://github.com/graphcommerce-org/graphcommerce/commit/d55fa8be7c3ab889a6d1889c31ef69482eaabcf7) - Return immediately after rejecting an invalid Hygraph webhook signature to prevent Algolia indexing operations from continuing. ([@hnsr](https://github.com/hnsr))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55
