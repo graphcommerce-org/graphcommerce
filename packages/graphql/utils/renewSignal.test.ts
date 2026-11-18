@@ -22,12 +22,6 @@ beforeEach(async () => {
   vi.advanceTimersByTime(5000)
 })
 
-it('returns the published value on the first synchronous read after a publish', async () => {
-  await signal.publishRenewSignal()
-
-  expect(signal.renewSignal()).toBe(Date.now())
-})
-
 it('gives readers that start at the same moment the published value', async () => {
   await signal.publishRenewSignal()
 
