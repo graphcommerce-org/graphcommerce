@@ -13,6 +13,7 @@
   },
   "exports": {
     ".": "./index.ts",
+    "./mesh/resolvers.ts": "./mesh/resolvers.ts",
     "./plugins/meshRecaptcha": "./plugins/meshRecaptcha.ts",
     "./plugins/GrecaptchaApolloErrorAlert": "./plugins/GrecaptchaApolloErrorAlert.tsx",
     "./plugins/GrecaptchaApolloErrorFullPage": "./plugins/GrecaptchaApolloErrorFullPage.tsx",
