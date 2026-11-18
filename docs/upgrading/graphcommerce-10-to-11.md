@@ -165,7 +165,21 @@ Find the files to change:
 grep -rl "@lingui/macro" --include='*.ts' --include='*.tsx' --exclude-dir=node_modules .
 ```
 
-## Step 7: Reinstall
+## Step 7: Check `configurableVariantValues`
+
+When `graphcommerce.config.ts` does not set `configurableVariantValues`, the
+default `{ url: true, content: true }` applies. When a shopper selects a variant
+on the product page, the URL changes to the URL of the variant and the page
+shows the name, description, short description and meta data of the variant.
+
+To keep the values of the configurable product:
+
+```ts
+// graphcommerce.config.ts
+configurableVariantValues: { url: false, content: false },
+```
+
+## Step 8: Reinstall
 
 After upgrading Node:
 
