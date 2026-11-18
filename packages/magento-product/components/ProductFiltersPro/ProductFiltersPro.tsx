@@ -45,6 +45,7 @@ export type ProductFiltersProContext = DataProps & {
    */
   params: ProductFilterParams
   submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
+  handleSubmit: FilterFormProviderProps['handleSubmit']
 }
 
 const FilterFormContext = createContext<ProductFiltersProContext | null>(null)
@@ -145,13 +146,14 @@ export function ProductFiltersPro(props: FilterFormProviderProps) {
       form,
       params: defaultValues,
       submit,
+      handleSubmit,
       appliedAggregations,
       filterTypes,
       aggregations: aggregations ?? appliedAggregations,
     }
     globalFormContextRef.current = ctx
     return ctx
-  }, [form, defaultValues, submit, appliedAggregations, filterTypes, aggregations])
+  }, [form, defaultValues, submit, handleSubmit, appliedAggregations, filterTypes, aggregations])
 
   // When the component unmounts, we want to clear the global filter form
   useEffect(
