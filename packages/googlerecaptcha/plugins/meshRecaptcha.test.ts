@@ -1,12 +1,16 @@
-import type { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { createRequire } from 'node:module'
+import type { GraphCommerceConfig } from '@graphcommerce/next-config'
 import { meshConfig } from './meshRecaptcha'
 
 const resolver = '@graphcommerce/googlerecaptcha/mesh/resolvers.ts'
 
 function additionalResolvers(magentoVersion: number) {
   const graphCommerceConfig = { magentoVersion, googleRecaptchaKey: 'key' } as GraphCommerceConfig
-  return meshConfig((config) => config, { sources: [] }, graphCommerceConfig).additionalResolvers
+  return meshConfig(
+    (config) => config,
+    { sources: [], additionalResolvers: [] },
+    graphCommerceConfig,
+  ).additionalResolvers
 }
 
 it('resolves recaptchaV3Config from the configuration for Magento 2.4.6 and earlier', () => {
