@@ -1,0 +1,46 @@
+---
+'@graphcommerce/address-autocomplete': major
+'@graphcommerce/address-fields-nl': major
+'@graphcommerce/algolia-search': major
+'@graphcommerce/ecommerce-ui': major
+'@graphcommerce/framer-scroller': major
+'@graphcommerce/lingui-next': major
+'@graphcommerce/magento-cart': major
+'@graphcommerce/magento-cart-checkout': major
+'@graphcommerce/magento-cart-coupon': major
+'@graphcommerce/magento-cart-email': major
+'@graphcommerce/magento-cart-items': major
+'@graphcommerce/magento-cart-payment-method': major
+'@graphcommerce/magento-cart-pickup': major
+'@graphcommerce/magento-cart-shipping-address': major
+'@graphcommerce/magento-cart-shipping-method': major
+'@graphcommerce/magento-category': major
+'@graphcommerce/magento-cms': major
+'@graphcommerce/magento-compare': major
+'@graphcommerce/magento-customer': major
+'@graphcommerce/magento-newsletter': major
+'@graphcommerce/magento-payment-adyen': major
+'@graphcommerce/magento-payment-afterpay': major
+'@graphcommerce/magento-payment-braintree': major
+'@graphcommerce/magento-payment-included': major
+'@graphcommerce/magento-payment-klarna': major
+'@graphcommerce/magento-payment-multisafepay': major
+'@graphcommerce/magento-payment-paypal': major
+'@graphcommerce/magento-payment-tokens': major
+'@graphcommerce/magento-product': major
+'@graphcommerce/magento-product-bundle': major
+'@graphcommerce/magento-product-configurable': major
+'@graphcommerce/magento-product-downloadable': major
+'@graphcommerce/magento-product-grouped': major
+'@graphcommerce/magento-product-simple': major
+'@graphcommerce/magento-product-virtual': major
+'@graphcommerce/magento-review': major
+'@graphcommerce/magento-search': major
+'@graphcommerce/magento-search-overlay': major
+'@graphcommerce/magento-store': major
+'@graphcommerce/magento-wishlist': major
+'@graphcommerce/mollie-magento-payment': major
+'@graphcommerce/next-ui': major
+---
+
+**Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too.

@@ -1,5 +1,5 @@
 import type { ScrollMotionValues } from '@graphcommerce/framer-utils'
-import type { MotionValue, Point } from 'framer-motion'
+import type { MotionValue, Point } from 'motion/react'
 import type { PlaybackControls } from 'popmotion'
 import type React from 'react'
 

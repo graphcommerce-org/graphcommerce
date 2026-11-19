@@ -8,7 +8,7 @@ import { GraphCommerceConfigSchema } from './generated/config.js';
 import { cloneDeep, mergeDeep } from '@apollo/client/utilities/internal';
 import chalk from 'chalk';
 import lodash from 'lodash';
-import { z, ZodEffects, ZodOptional, ZodNullable, ZodDefault, ZodLazy, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
+import { z, ZodPipe, ZodOptional, ZodNullable, ZodDefault, ZodLazy, ZodObject, ZodArray, ZodNumber, ZodString, ZodEnum, ZodBoolean } from 'zod';
 
 const demoConfig = {
   canonicalBaseUrl: "https://graphcommerce.vercel.app",
@@ -109,8 +109,8 @@ function configToEnvSchema(schema) {
   function walk(incomming, path = []) {
     let node = incomming;
     while (true) {
-      if (node instanceof ZodEffects) {
-        node = node.innerType();
+      if (node instanceof ZodPipe) {
+        node = node.in;
         continue;
       }
       if (node instanceof ZodOptional) {
@@ -122,30 +122,27 @@ function configToEnvSchema(schema) {
         continue;
       }
       if (node instanceof ZodDefault) {
-        node = node.removeDefault();
+        node = node.unwrap();
         continue;
       }
       if (node instanceof ZodLazy) {
-        node = node.schema;
+        node = node.unwrap();
         continue;
       }
       break;
     }
     if (node instanceof ZodObject) {
       if (path.length > 0) {
-        envSchema[toEnvStr(path)] = z.string().optional().refine(isJSON, { message: "Invalid JSON" }).transform((val) => val ? JSON.parse(val) : val);
+        envSchema[toEnvStr(path)] = z.string().optional().refine(isJSON, { error: "Invalid JSON" }).transform((val) => val ? JSON.parse(val) : val);
         envToDot[toEnvStr(path)] = dotNotation(path);
       }
-      const typeNode = node;
-      Object.keys(typeNode.shape).forEach((key) => {
-        walk(typeNode.shape[key], [...path, key]);
-      });
+      Object.entries(node.shape).forEach(([key, value]) => walk(value, [...path, key]));
       return;
     }
     if (node instanceof ZodArray) {
       const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
       if (path.length > 0) {
-        envSchema[toEnvStr(path)] = z.string().optional().refine(isJSON, { message: "Invalid JSON" }).transform((val) => val ? JSON.parse(val) : val);
+        envSchema[toEnvStr(path)] = z.string().optional().refine(isJSON, { error: "Invalid JSON" }).transform((val) => val ? JSON.parse(val) : val);
         envToDot[toEnvStr(path)] = dotNotation(path);
       }
       arr.forEach((key) => {
@@ -187,7 +184,7 @@ function mergeEnvIntoConfig(schema, config, env) {
   const result = envSchema.safeParse(filteredEnv);
   const applyResult = [];
   if (!result.success) {
-    Object.entries(result.error.flatten().fieldErrors).forEach(([envVar, error]) => {
+    Object.entries(z.flattenError(result.error).fieldErrors).forEach(([envVar, error]) => {
       const dotVar = envToDot[envVar];
       const envValue = filteredEnv[envVar];
       applyResult.push({ envVar, envValue, dotVar, error });

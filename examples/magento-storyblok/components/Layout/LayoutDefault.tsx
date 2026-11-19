@@ -10,7 +10,7 @@ import {
 } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { Box } from '@mui/material'
-import { useScroll, useTransform } from 'framer-motion'
+import { useScroll, useTransform } from 'motion/react'
 
 export type LayoutDefaultProps = {
   className?: string

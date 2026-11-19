@@ -1,7 +1,9 @@
 import fetchRetry from 'fetch-retry'
 import type { RequestInitWithRetry } from 'fetch-retry'
 
-const fetcher = fetchRetry(
+type FetchInit = RequestInitWithRetry<typeof globalThis.fetch>
+
+const fetcher = fetchRetry<typeof globalThis.fetch>(
   /**
    * Always use the fetch that `@whatwg-node/fetch` exports, never `globalThis.fetch` directly. When
    * `@whatwg-node/fetch` detects a Next.js runtime it re-exports the native fetch primitives (so
@@ -39,8 +41,8 @@ const fetcher = fetchRetry(
  */
 function toServerEndpoint(
   url: RequestInfo | URL,
-  options: RequestInitWithRetry | undefined,
-): [RequestInfo | URL, RequestInitWithRetry | undefined] {
+  options: FetchInit | undefined,
+): [RequestInfo | URL, FetchInit | undefined] {
   const serverEndpoint = process.env.GC_MAGENTO_ENDPOINT_SERVER
   const publicEndpoint = process.env.GC_MAGENTO_ENDPOINT
   if (!serverEndpoint || !publicEndpoint) return [url, options]
@@ -58,13 +60,13 @@ function toServerEndpoint(
 
 /**
  * @param {RequestInfo | URL} url
- * @param {import('fetch-retry').RequestInitWithRetry | undefined} options
+ * @param {FetchInit | undefined} options
  * @returns {Promise<Response>}
  * @public
  */
 export const fetch = (
   url: RequestInfo | URL,
-  options: RequestInitWithRetry | undefined,
+  options: FetchInit | undefined,
 ): Promise<Response> => {
   const [serverUrl, serverOptions] = toServerEndpoint(url, options)
 

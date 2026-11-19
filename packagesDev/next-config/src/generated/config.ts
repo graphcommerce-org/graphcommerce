@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -560,45 +560,57 @@ export type SidebarGalleryPaginationVariant = 'DOTS' | 'THUMBNAILS_BOTTOM'
 
 export type WebsitePermissions = 'ENABLED'
 
-type Properties<T> = Required<{
-  [K in keyof T]: z.ZodType<T[K], any, T[K]>
-}>
-
 type definedNonNullAny = {}
 
 export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v))
 
-export const BillingAddressPermissionsSchema = z.enum(['EDITABLE', 'READONLY'])
+export const BillingAddressPermissionsSchema: z.ZodType<
+  'EDITABLE' | 'READONLY',
+  'EDITABLE' | 'READONLY'
+> = z.enum(['EDITABLE', 'READONLY'])
 
-export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
+export const CartPermissionsSchema: z.ZodType<
+  'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED',
+  'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED'
+> = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
 
-export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
-
-export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
-
-export const CustomerAccountPermissionsSchema = z.enum([
-  'DISABLED',
-  'DISABLE_REGISTRATION',
-  'ENABLED',
+export const CompareVariantSchema: z.ZodType<'CHECKBOX' | 'ICON', 'CHECKBOX' | 'ICON'> = z.enum([
+  'CHECKBOX',
+  'ICON',
 ])
 
-export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED'])
+export const ContainerSizingSchema: z.ZodType<
+  'BREAKPOINT' | 'FULL_WIDTH',
+  'BREAKPOINT' | 'FULL_WIDTH'
+> = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
 
-export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR'])
+export const CustomerAccountPermissionsSchema: z.ZodType<
+  'DISABLED' | 'DISABLE_REGISTRATION' | 'ENABLED',
+  'DISABLED' | 'DISABLE_REGISTRATION' | 'ENABLED'
+> = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED'])
 
-export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM'])
+export const PaginationVariantSchema: z.ZodType<'COMPACT' | 'EXTENDED', 'COMPACT' | 'EXTENDED'> =
+  z.enum(['COMPACT', 'EXTENDED'])
 
-export const WebsitePermissionsSchema = z.enum(['ENABLED'])
+export const ProductFiltersLayoutSchema: z.ZodType<'DEFAULT' | 'SIDEBAR', 'DEFAULT' | 'SIDEBAR'> =
+  z.enum(['DEFAULT', 'SIDEBAR'])
 
-export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
+export const SidebarGalleryPaginationVariantSchema: z.ZodType<
+  'DOTS' | 'THUMBNAILS_BOTTOM',
+  'DOTS' | 'THUMBNAILS_BOTTOM'
+> = z.enum(['DOTS', 'THUMBNAILS_BOTTOM'])
+
+export const WebsitePermissionsSchema: z.ZodType<'ENABLED', 'ENABLED'> = z.enum(['ENABLED'])
+
+export function DatalayerConfigSchema() {
   return z.object({
     coreWebVitals: z.boolean().nullish(),
   })
 }
 
-export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
+export function GraphCommerceConfigSchema() {
   return z.object({
     breadcrumbs: z.boolean().nullish().default(false),
     canonicalBaseUrl: z.string().min(1),
@@ -606,7 +618,9 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     compare: z.boolean().nullish(),
     compareVariant: CompareVariantSchema.nullish().default('ICON'),
     configurableVariantForSimple: z.boolean().nullish().default(false),
-    configurableVariantValues: z.lazy(() => MagentoConfigurableVariantValuesSchema().nullish()),
+    configurableVariantValues: z.lazy(() =>
+      MagentoConfigurableVariantValuesSchema().nullish().default({ url: true, content: true }),
+    ),
     containerSizingContent: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
     containerSizingShell: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
     crossSellsHideCartItems: z.boolean().nullish().default(false),
@@ -644,9 +658,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
   })
 }
 
-export function GraphCommerceDebugConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceDebugConfig>
-> {
+export function GraphCommerceDebugConfigSchema() {
   return z.object({
     cart: z.boolean().nullish(),
     pluginStatus: z.boolean().nullish(),
@@ -656,18 +668,14 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<
   })
 }
 
-export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceGooglePlaystoreConfig>
-> {
+export function GraphCommerceGooglePlaystoreConfigSchema() {
   return z.object({
     packageName: z.string().min(1),
     sha256CertificateFingerprint: z.string().min(1),
   })
 }
 
-export function GraphCommercePermissionsSchema(): z.ZodObject<
-  Properties<GraphCommercePermissions>
-> {
+export function GraphCommercePermissionsSchema() {
   return z.object({
     billingAddress: BillingAddressPermissionsSchema.nullish(),
     cart: CartPermissionsSchema.nullish(),
@@ -677,9 +685,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
   })
 }
 
-export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceStorefrontConfig>
-> {
+export function GraphCommerceStorefrontConfigSchema() {
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -697,9 +703,7 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
   })
 }
 
-export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<
-  Properties<MagentoConfigurableVariantValues>
-> {
+export function MagentoConfigurableVariantValuesSchema() {
   return z.object({
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
@@ -707,16 +711,14 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<
   })
 }
 
-export function RecentlyViewedProductsConfigSchema(): z.ZodObject<
-  Properties<RecentlyViewedProductsConfig>
-> {
+export function RecentlyViewedProductsConfigSchema() {
   return z.object({
     enabled: z.boolean().nullish(),
     maxCount: z.number().nullish(),
   })
 }
 
-export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
+export function SidebarGalleryConfigSchema() {
   return z.object({
     paginationVariant: SidebarGalleryPaginationVariantSchema.nullish(),
   })

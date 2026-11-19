@@ -1,7 +1,7 @@
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import { useScrollY } from '../../Layout'
 
 const MotionDiv = styled(m.div)({})

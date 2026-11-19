@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 
 import { createTheme, ThemeProvider } from '@mui/material'
-import { motionValue } from 'framer-motion'
+import { motionValue } from 'motion/react'
 import type React from 'react'
 import { act } from 'react'
 import { createRoot } from 'react-dom/client'

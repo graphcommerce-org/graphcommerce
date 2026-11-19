@@ -9,7 +9,7 @@ import { useMatchMediaMotionValue, useMemoObject } from '@graphcommerce/next-ui'
 import type { Theme } from '@mui/material'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import { useEventCallback, useMediaQuery, useTheme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import { useRouter } from 'next/router'
 import type { BaseSyntheticEvent, MutableRefObject } from 'react'
 import React, { createContext, useContext, useEffect, useMemo, useRef } from 'react'
@@ -44,7 +44,7 @@ export type ProductFiltersProContext = DataProps & {
    * To get active form values use `useWatch`.
    */
   params: ProductFilterParams
-  submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<void>
+  submit: (e?: BaseSyntheticEvent<object, any, any> | undefined) => Promise<unknown>
 }
 
 const FilterFormContext = createContext<ProductFiltersProContext | null>(null)

@@ -2,8 +2,8 @@ import { useConstant, useMotionValueValue } from '@graphcommerce/framer-utils'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent } from '@graphcommerce/next-ui/Styles'
 import type { SxProps, Theme } from '@mui/material'
-import type { HTMLMotionProps, PanHandlers, PanInfo } from 'framer-motion'
-import { motionValue, useTransform } from 'framer-motion'
+import type { HTMLMotionProps, MotionNodePanHandlers, PanInfo } from 'motion/react'
+import { motionValue, useTransform } from 'motion/react'
 import type { MouseEventHandler } from 'react'
 import type React from 'react'
 import { useEffect, useState } from 'react'
@@ -65,7 +65,7 @@ export function useScroller<
   const [isPanning, setPanning] = useState(false)
 
   const scrollStart = useConstant(() => ({ x: motionValue(0), y: motionValue(0) }))
-  const onPanStart: PanHandlers['onPanStart'] = (event) => {
+  const onPanStart: MotionNodePanHandlers['onPanStart'] = (event) => {
     if (disableDrag) return
 
     // If we're not dealing with the mouse we don't need to do anything
@@ -96,7 +96,7 @@ export function useScroller<
     divProps.onMouseDown?.(event as never)
   }
 
-  const onPan: PanHandlers['onPan'] = (event, info: PanInfo) => {
+  const onPan: MotionNodePanHandlers['onPan'] = (event, info: PanInfo) => {
     if (disableDrag) return
 
     if (!scrollerRef.current) return
@@ -111,7 +111,7 @@ export function useScroller<
     scrollerRef.current.scrollTop = scroll.y.get()
   }
 
-  const onPanEnd: PanHandlers['onPanEnd'] = (event, info) => {
+  const onPanEnd: MotionNodePanHandlers['onPanEnd'] = (event, info) => {
     if (disableDrag) return
 
     // If we're not dealing with the mouse we don't need to do anything
