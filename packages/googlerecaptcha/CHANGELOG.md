@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.59
+
+### Patch Changes
+
+- [#2720](https://github.com/graphcommerce-org/graphcommerce/pull/2720) [`a3a9882`](https://github.com/graphcommerce-org/graphcommerce/commit/a3a98822aa436ffcfa4778d7b1871798b97868f2) - Fix the mesh build with Magento 2.4.8 and later and a `googleRecaptchaKey`: `gc-mesh build` stopped with `ERR_PACKAGE_PATH_NOT_EXPORTED`. Magento 2.4.7 and later resolves `recaptchaV3Config`. For Magento 2.4.6 and earlier, the mesh resolves `recaptchaV3Config` from `googleRecaptchaKey`. There it returned `null`, so the storefront sent mutations without a reCAPTCHA token. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.58
 
 ## 11.0.0-canary.57
