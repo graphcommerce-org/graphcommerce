@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`4442f72`](https://github.com/graphcommerce-org/graphcommerce/commit/4442f72de4139d4a10df3f4a9364fbeabdfc4f51) - The `handleSubmit` of `useFormGql` returns the result of `onValid`, the same as `handleSubmit` of React Hook Form 7.91. `ProductFiltersProContext.submit` returns `Promise<unknown>`. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`f0d0e93`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d0e93b59adfc8b32fc0777727300675aaa48fb) - `@graphcommerce/next-config` and `@graphcommerce/hygraph-cli` require `dotenv` 18. `@graphcommerce/prettier-config-pwa` requires `prettier` 3.5.3: with Prettier 3.6 and later, only the last plugin formats the file, so the imports are not sorted. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`38061a5`](https://github.com/graphcommerce-org/graphcommerce/commit/38061a5b4681ea0b77b88cf19e32e5a69f052218) - Uses Zod 4. The generated `*Schema()` functions in `@graphcommerce/next-config/config` return the inferred Zod 4 schema types. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55
