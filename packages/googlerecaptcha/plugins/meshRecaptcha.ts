@@ -11,7 +11,7 @@ export const meshConfig: FunctionPlugin<typeof meshConfigBase> = (
   baseConfig,
   graphCommerceConfig,
 ) => {
-  if (graphCommerceConfig.magentoVersion <= 247 || !graphCommerceConfig.googleRecaptchaKey)
+  if (graphCommerceConfig.magentoVersion >= 247 || !graphCommerceConfig.googleRecaptchaKey)
     return prev(baseConfig, graphCommerceConfig)
   return prev(
     {
