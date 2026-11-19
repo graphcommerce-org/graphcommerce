@@ -165,6 +165,7 @@
     "notify-queries-after-cache-restore",
     "olive-donuts-smoke",
     "pagination-disabled-no-link",
+    "pagination-scroll-after-load",
     "perky-horses-notice",
     "popper-panel-popper-props",
     "product-filters-keep-page",

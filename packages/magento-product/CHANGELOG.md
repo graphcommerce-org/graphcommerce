@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.58
+
+### Patch Changes
+
+- [#2718](https://github.com/graphcommerce-org/graphcommerce/pull/2718) [`d6145eb`](https://github.com/graphcommerce-org/graphcommerce/commit/d6145ebbabc4f3cad3bbc78e5f32794098577223) - Fix the product list pagination scrolling to the products before the next page was loaded. The shopper saw the products of the previous page until the new products arrived. The pagination loads the products first and then scrolls, the same as the filters. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.57
 
 ### Major Changes

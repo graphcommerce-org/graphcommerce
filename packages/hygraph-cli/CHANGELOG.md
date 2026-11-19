@@ -1,5 +1,7 @@
 # @graphcommerce/hygraph-cli
 
+## 11.0.0-canary.58
+
 ## 11.0.0-canary.57
 
 ### Patch Changes
