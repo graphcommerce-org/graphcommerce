@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`1c97bc6`](https://github.com/graphcommerce-org/graphcommerce/commit/1c97bc6d6d01e80d98fe70e595b06804be2ba905) - Uses `@googlemaps/js-api-loader` 2, `cookie` 2, `fetch-retry` 6, `web-vitals` 6 and `schema-dts` 2. `usePlacesAutocomplete` loads the Places library with `setOptions` and `importLibrary`. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

@@ -57,7 +57,7 @@ export function parseStructure(ast: Module, gcConfig: GraphCommerceConfig, sourc
 
       if (!parsed.success) {
         if (errors.length)
-          console.error(parsed.error.errors.map((e) => `${e.path} ${e.message}`).join('\n'))
+          console.error(parsed.error.issues.map((e) => `${e.path} ${e.message}`).join('\n'))
         return undefined
       }
 

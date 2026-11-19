@@ -3,7 +3,7 @@ import type { FieldValues, FormState, UseFormHandleSubmit, UseFormTrigger } from
 import type { SetOptional } from 'type-fest'
 
 export type MinimalUseFormReturn<TFieldValues extends FieldValues = FieldValues> = {
-  formState: FormState<TFieldValues>
+  formState: FormState<NoInfer<TFieldValues>>
   trigger: UseFormTrigger<TFieldValues>
 }
 

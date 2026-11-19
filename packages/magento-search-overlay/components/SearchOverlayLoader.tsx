@@ -1,5 +1,5 @@
 import { useMotionSelector } from '@graphcommerce/framer-utils'
-import { motionValue } from 'framer-motion'
+import { motionValue } from 'motion/react'
 import dynamic from 'next/dynamic'
 import type { SearchOverlayProps } from './SearchOverlay'
 import { searchOverlayIsOpen } from './SearchOverlayProvider'

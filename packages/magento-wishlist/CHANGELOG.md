@@ -1,5 +1,13 @@
 # @graphcommerce/magento-wishlist
 
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55

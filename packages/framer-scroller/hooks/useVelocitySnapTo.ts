@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMatchMedia } from '@graphcommerce/next-ui/hooks/useMatchMedia'
-import type { PanInfo } from 'framer-motion'
+import type { PanInfo } from 'motion/react'
 import type { InertiaOptions } from 'popmotion'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'

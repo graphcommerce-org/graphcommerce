@@ -5,8 +5,8 @@ import type { Root } from 'react-dom/client'
 import { createRoot } from 'react-dom/client'
 import { AddressAutocomplete } from './AddressAutocomplete'
 
-const { loaderOptions } = vi.hoisted(() => ({
-  loaderOptions: [] as unknown[],
+const { mapsOptions } = vi.hoisted(() => ({
+  mapsOptions: [] as unknown[],
 }))
 const { fetchAutocompleteSuggestions, importLibrary, setValue } = vi.hoisted(() => ({
   fetchAutocompleteSuggestions: vi.fn(),
@@ -146,13 +146,8 @@ vi.mock('@mui/material', () => ({
 }))
 
 vi.mock('@googlemaps/js-api-loader', () => ({
-  Loader: class {
-    constructor(options: unknown) {
-      loaderOptions.push(options)
-    }
-
-    importLibrary = importLibrary
-  },
+  importLibrary,
+  setOptions: (options: unknown) => mapsOptions.push(options),
 }))
 
 afterEach(() => {
@@ -160,7 +155,6 @@ afterEach(() => {
   testContainer?.remove()
   testRoot = undefined
   testContainer = undefined
-  loaderOptions.length = 0
   vi.useRealTimers()
   vi.clearAllMocks()
 })
@@ -218,10 +212,7 @@ describe('AddressAutocomplete', () => {
     expect(streetInput?.getAttribute('autocomplete')).toBe('one-time-code')
     expect(streetInput?.getAttribute('role')).toBe('combobox')
     expect(streetInput?.name).toMatch(/^places-search-/)
-    expect(loaderOptions.at(-1)).toEqual({
-      apiKey: 'test-key',
-      version: 'weekly',
-    })
+    expect(mapsOptions).toEqual([{ key: 'test-key', v: 'weekly' }])
     expect(importLibrary).toHaveBeenCalledWith('places')
   })
 

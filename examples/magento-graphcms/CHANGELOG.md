@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2716](https://github.com/graphcommerce-org/graphcommerce/pull/2716) [`a91abd7`](https://github.com/graphcommerce-org/graphcommerce/commit/a91abd727e2c42ad26373902be48accb3b3c0ca6) - `pages/checkout/added.tsx` focuses its heading without a scroll, so the overlay slides in after an add to cart. A scrolling `focus()` put the overlay in its open position before `OverlayBase` started the animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.56
 
 ## 11.0.0-canary.55
