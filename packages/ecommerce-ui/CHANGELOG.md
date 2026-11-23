@@ -1,5 +1,11 @@
 # @graphcommerce/ecommerce-ui
 
+## 11.0.0-canary.61
+
+### Patch Changes
+
+- [#2721](https://github.com/graphcommerce-org/graphcommerce/pull/2721) [`c50f4fa`](https://github.com/graphcommerce-org/graphcommerce/commit/c50f4faa52f3411e86e22bf8bdd038f1bfa3aafe) - The preview mode toolbar sends `previewData` only after a change by the user. `FormPersist` restores `previewData` after each page load, and `FormAutoSubmit` sent that restore as an `update` again: the page reloaded in a loop after a change of the Hygraph stage. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.60
 
 ## 11.0.0-canary.59
