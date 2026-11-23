@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.62
+
+### Patch Changes
+
+- [#2722](https://github.com/graphcommerce-org/graphcommerce/pull/2722) [`218478d`](https://github.com/graphcommerce-org/graphcommerce/commit/218478df4ebd9a8e5b89ff24cc2f45c2a0369d4a) - `RichText` renders all marks of a text together: a text that is bold, italic and underlined gets all three styles. Before, only one mark was rendered. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.61
 
 ## 11.0.0-canary.60

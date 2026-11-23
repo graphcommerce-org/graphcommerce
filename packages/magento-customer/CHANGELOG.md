@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0-canary.62
+
+### Patch Changes
+
+- [#2723](https://github.com/graphcommerce-org/graphcommerce/pull/2723) [`a96bbd7`](https://github.com/graphcommerce-org/graphcommerce/commit/a96bbd798e669dea841c63fd1733ae7bc6249a79) - A customer token with `valid: false` counts as signed out in `useCustomerSession`, `getPrivateQueryContext` and `usePrivateQueryContext`. `customerLink` does not send that token, so the shop showed guest prices in the layout for a customer and kept customer queries that failed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2724](https://github.com/graphcommerce-org/graphcommerce/pull/2724) [`8985281`](https://github.com/graphcommerce-org/graphcommerce/commit/89852812292471e6780188c83ee093cea4ed988c) - The session-expired form shows the email of the sign-in after a cache migration. The `CustomerToken` holds the `email` of the sign-in, and `migrateCustomer` copies it with the token. A shop that writes `CustomerTokenDocument` with an object literal must add `email`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 11.0.0-canary.61
 
 ## 11.0.0-canary.60
