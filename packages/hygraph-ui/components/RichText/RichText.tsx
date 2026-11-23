@@ -49,28 +49,19 @@ function LineBreakToBr(props: { text: string }) {
   return textArray.map((val, idx) => <React.Fragment key={idx}>{val}</React.Fragment>)
 }
 
-function RenderText({
-  text,
-  renderers,
-  sxRenderer,
-  first,
-  last,
-  ...textProps
-}: TextNode & AdditionalProps) {
-  let type: 'bold' | 'italic' | 'underlined' | 'code' | undefined
-
-  if (textProps.bold) type = 'bold'
-  if (textProps.italic) type = 'italic'
-  if (textProps.code) type = 'code'
-  if (textProps.underlined) type = 'underlined'
+function RenderText(props: TextNode & AdditionalProps) {
+  const { text, renderers, sxRenderer, first, last, ...textProps } = props
+  const type = (['bold', 'italic', 'underlined', 'code'] as const).find((markup) => textProps[markup])
 
   const sx = useRenderProps({ first, last, sxRenderer }, type)
-
+  // Actually render the text, no marks are left anymore
   if (!type) return <LineBreakToBr text={text} />
+  // Set the component type to the chosen marup type
   const Component: Renderer<SimpleElement> = renderers[type]
+  // Render the component with the markup type and reset the type and look for more nested marks
   return (
     <Component sx={sx}>
-      <LineBreakToBr text={text} />
+      <RenderText {...props} {...{ [type]: undefined }} />
     </Component>
   )
 }
