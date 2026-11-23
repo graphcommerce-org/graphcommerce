@@ -92,30 +92,14 @@ async function readRenewSignal(): Promise<number | undefined> {
  * once, and they should not each open their own.
  */
 export async function refreshRenewSignal(): Promise<number | undefined> {
+  if (inFlight) return inFlight
+
   const now = Date.now()
   if (signalValue !== undefined && now - signalReadAt < RENEW_SIGNAL_POLL_MS) return signalValue
-  if (!inFlight) {
-    signalReadAt = now
-    inFlight = readRenewSignal().finally(() => {
-      inFlight = undefined
-    })
-  }
-  return inFlight
-}
 
-/**
- * Last known signal value, or `undefined` when it has not been read yet.
- *
- * For callers that cannot await one: `graphqlSsrClient()` is synchronous and called as
- * `const client = graphqlSsrClient(context)` throughout `getStaticProps`, so making the read
- * awaited would mean making every consumer async. It gets the value from the previous refresh and
- * schedules the next one, bounding staleness at one poll interval plus one call.
- *
- * `undefined` must not be read as "nothing published" — on a fresh pod, which is every pod right
- * after a deploy, that would silently skip the first invalidation. Callers treat it as unknown and
- * fall back to their own failsafe.
- */
-export function renewSignal(): number | undefined {
-  void refreshRenewSignal()
-  return signalValue
+  signalReadAt = now
+  inFlight = readRenewSignal().finally(() => {
+    inFlight = undefined
+  })
+  return inFlight
 }
