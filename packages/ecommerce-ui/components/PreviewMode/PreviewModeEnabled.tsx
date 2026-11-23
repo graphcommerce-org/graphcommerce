@@ -9,6 +9,7 @@ import {
 } from '@graphcommerce/next-ui'
 import { FormAutoSubmit, FormPersist, FormProvider, useForm } from '@graphcommerce/react-hook-form'
 import { Box, IconButton } from '@mui/material'
+import { useEffect, useRef } from 'react'
 import { LightTooltip } from './LightTooltip'
 import { PreviewModeActions } from './PreviewModeActions'
 import { PreviewModeToolbar } from './PreviewModeToolbar'
@@ -24,6 +25,15 @@ type FormValues = { secret: string; previewData: PreviewData }
 
 export function PreviewModeEnabled() {
   const form = useForm<FormValues>({})
+
+  // FormPersist restores `previewData` after each page load. Only a change by the user submits.
+  const changedByUser = useRef(false)
+  useEffect(() => {
+    const subscription = form.watch((_values, { type }) => {
+      if (type === 'change') changedByUser.current = true
+    })
+    return () => subscription.unsubscribe()
+  }, [form])
 
   const submit = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()
@@ -97,7 +107,13 @@ export function PreviewModeEnabled() {
       {/* Only auto-submit on `previewData` edits. Watching every field made the restore of a
           persisted `secret` (via `setValue(shouldDirty)`) look like a user change, which fired the
           `update` submit → 307 redirect → reload → restore → … infinite loop in production. */}
-      <FormAutoSubmit control={form.control} name={['previewData']} submit={submit} />
+      <FormAutoSubmit
+        control={form.control}
+        name={['previewData']}
+        submit={async () => {
+          if (changedByUser.current) await submit()
+        }}
+      />
     </FormProvider>
   )
 }
