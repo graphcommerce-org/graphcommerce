@@ -16,7 +16,8 @@ export function useCustomerSession(_: UseCustomerSessionOptions = {}) {
 
   return {
     ...tokenData,
-    loggedIn: Boolean(tokenData?.token),
+    // `customerLink` does not send a token with `valid: false`.
+    loggedIn: Boolean(tokenData?.token) && tokenData?.valid !== false,
     query,
   }
 }

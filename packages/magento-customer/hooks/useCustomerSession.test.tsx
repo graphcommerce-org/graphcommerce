@@ -1,6 +1,5 @@
 // @vitest-environment happy-dom
-import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client'
-import { ApolloProvider } from '@apollo/client/react'
+import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache } from '@graphcommerce/graphql'
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import {
