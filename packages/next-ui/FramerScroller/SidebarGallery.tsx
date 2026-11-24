@@ -326,7 +326,7 @@ export function SidebarGallery(props: SidebarGalleryProps) {
                     size='small'
                     className={classes.toggleIcon}
                     disabled={!hasImages}
-                    onMouseUp={toggle}
+                    onClick={toggle}
                     aria-label='Toggle Fullscreen'
                     sx={{ boxShadow: 6 }}
                   >
