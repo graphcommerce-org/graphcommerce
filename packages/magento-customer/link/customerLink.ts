@@ -50,23 +50,40 @@ export async function pushWithPromise(router: Pick<NextRouter, 'push' | 'events'
   })
 }
 
+/** One sign-in for each client. It resolves to the new token, or to null after a dismiss. */
+const signIns = new WeakMap<ApolloClient, Promise<string | null>>()
+
+const signInRequired = () =>
+  of({
+    data: null,
+    errors: [
+      new GraphQLError(t`You must be signed in to continue`, {
+        extensions: { category: 'graphql-authorization' },
+      }),
+    ],
+  })
+
+/** Without the token, Magento returns guest data for a private query of a customer. */
+const waitForSignIn = new ApolloLink((operation, forward) => {
+  const signIn = signIns.get(operation.client)
+  if (!signIn || !operation.variables.context?.loggedIn) return forward(operation)
+  return from(signIn).pipe(switchMap((token) => (token ? forward(operation) : signInRequired())))
+})
+
 const addTokenHeader = new SetContextLink((prevContext, operation) => {
   const headers: Record<string, string> = { ...prevContext.headers }
 
   try {
-    const query = operation.client.cache.readQuery({ query: CustomerTokenDocument })
+    const token = operation.client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+      ?.token
 
-    if (query?.customerToken?.token && query?.customerToken?.valid !== false) {
-      headers.authorization = `Bearer ${query?.customerToken?.token}`
-    }
+    // During an open sign-in, Magento 2.4.8+ rejects each request with the expired token.
+    if (token && !signIns.has(operation.client)) headers.authorization = `Bearer ${token}`
     return { headers }
   } catch {
     return { headers }
   }
 })
-
-/** One sign-in for each client. It resolves to the new token, or to null after a dismiss. */
-const signIns = new WeakMap<ApolloClient, Promise<string | null>>()
 
 const customerErrorLink = (router: PushRouter) =>
   new ErrorLink(({ error, operation, forward }) => {
@@ -86,7 +103,7 @@ const customerErrorLink = (router: PushRouter) =>
     // `addTokenHeader` sent the request without the expired token.
     const customerRequired =
       !oldHeaders?.authorization &&
-      customerToken?.valid === false &&
+      signIns.has(client) &&
       categories.includes('graphql-authorization')
 
     if (!tokenRejected && !customerRequired) return undefined
@@ -114,16 +131,7 @@ const customerErrorLink = (router: PushRouter) =>
     // Magento did not run a request that it rejected, so it is safe to send it again.
     return from(signIn).pipe(
       switchMap((token) => {
-        if (!token) {
-          return of({
-            data: null,
-            errors: [
-              new GraphQLError(t`You must be signed in to continue`, {
-                extensions: { category: 'graphql-authorization' },
-              }),
-            ],
-          })
-        }
+        if (!token) return signInRequired()
         operation.setContext({ headers: { ...oldHeaders, authorization: `Bearer ${token}` } })
         return forward(operation)
       }),
@@ -131,4 +139,4 @@ const customerErrorLink = (router: PushRouter) =>
   })
 
 export const customerLink = (router: PushRouter) =>
-  ApolloLink.from([addTokenHeader, customerErrorLink(router)])
+  ApolloLink.from([waitForSignIn, addTokenHeader, customerErrorLink(router)])
