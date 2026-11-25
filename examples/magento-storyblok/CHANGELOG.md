@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.66
+
+### Patch Changes
+
+- [#2731](https://github.com/graphcommerce-org/graphcommerce/pull/2731) [`0a65ed3`](https://github.com/graphcommerce-org/graphcommerce/commit/0a65ed3359950fb29234f1d228e30aef41d72df3) - Fix `yarn install` on CI in a project that starts from an example: `patch-package` stopped, because the patches were for `next` 16.2.6 and `react-hook-form` 7.67.0. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.65
 
 ## 11.0.0-canary.64

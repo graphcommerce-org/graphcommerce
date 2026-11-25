@@ -118,6 +118,7 @@
     "document-playwright-workflow",
     "dotenv-18-prettier-3-5",
     "dull-points-fly",
+    "example-patches-next-16-4",
     "example-tests-out-of-example",
     "expired-token-is-signed-out",
     "export-modules-that-shops-import",
