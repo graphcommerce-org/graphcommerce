@@ -33,6 +33,9 @@
     "graphql": "^16.14.2",
     "parse-filepath": "^1.0.2"
   },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
   "peerDependencies": {
     "@graphcommerce/eslint-config-pwa": "^11.0.0-canary.63",
     "@graphcommerce/prettier-config-pwa": "^11.0.0-canary.63",
