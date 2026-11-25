@@ -24,6 +24,7 @@ function renderWithToken<T>(valid: boolean, hook: (client: ApolloClient) => T) {
         createdAt: null,
         valid,
         xMagentoCacheId: null,
+        email: null,
       },
     },
   })
