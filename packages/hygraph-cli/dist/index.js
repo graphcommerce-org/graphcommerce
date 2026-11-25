@@ -711,6 +711,7 @@ class UpsertClient extends Client {
     super(params);
     this.schema = schema;
   }
+  schema;
   /** @public */
   upsertModel(data) {
     const exists = this.schema.models.some((m) => m.apiId === data.apiId);
