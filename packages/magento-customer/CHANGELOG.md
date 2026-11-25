@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.67
+
+### Patch Changes
+
+- [#2728](https://github.com/graphcommerce-org/graphcommerce/pull/2728) [`33d9161`](https://github.com/graphcommerce-org/graphcommerce/commit/33d9161379214ebbf80b5e170add5316773ab5d5) - Revert "Treat an expired customer token as signed out": `loggedIn` is true while a customer token exists. During an open sign-in, `customerLink` makes the requests that need the customer wait. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 11.0.0-canary.66
 
 ## 11.0.0-canary.65

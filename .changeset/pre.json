@@ -182,6 +182,7 @@
     "recaptcha-mesh-resolver",
     "redirect-magento-customer-account-urls",
     "renewable-ssr-client",
+    "revert-expired-token-is-signed-out",
     "rich-text-nested-marks",
     "row-links-focus-visible",
     "runtime-libraries-majors",
