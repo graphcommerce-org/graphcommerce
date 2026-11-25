@@ -8,7 +8,7 @@ import {
 import { from, of, switchMap } from '@graphcommerce/graphql/rxjs'
 import { magentoVersion } from '@graphcommerce/next-config/config'
 import { t } from '@lingui/core/macro'
-import { GraphQLError } from 'graphql'
+import { GraphQLError, OperationTypeNode } from 'graphql'
 import type { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
@@ -74,11 +74,13 @@ const addTokenHeader = new SetContextLink((prevContext, operation) => {
   const headers: Record<string, string> = { ...prevContext.headers }
 
   try {
-    const token = operation.client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-      ?.token
+    const customerToken = operation.client.cache.readQuery({
+      query: CustomerTokenDocument,
+    })?.customerToken
 
-    // During an open sign-in, Magento 2.4.8+ rejects each request with the expired token.
-    if (token && !signIns.has(operation.client)) headers.authorization = `Bearer ${token}`
+    // Until the sign-in succeeds, Magento 2.4.8+ rejects each request with the expired token.
+    if (customerToken?.token && (customerToken.valid || !signIns.has(operation.client)))
+      headers.authorization = `Bearer ${customerToken.token}`
     return { headers }
   } catch {
     return { headers }
@@ -129,13 +131,33 @@ const customerErrorLink = (router: PushRouter) =>
     }
 
     // Magento did not run a request that it rejected, so it is safe to send it again.
-    return from(signIn).pipe(
+    const afterSignIn = from(signIn).pipe(
       switchMap((token) => {
         if (!token) return signInRequired()
         operation.setContext({ headers: { ...oldHeaders, authorization: `Bearer ${token}` } })
         return forward(operation)
       }),
     )
+
+    // A guest query, such as the reCAPTCHA config of the sign-in form, must not wait for the sign-in.
+    if (
+      tokenRejected &&
+      operation.operationType === OperationTypeNode.QUERY &&
+      !operation.variables.context?.loggedIn
+    ) {
+      const guestHeaders = { ...oldHeaders }
+      delete guestHeaders.authorization
+      operation.setContext({ headers: guestHeaders })
+      return forward(operation).pipe(
+        switchMap((result) =>
+          result.errors?.some((err) => err.extensions?.category === 'graphql-authorization')
+            ? afterSignIn
+            : of(result),
+        ),
+      )
+    }
+
+    return afterSignIn
   })
 
 export const customerLink = (router: PushRouter) =>
