@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.65
+
+### Patch Changes
+
+- [#2730](https://github.com/graphcommerce-org/graphcommerce/pull/2730) [`acd08e7`](https://github.com/graphcommerce-org/graphcommerce/commit/acd08e72e504e06b2fbaeb6c9f996606ed5e2b7e) - Fix `next build` in a project that starts from `magento-graphcms`: the type check stopped with `Cannot find module 'vitest'` in two tests of the monorepo. If your project has `__tests__/checkoutAdded.test.ts` or `graphql/ProductPage2.test.ts`, delete these files. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.64
 
 ## 11.0.0-canary.63
