@@ -46,6 +46,14 @@ const ProductPrices = gql`
   }
 ` as TypedDocumentNode<{ products: { total_count: number } }>
 
+const RecaptchaV3Config = gql`
+  query RecaptchaV3Config {
+    recaptchaV3Config {
+      website_key
+    }
+  }
+` as TypedDocumentNode<{ recaptchaV3Config: { website_key: string } }>
+
 const SignIn = gql`
   mutation SignIn($email: String!, $password: String!) {
     generateCustomerToken(email: $email, password: $password) {
@@ -91,6 +99,10 @@ function setup(valid = true) {
               extensions: { category: 'graphql-authentication' },
             },
           ],
+        })
+      } else if (operationName === 'RecaptchaV3Config') {
+        observer.next({
+          data: { recaptchaV3Config: { __typename: 'ReCaptchaConfigOutput', website_key: 'key' } },
         })
       } else if (operationName === 'ProductPrices') {
         const total_count = authorization ? 2 : 1
@@ -212,7 +224,13 @@ describe('customerLink when Magento rejects the customer token', () => {
     await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
     navigate('/account/signin')
     const added = addToCart()
-    await vi.waitFor(() => expect(requests).toHaveLength(2))
+    await vi.waitFor(() =>
+      expect(requests.map((r) => r.operationName)).toContain('AddProductsToCart'),
+    )
+    await new Promise((resolve) => {
+      setTimeout(resolve, 10)
+    })
+    const sent = requests.length
     navigate('/p/product')
 
     for (const { error } of await Promise.all([first, added])) {
@@ -221,7 +239,7 @@ describe('customerLink when Magento rejects the customer token', () => {
       expect(error.errors.map((err) => err.extensions?.category)).toEqual(['graphql-authorization'])
       expect(error.errors[0].message).toBe('You must be signed in to continue')
     }
-    expect(requests).toHaveLength(2)
+    expect(requests).toHaveLength(sent)
     expect(client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken).toBeFalsy()
   })
 
@@ -288,5 +306,61 @@ describe('customerLink when Magento rejects the customer token', () => {
       operationName: 'CustomerOrders',
       authorization: 'Bearer expired-token',
     })
+  })
+
+  it('sends a rejected guest query again without the token', async () => {
+    const { client, router, requests } = setup()
+
+    const result = client.query({
+      query: RecaptchaV3Config,
+      fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+    })
+    await vi.waitFor(() =>
+      expect(requests).toContainEqual({
+        operationName: 'RecaptchaV3Config',
+        authorization: undefined,
+      }),
+    )
+
+    expect((await result).data?.recaptchaV3Config.website_key).toBe('key')
+    expect(router.push).toHaveBeenCalledTimes(1)
+  })
+
+  it('does not send a rejected mutation as a guest', async () => {
+    const { router, requests, navigate, signIn, addToCart } = setup()
+
+    const added = addToCart()
+    await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
+    await new Promise((resolve) => {
+      setTimeout(resolve, 10)
+    })
+    expect(requests).toEqual([
+      { operationName: 'AddProductsToCart', authorization: 'Bearer expired-token' },
+    ])
+    navigate('/account/signin')
+    signIn()
+    navigate('/p/product')
+
+    expect((await added).error).toBeUndefined()
+  })
+
+  it('sends the new token as soon as the sign-in succeeds', async () => {
+    const { router, requests, navigate, signIn, query } = setup()
+
+    const first = query()
+    await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
+    navigate('/account/signin')
+    signIn()
+    const second = query()
+
+    await vi.waitFor(() =>
+      expect(requests.at(-1)).toEqual({
+        operationName: 'CustomerOrders',
+        authorization: 'Bearer new-token',
+      }),
+    )
+    navigate('/p/product')
+    await Promise.all([first, second])
   })
 })
