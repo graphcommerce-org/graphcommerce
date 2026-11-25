@@ -187,6 +187,7 @@
     "scroller-on-mouse-down",
     "server-customer-cache",
     "session-expired-keeps-email",
+    "sidebar-gallery-fullscreen-keyboard",
     "sidebar-gallery-hash-cleanup",
     "sidebar-gallery-zoom-full-height",
     "signup-form-fieldsets-render-props",

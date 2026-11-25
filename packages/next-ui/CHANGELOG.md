@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.63
+
+### Patch Changes
+
+- [#2725](https://github.com/graphcommerce-org/graphcommerce/pull/2725) [`4a4e897`](https://github.com/graphcommerce-org/graphcommerce/commit/4a4e897efee5fad6146d34e7cecc40d33fe7e94e) - The fullscreen toggle of `SidebarGallery` opens and closes with the keyboard (Enter and Space). Before, only a mouse click opened the fullscreen gallery. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.62
 
 ## 11.0.0-canary.61
