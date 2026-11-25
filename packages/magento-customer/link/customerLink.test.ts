@@ -38,6 +38,14 @@ const AddProductsToCart = gql`
   }
 ` as TypedDocumentNode<Record<string, unknown>>
 
+const ProductPrices = gql`
+  query ProductPrices($context: PrivateContext) {
+    products(search: "a") @privateContext(context: $context) {
+      total_count
+    }
+  }
+` as TypedDocumentNode<{ products: { total_count: number } }>
+
 const SignIn = gql`
   mutation SignIn($email: String!, $password: String!) {
     generateCustomerToken(email: $email, password: $password) {
@@ -47,7 +55,7 @@ const SignIn = gql`
 ` as TypedDocumentNode<Record<string, unknown>>
 
 /** Responds like Magento 2.4.8+ for the customer with the token `new-token`. */
-function setup() {
+function setup(valid = true) {
   const requests: { operationName: string; authorization?: string }[] = []
   const listeners = new Set<(url: string) => void>()
   const router: PushRouter = {
@@ -84,6 +92,9 @@ function setup() {
             },
           ],
         })
+      } else if (operationName === 'ProductPrices') {
+        const total_count = authorization ? 2 : 1
+        observer.next({ data: { products: { __typename: 'Products', total_count } } })
       } else if (!authorization) {
         observer.next({
           errors: [
@@ -113,7 +124,7 @@ function setup() {
         __typename: 'CustomerToken',
         token: 'expired-token',
         createdAt: null,
-        valid: true,
+        valid,
         xMagentoCacheId: null,
         email: 'a@b.c',
       },
@@ -145,7 +156,15 @@ function setup() {
       errorPolicy: 'all',
     })
 
-  return { client, router, requests, navigate, signIn, query, addToCart }
+  const privateQuery = () =>
+    client.query({
+      query: ProductPrices,
+      variables: { context: { loggedIn: true } },
+      fetchPolicy: 'network-only',
+      errorPolicy: 'all',
+    })
+
+  return { client, router, requests, navigate, signIn, query, addToCart, privateQuery }
 }
 
 describe('customerLink when Magento rejects the customer token', () => {
@@ -221,5 +240,53 @@ describe('customerLink when Magento rejects the customer token', () => {
       'The account sign-in was incorrect',
     )
     expect(router.push).toHaveBeenCalledTimes(1)
+  })
+
+  it('holds a private query during the sign-in and sends it with the new token', async () => {
+    const { router, requests, navigate, signIn, query, privateQuery } = setup()
+
+    const first = query()
+    await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
+    navigate('/account/signin')
+    const prices = privateQuery()
+    await new Promise((resolve) => {
+      setTimeout(resolve, 10)
+    })
+    signIn()
+    navigate('/p/product')
+
+    expect((await prices).data?.products.total_count).toBe(2)
+    expect(requests.filter((request) => request.operationName === 'ProductPrices')).toEqual([
+      { operationName: 'ProductPrices', authorization: 'Bearer new-token' },
+    ])
+    await first
+  })
+
+  it('returns the sign-in error to a held private query after a dismiss', async () => {
+    const { router, requests, navigate, query, privateQuery } = setup()
+
+    void query()
+    await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
+    navigate('/account/signin')
+    const prices = privateQuery()
+    navigate('/p/product')
+    const { error } = await prices
+
+    expect(CombinedGraphQLErrors.is(error) && error.errors[0].message).toBe(
+      'You must be signed in to continue',
+    )
+    expect(requests.map((request) => request.operationName)).not.toContain('ProductPrices')
+  })
+
+  it('sends a token that an earlier page saved with valid: false', async () => {
+    const { router, requests, query } = setup(false)
+
+    void query()
+    await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
+
+    expect(requests[0]).toEqual({
+      operationName: 'CustomerOrders',
+      authorization: 'Bearer expired-token',
+    })
   })
 })
