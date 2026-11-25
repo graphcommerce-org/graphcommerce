@@ -346,21 +346,21 @@ describe('customerLink when Magento rejects the customer token', () => {
   })
 
   it('sends the new token as soon as the sign-in succeeds', async () => {
-    const { router, requests, navigate, signIn, query } = setup()
+    const { router, requests, navigate, signIn, query, addToCart } = setup()
 
     const first = query()
     await vi.waitFor(() => expect(router.push).toHaveBeenCalled())
     navigate('/account/signin')
     signIn()
-    const second = query()
+    const added = addToCart()
 
     await vi.waitFor(() =>
       expect(requests.at(-1)).toEqual({
-        operationName: 'CustomerOrders',
+        operationName: 'AddProductsToCart',
         authorization: 'Bearer new-token',
       }),
     )
     navigate('/p/product')
-    await Promise.all([first, second])
+    await Promise.all([first, added])
   })
 })
