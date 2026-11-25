@@ -1,3 +1,4 @@
+// @vitest-environment happy-dom
 import type { TypedDocumentNode } from '@graphcommerce/graphql/apollo'
 import {
   ApolloClient,
@@ -13,8 +14,10 @@ import { customerTypePolicies } from '../typePolicies'
 import type { PushRouter } from './customerLink'
 import { customerLink } from './customerLink'
 
-vi.mock('@graphcommerce/next-config/config', () => ({ magentoVersion: 248, storefront: [] }))
-vi.mock('@graphcommerce/next-ui', () => ({ removeCssFlag: vi.fn() }))
+vi.mock(import('@graphcommerce/next-config/config'), async (importOriginal) => ({
+  ...(await importOriginal()),
+  magentoVersion: 248,
+}))
 vi.mock('@lingui/core/macro', () => ({ t: (strings: TemplateStringsArray) => strings.join('') }))
 
 const CustomerOrders = gql`
