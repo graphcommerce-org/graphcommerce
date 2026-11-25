@@ -1,12 +1,14 @@
+import type { ApolloClient } from '@graphcommerce/graphql/apollo'
 import {
   ApolloLink,
   CombinedGraphQLErrors,
   ErrorLink,
   SetContextLink,
 } from '@graphcommerce/graphql/apollo'
-import { from, switchMap } from '@graphcommerce/graphql/rxjs'
+import { from, of, switchMap } from '@graphcommerce/graphql/rxjs'
 import { magentoVersion } from '@graphcommerce/next-config/config'
-import type { GraphQLFormattedError } from 'graphql'
+import { t } from '@lingui/core/macro'
+import { GraphQLError } from 'graphql'
 import type { NextRouter } from 'next/router'
 import { signOut } from '../components/SignOutForm/signOut'
 import { CustomerTokenDocument } from '../hooks'
@@ -63,63 +65,66 @@ const addTokenHeader = new SetContextLink((prevContext, operation) => {
   }
 })
 
+/** One sign-in for each client. It resolves to the new token, or to null after a dismiss. */
+const signIns = new WeakMap<ApolloClient, Promise<string | null>>()
+
 const customerErrorLink = (router: PushRouter) =>
   new ErrorLink(({ error, operation, forward }) => {
-    const { client } = operation
-
-    // Check if this is a GraphQL error
     if (!CombinedGraphQLErrors.is(error)) return undefined
 
+    const { client } = operation
     const oldHeaders = operation.getContext().headers
+    const customerToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+    const categories = error.errors.map((err) => err.extensions?.category)
 
-    const authError = error.errors.find(
-      (err: GraphQLFormattedError) =>
-        err.extensions?.category ===
-        (magentoVersion >= 248 ? 'graphql-authentication' : 'graphql-authorization'),
-    )
+    const tokenRejected =
+      !!oldHeaders?.authorization &&
+      categories.includes(
+        magentoVersion >= 248 ? 'graphql-authentication' : 'graphql-authorization',
+      )
 
-    /** If the error we're dealing with is not an authorization error, we're done. */
-    if (!authError) return undefined
+    // `addTokenHeader` sent the request without the expired token.
+    const customerRequired =
+      !oldHeaders?.authorization &&
+      customerToken?.valid === false &&
+      categories.includes('graphql-authorization')
 
-    if (!oldHeaders?.authorization) {
-      // console.error(
-      //   'No authorization header found in request, but an authorization error was returned, this is a bug. This is the operation:',
-      //   operation,
-      // )
-      return undefined
+    if (!tokenRejected && !customerRequired) return undefined
+
+    if (tokenRejected) {
+      if (!customerToken) throw Error('We currently do not have a customer token in the cache.')
+      client.writeQuery({
+        query: CustomerTokenDocument,
+        data: { customerToken: { ...customerToken, valid: false } },
+      })
     }
 
-    const currentToken = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-    if (!currentToken) throw Error('We currenly do not have a customer token in the cache.')
-    client.writeQuery({
-      query: CustomerTokenDocument,
-      data: { customerToken: { ...currentToken, valid: false } },
-    })
+    let signIn = signIns.get(client)
+    if (!signIn) {
+      signIn = pushWithPromise(router, '/account/signin').then(() => {
+        signIns.delete(client)
+        const token = client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken
+        if (token?.valid && token.token) return token.token
+        signOut(client)
+        return null
+      })
+      signIns.set(client, signIn)
+    }
 
-    // After submission of the signIn form, navigate back to the current route.
-    // Resolve the promomise.
-    // Dependending on the result, either retry the request or clean up the cache.
-
-    const signInAgainPromise = pushWithPromise(router, '/account/signin')
-
-    return from(signInAgainPromise).pipe(
-      switchMap(() => {
-        const tokenQuery = client.cache.readQuery({ query: CustomerTokenDocument })
-
-        if (tokenQuery?.customerToken?.valid) {
-          // Customer is reauthenticated, retrying request.
-          operation.setContext({
-            headers: {
-              ...oldHeaders,
-              authorization: `Bearer ${tokenQuery?.customerToken?.token}`,
-            },
+    // Magento did not run a request that it rejected, so it is safe to send it again.
+    return from(signIn).pipe(
+      switchMap((token) => {
+        if (!token) {
+          return of({
+            data: null,
+            errors: [
+              new GraphQLError(t`You must be signed in to continue`, {
+                extensions: { category: 'graphql-authorization' },
+              }),
+            ],
           })
-        } else {
-          // Customer has not reauthenticated, clearing all customer data.
-          signOut(client)
         }
-
-        // retry the request, returning the new observable
+        operation.setContext({ headers: { ...oldHeaders, authorization: `Bearer ${token}` } })
         return forward(operation)
       }),
     )
