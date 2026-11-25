@@ -13,7 +13,7 @@ describe('ProductPage2', () => {
   it.each(['magento-graphcms', 'magento-open-source', 'magento-storyblok'])(
     '%s requests the id in relatedUpsells',
     (example) => {
-      const file = new URL(`../../${example}/graphql/ProductPage2.graphql`, import.meta.url)
+      const file = new URL(`../${example}/graphql/ProductPage2.graphql`, import.meta.url)
       const [query] = parse(readFileSync(fileURLToPath(file), 'utf8'))
         .definitions as OperationDefinitionNode[]
 

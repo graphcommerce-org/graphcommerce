@@ -8,9 +8,7 @@ describe('pages/checkout/added', () => {
   it.each(['magento-graphcms', 'magento-open-source', 'magento-storyblok'])(
     '%s focuses the heading without a scroll',
     (example) => {
-      const file = fileURLToPath(
-        new URL(`../../${example}/pages/checkout/added.tsx`, import.meta.url),
-      )
+      const file = fileURLToPath(new URL(`../${example}/pages/checkout/added.tsx`, import.meta.url))
       const source = ts.createSourceFile(
         file,
         readFileSync(file, 'utf8'),
