@@ -1,6 +1,5 @@
 import {
   useApolloClient,
-  type ApolloClient,
   type getPrivateQueryContextMesh as getPrivateQueryContextMeshType,
   type getPrivateQueryContext as getPrivateQueryContextType,
   type usePrivateQueryContext as usePrivateQueryContextType,
@@ -24,15 +23,9 @@ function useIsLoggedIn() {
   )
   return useSyncExternalStore(
     subscribe,
-    () => isLoggedIn(cache),
+    () => !!cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token,
     () => false,
   )
-}
-
-/** `customerLink` does not send a token with `valid: false`. */
-function isLoggedIn(cache: ApolloClient['cache']) {
-  const customerToken = cache.readQuery({ query: CustomerTokenDocument })?.customerToken
-  return !!customerToken?.token && customerToken.valid !== false
 }
 
 export const config: PluginConfig = {
@@ -55,7 +48,7 @@ export const getPrivateQueryContext: FunctionPlugin<typeof getPrivateQueryContex
   client,
   ...args
 ) => {
-  const loggedIn = isLoggedIn(client.cache)
+  const loggedIn = !!client.cache.readQuery({ query: CustomerTokenDocument })?.customerToken?.token
   const res = prev(client, ...args)
   if (!loggedIn) return res
   return { ...res, loggedIn: true }
