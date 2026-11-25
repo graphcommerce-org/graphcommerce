@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.64
+
+### Patch Changes
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.63
 
 ## 11.0.0-canary.62
