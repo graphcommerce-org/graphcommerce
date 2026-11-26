@@ -1,5 +1,11 @@
 # @graphcommerce/magento-wishlist
 
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.68
 
 ## 11.0.0-canary.67

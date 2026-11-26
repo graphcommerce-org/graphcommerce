@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`6c45ee6`](https://github.com/graphcommerce-org/graphcommerce/commit/6c45ee647a4e656924a185b4eb985eb036b9d9c8) - Changed the generated configuration docs for a field with a default value. The docs show its default without "(required)", between the other optional fields. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.68
 
 ## 11.0.0-canary.67
