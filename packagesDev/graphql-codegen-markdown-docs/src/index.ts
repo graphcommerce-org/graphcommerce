@@ -65,8 +65,9 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
     },
     InputValueDefinition: {
       leave: (node) => {
-        const defaultValue = node.defaultValue ? ` = \`${node.defaultValue}\`` : ''
-        return `${node.name}: ${node.type}${defaultValue}${descriptionText(node)}`
+        if (!node.defaultValue) return `${node.name}: ${node.type}${descriptionText(node)}`
+        const type = node.type.replace(' (required)', '')
+        return `${node.name}: ${type} = \`${node.defaultValue}\`${descriptionText(node)}`
       },
     },
     InputObjectTypeDefinition: {
@@ -74,8 +75,11 @@ export const plugin: PluginFunction<MarkdownDocsPluginConfig, Types.ComplexPlugi
         ...node,
         // Move required fields to the top.
         fields: [...(node.fields ?? [])].sort((a, b) =>
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-          a.type.kind === 'NonNullType' && b.type.kind !== 'NonNullType' ? -1 : 1,
+          a.type.kind === 'NonNullType' &&
+          !a.defaultValue &&
+          (b.type.kind !== 'NonNullType' || b.defaultValue)
+            ? -1
+            : 1,
         ),
       }),
       leave: (node) => {
