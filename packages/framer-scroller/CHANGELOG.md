@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.70
+
+### Patch Changes
+
+- [#2726](https://github.com/graphcommerce-org/graphcommerce/pull/2726) [`3554f9b`](https://github.com/graphcommerce-org/graphcommerce/commit/3554f9b91f952b6049386da5bad4245d66e4575e) - `ScrollerButton` is not in the tab order and screen readers do not read it, because Tab already goes through the items of the scroller. Pass `tabIndex` and `aria-hidden` to put a `ScrollerButton` back. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.69
 
 ## 11.0.0-canary.68

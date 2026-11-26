@@ -1,5 +1,7 @@
 # @graphcommerce/storyblok-ui
 
+## 11.0.0-canary.70
+
 ## 11.0.0-canary.69
 
 ## 11.0.0-canary.68

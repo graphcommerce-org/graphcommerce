@@ -189,6 +189,7 @@
     "row-links-focus-visible",
     "runtime-libraries-majors",
     "schema-version-additions-nullable",
+    "scroller-button-not-in-tab-order",
     "scroller-on-mouse-down",
     "server-customer-cache",
     "session-expired-keeps-email",
