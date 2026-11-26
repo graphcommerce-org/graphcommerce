@@ -77,6 +77,8 @@ export const ScrollerButton = m.create(
           type='button'
           size='small'
           className='scrollerButton'
+          tabIndex={-1}
+          aria-hidden
           {...buttonProps}
           onClick={handleClick}
           aria-label={direction}
