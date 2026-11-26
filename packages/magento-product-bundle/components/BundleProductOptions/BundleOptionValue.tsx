@@ -47,6 +47,7 @@ export function BundleOptionValue(props: ActionCardItemRenderProps<BundleOptionV
         !thumbnail.includes('/placeholder/') && (
           <Image
             src={thumbnail}
+            quality='product'
             width={40}
             height={40}
             alt={option.label ?? option.product?.name ?? ''}

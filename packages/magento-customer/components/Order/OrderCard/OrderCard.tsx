@@ -102,6 +102,7 @@ export function OrderCard(props: OrderCardProps) {
               alt={item.label ?? ''}
               layout='fill'
               src={item.url}
+              quality='product'
               width={96}
               height={96}
               sx={{ borderRadius: 4, objectFit: 'contain' }}

@@ -58,6 +58,7 @@ export function ShipmentItem(props: ShipmentItemProps) {
           <Image
             layout='fill'
             src={order_item.product.thumbnail.url}
+            quality='product'
             alt={order_item.product.thumbnail?.label ?? ''}
             sx={{
               width: actionCardImageSizes[size],

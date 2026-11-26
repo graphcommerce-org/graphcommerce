@@ -8,6 +8,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 /* eslint-disable jsx-a11y/alt-text */
+import { imageQuality } from '@graphcommerce/next-config/config'
 import { sxx } from '@graphcommerce/next-ui'
 import type { SxProps, Theme } from '@mui/material'
 import { styled, useForkRef } from '@mui/material'
@@ -146,7 +147,7 @@ type GenImgAttrsData = {
   layout: LayoutValue
   loader?: ImageLoaderWithConfig
   width?: number
-  quality?: number
+  quality?: ImageProps['quality']
   sizes: string
   scale: number
   config?: ImageConfig
@@ -162,7 +163,7 @@ export function generateSrcSet(props: GenImgAttrsData): string {
     src,
     layout,
     width,
-    quality = 52,
+    quality = 'content',
     sizes,
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     loader = defaultImageLoader,
@@ -170,11 +171,12 @@ export function generateSrcSet(props: GenImgAttrsData): string {
     config = defaultConfig,
   } = props
   const { widths, kind } = getWidths(config, width, layout, sizes)
+  const q = typeof quality === 'number' ? quality : imageQuality[quality]
 
   return `${widths
     .map(
       (w, i) =>
-        `${loader({ config, src, quality, width: w })} ${
+        `${loader({ config, src, quality: q, width: w })} ${
           kind === 'w' ? Math.round(w * scale) : i + 1
         }${kind}`,
     )
@@ -237,7 +239,8 @@ export type ImageProps = IntrisincImage & {
   src: StaticImport | string
   blurDataURL?: string
   loader?: ImageLoader
-  quality?: number
+  /** A number, or a key of `imageQuality` in `graphcommerce.config.ts`. */
+  quality?: number | keyof typeof imageQuality
   unoptimized?: boolean
   dontReportWronglySizedImages?: boolean
   width?: number

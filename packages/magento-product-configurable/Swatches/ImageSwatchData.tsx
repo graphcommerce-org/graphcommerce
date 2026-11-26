@@ -41,6 +41,7 @@ export function ImageSwatchData(props: ImageSwatchDataProps) {
       {thumbnail ? (
         <Image
           src={thumbnail}
+          quality='product'
           width={size === 'small' ? 20 : 40}
           height={size === 'small' ? 20 : 40}
           alt={value ?? ''}

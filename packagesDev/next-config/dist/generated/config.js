@@ -49,6 +49,7 @@ function GraphCommerceConfigSchema() {
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
+    imageQuality: z.lazy(() => ImageQualityConfigSchema().default({ content: 75, product: 52 })),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
@@ -107,6 +108,12 @@ function GraphCommerceStorefrontConfigSchema() {
     robotsAllow: z.boolean().nullish()
   });
 }
+function ImageQualityConfigSchema() {
+  return z.object({
+    content: z.number().default(75),
+    product: z.number().default(52)
+  });
+}
 function MagentoConfigurableVariantValuesSchema() {
   return z.object({
     content: z.boolean().nullish(),
@@ -126,4 +133,4 @@ function SidebarGalleryConfigSchema() {
   });
 }
 
-export { BillingAddressPermissionsSchema, CartPermissionsSchema, CompareVariantSchema, ContainerSizingSchema, CustomerAccountPermissionsSchema, DatalayerConfigSchema, GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceGooglePlaystoreConfigSchema, GraphCommercePermissionsSchema, GraphCommerceStorefrontConfigSchema, MagentoConfigurableVariantValuesSchema, PaginationVariantSchema, ProductFiltersLayoutSchema, RecentlyViewedProductsConfigSchema, SidebarGalleryConfigSchema, SidebarGalleryPaginationVariantSchema, WebsitePermissionsSchema, definedNonNullAnySchema, isDefinedNonNullAny };
+export { BillingAddressPermissionsSchema, CartPermissionsSchema, CompareVariantSchema, ContainerSizingSchema, CustomerAccountPermissionsSchema, DatalayerConfigSchema, GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceGooglePlaystoreConfigSchema, GraphCommercePermissionsSchema, GraphCommerceStorefrontConfigSchema, ImageQualityConfigSchema, MagentoConfigurableVariantValuesSchema, PaginationVariantSchema, ProductFiltersLayoutSchema, RecentlyViewedProductsConfigSchema, SidebarGalleryConfigSchema, SidebarGalleryPaginationVariantSchema, WebsitePermissionsSchema, definedNonNullAnySchema, isDefinedNonNullAny };

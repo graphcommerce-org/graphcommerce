@@ -300,6 +300,10 @@ GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
 
+#### imageQuality: [ImageQualityConfig](#ImageQualityConfig) = `{ content: 75, product: 52 }`
+
+Sets the quality of the images of `<Image>` and `imageUrl()`.
+
 #### limitSsg: boolean
 
 Limit the static generation of SSG when building.
@@ -502,6 +506,18 @@ Allows the option to require login or completely disable certain sections of the
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
+
+### ImageQualityConfig
+
+The quality of each kind of image. Choose the kind with `quality` on `<Image>` or `imageUrl()`, for example `quality='product'`.
+
+#### content: number = `75`
+
+The quality of a content image, such as a banner or another CMS image. `quality='content'` is the default for `<Image>` without the quality prop.
+
+#### product: number = `52`
+
+The quality of a product image from the Magento catalog.
 
 ### MagentoConfigurableVariantValues
 

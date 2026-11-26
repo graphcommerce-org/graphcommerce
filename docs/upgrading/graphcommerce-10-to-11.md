@@ -179,7 +179,29 @@ To keep the values of the configurable product:
 configurableVariantValues: { url: false, content: false },
 ```
 
-## Step 8: Reinstall
+## Step 8: Set `quality='product'` on catalog images
+
+`imageQuality` sets the quality of each kind of image. `quality='content'` is
+for content images, such as CMS images, and is the default, with quality 75.
+`quality='product'` is for product images from the Magento catalog, with
+quality 52. Add `quality='product'` to each `<Image>` in your own components
+that shows a product image:
+
+```diff
+ <Image
+   src={product.small_image?.url ?? ''}
++  quality='product'
+ />
+```
+
+To change the qualities:
+
+```ts
+// graphcommerce.config.ts
+imageQuality: { content: 80, product: 52 },
+```
+
+## Step 9: Reinstall
 
 After upgrading Node:
 

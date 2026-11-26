@@ -62,6 +62,7 @@ function CheckoutAdded() {
         {addedItem?.product.thumbnail?.url ? (
           <Image
             src={addedItem?.product.thumbnail?.url}
+            quality='product'
             width={50}
             height={50}
             layout='fill'
