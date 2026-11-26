@@ -24,6 +24,7 @@ export function FeatureBoxed(props: FeatureBoxedProps) {
             width={1532}
             height={1678}
             src={item.url}
+            quality='product'
             sizes={{
               0: '100vw',
               [theme.breakpoints.values.md]: responsiveVal(100, 600),

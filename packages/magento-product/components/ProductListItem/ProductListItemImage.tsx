@@ -65,6 +65,7 @@ export function ProductListItemImage(props: ImageOrPlaceholderProps) {
         width={1}
         height={1}
         src={src}
+        quality='product'
         alt={alt ?? ''}
         {...image}
         className={classes?.image}

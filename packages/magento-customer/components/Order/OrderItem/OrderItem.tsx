@@ -85,6 +85,7 @@ export function OrderItem(props: OrderItemProps) {
           <Image
             layout='fill'
             src={product.thumbnail.url}
+            quality='product'
             alt={product.thumbnail?.label ?? ''}
             sx={{
               width: actionCardImageSizes[size],

@@ -23,10 +23,11 @@ export function ProductPageGallery(props: ProductPageGalleryProps) {
     .map<MotionImageAspectProps<ProductVideoProps>>((item) => {
       const src = item.url ?? ''
       const alt = item.label || undefined
-      if (item.__typename === 'ProductImage') return { src, alt, width, height }
+      if (item.__typename === 'ProductImage') return { src, alt, width, height, quality: 'product' }
       return {
         src,
         alt,
+        quality: 'product',
         width: 1280,
         height: 720,
         sx: { objectFit: 'cover' },

@@ -1,0 +1,21 @@
+"""
+The quality of each kind of image. Choose the kind with `quality` on `<Image>` or `imageUrl()`, for example `quality='product'`.
+"""
+input ImageQualityConfig {
+  """
+  The quality of a content image, such as a banner or another CMS image. `quality='content'` is the default for `<Image>` without the quality prop.
+  """
+  content: Int! = 75 @public
+
+  """
+  The quality of a product image from the Magento catalog.
+  """
+  product: Int! = 52 @public
+}
+
+extend input GraphCommerceConfig {
+  """
+  Sets the quality of the images of `<Image>` and `imageUrl()`.
+  """
+  imageQuality: ImageQualityConfig! = {}
+}

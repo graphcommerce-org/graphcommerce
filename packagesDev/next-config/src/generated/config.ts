@@ -319,6 +319,8 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
+  /** Sets the quality of the images of `<Image>` and `imageUrl()`. */
+  imageQuality?: ImageQualityConfig
   /**
    * Limit the static generation of SSG when building.
    *
@@ -517,6 +519,20 @@ export type GraphCommerceStorefrontConfig = {
 }
 
 /**
+ * The quality of each kind of image. Choose the kind with `quality` on `<Image>` or `imageUrl()`,
+ * for example `quality='product'`.
+ */
+export type ImageQualityConfig = {
+  /**
+   * The quality of a content image, such as a banner or another CMS image. `quality='content'` is
+   * the default for `<Image>` without the quality prop.
+   */
+  content?: Scalars['Int']['input']
+  /** The quality of a product image from the Magento catalog. */
+  product?: Scalars['Int']['input']
+}
+
+/**
  * Options to configure which values will be replaced when a variant is selected on the product
  * page.
  */
@@ -640,6 +656,7 @@ export function GraphCommerceConfigSchema() {
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
+    imageQuality: z.lazy(() => ImageQualityConfigSchema().default({ content: 75, product: 52 })),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
@@ -700,6 +717,13 @@ export function GraphCommerceStorefrontConfigSchema() {
     magentoStoreCode: z.string().min(1),
     permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     robotsAllow: z.boolean().nullish(),
+  })
+}
+
+export function ImageQualityConfigSchema() {
+  return z.object({
+    content: z.number().default(75),
+    product: z.number().default(52),
   })
 }
 

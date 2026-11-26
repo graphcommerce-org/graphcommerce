@@ -127,6 +127,7 @@ export function WishlistItemActionCard(props: WishlistItemActionCardProps) {
               className={classes.image}
               layout='fill'
               src={product?.small_image?.url}
+              quality='product'
               sx={{
                 objectFit: 'contain',
                 width: actionCardImageSizes[size],

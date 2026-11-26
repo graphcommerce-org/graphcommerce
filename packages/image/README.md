@@ -11,14 +11,30 @@ images further than what `next/image` has to offer.
 
 - Optimize images further than what next/image does.
 
-## Optimizing the images on high dpi sreens (1.5x-2.5x)
+## Quality
 
-It seems that it doesn't really matter if we lower the quality of images for 2x
-screens. So we lowered the quality to 44 as recommended.
+1. Set `quality='product'` on images from the Magento catalog. An `<Image>`
+   without `quality` uses `content`.
 
-To view the difference between quality=100 and quality=44, open this on a high
-dpi screen: https://u5uol.sse.codesandbox.io/ and see the difference between the
-'High resolution' variants.
+   ```tsx
+   <Image
+     src={product.small_image.url}
+     width={300}
+     height={300}
+     quality='product'
+   />
+   ```
+
+2. Change the qualities in `graphcommerce.config.ts`. The defaults are
+   `content: 75` and `product: 52`.
+
+   ```ts
+   imageQuality: { content: 80 },
+   ```
+
+`withGraphCommerce` adds the values of `imageQuality` to `images.qualities`. Add
+a number that you pass as `quality={90}` to `images.qualities` in
+`next.config.ts`.
 
 ## Serving the right images for low dpi screens (1x)
 

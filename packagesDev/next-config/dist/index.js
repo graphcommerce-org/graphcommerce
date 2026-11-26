@@ -1666,8 +1666,10 @@ function withGraphCommerce(nextConfig, cwd = process.cwd()) {
     },
     images: {
       ...nextConfig.images,
-      // GraphCommerce uses quality 52 by default for optimized image delivery
-      qualities: [52, 75, ...nextConfig.images?.qualities ?? []],
+      qualities: [
+        ...Object.values(graphcommerceConfig.imageQuality ?? {}),
+        ...nextConfig.images?.qualities ?? []
+      ],
       remotePatterns: [
         "magentoEndpoint" in graphcommerceConfig ? {
           hostname: new URL(graphcommerceConfig.magentoEndpoint).hostname

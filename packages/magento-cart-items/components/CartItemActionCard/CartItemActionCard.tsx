@@ -115,6 +115,7 @@ export function CartItemActionCard(props: CartItemActionCardProps) {
           <Image
             layout='fill'
             src={product.thumbnail.url}
+            quality='product'
             sx={{
               width: actionCardImageSizes[size],
               height: actionCardImageSizes[size],

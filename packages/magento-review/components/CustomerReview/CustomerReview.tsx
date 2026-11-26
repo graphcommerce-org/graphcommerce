@@ -69,6 +69,7 @@ export function CustomerReview(props: CustomerReviewProps) {
         {product && product.thumbnail && (
           <Image
             src={product.thumbnail?.url ?? ''}
+            quality='product'
             width={196}
             height={196}
             alt={product.thumbnail?.label ?? ''}
