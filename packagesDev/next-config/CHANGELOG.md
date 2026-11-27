@@ -1,5 +1,77 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`f0d0e93`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d0e93b59adfc8b32fc0777727300675aaa48fb) - `@graphcommerce/next-config` and `@graphcommerce/hygraph-cli` require `dotenv` 18. `@graphcommerce/prettier-config-pwa` requires `prettier` 3.5.3: with Prettier 3.6 and later, only the last plugin formats the file, so the imports are not sorted. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`38061a5`](https://github.com/graphcommerce-org/graphcommerce/commit/38061a5b4681ea0b77b88cf19e32e5a69f052218) - Uses Zod 4. The generated `*Schema()` functions in `@graphcommerce/next-config/config` return the inferred Zod 4 schema types. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Major Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`d17e00b`](https://github.com/graphcommerce-org/graphcommerce/commit/d17e00b0553402cd956c0b93c32979b1ef89f0c7) - A configuration field without a value has the default from `Config.graphqls`, such as `containerSizingShell: 'FULL_WIDTH'`. ([@paales](https://github.com/paales))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`6f3fcab`](https://github.com/graphcommerce-org/graphcommerce/commit/6f3fcab35fe9b7ab58825ed0ee0c2663bb28e918) - `findParentPath()` returns a parent `@graphcommerce` package only when its `workspaces` contain the directory. Codegen in a checkout inside another GraphCommerce repository, such as a git worktree in `.tmp`, changes only the files of that checkout. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2686](https://github.com/graphcommerce-org/graphcommerce/pull/2686) [`d40589e`](https://github.com/graphcommerce-org/graphcommerce/commit/d40589ee79bd51040845ce8894493de8ff3b1625) - `loadConfig` gives each worker thread its own temporary config file. Worker threads of one process have the same pid, so two threads that loaded the config at the same time wrote and removed the same file, and `yarn lingui` stopped responding. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

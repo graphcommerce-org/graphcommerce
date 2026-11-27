@@ -36,7 +36,7 @@ export function addHygraphRecord(req: NextApiRequest, res: NextApiResponse) {
   if (!secret) return res.status(400).send('Missing "hygraphSecret" config variable')
   if (!signature) return res.status(400).send('Missing gcms-signature header')
 
-  if (!verifyWebhookSignature({ body, signature, secret })) res.status(401).end()
+  if (!verifyWebhookSignature({ body, signature, secret })) return res.status(401).end()
 
   try {
     const { data } = body

@@ -1,5 +1,91 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+### Patch Changes
+
+- [#2718](https://github.com/graphcommerce-org/graphcommerce/pull/2718) [`d6145eb`](https://github.com/graphcommerce-org/graphcommerce/commit/d6145ebbabc4f3cad3bbc78e5f32794098577223) - Fix the product list pagination scrolling to the products before the next page was loaded. The shopper saw the products of the previous page until the new products arrived. The pagination loads the products first and then scrolls, the same as the filters. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`4442f72`](https://github.com/graphcommerce-org/graphcommerce/commit/4442f72de4139d4a10df3f4a9364fbeabdfc4f51) - The `handleSubmit` of `useFormGql` returns the result of `onValid`, the same as `handleSubmit` of React Hook Form 7.91. `ProductFiltersProContext.submit` returns `Promise<unknown>`. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`1c97bc6`](https://github.com/graphcommerce-org/graphcommerce/commit/1c97bc6d6d01e80d98fe70e595b06804be2ba905) - Uses `@googlemaps/js-api-loader` 2, `cookie` 2, `fetch-retry` 6, `web-vitals` 6 and `schema-dts` 2. `usePlacesAutocomplete` loads the Places library with `setOptions` and `importLibrary`. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+### Patch Changes
+
+- [#2709](https://github.com/graphcommerce-org/graphcommerce/pull/2709) [`9c2a218`](https://github.com/graphcommerce-org/graphcommerce/commit/9c2a21881c446b78986865c6fec1a161824bf6f1) - `ProductFiltersPro` submits only when the filters differ from the current product list. The filter fields add empty filters to the form when they mount, so with `productFiltersLayout: 'SIDEBAR'` a direct load of `/shoes/page/2` or `/shoes?gclid=abc` went to `/shoes`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2695](https://github.com/graphcommerce-org/graphcommerce/pull/2695) [`3c8eeb1`](https://github.com/graphcommerce-org/graphcommerce/commit/3c8eeb1962a63969f8dfb07d5efc5c0ce1a41aa1) - `AddProductsToCartForm` keeps the `defaultValues` prop, so the product page selects the variant of the URL again. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2700](https://github.com/graphcommerce-org/graphcommerce/pull/2700) [`5a1be63`](https://github.com/graphcommerce-org/graphcommerce/commit/5a1be637b734f5e0536999ebb0fc8ddcb69d96fb) - The links of a product list leave out the query string of the request. For `/shoes?gclid=abc`, the links were `/shoes?gclid=abc/page/2`, and crawlers followed them without end. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

@@ -1,5 +1,57 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

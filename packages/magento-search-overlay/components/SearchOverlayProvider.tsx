@@ -1,7 +1,7 @@
 import type { ProductListParams, ProductListQuery } from '@graphcommerce/magento-product'
 import { ProductFiltersPro, toProductListParams } from '@graphcommerce/magento-product'
 import { useForkRef } from '@mui/material'
-import { motionValue } from 'framer-motion'
+import { motionValue } from 'motion/react'
 import { useRouter } from 'next/router'
 import type { ReactNode } from 'react'
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'

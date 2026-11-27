@@ -1,5 +1,61 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+### Patch Changes
+
+- [#2720](https://github.com/graphcommerce-org/graphcommerce/pull/2720) [`a3a9882`](https://github.com/graphcommerce-org/graphcommerce/commit/a3a98822aa436ffcfa4778d7b1871798b97868f2) - Fix the mesh build with Magento 2.4.8 and later and a `googleRecaptchaKey`: `gc-mesh build` stopped with `ERR_PACKAGE_PATH_NOT_EXPORTED`. Magento 2.4.7 and later resolves `recaptchaV3Config`. For Magento 2.4.6 and earlier, the mesh resolves `recaptchaV3Config` from `googleRecaptchaKey`. There it returned `null`, so the storefront sent mutations without a reCAPTCHA token. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

@@ -34,6 +34,7 @@ export function ConfigurableOptionValueImage(props: ConfigurableOptionValueImage
   const image = swatch_data.thumbnail && (
     <Image
       src={swatch_data.thumbnail ?? ''}
+      quality='product'
       layout='fill'
       alt={swatch_data.value ?? ''}
       sizes={swatchSizes[size]}

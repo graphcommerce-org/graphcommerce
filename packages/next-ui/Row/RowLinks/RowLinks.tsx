@@ -77,6 +77,8 @@ export function RowLinks(props: RowLinksProps) {
                   md: 'end',
                 },
               },
+              // Inset, because the scroller overflow clips an outline outside the item
+              '& :focus-visible': { outline: 'revert', outlineOffset: '-1px' },
             })}
           >
             {inlineTitle && (

@@ -2,12 +2,12 @@ extend input GraphCommerceConfig {
   """
   If true, Braintree 3D Secure will be disabled.
   """
-  disableBraintreeThreeDSecure: Boolean
+  disableBraintreeThreeDSecure: Boolean @public
 }
 
 extend input GraphCommerceStorefrontConfig {
   """
   Disable Braintree 3D Secure per locale.
   """
-  disableBraintreeThreeDSecure: Boolean
+  disableBraintreeThreeDSecure: Boolean @public
 }

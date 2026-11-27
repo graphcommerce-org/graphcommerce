@@ -28,7 +28,7 @@ function CheckoutAdded() {
   const a11yFocusRef = useRef<HTMLHeadingElement | null>(null)
 
   useEffect(() => {
-    a11yFocusRef.current?.focus()
+    a11yFocusRef.current?.focus({ preventScroll: true })
   }, [])
 
   const name = addedItem?.product.name ?? <Trans>Product</Trans>
@@ -61,6 +61,7 @@ function CheckoutAdded() {
         {addedItem?.product.thumbnail?.url ? (
           <Image
             src={addedItem?.product.thumbnail?.url}
+            quality='product'
             width={50}
             height={50}
             layout='fill'

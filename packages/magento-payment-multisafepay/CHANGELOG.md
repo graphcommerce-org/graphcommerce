@@ -1,5 +1,65 @@
 # @graphcommerce/magento-payment-multisafepay
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2693](https://github.com/graphcommerce-org/graphcommerce/pull/2693) [`c07e1f9`](https://github.com/graphcommerce-org/graphcommerce/commit/c07e1f9a7429e032a685deb5f97f9cacd8fa6981) - `MSPPaymentPlaceOrder` locks the cart with the number of the placed order. It read an undeclared `order`, so placing an order threw a `ReferenceError`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2694](https://github.com/graphcommerce-org/graphcommerce/pull/2694) [`87dabb7`](https://github.com/graphcommerce-org/graphcommerce/commit/87dabb7d175c4d9b647946a8ecf1a17409534c65) - `MSPRestoreLocked` reads the cart lock with `useCurrentCartId`. It imported `@graphcommerce/magento-cart/hooks/CurrentCartId.gql`, which the `exports` of `magento-cart` do not list, so the build failed. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2702](https://github.com/graphcommerce-org/graphcommerce/pull/2702) [`7e2b9b5`](https://github.com/graphcommerce-org/graphcommerce/commit/7e2b9b55ebb8b3920a97c0f309b46a5afd95e6f7) - `MSPRestoreLocked` renders `ApolloErrorSnackbar` only for an error of the cart restore. `MSPRestoreLocked` is on every page, and the `googlerecaptcha` plugin on `ApolloErrorSnackbar` loads reCAPTCHA, so each page loaded reCAPTCHA. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

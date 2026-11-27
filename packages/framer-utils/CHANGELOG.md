@@ -1,5 +1,71 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

@@ -5,11 +5,11 @@ input AlgoliaSortableOption {
   """
   The label of the index to display
   """
-  label: String!
+  label: String! @public
   """
   The name of the index to target.
   """
-  value: String!
+  value: String! @public
 }
 
 """
@@ -19,12 +19,12 @@ input AlgoliaFilterAttribute {
   """
   Stores the default aggregation uid
   """
-  aggregation: String!
+  aggregation: String! @public
 
   """
   Stores the algolia attribute that should be connected to the magento aggregation
   """
-  toAlgoliaAttribute: String!
+  toAlgoliaAttribute: String! @public
 }
 
 """
@@ -34,7 +34,7 @@ input AlgoliaSearchIndexConfig {
   """
   Configure your Algolia Search index for Magento products
   """
-  searchIndex: String!
+  searchIndex: String! @public
 
   """
   Configures Algolia filterable attributes
@@ -58,17 +58,17 @@ extend input GraphCommerceConfig {
   """
   Configure your Algolia application ID.
   """
-  algoliaApplicationId: String!
+  algoliaApplicationId: String! @public
 
   """
   Configure your Algolia Search Only API Key
   """
-  algoliaSearchOnlyApiKey: String!
+  algoliaSearchOnlyApiKey: String! @public
 
   """
   Configures algolia search debounce time. This will slow down the search response.
   """
-  algoliaSearchDebounceTime: Int
+  algoliaSearchDebounceTime: Int @public
 
   """
   Configure your Algolia Hygraph index. This will create a new index for Hygraph data if it doesn't exist in Algolia.

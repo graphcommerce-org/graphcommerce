@@ -3,7 +3,7 @@ import { sxx } from '@graphcommerce/next-ui'
 import { t } from '@lingui/core/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useEventCallback, useTheme } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import React, { useEffect, useRef } from 'react'
 import type { LiteralUnion } from 'type-fest'
 import { useMatchMedia } from '../../hooks'
@@ -87,7 +87,8 @@ export const NavigationOverlay = React.memo((props: NavigationOverlayProps) => {
     animating.set(true)
 
     if (activeAndNotClosing) {
-      a11yFocusRef.current?.focus()
+      // A scrolling focus() puts the overlay in its open position before OverlayBase animates it
+      a11yFocusRef.current?.focus({ preventScroll: true })
     }
   }, [activeAndNotClosing, animating])
 

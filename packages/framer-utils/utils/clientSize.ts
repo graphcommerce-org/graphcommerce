@@ -1,5 +1,5 @@
-import type { MotionValue } from 'framer-motion'
-import { frame, motionValue } from 'framer-motion'
+import type { MotionValue } from 'motion/react'
+import { frame, motionValue } from 'motion/react'
 
 export type ClientSize = {
   x: MotionValue<number>

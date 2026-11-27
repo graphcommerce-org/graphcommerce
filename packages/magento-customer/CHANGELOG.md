@@ -1,5 +1,119 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.68
+
+### Patch Changes
+
+- [#2727](https://github.com/graphcommerce-org/graphcommerce/pull/2727) [`4e14aa6`](https://github.com/graphcommerce-org/graphcommerce/commit/4e14aa6c9e2b7d94ac2ce789580ae486e2c995bc) - Each request that needs the customer during an expired customer session waits for one sign-in: a rejected mutation, a private query with `loggedIn`, and a query that fails without the token. A rejected guest query, such as the reCAPTCHA config of the sign-in form, is sent again at once without the token. After the sign-in, `customerLink` sends the waiting requests with the new token. After a dismiss, they return "You must be signed in to continue". A customer token that an earlier page saved with `valid: false` is sent again, so the sign-in opens on the first request. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 11.0.0-canary.67
+
+### Patch Changes
+
+- [#2728](https://github.com/graphcommerce-org/graphcommerce/pull/2728) [`33d9161`](https://github.com/graphcommerce-org/graphcommerce/commit/33d9161379214ebbf80b5e170add5316773ab5d5) - Revert "Treat an expired customer token as signed out": `loggedIn` is true while a customer token exists. During an open sign-in, `customerLink` makes the requests that need the customer wait. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+### Patch Changes
+
+- [#2723](https://github.com/graphcommerce-org/graphcommerce/pull/2723) [`a96bbd7`](https://github.com/graphcommerce-org/graphcommerce/commit/a96bbd798e669dea841c63fd1733ae7bc6249a79) - A customer token with `valid: false` counts as signed out in `useCustomerSession`, `getPrivateQueryContext` and `usePrivateQueryContext`. `customerLink` does not send that token, so the shop showed guest prices in the layout for a customer and kept customer queries that failed. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+- [#2724](https://github.com/graphcommerce-org/graphcommerce/pull/2724) [`8985281`](https://github.com/graphcommerce-org/graphcommerce/commit/89852812292471e6780188c83ee093cea4ed988c) - The session-expired form shows the email of the sign-in after a cache migration. The `CustomerToken` holds the `email` of the sign-in, and `migrateCustomer` copies it with the token. A shop that writes `CustomerTokenDocument` with an object literal must add `email`. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+### Patch Changes
+
+- [#2663](https://github.com/graphcommerce-org/graphcommerce/pull/2663) [`8d0f4a0`](https://github.com/graphcommerce-org/graphcommerce/commit/8d0f4a0a6539d8003fa21e1bc09822f55aa4dedb) - Address forms now honor Magento's `customer/address/telephone_show` configuration instead of silently submitting a `000 - 000 0000` placeholder telephone.
+
+  `CartAddressInput.telephone` is a non-nullable `String!`, so the address forms always had to send a value; because the mutation variable is declared as an optional `String`, `required.telephone` resolved to `false` and the field rendered as optional, after which `onBeforeSubmit` substituted the placeholder. Every checkout that skipped the field therefore stored a fake phone number on the order.
+
+  Magento does expose whether a telephone is required — `attributesForm(formCode: "customer_address_edit")` returns `is_required` per address attribute and reflects `customer/address/telephone_show`. `ShippingAddressForm`, `EditBillingAddressForm` and `EditAddressForm` now read that metadata through the existing `useAttributesForm` hook and mark the field required accordingly. The placeholder is gone: an empty telephone is submitted as an empty string, which Magento validates against the very same `is_required` (`Magento\Customer\Model\Address\Validator\General::checkOptionalFields`).
+
+  This is a deliberate behavior change. Where a customer who bypassed the client-side validation previously got a successful order carrying a fake phone number, a shop that requires a telephone now gets a proper `"telephone" is required. Enter and try again.` validation error. Addresses that still carry the old placeholder are cleared when they are loaded into a form, so the customer fills in a real number instead of being shown zeroes.
+
+  `attributesForm` only exists since Magento 2.4.7, so all of this is version-gated in `stripLegacyPlaceholderTelephone()` / `applyLegacyPlaceholderTelephone()` (`@graphcommerce/magento-customer`): below 2.4.7 the placeholder is still submitted and no longer stripped, exactly as before.
+
+  Pages that render these forms should preload the metadata in `getStaticProps` with `await preloadAttributesForm(client, 'customer_address_edit')`, the same way the account pages already preload `customer_account_create` / `customer_account_edit`. The examples do this for the checkout and address pages, which also closes the window where a customer could submit before the metadata resolved. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2689](https://github.com/graphcommerce-org/graphcommerce/pull/2689) [`8d74a4b`](https://github.com/graphcommerce-org/graphcommerce/commit/8d74a4b333eeff637dfaa1c10dc29a62961afe25) - `useAccountSignInUpForm` goes to the password step after an email submitted with Enter. React Hook Form 7.67 updates `isValid` of an `onBlur` form on blur only, so the form stayed in the email step. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2675](https://github.com/graphcommerce-org/graphcommerce/pull/2675) [`2a76e15`](https://github.com/graphcommerce-org/graphcommerce/commit/2a76e1581e6149f6fa1cf9f3a6513455c8cfa459) - Empty client fields return complete cache results during rendering. Explicit null values clear saved client state. ([@paales](https://github.com/paales))
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2676](https://github.com/graphcommerce-org/graphcommerce/pull/2676) [`9496f0b`](https://github.com/graphcommerce-org/graphcommerce/commit/9496f0bdcb751c5f7d774ebe961d86347a8beae8) - Cached null customer results remain complete for server queries. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.47
 
 ### Patch Changes

@@ -14,7 +14,7 @@ input StoryblokConfig {
   do not use a private/management token here. Override per-environment with
   `GC_STORYBLOK_ACCESS_TOKEN`.
   """
-  accessToken: String!
+  accessToken: String! @public
 
   """
   Source Storyblok space ID to bootstrap from. Defaults to the GraphCommerce
@@ -44,7 +44,7 @@ input StoryblokConfig {
   cross process boundaries; its in-memory LRU otherwise answers every read locally. Custom cache
   handlers are unaffected.
   """
-  cacheVersionTtl: Int = 3600
+  cacheVersionTtl: Int = 3600 @public
 }
 
 extend input GraphCommerceConfig {
@@ -64,5 +64,5 @@ extend input GraphCommerceStorefrontConfig {
   differs from the Storyblok default language (e.g. GraphCommerce default `nl_NL`
   while the Storyblok space default stays English).
   """
-  storyblokLocale: String
+  storyblokLocale: String @public
 }

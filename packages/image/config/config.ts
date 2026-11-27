@@ -1,8 +1,10 @@
+import { imageQuality } from '@graphcommerce/next-config/config'
 import { normalizePathTrailingSlash } from 'next/dist/client/normalize-trailing-slash'
 import type { ImageConfigComplete } from 'next/dist/shared/lib/image-config'
 import { imageConfigDefault } from 'next/dist/shared/lib/image-config'
 // eslint-disable-next-line @typescript-eslint/no-restricted-imports
 import type { ImageLoaderProps } from 'next/image'
+import type { ImageProps } from '../components/Image'
 
 export type DefaultImageLoaderProps = ImageLoaderProps & { root: string }
 
@@ -139,24 +141,25 @@ const urlLoaders = {
 }
 
 /**
- * Build an optimized image URL outside of a React tree, for the places that
- * need a bare URL string rather than an `<Image>` — `<video poster>`, a CSS
- * `background-image`, an `og:image`.
+ * Build an optimized image URL outside of a React tree, for the places that need a bare URL string
+ * rather than an `<Image>` — `<video poster>`, a CSS `background-image`, an `og:image`.
  *
- * Routes through the configured loader exactly like `<Image>` does, so the
- * bytes are served and cached by your own deployment rather than fetched from
- * the origin host by every visitor. That matters when the origin meters
- * bandwidth.
+ * Routes through the configured loader exactly like `<Image>` does, so the bytes are served and
+ * cached by your own deployment rather than fetched from the origin host by every visitor. That
+ * matters when the origin meters bandwidth.
  *
- * `width` is snapped up to the nearest configured size: the optimizer rejects
- * any width outside `imageSizes`/`deviceSizes` with a 400. Format is negotiated
- * by the optimizer on the request's `Accept` header and can't be pinned here.
+ * `width` is snapped up to the nearest configured size: the optimizer rejects any width outside
+ * `imageSizes`/`deviceSizes` with a 400. Format is negotiated by the optimizer on the request's
+ * `Accept` header and can't be pinned here.
  *
- * Returns `src` untouched under a `custom` loader, which exists only as a
- * per-`<Image>` prop and so can't be resolved from here.
+ * Returns `src` untouched under a `custom` loader, which exists only as a per-`<Image>` prop and so
+ * can't be resolved from here.
  */
-export function imageUrl(src: string, options: { width: number; quality?: number }): string {
-  const { width, quality = 75 } = options
+export function imageUrl(
+  src: string,
+  options: { width: number; quality?: ImageProps['quality'] },
+): string {
+  const { width, quality = 'content' } = options
   if (configLoader === 'custom') return src
 
   const config =
@@ -168,6 +171,6 @@ export function imageUrl(src: string, options: { width: number; quality?: number
     config: { ...config, allSizes },
     src,
     width: snapped,
-    quality,
+    quality: typeof quality === 'number' ? quality : imageQuality[quality],
   })
 }

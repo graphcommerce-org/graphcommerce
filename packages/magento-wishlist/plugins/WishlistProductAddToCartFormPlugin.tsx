@@ -16,7 +16,7 @@ function WishlistUrlHandler() {
   const { setValue } = useFormAddProductsToCart()
   const router = useRouter()
   const { loggedIn } = useCustomerSession()
-  const wishlist = useWishlistItems()
+  const wishlist = useWishlistItems(1, 999)
 
   const wishlistItems = wishlist.items?.map((item) => item)
 

@@ -1,5 +1,57 @@
 # @graphcommerce/hygraph-dynamic-rows
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2678](https://github.com/graphcommerce-org/graphcommerce/pull/2678) [`6c6e473`](https://github.com/graphcommerce-org/graphcommerce/commit/6c6e473e2987cedae927e856aab3a9123cc22dd1) - `getAllHygraphDynamicRows` calculates the number of pages from the count of dynamic rows, so it fetches all dynamic rows. ([@Giovanni-Schroevers](https://github.com/Giovanni-Schroevers))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

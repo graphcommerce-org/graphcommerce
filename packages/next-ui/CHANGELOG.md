@@ -1,5 +1,117 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+### Patch Changes
+
+- [#2735](https://github.com/graphcommerce-org/graphcommerce/pull/2735) [`758b863`](https://github.com/graphcommerce-org/graphcommerce/commit/758b863f005a812c79f6bbe9cf98e2a6a03a265a) - Fix hydration error #418 on a category page with an active filter or sort: `ActionCardAccordion` renders its summary as a `div`, so the clear button in `right` is not a button in a button. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+### Patch Changes
+
+- [#2725](https://github.com/graphcommerce-org/graphcommerce/pull/2725) [`4a4e897`](https://github.com/graphcommerce-org/graphcommerce/commit/4a4e897efee5fad6146d34e7cecc40d33fe7e94e) - The fullscreen toggle of `SidebarGallery` opens and closes with the keyboard (Enter and Space). Before, only a mouse click opened the fullscreen gallery. ([@DivaniNL](https://github.com/DivaniNL))
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+### Patch Changes
+
+- [#2718](https://github.com/graphcommerce-org/graphcommerce/pull/2718) [`d6145eb`](https://github.com/graphcommerce-org/graphcommerce/commit/d6145ebbabc4f3cad3bbc78e5f32794098577223) - Fix the product list pagination scrolling to the products before the next page was loaded. The shopper saw the products of the previous page until the new products arrived. The pagination loads the products first and then scrolls, the same as the filters. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.57
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`28aa653`](https://github.com/graphcommerce-org/graphcommerce/commit/28aa653188ed5dc4a0cc5401ee5149b31858e01d) - **Breaking change:** GraphCommerce imports `motion/react` and requires the `motion` package. In your project, replace the `framer-motion` dependency with `motion` 14 and change the imports from `framer-motion` to `motion/react`. ([@paales](https://github.com/paales))
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`1c97bc6`](https://github.com/graphcommerce-org/graphcommerce/commit/1c97bc6d6d01e80d98fe70e595b06804be2ba905) - Uses `@googlemaps/js-api-loader` 2, `cookie` 2, `fetch-retry` 6, `web-vitals` 6 and `schema-dts` 2. `usePlacesAutocomplete` loads the Places library with `setOptions` and `importLibrary`. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+### Patch Changes
+
+- [#2714](https://github.com/graphcommerce-org/graphcommerce/pull/2714) [`bdbf083`](https://github.com/graphcommerce-org/graphcommerce/commit/bdbf0831891f1074412bf25e8d13e9f1b176538a) - `NavigationOverlay` focuses its close button without a scroll, so the backdrop fades in when the menu opens. A scrolling `focus()` put the overlay in its open position before `OverlayBase` started the animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+### Patch Changes
+
+- [#2705](https://github.com/graphcommerce-org/graphcommerce/pull/2705) [`eb1f246`](https://github.com/graphcommerce-org/graphcommerce/commit/eb1f2461a54a11ac3950afa1651cb5aea7abb066) - BlogListItem is one tab stop: the title link covers the full card, so keyboard and screen reader users do not get the same link two times. ([@DivaniNL](https://github.com/DivaniNL))
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+### Patch Changes
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.49
+
+### Patch Changes
+
+- [#2701](https://github.com/graphcommerce-org/graphcommerce/pull/2701) [`561f62d`](https://github.com/graphcommerce-org/graphcommerce/commit/561f62dd0072d3080dc18a01fa5fda66a96af410) - A page that opens with `#gallery`, for example after a reload of the zoomed gallery or after Back from another site, renders without zoom, the same as the server render, and removes `#gallery` without a "Cancel rendering route" error. Before, the gallery rendered zoomed in the browser and closed again, so the image moved on page load. ([@DivaniNL](https://github.com/DivaniNL))
+
+- [#2701](https://github.com/graphcommerce-org/graphcommerce/pull/2701) [`7df196c`](https://github.com/graphcommerce-org/graphcommerce/commit/7df196c9115966de4b794c55d9d21f2e1dad007c) - The zoomed SidebarGallery fills the full screen height. It moves up by its measured distance to the top of the page instead of a fixed margin based on the header height. With the fixed margin, the zoomed gallery on desktop started 11px below the top of the screen and the bottom 11px was cut off. ([@DivaniNL](https://github.com/DivaniNL))
+
+## 11.0.0-canary.48
+
+### Minor Changes
+
+- [#2699](https://github.com/graphcommerce-org/graphcommerce/pull/2699) [`f28586b`](https://github.com/graphcommerce-org/graphcommerce/commit/f28586b061f48cce3f3a70f7ec2c57f13868f8e1) - The packages export the modules that shops import from the package root: the types of `RichText`, `GetAddressesDocument`, `isSameAddress`, `isCartAddressACustomerAddress`, `AvailableShippingMethodFragment`, `AccountAddressFragment`, `CreateCustomerAddressDocument`, `UpdateCustomerAddressDocument`, `ValidatedPasswordElement`, `useCustomizableOptionPrice`, `UseAddProductsToCartActionFragment`, `useProductFiltersProSearchInput`, `useSearchPageAndParam`, `AddWishlistItemToCartProps` and `safeJsonLdReplacer`. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2679](https://github.com/graphcommerce-org/graphcommerce/pull/2679) [`4d0bb18`](https://github.com/graphcommerce-org/graphcommerce/commit/4d0bb1822241d919e2f57495f644afbd4ea3baf2) - Reduce Total Blocking Time by removing synchronous re-renders right after hydration and splitting up startup work:
+
+  - `usePrivateQuery` no longer uses `useIsSSR()`. Its `useSyncExternalStore` server/client mismatch forced a synchronous re-render of the whole page after hydration, even for guests. Without a private context the mask stays on, which is inert because it only hides content while the `private-query` CSS flag is set.
+  - `useCookie(name)` subscribes to a single cookie via `useSyncExternalStore` (server snapshot `null`), so it only re-renders after hydration when that cookie is actually set.
+  - `usePrivateQueryContext` (magento-customer plugin) subscribes to the derived `loggedIn` boolean on the Apollo cache instead of the full `CustomerToken` query result, so the page doesn't re-render when the query result object changes but `loggedIn` doesn't.
+  - `CssAndFramerMotionProvider` loads framer-motion features after hydration and applies them in `startTransition`, so the re-render of all `m` components is time-sliced and the features stay out of the startup bundle.
+  - Examples: `ThemeProvider` uses `noSsr`, avoiding MUI's color scheme provider re-rendering every styled component after hydration (`colorSchemeSelector: 'class'` already handles the color scheme in CSS before paint).
+  - Examples: added `patch-package` patches for `next@16.2.6` (Pages Router hydrates inside `startTransition`, like the App Router; the route loader yields between `_app` and page instantiation) and `react-hook-form@7.67.0` (only set `formState.isReady` when it is subscribed to; the unconditional update re-rendered every form synchronously after mount).
+  - `ListFormat` renders a single item directly instead of creating an `Intl.ListFormat`, which loads its locale data on first use. The store switcher in the header rendered one item on every page; this cut ~12–18% of TBT at 4× CPU throttling.
+  - `useElementScroll` no longer measures `scrollWidth` synchronously in its layout effect, which forced a style recalc and layout of the whole page during the hydration commit. It measures in framer-motion's read step instead; the ResizeObserver also delivers an initial observation.
+  - `framer-utils` uses framer-motion's `frame` instead of `framesync`, and `framer-scroller` loads `popmotion` on demand (only needed after user interaction). Together ~53 KB raw of JS out of the startup bundle. ([@paales](https://github.com/paales))
+
+- [#2683](https://github.com/graphcommerce-org/graphcommerce/pull/2683) [`24612c2`](https://github.com/graphcommerce-org/graphcommerce/commit/24612c27c98dda60d7281fff85eb9437024a05f8) - `LazyHydrate` keeps the server-rendered HTML when its parent renders again before hydration. With a `height`, it renders its content when the browser is idle after a client-side navigation. Find-in-page finds the content below the fold in both cases. ([@paales](https://github.com/paales))
+
+- [#2698](https://github.com/graphcommerce-org/graphcommerce/pull/2698) [`1f56a16`](https://github.com/graphcommerce-org/graphcommerce/commit/1f56a160567101a996445d76ee7b06f3b0e1702b) - `PopperPanel` passes `popperProps` to the `Popper` and merges `popperProps.sx` with its own `sx`. It passed `popperProps` to `PopperPanelActions`, so the prop had no effect. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2706](https://github.com/graphcommerce-org/graphcommerce/pull/2706) [`2518b60`](https://github.com/graphcommerce-org/graphcommerce/commit/2518b60f50072683ef556c167b770efc29840de8) - RowLinks items show a visible keyboard focus outline that the scroller does not clip. ([@DivaniNL](https://github.com/DivaniNL))
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

@@ -28,7 +28,7 @@ export function MSPRestoreLocked() {
 
   return (
     <>
-      <ApolloErrorSnackbar error={error} />
+      {error && <ApolloErrorSnackbar error={error} />}
       {isMsp && (
         <DialogDynamic open={Boolean(shouldRestore)} fullWidth>
           <FullPageMessage

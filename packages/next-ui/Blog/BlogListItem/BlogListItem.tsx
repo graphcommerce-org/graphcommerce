@@ -26,6 +26,7 @@ export function BlogListItem(props: BlogListItemProps) {
       className={classes.item}
       sx={sxx(
         (theme) => ({
+          position: 'relative',
           display: 'grid',
           gridTemplateRows: 'auto auto auto',
           alignContent: 'start',
@@ -36,25 +37,23 @@ export function BlogListItem(props: BlogListItemProps) {
         sx,
       )}
     >
-      <Link href={`/${url}`} color='inherit' underline='hover'>
-        <Box
-          className={classes.asset}
-          sx={(theme) => ({
-            '& img': {
-              aspectRatio: '3/2',
-              objectFit: 'cover',
-              ...breakpointVal(
-                'borderRadius',
-                theme.shape.borderRadius * 2,
-                theme.shape.borderRadius * 3,
-                theme.breakpoints.values,
-              ),
-            },
-          })}
-        >
-          {asset}
-        </Box>
-      </Link>
+      <Box
+        className={classes.asset}
+        sx={(theme) => ({
+          '& img': {
+            aspectRatio: '3/2',
+            objectFit: 'cover',
+            ...breakpointVal(
+              'borderRadius',
+              theme.shape.borderRadius * 2,
+              theme.shape.borderRadius * 3,
+              theme.breakpoints.values,
+            ),
+          },
+        })}
+      >
+        {asset}
+      </Box>
 
       {date && (
         <Box
@@ -71,7 +70,13 @@ export function BlogListItem(props: BlogListItemProps) {
         </Box>
       )}
 
-      <Link href={`/${url}`} className={classes.title} color='inherit' underline='hover'>
+      <Link
+        href={`/${url}`}
+        className={classes.title}
+        color='inherit'
+        underline='hover'
+        sx={{ '&::after': { content: '""', position: 'absolute', inset: 0 } }}
+      >
         <Typography component='h2' variant='h4'>
           {title}
         </Typography>

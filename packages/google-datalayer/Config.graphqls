@@ -12,5 +12,5 @@ input DatalayerConfig {
   """
   Enable core web vitals tracking for GraphCommerce
   """
-  coreWebVitals: Boolean
+  coreWebVitals: Boolean @public
 }

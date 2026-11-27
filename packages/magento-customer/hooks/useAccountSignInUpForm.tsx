@@ -18,7 +18,7 @@ export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 
 
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
-  const { token, valid } = useCustomerSession()
+  const { token, valid, email: tokenEmail } = useCustomerSession()
 
   const canSignUp = useCustomerAccountCanSignUp()
   const isToggleMethod = !enableGuestCheckoutLogin || !canSignUp
@@ -26,7 +26,8 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
   const customerQuery = useQuery(UseCustomerValidateTokenDocument, { fetchPolicy: 'cache-only' })
-  const cachedEmail = customerQuery?.data?.customer?.email
+  // The cache migration keeps the token and drops the customer.
+  const cachedEmail = customerQuery?.data?.customer?.email ?? tokenEmail
 
   const form = useFormGqlQuery<
     IsEmailAvailableQuery,

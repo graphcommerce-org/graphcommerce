@@ -13,9 +13,9 @@ extend input GraphCommercePermissions {
   """
   Enables / disabled the account section of the website. DISABLE_REGISTRATION will only disable the registration page.
   """
-  customerAccount: CustomerAccountPermissions
+  customerAccount: CustomerAccountPermissions @public
   """
   Allows customers to change their billing address or locks it down.
   """
-  billingAddress: BillingAddressPermissions
+  billingAddress: BillingAddressPermissions @public
 }

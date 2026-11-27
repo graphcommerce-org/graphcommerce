@@ -48,6 +48,20 @@ You can also use the configuration in your `.meshrc.yml` by accessing
 endpoint: '{graphCommerce.magentoEndpoint}'
 ```
 
+## Public and server-only configuration
+
+A field with `@public` is available in the browser. A field without `@public` is server-only:
+code that runs in the browser cannot read it.
+
+- Turbopack stops the build when browser code imports a server-only field from
+  `@graphcommerce/next-config/config`.
+- A server-only field of a storefront, such as `useStorefrontConfig().myServerField`, throws in
+  development and returns `undefined` in production.
+- A server-only field of a section, such as `algolia.searchOnlyApiKey`, is `undefined`.
+
+Put `@public` on fields with a scalar or enum type. In the browser, a field with an input type, such
+as `debug: GraphCommerceDebugConfig`, contains only the `@public` fields of that input.
+
 ## Environment variables to override configuration
 
 Configuration values can be overwriten by environment variables, with the following rules:
@@ -72,10 +86,11 @@ Create a graphql/Config.graphqls file in your project and extend the GraphCommer
 
 ```graphql
 extend input GraphCommerceConfig {
-  myConfig: String # or Boolean, or Int, or Float, make required with `!`
+  myConfig: String @public # or Boolean, or Int, or Float, make required with `!`
+  myApiSecret: String
 }
 extend input GraphCommerceStorefrontConfig {
-  myField: Boolean
+  myField: Boolean @public
 }
 ```
 
@@ -285,6 +300,10 @@ GC_HYGRAPH_WRITE_ACCESS_TOKEN="AccessTokenFromHygraph"
 yarn graphcommerce hygraph-migrate
 ```
 
+#### imageQuality: [ImageQualityConfig](#ImageQualityConfig) = `{ content: 75, product: 52 }`
+
+Sets the quality of the images of `<Image>` and `imageUrl()`.
+
 #### limitSsg: boolean
 
 Limit the static generation of SSG when building.
@@ -487,6 +506,18 @@ Allows the option to require login or completely disable certain sections of the
 
 Allow the site to be indexed by search engines.
 If false, the robots.txt file will be set to disallow all.
+
+### ImageQualityConfig
+
+The quality of each kind of image. Choose the kind with `quality` on `<Image>` or `imageUrl()`, for example `quality='product'`.
+
+#### content: number = `75`
+
+The quality of a content image, such as a banner or another CMS image. `quality='content'` is the default for `<Image>` without the quality prop.
+
+#### product: number = `52`
+
+The quality of a product image from the Magento catalog.
 
 ### MagentoConfigurableVariantValues
 

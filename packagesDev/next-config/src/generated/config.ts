@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import * as z from 'zod'
 export type Maybe<T> = T | null
 export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
@@ -87,6 +87,20 @@ export type DatalayerConfig = {
  * endpoint: '{graphCommerce.magentoEndpoint}'
  * ```
  *
+ * ## Public and server-only configuration
+ *
+ * A field with `@public` is available in the browser. A field without `@public` is server-only:
+ * code that runs in the browser cannot read it.
+ *
+ * - Turbopack stops the build when browser code imports a server-only field from
+ *   `@graphcommerce/next-config/config`.
+ * - A server-only field of a storefront, such as `useStorefrontConfig().myServerField`, throws in
+ *   development and returns `undefined` in production.
+ * - A server-only field of a section, such as `algolia.searchOnlyApiKey`, is `undefined`.
+ *
+ * Put `@public` on fields with a scalar or enum type. In the browser, a field with an input type,
+ * such as `debug: GraphCommerceDebugConfig`, contains only the `@public` fields of that input.
+ *
  * ## Environment variables to override configuration
  *
  * Configuration values can be overwriten by environment variables, with the following rules:
@@ -113,10 +127,11 @@ export type DatalayerConfig = {
  *
  * ```graphql
  * extend input GraphCommerceConfig {
- *   myConfig: String # or Boolean, or Int, or Float, make required with `!`
+ *   myConfig: String @public # or Boolean, or Int, or Float, make required with `!`
+ *   myApiSecret: String
  * }
  * extend input GraphCommerceStorefrontConfig {
- *   myField: Boolean
+ *   myField: Boolean @public
  * }
  * ```
  *
@@ -304,6 +319,8 @@ export type GraphCommerceConfig = {
    * ```
    */
   hygraphWriteAccessToken?: InputMaybe<Scalars['String']['input']>
+  /** Sets the quality of the images of `<Image>` and `imageUrl()`. */
+  imageQuality?: ImageQualityConfig
   /**
    * Limit the static generation of SSG when building.
    *
@@ -502,6 +519,20 @@ export type GraphCommerceStorefrontConfig = {
 }
 
 /**
+ * The quality of each kind of image. Choose the kind with `quality` on `<Image>` or `imageUrl()`,
+ * for example `quality='product'`.
+ */
+export type ImageQualityConfig = {
+  /**
+   * The quality of a content image, such as a banner or another CMS image. `quality='content'` is
+   * the default for `<Image>` without the quality prop.
+   */
+  content?: Scalars['Int']['input']
+  /** The quality of a product image from the Magento catalog. */
+  product?: Scalars['Int']['input']
+}
+
+/**
  * Options to configure which values will be replaced when a variant is selected on the product
  * page.
  */
@@ -545,57 +576,71 @@ export type SidebarGalleryPaginationVariant = 'DOTS' | 'THUMBNAILS_BOTTOM'
 
 export type WebsitePermissions = 'ENABLED'
 
-type Properties<T> = Required<{
-  [K in keyof T]: z.ZodType<T[K], any, T[K]>
-}>
-
 type definedNonNullAny = {}
 
 export const isDefinedNonNullAny = (v: any): v is definedNonNullAny => v !== undefined && v !== null
 
 export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v))
 
-export const BillingAddressPermissionsSchema = z.enum(['EDITABLE', 'READONLY'])
+export const BillingAddressPermissionsSchema: z.ZodType<
+  'EDITABLE' | 'READONLY',
+  'EDITABLE' | 'READONLY'
+> = z.enum(['EDITABLE', 'READONLY'])
 
-export const CartPermissionsSchema = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
+export const CartPermissionsSchema: z.ZodType<
+  'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED',
+  'CUSTOMER_ONLY' | 'DISABLED' | 'ENABLED'
+> = z.enum(['CUSTOMER_ONLY', 'DISABLED', 'ENABLED'])
 
-export const CompareVariantSchema = z.enum(['CHECKBOX', 'ICON'])
-
-export const ContainerSizingSchema = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
-
-export const CustomerAccountPermissionsSchema = z.enum([
-  'DISABLED',
-  'DISABLE_REGISTRATION',
-  'ENABLED',
+export const CompareVariantSchema: z.ZodType<'CHECKBOX' | 'ICON', 'CHECKBOX' | 'ICON'> = z.enum([
+  'CHECKBOX',
+  'ICON',
 ])
 
-export const PaginationVariantSchema = z.enum(['COMPACT', 'EXTENDED'])
+export const ContainerSizingSchema: z.ZodType<
+  'BREAKPOINT' | 'FULL_WIDTH',
+  'BREAKPOINT' | 'FULL_WIDTH'
+> = z.enum(['BREAKPOINT', 'FULL_WIDTH'])
 
-export const ProductFiltersLayoutSchema = z.enum(['DEFAULT', 'SIDEBAR'])
+export const CustomerAccountPermissionsSchema: z.ZodType<
+  'DISABLED' | 'DISABLE_REGISTRATION' | 'ENABLED',
+  'DISABLED' | 'DISABLE_REGISTRATION' | 'ENABLED'
+> = z.enum(['DISABLED', 'DISABLE_REGISTRATION', 'ENABLED'])
 
-export const SidebarGalleryPaginationVariantSchema = z.enum(['DOTS', 'THUMBNAILS_BOTTOM'])
+export const PaginationVariantSchema: z.ZodType<'COMPACT' | 'EXTENDED', 'COMPACT' | 'EXTENDED'> =
+  z.enum(['COMPACT', 'EXTENDED'])
 
-export const WebsitePermissionsSchema = z.enum(['ENABLED'])
+export const ProductFiltersLayoutSchema: z.ZodType<'DEFAULT' | 'SIDEBAR', 'DEFAULT' | 'SIDEBAR'> =
+  z.enum(['DEFAULT', 'SIDEBAR'])
 
-export function DatalayerConfigSchema(): z.ZodObject<Properties<DatalayerConfig>> {
+export const SidebarGalleryPaginationVariantSchema: z.ZodType<
+  'DOTS' | 'THUMBNAILS_BOTTOM',
+  'DOTS' | 'THUMBNAILS_BOTTOM'
+> = z.enum(['DOTS', 'THUMBNAILS_BOTTOM'])
+
+export const WebsitePermissionsSchema: z.ZodType<'ENABLED', 'ENABLED'> = z.enum(['ENABLED'])
+
+export function DatalayerConfigSchema() {
   return z.object({
     coreWebVitals: z.boolean().nullish(),
   })
 }
 
-export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerceConfig>> {
+export function GraphCommerceConfigSchema() {
   return z.object({
-    breadcrumbs: z.boolean().default(false).nullish(),
+    breadcrumbs: z.boolean().nullish().default(false),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.default('ICON').nullish(),
-    configurableVariantForSimple: z.boolean().default(false).nullish(),
-    configurableVariantValues: z.lazy(() => MagentoConfigurableVariantValuesSchema().nullish()),
-    containerSizingContent: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
-    containerSizingShell: ContainerSizingSchema.default('FULL_WIDTH').nullish(),
-    crossSellsHideCartItems: z.boolean().default(false).nullish(),
-    crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    compareVariant: CompareVariantSchema.nullish().default('ICON'),
+    configurableVariantForSimple: z.boolean().nullish().default(false),
+    configurableVariantValues: z.lazy(() =>
+      MagentoConfigurableVariantValuesSchema().nullish().default({ url: true, content: true }),
+    ),
+    containerSizingContent: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
+    containerSizingShell: ContainerSizingSchema.nullish().default('FULL_WIDTH'),
+    crossSellsHideCartItems: z.boolean().nullish().default(false),
+    crossSellsRedirectItems: z.boolean().nullish().default(false),
     customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
@@ -607,18 +652,19 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
     googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
-    graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    graphqlMeshEditMode: z.boolean().nullish().default(false),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
+    imageQuality: z.lazy(() => ImageQualityConfigSchema().default({ content: 75, product: 52 })),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
     permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default('DEFAULT').nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.nullish().default('DEFAULT'),
     productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default('COMPACT').nullish(),
+    productListPaginationVariant: PaginationVariantSchema.nullish().default('COMPACT'),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: z.lazy(() => RecentlyViewedProductsConfigSchema().nullish()),
     robotsAllow: z.boolean().nullish(),
@@ -629,9 +675,7 @@ export function GraphCommerceConfigSchema(): z.ZodObject<Properties<GraphCommerc
   })
 }
 
-export function GraphCommerceDebugConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceDebugConfig>
-> {
+export function GraphCommerceDebugConfigSchema() {
   return z.object({
     cart: z.boolean().nullish(),
     pluginStatus: z.boolean().nullish(),
@@ -641,18 +685,14 @@ export function GraphCommerceDebugConfigSchema(): z.ZodObject<
   })
 }
 
-export function GraphCommerceGooglePlaystoreConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceGooglePlaystoreConfig>
-> {
+export function GraphCommerceGooglePlaystoreConfigSchema() {
   return z.object({
     packageName: z.string().min(1),
     sha256CertificateFingerprint: z.string().min(1),
   })
 }
 
-export function GraphCommercePermissionsSchema(): z.ZodObject<
-  Properties<GraphCommercePermissions>
-> {
+export function GraphCommercePermissionsSchema() {
   return z.object({
     billingAddress: BillingAddressPermissionsSchema.nullish(),
     cart: CartPermissionsSchema.nullish(),
@@ -662,9 +702,7 @@ export function GraphCommercePermissionsSchema(): z.ZodObject<
   })
 }
 
-export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
-  Properties<GraphCommerceStorefrontConfig>
-> {
+export function GraphCommerceStorefrontConfigSchema() {
   return z.object({
     canonicalBaseUrl: z.string().nullish(),
     cartDisplayPricesInclTax: z.boolean().nullish(),
@@ -682,9 +720,14 @@ export function GraphCommerceStorefrontConfigSchema(): z.ZodObject<
   })
 }
 
-export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<
-  Properties<MagentoConfigurableVariantValues>
-> {
+export function ImageQualityConfigSchema() {
+  return z.object({
+    content: z.number().default(75),
+    product: z.number().default(52),
+  })
+}
+
+export function MagentoConfigurableVariantValuesSchema() {
   return z.object({
     content: z.boolean().nullish(),
     gallery: z.boolean().nullish(),
@@ -692,16 +735,14 @@ export function MagentoConfigurableVariantValuesSchema(): z.ZodObject<
   })
 }
 
-export function RecentlyViewedProductsConfigSchema(): z.ZodObject<
-  Properties<RecentlyViewedProductsConfig>
-> {
+export function RecentlyViewedProductsConfigSchema() {
   return z.object({
     enabled: z.boolean().nullish(),
     maxCount: z.number().nullish(),
   })
 }
 
-export function SidebarGalleryConfigSchema(): z.ZodObject<Properties<SidebarGalleryConfig>> {
+export function SidebarGalleryConfigSchema() {
   return z.object({
     paginationVariant: SidebarGalleryPaginationVariantSchema.nullish(),
   })

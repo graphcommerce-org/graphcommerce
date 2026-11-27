@@ -1,5 +1,57 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`f0d0e93`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d0e93b59adfc8b32fc0777727300675aaa48fb) - `@graphcommerce/next-config` and `@graphcommerce/hygraph-cli` require `dotenv` 18. `@graphcommerce/prettier-config-pwa` requires `prettier` 3.5.3: with Prettier 3.6 and later, only the last plugin formats the file, so the imports are not sorted. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

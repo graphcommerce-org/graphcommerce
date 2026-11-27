@@ -1,5 +1,73 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+### Patch Changes
+
+- [#2731](https://github.com/graphcommerce-org/graphcommerce/pull/2731) [`0a65ed3`](https://github.com/graphcommerce-org/graphcommerce/commit/0a65ed3359950fb29234f1d228e30aef41d72df3) - Fix `yarn install` on CI in a project that starts from an example: `patch-package` stopped, because the patches were for `next` 16.2.6 and `react-hook-form` 7.67.0. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.65
+
+### Patch Changes
+
+- [#2730](https://github.com/graphcommerce-org/graphcommerce/pull/2730) [`acd08e7`](https://github.com/graphcommerce-org/graphcommerce/commit/acd08e72e504e06b2fbaeb6c9f996606ed5e2b7e) - Fix `next build` in a project that starts from `magento-graphcms`: the type check stopped with `Cannot find module 'vitest'` in two tests of the monorepo. If your project has `__tests__/checkoutAdded.test.ts` or `graphql/ProductPage2.test.ts`, delete these files. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.64
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2716](https://github.com/graphcommerce-org/graphcommerce/pull/2716) [`a91abd7`](https://github.com/graphcommerce-org/graphcommerce/commit/a91abd727e2c42ad26373902be48accb3b3c0ca6) - `pages/checkout/added.tsx` focuses its heading without a scroll, so the overlay slides in after an add to cart. A scrolling `focus()` put the overlay in its open position before `OverlayBase` started the animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+### Patch Changes
+
+- [#2710](https://github.com/graphcommerce-org/graphcommerce/pull/2710) [`59dd648`](https://github.com/graphcommerce-org/graphcommerce/commit/59dd648fadfd7e4598395dcd7fb6f6818fe10179) - `relatedUpsells` in `ProductPage2` requests the `id` of the product. `products` and `relatedUpsells` write to one cache field, and without `id` in both, the cache lost the related products and the reviews. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
 ## 11.0.0-canary.47
 
 ## 11.0.0-canary.46

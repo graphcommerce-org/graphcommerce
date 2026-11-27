@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import type * as ReactHookForm from '@graphcommerce/react-hook-form'
 import { act, renderHook } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useAccountSignInUpForm } from './useAccountSignInUpForm'
 
 vi.mock('@graphcommerce/next-config/config', () => ({ enableGuestCheckoutLogin: true }))
@@ -9,9 +9,14 @@ vi.mock('@graphcommerce/framer-next-pages', () => ({ usePageContext: () => undef
 vi.mock('@graphcommerce/next-ui', () => ({ useUrlQuery: () => [{}, async () => {}] }))
 vi.mock('@graphcommerce/graphql', () => ({ useQuery: () => ({ data: undefined }) }))
 vi.mock('./useCustomerPermissions', () => ({ useCustomerAccountCanSignUp: () => true }))
-vi.mock('./useCustomerSession', () => ({
-  useCustomerSession: () => ({ token: undefined, valid: false }),
+const session = vi.hoisted(() => ({
+  current: {
+    token: undefined as string | undefined,
+    valid: false,
+    email: undefined as string | undefined,
+  },
 }))
+vi.mock('./useCustomerSession', () => ({ useCustomerSession: () => session.current }))
 vi.mock('@graphcommerce/react-hook-form', async () => {
   const rhf = await vi.importActual<typeof ReactHookForm>('react-hook-form')
   return {
@@ -24,6 +29,18 @@ vi.mock('@graphcommerce/react-hook-form', async () => {
 })
 
 describe('useAccountSignInUpForm', () => {
+  beforeEach(() => {
+    session.current = { token: undefined, valid: false, email: undefined }
+  })
+
+  it('fills in the email of the expired session without a cached customer', () => {
+    session.current = { token: 'test-token', valid: false, email: 'customer@example.test' }
+    const { result } = renderHook(() => useAccountSignInUpForm())
+
+    expect(result.current.mode).toBe('session-expired')
+    expect(result.current.form.getValues('email')).toBe('customer@example.test')
+  })
+
   it('shows the password step after an email submitted with Enter', async () => {
     const { result } = renderHook(() => useAccountSignInUpForm())
 
