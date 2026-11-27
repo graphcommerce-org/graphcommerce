@@ -1,7 +1,7 @@
 import type { ProductScrollerProps } from '@graphcommerce/magento-product'
 import { ProductScroller } from '@graphcommerce/magento-product'
 import { recentlyViewedProducts } from '@graphcommerce/next-config/config'
-import { useInView } from 'framer-motion'
+import { useInView } from 'motion/react'
 import { useRef } from 'react'
 import type { UseRecentlyViewedProductsProps } from '../hooks'
 import { useRecentlyViewedProducts, useRecentlyViewedSkus } from '../hooks'

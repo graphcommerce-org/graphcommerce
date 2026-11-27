@@ -22,7 +22,8 @@ import {
 } from '@graphcommerce/magento-cart-shipping-address'
 import { ShippingMethodForm } from '@graphcommerce/magento-cart-shipping-method'
 import { CustomerDocument, useCustomerQuery } from '@graphcommerce/magento-customer'
-import { PageMeta, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { PageMeta, preloadAttributesForm, StoreConfigDocument } from '@graphcommerce/magento-store'
+import { magentoVersion } from '@graphcommerce/next-config/config'
 import type { GetStaticProps } from '@graphcommerce/next-ui'
 import {
   FormActions,
@@ -155,6 +156,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCheckoutIsDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/cart', title: t`Cart` }
   const conf = client.query({ query: StoreConfigDocument })
   const staticClient = graphqlSsrClient(context)
 
@@ -163,10 +165,12 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     fetchPolicy: cacheFirst(staticClient),
   })
 
+  if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_address_edit')
+
   return {
     props: {
       ...(await layout).data,
-      up: { href: '/cart', title: t`Cart` },
+      up,
       apolloState: await conf.then(() => client.cache.extract()),
     },
   }

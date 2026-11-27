@@ -1,6 +1,5 @@
 import { readFile, writeFile } from 'fs/promises'
 import conf from '@graphcommerce/prettier-config-pwa'
-import yaml from 'js-yaml'
 import { OpenAPIV3 } from 'openapi-types'
 import prettier from 'prettier'
 

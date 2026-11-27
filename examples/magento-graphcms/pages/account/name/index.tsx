@@ -77,6 +77,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/account', title: t`Account` }
   const conf = client.query({ query: StoreConfigDocument })
 
   if (magentoVersion >= 247) await preloadAttributesForm(client, 'customer_account_edit')
@@ -85,7 +86,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
     props: {
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: t`Account` },
+      up,
     },
   }
 }

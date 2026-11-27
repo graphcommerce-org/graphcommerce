@@ -1,5 +1,173 @@
 # @graphcommerce/hygraph-cli
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`f0d0e93`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d0e93b59adfc8b32fc0777727300675aaa48fb) - `@graphcommerce/next-config` and `@graphcommerce/hygraph-cli` require `dotenv` 18. `@graphcommerce/prettier-config-pwa` requires `prettier` 3.5.3: with Prettier 3.6 and later, only the last plugin formats the file, so the imports are not sorted. ([@paales](https://github.com/paales))
+
+- [#2687](https://github.com/graphcommerce-org/graphcommerce/pull/2687) [`2dda175`](https://github.com/graphcommerce-org/graphcommerce/commit/2dda17515330c940670ca7ae2a952bce84959133) - The package has no root `index.ts`. That file was unused and not valid TypeScript (`export const {}`), so the extractor of Lingui stopped at it. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.72
+
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+### Patch Changes
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+### Patch Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`f0d0e93`](https://github.com/graphcommerce-org/graphcommerce/commit/f0d0e93b59adfc8b32fc0777727300675aaa48fb) - `@graphcommerce/next-config` and `@graphcommerce/hygraph-cli` require `dotenv` 18. `@graphcommerce/prettier-config-pwa` requires `prettier` 3.5.3: with Prettier 3.6 and later, only the last plugin formats the file, so the imports are not sorted. ([@paales](https://github.com/paales))
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+### Patch Changes
+
+- [#2687](https://github.com/graphcommerce-org/graphcommerce/pull/2687) [`2dda175`](https://github.com/graphcommerce-org/graphcommerce/commit/2dda17515330c940670ca7ae2a952bce84959133) - The package has no root `index.ts`. That file was unused and not valid TypeScript (`export const {}`), so the extractor of Lingui stopped at it. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

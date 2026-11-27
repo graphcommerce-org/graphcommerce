@@ -1,0 +1,28 @@
+type InsufficientStockError implements Error {
+  """
+  A cart-specific error code.
+  """
+  code: CartUserInputErrorType!
+  """
+  A localized error message.
+  """
+  message: String!
+  """
+  Amount of available stock
+  """
+  quantity: Float
+}
+
+"""
+An error encountered while adding an item to the the cart.
+"""
+interface Error {
+  """
+  A cart-specific error code.
+  """
+  code: CartUserInputErrorType!
+  """
+  A localized error message.
+  """
+  message: String!
+}

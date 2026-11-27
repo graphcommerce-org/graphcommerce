@@ -4,6 +4,7 @@ import { Box, Pagination, PaginationItem } from '@mui/material'
 import { iconChevronLeft, iconChevronRight } from '../icons'
 import { IconSvg } from '../IconSvg'
 import { extendableComponent } from '../Styles'
+import type { LinkProps } from '../Theme'
 import { NextLink } from '../Theme'
 
 export type PaginationExtendedProps = {
@@ -12,6 +13,7 @@ export type PaginationExtendedProps = {
   sx?: SxProps<Theme>
   size?: 'small' | 'medium' | 'large'
   paginationHref: (params: PaginationRenderItemParams) => string
+  onNavigate?: (params: PaginationRenderItemParams) => LinkProps['onNavigate']
   siblingCount?: number
   boundaryCount?: number
 } & Omit<PaginationProps, 'count' | 'url' | 'defaultPage' | 'page'>
@@ -38,6 +40,7 @@ export function PaginationExtended(props: PaginationExtendedProps) {
     sx = [],
     size,
     paginationHref,
+    onNavigate,
     renderItem,
     siblingCount,
     boundaryCount,
@@ -84,8 +87,11 @@ export function PaginationExtended(props: PaginationExtendedProps) {
           renderItem ??
           ((item) => (
             <PaginationItem
-              component={NextLink}
-              href={paginationHref(item)}
+              {...(!item.disabled && {
+                component: NextLink,
+                href: paginationHref(item),
+                onNavigate: onNavigate?.(item),
+              })}
               slots={{ previous: Prev, next: Next }}
               {...item}
             />

@@ -7,7 +7,7 @@ import {
 } from '@graphcommerce/framer-scroller'
 import { sxx } from '@graphcommerce/next-ui'
 import { Box, styled, Typography } from '@mui/material'
-import { m } from 'framer-motion'
+import { m } from 'motion/react'
 import React, { useState } from 'react'
 
 const MotionDiv = styled(m.div)({})

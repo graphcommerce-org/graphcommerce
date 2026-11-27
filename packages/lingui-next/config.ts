@@ -20,11 +20,12 @@ export default function linguiNextConfig(config: LinguiConfig): LinguiConfig {
         path: 'locales/{locale}',
         include: [
           '<rootDir>/**/*.tsx',
-          '<rootDir>/**/!(*.d).ts',
+          '<rootDir>/**/*.ts',
           '<rootDir>/../../packages/**/*.tsx',
-          '<rootDir>/../../packages/**/!(*.d).ts',
+          '<rootDir>/../../packages/**/*.ts',
         ],
-        exclude: ['**/node_modules/!(@graphcommerce)/**'],
+        // Lingui matches relative patterns only inside the working directory, `/**` also matches `../../packages`
+        exclude: ['/**/node_modules/!(@graphcommerce)/**', '/**/*.d.ts'],
       },
     ],
     sourceLocale: 'en',

@@ -1,0 +1,15 @@
+type Mutation {
+  """
+  Remove all the products from the specified wish list.
+  """
+  clearWishlist(
+    """
+    The ID of a wish list.
+    """
+    wishlistId: ID!
+  ): RemoveProductsFromWishlistOutput @deprecated(reason: "Magento >= 2.4.9")
+}
+
+enum WishlistCartUserInputErrorType {
+  REQUIRED_PARAMETER_MISSING @deprecated(reason: "Magento >= 2.4.9")
+}

@@ -6,12 +6,13 @@ export type ListFormatProps = {
   children: React.ReactNode[]
 } & UseIntlListFormatOptions
 
-/** @public */
-export function ListFormat(props: ListFormatProps) {
-  const { children, ...options } = props
+function ListFormatMultiple(props: {
+  childArray: React.ReactNode[]
+  options: UseIntlListFormatOptions
+}) {
+  const { childArray, options } = props
   const formatter = useIntlListFormat(options)
 
-  const childArray = React.Children.toArray(children)
   const fauxChildren = childArray.map((child, index) => `${index}`) ?? []
   const parts = formatter.formatToParts(fauxChildren)
 
@@ -25,4 +26,15 @@ export function ListFormat(props: ListFormatProps) {
       ))}
     </>
   )
+}
+
+/** @public */
+export function ListFormat(props: ListFormatProps) {
+  const { children, ...options } = props
+  const childArray = React.Children.toArray(children)
+
+  // A single item needs no list formatting; skip creating an Intl.ListFormat, which loads its locale data on first use.
+  if (childArray.length < 2) return <>{childArray}</>
+
+  return <ListFormatMultiple childArray={childArray} options={options} />
 }

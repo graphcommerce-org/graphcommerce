@@ -1,3 +1,15 @@
+type Mutation {
+  """
+  Send a 'Contact Us' email to the merchant.
+  """
+  contactUs(
+    """
+    An input object that defines shopper information.
+    """
+    input: ContactUsInput!
+  ): ContactUsOutput @deprecated(reason: "Magento >= 2.4.7")
+}
+
 input ContactUsInput {
   """
   The shopper's comment to the merchant.
@@ -25,16 +37,4 @@ type ContactUsOutput {
   Indicates whether the request was successful.
   """
   status: Boolean!
-}
-
-type Mutation {
-  """
-  Send a 'Contact Us' email to the merchant.
-  """
-  contactUs(
-    """
-    An input object that defines shopper information.
-    """
-    input: ContactUsInput!
-  ): ContactUsOutput @deprecated(reason: "Magento >= 2.4.7")
 }

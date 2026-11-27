@@ -64,6 +64,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
   if (getCustomerAccountIsDisabled(context.locale)) return { notFound: true }
 
   const client = graphqlSharedClient(context)
+  const up = { href: '/account', title: t`Account` }
   const staticClient = graphqlSsrClient(context)
   const conf = client.query({ query: StoreConfigDocument })
 
@@ -76,7 +77,7 @@ export const getStaticProps: GetPageStaticProps = async (context) => {
       ...(await countryRegions).data,
       apolloState: await conf.then(() => client.cache.extract()),
       variantMd: 'bottom',
-      up: { href: '/account', title: t`Account` },
+      up,
     },
   }
 }

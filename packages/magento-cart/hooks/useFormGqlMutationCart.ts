@@ -38,12 +38,16 @@ export function useFormGqlMutationCart<
     {
       ...options,
       onBeforeSubmit: async (incoming) => {
-        const variables = options.onBeforeSubmit ? await options.onBeforeSubmit(incoming) : incoming
-        if (variables === false) return false
         if (shouldLoginToContinue && shouldBlockOperation) return false
 
-        const res = client.cache.readQuery({ query: CurrentCartIdDocument })
         const cartId = cartIdFromContext ?? incoming.cartId ?? (await cartIdCreate())
+        const withCartId = { ...incoming, cartId }
+        const variables = options.onBeforeSubmit
+          ? await options.onBeforeSubmit(withCartId)
+          : withCartId
+        if (variables === false) return false
+
+        const res = client.cache.readQuery({ query: CurrentCartIdDocument })
 
         if (
           cartId === res?.currentCartId?.id &&

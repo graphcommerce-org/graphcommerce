@@ -13,12 +13,10 @@ declare global {
   }
 }
 
-const ecommerceEvents = new RegExp(`${googleEventNames.join('|')}`, 'i')
-
 export const sendEvent: FunctionPlugin<typeof sendEventType> = (prev, eventName, eventData) => {
   prev(eventName, eventData)
 
-  if (ecommerceEvents.test(eventName)) {
+  if (new RegExp(`${googleEventNames.join('|')}`, 'i').test(eventName)) {
     window.dataLayer?.push({ ecommerce: null })
     // console.log(eventName, eventData)
     window.dataLayer?.push({ event: eventName, ecommerce: eventData })

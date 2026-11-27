@@ -19,13 +19,21 @@ export function nameFieldset(
 
   const additional = extractAttributes(attributes, ['dob', 'gender'])[0].map((f) => f.code)
 
+  // Skip empty rows — an empty `""` row produces invalid `grid-template-areas`
+  // and silently makes the whole declaration fall back to the default
+  // single-column layout. Hit when a store doesn't register `dob`/`gender` on
+  // the registration form, leaving `additional` empty.
+  const rows = [nameFields, additional]
+    .filter((row) => row.length > 0)
+    .map((row) => `"${row.join(' ')}"`)
+
   return {
     label: withLabel ? <Trans>Name</Trans> : undefined,
     gridAreas: [...nameFields, ...additional],
     // xs is shown in one column by default
     sx: {
       gridTemplateAreas: {
-        md: [`"${nameFields.join(' ')}"`, `"${additional.join(' ')}"`].join(' '),
+        md: rows.join(' '),
       },
     },
   }

@@ -1,0 +1,43 @@
+{
+  "name": "row_button_link_list",
+  "display_name": "Row Button Link List",
+  "description": null,
+  "created_at": "2026-03-27T13:20:12.046Z",
+  "updated_at": "2026-04-24T11:55:44.425Z",
+  "id": 159449137352426,
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "fY2Z4WGrQsO2UWlT8ZcQ7w"
+    },
+    "links": {
+      "type": "bloks",
+      "pos": 1,
+      "display_name": "Links",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "link_item"
+      ],
+      "id": "mymW0CQcSpypvrOofC-grg"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Button Link List",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

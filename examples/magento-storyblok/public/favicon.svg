@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>favicon</title>
+    <g id="favicon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Path" transform="translate(17.000000, 10.000000)">
+            <polygon fill="#000000" fill-rule="nonzero" opacity="0.200000003" points="42.81 50 9.46 69.47 9.46 69.47 9.46 69.47 9.46 69.48 9.46 69.48 42.81 88.95 76.16 69.47"></polygon>
+            <polygon fill="#000000" fill-rule="nonzero" opacity="0.400000006" points="42.81 31.55 9.46 51.02 9.46 51.02 9.46 51.02 9.46 51.03 9.46 51.03 42.81 70.5 76.16 51.02"></polygon>
+            <polygon fill="#000000" fill-rule="nonzero" points="42.81 11.05 9.46 30.52 9.46 30.52 9.46 30.52 9.46 30.53 9.46 30.53 42.81 50 76.16 30.52"></polygon>
+            <polygon stroke="#000000" stroke-width="5" points="0 25 0 75 42.81 100 85.62 75 85.62 25 42.81 0"></polygon>
+        </g>
+    </g>
+</svg>

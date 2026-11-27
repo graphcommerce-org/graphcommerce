@@ -1,6 +1,7 @@
-import { LayoutDefault, LayoutDefaultProps } from '@graphcommerce/next-ui'
 import { Footer } from './Footer'
+import { HeaderContainer } from './HeaderContainer'
 import { LayoutQuery } from './Layout.gql'
+import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'
 
 export type LayoutMinimalProps = LayoutQuery &
@@ -12,7 +13,11 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
   return (
     <LayoutDefault
       {...uiProps}
-      header={<Logo />}
+      header={
+        <HeaderContainer>
+          <Logo />
+        </HeaderContainer>
+      }
       footer={<Footer footer={footer} />}
       sx={(theme) => ({ background: theme.vars.palette.background.paper })}
     >

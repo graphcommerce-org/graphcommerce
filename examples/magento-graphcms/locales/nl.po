@@ -485,8 +485,8 @@ msgstr "Zending niet gevonden"
 msgid "Be the first to write a review!"
 msgstr "Wees de eerste die een review schrijft!"
 
-msgid "Create a password and tell us your name"
-msgstr "Maak een wachtwoord en vertel ons uw naam"
+msgid "Enter your details to create your account"
+msgstr "Vul je gegevens in om een account aan te maken"
 
 #. placeholder {0}: product?.name
 msgid "You are reviewing {0}"

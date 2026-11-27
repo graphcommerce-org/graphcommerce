@@ -1,8 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useMatchMedia } from '@graphcommerce/next-ui/hooks/useMatchMedia'
-import type { PanInfo } from 'framer-motion'
+import type { PanInfo } from 'motion/react'
 import type { InertiaOptions } from 'popmotion'
-import { inertia } from 'popmotion'
 import { scrollSnapTypeDirection } from '../utils/scrollSnapTypeDirection'
 import { useScrollerContext } from './useScrollerContext'
 
@@ -45,6 +44,9 @@ export const useVelocitySnapTo = (
   const animatePan = async (info: LimitedPanInfo) => {
     const el = ref.current
     if (!el) throw Error("Can't find html element")
+
+    // Loaded on demand: only needed after a drag gesture, so popmotion stays out of the startup bundle.
+    const { inertia } = await import('popmotion')
 
     const { scrollLeft, scrollTop } = el
 

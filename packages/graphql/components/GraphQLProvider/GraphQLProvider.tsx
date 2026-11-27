@@ -20,7 +20,27 @@ export const globalApolloClient: { current: ApolloClient | null } = {
 }
 
 export type GraphQLProviderProps = AppProps &
-  Omit<ApolloClientConfigInput, 'storefront'> & { children: React.ReactNode }
+  Omit<ApolloClientConfigInput, 'storefront'> & {
+    children: React.ReactNode
+    /**
+     * Overrides the terminating link at the tail of the Apollo link chain (by default the `HttpLink`
+     * connection to the Mesh backend). Because it sits *after* every context-setting link (customer
+     * auth token, store, cache-id, header links), use it to route specific operations to a different
+     * transport while still inheriting all request headers.
+     *
+     * The motivating case is file uploads: `File`/`Blob` variables must be sent as a
+     * `multipart/form-data` request (e.g. via `apollo-upload-client`'s `UploadHttpLink`), which the
+     * default `HttpLink` cannot serialize. Providing the upload-aware split here keeps it at the tail
+     * of the chain, so uploads still pick up the customer token instead of going out unauthenticated.
+     *
+     * @example
+     *   ```tsx
+     *   const terminatingLink = ApolloLink.split(hasUploadFiles, uploadHttpLink, httpLink)
+     *   <GraphQLProvider {...props} terminatingLink={terminatingLink} />
+     *   ```
+     */
+    terminatingLink?: ApolloLink
+  }
 
 /**
  * The GraphQLProvider allows us to configure the ApolloClient and provide it to the rest of the
@@ -29,7 +49,7 @@ export type GraphQLProviderProps = AppProps &
  * Take a look at the props to see possible customization options.
  */
 export function GraphQLProvider(props: GraphQLProviderProps) {
-  const { children, links, migrations, policies, pageProps, router } = props
+  const { children, links, migrations, policies, pageProps, router, terminatingLink } = props
   const state = (pageProps as { apolloState?: unknown }).apolloState
 
   const stateRef = useRef(state)
@@ -58,8 +78,10 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
     const link = ApolloLink.from([
       ...(typeof window === 'undefined' ? [errorLink, measurePerformanceLink] : []),
       ...config.current.links,
-      // The actual Http connection to the Mesh backend.
-      new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
+      // The actual Http connection to the Mesh backend. Overridable via `terminatingLink` so
+      // e.g. multipart file uploads can be routed to a different transport while still inheriting
+      // every header set by the links above.
+      terminatingLink ?? new HttpLink({ uri: '/api/graphql', credentials: 'same-origin' }),
     ])
 
     const cache = createCache()
@@ -76,7 +98,7 @@ export function GraphQLProvider(props: GraphQLProviderProps) {
         preview: {
           preview: router.isPreview,
         } as PreviewConfig,
-      } as ApolloClient.DefaultOptions,
+      },
       localState: new LocalState({}),
     })
   })

@@ -1,4 +1,3 @@
-import { previewSecret } from '@graphcommerce/next-config/config'
 import { iconChevronRight, iconContrast, IconSvg, MessageSnackbar } from '@graphcommerce/next-ui'
 import { FormPersist, FormProvider, useForm } from '@graphcommerce/react-hook-form'
 import { Box, IconButton } from '@mui/material'
@@ -11,12 +10,10 @@ function getPreviewUrl() {
   return url
 }
 
-const secret = process.env.NODE_ENV === 'development' ? (previewSecret ?? '') : ''
-
 type FormValues = { secret: string }
 
 export function PreviewModeDisabled() {
-  const form = useForm<FormValues>({ defaultValues: { secret } })
+  const form = useForm<FormValues>({ defaultValues: { secret: '' } })
 
   const submit = form.handleSubmit((formValues) => {
     const url = getPreviewUrl()
@@ -50,7 +47,7 @@ export function PreviewModeDisabled() {
           <TextFieldElement control={form.control} name='secret' label='Secret' />
         </Box>
       </MessageSnackbar>
-      <FormPersist form={form} name='PreviewModePreviewData' />
+      <FormPersist form={form} name='PreviewModePreviewData' exclude={['secret']} />
     </FormProvider>
   )
 }

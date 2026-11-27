@@ -18,7 +18,7 @@ export type AccountSignInUpState = 'email' | 'signin' | 'signup' | 'signedin' | 
 
 export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {}) {
   const { onSubmitted } = props
-  const { token, valid } = useCustomerSession()
+  const { token, valid, email: tokenEmail } = useCustomerSession()
 
   const canSignUp = useCustomerAccountCanSignUp()
   const isToggleMethod = !enableGuestCheckoutLogin || !canSignUp
@@ -26,7 +26,8 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
   const [queryState, setRouterQuery] = useUrlQuery<{ email?: string | null }>()
 
   const customerQuery = useQuery(UseCustomerValidateTokenDocument, { fetchPolicy: 'cache-only' })
-  const cachedEmail = customerQuery?.data?.customer?.email
+  // The cache migration keeps the token and drops the customer.
+  const cachedEmail = customerQuery?.data?.customer?.email ?? tokenEmail
 
   const form = useFormGqlQuery<
     IsEmailAvailableQuery,
@@ -41,7 +42,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     { fetchPolicy: 'cache-and-network' },
   )
   const { formState, data, handleSubmit, setValue, trigger, control } = form
-  const { isSubmitSuccessful, isValid } = formState
+  const { isSubmitSuccessful, errors } = formState
   const requestedMode = useWatch({ control, name: 'requestedMode' })
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export function useAccountSignInUpForm(props: UseFormIsEmailAvailableProps = {})
     // 1. Nothing is entered
     mode = 'email'
 
-    if (isValid && isSubmitSuccessful) mode = hasAccount ? 'signin' : 'signup'
+    if (isSubmitSuccessful && !errors.email) mode = hasAccount ? 'signin' : 'signup'
   }
 
   const { closeSteps = 0 } = usePageContext() ?? {}

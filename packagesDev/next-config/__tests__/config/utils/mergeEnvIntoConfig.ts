@@ -68,7 +68,7 @@ it('correctly validates if a value is JSON', () => {
   })
   expect(result.success).toBe(false)
   if (!result.success) {
-    expect(result.error.errors).toMatchInlineSnapshot(`
+    expect(result.error.issues).toMatchInlineSnapshot(`
       [
         {
           "code": "custom",

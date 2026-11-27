@@ -1,4 +1,8 @@
 {
+  "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "types": ["vitest/globals"]
+  },
   "exclude": ["**/node_modules", "**/.*/"],
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/nextjs.json"

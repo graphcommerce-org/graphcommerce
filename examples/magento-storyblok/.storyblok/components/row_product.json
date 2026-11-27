@@ -1,0 +1,95 @@
+{
+  "name": "row_product",
+  "display_name": "Row Product",
+  "description": null,
+  "created_at": "2026-03-27T13:20:12.372Z",
+  "updated_at": "2026-04-24T13:27:58.437Z",
+  "id": 159449138691820,
+  "schema": {
+    "variant": {
+      "type": "option",
+      "pos": 0,
+      "display_name": "Variant",
+      "source": "self",
+      "options": [
+        {
+          "name": "Backstory",
+          "value": "Backstory"
+        },
+        {
+          "name": "Grid",
+          "value": "Grid"
+        },
+        {
+          "name": "Swipeable",
+          "value": "Swipeable"
+        }
+      ],
+      "id": "Qs7x929WQE2gQlimOlTQGQ"
+    },
+    "asset": {
+      "type": "asset",
+      "pos": 2,
+      "display_name": "Asset",
+      "filetypes": [
+        "images",
+        "videos"
+      ],
+      "id": "kdKXFT8HRtKXF8zGr4Kq3g"
+    },
+    "title": {
+      "type": "text",
+      "pos": 3,
+      "translatable": true,
+      "display_name": "Title",
+      "id": "gJCGsFmaS4O2hDQFPAkjPw"
+    },
+    "product_copy": {
+      "type": "richtext",
+      "pos": 4,
+      "translatable": true,
+      "display_name": "Product Copy",
+      "id": "Z6iYRhpLRUuysWLUKR-yUw"
+    },
+    "magento_product_skus": {
+      "type": "text",
+      "pos": 5,
+      "display_name": "Magento Product SKUs",
+      "description": "Comma-separated product SKUs to display (e.g. 'WJ04,WJ01,WT09')",
+      "id": "0x7WotYWSa-hG7pv2wKm5w"
+    },
+    "magento_category_id": {
+      "type": "text",
+      "pos": 6,
+      "display_name": "Magento Category ID",
+      "description": "Magento category UID to fetch products from. Used when Product SKUs is empty.",
+      "id": "Wei2N9DLQw-vmEUguoQkbQ"
+    },
+    "page_links": {
+      "type": "bloks",
+      "pos": 7,
+      "display_name": "Page Links",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "id": "VtzrzSV9QqiJYAvxxeO3Sw"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Product",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

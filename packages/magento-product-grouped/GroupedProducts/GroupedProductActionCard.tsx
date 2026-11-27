@@ -85,6 +85,7 @@ export function GroupedProductActionCard(props: GroupedProductActionCardProps) {
             <Image
               layout='fill'
               src={small_image?.url}
+              quality='product'
               sx={{
                 width: actionCardImageSizes[size],
                 height: actionCardImageSizes[size],

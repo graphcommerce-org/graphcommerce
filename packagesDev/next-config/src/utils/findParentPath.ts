@@ -5,7 +5,9 @@ const debug = process.env.DEBUG === '1'
 // eslint-disable-next-line no-console
 const log = (message: string) => debug && console.log(`isMonorepo: ${message}`)
 
-function findPackageJson(directory: string): { name: string } | null {
+type PackageJson = { name?: string; workspaces?: string[] | { packages?: string[] } }
+
+function findPackageJson(directory: string): PackageJson | null {
   try {
     const packageJsonPath = path.join(directory, 'package.json')
     const content = fs.readFileSync(packageJsonPath, 'utf8')
@@ -16,8 +18,8 @@ function findPackageJson(directory: string): { name: string } | null {
 }
 
 /**
- * Finds the path of the parent @graphcommerce package if it exists Returns null if no parent
- * package is found
+ * Finds the path of the parent @graphcommerce package that has `directory` as a workspace. Returns
+ * null if no parent package is found
  */
 export function findParentPath(directory: string): string | null {
   let currentDir = directory
@@ -31,14 +33,18 @@ export function findParentPath(directory: string): string | null {
   while (currentDir !== path.parse(currentDir).root) {
     const packageJson = findPackageJson(currentDir)
 
-    if (packageJson) {
-      log(`Found package.json in: ${currentDir}`)
-      log(`Package name: ${packageJson.name}`)
+    if (packageJson?.name?.startsWith('@graphcommerce/')) {
+      log(`Found package ${packageJson.name} in: ${currentDir}`)
+      const workspaces = Array.isArray(packageJson.workspaces)
+        ? packageJson.workspaces
+        : (packageJson.workspaces?.packages ?? [])
+      const relative = path.relative(currentDir, directory)
 
-      if (packageJson.name.startsWith('@graphcommerce/')) {
+      if (workspaces.some((workspace) => path.matchesGlob(relative, workspace))) {
         log(`Found parent @graphcommerce package at: ${currentDir}`)
         return currentDir
       }
+      log(`${relative} is not a workspace of ${packageJson.name}`)
     }
 
     currentDir = path.dirname(currentDir)

@@ -1,0 +1,20 @@
+type BillingCartAddress {
+  """
+  The unique ID from the customer's address book that uniquely identifies the address.
+  """
+  customer_address_uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}
+
+interface CartAddressInterface {
+  """
+  The unique ID from the customer's address book that uniquely identifies the address.
+  """
+  customer_address_uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}
+
+type ShippingCartAddress {
+  """
+  The unique ID from the customer's address book that uniquely identifies the address.
+  """
+  customer_address_uid: ID @deprecated(reason: "Magento >= 2.4.9")
+}

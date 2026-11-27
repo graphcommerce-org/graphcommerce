@@ -40,11 +40,18 @@ export async function findDotOriginalFiles(cwd: string) {
     else break
   }
 
-  return Promise.all(
-    (
-      await glob([`${parentPath}/**/*.original.tsx`, `${parentPath}/**/*.original.ts`], { cwd })
-    ).map((file) => fs.realpath(file)),
-  )
+  // Called from inside a @graphcommerce package (upstream dev) → scan from the
+  // outermost @graphcommerce parent. Called from a consumer project (no
+  // @graphcommerce parent) → scan the project AND node_modules/@graphcommerce,
+  // because the interceptor system writes .original files alongside the
+  // installed packages there.
+  const roots = parentPath ? [parentPath] : [cwd, `${cwd}/node_modules/@graphcommerce`]
+  const patterns = roots.flatMap((root) => [
+    `${root}/**/*.original.tsx`,
+    `${root}/**/*.original.ts`,
+  ])
+
+  return Promise.all((await glob(patterns, { cwd })).map((file) => fs.realpath(file)))
 }
 
 export async function writeInterceptors(

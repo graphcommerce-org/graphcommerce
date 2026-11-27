@@ -1,0 +1,53 @@
+{
+  "name": "row_hero_banner",
+  "display_name": "Row Hero Banner",
+  "description": null,
+  "created_at": "2026-03-27T13:20:11.556Z",
+  "updated_at": "2026-03-27T13:20:11.556Z",
+  "id": 159449135378151,
+  "schema": {
+    "asset": {
+      "type": "asset",
+      "pos": 0,
+      "display_name": "Asset",
+      "filetypes": [
+        "images",
+        "videos"
+      ],
+      "id": "3rC8XMkvQTC1AF7DDTvHig"
+    },
+    "copy": {
+      "type": "richtext",
+      "pos": 1,
+      "translatable": true,
+      "display_name": "Copy",
+      "id": "ghTV4gTkSNiCc7eGvyNFwA"
+    },
+    "page_links": {
+      "type": "bloks",
+      "pos": 2,
+      "display_name": "Page Links",
+      "restrict_type": "",
+      "restrict_components": true,
+      "component_whitelist": [
+        "page_link"
+      ],
+      "id": "yJvkj_sXSgCwIT36nHYYHQ"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Hero Banner",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

@@ -22,7 +22,14 @@ export function AddressFields<
   return (
     <>
       {countryFirst && <AddressCountryRegion {...props} />}
-      <FormRow>
+      <FormRow
+        sx={{
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: '2fr 1fr 1fr',
+          },
+        }}
+      >
         <AddressStreet {...props} />
         <AddressHousenumber {...props} />
         <AddressAddition {...props} />

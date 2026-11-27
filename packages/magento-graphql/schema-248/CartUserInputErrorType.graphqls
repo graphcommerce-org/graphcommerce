@@ -1,0 +1,5 @@
+enum CartUserInputErrorType {
+  COULD_NOT_FIND_CART_ITEM @deprecated(reason: "Magento >= 2.4.8")
+  INVALID_PARAMETER_VALUE @deprecated(reason: "Magento >= 2.4.8")
+  REQUIRED_PARAMETER_MISSING @deprecated(reason: "Magento >= 2.4.8")
+}

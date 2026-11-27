@@ -1,0 +1,71 @@
+{
+  "name": "Global",
+  "parent_id": null,
+  "group_id": "dd24ad95-8a25-4b60-9d67-f806f8ee659a",
+  "alternates": [],
+  "created_at": "2026-04-17T14:16:29.924Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-17T14:16:29.924Z",
+  "published_at": null,
+  "id": 166894755562339,
+  "uuid": "3ab97c2c-f556-4b28-9bd7-fa4ba02438e4",
+  "is_folder": true,
+  "content": {
+    "content_types": [
+      "page",
+      "global_config"
+    ],
+    "lock_subfolders_content_types": false
+  },
+  "published": false,
+  "slug": "global",
+  "path": null,
+  "full_slug": "global",
+  "default_root": "page",
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": null,
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "015137740df5483d6b9fcd0b4fabc067cd8fa8a7",
+    "timestamp": "1777036865"
+  },
+  "pinned": false,
+  "breadcrumbs": [],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": null,
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "global",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -30,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 166894755968790,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

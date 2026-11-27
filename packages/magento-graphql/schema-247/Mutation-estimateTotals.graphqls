@@ -1,13 +1,3 @@
-"""
-Estimate totals output.
-"""
-type EstimateTotalsOutput {
-  """
-  Cart after totals estimation
-  """
-  cart: Cart
-}
-
 type Mutation {
   """
   Estimate totals for cart based on the address
@@ -18,4 +8,56 @@ type Mutation {
     """
     input: EstimateTotalsInput!
   ): EstimateTotalsOutput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Estimate shipping method(s) for cart based on address
+  """
+  estimateShippingMethods(
+    """
+    An input object that specifies details for estimation of available shipping methods
+    """
+    input: EstimateTotalsInput!
+  ): [AvailableShippingMethod] @deprecated(reason: "Magento >= 2.4.7")
+}
+
+input EstimateTotalsInput {
+  """
+  Customer's address to estimate totals.
+  """
+  address: EstimateAddressInput!
+  """
+  The unique ID of the cart to query.
+  """
+  cart_id: String!
+  """
+  Selected shipping method to estimate totals.
+  """
+  shipping_method: ShippingMethodInput
+}
+
+"""
+Contains details about an address.
+"""
+input EstimateAddressInput {
+  """
+  The two-letter code representing the customer's country.
+  """
+  country_code: CountryCodeEnum!
+  """
+  The customer's ZIP or postal code.
+  """
+  postcode: String
+  """
+  An object containing the region name, region code, and region ID.
+  """
+  region: CustomerAddressRegionInput
+}
+
+"""
+Estimate totals output.
+"""
+type EstimateTotalsOutput {
+  """
+  Cart after totals estimation
+  """
+  cart: Cart
 }

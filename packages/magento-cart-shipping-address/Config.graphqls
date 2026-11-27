@@ -4,12 +4,12 @@ extend input GraphCommerceConfig {
   - Company name
   - VAT ID
   """
-  customerCompanyFieldsEnable: Boolean
+  customerCompanyFieldsEnable: Boolean @public
 
   """
   Enables the shipping notes field in the checkout
   """
-  customerAddressNoteEnable: Boolean
+  customerAddressNoteEnable: Boolean @public
 }
 
 extend input GraphCommerceStorefrontConfig {
@@ -18,5 +18,5 @@ extend input GraphCommerceStorefrontConfig {
   - Company name
   - VAT ID
   """
-  customerCompanyFieldsEnable: Boolean
+  customerCompanyFieldsEnable: Boolean @public
 }

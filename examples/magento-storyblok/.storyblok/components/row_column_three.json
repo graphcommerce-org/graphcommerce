@@ -1,0 +1,46 @@
+{
+  "name": "row_column_three",
+  "display_name": "Row Column Three",
+  "description": null,
+  "created_at": "2026-03-27T13:20:10.704Z",
+  "updated_at": "2026-03-27T13:20:10.704Z",
+  "id": 159449131855586,
+  "schema": {
+    "col_one": {
+      "type": "richtext",
+      "pos": 0,
+      "translatable": true,
+      "display_name": "Column One",
+      "id": "iamvtFdTTj-Vox1A5NhxfQ"
+    },
+    "col_two": {
+      "type": "richtext",
+      "pos": 1,
+      "translatable": true,
+      "display_name": "Column Two",
+      "id": "iFOKVeskQk-89SDVfb8PXg"
+    },
+    "col_three": {
+      "type": "richtext",
+      "pos": 2,
+      "translatable": true,
+      "display_name": "Column Three",
+      "id": "1AX0IDdeSmKNnzgtAkN3nw"
+    }
+  },
+  "image": null,
+  "preview_field": null,
+  "is_root": false,
+  "preview_tmpl": null,
+  "is_nestable": true,
+  "all_presets": [],
+  "preset_id": null,
+  "real_name": "Row Column Three",
+  "component_group_uuid": "027fdad5-acf1-44d3-b3c6-607815b14ccc",
+  "color": null,
+  "icon": null,
+  "internal_tags_list": [],
+  "internal_tag_ids": [],
+  "content_type_asset_preview": null,
+  "metadata": {}
+}

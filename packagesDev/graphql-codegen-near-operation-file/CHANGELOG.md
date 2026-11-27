@@ -1,5 +1,161 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.72
+
+## 11.0.0-canary.71
+
+## 11.0.0-canary.70
+
+## 11.0.0-canary.69
+
+## 11.0.0-canary.68
+
+## 11.0.0-canary.67
+
+## 11.0.0-canary.66
+
+## 11.0.0-canary.65
+
+## 11.0.0-canary.64
+
+### Patch Changes
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+## 11.0.0-canary.63
+
+## 11.0.0-canary.62
+
+## 11.0.0-canary.61
+
+## 11.0.0-canary.60
+
+## 11.0.0-canary.59
+
+## 11.0.0-canary.58
+
+## 11.0.0-canary.57
+
+## 11.0.0-canary.56
+
+## 11.0.0-canary.55
+
+## 11.0.0-canary.54
+
+## 11.0.0-canary.53
+
+## 11.0.0-canary.52
+
+## 11.0.0-canary.51
+
+## 11.0.0-canary.50
+
+## 11.0.0-canary.49
+
+## 11.0.0-canary.48
+
+## 11.0.0-canary.47
+
+## 11.0.0-canary.46
+
+## 11.0.0-canary.45
+
+## 10.1.0-canary.44
+
+## 10.1.0-canary.43
+
+## 10.1.0-canary.42
+
+## 10.1.0-canary.41
+
+## 10.1.0-canary.40
+
+## 10.1.0-canary.39
+
+## 10.1.0-canary.38
+
+## 10.1.0-canary.37
+
+## 10.1.0-canary.36
+
+## 10.1.0-canary.35
+
+## 10.1.0-canary.34
+
+## 10.1.0-canary.33
+
+## 10.1.0-canary.32
+
+## 10.1.0-canary.31
+
+## 10.1.0-canary.30
+
+## 10.1.0-canary.29
+
+## 10.1.0-canary.28
+
+## 10.1.0-canary.27
+
+## 10.1.0-canary.26
+
+## 10.1.0-canary.25
+
+## 10.1.0-canary.24
+
+## 10.1.0-canary.23
+
+## 10.1.0-canary.22
+
+## 10.1.0-canary.21
+
+## 10.1.0-canary.20
+
+## 10.1.0-canary.19
+
+## 10.1.0-canary.18
+
+## 10.1.0-canary.17
+
+## 10.1.0-canary.16
+
+## 10.1.0-canary.15
+
+## 10.1.0-canary.14
+
+## 10.1.0-canary.13
+
+## 10.1.0-canary.12
+
+## 10.1.0-canary.11
+
+## 10.1.0-canary.10
+
+## 10.1.0-canary.9
+
+## 10.1.0-canary.8
+
+## 10.1.0-canary.7
+
+## 10.1.0-canary.6
+
+## 10.1.0-canary.5
+
+## 10.1.0-canary.4
+
+## 10.1.0-canary.3
+
+## 10.0.4-canary.2
+
+## 10.0.4-canary.1
+
+## 10.0.4-canary.0
+
 ## 10.0.3
 
 ## 10.0.3-canary.0

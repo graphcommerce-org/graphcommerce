@@ -1,0 +1,24 @@
+type StoreConfig {
+  """
+  Extended Config Data - tax/cart_display/gift_wrapping
+  """
+  shopping_cart_display_tax_gift_wrapping: TaxWrappingEnum @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/grandtotal
+  """
+  shopping_cart_display_grand_total: Boolean @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/subtotal
+  """
+  shopping_cart_display_subtotal: Int @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Extended Config Data - tax/cart_display/zero_tax
+  """
+  shopping_cart_display_zero_tax: Boolean @deprecated(reason: "Magento >= 2.4.7")
+}
+
+enum TaxWrappingEnum {
+  DISPLAY_EXCLUDING_TAX
+  DISPLAY_INCLUDING_TAX
+  DISPLAY_TYPE_BOTH
+}

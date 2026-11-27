@@ -137,6 +137,7 @@ export function CartItem(props: CartItemProps) {
           {product?.thumbnail?.url && (
             <Image
               src={product.thumbnail.url ?? ''}
+              quality='product'
               layout='fill'
               alt={product.thumbnail.label ?? product.name ?? ''}
               sizes={responsiveVal(70, 125)}

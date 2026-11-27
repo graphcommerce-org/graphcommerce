@@ -3,7 +3,7 @@ import type { PaymentOptionsProps } from '@graphcommerce/magento-cart-payment-me
 import { usePaymentMethodContext } from '@graphcommerce/magento-cart-payment-method'
 import { useFormCompose } from '@graphcommerce/react-hook-form'
 import { useEffect } from 'react'
-import { BraintreePaymentMethodOptionsDocument } from '../../BraintreePaymentMethodOptions.gql'
+import { BraintreePaymentMethodOptionsDocument } from '../../graphql/BraintreePaymentMethodOptions.gql'
 import type { StartPaymentOptions } from '../../hooks/useBraintree'
 import { useBraintreeCartLock } from '../../hooks/useBraintreeCartLock'
 import { useBraintreeLocalPayment } from '../../hooks/useBraintreeLocalPayment'

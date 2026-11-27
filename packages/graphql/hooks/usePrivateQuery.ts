@@ -1,7 +1,5 @@
 import type { InputMaybe, PrivateContext } from '@graphcommerce/graphql-mesh'
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useIsSSR } from '@graphcommerce/next-ui/hooks/useIsSsr'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { getCssFlag, removeCssFlag, setCssFlag } from '@graphcommerce/next-ui/utils/cssFlags'
 import { useContext, useEffect } from 'react'
 import type { MaybeMasked, TypedDocumentNode, useQuery } from '../apollo'
@@ -35,15 +33,13 @@ export function usePrivateQuery<
 ): Omit<useQuery.Result<Q, V>, 'data'> & { data: Q | NonNullable<MaybeMasked<Q>>; mask: boolean } {
   const { skip = true } = options
   const context = usePrivateQueryContext()
-  const isSsr = useIsSSR()
 
   const privateContext = useContext(PrivateQueryMaskContext)
 
   useEffect(() => {
-    if (isSsr) return
     if (context && !getCssFlag('private-query')) setCssFlag('private-query', true)
     else if (!context && getCssFlag('private-query')) removeCssFlag('private-query')
-  }, [context, isSsr])
+  }, [context])
 
   const clientQuery = useQueryHook<Q, V>(document, {
     ...options,
@@ -55,8 +51,11 @@ export function usePrivateQuery<
   if (!skip) data ??= clientQuery.previousData
 
   // If the user is logged in we might need to show a skeleton:
-  let mask = isSsr
-  if (!isSsr && context) {
+  // Without a private context (SSR, guests) the mask stays on: it only hides content while the
+  // `private-query` CSS flag is set, which never happens without a context. Keeping it constant avoids a
+  // forced synchronous re-render of the whole page right after hydration.
+  let mask = true
+  if (context) {
     // Show skeleton while loading, but not when there's an error
     mask = !skip
       ? !clientQuery.data && !clientQuery.previousData && !clientQuery.error

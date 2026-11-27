@@ -4,7 +4,7 @@ import { Image } from '@graphcommerce/image'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { extendableComponent, responsiveVal } from '@graphcommerce/next-ui/Styles'
 import { styled, useTheme } from '@mui/material'
-import { m, motionValue, useTransform } from 'framer-motion'
+import { m, motionValue, useTransform } from 'motion/react'
 import { useEffect, useRef } from 'react'
 import { useScrollerContext } from '../hooks/useScrollerContext'
 

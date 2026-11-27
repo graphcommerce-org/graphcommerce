@@ -1,0 +1,13 @@
+type StoreConfig {
+  """
+  Configuration data from promo/graphql/share_applied_cart_rule
+  """
+  share_applied_cart_rule: Boolean @deprecated(reason: "Magento >= 2.4.9")
+}
+
+type CartRuleStorefront {
+  """
+  The unique ID for a `CartRule` object.
+  """
+  uid: ID!
+}

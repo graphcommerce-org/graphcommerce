@@ -1,0 +1,10 @@
+input ProductAttributeSortInput {
+  """
+  Attribute label: Product Name
+  """
+  name: SortEnum @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: Price
+  """
+  price: SortEnum @deprecated(reason: "Magento >= 2.4.7")
+}

@@ -1,4 +1,4 @@
-import type { ComponentsVariants, Theme } from '@mui/material'
+import type { ComponentsVariants, CSSObject, Theme } from '@mui/material'
 import { responsiveVal } from '../Styles/responsiveVal'
 
 declare module '@mui/material/Button' {
@@ -21,7 +21,7 @@ export const MuiButtonResponsive: ButtonVariants = [
   {
     props: { size: 'small' },
     style: ({ theme }) => ({
-      ...theme.typography.body2,
+      ...(theme.typography.body2 as CSSObject),
       padding: `${responsiveVal(3, 5)} ${responsiveVal(8, 15)}`,
       '&.MuiLoadingButton-loading:hover': {
         backgroundColor: theme.vars.palette.action.disabledBackground,
@@ -33,7 +33,7 @@ export const MuiButtonResponsive: ButtonVariants = [
   {
     props: { size: 'medium' },
     style: ({ theme }) => ({
-      ...theme.typography.body1,
+      ...(theme.typography.body1 as CSSObject),
       padding: `${responsiveVal(7, 9)} ${responsiveVal(15, 22)}`,
       '&.MuiLoadingButton-loading:hover': {
         backgroundColor: theme.vars.palette.action.disabledBackground,
@@ -45,7 +45,7 @@ export const MuiButtonResponsive: ButtonVariants = [
   {
     props: { size: 'large' },
     style: ({ theme }) => ({
-      ...theme.typography.subtitle1,
+      ...(theme.typography.subtitle1 as CSSObject),
       fontWeight: theme.typography.fontWeightBold,
       padding: `${responsiveVal(10, 15)} ${responsiveVal(28, 58)}`,
       '&.MuiLoadingButton-loading:hover': {

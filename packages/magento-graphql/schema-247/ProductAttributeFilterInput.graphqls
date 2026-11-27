@@ -1,0 +1,26 @@
+input ProductAttributeFilterInput {
+  """
+  Filter product by category URL path.
+  """
+  category_url_path: FilterEqualTypeInput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: Description
+  """
+  description: FilterMatchTypeInput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: Product Name
+  """
+  name: FilterMatchTypeInput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: Price
+  """
+  price: FilterRangeTypeInput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: Short Description
+  """
+  short_description: FilterMatchTypeInput @deprecated(reason: "Magento >= 2.4.7")
+  """
+  Attribute label: SKU
+  """
+  sku: FilterEqualTypeInput @deprecated(reason: "Magento >= 2.4.7")
+}

@@ -1,0 +1,27 @@
+type BundleOrderItem {
+  """
+  The ProductInterface object, which contains details about the base product
+  """
+  product: ProductInterface @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type DownloadableOrderItem {
+  """
+  The ProductInterface object, which contains details about the base product
+  """
+  product: ProductInterface @deprecated(reason: "Magento >= 2.4.7")
+}
+
+type OrderItem {
+  """
+  The ProductInterface object, which contains details about the base product
+  """
+  product: ProductInterface @deprecated(reason: "Magento >= 2.4.7")
+}
+
+interface OrderItemInterface {
+  """
+  The ProductInterface object, which contains details about the base product
+  """
+  product: ProductInterface @deprecated(reason: "Magento >= 2.4.7")
+}

@@ -1,4 +1,4 @@
-query GuestOrder($input: OrderInformationInput!) {
+query GuestOrder($input: GuestOrderInformationInput!) {
   guestOrder(input: $input) {
     ...OrderDetails
     ...OrderItems

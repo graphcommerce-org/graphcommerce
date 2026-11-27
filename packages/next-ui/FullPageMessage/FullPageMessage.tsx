@@ -52,7 +52,7 @@ export function FullPageMessage(props: FullPageMessageProps) {
           justifyItems: 'center',
         }}
       >
-        <Box className={classes.iconWrapper}>{icon}</Box>
+        <Box className={classes.iconWrapper} aria-hidden='true'>{icon}</Box>
 
         <Box
           className={classes.subject}

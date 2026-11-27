@@ -11,7 +11,8 @@ export type ButtonLinkListProps = {
   children: React.ReactNode
   component?: React.ElementType
   sx?: SxProps<Theme>
-} & OwnerState
+} & OwnerState &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'children'>
 
 type OwnerState = { containsBigLinks: boolean }
 
@@ -23,12 +24,12 @@ const { withState } = extendableComponent<OwnerState, typeof compName, typeof pa
 )
 
 export function ButtonLinkList(props: ButtonLinkListProps) {
-  const { title, children, component = 'span', containsBigLinks, sx = [] } = props
+  const { title, children, component = 'span', containsBigLinks, sx = [], ...rest } = props
 
   const classes = withState({ containsBigLinks })
 
   return (
-    <Row maxWidth='820px' className={classes.root} sx={sx}>
+    <Row maxWidth='820px' className={classes.root} sx={sx} {...rest}>
       <Box
         sx={sxx((theme) => ({
           position: 'relative',

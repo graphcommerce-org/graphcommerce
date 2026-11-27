@@ -3,6 +3,7 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "extends": "@graphcommerce/typescript-config-pwa/node.json",
   "compilerOptions": {
+    "rootDir": "src",
     "noEmit": false,
     "outDir": "dist"
   }

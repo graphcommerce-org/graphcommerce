@@ -79,5 +79,7 @@ export async function createCacheReviver(
 
   if (state) {
     client.cache.restore(state)
+    // restore() does not notify the watching queries, an empty batch does.
+    client.cache.batch({ update: () => {} })
   }
 }

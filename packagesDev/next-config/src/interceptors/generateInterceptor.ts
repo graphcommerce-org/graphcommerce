@@ -2,6 +2,7 @@ import prettierConf from '@graphcommerce/prettier-config-pwa'
 import prettier from 'prettier'
 import type { GraphCommerceDebugConfig } from '../generated/config'
 import type { ResolveDependencyReturn } from '../utils/resolveDependency'
+import { parseSync } from './swc'
 
 type PluginBaseConfig = {
   type: 'component' | 'function' | 'replace'
@@ -107,6 +108,34 @@ const stableStringify = (obj: any): string => {
   const keys = Object.keys(obj).sort()
   const pairs = keys.map((key) => `${JSON.stringify(key)}:${stableStringify(obj[key])}`)
   return `{${pairs.join(',')}}`
+}
+
+/**
+ * `export * from './X.original'` does not re-export the original module's default export (ES
+ * semantics), so an intercepted module would silently lose it. Consumers that prefer the default
+ * export (e.g. GraphQL Mesh's getPackage does `exported.default || exported` to resolve
+ * `customFetch`) then receive the whole module namespace instead of the function, which breaks at
+ * runtime. Detect a default export so the interceptor can forward it explicitly.
+ *
+ * On regeneration the resolved source may be a previously generated interceptor; its emitted
+ * `export { default } from './X.original'` is an ExportNamedDeclaration with a `default` specifier
+ * and is detected the same way, keeping the output stable.
+ */
+function hasDefaultExport(source: string): boolean {
+  try {
+    return parseSync(source).body.some((node) => {
+      if (node.type === 'ExportDefaultDeclaration' || node.type === 'ExportDefaultExpression')
+        return true
+      if (node.type === 'ExportNamedDeclaration') {
+        return node.specifiers.some(
+          (s) => s.type === 'ExportSpecifier' && (s.exported ?? s.orig).value === 'default',
+        )
+      }
+      return false
+    })
+  } catch {
+    return false
+  }
 }
 
 /**
@@ -340,7 +369,12 @@ export const ${targetExport} = ${carry}`
 
     // Re-export everything from the original file except the intercepted exports
     export * from './${interceptor.target.split('/').pop()}.original'
-
+    ${
+      hasDefaultExport(interceptor.source)
+        ? `\n    // Forward the original module's default export: \`export *\` does not include it.
+    export { default } from './${interceptor.target.split('/').pop()}.original'\n`
+        : ''
+    }
     ${logOnce}${pluginExports}
   `
 

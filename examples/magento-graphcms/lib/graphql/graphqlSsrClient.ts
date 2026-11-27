@@ -8,6 +8,7 @@ import {
   fragments,
   graphqlConfig,
   mergeTypePolicies,
+  renewableSsrClient,
 } from '@graphcommerce/graphql'
 import { MeshApolloLink, getBuiltMesh } from '@graphcommerce/graphql-mesh'
 import { storefrontConfig, storefrontConfigDefault } from '@graphcommerce/next-ui'
@@ -36,7 +37,7 @@ function client(context: GetStaticPropsContext, fetchPolicy: FetchPolicy = 'no-c
     defaultOptions: {
       preview: context as PreviewConfig,
       query: { errorPolicy: 'all', fetchPolicy },
-    } as ApolloClient.DefaultOptions,
+    },
   })
 }
 
@@ -52,9 +53,7 @@ export function graphqlSharedClient(context: GetStaticPropsContext) {
   return client(context, 'cache-first')
 }
 
-const ssrClient: {
-  [locale: string]: ApolloClient
-} = {}
+const ssrClient: { [locale: string]: ApolloClient } = {}
 
 export function graphqlSsrClient(context: GetStaticPropsContext) {
   const locale = context.locale ?? storefrontConfigDefault().locale
@@ -62,8 +61,6 @@ export function graphqlSsrClient(context: GetStaticPropsContext) {
 
   if (context.preview || context.draftMode) return client(context, 'no-cache')
 
-  // Create a client if it doesn't exist for the locale.
-  if (!ssrClient[locale]) ssrClient[locale] = client(context, 'no-cache')
-
+  ssrClient[locale] ??= renewableSsrClient(() => client(context, 'no-cache'))
   return ssrClient[locale]
 }

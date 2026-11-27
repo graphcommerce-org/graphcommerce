@@ -30,13 +30,34 @@ import { SignUpForm } from '../SignUpForm/SignUpForm'
 export type AccountSignInUpFormProps = {
   sx?: SxProps<Theme>
   signUpDisabled?: React.ReactNode
+  /** Override the title shown in the initial email step */
+  emailTitle?: React.ReactNode
+  /** Override the subtitle shown in the initial email step */
+  emailSubtitle?: React.ReactNode
+  /** Override the title shown in the sign-in step */
+  signInTitle?: React.ReactNode
+  /** Override the subtitle shown in the sign-in step */
+  signInSubtitle?: React.ReactNode
+  /** Override the title shown in the sign-up step */
+  signUpTitle?: React.ReactNode
+  /** Override the subtitle shown in the sign-up step */
+  signUpSubtitle?: React.ReactNode
 }
 
 const parts = ['root', 'titleContainer'] as const
 const { classes } = extendableComponent('AccountSignInUpForm', parts)
 
 export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
-  const { sx = [], signUpDisabled } = props
+  const {
+    sx = [],
+    signUpDisabled,
+    emailTitle,
+    emailSubtitle,
+    signInTitle,
+    signInSubtitle,
+    signUpTitle,
+    signUpSubtitle,
+  } = props
   const customerEmailQuery = useCustomerQuery(UseCustomerValidateTokenDocument)
   const customerQuery = useCustomerQuery(CustomerDocument)
 
@@ -69,10 +90,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'email' && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans>Sign in or create an account!</Trans>
+              {emailTitle ?? <Trans>Sign in or create an account!</Trans>}
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans>Fill in your e-mail to login or create an account</Trans>
+              {emailSubtitle ?? <Trans>Fill in your e-mail to login or create an account</Trans>}
             </Typography>
           </>
         )}
@@ -80,10 +101,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {(mode === 'signin' || (mode === 'signup' && !canSignUp)) && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans>Sign in</Trans>
+              {signInTitle ?? <Trans>Sign in</Trans>}
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans>Fill in your password</Trans>
+              {signInSubtitle ?? <Trans>Fill in your password</Trans>}
             </Typography>
           </>
         )}
@@ -91,10 +112,10 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
         {mode === 'signup' && canSignUp && (
           <>
             <LayoutTitle variant='h2' gutterBottom={false}>
-              <Trans>Create account!</Trans>
+              {signUpTitle ?? <Trans>Create account!</Trans>}
             </LayoutTitle>
             <Typography variant='h6' align='center'>
-              <Trans>Create a password and tell us your name</Trans>
+              {signUpSubtitle ?? <Trans>Enter your details to create your account</Trans>}
             </Typography>
           </>
         )}
@@ -182,7 +203,7 @@ export function AccountSignInUpForm(props: AccountSignInUpFormProps) {
                         <Trans>Sign out</Trans>
                       </Button>
                     ) : (
-                      formState.isSubmitting && <CircularProgress sx={{ display: 'inline-flex' }} />
+                      formState.isSubmitting && <CircularProgress aria-hidden='true' sx={{ display: 'inline-flex' }} />
                     ),
                   readOnly: !!email,
                 }}

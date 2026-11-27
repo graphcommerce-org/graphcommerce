@@ -1,0 +1,154 @@
+type BundleOrderItem {
+  """
+  Contains details about the price of the item, including taxes and discounts.
+  """
+  prices: OrderItemPrices @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type OrderItemPrices {
+  """
+  An array of discounts to be applied to the cart item.
+  """
+  discounts: [Discount]
+  fixed_product_taxes: [FixedProductTax]!
+  """
+  The original price of the item.
+  """
+  original_price: Money
+  """
+  The original price of the item including tax.
+  """
+  original_price_including_tax: Money
+  """
+  The value of the original price multiplied by the quantity of the item.
+  """
+  original_row_total: Money!
+  """
+  The value of the original price multiplied by the quantity of the item including tax.
+  """
+  original_row_total_including_tax: Money!
+  """
+  The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart.
+  """
+  price: Money!
+  """
+  The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart.
+  """
+  price_including_tax: Money!
+  """
+  The value of the price multiplied by the quantity of the item.
+  """
+  row_total: Money!
+  """
+  The value of `row_total` plus the tax applied to the item.
+  """
+  row_total_including_tax: Money!
+  """
+  The total of all discounts applied to the item.
+  """
+  total_item_discount: Money!
+}
+
+type DownloadableOrderItem {
+  """
+  Contains details about the price of the item, including taxes and discounts.
+  """
+  prices: OrderItemPrices @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type OrderItem {
+  """
+  Contains details about the price of the item, including taxes and discounts.
+  """
+  prices: OrderItemPrices @deprecated(reason: "Magento >= 2.4.8")
+}
+
+interface OrderItemInterface {
+  """
+  Contains details about the price of the item, including taxes and discounts.
+  """
+  prices: OrderItemPrices @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type ConfigurableOrderItem implements OrderItemInterface {
+  """
+  The final discount information for the product.
+  """
+  discounts: [Discount]
+  """
+  The entered option for the base product, such as a logo or image.
+  """
+  entered_options: [OrderItemOption]
+  """
+  The selected gift message for the order item
+  """
+  gift_message: GiftMessage
+  """
+  The unique ID for an `OrderItemInterface` object.
+  """
+  id: ID!
+  """
+  The SKU of parent product.
+  """
+  parent_sku: String
+  """
+  Contains details about the price of the item, including taxes and discounts.
+  """
+  prices: OrderItemPrices
+  """
+  The ProductInterface object, which contains details about the base product
+  """
+  product: ProductInterface
+  """
+  The name of the base product.
+  """
+  product_name: String
+  """
+  The sale price of the base product, including selected options.
+  """
+  product_sale_price: Money!
+  """
+  The SKU of the base product.
+  """
+  product_sku: String!
+  """
+  The type of product, such as simple, configurable, etc.
+  """
+  product_type: String
+  """
+  URL key of the base product.
+  """
+  product_url_key: String
+  """
+  The number of canceled items.
+  """
+  quantity_canceled: Float
+  """
+  The number of invoiced items.
+  """
+  quantity_invoiced: Float
+  """
+  The number of units ordered for this item.
+  """
+  quantity_ordered: Float
+  """
+  The number of refunded items.
+  """
+  quantity_refunded: Float
+  """
+  The number of returned items.
+  """
+  quantity_returned: Float
+  """
+  The number of shipped items.
+  """
+  quantity_shipped: Float
+  """
+  The selected options for the base product, such as color or size.
+  """
+  selected_options: [OrderItemOption]
+  """
+  The status of the order item.
+  """
+  status: String
+}

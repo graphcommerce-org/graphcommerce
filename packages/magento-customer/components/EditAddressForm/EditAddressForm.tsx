@@ -1,12 +1,13 @@
 import { ApolloErrorSnackbar, TelephoneElement } from '@graphcommerce/ecommerce-ui'
 import { useQuery } from '@graphcommerce/graphql'
-import { CountryRegionsDocument } from '@graphcommerce/magento-store'
+import { CountryRegionsDocument, useAttributesForm } from '@graphcommerce/magento-store'
 import { Button, Form, FormActions, FormRow } from '@graphcommerce/next-ui'
 import { useFormGqlMutation } from '@graphcommerce/react-hook-form'
 import { Trans } from '@lingui/react/macro'
 import type { SxProps, Theme } from '@mui/material'
 import { useRouter } from 'next/router'
 import { useBillingAddressPermission } from '../../hooks'
+import { stripLegacyPlaceholderTelephone } from '../../utils'
 import type { AccountAddressFragment } from '../AccountAddress/AccountAddress.gql'
 import { AddressFields } from '../AddressFields/AddressFields'
 import { CompanyFields } from '../CompanyFields'
@@ -27,6 +28,11 @@ export function EditAddressForm(props: EditAddressFormProps) {
   const router = useRouter()
   const billingAddressReadonly = useBillingAddressPermission() === 'READONLY'
 
+  // Magento's address attribute metadata tells us whether a telephone is required, as configured by
+  // `customer/address/telephone_show`.
+  const addressAttributes = useAttributesForm({ formCode: 'customer_address_edit' })
+  const telephoneRequired = addressAttributes.find((a) => a.code === 'telephone')?.is_required
+
   const form = useFormGqlMutation(
     UpdateCustomerAddressDocument,
     {
@@ -39,7 +45,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         postcode: address?.postcode,
         city: address?.city,
         countryCode: address?.country_code,
-        telephone: address?.telephone,
+        telephone: stripLegacyPlaceholderTelephone(address?.telephone),
         houseNumber: address?.street?.[1] ?? '',
         addition: address?.street?.[2] ?? '',
         region: address?.region,
@@ -92,7 +98,7 @@ export function EditAddressForm(props: EditAddressFormProps) {
         <FormRow>
           <TelephoneElement
             variant='outlined'
-            required={required.telephone}
+            required={required.telephone || telephoneRequired === true}
             control={control}
             name='telephone'
             disabled={formState.isSubmitting}

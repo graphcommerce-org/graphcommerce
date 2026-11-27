@@ -1,0 +1,135 @@
+{
+  "name": "Brands/Sizes",
+  "parent_id": 169314617677262,
+  "group_id": "ddf54adc-ac69-4cf1-9b09-6d9b25a9e51f",
+  "alternates": [],
+  "created_at": "2026-04-24T12:14:42.697Z",
+  "deleted_at": null,
+  "sort_by_date": null,
+  "tag_list": [],
+  "updated_at": "2026-04-24T12:35:45.349Z",
+  "published_at": "2026-04-24T12:35:45.334Z",
+  "id": 169342085974919,
+  "uuid": "751c2493-3834-4372-9c18-5e6c09cef411",
+  "is_folder": false,
+  "content": {
+    "_uid": "3f3116c7-f2c4-4b56-82e9-8271569d52ec",
+    "body": [
+      {
+        "_uid": "76fd62e7-2518-46c2-915b-13b3a4c6c6ce",
+        "col_one": {
+          "type": "doc",
+          "content": [
+            {
+              "type": "paragraph",
+              "attrs": {
+                "textAlign": null
+              },
+              "content": [
+                {
+                  "text": "Try clicking different size buttons located at the top of each product page - you will be shown the inventory details of what sizes we are currently offering. Please check back often since we add new products on a daily basis! Or if you know what you're looking for - try the search bar as well.",
+                  "type": "text",
+                  "marks": [
+                    {
+                      "type": "textStyle",
+                      "attrs": {
+                        "color": ""
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "variant": "Default",
+        "component": "row_column_one"
+      }
+    ],
+    "date": "",
+    "asset": {
+      "id": null,
+      "alt": null,
+      "name": "",
+      "focus": null,
+      "title": null,
+      "source": null,
+      "filename": "",
+      "copyright": null,
+      "fieldtype": "asset",
+      "meta_data": {}
+    },
+    "author": "",
+    "component": "page",
+    "meta_title": "I want to know if you carry a specific brand/color/size/width?",
+    "meta_robots": "INDEX_FOLLOW",
+    "related_pages": [],
+    "meta_description": ""
+  },
+  "published": true,
+  "slug": "brands-and-sizes",
+  "path": null,
+  "full_slug": "service/brands-and-sizes",
+  "default_root": null,
+  "disble_fe_editor": false,
+  "disable_fe_editor": false,
+  "parent": {
+    "id": 169314617677262,
+    "uuid": "c4b4a580-d22d-446d-86bf-7602bc091cc8",
+    "name": "Service",
+    "slug": "service",
+    "disble_fe_editor": false
+  },
+  "is_startpage": false,
+  "unpublished_changes": false,
+  "meta_data": null,
+  "imported_at": null,
+  "preview_token": {
+    "token": "219504c5b73393ee0437847367b962c7041df720",
+    "timestamp": "1777036864"
+  },
+  "pinned": false,
+  "breadcrumbs": [
+    {
+      "id": 169314617677262,
+      "name": "Service",
+      "parent_id": null,
+      "disble_fe_editor": false,
+      "disable_fe_editor": false,
+      "path": null,
+      "slug": "service",
+      "translated_slugs": []
+    }
+  ],
+  "publish_at": null,
+  "expire_at": null,
+  "first_published_at": "2026-04-24T12:15:05.203Z",
+  "last_author": {
+    "id": 159433391350340,
+    "userid": "info@reachdigital.nl",
+    "friendly_name": "Reach Digital"
+  },
+  "last_author_id": 159433391350340,
+  "user_ids": [],
+  "space_role_ids": [],
+  "translated_slugs": [],
+  "localized_paths": [
+    {
+      "path": "service/brands-and-sizes",
+      "name": null,
+      "lang": "nl",
+      "published": null
+    }
+  ],
+  "position": -70,
+  "translated_stories": [],
+  "can_not_view": false,
+  "is_scheduled": null,
+  "scheduled_dates": null,
+  "ideas": [],
+  "current_version_id": 169347257570038,
+  "variant_type": null,
+  "experiment_ids": [],
+  "stage": null,
+  "favourite_for_user_ids": []
+}

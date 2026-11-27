@@ -27,7 +27,7 @@ export function productListLinkFromFilter(props: ProductFilterParams): string {
   // todo(paales): How should the URL look like with multiple sorts?
   // Something like: /sort/position,price/dir/asc,asc
   if (sort) query += `/sort/${sort}`
-  if (dir) query += '/dir/desc'
+  if (dir === 'DESC') query += '/dir/desc'
   if (pageSize) query += `/page-size/${pageSize}`
 
   // Apply filters

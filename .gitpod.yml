@@ -1,5 +1,5 @@
 tasks:
-  - before: nvm install 18
+  - before: nvm install 24
     init: |
       cd examples/magento-graphcms
       yarn

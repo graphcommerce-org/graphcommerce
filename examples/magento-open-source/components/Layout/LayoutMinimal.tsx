@@ -1,9 +1,9 @@
 import { CmsBlock } from '@graphcommerce/magento-cms'
-import type { LayoutDefaultProps } from '@graphcommerce/next-ui'
-import { LayoutDefault } from '@graphcommerce/next-ui'
 import { productListRenderer } from '../ProductListItems'
 import { Footer } from './Footer'
+import { HeaderContainer } from './HeaderContainer'
 import type { LayoutQuery } from './Layout.gql'
+import { LayoutDefault, type LayoutDefaultProps } from './LayoutDefault'
 import { Logo } from './Logo'
 
 export type LayoutMinimalProps = LayoutQuery &
@@ -17,7 +17,11 @@ export function LayoutMinimal(props: LayoutMinimalProps) {
   return (
     <LayoutDefault
       {...uiProps}
-      header={<Logo />}
+      header={
+        <HeaderContainer>
+          <Logo />
+        </HeaderContainer>
+      }
       footer={
         <Footer
           socialLinks={

@@ -1,0 +1,41 @@
+type BundleCartItem {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+interface CartItemInterface {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type ConfigurableCartItem {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type DownloadableCartItem {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type SimpleCartItem {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}
+
+type VirtualCartItem {
+  """
+  Message to display when the product is not available with this selected option.
+  """
+  not_available_message: String @deprecated(reason: "Magento >= 2.4.8")
+}

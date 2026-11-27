@@ -8,7 +8,8 @@ export type UspListItemProps = {
   text: React.ReactNode
   icon?: React.ReactNode
   sx?: SxProps<Theme>
-} & OwnerState
+} & OwnerState &
+  Omit<React.HTMLAttributes<HTMLLIElement>, 'children'>
 
 type OwnerState = { size?: 'small' | 'medium' }
 const name = 'UspListItem'
@@ -16,13 +17,14 @@ const parts = ['root', 'icon', 'text'] as const
 const { withState } = extendableComponent<OwnerState, typeof name, typeof parts>(name, parts)
 
 export function UspListItem(props: UspListItemProps) {
-  const { text, icon, size = 'medium', sx = [] } = props
+  const { text, icon, size = 'medium', sx = [], ...rest } = props
   const classes = withState({ size })
 
   return (
     <Box
       component='li'
       className={classes.root}
+      {...rest}
       sx={sxx(
         (theme) => ({
           display: 'grid',

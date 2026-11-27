@@ -1,6 +1,6 @@
 import type { LinearProgressProps } from '@mui/material'
 import { LinearProgress } from '@mui/material'
-import { m, motionValue, useTransform } from 'framer-motion'
+import { m, motionValue, useTransform } from 'motion/react'
 import { useRouter } from 'next/router'
 import { forwardRef, useEffect, useState } from 'react'
 
@@ -38,6 +38,7 @@ export function PageLoadIndicator() {
 
   return (
     <MLinearProgress
+      aria-hidden='true'
       style={{ opacity }}
       sx={{
         position: 'fixed',

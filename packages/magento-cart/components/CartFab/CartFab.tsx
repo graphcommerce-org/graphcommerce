@@ -10,17 +10,19 @@ import {
 import { t } from '@lingui/core/macro'
 import type { BadgeProps, FabProps, SxProps, Theme } from '@mui/material'
 import { Box, Fab, styled, useTheme } from '@mui/material'
-import { m, useTransform } from 'framer-motion'
+import { m, useTransform } from 'motion/react'
 import React from 'react'
 import { useCartEnabled, useCartShouldLoginToContinue } from '../../hooks'
 import { useCartQuery } from '../../hooks/useCartQuery'
 import { CartFabDocument } from './CartFab.gql'
+import { CartFabStatic } from './CartFabStatic'
 import type { CartTotalQuantityFragment } from './CartTotalQuantity.gql'
 
 export type CartFabProps = {
   icon?: React.ReactNode
   sx?: SxProps<Theme>
   BadgeProps?: BadgeProps
+  disableScrollEffects?: boolean
 } & Pick<FabProps, 'color' | 'size' | 'variant'>
 
 export type CartFabContentProps = CartFabProps & CartTotalQuantityFragment
@@ -108,5 +110,9 @@ export function CartFab(props: CartFabProps) {
   })
   if (!cartEnabled) return null
 
-  return <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...props} />
+  const { disableScrollEffects, ...rest } = props
+  if (disableScrollEffects)
+    return <CartFabStatic total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...rest} />
+
+  return <CartFabContent total_quantity={cartQuery.data?.cart?.total_quantity ?? 0} {...rest} />
 }

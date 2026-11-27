@@ -1,16 +1,15 @@
-import { z } from 'zod';
+import * as z from 'zod';
 
 const isDefinedNonNullAny = (v) => v !== void 0 && v !== null;
 const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny(v));
 const BillingAddressPermissionsSchema = z.enum(["EDITABLE", "READONLY"]);
 const CartPermissionsSchema = z.enum(["CUSTOMER_ONLY", "DISABLED", "ENABLED"]);
-const CompareVariantSchema = z.enum(["CHECKBOX", "ICON"]);
-const ContainerSizingSchema = z.enum(["BREAKPOINT", "FULL_WIDTH"]);
-const CustomerAccountPermissionsSchema = z.enum([
-  "DISABLED",
-  "DISABLE_REGISTRATION",
-  "ENABLED"
+const CompareVariantSchema = z.enum([
+  "CHECKBOX",
+  "ICON"
 ]);
+const ContainerSizingSchema = z.enum(["BREAKPOINT", "FULL_WIDTH"]);
+const CustomerAccountPermissionsSchema = z.enum(["DISABLED", "DISABLE_REGISTRATION", "ENABLED"]);
 const PaginationVariantSchema = z.enum(["COMPACT", "EXTENDED"]);
 const ProductFiltersLayoutSchema = z.enum(["DEFAULT", "SIDEBAR"]);
 const SidebarGalleryPaginationVariantSchema = z.enum(["DOTS", "THUMBNAILS_BOTTOM"]);
@@ -22,17 +21,19 @@ function DatalayerConfigSchema() {
 }
 function GraphCommerceConfigSchema() {
   return z.object({
-    breadcrumbs: z.boolean().default(false).nullish(),
+    breadcrumbs: z.boolean().nullish().default(false),
     canonicalBaseUrl: z.string().min(1),
     cartDisplayPricesInclTax: z.boolean().nullish(),
     compare: z.boolean().nullish(),
-    compareVariant: CompareVariantSchema.default("ICON").nullish(),
-    configurableVariantForSimple: z.boolean().default(false).nullish(),
-    configurableVariantValues: z.lazy(() => MagentoConfigurableVariantValuesSchema().nullish()),
-    containerSizingContent: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
-    containerSizingShell: ContainerSizingSchema.default("FULL_WIDTH").nullish(),
-    crossSellsHideCartItems: z.boolean().default(false).nullish(),
-    crossSellsRedirectItems: z.boolean().default(false).nullish(),
+    compareVariant: CompareVariantSchema.nullish().default("ICON"),
+    configurableVariantForSimple: z.boolean().nullish().default(false),
+    configurableVariantValues: z.lazy(
+      () => MagentoConfigurableVariantValuesSchema().nullish().default({ url: true, content: true })
+    ),
+    containerSizingContent: ContainerSizingSchema.nullish().default("FULL_WIDTH"),
+    containerSizingShell: ContainerSizingSchema.nullish().default("FULL_WIDTH"),
+    crossSellsHideCartItems: z.boolean().nullish().default(false),
+    crossSellsRedirectItems: z.boolean().nullish().default(false),
     customerAddressNoteEnable: z.boolean().nullish(),
     customerCompanyFieldsEnable: z.boolean().nullish(),
     customerDeleteEnabled: z.boolean().nullish(),
@@ -44,18 +45,19 @@ function GraphCommerceConfigSchema() {
     googlePlaystore: z.lazy(() => GraphCommerceGooglePlaystoreConfigSchema().nullish()),
     googleRecaptchaKey: z.string().nullish(),
     googleTagmanagerId: z.string().nullish(),
-    graphqlMeshEditMode: z.boolean().default(false).nullish(),
+    graphqlMeshEditMode: z.boolean().nullish().default(false),
     hygraphManagementApi: z.string().nullish(),
     hygraphProjectId: z.string().nullish(),
     hygraphWriteAccessToken: z.string().nullish(),
+    imageQuality: z.lazy(() => ImageQualityConfigSchema().default({ content: 75, product: 52 })),
     limitSsg: z.boolean().nullish(),
     magentoEndpoint: z.string().min(1),
     magentoVersion: z.number(),
     permissions: z.lazy(() => GraphCommercePermissionsSchema().nullish()),
     previewSecret: z.string().nullish(),
-    productFiltersLayout: ProductFiltersLayoutSchema.default("DEFAULT").nullish(),
+    productFiltersLayout: ProductFiltersLayoutSchema.nullish().default("DEFAULT"),
     productFiltersPro: z.boolean().nullish(),
-    productListPaginationVariant: PaginationVariantSchema.default("COMPACT").nullish(),
+    productListPaginationVariant: PaginationVariantSchema.nullish().default("COMPACT"),
     productRoute: z.string().nullish(),
     recentlyViewedProducts: z.lazy(() => RecentlyViewedProductsConfigSchema().nullish()),
     robotsAllow: z.boolean().nullish(),
@@ -106,6 +108,12 @@ function GraphCommerceStorefrontConfigSchema() {
     robotsAllow: z.boolean().nullish()
   });
 }
+function ImageQualityConfigSchema() {
+  return z.object({
+    content: z.number().default(75),
+    product: z.number().default(52)
+  });
+}
 function MagentoConfigurableVariantValuesSchema() {
   return z.object({
     content: z.boolean().nullish(),
@@ -125,4 +133,4 @@ function SidebarGalleryConfigSchema() {
   });
 }
 
-export { BillingAddressPermissionsSchema, CartPermissionsSchema, CompareVariantSchema, ContainerSizingSchema, CustomerAccountPermissionsSchema, DatalayerConfigSchema, GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceGooglePlaystoreConfigSchema, GraphCommercePermissionsSchema, GraphCommerceStorefrontConfigSchema, MagentoConfigurableVariantValuesSchema, PaginationVariantSchema, ProductFiltersLayoutSchema, RecentlyViewedProductsConfigSchema, SidebarGalleryConfigSchema, SidebarGalleryPaginationVariantSchema, WebsitePermissionsSchema, definedNonNullAnySchema, isDefinedNonNullAny };
+export { BillingAddressPermissionsSchema, CartPermissionsSchema, CompareVariantSchema, ContainerSizingSchema, CustomerAccountPermissionsSchema, DatalayerConfigSchema, GraphCommerceConfigSchema, GraphCommerceDebugConfigSchema, GraphCommerceGooglePlaystoreConfigSchema, GraphCommercePermissionsSchema, GraphCommerceStorefrontConfigSchema, ImageQualityConfigSchema, MagentoConfigurableVariantValuesSchema, PaginationVariantSchema, ProductFiltersLayoutSchema, RecentlyViewedProductsConfigSchema, SidebarGalleryConfigSchema, SidebarGalleryPaginationVariantSchema, WebsitePermissionsSchema, definedNonNullAnySchema, isDefinedNonNullAny };

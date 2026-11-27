@@ -1,0 +1,9 @@
+"""
+Data of customer group.
+"""
+type CustomerGroupStorefront {
+  """
+  The unique ID for a `CustomerGroup` object.
+  """
+  uid: ID!
+}
