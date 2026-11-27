@@ -92,6 +92,7 @@
   },
   "changesets": [
     "account-sign-in-enter-submit",
+    "action-card-accordion-summary-div",
     "add-products-to-cart-empty-customizable-options",
     "add-products-to-cart-form-default-values",
     "add-youtube-embed",

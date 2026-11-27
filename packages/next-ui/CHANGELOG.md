@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0-canary.71
+
+### Patch Changes
+
+- [#2735](https://github.com/graphcommerce-org/graphcommerce/pull/2735) [`758b863`](https://github.com/graphcommerce-org/graphcommerce/commit/758b863f005a812c79f6bbe9cf98e2a6a03a265a) - Fix hydration error #418 on a category page with an active filter or sort: `ActionCardAccordion` renders its summary as a `div`, so the clear button in `right` is not a button in a button. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.70
 
 ## 11.0.0-canary.69
