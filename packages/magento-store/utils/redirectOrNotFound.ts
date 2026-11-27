@@ -136,6 +136,12 @@ export async function redirectOrNotFound(
         : redirect(from, `/${redirectUrl}`, permanent, locale)
     }
 
+    // If no explicit redirect but route is a product, redirect to product route
+    if (routeData.route?.relative_url && isTypename(routeData.route, productInterfaceTypes)) {
+      const productPath = `${productRoute ?? '/p/'}${routeData.route.relative_url}`
+      return redirect(from, productPath, permanent, locale)
+    }
+
     return notFound(from, 'Route found, but no redirect URL')
   } catch (e) {
     if (e instanceof Error) {
