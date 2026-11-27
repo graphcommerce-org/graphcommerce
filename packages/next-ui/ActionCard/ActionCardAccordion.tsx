@@ -39,6 +39,8 @@ export function ActionCardAccordion(props: ActionCardAccordionProps) {
       )}
     >
       <AccordionSummary
+        // MUI renders the summary as a button, and `right` can hold a button
+        component='div'
         onClick={(e) => e.preventDefault()}
         expandIcon={<IconSvg src={iconChevronDown} />}
         sx={{
