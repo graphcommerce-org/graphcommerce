@@ -64,9 +64,9 @@ export function CompareListSelect(props: CompareListSelectProps) {
                 label: i?.product?.name ?? '',
               }))}
               size='small'
-              onChange={(to) => {
+              onChange={(event) => {
                 const from = selectedPrevious.current?.[compareSelectIndex]
-                const found = selectedPrevious.current?.indexOf(Number(to))
+                const found = selectedPrevious.current?.indexOf(Number(event.target.value))
                 if (found > -1) setValue(`selected.${found}`, from)
               }}
             />
