@@ -1,5 +1,41 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- [#2626](https://github.com/graphcommerce-org/graphcommerce/pull/2626) [`e2c9f9b`](https://github.com/graphcommerce-org/graphcommerce/commit/e2c9f9bfc762ed1c4d46f1e24babd6bd658c7343) - **Breaking change — requires Node.js 22 or newer.** This kicks off GraphCommerce 11.
+
+  Node.js 20 hit end-of-life in April 2026, so the framework no longer supports it. `engines.node` is now `>=22.0.0 <27.0.0` across the root and all example storefronts — Node 22 (Maintenance LTS) is the new minimum, Node 24 (Active LTS) is recommended, and Node 26 (current) is also accepted.
+
+  - CI: `release-canary`, `release-main` and `pr-analysis` now run on Node 24. `periodic-build` matrix changed from `[20, 22]` to `[22, 24]`, and `actions/setup-node` bumped from v3 to v4.
+  - `.gitpod.yml` bootstrap moved from `nvm install 18` to `nvm install 24`.
+  - Getting-started docs and the three example READMEs now point at Node 22/24.
+
+  See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md) for the migration steps. ([@paales](https://github.com/paales))
+
+### Minor Changes
+
+- [#2637](https://github.com/graphcommerce-org/graphcommerce/pull/2637) [`bdaa6ec`](https://github.com/graphcommerce-org/graphcommerce/commit/bdaa6ec6aa2669b74fc6702ad46336db4c154b7c) - Refactored `LayoutNavigation` into composable pieces (`Header`, `HeaderContainer`, `MenuOverlay`, project-local `LayoutDefault`). `LayoutDefault` / `LayoutDefaultProps` in `@graphcommerce/next-ui` are marked `@deprecated`. If you are upgrading and do not want these changes, you can just discard them. This is just a structural change for more ease of use. No visually change. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+### Patch Changes
+
+- [#2716](https://github.com/graphcommerce-org/graphcommerce/pull/2716) [`a91abd7`](https://github.com/graphcommerce-org/graphcommerce/commit/a91abd727e2c42ad26373902be48accb3b3c0ca6) - `pages/checkout/added.tsx` focuses its heading without a scroll, so the overlay slides in after an add to cart. A scrolling `focus()` put the overlay in its open position before `OverlayBase` started the animation. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2731](https://github.com/graphcommerce-org/graphcommerce/pull/2731) [`0a65ed3`](https://github.com/graphcommerce-org/graphcommerce/commit/0a65ed3359950fb29234f1d228e30aef41d72df3) - Fix `yarn install` on CI in a project that starts from an example: `patch-package` stopped, because the patches were for `next` 16.2.6 and `react-hook-form` 7.67.0. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2730](https://github.com/graphcommerce-org/graphcommerce/pull/2730) [`acd08e7`](https://github.com/graphcommerce-org/graphcommerce/commit/acd08e72e504e06b2fbaeb6c9f996606ed5e2b7e) - Fix `next build` in a project that starts from `magento-graphcms`: the type check stopped with `Cannot find module 'vitest'` in two tests of the monorepo. If your project has `__tests__/checkoutAdded.test.ts` or `graphql/ProductPage2.test.ts`, delete these files. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2634](https://github.com/graphcommerce-org/graphcommerce/pull/2634) [`06082ad`](https://github.com/graphcommerce-org/graphcommerce/commit/06082ad47a59217fbdfb24f1a60411e4d0eecd9b) - Make GraphCommerce compatible with Apollo Client 4.2+ by augmenting Apollo's `DefaultOptions` type with the `preview` extension and the SSR clients' `errorPolicy: 'all'` default. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`cba75a0`](https://github.com/graphcommerce-org/graphcommerce/commit/cba75a006d4efface5d1149e9cc6ebe3a9b5b9f8) - Added `imageQuality` to `graphcommerce.config.ts`. Choose the kind (`content` or `product`) with `quality` on `<Image>` or `imageUrl()`. `quality='content'` is for content images, such as CMS images, and is the default when no quality is given, with quality 75 in place of the previous 52. `quality='product'` is for product images from the Magento catalog, with quality 52. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2623](https://github.com/graphcommerce-org/graphcommerce/pull/2623) [`241576a`](https://github.com/graphcommerce-org/graphcommerce/commit/241576a981fe97595000d74630a8ac8544a5e77f) - Bump Next.js from 16.1.1 to 16.2.6 across the framework and example storefronts. Also bumps the matching `@next/env` and `@next/eslint-plugin-next` pins. ([@paales](https://github.com/paales))
+
+- [#2710](https://github.com/graphcommerce-org/graphcommerce/pull/2710) [`59dd648`](https://github.com/graphcommerce-org/graphcommerce/commit/59dd648fadfd7e4598395dcd7fb6f6818fe10179) - `relatedUpsells` in `ProductPage2` requests the `id` of the product. `products` and `relatedUpsells` write to one cache field, and without `id` in both, the cache lost the related products and the reviews. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2636](https://github.com/graphcommerce-org/graphcommerce/pull/2636) [`0af6794`](https://github.com/graphcommerce-org/graphcommerce/commit/0af679485950c934cdadc56b8b3ea8ace9de8ab9) - Fix for codegen issue where codegen would stop (without error) halfway through ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.72
 
 ## 11.0.0-canary.71

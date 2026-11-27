@@ -1,5 +1,15 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- [#2732](https://github.com/graphcommerce-org/graphcommerce/pull/2732) [`6c45ee6`](https://github.com/graphcommerce-org/graphcommerce/commit/6c45ee647a4e656924a185b4eb985eb036b9d9c8) - Changed the generated configuration docs for a field with a default value. The docs show its default without "(required)", between the other optional fields. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2707](https://github.com/graphcommerce-org/graphcommerce/pull/2707) [`abcfce1`](https://github.com/graphcommerce-org/graphcommerce/commit/abcfce130beaf5544a6ceec794fdeb99e4b3e3ba) - **Breaking change:** configuration fields are server-only, unless their definition in `Config.graphqls` has `@public`. In the browser, `@graphcommerce/next-config/config` resolves to a file with only the `@public` fields, so secrets such as `previewSecret` and `hygraphSecret` stay out of the client JavaScript and its source maps. Turbopack stops the build on a browser import of a server-only field. See [docs/upgrading/graphcommerce-10-to-11.md](docs/upgrading/graphcommerce-10-to-11.md). ([@paales](https://github.com/paales))
+
+- [#2729](https://github.com/graphcommerce-org/graphcommerce/pull/2729) [`8ffa96f`](https://github.com/graphcommerce-org/graphcommerce/commit/8ffa96f50d1365eb928b01a16aab480192639893) - Fix the publish of `@graphcommerce/graphql-codegen-near-operation-file`, `@graphcommerce/graphql-codegen-markdown-docs` and `@graphcommerce/hygraph-cli` with TypeScript 6. Their `prepack` build failed, so npm has no 11.0.0-canary.57 to 11.0.0-canary.63 of these packages, and an install of `@graphcommerce/graphql` or `@graphcommerce/cli` from those canaries fails. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.72
 
 ## 11.0.0-canary.71

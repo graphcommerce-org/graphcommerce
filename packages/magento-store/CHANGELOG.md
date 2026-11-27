@@ -1,5 +1,25 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`cb36d6c`](https://github.com/graphcommerce-org/graphcommerce/commit/cb36d6c219e067ffe2fb2e847a8ff84e8f87a5e8) - **Breaking change:** GraphCommerce requires Lingui 6 and Node.js 22.19 or later. Lingui 6 has no `@lingui/macro` package: import the JSX macros from `@lingui/react/macro`. The `lingui-next` config excludes `.d.ts` files and `node_modules` outside the working directory too. ([@paales](https://github.com/paales))
+
+### Patch Changes
+
+- [#2625](https://github.com/graphcommerce-org/graphcommerce/pull/2625) [`539b353`](https://github.com/graphcommerce-org/graphcommerce/commit/539b353d76a1d06b1c50b7135ecae64c116b8bbf) - `CustomAttributesField_to_AttributeValueInputs` was filtering out any falsy form value (`if (!value) return`), so empty strings and `false` booleans never made it into the resulting `AttributeValueInput[]`. That meant a consumer who picked the empty-string option of a SELECT attribute (e.g. a "-- None --" option used to undo a previous choice) couldn't actually clear the attribute — the mutation simply omitted it and Magento kept the old value.
+
+  Skip only when the value is `undefined` (the attribute was never touched). Pass empty strings and `false` booleans through to the mutation so the backend can interpret them as "clear this attribute". ([@paales](https://github.com/paales))
+
+- [#2620](https://github.com/graphcommerce-org/graphcommerce/pull/2620) [`43a0ed2`](https://github.com/graphcommerce-org/graphcommerce/commit/43a0ed29a39a40c6af619fd70fb25fd800ccbf69) - `SignUpForm` now accepts `fieldsets` and `render` props (mirroring `CustomerUpdateForm`), so consumers can group dynamic customer attributes into custom labelled sections via `AttributesFormAutoLayout`. Defaults to the existing `[nameFieldset(attributes)]` / `CustomerAttributeField` behaviour, so unchanged for projects that don't supply the props.
+
+  This avoids the unstyled, untranslated `Other` fallback header that `AttributesFormAutoLayout` adds whenever attributes don't fit any registered fieldset — projects that extend the customer schema (e.g. with a `club` attribute) can now declare their own fieldset alongside `nameFieldset`.
+
+  The fallback header itself in `AttributesFormAutoLayout` is now wrapped in `<Trans>Other</Trans>` so it picks up project translations instead of rendering as a hardcoded English string.
+
+  Bug fix in `nameFieldset`: when a store doesn't register `dob`/`gender` on the registration form, the `additional` row was empty and the helper produced `grid-template-areas: "firstname lastname" ""`, which is invalid CSS and made the whole declaration fall back to the default single-column layout — firstname/lastname stacked on separate rows even at md+. Empty rows are now filtered out, so the side-by-side md layout works as intended. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.72
 
 ## 11.0.0-canary.71

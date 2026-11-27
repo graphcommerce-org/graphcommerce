@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- [#2708](https://github.com/graphcommerce-org/graphcommerce/pull/2708) [`741b772`](https://github.com/graphcommerce-org/graphcommerce/commit/741b772953dfad97d2cefce135f25f4faed929d1) - **Breaking change:** `nextjs.json` uses `"moduleResolution": "bundler"` and `node.json` extends `@tsconfig/node22`. TypeScript 6 reports `"moduleResolution": "node"` as deprecated. ([@paales](https://github.com/paales))
+
 ## 11.0.0-canary.72
 
 ## 11.0.0-canary.71
