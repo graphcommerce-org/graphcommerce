@@ -110,6 +110,8 @@
     "clarify-typecheck-private-packages",
     "cleanup-interceptors-scan-node-modules",
     "client-field-rendering",
+    "compare-attribute-label-width",
+    "compare-select-swap",
     "config-default-values",
     "config-docs-defaults",
     "configurable-variant-values-default",

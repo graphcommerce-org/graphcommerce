@@ -1,5 +1,13 @@
 # @graphcommerce/magento-compare
 
+## 11.0.0-canary.72
+
+### Patch Changes
+
+- [#2733](https://github.com/graphcommerce-org/graphcommerce/pull/2733) [`4bfbb36`](https://github.com/graphcommerce-org/graphcommerce/commit/4bfbb36ff1bcc0c33691aa75f29e0674bca413d4) - Fix the attribute labels on the compare page: a label spans the compared products again, in place of `width: 20px` in the center. ([@bramvanderholst](https://github.com/bramvanderholst))
+
+- [#2734](https://github.com/graphcommerce-org/graphcommerce/pull/2734) [`a925d83`](https://github.com/graphcommerce-org/graphcommerce/commit/a925d8349cf0e50879facfa43167ff980bc4fc73) - Fix the selects on the compare page: a select that picks the product of another column swaps the two columns, in place of showing one product twice. ([@bramvanderholst](https://github.com/bramvanderholst))
+
 ## 11.0.0-canary.71
 
 ## 11.0.0-canary.70
